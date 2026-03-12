@@ -4,6 +4,8 @@
 
 ![](https://qfoldit.github.io/img/posters/noble_prize.png)
 
+![](https://qfoldit.github.io/img/posters/fksru.png)
+
 ![](https://qfoldit.github.io/img/posters/quantum_comp.png)
 
 ![](https://qfoldit.github.io/img/posters/championship.png)
