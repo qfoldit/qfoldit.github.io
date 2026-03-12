@@ -2,6 +2,8 @@
 
 **Chemistry**, **Protein** &amp; **DNA** **Quantum** **Folding** **(qFoldIT)**
 
+![](https://qfoldit.github.io/img/posters/qFoldIT_protein.png)
+
 ![](https://qfoldit.github.io/img/posters/noble_prize.png)
 
 ![](https://qfoldit.github.io/img/posters/fksru.png)
