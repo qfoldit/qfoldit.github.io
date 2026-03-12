@@ -1,1 +1,1 @@
-# qfoldit.github.io
+# qFoldIT
