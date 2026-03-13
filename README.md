@@ -49,3 +49,5 @@
 ![](https://qfoldit.github.io/img/posters/championship.png)
 
 ![](https://qfoldit.github.io/img/posters/fksru.png)
+
+![](https://qfoldit.github.io/img/posters/cybersber.jpg)
