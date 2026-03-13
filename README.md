@@ -1,3 +1,7 @@
+![](https://qfoldit.github.io/img/posters/blog.jpg)
+
+
+
 <h3><a href="https://siriusuniversity.ru/" target="blank">В Научно-технологическом университете «Сириус»</a> мы преподаём и проводим мастер классы по квантовым вычислениям, созданию виртуальных лабораторий и цифровых двойников</h3>
 
 ![Я преподователь Научно-технологического университета «Сириус»](https://qfoldit.github.io/img/posters/university.png)
