@@ -45,7 +45,7 @@ Genotek привлекла инвестиций на 4 миллиона долл
 ![](https://qfoldit.github.io/img/posters/quantum_comp.png)
 ---
 
-Визуализация МАС «Снежинка» привлекла ₽200 млн.
+Визуализация МАС «Снежинка» привлекла ₽200 млн. Общая стоимость проекта ₽5,6 млрд. 
 
 ![](https://comiccon2025.github.io/img/snowflake/hero_snow.png)
 
