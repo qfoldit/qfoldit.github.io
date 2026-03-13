@@ -2,7 +2,9 @@ Genotek привлекла инвестиций на 4 миллиона долл
 ![](https://qfoldit.github.io/img/posters/blog.jpg)
 ![](https://qfoldit.github.io/img/posters/yahealth.jpg)
 ---
-Объем внешнего финансирования компании Medical Genomics превысил $220–230 млн. 
+Объем внешнего финансирования компании Medical Genomics превысил $220–230 млн.
+![](https://evercare.ru/sites/default/files/2021-09/%D0%BC%D0%B5%D0%B4%D0%B3%D0%B5%D0%BD.jpg)
+
 ---
 <h3><a href="https://siriusuniversity.ru/" target="blank">В Научно-технологическом университете «Сириус»</a> мы преподаём и проводим мастер классы по квантовым вычислениям, созданию виртуальных лабораторий и цифровых двойников для компаний «Сибур», «Роснефть», «Газпром», «Лукойл» и МАС «Снежинка»</h3>
 
