@@ -12,6 +12,7 @@
 
 ![Я преподователь Научно-технологического университета «Сириус»](https://qfoldit.github.io/img/posters/university.png)
 ![](https://qfoldit.github.io/img/posters/qFoldIT_Office.png)
+![](https://qfoldit.github.io/img/posters/sirius_plants.png)
 ---
 
 <h3><a href="https://biomolecula.ru/articles/nesushchestvuiushchie-v-prirode-belki-za-chto-vruchili-nobelevskuiu-premiiu-po-khimii-2024" target="blank">Нобелевская премия получена «за вычислительный дизайн белков»</a></h3>
