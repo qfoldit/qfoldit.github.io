@@ -1,8 +1,10 @@
-Genotek привлекла инвестиций на $4 млн. долларов. Ведущим и новым инвестором раунда стала компания Яндекс.
+**Genotek** привлекла инвестиций на **$4 млн**. Ведущим инвестором стала компания **Яндекс**.
+
 ![](https://qfoldit.github.io/img/posters/blog.jpg)
 ![](https://qfoldit.github.io/img/posters/yahealth.jpg)
 ---
-Объем внешнего финансирования компании Medical Genomics превысил $220–230 млн.
+
+Объем внешнего финансирования компании **Medical Genomics** превысил **$220–230 млн.**
 ![](https://evercare.ru/sites/default/files/2021-09/%D0%BC%D0%B5%D0%B4%D0%B3%D0%B5%D0%BD.jpg)
 
 ---
