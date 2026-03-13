@@ -1,4 +1,5 @@
 ![](https://qfoldit.github.io/img/posters/blog.jpg)
+![](https://qfoldit.github.io/img/posters/yahealth.jpg)
 ---
 <h3><a href="https://siriusuniversity.ru/" target="blank">В Научно-технологическом университете «Сириус»</a> мы преподаём и проводим мастер классы по квантовым вычислениям, созданию виртуальных лабораторий и цифровых двойников для компаний «Сибур», «Газпром», «Лукойл» и МАС «Снежинка»</h3>
 
