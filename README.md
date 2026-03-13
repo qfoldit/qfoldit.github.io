@@ -44,7 +44,7 @@
 ![](https://refoldit.github.io/img/info/quantum_rosatom.png)
 ![](https://refoldit.github.io/img/info/molecular.png)
 ![](https://qfoldit.github.io/img/posters/quantum_comp.png)
-
+---
 ![](https://qfoldit.github.io/img/posters/qFoldIT_protein.png)
 ![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
 
