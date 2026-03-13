@@ -1,3 +1,4 @@
+Компания Genotek привлекла инвестиций на 4 миллиона долларов. Ведущим и новым инвестором раунда стала компания Яндекс.
 ![](https://qfoldit.github.io/img/posters/blog.jpg)
 ![](https://qfoldit.github.io/img/posters/yahealth.jpg)
 ---
