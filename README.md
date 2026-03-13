@@ -2,7 +2,10 @@
 
 **Chemistry**, **Protein** &amp; **DNA** **Quantum** **Folding** **(qFoldIT)** <br>
 
+![](https://qfoldit.github.io/img/posters/noble_prize.png)
+
 ---
+
 
 Считается, что **Четвертая промышленная революция «Индустрия 4.0»** началась на рубеже XX и XXI веков, но ее активная фаза и массовое признание как отдельного этапа пришлись на начало 2010-х годов.  
 Сам термин **«Индустрия 4.0»** впервые прозвучал на Ганноверской ярмарке в 2011 году, а Клаус Шваб на форуме в Давосе (2016) закрепил мнение, что мы уже живем в этой эпохе.  
@@ -31,7 +34,7 @@
 ---
 
 ![](https://qfoldit.github.io/img/posters/championship.png)
-![](https://qfoldit.github.io/img/posters/noble_prize.png)
+
 ![](https://qfoldit.github.io/img/posters/qFoldIT_protein.png)
 ![](https://qfoldit.github.io/img/posters/fksru.png)
 ![](https://qfoldit.github.io/img/posters/quantum_comp.png)
