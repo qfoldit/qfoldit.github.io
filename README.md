@@ -47,13 +47,13 @@ Genotek привлекла инвестиций на $4 млн. долларов
 ![](https://qfoldit.github.io/img/posters/quantum_comp.png)
 ---
 
-Визуализация МАС «Снежинка» привлекла ₽200 млн. Общая стоимость проекта ₽5,6 млрд. 
+Визуализация **МАС «Снежинка»** привлекла **₽200 млн.** **Общая стоимость ₽5,6 млрд.**
 
 ![](https://comiccon2025.github.io/img/snowflake/hero_snow.png)
 
 ---
 
-Многопользовательскую Игру МАС «Снежинка», включая гонки на вездеходах, полёты на дронах и виртуальные лаборатории с **Chemistry**, **Protein** &amp; **DNA** **Quantum** **Folding** **(qFoldIT)**, издаёт VK Play как эксклюзив для VK от создателей Atomic Heart.
+**Многопользовательскую** игру **МАС «Снежинка»**, включая **гонки на вездеходах**, **полёты на дронах**, **квантовые стафки** и **виртуальные лаборатории** с **Chemistry**, **Protein** &amp; **DNA** **Quantum** **Folding** **(qFoldIT)**, издаёт **VK Play** как эксклюзив для VK от создателей **Atomic Heart**.
 
 ![](https://qfoldit.github.io/img/posters/qFoldIT_protein.png)
 ![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
