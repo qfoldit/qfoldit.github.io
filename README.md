@@ -55,7 +55,7 @@
 
 ---
 
-**Многопользовательскую** игру **МАС «Снежинка»**, включая **гонки на вездеходах**, **полёты на дронах**, **квантовые стафки** и **виртуальные лаборатории** с **Chemistry**, **Protein** &amp; **DNA** **Quantum** **Folding** **(qFoldIT)**, издаёт **VK Play** как эксклюзив для VK от создателей **Atomic Heart**.
+**Многопользовательская** игру **МАС «Снежинка»**, включая **гонки на вездеходах**, **полёты на дронах**, **квантовые стафки** и **виртуальные лаборатории** с **Chemistry**, **Protein** &amp; **DNA** **Quantum** **Folding** **(qFoldIT)**, издаёт **VK Play** как эксклюзив для VK от создателей **Atomic Heart**.
 
 ![](https://qfoldit.github.io/img/posters/qFoldIT_protein.png)
 ![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
