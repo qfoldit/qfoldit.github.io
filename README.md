@@ -1,4 +1,4 @@
-#### В Научно-технологическом университете «Сириус» квантовые вычисления и виртуальные лаборатории
+<h3><a href="https://siriusuniversity.ru/" target="blank">В Научно-технологическом университете «Сириус»</a> квантовые вычисления и виртуальные лаборатории</h3>
 
 ![Я преподователь Научно-технологического университета «Сириус»](https://qfoldit.github.io/img/posters/university.png)
 ![](https://qfoldit.github.io/img/posters/qFoldIT_Office.png)
