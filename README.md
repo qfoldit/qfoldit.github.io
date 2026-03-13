@@ -1,4 +1,4 @@
-<h3><a href="https://siriusuniversity.ru/" target="blank">В Научно-технологическом университете «Сириус»</a> квантовые вычисления и виртуальные лаборатории</h3>
+<h3><a href="https://siriusuniversity.ru/" target="blank">В Научно-технологическом университете «Сириус»</a> мы преподаём и проводим мастер классы по квантовым вычислениям, созданию виртуальных лабораторий и цифровых двойников</h3>
 
 ![Я преподователь Научно-технологического университета «Сириус»](https://qfoldit.github.io/img/posters/university.png)
 ![](https://qfoldit.github.io/img/posters/qFoldIT_Office.png)
@@ -46,8 +46,6 @@
 ![](https://refoldit.github.io/img/info/molecular.png)
 ![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
 
-![](https://qfoldit.github.io/img/posters/fksru.png)
-
 ![](https://qfoldit.github.io/img/posters/championship.png)
 
-![](https://qfoldit.github.io/img/posters/fks_25_years.png)
+![](https://qfoldit.github.io/img/posters/fksru.png)
