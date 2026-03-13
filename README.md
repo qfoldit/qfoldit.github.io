@@ -45,6 +45,10 @@
 ![](https://refoldit.github.io/img/info/molecular.png)
 ![](https://qfoldit.github.io/img/posters/quantum_comp.png)
 ---
+Визуализация МАС «Снежинка» привлекла ₽200 млн.
+![](https://comiccon2025.github.io/img/snowflake/hero_snow.png)
+---
+Многопользовательскую Игру МАС «Снежинка» издаёт VK Play как эксклюзив для VK
 ![](https://qfoldit.github.io/img/posters/qFoldIT_protein.png)
 ![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
 
