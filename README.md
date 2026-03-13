@@ -1,4 +1,4 @@
-Компания Genotek привлекла инвестиций на 4 миллиона долларов. Ведущим и новым инвестором раунда стала компания Яндекс.
+Genotek привлекла инвестиций на 4 миллиона долларов. Ведущим и новым инвестором раунда стала компания Яндекс.
 ![](https://qfoldit.github.io/img/posters/blog.jpg)
 ![](https://qfoldit.github.io/img/posters/yahealth.jpg)
 ---
@@ -11,7 +11,6 @@
 ---
 
 <h3><a href="https://biomolecula.ru/articles/nesushchestvuiushchie-v-prirode-belki-za-chto-vruchili-nobelevskuiu-premiiu-po-khimii-2024" target="blank">Нобелевская премия получена «за вычислительный дизайн белков»</a></h3>
-
 ![](https://qfoldit.github.io/img/posters/noble_prize.png)
 ---
 
