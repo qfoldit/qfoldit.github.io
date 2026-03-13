@@ -1,3 +1,5 @@
+#### В Научно-технологическом университете «Сириус» квантовые вычисления и виртуальные лаборатории
+
 <h3><a href="https://biomolecula.ru/articles/nesushchestvuiushchie-v-prirode-belki-za-chto-vruchili-nobelevskuiu-premiiu-po-khimii-2024" target="blank">Нобелевская премия получена «за вычислительный дизайн белков»</a></h3>
 
 **Chemistry**, **Protein** &amp; **DNA** **Quantum** **Folding** **(qFoldIT)** <br>
