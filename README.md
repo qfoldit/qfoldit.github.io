@@ -12,8 +12,6 @@
 
 <h3><a href="https://biomolecula.ru/articles/nesushchestvuiushchie-v-prirode-belki-za-chto-vruchili-nobelevskuiu-premiiu-po-khimii-2024" target="blank">Нобелевская премия получена «за вычислительный дизайн белков»</a></h3>
 
-**Chemistry**, **Protein** &amp; **DNA** **Quantum** **Folding** **(qFoldIT)** <br>
-
 ![](https://qfoldit.github.io/img/posters/noble_prize.png)
 ---
 
@@ -45,10 +43,15 @@
 ![](https://refoldit.github.io/img/info/molecular.png)
 ![](https://qfoldit.github.io/img/posters/quantum_comp.png)
 ---
+
 Визуализация МАС «Снежинка» привлекла ₽200 млн.
+
 ![](https://comiccon2025.github.io/img/snowflake/hero_snow.png)
+
 ---
-Многопользовательскую Игру МАС «Снежинка» издаёт VK Play как эксклюзив для VK
+
+Многопользовательскую Игру МАС «Снежинка», включая гонки на вездеходах, полёты на дронах и виртуальные лаборатории с **Chemistry**, **Protein** &amp; **DNA** **Quantum** **Folding** **(qFoldIT)**, издаёт VK Play как эксклюзив для VK от создателей Atomic Heart.
+
 ![](https://qfoldit.github.io/img/posters/qFoldIT_protein.png)
 ![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
 
