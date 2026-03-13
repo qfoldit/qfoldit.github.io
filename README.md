@@ -1,10 +1,10 @@
 <h3><a href="https://biomolecula.ru/articles/nesushchestvuiushchie-v-prirode-belki-za-chto-vruchili-nobelevskuiu-premiiu-po-khimii-2024" target="blank">Нобелевская премия получена «за вычислительный дизайн белков»</a></h3>
 
 **Chemistry**, **Protein** &amp; **DNA** **Quantum** **Folding** **(qFoldIT)**
-
+![](https://qfoldit.github.io/img/posters/noble_prize.png)
 ![](https://qfoldit.github.io/img/posters/qFoldIT_protein.png)
 
-![](https://qfoldit.github.io/img/posters/noble_prize.png)
+
 
 ![](https://qfoldit.github.io/img/posters/fksru.png)
 
