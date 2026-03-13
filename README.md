@@ -1,4 +1,4 @@
-**Genotek** привлекла инвестиций на **$4 млн**. Ведущим инвестором стала компания **Яндекс**.
+**Genotek** привлекла инвестиций на **$4 млн**. Ведущим инвестором стал **Яндекс**.
 
 ![](https://qfoldit.github.io/img/posters/blog.jpg)
 ![](https://qfoldit.github.io/img/posters/yahealth.jpg)
