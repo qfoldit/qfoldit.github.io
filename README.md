@@ -13,6 +13,12 @@
 
 -->
 
+![](https://refoldit.github.io/img/info/quantum_rm.png)
+![](https://refoldit.github.io/img/info/quantum_rosatom.png)
+![](https://refoldit.github.io/img/info/molecular.png)
+![](https://qfoldit.github.io/img/posters/quantum_comp.png)
+---
+
 <h3><a href="https://siriusuniversity.ru/" target="blank">Научно-технологический университет «Сириус»</a> <!-- мы преподаём и проводим мастер классы по квантовым вычислениям, созданию виртуальных лабораторий и цифровых двойников для компаний «Сибур», «Роснефть», «Газпром», «Лукойл» и МАС «Снежинка» --> </h3>
 
 ![Я преподователь Научно-технологического университета «Сириус»](https://qfoldit.github.io/img/posters/university.png)
@@ -48,11 +54,6 @@
 - **Персонализация:** вычислительные методы позволяют создавать лекарства, адаптированные под генетический код конкретного человека, что является важной частью экономики будущего.
 - **Хранение данных:** синтетическая биология исследует возможность записи цифровой информации в ДНК, что может решить проблему хранения колоссальных объемов данных, генерируемых Индустрией 4.0.
 
----
-
-![](https://refoldit.github.io/img/info/quantum_rosatom.png)
-![](https://refoldit.github.io/img/info/molecular.png)
-![](https://qfoldit.github.io/img/posters/quantum_comp.png)
 ---
 
 Визуализация **МАС «Снежинка»** привлекла **₽200 млн.** **Общая стоимость ₽5,6 млрд.**
