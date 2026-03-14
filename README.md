@@ -36,7 +36,7 @@
 
 -->
 
-![](https://qfoldit.github.io/img/posters/genpas.png)
+![](https://qfoldit.github.io/img/posters/atomvk.jpg)
 
 <a href="https://arctic-mipt.com/" target="blank">**МАС «Снежинка»**</a> — это многопользовательский научно-исследовательский симулятор нового поколения на движке <a href="https://unigine.com/products/sim/advantages/" target="blank">**Unigine 2 SIM**</a>. Проект объединяет динамику блокбастеров уровня **Atomic Heart** и **Fortnite** с глубоким научным геймплеем и передовыми технологиями обработки биоданных.
 🔬 Геймплейные направления
@@ -68,7 +68,7 @@
 * Движок: <a href="https://unigine.com/products/sim/advantages/" target="blank">**Unigine 2 SIM**</a> (масштабная симуляция физических и биологических процессов).
 * Статус: В разработке (релиз запланирован на 2026 год).
 
-![](https://qfoldit.github.io/img/posters/atomvk.jpg)
+![](https://qfoldit.github.io/img/posters/genpas.png)
 ![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
 ![](https://qfoldit.github.io/img/posters/snowflake_car.png)
 ---
