@@ -12,8 +12,9 @@
 ---
 
 --> 
-
+![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
 ![](https://qfoldit.github.io/img/posters/atomvk.jpg)
+![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
 ![](https://qfoldit.github.io/img/posters/snowflake_car.png)
 ---
 ![](https://qfoldit.github.io/img/posters/quantum_rm.png)
@@ -68,7 +69,6 @@
 **Многопользовательская** игра про **МАС «Снежинка»**, уровня **Fortnite/Atomic Heart**, которая включает в себя **гонки на вездеходах**, **полёты на дронах**, **квантовые стафки** и **виртуальные лаборатории** с **Фолдингом молекул, белков и ДНК**, **Хемоинформатикой**, **Боиоинформатикой** &amp; **DNA** **Quantum** **Folding** **(qFoldIT)**, издаёт **VK Play** как эксклюзив для VK от создателей **Atomic Heart**.
 
 ![](https://qfoldit.github.io/img/posters/qFoldIT_protein.png)
-![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
 
 ![](https://qfoldit.github.io/img/posters/championship.png)
 ![](https://qfoldit.github.io/img/posters/fksru.png)
