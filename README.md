@@ -69,9 +69,10 @@
 * Движок: <a href="https://unigine.com/products/sim/advantages/" target="blank">**Unigine 2 SIM**</a> (масштабная симуляция физических и биологических процессов).
 * Статус: В разработке (релиз запланирован на 2026 год).
 
+![](https://qfoldit.github.io/img/posters/snowflake_car.png)
 ![](https://qfoldit.github.io/img/posters/genpas.png)
 ![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
-![](https://qfoldit.github.io/img/posters/snowflake_car.png)
+
 ---
 ![](https://qfoldit.github.io/img/posters/quantum_rm.png)
 ![](https://refoldit.github.io/img/info/quantum_rosatom.png)
@@ -80,6 +81,7 @@
 ---
 
 <h3><a href="https://siriusuniversity.ru/" target="blank">Научно-технологический университет «Сириус»</a> <!-- мы преподаём и проводим мастер классы по квантовым вычислениям, созданию виртуальных лабораторий и цифровых двойников для компаний «Сибур», «Роснефть», «Газпром», «Лукойл» и МАС «Снежинка» --> </h3>
+
 
 ![Я преподователь Научно-технологического университета «Сириус»](https://qfoldit.github.io/img/posters/university.png)
 ![](https://qfoldit.github.io/img/posters/qFoldIT_Office.png)
