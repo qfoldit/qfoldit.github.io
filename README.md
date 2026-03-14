@@ -13,6 +13,7 @@
 
 -->
 
+![](https://qfoldit.github.io/img/posters/atomvk.jpg)
 ![](https://qfoldit.github.io/img/posters/quantum_rm.png)
 ![](https://refoldit.github.io/img/info/quantum_rosatom.png)
 ![](https://refoldit.github.io/img/info/molecular.png)
