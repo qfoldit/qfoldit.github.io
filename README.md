@@ -12,7 +12,6 @@
 ---
 
 --> 
-![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
 ![](https://qfoldit.github.io/img/posters/atomvk.jpg)
 ![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
 ![](https://qfoldit.github.io/img/posters/snowflake_car.png)
