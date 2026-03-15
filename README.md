@@ -92,7 +92,7 @@
 ![](https://qfoldit.github.io/img/posters/quantum_comp.png)
 ---
 
-<h3><a href="https://siriusuniversity.ru/" target="blank">Научно-технологический университет «Сириус»</a> <!-- мы преподаём и проводим мастер классы по квантовым вычислениям, созданию виртуальных лабораторий и цифровых двойников для компаний «Сибур», «Роснефть», «Газпром», «Лукойл» и МАС «Снежинка» --> </h3>
+<h3><a href="https://siriusuniversity.ru/" target="blank">Научно-технологический университет «Сириус»</a> <!-- мы преподаём и проводим мастер классы по квантовым вычислениям, созданию виртуальных лабораторий и цифровых двойников для компаний «Сибур», «Роснефть», «Газпром», «Лукойл» и МАС «Снежинка» --></h3>
 
 
 ![Я преподователь Научно-технологического университета «Сириус»](https://qfoldit.github.io/img/posters/university.png)
@@ -103,6 +103,7 @@
 <h3><a href="https://biomolecula.ru/articles/nesushchestvuiushchie-v-prirode-belki-za-chto-vruchili-nobelevskuiu-premiiu-po-khimii-2024" target="blank">Нобелевская премия получена «за вычислительный дизайн белков»</a></h3>
 
 ![](https://qfoldit.github.io/img/posters/noble_prize.png)
+![](https://qfoldit.github.io/img/posters/noble_prize_physics.png)
 
 ---
 
