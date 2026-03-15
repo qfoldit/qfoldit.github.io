@@ -77,7 +77,7 @@
 🛠 Технические особенности и Издание <br>
 * Издатель: <a href="https://vkplay.ru/" target="blank">**«VK Play»**</a> (эксклюзивно для платформы <a href="https://vk.com/">**«VK»**</a>).
 * Разработчики: Команда <a href="https://qfoldit.github.io/" target="blank">**qFoldIT**</a> и создатели главных хитов <a href="https://vkplay.ru/" target="blank">**«VK Play»**</a> при участии экспертов, работавших над топовыми Российскими проектами.
-* Движок: <a href="https://unigine.com/products/sim/advantages/" target="blank">**«Unigine 2 SIM»**</a> | <a href="https://reestr.digital.gov.ru/reestr/2338176/" target="blank" style="color: #3C6CE7;">**«Реестр ПО РФ (№ 2338176)»**</a> (**(технология виртуальной геометрии)** масштабная симуляция физических и биологических процессов).
+* Движок: <a href="https://unigine.com/products/sim/advantages/" target="blank">**«Unigine 2 SIM»**</a> | <a href="https://reestr.digital.gov.ru/reestr/2338176/" target="blank" style="color: #3C6CE7;">**«Реестр ПО РФ (№ 2338176)»**</a> (**технологии виртуальной геометрии**) масштабная симуляция физических и биологических процессов).
 * Статус: В разработке (релиз запланирован на 2026 год).
 
 ![](https://qfoldit.github.io/img/posters/snowflake_car.png)
