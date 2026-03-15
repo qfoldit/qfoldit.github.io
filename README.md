@@ -38,7 +38,7 @@
 
 ![](https://qfoldit.github.io/img/posters/atomvk.jpg)
 
-<a href="https://arctic-mipt.com/" target="blank">**МАС «Снежинка»**</a> — это многопользовательский научно-исследовательский симулятор нового поколения на движке <a href="https://unigine.com/products/sim/advantages/" target="blank">**«Unigine 2 SIM»**</a> <a href="https://reestr.digital.gov.ru/reestr/2338176/" target="blank" style="color: #3C6CE7;">**«Реестр ПО РФ (№ 2338176)»**</a>. <br> Проект объединяет динамику блокбастеров уровня <a href="https://arctic-mipt.com/" target="blank">**«Atomic Heart»**</a> и <a href="https://arctic-mipt.com/" target="blank">**«Fortnite»**</a> с глубоким научным геймплеем и передовыми технологиями обработки биоданных.
+<a href="https://arctic-mipt.com/" target="blank">**МАС «Снежинка»**</a> — это многопользовательский научно-исследовательский симулятор нового поколения на движке <a href="https://unigine.com/products/sim/advantages/" target="blank">**«Unigine 2 SIM»**</a>. <br> Проект объединяет динамику блокбастеров уровня <a href="https://arctic-mipt.com/" target="blank">**«Atomic Heart»**</a> и <a href="https://arctic-mipt.com/" target="blank">**«Fortnite»**</a> с глубоким научным геймплеем и передовыми технологиями обработки биоданных.
 
 🔬 Геймплейные направления: <br>
 Игра предлагает уникальный синтез исследовательской деятельности и высокооктанового экшена:
@@ -68,7 +68,7 @@
 🛠 Технические особенности и Издание <br>
 * Издатель: <a href="https://vkplay.ru/" target="blank">**«VK Play»**</a> (эксклюзивно для платформы <a href="https://vk.com/">**«VK»**</a>).
 * Разработчики: Команда **qFoldIT** и создатели главных хитов <a href="https://vkplay.ru/" target="blank">**«VK Play»**</a> при участии экспертов, работавших над топовыми Российскими проектами.
-* Движок: <a href="https://unigine.com/products/sim/advantages/" target="blank">**«Unigine 2 SIM»**</a> (**(технология виртуальной геометрии)** масштабная симуляция физических и биологических процессов).
+* Движок: <a href="https://unigine.com/products/sim/advantages/" target="blank">**«Unigine 2 SIM»**</a> | <a href="https://reestr.digital.gov.ru/reestr/2338176/" target="blank" style="color: #3C6CE7;">**«Реестр ПО РФ (№ 2338176)»**</a> (**(технология виртуальной геометрии)** масштабная симуляция физических и биологических процессов).
 * Статус: В разработке (релиз запланирован на 2026 год).
 
 ![](https://qfoldit.github.io/img/posters/snowflake_car.png)
