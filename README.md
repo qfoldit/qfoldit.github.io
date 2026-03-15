@@ -140,6 +140,7 @@
 Визуализация **МАС «Снежинка»** привлекла **₽200 млн.** **Общая стоимость ₽5,6 млрд.**
 
 ![](https://comiccon2025.github.io/img/snowflake/hero_snow.png)
+![](https://comiccon2025.github.io/img/4/nefrit_drift_vk.png)
 
 ---
 
