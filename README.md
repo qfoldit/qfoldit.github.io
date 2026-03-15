@@ -38,7 +38,7 @@
 
 ![](https://qfoldit.github.io/img/posters/atomvk.jpg)
 
-<a href="https://arctic-mipt.com/" target="blank">**МАС «Снежинка»**</a> — это многопользовательский научно-исследовательский симулятор нового поколения на движке <a href="https://unigine.com/products/sim/advantages/" target="blank">**«Unigine 2 SIM»**</a> <a href="https://reestr.digital.gov.ru/reestr/2338176/" target="blank" style="color: #3C6CE7;">(рег. № 22252)</a>. <br> Проект объединяет динамику блокбастеров уровня <a href="https://arctic-mipt.com/" target="blank">**«Atomic Heart»**</a> и <a href="https://arctic-mipt.com/" target="blank">**«Fortnite»**</a> с глубоким научным геймплеем и передовыми технологиями обработки биоданных.
+<a href="https://arctic-mipt.com/" target="blank">**МАС «Снежинка»**</a> — это многопользовательский научно-исследовательский симулятор нового поколения на движке <a href="https://unigine.com/products/sim/advantages/" target="blank">**«Unigine 2 SIM»**</a> <a href="https://reestr.digital.gov.ru/reestr/2338176/" target="blank" style="color: #3C6CE7;">**(рег. № 22252)**</a>. <br> Проект объединяет динамику блокбастеров уровня <a href="https://arctic-mipt.com/" target="blank">**«Atomic Heart»**</a> и <a href="https://arctic-mipt.com/" target="blank">**«Fortnite»**</a> с глубоким научным геймплеем и передовыми технологиями обработки биоданных.
 
 🔬 Геймплейные направления: <br>
 Игра предлагает уникальный синтез исследовательской деятельности и высокооктанового экшена:
