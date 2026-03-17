@@ -42,6 +42,7 @@
 ![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
 ![](https://qfoldit.github.io/img/posters/medical_gen.png)
 ![](https://qfoldit.github.io/img/posters/atomvk.jpg)
+![](https://refoldit.github.io/img/snowflake/render/vr_science.jpg)
 
 <a href="https://arctic-mipt.com/" target="blank">**МАС «Снежинка»**</a> — это многопользовательский научно-исследовательский симулятор. Он создан на Российском движке для профессиональных симуляторов (где важна строгая математическая точность и стабильность на огромных дистанциях) или игр с открытым миром на тысячи километров <a href="https://unigine.com/products/sim/advantages/" target="blank">**«Unigine 2 SIM»**</a>.
 
