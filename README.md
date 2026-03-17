@@ -144,7 +144,7 @@
 
 ![](https://comiccon2025.github.io/img/snowflake/hero_snow.png)
 ![](https://comiccon2025.github.io/img/4/nefrit_drift_vk.png)
-
+![](https://refoldit.github.io/img/snowflake/render/drift_vkPlay.png)
 ---
 
 <!--
