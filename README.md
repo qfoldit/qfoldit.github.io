@@ -37,8 +37,8 @@
 -->
 
 ![](https://qfoldit.github.io/img/posters/genotek_peoples.png)
-![](https://qfoldit.github.io/img/posters/genpas.png)
 ![](https://qfoldit.github.io/img/posters/genomics_vr.png)
+![](https://qfoldit.github.io/img/posters/genpas.png)
 ![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
 ![](https://qfoldit.github.io/img/posters/medical_gen.png)
 ![](https://qfoldit.github.io/img/posters/atomvk.jpg)
