@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>МАС «Снежинка» — страница игры</title>
+    <!-- фавикон VK Play -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3csvg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg clip-path='url(%23clip0_124_10523)'%3e%3cpath d='M18.756 0C26.892 0 30.96 0 33.48 2.52C36 5.04 36 9.108 36 17.244V18.756C36 26.892 36 30.96 33.48 33.48C30.96 36 26.892 36 18.756 36H17.244C9.108 36 5.04 36 2.52 33.48C0 30.96 0 26.892 0 18.756V17.244C0 9.108 0 5.04 2.52 2.52C5.04 0 9.108 0 17.244 0H18.756Z' fill='%230077FF'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M35.8956 10.1542C36 12.0999 36 14.4283 36 17.2439V17.244V18.756V18.756C36 20.9229 36 22.8013 35.9524 24.4387H0.0476112C0 22.8013 0 20.9229 0 18.756V17.244C0 14.4283 0 12.0999 0.104447 10.1542H35.8956ZM0.0474971 24.4394L0.0479452 24.4547C4.76004 26.7552 11.0876 28.1568 17.9898 28.1568C24.8976 28.1568 31.2388 26.7487 35.9521 24.4449L35.9522 24.4394H0.0474971Z' fill='%230009B4'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M25.0373 16.5811C24.1462 16.5811 23.4239 17.3195 23.4239 18.2304C23.4239 19.1412 24.1462 19.8796 25.0373 19.8796C25.9284 19.8796 26.6507 19.1412 26.6507 18.2304C26.6507 17.3195 25.9284 16.5811 25.0373 16.5811ZM19.845 18.2304C19.845 15.299 22.1697 12.9227 25.0373 12.9227C27.9049 12.9227 30.2296 15.299 30.2296 18.2304C30.2296 21.1617 27.9049 23.5381 25.0373 23.5381C22.1697 23.5381 19.845 21.1617 19.845 18.2304Z' fill='white'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M11.1827 15.8495L8.48861 13.1555L5.93991 15.7042L8.63398 18.3982L5.94007 21.0921L8.48877 23.6408L11.1827 20.9469L13.8765 23.6408L16.4252 21.0921L13.7314 18.3982L16.4254 15.7042L13.8767 13.1555L11.1827 15.8495Z' fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath id='clip0_124_10523'%3e%3crect width='36' height='36' fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e">
+    <!-- шрифт Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* глобальное скрытие скроллбара для WebKit */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0A0C0F;
+            font-family: "Inter", sans-serif;
+            color: #E1E3E6;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+
+        /* все текстовые ссылки светло-серые */
+        a {
+            color: #cccccc;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        /* для ссылок в футере с изображениями оставляем обычное поведение */
+        .footer a {
+            color: white; /* для текста внутри футера, если есть */
+        }
+        .footer a:hover {
+            text-decoration: none;
+        }
+        .footer img {
+            filter: brightness(1);
+        }
+
+        .dashboard {
+            flex: 1;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 24px 40px;
+        }
+
+        /* заголовок игры (теперь внутри аккордеона, поэтому скрываем старый) */
+        .game-header {
+            display: none;
+        }
+
+        /* аккордеон */
+        .accordion {
+            margin: 30px 0 50px;
+        }
+
+        .accordion-item {
+            background: rgba(20, 25, 30, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 20px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            background: rgba(30, 35, 40, 0.5);
+            transition: background 0.2s;
+        }
+
+        .accordion-header:hover {
+            background: rgba(40, 45, 50, 0.8);
+        }
+
+        .accordion-header i {
+            transition: transform 0.3s;
+            color: #0077FF;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            padding: 0 24px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.3s;
+            background: transparent;
+        }
+
+        .accordion-item.open .accordion-content {
+            max-height: 3000px; /* достаточно большое значение */
+            padding: 24px 24px 24px 24px;
+        }
+
+        .accordion-item.open .accordion-header i {
+            transform: rotate(180deg);
+        }
+
+        /* содержимое первой секции — основная информация в виде сетки */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px 30px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .info-label {
+            color: #8a9099;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .info-value i {
+            color: #0077FF;
+            font-size: 1rem;
+        }
+
+        .age-rating {
+            background: #1e2329;
+            padding: 16px 20px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .age-rating i {
+            font-size: 2rem;
+            color: #0077FF;
+        }
+
+        .age-text {
+            color: white;
+            font-weight: 500;
+        }
+
+        /* спецификация (параграфы) */
+        .spec-content {
+            color: #c0c4cc;
+            line-height: 1.7;
+        }
+
+        .spec-subtitle {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin: 1.5em 0 0.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #2a3035;
+            padding-bottom: 8px;
+        }
+
+        .spec-subtitle i {
+            color: #0077FF;
+        }
+
+        .spec-paragraph {
+            margin-bottom: 1.2em;
+        }
+
+        .spec-paragraph strong {
+            color: white;
+            font-weight: 600;
+        }
+
+        /* карточки правообладателей */
+        .rights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .rights-card {
+            background: rgba(20, 25, 30, 0.9);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.2s;
+        }
+
+        .rights-card:hover {
+            border-color: rgba(0, 119, 255, 0.3);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: #0077FF;
+            margin-bottom: 12px;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #2a3035;
+            padding-bottom: 5px;
+        }
+
+        .card-text {
+            color: #c0c4cc;
+            line-height: 1.6;
+        }
+
+        .card-text strong {
+            color: white;
+        }
+
+        /* футер */
+        .footer {
+            background-color: #0077ff;
+            padding: 12px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
+            width: 100%;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-left, .footer-center, .footer-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-left {
+            flex: 1 1 auto;
+            justify-content: flex-start;
+        }
+
+        .footer-center {
+            flex: 1 1 auto;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-right {
+            flex: 1 1 auto;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .footer img {
+            max-height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .footer-left .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .footer-left .logo-composite {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-left .divider {
+            width: 2px;
+            height: 40px;
+            background-color: white;
+            opacity: 0.9;
+            border-radius: 1px;
+        }
+
+        .footer-left .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+            font-weight: 700;
+            color: white;
+            font-size: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .partner-logo {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .footer-right a {
+            display: block;
+            line-height: 0;
+        }
+
+        .footer-right .unigine-logo {
+            max-height: 28px;
+        }
+
+        .footer-right .nau-logo {
+            max-height: 20px;
+        }
+
+        .footer-right .desktop-logo { display: block; }
+        .footer-right .mobile-logo { display: none; }
+
+        @media (max-width: 700px) {
+            .dashboard { padding: 20px 16px; }
+            .info-grid { grid-template-columns: 1fr; }
+            .footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .footer-left, .footer-center, .footer-right {
+                width: 100%;
+                justify-content: center;
+            }
+            .footer-left .logo-text { display: none; }
+            .footer-left .divider { display: none; }
+            .footer-right .desktop-logo { display: none; }
+            .footer-right .mobile-logo { display: block; }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- аккордеон, все блоки изначально скрыты -->
+        <div class="accordion">
+            <!-- секция 1: Основная информация (закрыта) -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span><i class="fas fa-info-circle" style="margin-right: 12px;"></i> Основная информация</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Название</span>
+                            <span class="info-value">МАС «СНЕЖИНКА»</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Жанр</span>
+                            <span class="info-value"><strong>Гражданская наука</strong>, <strong>Приключения</strong>, <strong>Экшен</strong>, <strong>Головоломки</strong>, <strong>Симуляторы</strong>, <strong>Пазл</strong>, <strong>Фантастика</strong></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Особенности игры</span>
+                            <span class="info-value"><strong>Симуляторы</strong>, <strong>Мультиплеер</strong></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Издатель</span>
+                            <span class="info-value"><i class="fab fa-vk"></i> <a href="https://vkplay.ru" target="_blank"><strong>VK Play</strong></a></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Разработчик</span>
+                            <span class="info-value"><a href="https://github.com/qfoldit" target="_blank"><strong>qFoldIT</strong></a> при поддержке <a href="https://siriusuniversity.ru" target="_blank"><strong>Сириус</strong></a> и <a href="https://rosatom.ru" target="_blank"><strong>Росатом</strong></a></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Основная платформа</span>
+                            <span class="info-value"><a href="https://unigine.com/products/sim/advantages/" target="_blank"><strong>Unigine 2 SIM</strong></a></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Сайт / GitHub</span>
+                            <span class="info-value"><i class="fab fa-github"></i> <a href="https://github.com/qfoldit" target="_blank"><strong>GitHub/qFoldIT</strong></a></span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Дата выхода</span>
+                            <span class="info-value">31.03.2026</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Браузерная</span>
+                            <span class="info-value">Бесплатная</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Поддерживает контроллер</span>
+                            <span class="info-value">Да</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Многопользовательская игра</span>
+                            <span class="info-value">Да</span>
+                        </div>
+                    </div>
+                    <div class="age-rating">
+                        <i class="fas fa-child"></i>
+                        <div class="age-text">Доступна для лиц любого возраста без ограничений</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- секция 2: Архитектурная спецификация (с обновлениями) -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span><i class="fas fa-cube" style="margin-right: 12px;"></i> Архитектурная спецификация проекта «Снежинка» (AHEAD)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="spec-content">
+                        <div class="spec-subtitle"><i class="fas fa-info-circle"></i> Статус и издатель</div>
+                        <div class="spec-paragraph"><strong>Статус:</strong> Официальный проект Рабочей группы по устойчивому развитию (<strong>SDWG</strong>) <strong>Арктического совета</strong>, одобренный 8 арктическими государствами.</div>
+                        <div class="spec-paragraph"><strong>Жанр:</strong> многопользовательский научно-исследовательский симулятор с интеграцией распределенных вычислений.</div>
+                        <div class="spec-paragraph"><strong>Издатель / Эксклюзив:</strong> <a href="https://github.com/qfoldit" target="_blank"><strong>qFoldIT</strong></a>/<a href="https://vkplay.ru" target="_blank"><strong>VK Play</strong></a>.</div>
+                        <div class="spec-paragraph"><strong>Основная платформа:</strong> <a href="https://unigine.com/products/sim/advantages/" target="_blank"><strong>Unigine 2 SIM</strong></a> — движок высокоточного симулятора, обеспечивающий фотореалистичную визуализацию Арктики и физику молекулярных взаимодействий.</div>
+                        <div class="spec-paragraph"><strong>Реальная станция «Снежинка»</strong> — полностью автономный комплекс на водороде и возобновляемых источниках энергии. Позиционируется как открытая платформа для международного сотрудничества, где страны <strong>БРИКС+</strong> (включая <strong>Китай</strong>, <strong>Индию</strong>, <strong>ОАЭ</strong> и <strong>Бразилию</strong>) рассматриваются в качестве ключевых стратегических партнеров.</div>
+
+                        <!-- Когнитивный движок -->
+                        <div class="spec-subtitle"><i class="fas fa-brain"></i> Когнитивный движок: удержание и вовлечение (The Brain Engine)</div>
+                        <div class="spec-paragraph"><strong>Механика Долговременной Памяти (Эрик Кандель, 2000):</strong> Игровой цикл (<strong>Core Loop</strong>) построен на принципе синаптического закрепления. Решение задач по биоинформатике в виртуальных лабораториях требует повторения сложных паттернов. Это не «зубрежка», а структурная перестройка нейронных связей игрока, превращающая его из геймера в исследователя с реальными компетенциями в <strong>qFoldIT</strong>.</div>
+                        <div class="spec-paragraph"><strong>Динамика Когнитивных Состояний (Даниэль Канеман, 2002):</strong> Архитектура миссий управляет переключением между Системой 1 (интуитивные гонки на вездеходах, управление дронами в условиях бури — быстрый дофамин) и Системой 2 (аналитический фолдинг белков, хемоинформатика — глубокое удовлетворение). Это устраняет эффект «игровой усталости» и максимизирует <strong>Retention</strong> за счет естественных циклов работы мозга.</div>
+                        <div class="spec-paragraph"><strong>Интеграция <a href="https://www.nobelprize.org/prizes/chemistry/2024/summary/" target="_blank">Нобелевской премии по химии 2024</a> — вычислительный дизайн белков:</strong> В основе игрового модуля <strong>qFoldIT</strong> лежат алгоритмы <strong>AlphaFold</strong> (<strong>DeepMind</strong>) и <strong>Rosetta</strong> (<strong>Дэвид Бейкер</strong>), удостоенные Нобелевской премии. Игроки не просто наблюдают за сворачиванием белков — они активно участвуют в предсказании трёхмерных структур и дизайне новых молекул <strong>de novo</strong>. Каждый успешный фолдинг сопровождается дофаминовым подкреплением, а открытые игроками структуры могут быть использованы в реальных фармацевтических исследованиях (<strong>B2B-лицензирование</strong>). Таким образом, «Снежинка» превращает игру в инструмент гражданской науки с прямым выходом на фармацевтику.</div>
+                        <div class="spec-paragraph"><strong>Путь от геймдева до Нобеля:</strong> <strong>Демис Хассабис</strong>, сооснователь <strong>DeepMind</strong> и один из лауреатов Нобелевской премии 2024, начинал свою карьеру разработчиком игр в <strong>Bullfrog Productions</strong>, где участвовал в создании культовой игры <strong>Theme Park</strong>. Этот путь символизирует миссию «Снежинки»: показать, что игры могут быть не только развлечением, но и двигателем фундаментальной науки. Интеграция передовых алгоритмов в геймплей продолжает традицию, заложенную Хассабисом, и открывает новую эру «научного геймдева».</div>
+
+                        <!-- Технологический стек и Научный ИИ -->
+                        <div class="spec-subtitle"><i class="fas fa-microchip"></i> Технологический стек и Научный ИИ (The Computational Core)</div>
+                        <div class="spec-paragraph"><strong>Глубокое обучение и ассоциативная память (<a href="https://www.nobelprize.org/prizes/physics/2024/summary/" target="_blank">Хинтон & Хопфилд, 2024</a>):</strong> В основе ИИ-помощников и процедурной генерации арктического ландшафта лежат принципы нейросетей Хопфилда и методы глубокого обучения. Окружающий мир «помнит» действия игрока и адаптируется под его стиль исследования.</div>
+                        <div class="spec-paragraph"><strong>Биомолекулярное моделирование (<a href="https://www.nobelprize.org/prizes/chemistry/2024/summary/" target="_blank">Хассабис, Джампер & Бейкер, 2024</a>):</strong> Интегрированный модуль <strong>qFoldIT</strong> — это геймифицированный интерфейс <strong>AlphaFold</strong>. Игроки в реальном времени участвуют в предсказании структур белков и дизайне новых молекул <strong>de novo</strong>. Результаты этих вычислений имеют научную ценность, превращая проект в мощнейший инструмент гражданской науки (<strong>Citizen Science</strong>).</div>
+
+                        <!-- НОВЫЙ ПОДРАЗДЕЛ: qFoldIT как синтез Нобелевских открытий -->
+                        <div class="spec-subtitle"><i class="fas fa-dna"></i> qFoldIT: синтез Нобелевских открытий и наследие FoldIT</div>
+                        <div class="spec-paragraph">Проект <strong>qFoldIT</strong> находится на уникальном перекрёстке научных направлений, отмеченных Нобелевскими премиями последних лет, и наследует ключевую идею оригинальной игры <strong><a href="https://fold.it" target="_blank">FoldIT</a></strong> — превращение сложнейшей научной задачи в увлекательный игровой процесс, доступный каждому.</div>
+                        
+                        <div class="spec-paragraph"><strong><a href="https://www.nobelprize.org/prizes/physics/2024/summary/" target="_blank">Премия по физике 2024</a>: Искусственный интеллект как инструмент познания.</strong> Премия, присуждённая <strong>Джону Хопфилду</strong> и <strong>Джеффри Хинтону</strong>, ознаменовала признание того, что методы физики лежат в основе современных нейросетей. <strong>qFoldIT</strong> использует алгоритмы, вдохновлённые этими открытиями: ассоциативная память (сети Хопфилда) и методы глубокого обучения (Хинтон) являются частью технологического ядра, позволяя ИИ-ассистентам внутри игры адаптироваться к действиям игрока, а также участвовать в процедурной генерации реалистичных арктических ландшафтов и молекулярных структур.</div>
+                        
+                        <div class="spec-paragraph"><strong><a href="https://www.nobelprize.org/prizes/chemistry/2024/summary/" target="_blank">Премия по химии 2024</a>: Вычислительная революция в мире белков.</strong> Премия разделена между <strong>Дэвидом Бейкером</strong> (за создание новых белков) и <strong>Демисом Хассабисом</strong> с <strong>Джоном Джампером</strong> (за предсказание их форм). <strong>qFoldIT</strong> напрямую развивает обе эти линии. Игровой модуль, посвящённый молекулярному дизайну, наследует задаче Бейкера: создавать то, чего природа не создала. Модуль квантового фолдинга решает задачу предсказания структуры на новом, квантовом уровне сложности, исследуя пространство возможных форм пептидов.</div>
+                        
+                        <div class="spec-paragraph"><strong><a href="https://www.nobelprize.org/prizes/peace/2007/ipcc/facts/" target="_blank">Премия мира 2007</a>: глобальная цель проекта «Снежинка».</strong> Премия, присуждённая <strong>МГЭИК</strong> и <strong>Элу Гору</strong>, подчеркнула связь климатических изменений и глобальной безопасности. Платформа является цифровым двойником и образовательным ядром международной арктической станции <strong>«Снежинка»</strong> (проект <strong>AHEAD</strong> Арктического совета). Игроки погружаются в проблемы климатических изменений, изучают проектирование устойчивых энергосистем, а открытые в игре молекулярные структуры (новые ферменты, белки) могут помочь в борьбе с последствиями изменения климата. Как и оригинальная <strong><a href="https://fold.it" target="_blank">FoldIT</a></strong>, <strong>qFoldIT</strong> превращает игроков в исследователей: результаты, полученные в игровом процессе, могут быть использованы для разработки более эффективных катализаторов, биосенсоров или материалов, что напрямую связано с целями устойчивого развития.</div>
+                        
+                        <div class="spec-paragraph"><strong>Резюме:</strong> <strong>qFoldIT</strong> — это платформа, где методы, удостоенные <a href="https://www.nobelprize.org/prizes/physics/2024/summary/" target="_blank">Нобелевской премии по физике 2024</a>, служат инструментом для исследований; задачи, отмеченные <a href="https://www.nobelprize.org/prizes/chemistry/2024/summary/" target="_blank">Нобелевской премией по химии 2024</a>, решаются с помощью игровых механик и квантовых алгоритмов; глобальные цели, признанные <a href="https://www.nobelprize.org/prizes/peace/2007/ipcc/facts/" target="_blank">Нобелевской премией мира 2007</a>, становятся игровой реальностью и образовательной миссией. Проект продолжает главный урок <strong><a href="https://fold.it" target="_blank">FoldIT</a></strong>: сложнейшие научные вызовы можно решать сообща, превратив науку в увлекательное приключение. <strong>qFoldIT</strong> делает следующий шаг, добавляя к этому квантовые вычисления и прямую связь с актуальной экологической повесткой.</div>
+
+                        <!-- Экосистемный реализм -->
+                        <div class="spec-subtitle"><i class="fas fa-snowflake"></i> Экосистемный и Климатический реализм (The Arctic World)</div>
+                        <div class="spec-paragraph"><strong>Климатическая динамика (Риккардо Валентини, 2007):</strong> Глобальная модель климата в игре базируется на работах <strong>МГЭИК</strong> и личном вкладе <strong>Валентини</strong>. Внутриигровая Арктика — это цифровой двойник, где таяние вечной мерзлоты, миграция животных и движение воздушных масс соответствуют реальным научным прогнозам.</div>
+                        <div class="spec-paragraph"><strong>Энергетика Будущего (Водородный цикл):</strong> В соответствии с повесткой <strong>AHEAD</strong>, ключевой механикой является управление водородной энергетикой. Игрок проектирует и эксплуатирует системы на возобновляемых источниках энергии, реализуя концепцию безуглеродного развития Арктики в виртуальном пространстве.</div>
+
+                        <!-- Социо-политическая значимость -->
+                        <div class="spec-subtitle"><i class="fas fa-handshake"></i> Социо-политическая значимость (The Arctic Council Framework)</div>
+                        <div class="spec-paragraph"><strong>Одобрение SDWG:</strong> Проект соответствует целям устойчивого развития Арктики, поддерживая культурное наследие коренных народов и экологическую безопасность.</div>
+                        <div class="spec-paragraph"><strong>Образовательный импакт:</strong> «Снежинка» выступает как глобальная площадка для подготовки кадров нового поколения — полярных инженеров и биоинформатиков, работающих в среде уровня <strong>Atomic Heart</strong> / <strong>Fortnite</strong>.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- секция 3: Правообладатели (со ссылками) -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span><i class="fas fa-copyright" style="margin-right: 12px;"></i> Правообладатели проекта МАС «Снежинка»</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="rights-grid">
+                        <div class="rights-card">
+                            <div class="card-icon"><i class="fas fa-globe"></i></div>
+                            <div class="card-title"><strong>AHEAD</strong> / <strong>Арктический совет</strong></div>
+                            <div class="card-text"><strong>Статус:</strong> проект одобрен всеми восемью арктическими государствами и постоянными участниками (июнь 2020). Реализуется в рамках рабочей группы <strong>SDWG</strong>. Ведущие страны: <strong>Россия</strong>, <strong>Норвегия</strong>.</div>
+                        </div>
+                        <div class="rights-card">
+                            <div class="card-icon"><i class="fas fa-snowflake"></i></div>
+                            <div class="card-title">Физическая станция</div>
+                            <div class="card-text"><strong>Собственность:</strong> <strong>Российская Федерация</strong>. <strong>Оператор:</strong> <a href="https://mipt.ru" target="_blank"><strong>МФТИ</strong></a> (Институт арктических технологий). Финансирование: Правительство <strong>ЯНАО</strong>, <a href="https://minobrnauki.gov.ru" target="_blank"><strong>Минобрнауки РФ</strong></a>. Станция является государственным инфраструктурным объектом.</div>
+                        </div>
+                        <div class="rights-card">
+                            <div class="card-icon"><i class="fas fa-code"></i></div>
+                            <div class="card-title">Цифровой двойник / Игра</div>
+                            <div class="card-text"><strong>Исключительные права:</strong> <a href="https://github.com/qfoldit" target="_blank"><strong>qFoldIT</strong></a> (программный код, геймплей, цифровые активы). Цифровой двойник станции создан по лицензионному соглашению с <a href="https://mipt.ru" target="_blank"><strong>МФТИ</strong></a>.</div>
+                        </div>
+                        <div class="rights-card">
+                            <div class="card-icon"><i class="fab fa-vk"></i></div>
+                            <div class="card-title"><a href="https://vkplay.ru" target="_blank"><strong>VK Play</strong></a> / <a href="https://vk.com/cloud" target="_blank"><strong>VK Cloud</strong></a></div>
+                            <div class="card-text"><strong>Эксклюзивные права на распространение</strong> в <strong>РФ</strong> и <strong>СНГ</strong> принадлежат <strong>VK Play</strong> (релиз 2027). Облачная инфраструктура и хостинг — <strong>VK Cloud</strong>.</div>
+                        </div>
+                        <div class="rights-card">
+                            <div class="card-icon"><i class="fas fa-atom"></i></div>
+                            <div class="card-title">Квантовые вычисления</div>
+                            <div class="card-text"><strong>Инфраструктура:</strong> <a href="https://rosatom.ru" target="_blank"><strong>Росатом</strong></a> (квантовые процессоры), <a href="https://sbercloud.ru" target="_blank"><strong>SberCloud</strong></a> (<strong>Christofari Neo</strong>). Результаты расчётов передаются <strong>qFoldIT</strong> для решения игровых задач (фолдинг, оптимизация).</div>
+                        </div>
+                        <div class="rights-card">
+                            <div class="card-icon"><i class="fas fa-dna"></i></div>
+                            <div class="card-title">Генетические паспорта</div>
+                            <div class="card-text"><strong>Партнёры:</strong> <a href="https://genotek.ru" target="_blank"><strong>Genotek</strong></a>, <strong>ООО «Медикал Геномикс»</strong> (<strong>Medical Genomics</strong>), <a href="https://invitro.ru" target="_blank"><strong>InVitro</strong></a>. Права на результаты анализов принадлежат партнёрам. <strong>API</strong> интеграции разработано <strong>qFoldIT</strong>.</div>
+                        </div>
+                        <div class="rights-card">
+                            <div class="card-icon"><i class="fas fa-capsules"></i></div>
+                            <div class="card-title"><strong>B2B</strong>-лицензирование</div>
+                            <div class="card-text"><a href="https://biocad.ru" target="_blank"><strong>BIOCAD</strong></a>, <strong>Pfizer</strong> и другие фарм-партнёры приобретают лицензии на молекулярные структуры, открытые игроками. Игроки получают роялти через смарт-контракты <strong>qFoldIT</strong>.</div>
+                        </div>
+                        <div class="rights-card">
+                            <div class="card-icon"><i class="fas fa-microscope"></i></div>
+                            <div class="card-title">Цифровое оборудование</div>
+                            <div class="card-text"><strong>«Диаэм»</strong> предоставляет цифровые двойники лабораторных приборов мировых брендов. Интеграция осуществляется на правах нативной рекламы.</div>
+                        </div>
+                        <div class="rights-card">
+                            <div class="card-icon"><i class="fas fa-truck"></i></div>
+                            <div class="card-title">Вездеходы / Транспорт</div>
+                            <div class="card-text">Модели вездеходов <strong>RUSAK</strong> и <strong>«Вездеходер»</strong> верифицированы производителями, используются в игре на основе партнёрских соглашений с <strong>qFoldIT</strong>.</div>
+                        </div>
+                        <div class="rights-card">
+                            <div class="card-icon"><i class="fas fa-university"></i></div>
+                            <div class="card-title">Научная экспертиза</div>
+                            <div class="card-text">Университеты (<a href="https://siriusuniversity.ru" target="_blank"><strong>Сириус</strong></a>, <a href="https://msu.ru" target="_blank"><strong>МГУ</strong></a>, <a href="https://mephi.ru" target="_blank"><strong>МИФИ</strong></a>, <a href="https://mipt.ru" target="_blank"><strong>МФТИ</strong></a>) и <a href="https://minobrnauki.gov.ru/about/deps/dgnintp/nauka/ntcmu/" target="_blank"><strong>Консорциум НЦМУ</strong></a> обеспечивают верификацию биомоделей и образовательных механик.</div>
+                        </div>
+                        <div class="rights-card">
+                            <div class="card-icon"><i class="fas fa-trophy"></i></div>
+                            <div class="card-title">Киберспортивная экосистема</div>
+                            <div class="card-text"><a href="https://resf.ru" target="_blank"><strong>ФКС России</strong></a> организует турниры и ведёт рейтинги игроков в дисциплинах <strong>Bio-Folding Speedrun</strong>, <strong>Drone Racing</strong>, <strong>Genomic Strategy</strong>, <strong>Нефритовый дрифт</strong>.</div>
+                        </div>
+                        <div class="rights-card">
+                            <div class="card-icon"><i class="fas fa-users"></i></div>
+                            <div class="card-title">Интеллектуальная собственность игроков</div>
+                            <div class="card-text">Молекулярные структуры, созданные игроками, принадлежат авторам. <strong>qFoldIT</strong> управляет коммерциализацией и выплатой роялти (через смарт-контракты) на условиях Пользовательского соглашения.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- футер (уже есть ссылки на UNIGINE, Nau Engine, Росатом и ФКС) -->
+    <footer class="footer">
+        <div class="footer-left">
+            <a href="#" class="logo-link">
+                <div class="logo-composite">
+                    <img src="https://refoldit.github.io/img/logo/rosatom_white.png" alt="РОСАТОМ">
+                    <div class="divider"></div>
+                    <div class="logo-text">
+                        <span>КВАНТОВЫЕ</span>
+                        <span>ТЕХНОЛОГИИ</span>
+                        <span>РОСАТОМ</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="footer-center">
+            <img src="https://refoldit.github.io/img/logo/fks-logo-n.svg" alt="Федерация компьютерного спорта России" class="partner-logo">
+            <img src="https://refoldit.github.io/img/logo/rostech_logo.svg" alt="Ростех" class="partner-logo">
+        </div>
+        <div class="footer-right">
+            <a href="https://unigine.com/products/sim/advantages/" target="_blank">
+                <img src="https://refoldit.github.io/img/logo/unigine_horizontal_white.png" alt="UNIGINE" class="desktop-logo unigine-logo">
+                <img src="https://refoldit.github.io/img/logo/unigine_sign_white.png" alt="UNIGINE" class="mobile-logo unigine-logo">
+            </a>
+            <a href="https://nauengine.org/" target="_blank">
+                <img src="https://refoldit.github.io/img/logo/nau-horizontal-white.png" alt="Nau Engine" class="desktop-logo nau-logo">
+                <img src="https://refoldit.github.io/img/logo/nau-sign-white.png" alt="Nau Engine" class="mobile-logo nau-logo">
+            </a>
+        </div>
+    </footer>
+
+    <!-- скрипт для аккордеона -->
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const item = this.closest('.accordion-item');
+                item.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>
