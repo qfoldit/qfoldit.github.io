@@ -36,8 +36,7 @@
 
 -->
 
-
-
+![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
 ![](https://qfoldit.github.io/img/posters/genotek_peoples.png)
 ![](https://qfoldit.github.io/img/posters/medical_gen.png)
 ![](https://qfoldit.github.io/img/posters/atomvk.jpg)
@@ -92,7 +91,6 @@
 
 ![](https://qfoldit.github.io/img/posters/snowflake_car.png)
 ![](https://qfoldit.github.io/img/posters/genpas.png)
-![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
 ![](https://qfoldit.github.io/img/posters/qFoldIT_protein.png)
 
 ---
