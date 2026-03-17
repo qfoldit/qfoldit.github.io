@@ -36,6 +36,7 @@
 
 -->
 
+![](https://qfoldit.github.io/img/posters/genpas.png)
 ![](https://qfoldit.github.io/img/posters/genotek_peoples.png)
 ![](https://qfoldit.github.io/img/posters/genomics_vr.png)
 ![](https://refoldit.github.io/img/info/qFoldIT_4.0.png)
@@ -91,7 +92,6 @@
 * Статус: В разработке (релиз запланирован на 2026 год).
 
 ![](https://qfoldit.github.io/img/posters/snowflake_car.png)
-![](https://qfoldit.github.io/img/posters/genpas.png)
 ![](https://qfoldit.github.io/img/posters/qFoldIT_protein.png)
 
 ---
