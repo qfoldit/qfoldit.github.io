@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>qFoldIT Pte. Ltd. — Карточка компании в стиле VK Play</title>
+    <!-- фавикон VK Play -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3csvg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg clip-path='url(%23clip0_124_10523)'%3e%3cpath d='M18.756 0C26.892 0 30.96 0 33.48 2.52C36 5.04 36 9.108 36 17.244V18.756C36 26.892 36 30.96 33.48 33.48C30.96 36 26.892 36 18.756 36H17.244C9.108 36 5.04 36 2.52 33.48C0 30.96 0 26.892 0 18.756V17.244C0 9.108 0 5.04 2.52 2.52C5.04 0 9.108 0 17.244 0H18.756Z' fill='%230077FF'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M35.8956 10.1542C36 12.0999 36 14.4283 36 17.2439V17.244V18.756V18.756C36 20.9229 36 22.8013 35.9524 24.4387H0.0476112C0 22.8013 0 20.9229 0 18.756V17.244C0 14.4283 0 12.0999 0.104447 10.1542H35.8956ZM0.0474971 24.4394L0.0479452 24.4547C4.76004 26.7552 11.0876 28.1568 17.9898 28.1568C24.8976 28.1568 31.2388 26.7487 35.9521 24.4449L35.9522 24.4394H0.0474971Z' fill='%230009B4'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M25.0373 16.5811C24.1462 16.5811 23.4239 17.3195 23.4239 18.2304C23.4239 19.1412 24.1462 19.8796 25.0373 19.8796C25.9284 19.8796 26.6507 19.1412 26.6507 18.2304C26.6507 17.3195 25.9284 16.5811 25.0373 16.5811ZM19.845 18.2304C19.845 15.299 22.1697 12.9227 25.0373 12.9227C27.9049 12.9227 30.2296 15.299 30.2296 18.2304C30.2296 21.1617 27.9049 23.5381 25.0373 23.5381C22.1697 23.5381 19.845 21.1617 19.845 18.2304Z' fill='white'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M11.1827 15.8495L8.48861 13.1555L5.93991 15.7042L8.63398 18.3982L5.94007 21.0921L8.48877 23.6408L11.1827 20.9469L13.8765 23.6408L16.4252 21.0921L13.7314 18.3982L16.4254 15.7042L13.8767 13.1555L11.1827 15.8495Z' fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath id='clip0_124_10523'%3e%3crect width='36' height='36' fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e">
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* скрытие скроллбара для WebKit */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0A0C0F;
+            font-family: "Inter", sans-serif;
+            color: #E1E3E6;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE/Edge */
+        }
+
+        .dashboard {
+            flex: 1;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 24px 40px;
+        }
+
+        /* заголовок компании */
+        .company-header {
+            margin: 40px 0 30px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .company-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+
+        .status-badge {
+            background: #28a745;
+            color: white;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* блок с описанием */
+        .intro-block {
+            background: rgba(20, 25, 30, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .intro-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .intro-title i {
+            color: #0077FF;
+            font-size: 2rem;
+        }
+
+        .intro-subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin: 30px 0 15px;
+            border-bottom: 1px solid #2a3035;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .intro-subtitle i {
+            color: #0077FF;
+        }
+
+        .intro-text {
+            color: #c0c4cc;
+            line-height: 1.7;
+            margin-bottom: 1.5em;
+        }
+
+        .intro-text strong {
+            color: white;
+        }
+
+        .intro-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .intro-list li {
+            margin-bottom: 12px;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .intro-list li:before {
+            content: "•";
+            color: #0077FF;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -4px;
+        }
+
+        /* аккордеон */
+        .accordion {
+            margin: 30px 0 50px;
+        }
+
+        .accordion-item {
+            background: rgba(20, 25, 30, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 20px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            background: rgba(30, 35, 40, 0.5);
+            transition: background 0.2s;
+        }
+
+        .accordion-header:hover {
+            background: rgba(40, 45, 50, 0.8);
+        }
+
+        .accordion-header i {
+            transition: transform 0.3s;
+            color: #0077FF;
+        }
+
+        /* вращается только последняя иконка (стрелка) */
+        .accordion-item.open .accordion-header i:last-child {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            padding: 0 24px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.3s;
+            background: transparent;
+        }
+
+        .accordion-item.open .accordion-content {
+            max-height: 3000px;
+            padding: 20px 24px 24px 24px;
+        }
+
+        /* сетка для информации */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px 30px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .info-label {
+            color: #8a9099;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .info-value i {
+            color: #0077FF;
+            font-size: 1rem;
+        }
+
+        .ssic-badge {
+            background: #0077FF;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-family: monospace;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-right: 10px;
+            display: inline-block;
+        }
+
+        .activity-block {
+            background: rgba(0,0,0,0.2);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-left: 4px solid #0077FF;
+        }
+
+        .activity-code {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .activity-desc {
+            color: #c0c4cc;
+            line-height: 1.6;
+        }
+
+        .owner-card {
+            background: rgba(0, 119, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            margin-top: 10px;
+        }
+
+        .owner-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .owner-detail {
+            color: #aaa;
+            font-size: 1rem;
+            margin-top: 8px;
+        }
+
+        .owner-detail i {
+            color: #0077FF;
+            width: 24px;
+        }
+
+        .links-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .links-list li {
+            margin-bottom: 16px;
+            padding: 10px 15px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: 0.2s;
+        }
+
+        .links-list li:hover {
+            background: rgba(0,119,255,0.05);
+            border-color: #0077FF;
+        }
+
+        .links-list a {
+            color: #0077FF;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .links-list a i {
+            width: 24px;
+            font-size: 1.2rem;
+        }
+
+        .links-list a span {
+            color: #E1E3E6;
+            font-weight: 400;
+        }
+
+        /* футер */
+        .footer {
+            background-color: #0077ff;
+            padding: 12px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
+            width: 100%;
+            flex-shrink: 0;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-left, .footer-center, .footer-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-left {
+            flex: 1 1 auto;
+            justify-content: flex-start;
+        }
+
+        .footer-center {
+            flex: 1 1 auto;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-right {
+            flex: 1 1 auto;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .footer img {
+            max-height: 40px;
+            width: auto;
+            display: block;
+        }
+
+        .footer-left .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .footer-left .logo-composite {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .footer-left .divider {
+            width: 2px;
+            height: 40px;
+            background-color: white;
+            opacity: 0.9;
+            border-radius: 1px;
+        }
+
+        .footer-left .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+            font-weight: 700;
+            color: white;
+            font-size: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-right a {
+            display: block;
+            line-height: 0;
+        }
+
+        .footer-right .unigine-logo {
+            max-height: 28px;
+        }
+
+        .footer-right .nau-logo {
+            max-height: 20px;
+        }
+
+        .footer-right .desktop-logo { display: block; }
+        .footer-right .mobile-logo { display: none; }
+
+        @media (max-width: 700px) {
+            .dashboard { padding: 20px 16px; }
+            .company-title { font-size: 2.5rem; }
+            .info-grid { grid-template-columns: 1fr; }
+            .intro-title { font-size: 1.6rem; }
+            .intro-subtitle { font-size: 1.3rem; }
+            .footer {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .footer-left, .footer-center, .footer-right {
+                width: 100%;
+                justify-content: center;
+            }
+            .footer-left .logo-text { display: none; }
+            .footer-left .divider { display: none; }
+            .footer-right .desktop-logo { display: none; }
+            .footer-right .mobile-logo { display: block; }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- заголовок компании -->
+        <div class="company-header">
+            <h1 class="company-title">qFoldIT Pte. Ltd.</h1>
+            <div class="status-badge">ЗАРЕГИСТРИРОВАНО</div>
+        </div>
+
+        <!-- обновлённый блок с описанием (заменено "проект" на "компания", добавлен раздел про Индустрию 4.0) -->
+        <div class="intro-block">
+            <div class="intro-title">
+                <i class="fas fa-rocket"></i> Компания qFoldIT : синтез Нобелевских идей
+            </div>
+            <p class="intro-text">
+                Компания <strong>qFoldIT</strong> находится на уникальном перекрёстке научных направлений, отмеченных Нобелевскими премиями последних лет, и наследует ключевую идею оригинальной игры <strong>FoldIT</strong> — превращение сложнейшей научной задачи в увлекательный игровой процесс, доступный каждому. Вот как qFoldIT вписывается в этот контекст:
+            </p>
+
+            <div class="intro-subtitle">
+                <i class="fas fa-atom"></i> Премии по физике и химии 2024 года: фундамент для квантового фолдинга
+            </div>
+            <p class="intro-text">
+                Нобелевская неделя 2024 года стала триумфом междисциплинарных методов, объединивших физику, химию и биологию. qFoldIT — это компания, которая сознательно построена на этом фундаменте.
+            </p>
+            <p class="intro-text">
+                <strong>Физика 2024: Искусственный интеллект как инструмент познания</strong><br>
+                Премия по физике, присуждённая <strong>Джону Хопфилду и Джеффри Хинтону</strong>, ознаменовала признание того, что методы физики (статистическая механика) лежат в основе современных нейросетей.
+                <br><em>Связь с qFoldIT:</em> Платформа использует алгоритмы, вдохновлённые этими открытиями. Ассоциативная память (сети Хопфилда) и методы глубокого обучения (Хинтон) являются частью технологического ядра, позволяя ИИ-ассистентам внутри игры адаптироваться к действиям игрока, а также участвовать в процедурной генерации реалистичных арктических ландшафтов и молекулярных структур.
+            </p>
+            <p class="intro-text">
+                <strong>Химия 2024: Вычислительная революция в мире белков</strong><br>
+                Премия по химии разделена между <strong>Дэвидом Бейкером</strong> (за создание новых белков) и <strong>Демисом Хассабисом с Джоном Джампером</strong> (за предсказание их форм).
+                <br><em>Связь с qFoldIT:</em> Компания напрямую развивает обе эти линии. Игровой модуль qFoldIT, посвящённый молекулярному дизайну, наследует задаче, поставленной Бейкером: не просто предсказывать природу, а создавать то, чего она не создала. Модуль квантового фолдинга, в свою очередь, решает задачу предсказания структуры, но делает это на новом, квантовом уровне сложности, исследуя пространство возможных форм пептидов.
+            </p>
+
+            <div class="intro-subtitle">
+                <i class="fas fa-hand-peace"></i> Премия мира 2007 года: глобальная цель компании «Снежинка»
+            </div>
+            <p class="intro-text">
+                Премия мира 2007 года, присуждённая <strong>Межправительственной группе экспертов по изменению климата (МГЭИК)</strong> и Элу Гору, подчеркнула неразрывную связь климатических изменений и глобальной безопасности. Работы, в том числе климатолога <strong>Риккардо Валентини</strong>, чьи модели используются в МГЭИК, стали научной основой для понимания этих процессов.
+            </p>
+            <p class="intro-text">
+                <em>Связь с qFoldIT:</em> Платформа является цифровым двойником и образовательным ядром международной арктической станции <strong>«Снежинка»</strong> (проект AHEAD Арктического совета). Эта станция — реальный полигон для тестирования безуглеродных (водородных) технологий в Арктике. qFoldIT переносит эту миссию в виртуальный мир:
+            </p>
+            <ul class="intro-list">
+                <li><strong>Образование и вовлечение:</strong> Игроки не просто развлекаются, а погружаются в проблемы климатических изменений, изучают, как проектируются устойчивые энергосистемы и какие биотехнологические решения (например, новые ферменты или белки, открытые в игре) могут помочь в борьбе с последствиями изменения климата.</li>
+                <li><strong>Научная значимость:</strong> Как и оригинальная игра <strong>FoldIT</strong>, qFoldIT превращает игроков в исследователей. Разгадывая структуры белков в квантовом симуляторе, они вносят вклад в реальную науку. Результаты, полученные в игровом процессе, могут быть использованы для разработки более эффективных катализаторов, биосенсоров или материалов, что напрямую связано с целями устойчивого развития, продвигаемыми МГЭИК и проектом AHEAD.</li>
+            </ul>
+
+            <!-- Новый раздел: Индустрия 4.0 и вычислительная синтетическая биология -->
+            <div class="intro-subtitle">
+                <i class="fas fa-industry"></i> Индустрия 4.0 и вычислительная синтетическая биология
+            </div>
+            <p class="intro-text">
+                Считается, что <strong>Четвертая промышленная революция «Индустрия 4.0»</strong> началась на рубеже XX и XXI веков, но ее активная фаза и массовое признание как отдельного этапа пришлись на начало 2010-х годов.<br>
+                Сам термин <strong>«Индустрия 4.0»</strong> впервые прозвучал на Ганноверской ярмарке в 2011 году, а Клаус Шваб на форуме в Давосе (2016) закрепил мнение, что мы уже живем в этой эпохе.
+            </p>
+            <p class="intro-text">
+                В отличие от предыдущих революций, у этой нет одной конкретной даты (как изобретение парового двигателя), потому что она выросла из цифровой революции. Ее наступление определяют по «эффекту накопления» трех факторов:
+            </p>
+            <ul class="intro-list">
+                <li>Повсеместный мобильный интернет (доступность связи везде).</li>
+                <li>Дешевые и мощные сенсоры (интернет вещей).</li>
+                <li>Искусственный интеллект и машинное обучение.</li>
+            </ul>
+            <p class="intro-text">
+                <strong>Контекст появления</strong><br>
+                Это была стратегическая инициатива немецкого правительства. Группа экспертов (бизнесмены, политики и ученые) во главе с <strong>Зигфридом Дайсом</strong> и <strong>Хеннингом Кагерманном</strong> на Ганноверской ярмарке представила концепцию по повышению конкурентоспособности обрабатывающей промышленности Германии. Суть заключалась в создании «умных заводов», где машины, детали и IT-системы общаются друг с другом.
+            </p>
+            <p class="intro-text">
+                <strong>Место вычислительной синтетической биологии в 4-й революции</strong><br>
+                Клаус Шваб выделяет биологический блок как один из трех китов Четвертой промышленной революции (наряду с физическим и цифровым). Вычислительная синтетическая биология занимает здесь центральное место по следующим причинам:
+            </p>
+            <ul class="intro-list">
+                <li><strong>Стирание границ:</strong> это идеальный пример конвергенции (слияния) цифровых технологий и биологии. Мы берем «код» жизни (ДНК), моделируем его на компьютере и «распечатываем» новые организмы или вещества.</li>
+                <li><strong>Биопроизводство:</strong> вместо того чтобы строить огромные заводы, Индустрия 4.0 предлагает использовать микроорганизмы как «живые фабрики» для производства лекарств, топлива или материалов с заданными свойствами.</li>
+                <li><strong>Персонализация:</strong> вычислительные методы позволяют создавать лекарства, адаптированные под генетический код конкретного человека, что является важной частью экономики будущего.</li>
+                <li><strong>Хранение данных:</strong> синтетическая биология исследует возможность записи цифровой информации в ДНК, что может решить проблему хранения колоссальных объемов данных, генерируемых Индустрией 4.0.</li>
+            </ul>
+            <p class="intro-text">
+                Компания qFoldIT, работая на стыке квантовых вычислений, биоинформатики и игровых технологий, является ярким примером воплощения принципов Индустрии 4.0 в области синтетической биологии.
+            </p>
+
+            <div class="intro-subtitle">
+                <i class="fas fa-dna"></i> Резюме: qFoldIT как синтез идей и продолжение традиций
+            </div>
+            <p class="intro-text">
+                Таким образом, qFoldIT — это не просто игра или набор программ. Это платформа, где:
+            </p>
+            <ul class="intro-list">
+                <li>Методы, удостоенные <strong>Нобелевской премии по физике 2024</strong>, служат инструментом для исследований.</li>
+                <li>Задачи, отмеченные <strong>Нобелевской премией по химии 2024</strong>, решаются с помощью игровых механик и квантовых алгоритмов.</li>
+                <li>Глобальные цели, признанные <strong>Нобелевской премией мира 2007</strong>, становятся игровой реальностью и образовательной миссией, вовлекая тысячи людей в поиск решений для устойчивого будущего Арктики и всей планеты.</li>
+                <li>Принципы <strong>Индустрии 4.0</strong> обретают плоть в виде «живых фабрик» и цифровых двойников, создаваемых сообществом игроков-исследователей.</li>
+            </ul>
+            <p class="intro-text">
+                Компания продолжает главный урок <strong>FoldIT</strong>: сложнейшие научные вызовы можно решать сообща, превратив науку в увлекательное приключение. qFoldIT делает следующий шаг, добавляя к этому квантовые вычисления и прямую связь с актуальной экологической повесткой.
+            </p>
+        </div>
+
+        <!-- аккордеон с информацией о компании -->
+        <div class="accordion">
+            <!-- Секция 1: Общая информация -->
+            <div class="accordion-item open">
+                <div class="accordion-header">
+                    <span><i class="fas fa-building" style="margin-right: 12px;"></i> Общая информация</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Название компании</span>
+                            <span class="info-value">qFoldIT Pte. Ltd.</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Организационная форма</span>
+                            <span class="info-value">Частная компания с ограниченной ответственностью (Private Limited)</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Юрисдикция</span>
+                            <span class="info-value">Сингапур (ACRA)</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Уставный капитал</span>
+                            <span class="info-value">1,000 SGD (Оплачен полностью)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Секция 2: Виды деятельности (SSIC) -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span><i class="fas fa-code-branch" style="margin-right: 12px;"></i> Виды деятельности (SSIC)</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="activity-block">
+                        <div class="activity-code"><span class="ssic-badge">72101</span> Основной код</div>
+                        <div class="activity-desc">Научные исследования и экспериментальные разработки в области естественных наук (Биотехнологии, Квантовый фолдинг молекул).</div>
+                    </div>
+                    <div class="activity-block">
+                        <div class="activity-code"><span class="ssic-badge">62011</span> Дополнительный код</div>
+                        <div class="activity-desc">Разработка программного обеспечения (Распределенные хеш-таблицы (DHT), алгоритмы симуляции).</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Секция 3: Управление и владение -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span><i class="fas fa-user-tie" style="margin-right: 12px;"></i> Управление и владение</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <div class="owner-card">
+                        <div class="owner-name">George Kwa (Джордж Ква)</div>
+                        <div class="owner-detail"><i class="fas fa-passport"></i> Гражданство: Гана</div>
+                        <div class="owner-detail"><i class="fas fa-id-card"></i> Документ: Биометрический паспорт</div>
+                        <div style="margin-top: 15px; background: rgba(0,119,255,0.1); padding: 12px; border-radius: 12px;">
+                            <div><strong>Доля участия:</strong> 100% акций (1000 обыкновенных акций)</div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.02); border-radius: 16px;">
+                        <i class="fas fa-user-tag" style="color: #0077FF; margin-right: 8px;"></i>
+                        <strong>Директор (Резидент):</strong> <span style="color: #aaa;">Будет назначен (Номинальный директор из Сингапура)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Секция 4: Справочные материалы -->
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <span><i class="fas fa-link" style="margin-right: 12px;"></i> Справочные материалы</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content">
+                    <ul class="links-list">
+                        <li><a href="https://www.acra.gov.sg" target="_blank"><i class="fas fa-external-link-alt"></i> ACRA Official Website <span>— Государственный регистратор компаний Сингапура.</span></a></li>
+                        <li><a href="https://www.ssic.sg" target="_blank"><i class="fas fa-external-link-alt"></i> SSIC Search Tool <span>— Официальный справочник кодов деятельности (SSIC 2020).</span></a></li>
+                        <li><a href="https://www.guidemesingapore.com" target="_blank"><i class="fas fa-external-link-alt"></i> GuideMeSingapore <span>— Подробное руководство по регистрации для иностранцев.</span></a></li>
+                        <li><a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Консульство Ганы в Сингапуре <span>— Информация по визовым и официальным вопросам.</span></a></li>
+                        <li><a href="https://www.iras.gov.sg" target="_blank"><i class="fas fa-external-link-alt"></i> IRAS (Налоговая служба) <span>— Налоговые льготы для новых стартапов (SUTE).</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- футер -->
+    <footer class="footer">
+        <div class="footer-left">
+            <a href="#" class="logo-link">
+                <div class="logo-composite">
+                    <img src="https://refoldit.github.io/img/logo/rosatom_white.png" alt="РОСАТОМ">
+                    <div class="divider"></div>
+                    <div class="logo-text">
+                        <span>КВАНТОВЫЕ</span>
+                        <span>ТЕХНОЛОГИИ</span>
+                        <span>РОСАТОМ</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="footer-center">
+            <!-- логотипы удалены -->
+        </div>
+        <div class="footer-right">
+            <a href="https://unigine.com/products/sim/advantages/" target="_blank">
+                <img src="https://refoldit.github.io/img/logo/unigine_horizontal_white.png" alt="UNIGINE" class="desktop-logo unigine-logo">
+                <img src="https://refoldit.github.io/img/logo/unigine_sign_white.png" alt="UNIGINE" class="mobile-logo unigine-logo">
+            </a>
+            <a href="https://nauengine.org/" target="_blank">
+                <img src="https://refoldit.github.io/img/logo/nau-horizontal-white.png" alt="Nau Engine" class="desktop-logo nau-logo">
+                <img src="https://refoldit.github.io/img/logo/nau-sign-white.png" alt="Nau Engine" class="mobile-logo nau-logo">
+            </a>
+        </div>
+    </footer>
+
+    <!-- скрипт для аккордеона -->
+    <script>
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const item = this.closest('.accordion-item');
+                item.classList.toggle('open');
+            });
+        });
+    </script>
+</body>
+</html>
