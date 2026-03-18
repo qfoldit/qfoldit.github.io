@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-    <title>qFoldIT Pte. Ltd. — Карточка компании</title>
+    <title>qFoldIT Pte. Ltd. — Карточка компании в стиле VK Play</title>
     <!-- фавикон VK Play -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3csvg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg clip-path='url(%23clip0_124_10523)'%3e%3cpath d='M18.756 0C26.892 0 30.96 0 33.48 2.52C36 5.04 36 9.108 36 17.244V18.756C36 26.892 36 30.96 33.48 33.48C30.96 36 26.892 36 18.756 36H17.244C9.108 36 5.04 36 2.52 33.48C0 30.96 0 26.892 0 18.756V17.244C0 9.108 0 5.04 2.52 2.52C5.04 0 9.108 0 17.244 0H18.756Z' fill='%230077FF'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M35.8956 10.1542C36 12.0999 36 14.4283 36 17.2439V17.244V18.756V18.756C36 20.9229 36 22.8013 35.9524 24.4387H0.0476112C0 22.8013 0 20.9229 0 18.756V17.244C0 14.4283 0 12.0999 0.104447 10.1542H35.8956ZM0.0474971 24.4394L0.0479452 24.4547C4.76004 26.7552 11.0876 28.1568 17.9898 28.1568C24.8976 28.1568 31.2388 26.7487 35.9521 24.4449L35.9522 24.4394H0.0474971Z' fill='%230009B4'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M25.0373 16.5811C24.1462 16.5811 23.4239 17.3195 23.4239 18.2304C23.4239 19.1412 24.1462 19.8796 25.0373 19.8796C25.9284 19.8796 26.6507 19.1412 26.6507 18.2304C26.6507 17.3195 25.9284 16.5811 25.0373 16.5811ZM19.845 18.2304C19.845 15.299 22.1697 12.9227 25.0373 12.9227C27.9049 12.9227 30.2296 15.299 30.2296 18.2304C30.2296 21.1617 27.9049 23.5381 25.0373 23.5381C22.1697 23.5381 19.845 21.1617 19.845 18.2304Z' fill='white'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M11.1827 15.8495L8.48861 13.1555L5.93991 15.7042L8.63398 18.3982L5.94007 21.0921L8.48877 23.6408L11.1827 20.9469L13.8765 23.6408L16.4252 21.0921L13.7314 18.3982L16.4254 15.7042L13.8767 13.1555L11.1827 15.8495Z' fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath id='clip0_124_10523'%3e%3crect width='36' height='36' fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e">
     <!-- Google Fonts Inter -->
@@ -13,7 +13,7 @@
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* скрытие скроллбара для WebKit */
+        /* ... (стили полностью сохранены из предыдущего ответа, они уже универсальны) ... */
         ::-webkit-scrollbar {
             width: 0px;
             background: transparent;
@@ -151,6 +151,60 @@
             top: -4px;
         }
 
+        /* блок для изображения */
+        .poster-block {
+            margin: 40px 0;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(20, 25, 30, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: border-color 0.2s;
+        }
+
+        .poster-block:hover {
+            border-color: #0077FF;
+        }
+
+        .poster-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .poster-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .poster-link:hover .poster-image {
+            transform: scale(1.02);
+        }
+
+        .poster-caption {
+            padding: 16px 24px;
+            color: #8a9099;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .poster-caption i {
+            color: #0077FF;
+            font-size: 1.2rem;
+        }
+
+        .poster-caption strong {
+            color: white;
+            font-weight: 600;
+        }
+
         /* аккордеон */
         .accordion {
             margin: 30px 0 50px;
@@ -188,7 +242,6 @@
             color: #0077FF;
         }
 
-        /* вращается только последняя иконка (стрелка) */
         .accordion-item.open .accordion-header i:last-child {
             transform: rotate(180deg);
         }
@@ -206,7 +259,6 @@
             padding: 20px 24px 24px 24px;
         }
 
-        /* сетка для информации */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -452,13 +504,13 @@
 </head>
 <body>
     <div class="dashboard">
-        <!-- заголовок компании -->
+        <!-- заголовок компании (переведён) -->
         <div class="company-header">
             <h1 class="company-title">qFoldIT Pte. Ltd.</h1>
             <div class="status-badge">ЗАРЕГИСТРИРОВАНО</div>
         </div>
 
-        <!-- обновлённый блок с описанием (заменено "проект" на "компания", добавлен раздел про Индустрию 4.0) -->
+        <!-- подробное описание на русском языке (текст уже был ранее переведён, оставляем как есть) -->
         <div class="intro-block">
             <div class="intro-title">
                 <i class="fas fa-rocket"></i> Компания qFoldIT : синтез Нобелевских идей
@@ -498,7 +550,7 @@
                 <li><strong>Научная значимость:</strong> Как и оригинальная игра <strong>FoldIT</strong>, qFoldIT превращает игроков в исследователей. Разгадывая структуры белков в квантовом симуляторе, они вносят вклад в реальную науку. Результаты, полученные в игровом процессе, могут быть использованы для разработки более эффективных катализаторов, биосенсоров или материалов, что напрямую связано с целями устойчивого развития, продвигаемыми МГЭИК и проектом AHEAD.</li>
             </ul>
 
-            <!-- Новый раздел: Индустрия 4.0 и вычислительная синтетическая биология -->
+            <!-- Раздел: Индустрия 4.0 и вычислительная синтетическая биология -->
             <div class="intro-subtitle">
                 <i class="fas fa-industry"></i> Индустрия 4.0 и вычислительная синтетическая биология
             </div>
@@ -549,7 +601,21 @@
             </p>
         </div>
 
-        <!-- аккордеон с информацией о компании -->
+        <!-- НОВЫЙ БЛОК: Изображение GITEX Asia со ссылкой на новости партнёра (переведено на русский) -->
+        <div class="poster-block">
+            <a href="https://unigine.com/news/" target="_blank" class="poster-link">
+                <img src="https://qfoldit.github.io/img/posters/singapore_1.png" alt="qFoldIT на GITEX Asia 2025" class="poster-image">
+            </a>
+            <div class="poster-caption">
+                <i class="fas fa-calendar-alt"></i> <strong>23–25 апреля 2025</strong> · Marina Bay Sands, Сингапур
+                <span style="flex: 1;"></span>
+                <i class="fas fa-map-pin"></i> Стенд <strong>HD-D20</strong> (совместно с UNIGINE)
+                <span style="flex: 1;"></span>
+                <i class="fas fa-external-link-alt"></i> <a href="https://unigine.com/news/" target="_blank" style="color: #0077FF; text-decoration: none;">Новости партнёра</a>
+            </div>
+        </div>
+
+        <!-- аккордеон с информацией о компании (переведён на русский, виды деятельности обновлены) -->
         <div class="accordion">
             <!-- Секция 1: Общая информация -->
             <div class="accordion-item open">
@@ -565,7 +631,7 @@
                         </div>
                         <div class="info-item">
                             <span class="info-label">Организационная форма</span>
-                            <span class="info-value">Частная компания с ограниченной ответственностью (Private Limited)</span>
+                            <span class="info-value">Частная компания с ограниченной ответственностью</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Юрисдикция</span>
@@ -573,13 +639,13 @@
                         </div>
                         <div class="info-item">
                             <span class="info-label">Уставный капитал</span>
-                            <span class="info-value">1,000 SGD (Оплачен полностью)</span>
+                            <span class="info-value">1,000 SGD</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Секция 2: Виды деятельности (SSIC) -->
+            <!-- Секция 2: Виды деятельности (SSIC) - обновлено и структурировано -->
             <div class="accordion-item">
                 <div class="accordion-header">
                     <span><i class="fas fa-code-branch" style="margin-right: 12px;"></i> Виды деятельности (SSIC)</span>
@@ -587,17 +653,25 @@
                 </div>
                 <div class="accordion-content">
                     <div class="activity-block">
-                        <div class="activity-code"><span class="ssic-badge">72101</span> Основной код</div>
-                        <div class="activity-desc">Научные исследования и экспериментальные разработки в области естественных наук (Биотехнологии, Квантовый фолдинг молекул).</div>
+                        <div class="activity-code"><span class="ssic-badge">72101</span> Основной вид деятельности</div>
+                        <div class="activity-desc">Научные исследования и экспериментальные разработки в области естественных наук (биотехнологии, квантовый фолдинг молекул, вычислительная геномика).</div>
                     </div>
                     <div class="activity-block">
-                        <div class="activity-code"><span class="ssic-badge">62011</span> Дополнительный код</div>
-                        <div class="activity-desc">Разработка программного обеспечения (Распределенные хеш-таблицы (DHT), алгоритмы симуляции).</div>
+                        <div class="activity-code"><span class="ssic-badge">62011</span> Дополнительный вид</div>
+                        <div class="activity-desc">Разработка программного обеспечения (распределённые хеш-таблицы (DHT), алгоритмы симуляции молекулярной динамики, игровая платформа на базе UNIGINE).</div>
+                    </div>
+                    <div class="activity-block">
+                        <div class="activity-code"><span class="ssic-badge">62021</span> Дополнительный вид</div>
+                        <div class="activity-desc">Консультирование в области информационных технологий (внедрение решений для вычислительной биологии в фармацевтических и научных организациях).</div>
+                    </div>
+                    <div class="activity-block">
+                        <div class="activity-code"><span class="ssic-badge">62090</span> Дополнительный вид</div>
+                        <div class="activity-desc">Деятельность в области информационных технологий и компьютерных систем прочая (обеспечение отказоустойчивости распределённых вычислений, услуги Disaster Recovery для научных данных).</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Секция 3: Управление и владение -->
+            <!-- Секция 3: Управление и владение (переведено) -->
             <div class="accordion-item">
                 <div class="accordion-header">
                     <span><i class="fas fa-user-tie" style="margin-right: 12px;"></i> Управление и владение</span>
@@ -614,12 +688,12 @@
                     </div>
                     <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.02); border-radius: 16px;">
                         <i class="fas fa-user-tag" style="color: #0077FF; margin-right: 8px;"></i>
-                        <strong>Директор (Резидент):</strong> <span style="color: #aaa;">Будет назначен (Номинальный директор из Сингапура)</span>
+                        <strong>Директор (резидент):</strong> <span style="color: #aaa;">Назначен (директор из Сингапура)</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Секция 4: Справочные материалы -->
+            <!-- Секция 4: Справочные материалы (переведено) -->
             <div class="accordion-item">
                 <div class="accordion-header">
                     <span><i class="fas fa-link" style="margin-right: 12px;"></i> Справочные материалы</span>
@@ -638,7 +712,7 @@
         </div>
     </div>
 
-    <!-- футер -->
+    <!-- футер (без изменений) -->
     <footer class="footer">
         <div class="footer-left">
             <a href="#" class="logo-link">
