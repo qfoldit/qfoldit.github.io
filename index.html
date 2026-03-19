@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-    <title>qFoldIT Pte. Ltd. — Company Details (RU/EN)</title>
+    <title>qFoldIT Pte. Ltd. — Company Details (EN/RU)</title>
     <!-- фавикон VK Play -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3csvg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg clip-path='url(%23clip0_124_10523)'%3e%3cpath d='M18.756 0C26.892 0 30.96 0 33.48 2.52C36 5.04 36 9.108 36 17.244V18.756C36 26.892 36 30.96 33.48 33.48C30.96 36 26.892 36 18.756 36H17.244C9.108 36 5.04 36 2.52 33.48C0 30.96 0 26.892 0 18.756V17.244C0 9.108 0 5.04 2.52 2.52C5.04 0 9.108 0 17.244 0H18.756Z' fill='%230077FF'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M35.8956 10.1542C36 12.0999 36 14.4283 36 17.2439V17.244V18.756V18.756C36 20.9229 36 22.8013 35.9524 24.4387H0.0476112C0 22.8013 0 20.9229 0 18.756V17.244C0 14.4283 0 12.0999 0.104447 10.1542H35.8956ZM0.0474971 24.4394L0.0479452 24.4547C4.76004 26.7552 11.0876 28.1568 17.9898 28.1568C24.8976 28.1568 31.2388 26.7487 35.9521 24.4449L35.9522 24.4394H0.0474971Z' fill='%230009B4'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M25.0373 16.5811C24.1462 16.5811 23.4239 17.3195 23.4239 18.2304C23.4239 19.1412 24.1462 19.8796 25.0373 19.8796C25.9284 19.8796 26.6507 19.1412 26.6507 18.2304C26.6507 17.3195 25.9284 16.5811 25.0373 16.5811ZM19.845 18.2304C19.845 15.299 22.1697 12.9227 25.0373 12.9227C27.9049 12.9227 30.2296 15.299 30.2296 18.2304C30.2296 21.1617 27.9049 23.5381 25.0373 23.5381C22.1697 23.5381 19.845 21.1617 19.845 18.2304Z' fill='white'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M11.1827 15.8495L8.48861 13.1555L5.93991 15.7042L8.63398 18.3982L5.94007 21.0921L8.48877 23.6408L11.1827 20.9469L13.8765 23.6408L16.4252 21.0921L13.7314 18.3982L16.4254 15.7042L13.8767 13.1555L11.1827 15.8495Z' fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath id='clip0_124_10523'%3e%3crect width='36' height='36' fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e">
     <!-- Google Fonts Inter -->
@@ -62,17 +62,8 @@
             transform: scale(1.05);
             box-shadow: 0 0 12px rgba(0,119,255,0.5);
         }
-        .lang-flag.decorative {
-            opacity: 0.4;
-            cursor: default;
-            filter: grayscale(0.8);
-        }
-        .lang-flag.decorative:hover {
-            opacity: 0.4;
-            border-color: transparent;
-        }
-        .lang-flag:not(.decorative):hover {
-            opacity: 1;
+        .lang-flag:not(.active):hover {
+            opacity: 0.9;
             border-color: #0077FF;
         }
 
@@ -161,7 +152,7 @@
             top: -4px;
         }
 
-        /* сетка для изображений */
+        /* сетка для изображений (общая) */
         .poster-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -428,13 +419,14 @@
     <div class="dashboard">
         <!-- ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКОВ В ВИДЕ ФЛАГОВ -->
         <div class="lang-switcher">
-            <img src="https://flagcdn.com/ru.svg" class="lang-flag active" onclick="switchLang('ru')" alt="Русский" title="Русский">
-            <img src="https://flagcdn.com/gb.svg" class="lang-flag" onclick="switchLang('en')" alt="English" title="English">
-            <img src="https://flagcdn.com/de.svg" class="lang-flag decorative" alt="Deutsch" title="Deutsch (декоративный)">
+            <img src="https://flagcdn.com/gb.svg" class="lang-flag active" data-lang="en" alt="English" title="English">
+            <img src="https://flagcdn.com/ru.svg" class="lang-flag" data-lang="ru" alt="Русский" title="Русский">
+            <img src="https://flagcdn.com/de.svg" class="lang-flag" data-lang="de" alt="Deutsch" title="Deutsch">
+            <img src="https://flagcdn.com/cn.svg" class="lang-flag" data-lang="cn" alt="中文" title="中文">
         </div>
 
         <!-- ========== РУССКАЯ ВЕРСИЯ ========== -->
-        <div id="lang-ru" class="lang-ru active">
+        <div id="lang-ru" class="lang-ru">
             <!-- заголовок компании -->
             <div class="company-header">
                 <h1 class="company-title"><span style="color: #0077FF;">q</span>FoldIT Pte. Ltd.</h1>
@@ -456,6 +448,17 @@
                 <p class="intro-text">
                     Нобелевская неделя 2024 года стала триумфом междисциплинарных методов, объединивших физику, химию и биологию. qFoldIT — это компания, которая сознательно построена на этом фундаменте.
                 </p>
+                
+                <!-- Изображения Нобелевских премий (физика и химия) -->
+                <div class="poster-grid" style="margin-top: 20px;">
+                    <div class="poster-block">
+                        <img src="https://qfoldit.github.io/img/posters/noble_prize_physics.jpg" alt="Нобелевская премия по физике 2024" class="poster-image">
+                    </div>
+                    <div class="poster-block">
+                        <img src="https://qfoldit.github.io/img/posters/noble_prize_chemistry.jpg" alt="Нобелевская премия по химии 2024" class="poster-image">
+                    </div>
+                </div>
+
                 <p class="intro-text">
                     <strong>Физика 2024: Искусственный интеллект как инструмент познания</strong><br>
                     Премия по физике, присуждённая <strong>Джону Хопфилду и Джеффри Хинтону</strong>, ознаменовала признание того, что методы физики (статистическая механика) лежат в основе современных нейросетей.
@@ -532,7 +535,7 @@
                 </p>
             </div>
 
-            <!-- Блок с изображениями (оба) -->
+            <!-- Блок с изображениями (GITEX и Dubai) -->
             <div class="poster-grid">
                 <!-- GITEX Asia (Сингапур) -->
                 <div class="poster-block">
@@ -651,8 +654,8 @@
             </div>
         </div>
 
-        <!-- ========== АНГЛИЙСКАЯ ВЕРСИЯ ========== -->
-        <div id="lang-en" class="lang-en">
+        <!-- ========== АНГЛИЙСКАЯ ВЕРСИЯ (ПО УМОЛЧАНИЮ) ========== -->
+        <div id="lang-en" class="lang-en active">
             <!-- company header -->
             <div class="company-header">
                 <h1 class="company-title"><span style="color: #0077FF;">q</span>FoldIT Pte. Ltd.</h1>
@@ -674,6 +677,17 @@
                 <p class="intro-text">
                     Nobel Week 2024 marked a triumph of interdisciplinary methods combining physics, chemistry, and biology. qFoldIT is a company consciously built on this foundation.
                 </p>
+
+                <!-- Nobel Prize Images (Physics and Chemistry) -->
+                <div class="poster-grid" style="margin-top: 20px;">
+                    <div class="poster-block">
+                        <img src="https://qfoldit.github.io/img/posters/noble_prize_physics.jpg" alt="Nobel Prize in Physics 2024" class="poster-image">
+                    </div>
+                    <div class="poster-block">
+                        <img src="https://qfoldit.github.io/img/posters/noble_prize_chemistry.jpg" alt="Nobel Prize in Chemistry 2024" class="poster-image">
+                    </div>
+                </div>
+
                 <p class="intro-text">
                     <strong>Physics 2024: Artificial Intelligence as a Tool for Discovery</strong><br>
                     The Nobel Prize in Physics awarded to <strong>John Hopfield and Geoffrey Hinton</strong> recognized that methods from physics (statistical mechanics) underlie modern neural networks.
@@ -750,7 +764,7 @@
                 </p>
             </div>
 
-            <!-- Image grid (both images) -->
+            <!-- Image grid (GITEX and Dubai) -->
             <div class="poster-grid">
                 <!-- GITEX Asia (Singapore) -->
                 <div class="poster-block">
@@ -902,22 +916,24 @@
 
     <script>
         // переключение языков по клику на флаг
-        function switchLang(lang) {
-            // убираем активный класс у всех флагов
-            document.querySelectorAll('.lang-flag').forEach(flag => {
-                flag.classList.remove('active');
+        document.querySelectorAll('.lang-flag').forEach(flag => {
+            flag.addEventListener('click', function() {
+                const lang = this.dataset.lang;
+                if (lang === 'ru' || lang === 'en') {
+                    // убираем активный класс у всех флагов
+                    document.querySelectorAll('.lang-flag').forEach(f => f.classList.remove('active'));
+                    // добавляем активный класс выбранному флагу
+                    this.classList.add('active');
+                    // переключаем видимость блоков
+                    document.querySelectorAll('.lang-ru, .lang-en').forEach(el => el.classList.remove('active'));
+                    document.getElementById(`lang-${lang}`).classList.add('active');
+                } else {
+                    // Для немецкого и китайского флагов просто снимаем активность с ru/en, но не переключаем язык
+                    // Можно добавить легкий эффект или просто игнорировать
+                    console.log(`Language ${lang} is not supported yet`);
+                }
             });
-            // добавляем активный класс выбранному флагу (нужно найти флаг с соответствующим языком)
-            // поскольку у нас нет прямого соответствия, мы можем ориентироваться на атрибут onclick, но проще:
-            if (lang === 'ru') {
-                document.querySelector('.lang-flag[src*="ru.svg"]').classList.add('active');
-            } else if (lang === 'en') {
-                document.querySelector('.lang-flag[src*="gb.svg"]').classList.add('active');
-            }
-            // переключаем видимость блоков
-            document.querySelectorAll('.lang-ru, .lang-en').forEach(el => el.classList.remove('active'));
-            document.getElementById(`lang-${lang}`).classList.add('active');
-        }
+        });
 
         // аккордеон
         document.querySelectorAll('.accordion-header').forEach(header => {
