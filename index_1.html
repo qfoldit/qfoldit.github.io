@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-    <title>qFoldIT Pte. Ltd. — Карточка компании в стиле VK Play (EN/RU)</title>
+    <title>qFoldIT Pte. Ltd. — (EN/RU)</title>
     <!-- фавикон VK Play -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3csvg width='36' height='36' viewBox='0 0 36 36' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cg clip-path='url(%23clip0_124_10523)'%3e%3cpath d='M18.756 0C26.892 0 30.96 0 33.48 2.52C36 5.04 36 9.108 36 17.244V18.756C36 26.892 36 30.96 33.48 33.48C30.96 36 26.892 36 18.756 36H17.244C9.108 36 5.04 36 2.52 33.48C0 30.96 0 26.892 0 18.756V17.244C0 9.108 0 5.04 2.52 2.52C5.04 0 9.108 0 17.244 0H18.756Z' fill='%230077FF'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M35.8956 10.1542C36 12.0999 36 14.4283 36 17.2439V17.244V18.756V18.756C36 20.9229 36 22.8013 35.9524 24.4387H0.0476112C0 22.8013 0 20.9229 0 18.756V17.244C0 14.4283 0 12.0999 0.104447 10.1542H35.8956ZM0.0474971 24.4394L0.0479452 24.4547C4.76004 26.7552 11.0876 28.1568 17.9898 28.1568C24.8976 28.1568 31.2388 26.7487 35.9521 24.4449L35.9522 24.4394H0.0474971Z' fill='%230009B4'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M25.0373 16.5811C24.1462 16.5811 23.4239 17.3195 23.4239 18.2304C23.4239 19.1412 24.1462 19.8796 25.0373 19.8796C25.9284 19.8796 26.6507 19.1412 26.6507 18.2304C26.6507 17.3195 25.9284 16.5811 25.0373 16.5811ZM19.845 18.2304C19.845 15.299 22.1697 12.9227 25.0373 12.9227C27.9049 12.9227 30.2296 15.299 30.2296 18.2304C30.2296 21.1617 27.9049 23.5381 25.0373 23.5381C22.1697 23.5381 19.845 21.1617 19.845 18.2304Z' fill='white'/%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M11.1827 15.8495L8.48861 13.1555L5.93991 15.7042L8.63398 18.3982L5.94007 21.0921L8.48877 23.6408L11.1827 20.9469L13.8765 23.6408L16.4252 21.0921L13.7314 18.3982L16.4254 15.7042L13.8767 13.1555L11.1827 15.8495Z' fill='white'/%3e%3c/g%3e%3cdefs%3e%3cclipPath id='clip0_124_10523'%3e%3crect width='36' height='36' fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e">
     <!-- Google Fonts Inter -->
@@ -38,7 +38,7 @@
             padding: 30px 24px 40px;
         }
 
-        /* переключатель языков в виде флагов */
+        /* переключатель языков в виде флагов (локальные) */
         .lang-switcher {
             display: flex;
             justify-content: flex-end;
@@ -328,7 +328,7 @@
         .links-list a i { width: 24px; font-size: 1.2rem; }
         .links-list a span { color: #E1E3E6; font-weight: 400; }
 
-        /* НОВЫЙ ФУТЕР: равноудалённое расположение */
+        /* ФУТЕР: равноудалённое расположение, адаптивный текст/значки */
         .footer {
             background-color: #0077ff;
             padding: 16px 32px;
@@ -369,13 +369,12 @@
             line-height: 1.2;
             font-weight: 700;
         }
-        .footer-center {
-            justify-content: center;
-        }
-        .footer-right {
-            justify-content: flex-end;
-        }
+        /* По умолчанию (десктоп) показываем горизонтальные логотипы и текст у GitHub */
+        .footer .mobile-logo { display: none; }
+        .footer .desktop-logo { display: block; }
+        .footer .github-text { display: inline; }
 
+        /* Мобильная версия: убираем текст, показываем только значки */
         @media (max-width: 700px) {
             .dashboard { padding: 20px 16px; }
             .company-title { font-size: 2.5rem; }
@@ -384,8 +383,6 @@
             .intro-subtitle { font-size: 1.3rem; }
             .poster-grid { grid-template-columns: 1fr; }
             .footer {
-                flex-direction: row;
-                justify-content: space-between;
                 padding: 12px 20px;
                 gap: 10px;
             }
@@ -395,7 +392,12 @@
             }
             .footer-item:first-child { justify-content: flex-start; }
             .footer-item:last-child { justify-content: flex-end; }
+            /* Скрываем текст у GitHub и логотипы с текстом у Росатома */
             .footer-logo-text { display: none; }
+            .github-text { display: none; }
+            /* Переключаем логотипы на мобильные версии */
+            .footer .desktop-logo { display: none; }
+            .footer .mobile-logo { display: block; }
         }
 
         /* языковые блоки: по умолчанию скрыты, показываются через JS */
@@ -409,7 +411,7 @@
 </head>
 <body>
     <div class="dashboard">
-        <!-- ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКОВ В ВИДЕ ФЛАГОВ -->
+        <!-- ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКОВ (локальные флаги) -->
         <div class="lang-switcher">
             <img src="https://qfoldit.github.io/img/flags/ru.svg" class="lang-flag active" data-lang="ru" alt="Русский" title="Русский">
             <img src="https://qfoldit.github.io/img/flags/gb.svg" class="lang-flag" data-lang="en" alt="English" title="English">
@@ -876,23 +878,28 @@
         </div>
     </div>
 
-    <!-- НОВЫЙ ФУТЕР: РОСАТОМ | GitHub | Игровые движки (равноудалённо) -->
+    <!-- ФУТЕР: адаптивные логотипы, GitHub без текста на мобильных -->
     <footer class="footer">
         <div class="footer-item">
             <a href="#" class="logo-link">
-                <img src="https://refoldit.github.io/img/logo/rosatom_white.png" alt="РОСАТОМ">
-                <span class="footer-logo-text">КВАНТОВЫЕ<br>ТЕХНОЛОГИИ<br>РОСАТОМ</span>
+                <!-- Горизонтальная версия (десктоп) -->
+                <img src="https://refoldit.github.io/img/logo/rosatom_white.png" alt="РОСАТОМ" class="desktop-logo">
+                <span class="footer-logo-text desktop-logo">КВАНТОВЫЕ<br>ТЕХНОЛОГИИ<br>РОСАТОМ</span>
+                <!-- Мобильная версия (только значок) -->
+                <img src="https://refoldit.github.io/img/logo/rosatom_white.png" alt="РОСАТОМ" class="mobile-logo" style="height: 32px;">
             </a>
         </div>
         <div class="footer-item footer-center">
             <a href="https://github.com/qfoldit" target="_blank">
                 <i class="fab fa-github" style="font-size: 28px;"></i>
-                <span>GitHub</span>
+                <span class="github-text">GitHub</span>
             </a>
         </div>
         <div class="footer-item footer-right">
             <a href="https://unigine.com/products/sim/advantages/" target="_blank">
+                <!-- Горизонтальная версия (десктоп) -->
                 <img src="https://refoldit.github.io/img/logo/unigine_horizontal_white.png" alt="UNIGINE" class="desktop-logo unigine-logo" style="height: 28px;">
+                <!-- Мобильная версия (значок) -->
                 <img src="https://refoldit.github.io/img/logo/unigine_sign_white.png" alt="UNIGINE" class="mobile-logo unigine-logo" style="height: 28px;">
             </a>
             <a href="https://nauengine.org/" target="_blank">
@@ -908,15 +915,11 @@
             flag.addEventListener('click', function() {
                 const lang = this.dataset.lang;
                 if (lang === 'ru' || lang === 'en') {
-                    // убираем активный класс у всех флагов
                     document.querySelectorAll('.lang-flag').forEach(f => f.classList.remove('active'));
-                    // добавляем активный класс выбранному флагу
                     this.classList.add('active');
-                    // переключаем видимость блоков
                     document.querySelectorAll('.lang-ru, .lang-en').forEach(el => el.classList.remove('active'));
                     document.getElementById(`lang-${lang}`).classList.add('active');
                 } else {
-                    // Для немецкого и китайского флагов просто снимаем активность с ru/en, но не переключаем язык
                     console.log(`Language ${lang} is decorative`);
                 }
             });
