@@ -195,5 +195,5 @@
    
 ![](https://qfoldit.github.io/img/posters/fksru.png)
 ![](https://qfoldit.github.io/img/posters/cybersber.jpg)
-![](https://qfoldit.github.io/img/H3D-logo.png)
-![](https://h3d_final_logo.png)
+<!-- ![](https://qfoldit.github.io/img/H3D-logo.png) -->
+![](https://qfoldit.github.io/img/h3d_final_logo.png)
