@@ -122,14 +122,21 @@
             border: 1px solid rgba(255,255,255,0.1);
             background: rgba(20, 25, 30, 0.8);
         }
-        .poster-image {
+        .book-block {
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(20, 25, 30, 0.8);
+            margin: 20px 0 40px;
+        }
+        .poster-image, .book-image {
             width: 100%;
             height: auto;
             display: block;
             transition: transform 0.3s ease;
         }
-        .poster-image:hover { transform: scale(1.02); }
-        .poster-caption {
+        .poster-image:hover, .book-image:hover { transform: scale(1.02); }
+        .poster-caption, .book-caption {
             padding: 16px 24px;
             color: #8a9099;
             font-size: 0.95rem;
@@ -139,7 +146,7 @@
             gap: 12px;
             flex-wrap: wrap;
         }
-        .poster-caption i { color: #0077FF; }
+        .poster-caption i, .book-caption i { color: #0077FF; }
 
         /* accordion */
         .accordion { margin: 30px 0 50px; }
@@ -301,7 +308,9 @@
         <div class="intro-title"><i class="fas fa-rocket"></i> A Synthesis of Nobel Ideas</div>
         <p class="intro-text"><strong>qFoldIT</strong> is a platform built on discoveries awarded the Nobel Prize, continuing the legacy of <strong>FoldIT</strong> — turning complex science into engaging gameplay accessible to everyone.</p>
         
-        <img src="https://qfoldit.github.io/img/qFold.png" style="width: 100%;border-radius: 10px;">
+        <p class="intro-text"><strong>qFoldIT combines quantum algorithms, AI, and crowdsourcing in a gaming environment to redefine molecular design and climate challenges. Following the legacy of FoldIT and Nobel laureates, we transform cutting-edge science into an interactive adventure with high-performance molecular visualization.</strong></p>
+
+        <img src="https://qfoldit.github.io/img/qFold.png" style="width: 100%;border-radius: 10px;" alt="qFoldIT visualization">
         
         <div class="intro-subtitle"><i class="fas fa-atom"></i> Physics 2024: AI as a Tool for Discovery</div>
         <p class="intro-text">Awarded to <strong>John Hopfield and Geoffrey Hinton</strong> for foundational AI discoveries. <b>qFoldIT</b> uses Hopfield networks (associative memory) and deep learning for adaptive AI assistants, procedural generation of Arctic landscapes, and molecular structure prediction.</p>
@@ -318,6 +327,18 @@
         <p class="intro-text"><strong>qFoldIT</strong> follows the <b>FoldIT</b> tradition: a community of player‑researchers solves real scientific problems, while quantum algorithms and AI push the boundaries of what is possible.</p>
     </div>
 
+    <!-- Separate book poster: Gaming Cancer by Jeff Yoshimi -->
+    <div class="book-block">
+        <img src="https://qfoldit.github.io/img/posters/Gaming_Cancer_book.png" alt="Gaming Cancer book cover" class="book-image">
+        <div class="book-caption">
+            <i class="fas fa-book-open"></i> 
+            <strong>Jeff Yoshimi — Gaming Cancer: How Building and Playing Video Games Can Accelerate Scientific Discovery</strong>
+            <a href="https://books.google.com/books?q=Gaming+Cancer+Jeff+Yoshimi" target="_blank" style="color: #0077FF; margin-left: auto; text-decoration: none;">
+                <i class="fab fa-google"></i> Google Books
+            </a>
+        </div>
+    </div>
+
     <div class="accordion">
         <div class="accordion-item open">
             <div class="accordion-header"><span><i class="fas fa-users"></i> Scientific Team</span><i class="fas fa-chevron-down"></i></div>
@@ -328,7 +349,7 @@
                         <div class="team-info">
                             <div class="team-name">Prof. Kelly Chibale</div>
                             <div class="team-role">Scientific Director</div>
-                            <div class="team-detail">Age 62 (b. 1964). Founder of H3D (University of Cape Town).<b>Cambridge graduate, Oxford partner</b>, Pioneer of drug discovery in Africa, creator of the <b>ZairaChem AI pipeline (15 ADME‑Tox models)</b>.</div>
+                            <div class="team-detail">Age 62 (b. 1964). Founder of H3D (University of Cape Town). <b>Cambridge graduate, Oxford partner</b>, pioneer of drug discovery in Africa, creator of the <b>ZairaChem AI pipeline (15 ADME‑Tox models)</b>.</div>
                             <div class="team-detail">Defines disease targets (malaria, TB, AMR), validates methodology, provides access to H3D data. Co‑author of key qFoldIT publications.</div>
                             <div class="team-meta"><i class="fas fa-globe"></i> Website: <a href="https://www.kellychibale.co.za/" target="_blank" class="orcid-link">www.kellychibale.co.za</a></div>
                             <div class="team-meta"><i class="fab fa-orcid"></i> ORCID: <a href="https://orcid.org/0000-0002-4541-646X" target="_blank" class="orcid-link">0000-0002-4541-646X</a></div>
@@ -342,8 +363,7 @@
                             <div class="team-role">Scientific Advisor</div>
                             <div class="team-detail">Age 41 (b. 1985). Senior Investigator at H3D, expert in African natural products, first MMV grant as PI (bispyrroloiminoquinone).</div>
                             <div class="team-detail">Designs molecule generation rules based on natural scaffolds, ensures synthetic accessibility, validates malaria/TB tasks.</div>
-                            <div class="team-meta"><i class="fab fa-orcid"></i> Researchgate: <a href="https://www.researchgate.net/profile/Alboukadel-Kassambara" target="_blank" class="orcid-link">Godwin Akpeko Dziwornu</a></div>
-                           
+                            <div class="team-meta"><i class="fab fa-orcid"></i> ResearchGate: <a href="https://www.researchgate.net/profile/Godwin-Dziwornu" target="_blank" class="orcid-link">Godwin Akpeko Dziwornu</a></div>
                         </div>
                     </div>
                     <div class="team-card">
@@ -361,20 +381,21 @@
                         <div class="team-info">
                             <div class="team-name">Dr. Beata Mierzwa</div>
                             <div class="team-role">Director of Science Art & Gamified Education</div>
-                            <div class="team-detail">Molecular Biologist (UCSD, Ludwig Institute) and pioneering Science Artist. Creator of the educational video game <i>Microscopya</i> and AAAS IF/THEN Ambassador.</div>
-                            <div class="team-detail"><b>Focus:</b> Translates complex quantum-chemical data into intuitive, AAA-quality visual puzzles. She bridges the gap between hardcore laboratory science and user engagement, designing a crisp, high-tech visual language (utilizing pure white, vivid blue, and deep navy) that makes molecular manipulation accessible without sacrificing scientific rigor.</div>
+                            <div class="team-detail">Molecular biologist (UCSD, Ludwig Institute) and pioneering science artist. Creator of the educational video game <i>Microscopya</i> and AAAS IF/THEN Ambassador.</div>
+                            <div class="team-detail"><b>Role in qFoldIT:</b> Translates complex quantum-chemical data into intuitive, AAA-quality visual puzzles. She bridges hardcore laboratory science with user engagement, designing a crisp, high-tech visual language (pure white, vivid blue, deep navy) that makes molecular manipulation accessible without sacrificing scientific rigor. Leads the gamified learning experience and ensures that every interactive element educates as it entertains.</div>
                             <div class="team-meta"><i class="fas fa-globe"></i> Website: <a href="https://beatascienceart.com" target="_blank" class="orcid-link">beatascienceart.com</a></div>
                             <div class="team-meta"><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/beatascienceart" target="_blank" class="orcid-link">Beata Mierzwa</a></div>
                         </div>
                     </div>
                     
                     <div class="team-card">
-                        <img src="https://qfoldit.github.io/img/1/AG.png" alt="George Ahiakwa" class="team-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22140%22%20viewBox%3D%220%200%20140%20140%22%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20fill%3D%22%231e2328%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%230077FF%22%20font-size%3D%2240%22%20font-family%3D%22FontAwesome%22%3E%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                        <img src="https://qfoldit.github.io/img/1/AG.png" alt="Dr. George Ahiakwa" class="team-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22140%22%20viewBox%3D%220%200%20140%20140%22%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20fill%3D%22%231e2328%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%230077FF%22%20font-size%3D%2240%22%20font-family%3D%22FontAwesome%22%3E%3C%2Ftext%3E%3C%2Fsvg%3E';">
                         <div class="team-info">
                             <div class="team-name">Dr. George Ahiakwa</div>
                             <div class="team-role">Founder, CEO, Gamification Architect</div>
                             <div class="team-detail">Age 38 (b. 1988). Game designer (Atomic Heart), descendant of the Ashanti Ahiakwa royal lineage.</div>
-                            <div class="team-detail">Designs game mechanics (patent “Stop in Time”), platform architecture, quantum API integration, AAA‑grade visualization. Coordinates scientific collaborations.</div>
+                            <div class="team-detail">Designs game mechanics, platform architecture, quantum API integration, AAA‑grade visualization. Coordinates scientific collaborations.</div>
+                            <div class="team-meta"><i class="fab fa-github"></i> GitHub: <a href="https://github.com/CEPBEP" target="_blank" class="orcid-link">CEPBEP</a></div>
                             <div class="team-meta"><i class="fab fa-orcid"></i> ORCID: <a href="https://orcid.org/0009-0009-3666-9295" target="_blank" class="orcid-link">0009-0009-3666-9295</a></div>
                         </div>
                     </div>
