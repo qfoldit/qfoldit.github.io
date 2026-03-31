@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Art of Molecular Dynamics Simulation - Fullscreen</title>
+    <style>
+        :root {
+            --blue-bg: #3a5ba0;
+            --light-green: #c1d72e;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: var(--blue-bg);
+        }
+
+        .book-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+        }
+
+        .top-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 5vw;
+            color: white;
+        }
+
+        .author-box {
+            font-size: 2.5vh;
+            letter-spacing: 0.4vw;
+            border: 0.2vh solid rgba(255, 255, 255, 0.8);
+            padding: 1vh 2vw;
+            margin-bottom: 8vh;
+            text-transform: uppercase;
+        }
+
+        .title-group {
+            text-align: right;
+            line-height: 1.1;
+        }
+
+        .the-art {
+            font-size: 4vh;
+            font-style: italic;
+            display: block;
+        }
+
+        .the-art b {
+            font-weight: normal;
+            font-size: 5.5vh;
+            font-style: normal;
+        }
+
+        .main-title {
+            font-size: 6vh;
+            display: block;
+            margin-top: 1vh;
+            font-weight: 400;
+        }
+
+        .edition-bar {
+            background-color: var(--light-green);
+            color: #333;
+            height: 8vh;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 5vw;
+            font-size: 2.2vh;
+            font-weight: bold;
+            letter-spacing: 0.5vw;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .bottom-section {
+            flex: 0.9;
+            background-color: var(--blue-bg);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 5vw;
+            min-height: 70px;
+        }
+
+        .footer-logo {
+            max-width: 100%;
+            max-height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-shrink: 0;
+        }
+
+        .footer-logo svg {
+            max-height: 11vh;
+            width: auto;
+            max-width: 40vw;
+            height: auto;
+            filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+        }
+    </style>
+</head>
+<body>
+
+<div class="book-container">
+    <div class="top-section">
+        <div class="author-box">D. C. RAPAPORT</div>
+        <div class="title-group">
+            <span class="the-art">The <b>Art</b> of Molecular</span>
+            <span class="main-title">Dynamics Simulation</span>
+        </div>
+    </div>
+
+    <div class="edition-bar">
+        Golden standart
+    </div>
+
+    <div class="bottom-section">
+        <div class="footer-logo">
+            <!-- Inline SVG логотипа Кембриджского университета -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="none">
+                <rect width="300" height="300" fill="none"/>
+                <!-- Щит -->
+                <path d="M50,70 L150,20 L250,70 L250,180 C250,230 200,270 150,280 C100,270 50,230 50,180 L50,70Z" 
+                      fill="white" stroke="#FFD700" stroke-width="4"/>
+                <!-- Крест -->
+                <path d="M150,40 L150,100 M110,70 L190,70" stroke="#C41E3A" stroke-width="6" stroke-linecap="round"/>
+                <!-- Книга -->
+                <path d="M120,150 L180,150 L180,210 L120,210 Z" fill="#F5DEB3" stroke="#8B4513" stroke-width="2"/>
+                <path d="M135,165 L165,165 M135,180 L165,180 M135,195 L165,195" stroke="#8B4513" stroke-width="1.5"/>
+                <!-- Корона -->
+                <path d="M135,100 L150,85 L165,100 L160,115 L140,115 L135,100Z" fill="#FFD700" stroke="#D4AF37"/>
+                <circle cx="150" cy="92" r="4" fill="#FFD700"/>
+                <text x="150" y="265" text-anchor="middle" font-size="16" font-family="Times New Roman, serif" fill="#F5DEB3" font-weight="bold">UNIVERSITY OF CAMBRIDGE</text>
+            </svg>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
