@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Art of Molecular Dynamics Simulation - Fullscreen</title>
+    <title>The Art of Molecular Dynamics Simulation - Cambridge Edition</title>
     <style>
         :root {
-            --blue-bg: #3a5ba0; /* Характерный синий цвет обложки */
+            --blue-bg: #3a5ba0; 
             --light-green: #c1d72e;
         }
 
@@ -19,7 +19,7 @@
             padding: 0;
             width: 100vw;
             height: 100vh;
-            overflow: hidden; /* Убираем прокрутку */
+            overflow: hidden;
             font-family: 'Times New Roman', Times, serif;
             background-color: var(--blue-bg);
         }
@@ -31,23 +31,23 @@
             height: 100%;
         }
 
-        /* Верхняя секция с текстом */
+        /* Верхняя секция с текстом (45% высоты) */
         .top-section {
-            flex: 1; /* Занимает все свободное место до полосы */
+            flex: 4.5;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Центрируем контент вертикально */
-            align-items: flex-end;   /* Прижимаем текст к правому краю */
-            padding: 5vw;            /* Адаптивные отступы */
+            justify-content: flex-end; 
+            align-items: flex-end;   
+            padding: 0 5vw 5vh 0; /* Отступы справа и снизу */
             color: white;
         }
 
         .author-box {
-            font-size: 2.5vh; /* Размер зависит от высоты экрана */
-            letter-spacing: 0.4vw;
-            border: 0.2vh solid rgba(255, 255, 255, 0.8);
-            padding: 1vh 2vw;
-            margin-bottom: 8vh;
+            font-size: 2.2vh;
+            letter-spacing: 0.3vw;
+            border: 0.15vh solid rgba(255, 255, 255, 0.7);
+            padding: 0.8vh 1.5vw;
+            margin-bottom: 6vh;
             text-transform: uppercase;
         }
 
@@ -57,44 +57,61 @@
         }
 
         .the-art {
-            font-size: 4vh;
+            font-size: 3.5vh;
             font-style: italic;
             display: block;
         }
 
         .the-art b {
             font-weight: normal;
-            font-size: 5.5vh;
+            font-size: 5vh;
             font-style: normal;
         }
 
         .main-title {
-            font-size: 6vh;
+            font-size: 5.5vh;
             display: block;
             margin-top: 1vh;
             font-weight: 400;
         }
 
-        /* Зеленая разделительная полоса */
+        /* Зеленая разделительная полоса (8% высоты) */
         .edition-bar {
             background-color: var(--light-green);
             color: #333;
-            height: 8vh; /* Фиксированная доля высоты экрана */
+            height: 8vh;
             display: flex;
             align-items: center;
             justify-content: flex-end;
             padding-right: 5vw;
-            font-size: 2.2vh;
+            font-size: 2vh;
             font-weight: bold;
-            letter-spacing: 0.5vw;
+            letter-spacing: 0.4vw;
             text-transform: uppercase;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* Нижняя часть (пустая, как вы просили) */
+        /* Нижняя пустая секция с футером (47% высоты) */
         .bottom-section {
-            flex: 0.8; /* Нижняя часть теперь просто пустой фон */
+            flex: 4.7;
+            position: relative;
             background-color: var(--blue-bg);
+        }
+
+        /* Футер с логотипом */
+        .footer {
+            position: absolute;
+            bottom: 4vh;
+            right: 5vw;
+            width: 25vw; /* Адаптивная ширина логотипа */
+            max-width: 250px;
+            min-width: 120px;
+        }
+
+        .cambridge-logo {
+            width: 100%;
+            height: auto;
+            /* Фильтр делает логотип белым, чтобы он выделялся на синем фоне */
+            filter: brightness(0) invert(1);
         }
 
     </style>
@@ -112,11 +129,16 @@
     </div>
 
     <div class="edition-bar">
-        Second Edition
+        Gold standart
     </div>
 
     <div class="bottom-section">
+        <div class="footer">
+            <img src="https://qfoldit.github.io/img/1/logo/universityofcambridge.svg" 
+                 alt="University of Cambridge" 
+                 class="cambridge-logo">
         </div>
+    </div>
 </div>
 
 </body>
