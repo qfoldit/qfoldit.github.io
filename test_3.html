@@ -31,8 +31,9 @@
             height: 100%;
         }
 
+        /* Верхняя секция — занимает всё свободное пространство */
         .top-section {
-            flex: 1;
+            flex: 1 1 auto;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -74,7 +75,9 @@
             font-weight: 400;
         }
 
+        /* Зелёная полоса — фиксированная высота */
         .edition-bar {
+            flex: 0 0 auto;
             background-color: var(--light-green);
             color: #333;
             height: 8vh;
@@ -89,32 +92,30 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
+        /* Нижняя секция — прижимается к низу, высота по содержимому */
         .bottom-section {
-            flex: 0.9;
+            flex: 0 0 auto;
             background-color: var(--blue-bg);
             display: flex;
-            align-items: flex-end;    /* Прижимаем содержимое к нижнему краю */
-            justify-content: flex-end;
-            padding: 0 5vw 0 0;       /* Убираем нижний отступ, оставляем правый */
-            /* Убираем min-height, чтобы не создавать лишнего пространства */
+            justify-content: center;
+            align-items: flex-end;    /* прижимаем логотип к низу секции */
+            padding: 0 5vw 1vh 5vw;  /* отступы по бокам и небольшой снизу */
         }
 
         .footer-logo {
-            max-width: 100%;
+            width: 100%;
             display: flex;
-            align-items: flex-end;
-            justify-content: flex-end;
+            justify-content: center;
         }
 
         .footer-logo img {
-            max-height: 10vh;
-            width: auto;
-            max-width: 40vw;
+            width: 100%;
+            max-width: 100%;
             height: auto;
             object-fit: contain;
+            /* Ограничиваем высоту, чтобы логотип не был слишком крупным на больших экранах */
+            max-height: 15vh;
             filter: drop-shadow(0 0 2px rgba(0,0,0,0.2));
-            display: block;
-            /* Небольшой отступ справа уже есть из-за padding родителя, снизу нет */
         }
     </style>
 </head>
