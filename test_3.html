@@ -93,29 +93,28 @@
             flex: 0.9;
             background-color: var(--blue-bg);
             display: flex;
-            align-items: center;
+            align-items: flex-end;    /* Прижимаем содержимое к нижнему краю */
             justify-content: flex-end;
-            padding: 0 5vw;
-            min-height: 70px;
+            padding: 0 5vw 0 0;       /* Убираем нижний отступ, оставляем правый */
+            /* Убираем min-height, чтобы не создавать лишнего пространства */
         }
 
         .footer-logo {
             max-width: 100%;
-            max-height: 100%;
             display: flex;
-            align-items: center;
+            align-items: flex-end;
             justify-content: flex-end;
         }
 
         .footer-logo img {
-            max-height: 10vh;      /* Не выше 10% от высоты экрана */
+            max-height: 10vh;
             width: auto;
-            max-width: 40vw;       /* Не шире 40% от ширины экрана */
+            max-width: 40vw;
             height: auto;
             object-fit: contain;
             filter: drop-shadow(0 0 2px rgba(0,0,0,0.2));
-            /* Дополнительная защита от выхода за границы */
             display: block;
+            /* Небольшой отступ справа уже есть из-за padding родителя, снизу нет */
         }
     </style>
 </head>
