@@ -93,12 +93,13 @@
 
         /* Нижняя секция с логотипом (футер) */
         .bottom-section {
-            flex: 0.8; /* Занимает оставшееся пространство */
+            flex: 0.9; /* Увеличил, чтобы логотипу было комфортно */
             background-color: var(--blue-bg);
             display: flex;
             align-items: center;     /* Вертикальное центрирование содержимого */
             justify-content: flex-end; /* Прижимаем логотип к правому краю */
             padding: 0 5vw;          /* Горизонтальные отступы как у полосы и верхней секции */
+            min-height: 70px;        /* Гарантия места даже при очень маленькой высоте */
         }
 
         /* Контейнер для логотипа — ограничиваем размеры */
@@ -108,15 +109,18 @@
             display: flex;
             align-items: center;
             justify-content: flex-end;
+            flex-shrink: 0;          /* Не даём сжиматься логотипу */
         }
 
         .footer-logo img {
-            max-height: 9vh;        /* Ограничиваем высоту, чтобы логотип не выходил за пределы */
-            width: auto;            /* Ширина пропорциональна высоте */
-            max-width: 35vw;        /* Защита от слишком широкого логотипа на узких экранах */
+            max-height: 12vh;        /* Увеличил для наглядности, но не выходит за пределы */
+            width: auto;
+            max-width: 40vw;         /* Ограничиваем ширину на узких экранах */
+            height: auto;            /* Сохраняем пропорции */
             object-fit: contain;
-            /* Добавляем лёгкую белую тень для читаемости на синем фоне */
             filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+            /* Убедимся, что логотип не может выйти за границы родителя */
+            display: block;
         }
     </style>
 </head>
@@ -138,7 +142,7 @@
 
     <div class="bottom-section">
         <div class="footer-logo">
-            <img src="https://qfoldit.github.io//img/1/logo/universityofcambridge.svg"
+            <img src="https://qfoldit.github.io/img/1/logo/universityofcambridge.svg"
                  alt="University of Cambridge logo">
         </div>
     </div>
