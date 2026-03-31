@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>The Art of Molecular Dynamics Simulation - Fullscreen</title>
     <style>
         :root {
@@ -105,15 +105,17 @@
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            flex-shrink: 0;
         }
 
-        .footer-logo svg {
-            max-height: 11vh;
+        .footer-logo img {
+            max-height: 10vh;      /* Не выше 10% от высоты экрана */
             width: auto;
-            max-width: 40vw;
+            max-width: 40vw;       /* Не шире 40% от ширины экрана */
             height: auto;
-            filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+            object-fit: contain;
+            filter: drop-shadow(0 0 2px rgba(0,0,0,0.2));
+            /* Дополнительная защита от выхода за границы */
+            display: block;
         }
     </style>
 </head>
@@ -134,22 +136,8 @@
 
     <div class="bottom-section">
         <div class="footer-logo">
-            <!-- Inline SVG логотипа Кембриджского университета -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300" fill="none">
-                <rect width="300" height="300" fill="none"/>
-                <!-- Щит -->
-                <path d="M50,70 L150,20 L250,70 L250,180 C250,230 200,270 150,280 C100,270 50,230 50,180 L50,70Z" 
-                      fill="white" stroke="#FFD700" stroke-width="4"/>
-                <!-- Крест -->
-                <path d="M150,40 L150,100 M110,70 L190,70" stroke="#C41E3A" stroke-width="6" stroke-linecap="round"/>
-                <!-- Книга -->
-                <path d="M120,150 L180,150 L180,210 L120,210 Z" fill="#F5DEB3" stroke="#8B4513" stroke-width="2"/>
-                <path d="M135,165 L165,165 M135,180 L165,180 M135,195 L165,195" stroke="#8B4513" stroke-width="1.5"/>
-                <!-- Корона -->
-                <path d="M135,100 L150,85 L165,100 L160,115 L140,115 L135,100Z" fill="#FFD700" stroke="#D4AF37"/>
-                <circle cx="150" cy="92" r="4" fill="#FFD700"/>
-                <text x="150" y="265" text-anchor="middle" font-size="16" font-family="Times New Roman, serif" fill="#F5DEB3" font-weight="bold">UNIVERSITY OF CAMBRIDGE</text>
-            </svg>
+            <img src="https://qfoldit.github.io/img/1/logo/cambridgelogo.png"
+                 alt="University of Cambridge logo">
         </div>
     </div>
 </div>
