@@ -39,8 +39,7 @@
             align-items: flex-end;
             padding: 5vw;
             color: white;
-            /* Защита от переполнения */
-            min-height: 0;
+            min-height: 0;   /* важно для корректного сжатия внутри flex */
         }
 
         .author-box {
@@ -89,34 +88,36 @@
             letter-spacing: 0.5vw;
             text-transform: uppercase;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            flex-shrink: 0; /* не сжимается */
+            flex-shrink: 0;
         }
 
         .bottom-section {
             flex: 0.8;
             background-color: var(--blue-bg);
             display: flex;
-            align-items: flex-end;    /* логотип прижат к низу */
+            align-items: flex-end;   /* прижимаем логотип к нижнему краю */
             justify-content: center;
-            padding: 0 5vw;
-            min-height: 0;            /* разрешаем сжатие при необходимости */
+            padding: 0 5vw;          /* только горизонтальные отступы */
+            min-height: 0;           /* разрешаем сжатие, чтобы содержимое не вылезало */
+            overflow: hidden;        /* крайняя защита от выхода за границы */
         }
 
         .footer-logo {
             width: 100%;
+            height: 100%;            /* занимает всю доступную высоту родителя */
             display: flex;
+            align-items: flex-end;   /* содержимое прижато к низу */
             justify-content: center;
-            /* Высота контейнера ограничена родителем */
-            max-height: 100%;
         }
 
         .footer-logo img {
-            width: 100%;
-            max-width: 100%;
+            max-width: 100%;         /* не шире родителя */
+            max-height: 100%;        /* не выше родителя (важно!) */
+            width: auto;             /* сохраняем пропорции */
             height: auto;
-            max-height: 100%;         /* главное: не выше родительского контейнера */
-            object-fit: contain;
-            /* дополнительные отступы не нужны — всё внутри padding родителя */
+            object-fit: contain;     /* картинка всегда целиком влезает в отведённую область */
+            /* дополнительная страховка: никаких margin/padding, которые могли бы вызвать выход */
+            display: block;
         }
     </style>
 </head>
