@@ -6,7 +6,7 @@
     <title>The Art of Molecular Dynamics Simulation - Fullscreen</title>
     <style>
         :root {
-            --blue-bg: #3a5ba0; /* Характерный синий цвет обложки */
+            --blue-bg: #3a5ba0;
             --light-green: #c1d72e;
         }
 
@@ -19,7 +19,7 @@
             padding: 0;
             width: 100vw;
             height: 100vh;
-            overflow: hidden; /* Убираем прокрутку */
+            overflow: hidden;
             font-family: 'Times New Roman', Times, serif;
             background-color: var(--blue-bg);
         }
@@ -31,19 +31,19 @@
             height: 100%;
         }
 
-        /* Верхняя секция с текстом */
         .top-section {
-            flex: 1; /* Занимает все свободное место до полосы */
+            flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Центрируем контент вертикально */
-            align-items: flex-end;   /* Прижимаем текст к правому краю */
-            padding: 5vw;            /* Адаптивные отступы */
+            justify-content: center;
+            align-items: flex-end;
+            padding: 5vw;
             color: white;
+            min-height: 0;
         }
 
         .author-box {
-            font-size: 2.5vh; /* Размер зависит от высоты экрана */
+            font-size: 2.5vh;
             letter-spacing: 0.4vw;
             border: 0.2vh solid rgba(255, 255, 255, 0.8);
             padding: 1vh 2vw;
@@ -75,11 +75,10 @@
             font-weight: 400;
         }
 
-        /* Зеленая разделительная полоса */
         .edition-bar {
             background-color: var(--light-green);
             color: #333;
-            height: 8vh; /* Фиксированная доля высоты экрана */
+            height: 8vh;
             display: flex;
             align-items: center;
             justify-content: flex-end;
@@ -89,39 +88,39 @@
             letter-spacing: 0.5vw;
             text-transform: uppercase;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            flex-shrink: 0;
         }
 
-        /* Нижняя секция с логотипом (футер) */
         .bottom-section {
-            flex: 0.9; /* Увеличил, чтобы логотипу было комфортно */
+            flex: 0.8;
             background-color: var(--blue-bg);
             display: flex;
-            align-items: center;     /* Вертикальное центрирование содержимого */
-            justify-content: flex-end; /* Прижимаем логотип к правому краю */
-            padding: 0 5vw;          /* Горизонтальные отступы как у полосы и верхней секции */
-            min-height: 70px;        /* Гарантия места даже при очень маленькой высоте */
+            align-items: flex-end;
+            justify-content: center;
+            padding: 0 5vw;
+            min-height: 0;        /* разрешает сжатие */
+            max-height: 100%;      /* не выше доступного места */
+            overflow: hidden;      /* страховка от выхода */
         }
 
-        /* Контейнер для логотипа — ограничиваем размеры */
         .footer-logo {
-            max-width: 100%;
             max-height: 100%;
             display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            flex-shrink: 0;          /* Не даём сжиматься логотипу */
+            align-items: flex-end;
+            justify-content: center;
         }
 
         .footer-logo img {
-            max-height: 12vh;        /* Увеличил для наглядности, но не выходит за пределы */
+            max-width: 100%;
+            max-height: 100%;
             width: auto;
-            max-width: 40vw;         /* Ограничиваем ширину на узких экранах */
-            height: auto;            /* Сохраняем пропорции */
+            height: 40px;
             object-fit: contain;
-            filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
-            /* Убедимся, что логотип не может выйти за границы родителя */
             display: block;
         }
+        
+     .logo {position:relative;top:-70px;}
+        
     </style>
 </head>
 <body>
@@ -129,7 +128,6 @@
 <div class="book-container">
     <div class="top-section">
         <div class="author-box">D. C. RAPAPORT</div>
-        
         <div class="title-group">
             <span class="the-art">The <b>Art</b> of Molecular</span>
             <span class="main-title">Dynamics Simulation</span>
@@ -142,7 +140,7 @@
 
     <div class="bottom-section">
         <div class="footer-logo">
-            <img src="https://qfoldit.github.io/img/1/logo/universityofcambridge.svg"
+            <img class="logo" src="https://qfoldit.github.io/img/1/logo/cambridgelogo_w.png"
                  alt="University of Cambridge logo">
         </div>
     </div>
