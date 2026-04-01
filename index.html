@@ -251,6 +251,146 @@
             text-decoration: underline;
         }
 
+        /* NEW: resources & book cover section */
+        .resources-container {
+            background: rgba(20, 25, 30, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 28px 30px;
+            margin: 20px 0 30px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.2s;
+        }
+        .resources-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+        .resources-heading {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 4px solid #0077FF;
+            padding-left: 18px;
+        }
+        .resources-heading i {
+            color: #0077FF;
+            font-size: 1.8rem;
+        }
+        .links-panel {
+            background: rgba(0,0,0,0.25);
+            border-radius: 20px;
+            padding: 8px 4px;
+        }
+        .ref-link-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .ref-link-list li {
+            margin-bottom: 22px;
+            padding: 10px 14px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.02);
+            transition: background 0.2s;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .ref-link-list li:hover {
+            background: rgba(0,119,255,0.08);
+        }
+        .ref-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: #E1E3E6;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: color 0.2s;
+        }
+        .ref-link i {
+            width: 32px;
+            font-size: 1.5rem;
+            color: #0077FF;
+            text-align: center;
+        }
+        .ref-link span {
+            flex: 1;
+        }
+        .ref-link .link-url {
+            font-size: 0.75rem;
+            color: #8a9099;
+            font-family: monospace;
+            word-break: break-all;
+            display: block;
+            margin-top: 4px;
+        }
+        .ref-link:hover {
+            color: white;
+        }
+        .ref-link:hover .link-url {
+            color: #0077FF;
+        }
+        .book-cover-card {
+            background: rgba(0,0,0,0.2);
+            border-radius: 24px;
+            padding: 12px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .book-cover-card img {
+            max-width: 100%;
+            border-radius: 18px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: transform 0.25s ease;
+        }
+        .book-cover-card img:hover {
+            transform: scale(1.01);
+        }
+        .book-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 18px 0 8px;
+            color: white;
+        }
+        .book-author {
+            color: #8a9099;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+        }
+        .book-desc {
+            font-size: 0.85rem;
+            color: #b0b4bc;
+            line-height: 1.5;
+            margin: 12px 0;
+        }
+        .book-meta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,119,255,0.12);
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            color: #a0c4ff;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+        .book-meta-link i {
+            font-size: 0.8rem;
+        }
+        .book-meta-link:hover {
+            background: rgba(0,119,255,0.25);
+            color: white;
+        }
+
         .footer {
             background-color: #0077ff;
             padding: 12px 32px;
@@ -283,6 +423,10 @@
             .team-card { flex-direction: column; align-items: center; text-align: center; }
             .team-photo { width: 120px; height: 120px; }
             .team-meta { justify-content: center; }
+            .resources-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
             .footer {
                 flex-direction: column;
                 align-items: center;
@@ -404,6 +548,79 @@
                         </div>
                     </div>
                     
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW RESOURCES SECTION: Links + The Art of Molecular Dynamics Simulation cover -->
+    <div class="resources-container">
+        <div class="resources-heading">
+            <i class="fas fa-book-open"></i> 
+            <span>Open Science & Essential Resources</span>
+        </div>
+        <div class="resources-grid">
+            <!-- Left side: key links (FoldIT, qfold.io, qFold arXiv, DeepFoldIT arXiv) -->
+            <div class="links-panel">
+                <ul class="ref-link-list">
+                    <li>
+                        <a href="https://fold.it/" target="_blank" rel="noopener" class="ref-link">
+                            <i class="fas fa-gamepad"></i>
+                            <span>
+                                FoldIT <span style="font-weight:normal;">— crowdsourced protein folding</span>
+                                <span class="link-url">https://fold.it/</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://qfold.io/" target="_blank" rel="noopener" class="ref-link">
+                            <i class="fas fa-chalkboard-user"></i>
+                            <span>
+                                qFold.io <span style="font-weight:normal;">— quantum‑enhanced molecular platform</span>
+                                <span class="link-url">https://qfold.io/</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/pdf/2101.10279" target="_blank" rel="noopener" class="ref-link">
+                            <i class="fas fa-atom"></i>
+                            <span>
+                                qFold (arXiv:2101.10279) <span style="font-weight:normal;">— quantum algorithms for protein folding</span>
+                                <span class="link-url">arxiv.org/pdf/2101.10279</span>
+                            </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://arxiv.org/pdf/2011.03442" target="_blank" rel="noopener" class="ref-link">
+                            <i class="fas fa-brain"></i>
+                            <span>
+                                DeepFoldIT (arXiv:2011.03442) <span style="font-weight:normal;">— deep learning meets folding games</span>
+                                <span class="link-url">arxiv.org/pdf/2011.03442</span>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <div style="margin-top: 16px; padding: 12px 8px; font-size: 0.85rem; color: #8a9099; border-top: 1px solid rgba(255,255,255,0.08);">
+                    <i class="fas fa-microscope"></i> These resources embody the core of qFoldIT: gamified discovery, quantum acceleration, and AI‑driven molecular innovation.
+                </div>
+            </div>
+
+            <!-- Right side: The Art of Molecular Dynamics Simulation book cover -->
+            <div class="book-cover-card">
+                <img src="https://qfoldit.github.io/img/viz/ArtOfMolecular.png" 
+                     alt="The Art of Molecular Dynamics Simulation book cover"
+                     onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22260%22%20viewBox%3D%220%200%20200%20260%22%3E%3Crect%20width%3D%22200%22%20height%3D%22260%22%20fill%3D%22%231a1f24%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%230077FF%22%20font-size%3D%2212%22%3EArt%20of%20MD%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <div class="book-title">The Art of Molecular Dynamics Simulation</div>
+                <div class="book-author">D. C. Rapaport</div>
+                <div class="book-desc">
+                    A cornerstone text bridging computational physics and molecular visualization. Essential for understanding the simulation core behind qFoldIT’s quantum‑enhanced engine and real‑time molecular puzzles.
+                </div>
+                <a href="https://www.cambridge.org/core/books/art-of-molecular-dynamics-simulation/1E9D9F0A6E9A8B1C6D0E2F3A4B5C6D7E" 
+                   target="_blank" rel="noopener" class="book-meta-link">
+                    <i class="fas fa-external-link-alt"></i> Explore the classic
+                </a>
+                <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;">
+                    <i class="far fa-copyright"></i> Essential reading for molecular modelers
                 </div>
             </div>
         </div>
