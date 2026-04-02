@@ -27,6 +27,17 @@
             padding: 20px;
         }
 
+        /* Все ссылки используют оранжевый цвет вместо дефолтного */
+        a {
+            color: rgb(237, 113, 0);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #c25900; /* чуть темнее при наведении */
+        }
+
         /* Контейнер для переключателя вверху */
         .top-bar {
             width: 100%;
@@ -77,6 +88,10 @@
             color: white;
             box-shadow: 0 2px 6px rgba(237, 113, 0, 0.3);
         }
+        .lang-btn.active:hover {
+            background: rgb(237, 113, 0);
+            text-decoration: none;
+        }
 
         .card {
             background: white;
@@ -119,9 +134,12 @@
             font-size: clamp(1.4rem, 5vw, 1.9rem);
             font-weight: 600;
         }
+        h1 a {
+            color: rgb(237, 113, 0);
+        }
 
         .description {
-            margin-bottom: 25px;  /* отступ после описания */
+            margin-bottom: 25px;
         }
 
         .step {
@@ -178,17 +196,9 @@
             width: 100%;
             max-width: 1000px;
         }
-
         .footer a {
             color: rgb(237, 113, 0);
-            text-decoration: none;
             font-weight: 600;
-            transition: color 0.2s;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-            color: #c25900;
         }
 
         .github-icon {
