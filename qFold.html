@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>QFold on Amazon Braket - Multi-language Guide</title>
-    <!-- Font Awesome 6 (free) -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -18,11 +18,62 @@
             line-height: 1.6;
             color: #333;
             background-color: #f4f7f9;
-            padding: 20px;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Контейнер для переключателя вверху */
+        .top-bar {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .language-switcher {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 48px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #2c3e50;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .lang-btn img {
+            width: 22px;
+            height: 16px;
+            object-fit: cover;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .lang-btn:hover {
+            background: #e9ecef;
+        }
+
+        .lang-btn.active {
+            background: rgb(237, 113, 0);
+            color: white;
+            box-shadow: 0 2px 6px rgba(237, 113, 0, 0.3);
         }
 
         .card {
@@ -33,6 +84,7 @@
             max-width: 1000px;
             width: 100%;
             transition: all 0.2s ease;
+            margin-bottom: 30px;
         }
 
         .header-container {
@@ -66,56 +118,6 @@
             font-weight: 600;
         }
 
-        .language-switcher {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            background: #f8f9fa;
-            padding: 6px 12px;
-            border-radius: 48px;
-            border: 1px solid #e0e4e8;
-        }
-
-        .lang-btn {
-            background: transparent;
-            border: none;
-            padding: 6px 14px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            color: #2c3e50;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-        }
-
-        .lang-btn img {
-            width: 22px;
-            height: 16px;
-            object-fit: cover;
-            border-radius: 2px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-            display: inline-block;
-        }
-
-        .lang-btn:hover {
-            background: #e9ecef;
-        }
-
-        .lang-btn.active {
-            background: rgb(237, 113, 0);
-            color: white;
-            box-shadow: 0 2px 6px rgba(237, 113, 0, 0.3);
-        }
-
-        .lang-btn.active img {
-            filter: brightness(1.05);
-        }
-
-        /* Steps */
         .step {
             display: flex;
             margin-bottom: 24px;
@@ -162,11 +164,13 @@
 
         .footer {
             text-align: center;
-            margin-top: 40px;
+            margin-top: auto;
+            padding: 20px 0 10px;
             font-size: 0.85rem;
             color: #5a6874;
             border-top: 1px solid #e2e8f0;
-            padding-top: 24px;
+            width: 100%;
+            max-width: 1000px;
         }
 
         .footer a {
@@ -199,6 +203,9 @@
             body {
                 padding: 12px;
             }
+            .top-bar {
+                margin-bottom: 12px;
+            }
             .step {
                 flex-direction: column;
             }
@@ -224,9 +231,6 @@
         }
 
         @media (max-width: 480px) {
-            .lang-btn span:not(img) {
-                display: inline;
-            }
             .lang-btn {
                 gap: 4px;
             }
@@ -235,29 +239,32 @@
 </head>
 <body>
 
+<!-- Переключатель языков в самом верху -->
+<div class="top-bar">
+    <div class="language-switcher" id="langSwitcher">
+        <button class="lang-btn" data-lang="en">
+            <img src="https://flagsapi.com/GB/flat/32.png" alt="English flag" width="22" height="16" loading="lazy"> EN
+        </button>
+        <button class="lang-btn" data-lang="de">
+            <img src="https://flagsapi.com/DE/flat/32.png" alt="German flag" width="22" height="16" loading="lazy"> DE
+        </button>
+        <button class="lang-btn" data-lang="ru">
+            <img src="https://flagsapi.com/RU/flat/32.png" alt="Russian flag" width="22" height="16" loading="lazy"> RU
+        </button>
+        <button class="lang-btn" data-lang="ja">
+            <img src="https://flagsapi.com/JP/flat/32.png" alt="Japanese flag" width="22" height="16" loading="lazy"> JA
+        </button>
+        <button class="lang-btn" data-lang="zh">
+            <img src="https://flagsapi.com/CN/flat/32.png" alt="Chinese flag" width="22" height="16" loading="lazy"> 中文
+        </button>
+    </div>
+</div>
+
 <div class="card">
     <div class="header-container">
         <div class="logo-area">
             <img src="https://qfoldit.github.io/img/1/logo/amazon-braket.svg" alt="Amazon Braket Logo" class="logo">
             <h1 data-i18n="title">QFold on Amazon Braket</h1>
-        </div>
-        <div class="language-switcher" id="langSwitcher">
-            <!-- flags via flagsapi.com (GB, DE, RU, JP, CN) -->
-            <button class="lang-btn" data-lang="en">
-                <img src="https://flagsapi.com/GB/flat/32.png" alt="English flag" width="22" height="16" loading="lazy"> EN
-            </button>
-            <button class="lang-btn" data-lang="de">
-                <img src="https://flagsapi.com/DE/flat/32.png" alt="German flag" width="22" height="16" loading="lazy"> DE
-            </button>
-            <button class="lang-btn" data-lang="ru">
-                <img src="https://flagsapi.com/RU/flat/32.png" alt="Russian flag" width="22" height="16" loading="lazy"> RU
-            </button>
-            <button class="lang-btn" data-lang="ja">
-                <img src="https://flagsapi.com/JP/flat/32.png" alt="Japanese flag" width="22" height="16" loading="lazy"> JA
-            </button>
-            <button class="lang-btn" data-lang="zh">
-                <img src="https://flagsapi.com/CN/flat/32.png" alt="Chinese flag" width="22" height="16" loading="lazy"> 中文
-            </button>
         </div>
     </div>
     
@@ -331,7 +338,7 @@
 </div>
 
 <script>
-    // ---------- MULTILANGUAGE DATA ----------
+    // ---------- TRANSLATIONS ----------
     const translations = {
         en: {
             title: "QFold on Amazon Braket",
@@ -395,7 +402,6 @@
         }
     };
 
-    // Elements with data-i18n
     const elements = {
         title: document.querySelector('[data-i18n="title"]'),
         description: document.querySelector('[data-i18n="description"]'),
@@ -413,14 +419,11 @@
 
     function setLanguage(lang) {
         if (!translations[lang]) return;
-        
         for (const key in elements) {
             if (elements[key] && translations[lang][key]) {
                 elements[key].innerHTML = translations[lang][key];
             }
         }
-        
-        // Update active class on buttons
         document.querySelectorAll('.lang-btn').forEach(btn => {
             const btnLang = btn.getAttribute('data-lang');
             if (btnLang === lang) {
@@ -429,21 +432,13 @@
                 btn.classList.remove('active');
             }
         });
-        
         localStorage.setItem('qfold_lang', lang);
-        currentLang = lang;
         document.documentElement.lang = lang;
     }
 
-    // Event listeners for language buttons
     document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const lang = btn.getAttribute('data-lang');
-            setLanguage(lang);
-        });
+        btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
     });
-
-    // Apply initial language
     setLanguage(currentLang);
 </script>
 
