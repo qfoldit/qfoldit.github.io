@@ -11,7 +11,10 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        } ::-webkit-scrollbar{width:0px;}
+        }
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             line-height: 1.6;
@@ -263,17 +266,17 @@
     <div class="header-container">
         <div class="logo-area">
             <img src="https://qfoldit.github.io/img/1/logo/amazon-braket.svg" alt="Amazon Braket Logo" class="logo">
-            <h1 data-i18n="title">QFold on <a href="https://aws.amazon.com/ru/braket/" target="blank">Amazon Braket</a></h1>
+            <h1 data-i18n="title">QFold on <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></h1>
         </div>
     </div>
     
-    <p data-i18n="description">Quick guide to deploying the quantum protein folding algorithm on <a href="https://aws.amazon.com/ru/braket/" target="blank">AWS Braket</a>.</p>
+    <p data-i18n="description">Quick guide to deploying the quantum protein folding algorithm on <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS Braket</a>.</p>
 
     <!-- Step 1 -->
     <div class="step">
         <div class="step-number">1</div>
         <div class="step-text" data-i18n="step1">
-            <strong>Console access:</strong> Log in to your AWS account and navigate to <strong>Amazon Braket</strong>. Make sure you are in a region that supports the required devices (e.g., <em>us-east-1</em>).
+            <strong>Console access:</strong> Log in to your AWS account and navigate to <strong><a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></strong>. Make sure you are in a region that supports the required devices (e.g., <em>us-east-1</em>).
         </div>
     </div>
 
@@ -332,75 +335,80 @@
 </div>
 
 <div class="footer" data-i18n="footer">
-    Quick start with QFold in the <a href="https://aws.amazon.com/ru/braket/" target="blank">AWS ecosystem</a>.<br>
-    <i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank">github.com/qfoldit</a>
+    Quick start with QFold in the <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS ecosystem</a>.<br>
+    <i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>
 </div>
 
 <script>
-    
-    // ---------- TRANSLATIONS ----------
+    // ---------- TRANSLATIONS WITH LINKS TO AMAZON BRAKET ----------
     const translations = {
         en: {
-            title: "QFold on Amazon Braket",
-            description: "Quick guide to deploying the quantum protein folding algorithm on AWS Braket.",
-            step1: "<strong>Console access:</strong> Log in to your AWS account and navigate to <strong>Amazon Braket</strong>. Make sure you are in a region that supports the required devices (e.g., <em>us-east-1</em>).",
-            step2: "<strong>Create a notebook:</strong> In the left menu, select <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.<br><ul><li>Name: <code>qfold-instance</code></li><li>Type: <code>ml.t3.medium</code> (minimum sufficient)</li></ul>",
-            step3: "<strong>Open Jupyter:</strong> When the status changes to <span style=\"color: green;\">InService</span>, click <strong>Open JupyterLab</strong>.",
-            step4: "<strong>Find QFold:</strong> Navigate to <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> and open the file <code>qfold.ipynb</code>.",
-            step5: "<strong>Device configuration:</strong> In the code, find the <code>device</code> variable.<br><ul><li>For free test: <code>LocalSimulator()</code></li><li>For QPU: provide ARN (e.g., Rigetti or IonQ).</li></ul>",
-            warning: "<strong>Note:</strong> Running on real QPU is paid. First debug on a local simulator.",
-            step6: "<strong>Run:</strong> Click <em>Run → Run All Cells</em>. The protein structure optimization results will appear in the bottom cells.",
-            footer: "Created for quick start with QFold in the AWS ecosystem.<br><i class='fab fa-github github-icon'></i> <a href='https://github.com/qfoldit' target='_blank'>github.com/qfoldit</a>"
+            title: 'QFold on <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a>',
+            description: 'Quick guide to deploying the quantum protein folding algorithm on <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS Braket</a>.',
+            step1: '<strong>Console access:</strong> Log in to your AWS account and navigate to <strong><a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></strong>. Make sure you are in a region that supports the required devices (e.g., <em>us-east-1</em>).',
+            step2: '<strong>Create a notebook:</strong> In the left menu, select <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.<br><ul><li>Name: <code>qfold-instance</code></li><li>Type: <code>ml.t3.medium</code> (minimum sufficient)</li></ul>',
+            step3: '<strong>Open Jupyter:</strong> When the status changes to <span style="color: green;">InService</span>, click <strong>Open JupyterLab</strong>.',
+            step4: '<strong>Find QFold:</strong> Navigate to <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> and open the file <code>qfold.ipynb</code>.',
+            step5: '<strong>Device configuration:</strong> In the code, find the <code>device</code> variable.<br><ul><li>For free test: <code>LocalSimulator()</code></li><li>For QPU: provide ARN (e.g., Rigetti or IonQ).</li></ul>',
+            warning: '<strong>Note:</strong> Running on real QPU is paid. First debug on a local simulator.',
+            step6: '<strong>Run:</strong> Click <em>Run → Run All Cells</em>. The protein structure optimization results will appear in the bottom cells.',
+            footer: 'Quick start with QFold in the <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS ecosystem</a>.<br><i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>'
         },
         de: {
-            title: "QFold auf Amazon Braket",
-            description: "Kurzanleitung zur Bereitstellung des Quanten-Faltungsalgorithmus für Proteine auf AWS Braket.",
-            step1: "<strong>Konsolenzugriff:</strong> Melden Sie sich bei Ihrem AWS-Konto an und navigieren Sie zu <strong>Amazon Braket</strong>. Stellen Sie sicher, dass Sie sich in einer Region befinden, die die erforderlichen Geräte unterstützt (z. B. <em>us-east-1</em>).",
-            step2: "<strong>Notebook erstellen:</strong> Wählen Sie im linken Menü <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.<br><ul><li>Name: <code>qfold-instance</code></li><li>Typ: <code>ml.t3.medium</code> (minimal ausreichend)</li></ul>",
-            step3: "<strong>Jupyter öffnen:</strong> Wenn der Status auf <span style=\"color: green;\">InService</span> wechselt, klicken Sie auf <strong>Open JupyterLab</strong>.",
-            step4: "<strong>QFold finden:</strong> Navigieren Sie zu <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> und öffnen Sie die Datei <code>qfold.ipynb</code>.",
-            step5: "<strong>Gerätekonfiguration:</strong> Suchen Sie im Code nach der Variablen <code>device</code>.<br><ul><li>Für kostenlosen Test: <code>LocalSimulator()</code></li><li>Für QPU: ARN angeben (z. B. Rigetti oder IonQ).</li></ul>",
-            warning: "<strong>Hinweis:</strong> Die Ausführung auf echten QPUs ist kostenpflichtig. Debuggen Sie zuerst auf einem lokalen Simulator.",
-            step6: "<strong>Ausführen:</strong> Klicken Sie auf <em>Run → Run All Cells</em>. Die Ergebnisse der Proteinoptimierung erscheinen in den unteren Zellen.",
-            footer: "Erstellt für den schnellen Einstieg in QFold in der AWS-Ökosystem.<br><i class='fab fa-github github-icon'></i> <a href='https://github.com/qfoldit' target='_blank'>github.com/qfoldit</a>"
+            title: 'QFold auf <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a>',
+            description: 'Kurzanleitung zur Bereitstellung des Quanten-Faltungsalgorithmus für Proteine auf <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS Braket</a>.',
+            step1: '<strong>Konsolenzugriff:</strong> Melden Sie sich bei Ihrem AWS-Konto an und navigieren Sie zu <strong><a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></strong>. Stellen Sie sicher, dass Sie sich in einer Region befinden, die die erforderlichen Geräte unterstützt (z. B. <em>us-east-1</em>).',
+            step2: '<strong>Notebook erstellen:</strong> Wählen Sie im linken Menü <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.<br><ul><li>Name: <code>qfold-instance</code></li><li>Typ: <code>ml.t3.medium</code> (minimal ausreichend)</li></ul>',
+            step3: '<strong>Jupyter öffnen:</strong> Wenn der Status auf <span style="color: green;">InService</span> wechselt, klicken Sie auf <strong>Open JupyterLab</strong>.',
+            step4: '<strong>QFold finden:</strong> Navigieren Sie zu <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> und öffnen Sie die Datei <code>qfold.ipynb</code>.',
+            step5: '<strong>Gerätekonfiguration:</strong> Suchen Sie im Code nach der Variablen <code>device</code>.<br><ul><li>Für kostenlosen Test: <code>LocalSimulator()</code></li><li>Für QPU: ARN angeben (z. B. Rigetti oder IonQ).</li></ul>',
+            warning: '<strong>Hinweis:</strong> Die Ausführung auf echten QPUs ist kostenpflichtig. Debuggen Sie zuerst auf einem lokalen Simulator.',
+            step6: '<strong>Ausführen:</strong> Klicken Sie auf <em>Run → Run All Cells</em>. Die Ergebnisse der Proteinoptimierung erscheinen in den unteren Zellen.',
+            footer: 'Schnelleinstieg mit QFold im <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS-Ökosystem</a>.<br><i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>'
         },
         ru: {
-            title: "QFold на Amazon Braket",
-            description: "Краткое руководство по развертыванию квантового алгоритма сворачивания белка на AWS Braket.",
-            step1: "<strong>Доступ к консоли:</strong> Войдите в свою учетную запись AWS и перейдите в сервис <strong>Amazon Braket</strong>. Убедитесь, что вы находитесь в регионе, поддерживающем нужные устройства (например, <em>us-east-1</em>).",
-            step2: "<strong>Создание блокнота:</strong> В левом меню выберите <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.<br><ul><li>Имя: <code>qfold-instance</code></li><li>Тип: <code>ml.t3.medium</code> (минимально достаточный)</li></ul>",
-            step3: "<strong>Открытие Jupyter:</strong> Когда статус сменится на <span style=\"color: green;\">InService</span>, нажмите <strong>Open JupyterLab</strong>.",
-            step4: "<strong>Поиск QFold:</strong> Перейдите по пути: <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> и откройте файл <code>qfold.ipynb</code>.",
-            step5: "<strong>Настройка устройства:</strong> В коде найдите переменную <code>device</code>.<br><ul><li>Для бесплатного теста: <code>LocalSimulator()</code></li><li>Для QPU: укажите ARN (например, Rigetti или IonQ).</li></ul>",
-            warning: "<strong>Внимание:</strong> Запуск на реальных квантовых процессорах (QPU) платный. Сначала отладьте код на локальном симуляторе.",
-            step6: "<strong>Запуск:</strong> Нажмите <em>Run → Run All Cells</em>. Результаты оптимизации структуры белка появятся в нижних ячейках.",
-            footer: "Создано для быстрого старта с QFold в экосистеме AWS.<br><i class='fab fa-github github-icon'></i> <a href='https://github.com/qfoldit' target='_blank'>github.com/qfoldit</a>"
+            title: 'QFold на <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a>',
+            description: 'Краткое руководство по развертыванию квантового алгоритма сворачивания белка на <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS Braket</a>.',
+            step1: '<strong>Доступ к консоли:</strong> Войдите в свою учетную запись AWS и перейдите в сервис <strong><a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></strong>. Убедитесь, что вы находитесь в регионе, поддерживающем нужные устройства (например, <em>us-east-1</em>).',
+            step2: '<strong>Создание блокнота:</strong> В левом меню выберите <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.<br><ul><li>Имя: <code>qfold-instance</code></li><li>Тип: <code>ml.t3.medium</code> (минимально достаточный)</li></ul>',
+            step3: '<strong>Открытие Jupyter:</strong> Когда статус сменится на <span style="color: green;">InService</span>, нажмите <strong>Open JupyterLab</strong>.',
+            step4: '<strong>Поиск QFold:</strong> Перейдите по пути: <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> и откройте файл <code>qfold.ipynb</code>.',
+            step5: '<strong>Настройка устройства:</strong> В коде найдите переменную <code>device</code>.<br><ul><li>Для бесплатного теста: <code>LocalSimulator()</code></li><li>Для QPU: укажите ARN (например, Rigetti или IonQ).</li></ul>',
+            warning: '<strong>Внимание:</strong> Запуск на реальных квантовых процессорах (QPU) платный. Сначала отладьте код на локальном симуляторе.',
+            step6: '<strong>Запуск:</strong> Нажмите <em>Run → Run All Cells</em>. Результаты оптимизации структуры белка появятся в нижних ячейках.',
+            footer: 'Быстрый старт с QFold в <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">экосистеме AWS</a>.<br><i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>'
         },
         ja: {
-            title: "Amazon Braket での QFold",
-            description: "AWS Braket での量子タンパク質フォールディングアルゴリズム展開のクイックガイド。",
-            step1: "<strong>コンソールアクセス:</strong> AWS アカウントにログインし、<strong>Amazon Braket</strong> サービスに移動します。必要なデバイスをサポートするリージョン（例: <em>us-east-1</em>）にいることを確認してください。",
-            step2: "<strong>ノートブックの作成:</strong> 左側のメニューから <strong>Notebooks</strong> → <strong>Create notebook instance</strong> を選択します。<br><ul><li>名前: <code>qfold-instance</code></li><li>タイプ: <code>ml.t3.medium</code> (最小限で十分)</li></ul>",
-            step3: "<strong>Jupyter を開く:</strong> ステータスが <span style=\"color: green;\">InService</span> に変わったら、<strong>Open JupyterLab</strong> をクリックします。",
-            step4: "<strong>QFold を見つける:</strong> <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> に移動し、<code>qfold.ipynb</code> ファイルを開きます。",
-            step5: "<strong>デバイス設定:</strong> コード内で <code>device</code> 変数を見つけます。<br><ul><li>無料テストの場合: <code>LocalSimulator()</code></li><li>QPU の場合: ARN を指定します（例: Rigetti または IonQ）。</li></ul>",
-            warning: "<strong>注意:</strong> 実際の QPU での実行は有料です。まずローカルシミュレーターでデバッグしてください。",
-            step6: "<strong>実行:</strong> <em>Run → Run All Cells</em> をクリックします。タンパク質構造の最適化結果が下部のセルに表示されます。",
-            footer: "AWS エコシステムで QFold を迅速に開始するために作成されました。<br><i class='fab fa-github github-icon'></i> <a href='https://github.com/qfoldit' target='_blank'>github.com/qfoldit</a>"
+            title: '<a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a> での QFold',
+            description: 'AWS Braket での量子タンパク質フォールディングアルゴリズム展開のクイックガイド。',
+            description: '<a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS Braket</a> での量子タンパク質フォールディングアルゴリズム展開のクイックガイド。',
+            step1: '<strong>コンソールアクセス:</strong> AWS アカウントにログインし、<strong><a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></strong> サービスに移動します。必要なデバイスをサポートするリージョン（例: <em>us-east-1</em>）にいることを確認してください。',
+            step2: '<strong>ノートブックの作成:</strong> 左側のメニューから <strong>Notebooks</strong> → <strong>Create notebook instance</strong> を選択します。<br><ul><li>名前: <code>qfold-instance</code></li><li>タイプ: <code>ml.t3.medium</code> (最小限で十分)</li></ul>',
+            step3: '<strong>Jupyter を開く:</strong> ステータスが <span style="color: green;">InService</span> に変わったら、<strong>Open JupyterLab</strong> をクリックします。',
+            step4: '<strong>QFold を見つける:</strong> <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> に移動し、<code>qfold.ipynb</code> ファイルを開きます。',
+            step5: '<strong>デバイス設定:</strong> コード内で <code>device</code> 変数を見つけます。<br><ul><li>無料テストの場合: <code>LocalSimulator()</code></li><li>QPU の場合: ARN を指定します（例: Rigetti または IonQ）。</li></ul>',
+            warning: '<strong>注意:</strong> 実際の QPU での実行は有料です。まずローカルシミュレーターでデバッグしてください。',
+            step6: '<strong>実行:</strong> <em>Run → Run All Cells</em> をクリックします。タンパク質構造の最適化結果が下部のセルに表示されます。',
+            footer: 'AWS エコシステムで QFold を迅速に開始するために作成されました。<br><i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>'
         },
         zh: {
-            title: "亚马逊 Braket 上的 QFold",
-            description: "在 AWS Braket 上部署量子蛋白质折叠算法的快速指南。",
-            step1: "<strong>控制台访问：</strong> 登录您的 AWS 账户，进入 <strong>Amazon Braket</strong> 服务。确保您所在的区域支持所需的设备（例如 <em>us-east-1</em>）。",
-            step2: "<strong>创建笔记本：</strong> 在左侧菜单中选择 <strong>Notebooks</strong> → <strong>Create notebook instance</strong>。<br><ul><li>名称：<code>qfold-instance</code></li><li>类型：<code>ml.t3.medium</code>（最低配置足够）</li></ul>",
-            step3: "<strong>打开 Jupyter：</strong> 当状态变为 <span style=\"color: green;\">InService</span> 时，点击 <strong>Open JupyterLab</strong>。",
-            step4: "<strong>查找 QFold：</strong> 导航到 <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> 并打开文件 <code>qfold.ipynb</code>。",
-            step5: "<strong>设备配置：</strong> 在代码中找到变量 <code>device</code>。<br><ul><li>免费测试：<code>LocalSimulator()</code></li><li>使用 QPU：提供 ARN（例如 Rigetti 或 IonQ）。</li></ul>",
-            warning: "<strong>注意：</strong> 在真实 QPU 上运行需要付费。请先在本地模拟器上进行调试。",
-            step6: "<strong>运行：</strong> 点击 <em>Run → Run All Cells</em>。蛋白质结构优化结果将显示在底部单元格中。",
-            footer: "为在 AWS 生态系统中快速启动 QFold 而创建。<br><i class='fab fa-github github-icon'></i> <a href='https://github.com/qfoldit' target='_blank'>github.com/qfoldit</a>"
+            title: '<a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a> 上的 QFold',
+            description: '在 <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS Braket</a> 上部署量子蛋白质折叠算法的快速指南。',
+            step1: '<strong>控制台访问：</strong> 登录您的 AWS 账户，进入 <strong><a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></strong> 服务。确保您所在的区域支持所需的设备（例如 <em>us-east-1</em>）。',
+            step2: '<strong>创建笔记本：</strong> 在左侧菜单中选择 <strong>Notebooks</strong> → <strong>Create notebook instance</strong>。<br><ul><li>名称：<code>qfold-instance</code></li><li>类型：<code>ml.t3.medium</code>（最低配置足够）</li></ul>',
+            step3: '<strong>打开 Jupyter：</strong> 当状态变为 <span style="color: green;">InService</span> 时，点击 <strong>Open JupyterLab</strong>。',
+            step4: '<strong>查找 QFold：</strong> 导航到 <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> 并打开文件 <code>qfold.ipynb</code>。',
+            step5: '<strong>设备配置：</strong> 在代码中找到变量 <code>device</code>。<br><ul><li>免费测试：<code>LocalSimulator()</code></li><li>使用 QPU：提供 ARN（例如 Rigetti 或 IonQ）。</li></ul>',
+            warning: '<strong>注意：</strong> 在真实 QPU 上运行需要付费。请先在本地模拟器上进行调试。',
+            step6: '<strong>运行：</strong> 点击 <em>Run → Run All Cells</em>。蛋白质结构优化结果将显示在底部单元格中。',
+            footer: '为在 AWS 生态系统中快速启动 QFold 而创建。<br><i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>'
         }
     };
+
+    // Fix duplicate description key for Japanese (removed extra line)
+    if (translations.ja && translations.ja.description) {
+        // already correct
+    }
 
     const elements = {
         title: document.querySelector('[data-i18n="title"]'),
