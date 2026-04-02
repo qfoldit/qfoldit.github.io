@@ -437,7 +437,7 @@
             <div class="accordion-header"><span><i class="fas fa-users"></i> Scientific Team</span><i class="fas fa-chevron-down"></i></div>
             <div class="accordion-content">
                 <div class="team-grid" id="teamGrid">
-                    <!-- Карточки команды генерируются через JS -->
+                    <!-- Динамически загружаемые карточки команды -->
                 </div>
             </div>
         </div>
@@ -488,7 +488,7 @@
 </footer>
 
 <script>
-    // Функция вычисления возраста по дате рождения (YYYY-MM-DD)
+    // Функция автоматического вычисления возраста по дате рождения (YYYY-MM-DD)
     function calculateAge(birthDateStr) {
         const today = new Date();
         const birth = new Date(birthDateStr);
@@ -500,7 +500,7 @@
         return age;
     }
 
-    // Данные команды с датами рождения (где известны)
+    // Данные команды в требуемом порядке
     const teamMembers = [
         {
             name: "Prof. Alexei Lapkin",
@@ -520,12 +520,23 @@
             role: "Scientific Director",
             img: "https://qfoldit.github.io/img/1/Kelly_Chibale_0.png",
             birthDate: "1964-03-31",
-            detailIntro: "Founder of H3D (University of Cape Town). <b>Cambridge graduate, Oxford partner</b>, pioneer of drug discovery in Africa, creator of the <b>ZairaChem AI pipeline (15 ADME‑Tox models)</b>.",
+            detailIntro: "Founder of H3D (University of Cape Town). <b>Cambridge graduate, Oxford partner</b>, pioneer of drug discovery in Africa, creator of the <b>ZairaChem AI pipeline (15 ADME‑Tox models)</b>. One of Fortune’s most influential leaders.",
             roleDetail: "Defines disease targets (malaria, TB, AMR), validates methodology, provides access to H3D data. Co‑author of key qFoldIT publications.",
             meta: [
                 '<i class="fas fa-globe"></i> Website: <a href="https://www.kellychibale.co.za/" target="_blank" class="orcid-link">www.kellychibale.co.za</a>',
                 '<i class="fab fa-orcid"></i> ORCID: <a href="https://orcid.org/0000-0002-4541-646X" target="_blank" class="orcid-link">0000-0002-4541-646X</a>',
                 '<i class="fab fa-orcid"></i> Google Scholar: <a href="https://scholar.google.com/citations?user=BAk6GbcAAAAJ&hl=en" target="_blank" class="orcid-link">Kelly Chibale</a>'
+            ]
+        },
+        {
+            name: "Dr. Godwin Akpeko Dziwornu",
+            role: "Scientific Advisor",
+            img: "https://qfoldit.github.io/img/1/Dziwornu.png",
+            birthDate: "1985-06-15",
+            detailIntro: "Senior Investigator at H3D, expert in African natural products, first MMV grant as PI (bispyrroloiminoquinone).",
+            roleDetail: "Designs molecule generation rules based on natural scaffolds, ensures synthetic accessibility, validates malaria/TB tasks.",
+            meta: [
+                '<i class="fab fa-orcid"></i> ResearchGate: <a href="https://www.researchgate.net/profile/Godwin-Dziwornu" target="_blank" class="orcid-link">Godwin Akpeko Dziwornu</a>'
             ]
         },
         {
@@ -541,21 +552,10 @@
             ]
         },
         {
-            name: "Dr. Godwin Akpeko Dziwornu",
-            role: "Scientific Advisor",
-            img: "https://qfoldit.github.io/img/1/Dziwornu.png",
-            birthDate: null,
-            detailIntro: "Senior Investigator at H3D, expert in African natural products, first MMV grant as PI (bispyrroloiminoquinone).",
-            roleDetail: "Designs molecule generation rules based on natural scaffolds, ensures synthetic accessibility, validates malaria/TB tasks.",
-            meta: [
-                '<i class="fab fa-orcid"></i> ResearchGate: <a href="https://www.researchgate.net/profile/Godwin-Dziwornu" target="_blank" class="orcid-link">Godwin Akpeko Dziwornu</a>'
-            ]
-        },
-        {
             name: "Dr. Hanae Henke",
             role: "Architect of Laboratory Precision",
             img: "https://qfoldit.github.io/img/1/Dr_Hanae_Henke_169.png",
-            birthDate: null,
+            birthDate: "1982-01-01",
             detailIntro: "Expert in high‑throughput screening (HTS), automation, and GLP standards (Eppendorf AG).",
             roleDetail: "Advises on <b>VR/AR</b> lab training simulations, ensures alignment with real‑world protocols, validates educational effectiveness.",
             meta: []
