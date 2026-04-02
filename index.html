@@ -58,7 +58,6 @@
             text-transform: uppercase;
         }
 
-        /* intro & cards */
         .intro-block {
             background: rgba(20, 25, 30, 0.6);
             backdrop-filter: blur(8px);
@@ -92,23 +91,6 @@
             color: #c0c4cc;
             line-height: 1.7;
             margin-bottom: 1.5em;
-        }
-        .intro-list {
-            list-style: none;
-            padding-left: 0;
-        }
-        .intro-list li {
-            margin-bottom: 12px;
-            padding-left: 28px;
-            position: relative;
-        }
-        .intro-list li:before {
-            content: "•";
-            color: #0077FF;
-            font-size: 1.5rem;
-            position: absolute;
-            left: 0;
-            top: -4px;
         }
         .poster-grid {
             display: grid;
@@ -148,7 +130,6 @@
         }
         .poster-caption i, .book-caption i { color: #0077FF; }
 
-        /* accordion */
         .accordion { margin: 30px 0 50px; }
         .accordion-item {
             background: rgba(20, 25, 30, 0.8);
@@ -184,7 +165,6 @@
             padding: 20px 24px 24px 24px;
         }
 
-        /* team cards */
         .team-grid {
             display: flex;
             flex-direction: column;
@@ -250,8 +230,16 @@
         .orcid-link:hover {
             text-decoration: underline;
         }
+        .age-badge {
+            background: rgba(0,119,255,0.2);
+            border-radius: 30px;
+            padding: 2px 12px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-left: 12px;
+            font-weight: normal;
+        }
 
-        /* resources section */
         .resources-container {
             background: rgba(20, 25, 30, 0.8);
             backdrop-filter: blur(8px);
@@ -259,7 +247,6 @@
             padding: 28px 30px;
             margin: 20px 0 30px;
             border: 1px solid rgba(255,255,255,0.08);
-            transition: all 0.2s;
         }
         .resources-grid {
             display: grid;
@@ -278,10 +265,7 @@
             border-left: 4px solid #0077FF;
             padding-left: 18px;
         }
-        .resources-heading i {
-            color: #0077FF;
-            font-size: 1.8rem;
-        }
+        .resources-heading i { color: #0077FF; font-size: 1.8rem; }
         .links-panel {
             background: rgba(0,0,0,0.25);
             border-radius: 20px;
@@ -300,9 +284,7 @@
             transition: background 0.2s;
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-        .ref-link-list li:hover {
-            background: rgba(0,119,255,0.08);
-        }
+        .ref-link-list li:hover { background: rgba(0,119,255,0.08); }
         .ref-link {
             display: flex;
             align-items: center;
@@ -311,7 +293,6 @@
             color: #E1E3E6;
             font-weight: 500;
             font-size: 1.05rem;
-            transition: color 0.2s;
         }
         .ref-link i {
             width: 32px;
@@ -319,9 +300,7 @@
             color: #0077FF;
             text-align: center;
         }
-        .ref-link span {
-            flex: 1;
-        }
+        .ref-link span { flex: 1; }
         .ref-link .link-url {
             font-size: 0.75rem;
             color: #8a9099;
@@ -330,18 +309,13 @@
             display: block;
             margin-top: 4px;
         }
-        .ref-link:hover {
-            color: white;
-        }
-        .ref-link:hover .link-url {
-            color: #0077FF;
-        }
+        .ref-link:hover { color: white; }
+        .ref-link:hover .link-url { color: #0077FF; }
         .book-cover-card {
             background: rgba(0,0,0,0.2);
             border-radius: 24px;
             padding: 12px;
             text-align: center;
-            transition: transform 0.2s;
         }
         .book-cover-card img {
             max-width: 100%;
@@ -350,20 +324,14 @@
             border: 1px solid rgba(255,255,255,0.15);
             transition: transform 0.25s ease;
         }
-        .book-cover-card img:hover {
-            transform: scale(1.01);
-        }
+        .book-cover-card img:hover { transform: scale(1.01); }
         .book-title {
             font-size: 1.25rem;
             font-weight: 700;
             margin: 18px 0 8px;
             color: white;
         }
-        .book-author {
-            color: #8a9099;
-            font-size: 0.9rem;
-            margin-bottom: 12px;
-        }
+        .book-author { color: #8a9099; font-size: 0.9rem; margin-bottom: 12px; }
         .book-desc {
             font-size: 0.85rem;
             color: #b0b4bc;
@@ -381,15 +349,8 @@
             text-decoration: none;
             color: #a0c4ff;
             margin-top: 8px;
-            transition: background 0.2s;
         }
-        .book-meta-link i {
-            font-size: 0.8rem;
-        }
-        .book-meta-link:hover {
-            background: rgba(0,119,255,0.25);
-            color: white;
-        }
+        .book-meta-link:hover { background: rgba(0,119,255,0.25); color: white; }
 
         .footer {
             background-color: #0077ff;
@@ -423,19 +384,9 @@
             .team-card { flex-direction: column; align-items: center; text-align: center; }
             .team-photo { width: 120px; height: 120px; }
             .team-meta { justify-content: center; }
-            .resources-grid {
-                grid-template-columns: 1fr;
-                gap: 28px;
-            }
-            .footer {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .footer-left, .footer-center, .footer-right {
-                width: 100%;
-                justify-content: center;
-            }
+            .resources-grid { grid-template-columns: 1fr; gap: 28px; }
+            .footer { flex-direction: column; align-items: center; text-align: center; }
+            .footer-left, .footer-center, .footer-right { width: 100%; justify-content: center; }
             .footer-right .desktop-logo { display: none; }
             .footer-right .mobile-logo { display: block; }
         }
@@ -451,14 +402,10 @@
     <div class="intro-block">
         <div class="intro-title"><i class="fas fa-rocket"></i> A Synthesis of Nobel Ideas</div>
         <p class="intro-text"><strong>qFoldIT</strong> is a platform built on discoveries awarded the Nobel Prize, continuing the legacy of <strong>FoldIT</strong> — turning complex science into engaging gameplay accessible to everyone.</p>
-        
         <p class="intro-text"><strong>qFoldIT combines quantum algorithms, AI, and crowdsourcing in a gaming environment to redefine molecular design and climate challenges. Following the legacy of FoldIT and Nobel laureates, we transform cutting-edge science into an interactive adventure with high-performance molecular visualization.</strong></p>
-        
         <div class="intro-subtitle"><i class="fas fa-couch"></i> From Complex Games to Living Room Fun</div>
         <p class="intro-text"><strong>qFoldIT reimagines the gaming paradigm:</strong> it steps away from solitary, hyper‑complex simulators and returns to the warmth of shared experiences. Like classic board games that once gathered families around a table, qFoldIT turns molecular science into a collaborative adventure — parents and children solving protein folds, exploring Arctic climate scenarios, or designing new molecules side by side. It is not merely a game; it is a new genre of science entertainment designed for the living room, where discovery becomes a family ritual.</p>
-        
         <img src="https://qfoldit.github.io/img/qFold.png" style="width: 100%;border-radius: 10px;" alt="qFoldIT visualization">
-        
         <div class="intro-subtitle"><i class="fas fa-atom"></i> Physics 2024: AI as a Tool for Discovery</div>
         <p class="intro-text">Awarded to <strong>John Hopfield and Geoffrey Hinton</strong> for foundational AI discoveries. <b>qFoldIT</b> uses Hopfield networks (associative memory) and deep learning for adaptive AI assistants, procedural generation of Arctic landscapes, and molecular structure prediction.</p>
         <div class="poster-grid">
@@ -474,7 +421,6 @@
         <p class="intro-text"><strong>qFoldIT</strong> follows the <b>FoldIT</b> tradition: a community of player‑researchers solves real scientific problems, while quantum algorithms and AI push the boundaries of what is possible.</p>
     </div>
 
-    <!-- Separate book poster: Gaming Cancer by Jeff Yoshimi -->
     <div class="book-block">
         <img src="https://qfoldit.github.io/img/posters/Gaming_Cancer_book.png" alt="Gaming Cancer book cover" class="book-image">
         <div class="book-caption">
@@ -490,85 +436,13 @@
         <div class="accordion-item open">
             <div class="accordion-header"><span><i class="fas fa-users"></i> Scientific Team</span><i class="fas fa-chevron-down"></i></div>
             <div class="accordion-content">
-                <div class="team-grid">
-                    <!-- NEW: Professor Alexei Lapkin (FIRST) -->
-                    <div class="team-card">
-                        <img src="https://qfoldit.github.io/img/1/Alapkin.png" alt="Prof. Alexei Lapkin" class="team-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22140%22%20viewBox%3D%220%200%20140%20140%22%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20fill%3D%22%231e2328%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%230077FF%22%20font-size%3D%2240%22%20font-family%3D%22FontAwesome%22%3E%3C%2Ftext%3E%3C%2Fsvg%3E';">
-                        <div class="team-info">
-                            <div class="team-name">Prof. Alexei Lapkin</div>
-                            <div class="team-role">Director of Digital Molecular Engineering & Sustainable Synthesis</div>
-                            <div class="team-detail">Professor of Sustainable Reaction Engineering at <strong>University of Cambridge</strong>, Director of the <strong>Institute for Digital Molecular Technologies (iDMT)</strong>. A world leader in digital chemistry, AI‑driven synthesis automation, and green chemical processes.</div>
-                            <div class="team-detail"><b>Role in qFoldIT:</b> Bridges the gap between in‑game molecular designs and real‑world industrial viability. Leads validation of synthetic accessibility, scalability, and sustainability (green chemistry metrics). Integrates digital twins of chemical reactors and automated synthesis workflows into the qFoldIT ecosystem. Ensures that player‑discovered molecules can be translated into tangible, environmentally responsible technologies — from carbon‑neutral catalysis to biodegradable polymers.</div>
-                            <div class="team-meta"><i class="fas fa-university"></i> University of Cambridge — iDMT</div>
-                            <div class="team-meta"><i class="fas fa-globe"></i> Website: <a href="https://www.ceb.cam.ac.uk/directory/alexei-lapkin" target="_blank" class="orcid-link">Cambridge profile</a></div>
-                            <div class="team-meta"><i class="fas fa-leaf"></i> Expertise: Sustainable Reaction Engineering · Digital Twins · Green Chemistry · Automated Synthesis</div>
-                        </div>
-                    </div>
-
-                    <!-- Prof. Kelly Chibale (second) -->
-                    <div class="team-card">
-                        <img src="https://qfoldit.github.io/img/1/Kelly_Chibale_0.png" alt="Prof. Kelly Chibale" class="team-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22140%22%20viewBox%3D%220%200%20140%20140%22%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20fill%3D%22%231e2328%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%230077FF%22%20font-size%3D%2240%22%20font-family%3D%22FontAwesome%22%3E%3C%2Ftext%3E%3C%2Fsvg%3E';">
-                        <div class="team-info">
-                            <div class="team-name">Prof. Kelly Chibale</div>
-                            <div class="team-role">Scientific Director</div>
-                            <div class="team-detail">Age 62 (b. 1964). Founder of H3D (University of Cape Town). <b>Cambridge graduate, Oxford partner</b>, pioneer of drug discovery in Africa, creator of the <b>ZairaChem AI pipeline (15 ADME‑Tox models)</b>.</div>
-                            <div class="team-detail">Defines disease targets (malaria, TB, AMR), validates methodology, provides access to H3D data. Co‑author of key qFoldIT publications.</div>
-                            <div class="team-meta"><i class="fas fa-globe"></i> Website: <a href="https://www.kellychibale.co.za/" target="_blank" class="orcid-link">www.kellychibale.co.za</a></div>
-                            <div class="team-meta"><i class="fab fa-orcid"></i> ORCID: <a href="https://orcid.org/0000-0002-4541-646X" target="_blank" class="orcid-link">0000-0002-4541-646X</a></div>
-                            <div class="team-meta"><i class="fab fa-orcid"></i> Google Scholar: <a href="https://scholar.google.com/citations?user=BAk6GbcAAAAJ&hl=en" target="_blank" class="orcid-link">Kelly Chibale</a></div>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <img src="https://qfoldit.github.io/img/1/Dziwornu.png" alt="Dr. Godwin Akpeko Dziwornu" class="team-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22140%22%20viewBox%3D%220%200%20140%20140%22%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20fill%3D%22%231e2328%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%230077FF%22%20font-size%3D%2240%22%20font-family%3D%22FontAwesome%22%3E%3C%2Ftext%3E%3C%2Fsvg%3E';">
-                        <div class="team-info">
-                            <div class="team-name">Dr. Godwin Akpeko Dziwornu</div>
-                            <div class="team-role">Scientific Advisor</div>
-                            <div class="team-detail">Age 41 (b. 1985). Senior Investigator at H3D, expert in African natural products, first MMV grant as PI (bispyrroloiminoquinone).</div>
-                            <div class="team-detail">Designs molecule generation rules based on natural scaffolds, ensures synthetic accessibility, validates malaria/TB tasks.</div>
-                            <div class="team-meta"><i class="fab fa-orcid"></i> ResearchGate: <a href="https://www.researchgate.net/profile/Godwin-Dziwornu" target="_blank" class="orcid-link">Godwin Akpeko Dziwornu</a></div>
-                        </div>
-                    </div>
-
-                    <div class="team-card">
-                        <img src="https://qfoldit.github.io/img/1/Dr_Hanae_Henke_169.png" alt="Dr. Hanae Henke" class="team-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22140%22%20viewBox%3D%220%200%20140%20140%22%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20fill%3D%22%231e2328%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%230077FF%22%20font-size%3D%2240%22%20font-family%3D%22FontAwesome%22%3E%3C%2Ftext%3E%3C%2Fsvg%3E';">
-                        <div class="team-info">
-                            <div class="team-name">Dr. Hanae Henke</div>
-                            <div class="team-role">Architect of Laboratory Precision</div>
-                            <div class="team-detail">Age 44 (b. 1982). Expert in high‑throughput screening (HTS), automation, and GLP standards (Eppendorf AG).</div>
-                            <div class="team-detail">Advises on <b>VR/AR</b> lab training simulations, ensures alignment with real‑world protocols, validates educational effectiveness.</div>
-                        </div>
-                    </div>
-                    
-                    <div class="team-card">
-                        <img src="https://qfoldit.github.io/img/1/Dr_Beata_Mierzwa.png" alt="Dr. Beata Mierzwa" class="team-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22140%22%20viewBox%3D%220%200%20140%20140%22%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20fill%3D%22%231e2328%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%230077FF%22%20font-size%3D%2240%22%20font-family%3D%22FontAwesome%22%3E%3C%2Ftext%3E%3C%2Fsvg%3E';">
-                        <div class="team-info">
-                            <div class="team-name">Dr. Beata Mierzwa</div>
-                            <div class="team-role">Director of Science Art & Gamified Education</div>
-                            <div class="team-detail">Molecular biologist (UCSD, Ludwig Institute) and pioneering science artist. Creator of the educational video game <i>Microscopya</i> and AAAS IF/THEN Ambassador.</div>
-                            <div class="team-detail"><b>Role in qFoldIT:</b> Translates complex quantum-chemical data into intuitive, AAA-quality visual puzzles. She bridges hardcore laboratory science with user engagement, designing a crisp, high-tech visual language (pure white, vivid blue, deep navy) that makes molecular manipulation accessible without sacrificing scientific rigor. Leads the gamified learning experience and ensures that every interactive element educates as it entertains.</div>
-                            <div class="team-meta"><i class="fas fa-globe"></i> Website: <a href="https://beatascienceart.com" target="_blank" class="orcid-link">beatascienceart.com</a></div>
-                            <div class="team-meta"><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/beatascienceart" target="_blank" class="orcid-link">Beata Mierzwa</a></div>
-                        </div>
-                    </div>
-                    
-                    <div class="team-card">
-                        <img src="https://qfoldit.github.io/img/1/AG.png" alt="Dr. George Ahiakwa" class="team-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22140%22%20viewBox%3D%220%200%20140%20140%22%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20fill%3D%22%231e2328%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%230077FF%22%20font-size%3D%2240%22%20font-family%3D%22FontAwesome%22%3E%3C%2Ftext%3E%3C%2Fsvg%3E';">
-                        <div class="team-info">
-                            <div class="team-name">Dr. George Ahiakwa</div>
-                            <div class="team-role">Founder, CEO, Gamification Architect</div>
-                            <div class="team-detail">Age 38 (b. 1988). Game designer (Atomic Heart), descendant of the Ashanti Ahiakwa royal lineage.</div>
-                            <div class="team-detail">Designs game mechanics, platform architecture, quantum API integration, AAA‑grade visualization. Coordinates scientific collaborations.</div>
-                            <div class="team-meta"><i class="fab fa-github"></i> GitHub: <a href="https://github.com/CEPBEP" target="_blank" class="orcid-link">CEPBEP</a></div>
-                            <div class="team-meta"><i class="fab fa-orcid"></i> ORCID: <a href="https://orcid.org/0009-0009-3666-9295" target="_blank" class="orcid-link">0009-0009-3666-9295</a></div>
-                        </div>
-                    </div>
+                <div class="team-grid" id="teamGrid">
+                    <!-- Карточки команды генерируются через JS -->
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Resources section -->
     <div class="resources-container">
         <div class="resources-heading">
             <i class="fas fa-book-open"></i> 
@@ -577,64 +451,22 @@
         <div class="resources-grid">
             <div class="links-panel">
                 <ul class="ref-link-list">
-                    <li>
-                        <a href="https://fold.it/" target="_blank" rel="noopener" class="ref-link">
-                            <i class="fas fa-gamepad"></i>
-                            <span>
-                                FoldIT <span style="font-weight:normal;">— crowdsourced protein folding</span>
-                                <span class="link-url">https://fold.it/</span>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://qfold.io/" target="_blank" rel="noopener" class="ref-link">
-                            <i class="fas fa-chalkboard-user"></i>
-                            <span>
-                                qFold.io <span style="font-weight:normal;">— quantum‑enhanced molecular platform</span>
-                                <span class="link-url">https://qfold.io/</span>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://arxiv.org/pdf/2101.10279" target="_blank" rel="noopener" class="ref-link">
-                            <i class="fas fa-atom"></i>
-                            <span>
-                                qFold (arXiv:2101.10279) <span style="font-weight:normal;">— quantum algorithms for protein folding</span>
-                                <span class="link-url">arxiv.org/pdf/2101.10279</span>
-                            </span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://arxiv.org/pdf/2011.03442" target="_blank" rel="noopener" class="ref-link">
-                            <i class="fas fa-brain"></i>
-                            <span>
-                                DeepFoldIT (arXiv:2011.03442) <span style="font-weight:normal;">— deep learning meets folding games</span>
-                                <span class="link-url">arxiv.org/pdf/2011.03442</span>
-                            </span>
-                        </a>
-                    </li>
+                    <li><a href="https://fold.it/" target="_blank" class="ref-link"><i class="fas fa-gamepad"></i><span>FoldIT <span style="font-weight:normal;">— crowdsourced protein folding</span><span class="link-url">https://fold.it/</span></span></a></li>
+                    <li><a href="https://qfold.io/" target="_blank" class="ref-link"><i class="fas fa-chalkboard-user"></i><span>qFold.io <span style="font-weight:normal;">— quantum‑enhanced molecular platform</span><span class="link-url">https://qfold.io/</span></span></a></li>
+                    <li><a href="https://arxiv.org/pdf/2101.10279" target="_blank" class="ref-link"><i class="fas fa-atom"></i><span>qFold (arXiv:2101.10279) <span style="font-weight:normal;">— quantum algorithms for protein folding</span><span class="link-url">arxiv.org/pdf/2101.10279</span></span></a></li>
+                    <li><a href="https://arxiv.org/pdf/2011.03442" target="_blank" class="ref-link"><i class="fas fa-brain"></i><span>DeepFoldIT (arXiv:2011.03442) <span style="font-weight:normal;">— deep learning meets folding games</span><span class="link-url">arxiv.org/pdf/2011.03442</span></span></a></li>
                 </ul>
                 <div style="margin-top: 16px; padding: 12px 8px; font-size: 0.85rem; color: #8a9099; border-top: 1px solid rgba(255,255,255,0.08);">
                     <i class="fas fa-microscope"></i> These resources embody the core of qFoldIT: gamified discovery, quantum acceleration, and AI‑driven molecular innovation.
                 </div>
             </div>
-
             <div class="book-cover-card">
-                <img src="https://qfoldit.github.io/img/viz/ArtOfMolecular.png" 
-                     alt="The Art of Molecular Dynamics Simulation book cover"
-                     onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22200%22%20height%3D%22260%22%20viewBox%3D%220%200%20200%20260%22%3E%3Crect%20width%3D%22200%22%20height%3D%22260%22%20fill%3D%22%231a1f24%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%230077FF%22%20font-size%3D%2212%22%3EArt%20of%20MD%3C%2Ftext%3E%3C%2Fsvg%3E'">
+                <img src="https://qfoldit.github.io/img/viz/ArtOfMolecular.png" alt="The Art of Molecular Dynamics Simulation book cover">
                 <div class="book-title">The Art of Molecular Dynamics Simulation</div>
                 <div class="book-author">D. C. Rapaport</div>
-                <div class="book-desc">
-                    A cornerstone text bridging computational physics and molecular visualization. Essential for understanding the simulation core behind qFoldIT’s quantum‑enhanced engine and real‑time molecular puzzles.
-                </div>
-                <a href="https://www.cambridge.org/core/books/art-of-molecular-dynamics-simulation/1E9D9F0A6E9A8B1C6D0E2F3A4B5C6D7E" 
-                   target="_blank" rel="noopener" class="book-meta-link">
-                    <i class="fas fa-external-link-alt"></i> Explore the classic
-                </a>
-                <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;">
-                    <i class="far fa-copyright"></i> Essential reading for molecular modelers
-                </div>
+                <div class="book-desc">A cornerstone text bridging computational physics and molecular visualization. Essential for understanding the simulation core behind qFoldIT’s quantum‑enhanced engine and real‑time molecular puzzles.</div>
+                <a href="https://www.cambridge.org/core/books/art-of-molecular-dynamics-simulation/1E9D9F0A6E9A8B1C6D0E2F3A4B5C6D7E" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Explore the classic</a>
+                <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;"><i class="far fa-copyright"></i> Essential reading for molecular modelers</div>
             </div>
         </div>
     </div>
@@ -656,6 +488,121 @@
 </footer>
 
 <script>
+    // Функция вычисления возраста по дате рождения (YYYY-MM-DD)
+    function calculateAge(birthDateStr) {
+        const today = new Date();
+        const birth = new Date(birthDateStr);
+        let age = today.getFullYear() - birth.getFullYear();
+        const monthDiff = today.getMonth() - birth.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+            age--;
+        }
+        return age;
+    }
+
+    // Данные команды с датами рождения (где известны)
+    const teamMembers = [
+        {
+            name: "Prof. Alexei Lapkin",
+            role: "Director of Digital Molecular Engineering & Sustainable Synthesis",
+            img: "https://qfoldit.github.io/img/1/Alapkin.png",
+            birthDate: "1972-03-01",
+            detailIntro: "Professor of Sustainable Reaction Engineering at <strong>University of Cambridge</strong>, Director of the <strong>Institute for Digital Molecular Technologies (iDMT)</strong>. A world leader in digital chemistry, AI‑driven synthesis automation, and green chemical processes.",
+            roleDetail: "<b>Role in qFoldIT:</b> Bridges the gap between in‑game molecular designs and real‑world industrial viability. Leads validation of synthetic accessibility, scalability, and sustainability (green chemistry metrics). Integrates digital twins of chemical reactors and automated synthesis workflows into the qFoldIT ecosystem. Ensures that player‑discovered molecules can be translated into tangible, environmentally responsible technologies — from carbon‑neutral catalysis to biodegradable polymers.",
+            meta: [
+                '<i class="fas fa-university"></i> University of Cambridge — iDMT',
+                '<i class="fas fa-globe"></i> Website: <a href="https://www.ceb.cam.ac.uk/directory/alexei-lapkin" target="_blank" class="orcid-link">Cambridge profile</a>',
+                '<i class="fas fa-leaf"></i> Expertise: Sustainable Reaction Engineering · Digital Twins · Green Chemistry · Automated Synthesis'
+            ]
+        },
+        {
+            name: "Prof. Kelly Chibale",
+            role: "Scientific Director",
+            img: "https://qfoldit.github.io/img/1/Kelly_Chibale_0.png",
+            birthDate: "1964-03-31",
+            detailIntro: "Founder of H3D (University of Cape Town). <b>Cambridge graduate, Oxford partner</b>, pioneer of drug discovery in Africa, creator of the <b>ZairaChem AI pipeline (15 ADME‑Tox models)</b>.",
+            roleDetail: "Defines disease targets (malaria, TB, AMR), validates methodology, provides access to H3D data. Co‑author of key qFoldIT publications.",
+            meta: [
+                '<i class="fas fa-globe"></i> Website: <a href="https://www.kellychibale.co.za/" target="_blank" class="orcid-link">www.kellychibale.co.za</a>',
+                '<i class="fab fa-orcid"></i> ORCID: <a href="https://orcid.org/0000-0002-4541-646X" target="_blank" class="orcid-link">0000-0002-4541-646X</a>',
+                '<i class="fab fa-orcid"></i> Google Scholar: <a href="https://scholar.google.com/citations?user=BAk6GbcAAAAJ&hl=en" target="_blank" class="orcid-link">Kelly Chibale</a>'
+            ]
+        },
+        {
+            name: "Dr. George Ahiakwa",
+            role: "Founder, CEO, Gamification Architect",
+            img: "https://qfoldit.github.io/img/1/AG.png",
+            birthDate: "1988-01-01",
+            detailIntro: "Game designer (Atomic Heart), descendant of the Ashanti Ahiakwa royal lineage.",
+            roleDetail: "Designs game mechanics, platform architecture, quantum API integration, AAA‑grade visualization. Coordinates scientific collaborations.",
+            meta: [
+                '<i class="fab fa-github"></i> GitHub: <a href="https://github.com/CEPBEP" target="_blank" class="orcid-link">CEPBEP</a>',
+                '<i class="fab fa-orcid"></i> ORCID: <a href="https://orcid.org/0009-0009-3666-9295" target="_blank" class="orcid-link">0009-0009-3666-9295</a>'
+            ]
+        },
+        {
+            name: "Dr. Godwin Akpeko Dziwornu",
+            role: "Scientific Advisor",
+            img: "https://qfoldit.github.io/img/1/Dziwornu.png",
+            birthDate: null,
+            detailIntro: "Senior Investigator at H3D, expert in African natural products, first MMV grant as PI (bispyrroloiminoquinone).",
+            roleDetail: "Designs molecule generation rules based on natural scaffolds, ensures synthetic accessibility, validates malaria/TB tasks.",
+            meta: [
+                '<i class="fab fa-orcid"></i> ResearchGate: <a href="https://www.researchgate.net/profile/Godwin-Dziwornu" target="_blank" class="orcid-link">Godwin Akpeko Dziwornu</a>'
+            ]
+        },
+        {
+            name: "Dr. Hanae Henke",
+            role: "Architect of Laboratory Precision",
+            img: "https://qfoldit.github.io/img/1/Dr_Hanae_Henke_169.png",
+            birthDate: null,
+            detailIntro: "Expert in high‑throughput screening (HTS), automation, and GLP standards (Eppendorf AG).",
+            roleDetail: "Advises on <b>VR/AR</b> lab training simulations, ensures alignment with real‑world protocols, validates educational effectiveness.",
+            meta: []
+        },
+        {
+            name: "Dr. Beata Mierzwa",
+            role: "Director of Science Art & Gamified Education",
+            img: "https://qfoldit.github.io/img/1/Dr_Beata_Mierzwa.png",
+            birthDate: null,
+            detailIntro: "Molecular biologist (UCSD, Ludwig Institute) and pioneering science artist. Creator of the educational video game <i>Microscopya</i> and AAAS IF/THEN Ambassador.",
+            roleDetail: "<b>Role in qFoldIT:</b> Translates complex quantum-chemical data into intuitive, AAA-quality visual puzzles. She bridges hardcore laboratory science with user engagement, designing a crisp, high-tech visual language (pure white, vivid blue, deep navy) that makes molecular manipulation accessible without sacrificing scientific rigor. Leads the gamified learning experience and ensures that every interactive element educates as it entertains.",
+            meta: [
+                '<i class="fas fa-globe"></i> Website: <a href="https://beatascienceart.com" target="_blank" class="orcid-link">beatascienceart.com</a>',
+                '<i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/beatascienceart" target="_blank" class="orcid-link">Beata Mierzwa</a>'
+            ]
+        }
+    ];
+
+    function renderTeam() {
+        const container = document.getElementById('teamGrid');
+        if (!container) return;
+        let html = '';
+        for (const member of teamMembers) {
+            let ageHtml = '';
+            if (member.birthDate) {
+                const age = calculateAge(member.birthDate);
+                ageHtml = `<span class="age-badge">${age} years old</span>`;
+            }
+            html += `
+                <div class="team-card">
+                    <img src="${member.img}" alt="${member.name}" class="team-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22140%22%20viewBox%3D%220%200%20140%20140%22%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20fill%3D%22%231e2328%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%230077FF%22%20font-size%3D%2240%22%20font-family%3D%22FontAwesome%22%3E%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    <div class="team-info">
+                        <div class="team-name">${member.name}</div>
+                        <div class="team-role">${member.role}</div>
+                        <div class="team-detail">${member.detailIntro} ${ageHtml}</div>
+                        <div class="team-detail">${member.roleDetail}</div>
+                        ${member.meta.length ? '<div class="team-meta">' + member.meta.join('</div><div class="team-meta">') + '</div>' : ''}
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+    }
+
+    renderTeam();
+
+    // Аккордеон
     document.querySelectorAll('.accordion-header').forEach(header => {
         header.addEventListener('click', function() {
             this.closest('.accordion-item').classList.toggle('open');
