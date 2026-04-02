@@ -38,24 +38,22 @@
             color: #c25900;
         }
 
-        /* Контейнер для переключателя вверху — всегда одна строка */
+        /* Контейнер для переключателя вверху — без прокрутки, всегда одна строка */
         .top-bar {
             width: 100%;
             max-width: 1000px;
             display: flex;
             justify-content: flex-end;
             margin-bottom: 20px;
-            overflow-x: auto;
-            white-space: nowrap;
         }
 
         .language-switcher {
             display: flex;
             flex-direction: row;
+            flex-wrap: nowrap;      /* запрещаем перенос */
             gap: 8px;
             padding: 6px 12px;
             border-radius: 48px;
-            white-space: nowrap;
         }
 
         .lang-btn {
@@ -72,7 +70,7 @@
             align-items: center;
             gap: 8px;
             white-space: nowrap;
-            flex-shrink: 0;
+            flex-shrink: 1;         /* разрешаем сжатие кнопок при необходимости */
         }
 
         .lang-btn img {
@@ -219,6 +217,7 @@
             margin-bottom: 6px;
         }
 
+        /* Мобильная адаптация переключателя — всегда одна строка, сжатие */
         @media (max-width: 680px) {
             body {
                 padding: 12px;
@@ -233,29 +232,64 @@
                 margin-bottom: 8px;
                 margin-right: 0;
             }
+            .card {
+                padding: 18px;
+            }
+            .language-switcher {
+                gap: 6px;
+                padding: 4px 8px;
+            }
             .lang-btn {
-                padding: 5px 12px;
+                padding: 4px 10px;
                 font-size: 0.75rem;
+                gap: 6px;
             }
             .lang-btn img {
                 width: 20px;
                 height: 14px;
             }
-            .card {
-                padding: 18px;
+        }
+
+        @media (max-width: 520px) {
+            .language-switcher {
+                gap: 4px;
+                padding: 4px 6px;
+            }
+            .lang-btn {
+                padding: 4px 8px;
+                font-size: 0.7rem;
+                gap: 4px;
+            }
+            .lang-btn img {
+                width: 18px;
+                height: 12px;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 440px) {
             .lang-btn {
-                gap: 4px;
+                padding: 3px 6px;
+                font-size: 0.65rem;
+                gap: 3px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .lang-btn {
+                padding: 2px 5px;
+                font-size: 0.6rem;
+                gap: 2px;
+            }
+            .lang-btn img {
+                width: 16px;
+                height: 11px;
             }
         }
     </style>
 </head>
 <body>
 
-<!-- Переключатель языков в самом верху, всегда в одну строку -->
+<!-- Переключатель языков в самом верху, всегда в одну строку без прокрутки -->
 <div class="top-bar">
     <div class="language-switcher" id="langSwitcher">
         <button class="lang-btn" data-lang="en">
@@ -357,8 +391,7 @@
 </div>
 
 <script>
-    // ---------- TRANSLATIONS WITH LINKS TO AMAZON BRAKET (including French) ----------
-    // Все упоминания QFold заменены на qFold (с маленькой q)
+    // ---------- TRANSLATIONS ----------
     const translations = {
         en: {
             title: 'qFold on <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a>',
