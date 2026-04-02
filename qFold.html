@@ -1,96 +1,451 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Инструкция: QFold на Amazon Braket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>QFold on Amazon Braket - Multi-language Guide</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 40px auto; padding: 0 20px; background-color: #f4f7f9; }
-        .card { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .header-container { display: flex; align-items: center; justify-content: center; gap: 15px; border-bottom: 2px solid #ff9900; padding-bottom: 10px; margin-bottom: 20px; }
-        .logo { width: 50px; height: auto; border-radius: 5px; }
-        h1 { margin: 0; color: #232f3e; font-size: 1.8em; }
-        h2 { color: #111; margin-top: 25px; font-size: 1.2em; }
-        .step { display: flex; margin-bottom: 15px; }
-        .step-number { background: #ff9900; color: white; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-weight: bold; margin-right: 15px; flex-shrink: 0; }
-        code { background: #e0e0e0; padding: 2px 5px; border-radius: 4px; font-family: monospace; }
-        .warning { background: #fff4e5; border-left: 4px solid #ff9900; padding: 15px; margin: 20px 0; font-size: 0.9em; }
-        .footer { text-align: center; margin-top: 30px; font-size: 0.85em; color: #666; }
-        .footer a { color: #0073bb; text-decoration: none; font-weight: bold; }
-        .footer a:hover { text-decoration: underline; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f9;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            padding: clamp(20px, 5vw, 40px);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            max-width: 1000px;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid rgb(237, 113, 0);
+            padding-bottom: 16px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            width: 50px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        h1 {
+            margin: 0;
+            color: #232f3e;
+            font-size: clamp(1.4rem, 5vw, 1.9rem);
+            font-weight: 600;
+        }
+
+        .language-switcher {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            background: #f8f9fa;
+            padding: 6px 12px;
+            border-radius: 48px;
+            border: 1px solid #e0e4e8;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #2c3e50;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .lang-btn img {
+            width: 22px;
+            height: 16px;
+            object-fit: cover;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+
+        .lang-btn:hover {
+            background: #e9ecef;
+        }
+
+        .lang-btn.active {
+            background: rgb(237, 113, 0);
+            color: white;
+            box-shadow: 0 2px 6px rgba(237, 113, 0, 0.3);
+        }
+
+        .lang-btn.active img {
+            filter: brightness(1.05);
+        }
+
+        /* Steps */
+        .step {
+            display: flex;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .step-number {
+            background: rgb(237, 113, 0);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: 18px;
+            flex-shrink: 0;
+            font-size: 1rem;
+        }
+
+        .step-text {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        code {
+            background: #eef2f5;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 0.85em;
+            color: #d63384;
+            word-break: break-word;
+        }
+
+        .warning {
+            background: #fff4e5;
+            border-left: 5px solid rgb(237, 113, 0);
+            padding: 16px 20px;
+            margin: 28px 0;
+            font-size: 0.95rem;
+            border-radius: 12px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: #5a6874;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 24px;
+        }
+
+        .footer a {
+            color: rgb(237, 113, 0);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+            color: #c25900;
+        }
+
+        .github-icon {
+            margin-right: 6px;
+            font-size: 0.9rem;
+        }
+
+        ul {
+            margin: 8px 0 0 20px;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        @media (max-width: 680px) {
+            body {
+                padding: 12px;
+            }
+            .step {
+                flex-direction: column;
+            }
+            .step-number {
+                margin-bottom: 8px;
+                margin-right: 0;
+            }
+            .language-switcher {
+                width: 100%;
+                justify-content: center;
+            }
+            .lang-btn {
+                padding: 5px 12px;
+                font-size: 0.75rem;
+            }
+            .lang-btn img {
+                width: 20px;
+                height: 14px;
+            }
+            .card {
+                padding: 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lang-btn span:not(img) {
+                display: inline;
+            }
+            .lang-btn {
+                gap: 4px;
+            }
+        }
     </style>
 </head>
 <body>
 
 <div class="card">
     <div class="header-container">
-        <img src="https://qfoldit.github.io/img/1/logo/amazon-braket.svg" alt="Amazon Braket Logo" class="logo">
-        <h1>QFold на Amazon Braket</h1>
+        <div class="logo-area">
+            <img src="https://qfoldit.github.io/img/1/logo/amazon-braket.svg" alt="Amazon Braket Logo" class="logo">
+            <h1 data-i18n="title">QFold on Amazon Braket</h1>
+        </div>
+        <div class="language-switcher" id="langSwitcher">
+            <!-- flags via flagsapi.com (GB, DE, RU, JP, CN) -->
+            <button class="lang-btn" data-lang="en">
+                <img src="https://flagsapi.com/GB/flat/32.png" alt="English flag" width="22" height="16" loading="lazy"> EN
+            </button>
+            <button class="lang-btn" data-lang="de">
+                <img src="https://flagsapi.com/DE/flat/32.png" alt="German flag" width="22" height="16" loading="lazy"> DE
+            </button>
+            <button class="lang-btn" data-lang="ru">
+                <img src="https://flagsapi.com/RU/flat/32.png" alt="Russian flag" width="22" height="16" loading="lazy"> RU
+            </button>
+            <button class="lang-btn" data-lang="ja">
+                <img src="https://flagsapi.com/JP/flat/32.png" alt="Japanese flag" width="22" height="16" loading="lazy"> JA
+            </button>
+            <button class="lang-btn" data-lang="zh">
+                <img src="https://flagsapi.com/CN/flat/32.png" alt="Chinese flag" width="22" height="16" loading="lazy"> 中文
+            </button>
+        </div>
     </div>
     
-    <p>Краткое руководство по развертыванию квантового алгоритма сворачивания белка.</p>
+    <p data-i18n="description">Quick guide to deploying the quantum protein folding algorithm on AWS Braket.</p>
 
+    <!-- Step 1 -->
     <div class="step">
         <div class="step-number">1</div>
-        <div>
-            <strong>Доступ к консоли:</strong> Войдите в свою учетную запись AWS и перейдите в сервис <strong>Amazon Braket</strong>. Убедитесь, что вы находитесь в регионе, поддерживающем нужные устройства (например, <em>us-east-1</em>).
+        <div class="step-text" data-i18n="step1">
+            <strong>Console access:</strong> Log in to your AWS account and navigate to <strong>Amazon Braket</strong>. Make sure you are in a region that supports the required devices (e.g., <em>us-east-1</em>).
         </div>
     </div>
 
+    <!-- Step 2 -->
     <div class="step">
         <div class="step-number">2</div>
-        <div>
-            <strong>Создание блокнота:</strong> В левом меню выберите <strong>Notebooks</strong> -> <strong>Create notebook instance</strong>. 
+        <div class="step-text" data-i18n="step2">
+            <strong>Create a notebook:</strong> In the left menu, select <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.
             <ul>
-                <li>Имя: <code>qfold-instance</code></li>
-                <li>Тип: <code>ml.t3.medium</code> (минимально достаточный)</li>
+                <li>Name: <code>qfold-instance</code></li>
+                <li>Type: <code>ml.t3.medium</code> (minimum sufficient)</li>
             </ul>
         </div>
     </div>
 
+    <!-- Step 3 -->
     <div class="step">
         <div class="step-number">3</div>
-        <div>
-            <strong>Открытие Jupyter:</strong> Когда статус сменится на <span style="color: green;">InService</span>, нажмите <strong>Open JupyterLab</strong>.
+        <div class="step-text" data-i18n="step3">
+            <strong>Open Jupyter:</strong> When the status changes to <span style="color: green;">InService</span>, click <strong>Open JupyterLab</strong>.
         </div>
     </div>
 
+    <!-- Step 4 -->
     <div class="step">
         <div class="step-number">4</div>
-        <div>
-            <strong>Поиск QFold:</strong> Перейдите по пути: 
-            <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> 
-            и откройте файл <code>qfold.ipynb</code>.
+        <div class="step-text" data-i18n="step4">
+            <strong>Find QFold:</strong> Navigate to <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> and open the file <code>qfold.ipynb</code>.
         </div>
     </div>
 
+    <!-- Step 5 -->
     <div class="step">
         <div class="step-number">5</div>
-        <div>
-            <strong>Настройка устройства:</strong> В коде найдите переменную <code>device</code>. 
+        <div class="step-text" data-i18n="step5">
+            <strong>Device configuration:</strong> In the code, find the <code>device</code> variable.
             <ul>
-                <li>Для бесплатного теста: <code>LocalSimulator()</code></li>
-                <li>Для QPU: укажите ARN (например, Rigetti или IonQ).</li>
+                <li>For free test: <code>LocalSimulator()</code></li>
+                <li>For QPU: provide ARN (e.g., Rigetti or IonQ).</li>
             </ul>
         </div>
     </div>
 
-    <div class="warning">
-        <strong>Внимание:</strong> Запуск на реальных квантовых процессорах (QPU) платный. Сначала отладьте код на локальном симуляторе.
+    <!-- Warning -->
+    <div class="warning" data-i18n="warning">
+        <strong>Note:</strong> Running on real QPU is paid. First debug on a local simulator.
     </div>
 
+    <!-- Step 6 -->
     <div class="step">
         <div class="step-number">6</div>
-        <div>
-            <strong>Запуск:</strong> Нажмите <em>Run -> Run All Cells</em>. Результаты оптимизации структуры белка появятся в нижних ячейках.
+        <div class="step-text" data-i18n="step6">
+            <strong>Run:</strong> Click <em>Run → Run All Cells</em>. The protein structure optimization results will appear in the bottom cells.
         </div>
     </div>
 </div>
 
-<div class="footer">
-    Создано для быстрого старта с QFold в экосистеме AWS.<br>
-    Исходный код проекта: <a href="https://github.com/qfoldit" target="_blank">github.com/qfoldit</a>
+<div class="footer" data-i18n="footer">
+    Created for quick start with QFold in the AWS ecosystem.<br>
+    <i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank">github.com/qfoldit</a>
 </div>
+
+<script>
+    // ---------- MULTILANGUAGE DATA ----------
+    const translations = {
+        en: {
+            title: "QFold on Amazon Braket",
+            description: "Quick guide to deploying the quantum protein folding algorithm on AWS Braket.",
+            step1: "<strong>Console access:</strong> Log in to your AWS account and navigate to <strong>Amazon Braket</strong>. Make sure you are in a region that supports the required devices (e.g., <em>us-east-1</em>).",
+            step2: "<strong>Create a notebook:</strong> In the left menu, select <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.<br><ul><li>Name: <code>qfold-instance</code></li><li>Type: <code>ml.t3.medium</code> (minimum sufficient)</li></ul>",
+            step3: "<strong>Open Jupyter:</strong> When the status changes to <span style=\"color: green;\">InService</span>, click <strong>Open JupyterLab</strong>.",
+            step4: "<strong>Find QFold:</strong> Navigate to <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> and open the file <code>qfold.ipynb</code>.",
+            step5: "<strong>Device configuration:</strong> In the code, find the <code>device</code> variable.<br><ul><li>For free test: <code>LocalSimulator()</code></li><li>For QPU: provide ARN (e.g., Rigetti or IonQ).</li></ul>",
+            warning: "<strong>Note:</strong> Running on real QPU is paid. First debug on a local simulator.",
+            step6: "<strong>Run:</strong> Click <em>Run → Run All Cells</em>. The protein structure optimization results will appear in the bottom cells.",
+            footer: "Created for quick start with QFold in the AWS ecosystem.<br><i class='fab fa-github github-icon'></i> <a href='https://github.com/qfoldit' target='_blank'>github.com/qfoldit</a>"
+        },
+        de: {
+            title: "QFold auf Amazon Braket",
+            description: "Kurzanleitung zur Bereitstellung des Quanten-Faltungsalgorithmus für Proteine auf AWS Braket.",
+            step1: "<strong>Konsolenzugriff:</strong> Melden Sie sich bei Ihrem AWS-Konto an und navigieren Sie zu <strong>Amazon Braket</strong>. Stellen Sie sicher, dass Sie sich in einer Region befinden, die die erforderlichen Geräte unterstützt (z. B. <em>us-east-1</em>).",
+            step2: "<strong>Notebook erstellen:</strong> Wählen Sie im linken Menü <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.<br><ul><li>Name: <code>qfold-instance</code></li><li>Typ: <code>ml.t3.medium</code> (minimal ausreichend)</li></ul>",
+            step3: "<strong>Jupyter öffnen:</strong> Wenn der Status auf <span style=\"color: green;\">InService</span> wechselt, klicken Sie auf <strong>Open JupyterLab</strong>.",
+            step4: "<strong>QFold finden:</strong> Navigieren Sie zu <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> und öffnen Sie die Datei <code>qfold.ipynb</code>.",
+            step5: "<strong>Gerätekonfiguration:</strong> Suchen Sie im Code nach der Variablen <code>device</code>.<br><ul><li>Für kostenlosen Test: <code>LocalSimulator()</code></li><li>Für QPU: ARN angeben (z. B. Rigetti oder IonQ).</li></ul>",
+            warning: "<strong>Hinweis:</strong> Die Ausführung auf echten QPUs ist kostenpflichtig. Debuggen Sie zuerst auf einem lokalen Simulator.",
+            step6: "<strong>Ausführen:</strong> Klicken Sie auf <em>Run → Run All Cells</em>. Die Ergebnisse der Proteinoptimierung erscheinen in den unteren Zellen.",
+            footer: "Erstellt für den schnellen Einstieg in QFold in der AWS-Ökosystem.<br><i class='fab fa-github github-icon'></i> <a href='https://github.com/qfoldit' target='_blank'>github.com/qfoldit</a>"
+        },
+        ru: {
+            title: "QFold на Amazon Braket",
+            description: "Краткое руководство по развертыванию квантового алгоритма сворачивания белка на AWS Braket.",
+            step1: "<strong>Доступ к консоли:</strong> Войдите в свою учетную запись AWS и перейдите в сервис <strong>Amazon Braket</strong>. Убедитесь, что вы находитесь в регионе, поддерживающем нужные устройства (например, <em>us-east-1</em>).",
+            step2: "<strong>Создание блокнота:</strong> В левом меню выберите <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.<br><ul><li>Имя: <code>qfold-instance</code></li><li>Тип: <code>ml.t3.medium</code> (минимально достаточный)</li></ul>",
+            step3: "<strong>Открытие Jupyter:</strong> Когда статус сменится на <span style=\"color: green;\">InService</span>, нажмите <strong>Open JupyterLab</strong>.",
+            step4: "<strong>Поиск QFold:</strong> Перейдите по пути: <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> и откройте файл <code>qfold.ipynb</code>.",
+            step5: "<strong>Настройка устройства:</strong> В коде найдите переменную <code>device</code>.<br><ul><li>Для бесплатного теста: <code>LocalSimulator()</code></li><li>Для QPU: укажите ARN (например, Rigetti или IonQ).</li></ul>",
+            warning: "<strong>Внимание:</strong> Запуск на реальных квантовых процессорах (QPU) платный. Сначала отладьте код на локальном симуляторе.",
+            step6: "<strong>Запуск:</strong> Нажмите <em>Run → Run All Cells</em>. Результаты оптимизации структуры белка появятся в нижних ячейках.",
+            footer: "Создано для быстрого старта с QFold в экосистеме AWS.<br><i class='fab fa-github github-icon'></i> <a href='https://github.com/qfoldit' target='_blank'>github.com/qfoldit</a>"
+        },
+        ja: {
+            title: "Amazon Braket での QFold",
+            description: "AWS Braket での量子タンパク質フォールディングアルゴリズム展開のクイックガイド。",
+            step1: "<strong>コンソールアクセス:</strong> AWS アカウントにログインし、<strong>Amazon Braket</strong> サービスに移動します。必要なデバイスをサポートするリージョン（例: <em>us-east-1</em>）にいることを確認してください。",
+            step2: "<strong>ノートブックの作成:</strong> 左側のメニューから <strong>Notebooks</strong> → <strong>Create notebook instance</strong> を選択します。<br><ul><li>名前: <code>qfold-instance</code></li><li>タイプ: <code>ml.t3.medium</code> (最小限で十分)</li></ul>",
+            step3: "<strong>Jupyter を開く:</strong> ステータスが <span style=\"color: green;\">InService</span> に変わったら、<strong>Open JupyterLab</strong> をクリックします。",
+            step4: "<strong>QFold を見つける:</strong> <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> に移動し、<code>qfold.ipynb</code> ファイルを開きます。",
+            step5: "<strong>デバイス設定:</strong> コード内で <code>device</code> 変数を見つけます。<br><ul><li>無料テストの場合: <code>LocalSimulator()</code></li><li>QPU の場合: ARN を指定します（例: Rigetti または IonQ）。</li></ul>",
+            warning: "<strong>注意:</strong> 実際の QPU での実行は有料です。まずローカルシミュレーターでデバッグしてください。",
+            step6: "<strong>実行:</strong> <em>Run → Run All Cells</em> をクリックします。タンパク質構造の最適化結果が下部のセルに表示されます。",
+            footer: "AWS エコシステムで QFold を迅速に開始するために作成されました。<br><i class='fab fa-github github-icon'></i> <a href='https://github.com/qfoldit' target='_blank'>github.com/qfoldit</a>"
+        },
+        zh: {
+            title: "亚马逊 Braket 上的 QFold",
+            description: "在 AWS Braket 上部署量子蛋白质折叠算法的快速指南。",
+            step1: "<strong>控制台访问：</strong> 登录您的 AWS 账户，进入 <strong>Amazon Braket</strong> 服务。确保您所在的区域支持所需的设备（例如 <em>us-east-1</em>）。",
+            step2: "<strong>创建笔记本：</strong> 在左侧菜单中选择 <strong>Notebooks</strong> → <strong>Create notebook instance</strong>。<br><ul><li>名称：<code>qfold-instance</code></li><li>类型：<code>ml.t3.medium</code>（最低配置足够）</li></ul>",
+            step3: "<strong>打开 Jupyter：</strong> 当状态变为 <span style=\"color: green;\">InService</span> 时，点击 <strong>Open JupyterLab</strong>。",
+            step4: "<strong>查找 QFold：</strong> 导航到 <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> 并打开文件 <code>qfold.ipynb</code>。",
+            step5: "<strong>设备配置：</strong> 在代码中找到变量 <code>device</code>。<br><ul><li>免费测试：<code>LocalSimulator()</code></li><li>使用 QPU：提供 ARN（例如 Rigetti 或 IonQ）。</li></ul>",
+            warning: "<strong>注意：</strong> 在真实 QPU 上运行需要付费。请先在本地模拟器上进行调试。",
+            step6: "<strong>运行：</strong> 点击 <em>Run → Run All Cells</em>。蛋白质结构优化结果将显示在底部单元格中。",
+            footer: "为在 AWS 生态系统中快速启动 QFold 而创建。<br><i class='fab fa-github github-icon'></i> <a href='https://github.com/qfoldit' target='_blank'>github.com/qfoldit</a>"
+        }
+    };
+
+    // Elements with data-i18n
+    const elements = {
+        title: document.querySelector('[data-i18n="title"]'),
+        description: document.querySelector('[data-i18n="description"]'),
+        step1: document.querySelector('[data-i18n="step1"]'),
+        step2: document.querySelector('[data-i18n="step2"]'),
+        step3: document.querySelector('[data-i18n="step3"]'),
+        step4: document.querySelector('[data-i18n="step4"]'),
+        step5: document.querySelector('[data-i18n="step5"]'),
+        warning: document.querySelector('[data-i18n="warning"]'),
+        step6: document.querySelector('[data-i18n="step6"]'),
+        footer: document.querySelector('[data-i18n="footer"]')
+    };
+
+    let currentLang = localStorage.getItem('qfold_lang') || 'en';
+
+    function setLanguage(lang) {
+        if (!translations[lang]) return;
+        
+        for (const key in elements) {
+            if (elements[key] && translations[lang][key]) {
+                elements[key].innerHTML = translations[lang][key];
+            }
+        }
+        
+        // Update active class on buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            const btnLang = btn.getAttribute('data-lang');
+            if (btnLang === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+        
+        localStorage.setItem('qfold_lang', lang);
+        currentLang = lang;
+        document.documentElement.lang = lang;
+    }
+
+    // Event listeners for language buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const lang = btn.getAttribute('data-lang');
+            setLanguage(lang);
+        });
+    });
+
+    // Apply initial language
+    setLanguage(currentLang);
+</script>
 
 </body>
 </html>
