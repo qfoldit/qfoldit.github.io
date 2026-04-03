@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>qFold on Amazon Braket - Multi-language Guide</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        ::-webkit-scrollbar {
+            width: 0px;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f9;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        a {
+            color: rgb(237, 113, 0);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #c25900;
+        }
+
+        .top-bar {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .language-switcher {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            gap: 8px;
+            padding: 6px 12px;
+            border-radius: 48px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #2c3e50;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+            flex-shrink: 1;
+        }
+
+        .lang-btn svg {
+            width: 22px;
+            height: 16px;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .lang-btn:hover {
+            background: #e9ecef;
+        }
+
+        .lang-btn.active {
+            background: rgb(237, 113, 0);
+            color: white;
+            box-shadow: 0 2px 6px rgba(237, 113, 0, 0.3);
+        }
+        .lang-btn.active:hover {
+            background: rgb(237, 113, 0);
+            text-decoration: none;
+        }
+
+        .card {
+            background: white;
+            padding: clamp(20px, 5vw, 40px);
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            max-width: 1000px;
+            width: 100%;
+            transition: all 0.2s ease;
+            margin-bottom: 30px;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid rgb(237, 113, 0);
+            padding-bottom: 16px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            width: 50px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        h1 {
+            margin: 0;
+            color: #232f3e;
+            font-size: clamp(1.4rem, 5vw, 1.9rem);
+            font-weight: 600;
+        }
+        h1 a {
+            color: rgb(237, 113, 0);
+        }
+
+        .description {
+            margin-bottom: 25px;
+        }
+
+        .step {
+            display: flex;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .step-number {
+            background: rgb(237, 113, 0);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: 18px;
+            flex-shrink: 0;
+            font-size: 1rem;
+        }
+
+        .step-text {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        code {
+            background: #eef2f5;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 0.85em;
+            color: #d63384;
+            word-break: break-word;
+        }
+
+        .warning {
+            background: #fff4e5;
+            border-left: 5px solid rgb(237, 113, 0);
+            padding: 16px 20px;
+            margin: 28px 0;
+            font-size: 0.95rem;
+            border-radius: 12px;
+        }
+
+        /* Консоль — новый блок */
+        .console-section {
+            margin-top: 24px;
+            margin-bottom: 20px;
+        }
+        .console-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #2c3e50;
+        }
+        .console-title i {
+            color: rgb(237, 113, 0);
+        }
+        .console-window {
+            background: #1e1e2f;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+            font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+            font-size: 0.85rem;
+        }
+        .console-output {
+            background: #0f0f1a;
+            color: #d4d4dc;
+            padding: 16px;
+            height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            border-bottom: 1px solid #2a2a3a;
+        }
+        .console-line {
+            margin-bottom: 6px;
+            display: flex;
+            gap: 8px;
+        }
+        .console-prompt {
+            color: #6eff9e;
+            user-select: none;
+        }
+        .console-input-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #1e1e2f;
+            padding: 12px 16px;
+            border-top: 1px solid #2a2a3a;
+        }
+        .console-input-prompt {
+            color: #6eff9e;
+            font-weight: bold;
+        }
+        .console-input {
+            background: transparent;
+            border: none;
+            color: #f0f0f0;
+            font-family: inherit;
+            font-size: 0.85rem;
+            flex: 1;
+            outline: none;
+        }
+        .console-input::placeholder {
+            color: #6c6c8a;
+        }
+        .console-help {
+            background: #2a2a3a;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            color: #bbb;
+            text-align: center;
+            margin-top: 8px;
+        }
+        .console-help span {
+            color: #ffaa44;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: auto;
+            padding: 20px 0 10px;
+            font-size: 0.85rem;
+            color: #5a6874;
+            border-top: 1px solid #e2e8f0;
+            width: 100%;
+            max-width: 1000px;
+        }
+        .footer a {
+            color: rgb(237, 113, 0);
+            font-weight: 600;
+        }
+
+        .github-icon {
+            margin-right: 6px;
+            font-size: 0.9rem;
+        }
+
+        ul {
+            margin: 8px 0 0 20px;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        @media (max-width: 680px) {
+            body {
+                padding: 12px;
+            }
+            .top-bar {
+                margin-bottom: 12px;
+            }
+            .step {
+                flex-direction: column;
+            }
+            .step-number {
+                margin-bottom: 8px;
+                margin-right: 0;
+            }
+            .card {
+                padding: 18px;
+            }
+            .language-switcher {
+                gap: 6px;
+                padding: 4px 8px;
+            }
+            .lang-btn {
+                padding: 4px 10px;
+                font-size: 0.75rem;
+                gap: 6px;
+            }
+            .lang-btn svg {
+                width: 20px;
+                height: 14px;
+            }
+            .console-output {
+                height: 160px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .language-switcher {
+                gap: 4px;
+                padding: 4px 6px;
+            }
+            .lang-btn {
+                padding: 4px 8px;
+                font-size: 0.7rem;
+                gap: 4px;
+            }
+            .lang-btn svg {
+                width: 18px;
+                height: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="language-switcher" id="langSwitcher">
+        <button class="lang-btn" data-lang="en">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="22" height="16">
+                <clipPath id="t"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
+                <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                <path d="M0,0 L60,30 M60,0 L30,30" stroke="#fff" stroke-width="6"/>
+                <path d="M0,0 L60,30 M60,0 L30,30" stroke="#C8102E" stroke-width="3"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="5"/>
+            </svg>
+        </button>
+        <button class="lang-btn" data-lang="de">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3" width="22" height="16">
+                <rect width="5" height="1" y="0" fill="#000"/>
+                <rect width="5" height="1" y="1" fill="#D00"/>
+                <rect width="5" height="1" y="2" fill="#FFCE00"/>
+            </svg>
+        </button>
+        <button class="lang-btn" data-lang="fr">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="22" height="16">
+                <rect width="1" height="2" x="0" fill="#0055A4"/>
+                <rect width="1" height="2" x="1" fill="#fff"/>
+                <rect width="1" height="2" x="2" fill="#EF4135"/>
+            </svg>
+        </button>
+        <button class="lang-btn" data-lang="ru">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="22" height="16">
+                <rect width="3" height="2/3" fill="#fff"/>
+                <rect y="0.66" width="3" height="0.66" fill="#0039A6"/>
+                <rect y="1.32" width="3" height="0.68" fill="#D52B1E"/>
+            </svg>
+        </button>
+        <button class="lang-btn" data-lang="ja">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="22" height="16">
+                <rect width="3" height="2" fill="#fff"/>
+                <circle cx="1.5" cy="1" r="0.6" fill="#BC002D"/>
+            </svg>
+        </button>
+        <button class="lang-btn" data-lang="zh">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="22" height="16">
+                <rect width="3" height="2" fill="#DE2910"/>
+                <circle cx="1.2" cy="0.9" r="0.4" fill="#FFDE00"/>
+                <polygon points="1.2,0.7 1.25,0.82 1.38,0.82 1.28,0.89 1.31,1.01 1.2,0.94 1.09,1.01 1.12,0.89 1.02,0.82 1.15,0.82" fill="#FFDE00"/>
+                <polygon points="1.2,0.9 1.23,0.97 1.31,0.97 1.25,1.01 1.27,1.09 1.2,1.05 1.13,1.09 1.15,1.01 1.09,0.97 1.17,0.97" fill="#FFDE00"/>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<div class="card">
+    <div class="header-container">
+        <div class="logo-area">
+            <img src="https://qfoldit.github.io/img/1/logo/amazon-braket.svg" alt="Amazon Braket Logo" class="logo">
+            <h1 data-i18n="title">qFold on <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></h1>
+        </div>
+    </div>
+    
+    <p class="description" data-i18n="description">Quick guide to deploying the quantum protein folding algorithm on <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS Braket</a>.</p>
+
+    <!-- Step 1 -->
+    <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-text" data-i18n="step1">
+            <strong>Console access:</strong> Log in to your AWS account and navigate to <strong><a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></strong>. Make sure you are in a region that supports the required devices (e.g., <em>us-east-1</em>).
+        </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-text" data-i18n="step2">
+            <strong>Create a notebook:</strong> In the left menu, select <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.
+            <ul>
+                <li>Name: <code>qfold-instance</code></li>
+                <li>Type: <code>ml.t3.medium</code> (minimum sufficient)</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-text" data-i18n="step3">
+            <strong>Open Jupyter:</strong> When the status changes to <span style="color: green;">InService</span>, click <strong>Open JupyterLab</strong>.
+        </div>
+    </div>
+
+    <!-- Step 4 -->
+    <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-text" data-i18n="step4">
+            <strong>Find qFold:</strong> Navigate to <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> and open the file <code><a href="https://github.com/qfoldit/AWS-Deploy/tree/main/source/src/notebook/healthcare-and-life-sciences/c-1-protein-folding-quantum-random-walk" target="blank">qfold.ipynb</a></code>.
+        </div>
+    </div>
+
+    <!-- Step 5 -->
+    <div class="step">
+        <div class="step-number">5</div>
+        <div class="step-text" data-i18n="step5">
+            <strong>Device configuration:</strong> In the code, find the <code>device</code> variable.
+            <ul>
+                <li>For free test: <code>LocalSimulator()</code></li>
+                <li>For QPU: provide ARN (e.g., Rigetti or IonQ).</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Warning -->
+    <div class="warning" data-i18n="warning">
+        <strong>Note:</strong> Running on real QPU is paid. First debug on a local simulator.
+    </div>
+
+    <!-- Step 6 -->
+    <div class="step">
+        <div class="step-number">6</div>
+        <div class="step-text" data-i18n="step6">
+            <strong>Run:</strong> Click <em>Run → Run All Cells</em>. The protein structure optimization results will appear in the bottom cells.
+        </div>
+    </div>
+
+    <!-- === ВСТРОЕННАЯ КОНСОЛЬ (демонстрационная) === -->
+    <div class="console-section">
+        <div class="console-title">
+            <i class="fas fa-terminal"></i> <span data-i18n="console_title">Interactive Console (demo)</span>
+        </div>
+        <div class="console-window">
+            <div class="console-output" id="consoleOutput">
+                <div class="console-line"><span class="console-prompt">$</span> <span>Welcome to qFold demo terminal</span></div>
+                <div class="console-line"><span class="console-prompt">$</span> <span>Type 'help' to see available commands</span></div>
+                <div class="console-line"><span class="console-prompt">$</span> <span>Example: device = LocalSimulator()</span></div>
+                <div class="console-line"><span class="console-prompt">$</span> <span>─────────────────────────────</span></div>
+            </div>
+            <div class="console-input-line">
+                <span class="console-input-prompt">❯</span>
+                <input type="text" class="console-input" id="consoleInput" placeholder="Enter command... (help for list)" autocomplete="off">
+            </div>
+        </div>
+        <div class="console-help">
+            💡 <span>help</span> — show commands &nbsp;|&nbsp; <span>clear</span> — clear console &nbsp;|&nbsp; <span>run_qfold</span> — simulate qFold execution
+        </div>
+    </div>
+</div>
+
+<div class="footer" data-i18n="footer">
+    Quick start with qFold in the <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS ecosystem</a>.<br>
+    <i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>
+</div>
+
+<script>
+    // ---------- TRANSLATIONS ----------
+    const translations = {
+        en: {
+            title: 'qFold on <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a>',
+            description: 'Quick guide to deploying the quantum protein folding algorithm on <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS Braket</a>.',
+            step1: '<strong>Console access:</strong> Log in to your AWS account and navigate to <strong><a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></strong>. Make sure you are in a region that supports the required devices (e.g., <em>us-east-1</em>).',
+            step2: '<strong>Create a notebook:</strong> In the left menu, select <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.<br><ul><li>Name: <code>qfold-instance</code></li><li>Type: <code>ml.t3.medium</code> (minimum sufficient)</li></ul>',
+            step3: '<strong>Open Jupyter:</strong> When the status changes to <span style="color: green;">InService</span>, click <strong>Open JupyterLab</strong>.',
+            step4: '<strong>Find qFold:</strong> Navigate to <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> and open the file <code>qfold.ipynb</code>.',
+            step5: '<strong>Device configuration:</strong> In the code, find the <code>device</code> variable.<br><ul><li>For free test: <code>LocalSimulator()</code></li><li>For QPU: provide ARN (e.g., Rigetti or IonQ).</li></ul>',
+            warning: '<strong>Note:</strong> Running on real QPU is paid. First debug on a local simulator.',
+            step6: '<strong>Run:</strong> Click <em>Run → Run All Cells</em>. The protein structure optimization results will appear in the bottom cells.',
+            footer: 'Quick start with qFold in the <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS ecosystem</a>.<br><i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>',
+            console_title: 'Interactive Console (demo)'
+        },
+        de: {
+            title: 'qFold auf <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a>',
+            description: 'Kurzanleitung zur Bereitstellung des Quanten-Faltungsalgorithmus für Proteine auf <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS Braket</a>.',
+            step1: '<strong>Konsolenzugriff:</strong> Melden Sie sich bei Ihrem AWS-Konto an und navigieren Sie zu <strong><a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></strong>. Stellen Sie sicher, dass Sie sich in einer Region befinden, die die erforderlichen Geräte unterstützt (z. B. <em>us-east-1</em>).',
+            step2: '<strong>Notebook erstellen:</strong> Wählen Sie im linken Menü <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.<br><ul><li>Name: <code>qfold-instance</code></li><li>Typ: <code>ml.t3.medium</code> (minimal ausreichend)</li></ul>',
+            step3: '<strong>Jupyter öffnen:</strong> Wenn der Status auf <span style="color: green;">InService</span> wechselt, klicken Sie auf <strong>Open JupyterLab</strong>.',
+  
