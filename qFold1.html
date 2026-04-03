@@ -498,7 +498,7 @@
     <i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>
 </div>
 
-<script>
+    <script>
     // ---------- TRANSLATIONS ----------
     const translations = {
         en: {
@@ -520,4 +520,191 @@
             step1: '<strong>Konsolenzugriff:</strong> Melden Sie sich bei Ihrem AWS-Konto an und navigieren Sie zu <strong><a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></strong>. Stellen Sie sicher, dass Sie sich in einer Region befinden, die die erforderlichen Geräte unterstützt (z. B. <em>us-east-1</em>).',
             step2: '<strong>Notebook erstellen:</strong> Wählen Sie im linken Menü <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.<br><ul><li>Name: <code>qfold-instance</code></li><li>Typ: <code>ml.t3.medium</code> (minimal ausreichend)</li></ul>',
             step3: '<strong>Jupyter öffnen:</strong> Wenn der Status auf <span style="color: green;">InService</span> wechselt, klicken Sie auf <strong>Open JupyterLab</strong>.',
-  
+            step4: '<strong>qFold finden:</strong> Navigieren Sie zu <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> und öffnen Sie die Datei <code>qfold.ipynb</code>.',
+            step5: '<strong>Gerätekonfiguration:</strong> Suchen Sie im Code nach der Variablen <code>device</code>.<br><ul><li>Für kostenlosen Test: <code>LocalSimulator()</code></li><li>Für QPU: ARN angeben (z. B. Rigetti oder IonQ).</li></ul>',
+            warning: '<strong>Hinweis:</strong> Die Ausführung auf echten QPUs ist kostenpflichtig. Debuggen Sie zuerst auf einem lokalen Simulator.',
+            step6: '<strong>Ausführen:</strong> Klicken Sie auf <em>Run → Run All Cells</em>. Die Ergebnisse der Proteinoptimierung erscheinen in den unteren Zellen.',
+            footer: 'Schnelleinstieg mit qFold im <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS-Ökosystem</a>.<br><i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>',
+            console_title: 'Interaktive Konsole (Demo)'
+        },
+        fr: {
+            title: 'qFold sur <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a>',
+            description: 'Guide rapide pour déployer l\'algorithme quantique de repliement des protéines sur <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS Braket</a>.',
+            step1: '<strong>Accès à la console :</strong> Connectez-vous à votre compte AWS et accédez à <strong><a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></strong>. Assurez-vous d\'être dans une région prenant en charge les appareils requis (par exemple <em>us-east-1</em>).',
+            step2: '<strong>Créer un notebook :</strong> Dans le menu de gauche, sélectionnez <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.<br><ul><li>Nom : <code>qfold-instance</code></li><li>Type : <code>ml.t3.medium</code> (minimum suffisant)</li></ul>',
+            step3: '<strong>Ouvrir Jupyter :</strong> Lorsque le statut passe à <span style="color: green;">InService</span>, cliquez sur <strong>Open JupyterLab</strong>.',
+            step4: '<strong>Trouver qFold :</strong> Accédez à <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> et ouvrez le fichier <code>qfold.ipynb</code>.',
+            step5: '<strong>Configuration de l\'appareil :</strong> Dans le code, trouvez la variable <code>device</code>.<br><ul><li>Pour un test gratuit : <code>LocalSimulator()</code></li><li>Pour QPU : fournissez l\'ARN (ex. Rigetti ou IonQ).</li></ul>',
+            warning: '<strong>Remarque :</strong> L\'exécution sur un vrai QPU est payante. Déboguez d\'abord sur un simulateur local.',
+            step6: '<strong>Exécuter :</strong> Cliquez sur <em>Run → Run All Cells</em>. Les résultats d\'optimisation de la structure des protéines apparaîtront dans les cellules du bas.',
+            footer: 'Démarrage rapide avec qFold dans l\'<a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">écosystème AWS</a>.<br><i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>',
+            console_title: 'Console interactive (démo)'
+        },
+        ru: {
+            title: 'qFold на <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a>',
+            description: 'Краткое руководство по развертыванию квантового алгоритма сворачивания белка на <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS Braket</a>.',
+            step1: '<strong>Доступ к консоли:</strong> Войдите в свою учетную запись AWS и перейдите в сервис <strong><a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></strong>. Убедитесь, что вы находитесь в регионе, поддерживающем нужные устройства (например, <em>us-east-1</em>).',
+            step2: '<strong>Создание блокнота:</strong> В левом меню выберите <strong>Notebooks</strong> → <strong>Create notebook instance</strong>.<br><ul><li>Имя: <code>qfold-instance</code></li><li>Тип: <code>ml.t3.medium</code> (минимально достаточный)</li></ul>',
+            step3: '<strong>Открытие Jupyter:</strong> Когда статус сменится на <span style="color: green;">InService</span>, нажмите <strong>Open JupyterLab</strong>.',
+            step4: '<strong>Поиск qFold:</strong> Перейдите по пути: <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> и откройте файл <code>qfold.ipynb</code>.',
+            step5: '<strong>Настройка устройства:</strong> В коде найдите переменную <code>device</code>.<br><ul><li>Для бесплатного теста: <code>LocalSimulator()</code></li><li>Для QPU: укажите ARN (например, Rigetti или IonQ).</li></ul>',
+            warning: '<strong>Внимание:</strong> Запуск на реальных квантовых процессорах (QPU) платный. Сначала отладьте код на локальном симуляторе.',
+            step6: '<strong>Запуск:</strong> Нажмите <em>Run → Run All Cells</em>. Результаты оптимизации структуры белка появятся в нижних ячейках.',
+            footer: 'Быстрый старт с qFold в <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">экосистеме AWS</a>.<br><i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>',
+            console_title: 'Интерактивная консоль (демо)'
+        },
+        ja: {
+            title: '<a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a> での qFold',
+            description: '<a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS Braket</a> での量子タンパク質フォールディングアルゴリズム展開のクイックガイド。',
+            step1: '<strong>コンソールアクセス:</strong> AWS アカウントにログインし、<strong><a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></strong> サービスに移動します。必要なデバイスをサポートするリージョン（例: <em>us-east-1</em>）にいることを確認してください。',
+            step2: '<strong>ノートブックの作成:</strong> 左側のメニューから <strong>Notebooks</strong> → <strong>Create notebook instance</strong> を選択します。<br><ul><li>名前: <code>qfold-instance</code></li><li>タイプ: <code>ml.t3.medium</code> (最小限で十分)</li></ul>',
+            step3: '<strong>Jupyter を開く:</strong> ステータスが <span style="color: green;">InService</span> に変わったら、<strong>Open JupyterLab</strong> をクリックします。',
+            step4: '<strong>qFold を見つける:</strong> <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> に移動し、<code>qfold.ipynb</code> ファイルを開きます。',
+            step5: '<strong>デバイス設定:</strong> コード内で <code>device</code> 変数を見つけます。<br><ul><li>無料テストの場合: <code>LocalSimulator()</code></li><li>QPU の場合: ARN を指定します（例: Rigetti または IonQ）。</li></ul>',
+            warning: '<strong>注意:</strong> 実際の QPU での実行は有料です。まずローカルシミュレーターでデバッグしてください。',
+            step6: '<strong>実行:</strong> <em>Run → Run All Cells</em> をクリックします。タンパク質構造の最適化結果が下部のセルに表示されます。',
+            footer: 'AWS エコシステムで qFold を迅速に開始するために作成されました。<br><i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>',
+            console_title: 'インタラクティブコンソール (デモ)'
+        },
+        zh: {
+            title: '<a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a> 上的 qFold',
+            description: '在 <a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">AWS Braket</a> 上部署量子蛋白质折叠算法的快速指南。',
+            step1: '<strong>控制台访问：</strong> 登录您的 AWS 账户，进入 <strong><a href="https://aws.amazon.com/braket/" target="_blank" rel="noopener">Amazon Braket</a></strong> 服务。确保您所在的区域支持所需的设备（例如 <em>us-east-1</em>）。',
+            step2: '<strong>创建笔记本：</strong> 在左侧菜单中选择 <strong>Notebooks</strong> → <strong>Create notebook instance</strong>。<br><ul><li>名称：<code>qfold-instance</code></li><li>类型：<code>ml.t3.medium</code>（最低配置足够）</li></ul>',
+            step3: '<strong>打开 Jupyter：</strong> 当状态变为 <span style="color: green;">InService</span> 时，点击 <strong>Open JupyterLab</strong>。',
+            step4: '<strong>查找 qFold：</strong> 导航到 <code>amazon-braket-examples / examples / hybrid_quantum_algorithms / qfold</code> 并打开文件 <code>qfold.ipynb</code>。',
+            step5: '<strong>设备配置：</strong> 在代码中找到变量 <code>device</code>。<br><ul><li>免费测试：<code>LocalSimulator()</code></li><li>使用 QPU：提供 ARN（例如 Rigetti 或 IonQ）。</li></ul>',
+            warning: '<strong>注意：</strong> 在真实 QPU 上运行需要付费。请先在本地模拟器上进行调试。',
+            step6: '<strong>运行：</strong> 点击 <em>Run → Run All Cells</em>。蛋白质结构优化结果将显示在底部单元格中。',
+            footer: '为在 AWS 生态系统中快速启动 qFold 而创建。<br><i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>',
+            console_title: '交互式控制台（演示）'
+        }
+    };
+
+    // DOM elements for i18n
+    const elements = {
+        title: document.querySelector('[data-i18n="title"]'),
+        description: document.querySelector('[data-i18n="description"]'),
+        step1: document.querySelector('[data-i18n="step1"]'),
+        step2: document.querySelector('[data-i18n="step2"]'),
+        step3: document.querySelector('[data-i18n="step3"]'),
+        step4: document.querySelector('[data-i18n="step4"]'),
+        step5: document.querySelector('[data-i18n="step5"]'),
+        warning: document.querySelector('[data-i18n="warning"]'),
+        step6: document.querySelector('[data-i18n="step6"]'),
+        footer: document.querySelector('[data-i18n="footer"]'),
+        console_title: document.querySelector('[data-i18n="console_title"]')
+    };
+
+    let currentLang = localStorage.getItem('qfold_lang') || 'en';
+
+    function setLanguage(lang) {
+        if (!translations[lang]) return;
+        for (const key in elements) {
+            if (elements[key] && translations[lang][key]) {
+                elements[key].innerHTML = translations[lang][key];
+            }
+        }
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            const btnLang = btn.getAttribute('data-lang');
+            if (btnLang === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+        localStorage.setItem('qfold_lang', lang);
+        document.documentElement.lang = lang;
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang')));
+    });
+    setLanguage(currentLang);
+
+    // ---------- КОНСОЛЬ (демонстрационная) ----------
+    const outputDiv = document.getElementById('consoleOutput');
+    const inputField = document.getElementById('consoleInput');
+
+    function addLine(text, isCommand = false) {
+        const lineDiv = document.createElement('div');
+        lineDiv.className = 'console-line';
+        if (isCommand) {
+            lineDiv.innerHTML = `<span class="console-prompt">❯</span> <span>${escapeHtml(text)}</span>`;
+        } else {
+            lineDiv.innerHTML = `<span class="console-prompt">$</span> <span>${escapeHtml(text)}</span>`;
+        }
+        outputDiv.appendChild(lineDiv);
+        outputDiv.scrollTop = outputDiv.scrollHeight;
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+            return c;
+        });
+    }
+
+    function clearConsole() {
+        outputDiv.innerHTML = '';
+        addLine('Console cleared. Type help for commands.');
+    }
+
+    function processCommand(cmd) {
+        const trimmed = cmd.trim().toLowerCase();
+        if (trimmed === 'clear') {
+            clearConsole();
+            return;
+        }
+        if (trimmed === 'help') {
+            addLine('Available commands:');
+            addLine('  help          – show this help');
+            addLine('  clear         – clear console output');
+            addLine('  run_qfold     – simulate qFold execution (local simulator)');
+            addLine('  device        – show current device info');
+            addLine('  LocalSimulator() – display simulator status');
+            addLine('  <any python-like> – demo response');
+            return;
+        }
+        if (trimmed === 'run_qfold') {
+            addLine('Running qFold with LocalSimulator()...');
+            setTimeout(() => {
+                addLine('✅ Quantum circuit executed.');
+                addLine('📊 Optimized protein structure: energy = -12.37 kcal/mol');
+                addLine('💡 Folding pathway predicted. See notebook for full details.');
+            }, 300);
+            return;
+        }
+        if (trimmed === 'device') {
+            addLine('Current device: LocalSimulator() (free, runs on CPU)');
+            addLine('To use QPU, set device = AwsDevice("arn:aws:braket:...")');
+            return;
+        }
+        if (trimmed === 'localsimulator()') {
+            addLine('LocalSimulator() initialized. Backend: "braket_sv" (state vector)');
+            addLine('You can now run circuits: task = device.run(circuit, shots=1000)');
+            return;
+        }
+        // Fallback для любых других команд (демонстрация)
+        if (cmd.trim().length > 0) {
+            addLine(`Command '${cmd}' not recognized. Type 'help' for available commands.`);
+        }
+    }
+
+    inputField.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const cmd = inputField.value;
+            if (cmd.trim().length > 0) {
+                addLine(cmd, true);
+                processCommand(cmd);
+            }
+            inputField.value = '';
+        }
+    });
+</script>
+</body>
+</html>
