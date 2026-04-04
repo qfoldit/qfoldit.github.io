@@ -37,6 +37,7 @@
             color: #c25900;
         }
 
+        /* Переключатель языков — только флаги, плитка */
         .top-bar {
             width: 100%;
             max-width: 1000px;
@@ -49,47 +50,41 @@
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            gap: 8px;
-            padding: 6px 12px;
-            border-radius: 48px;
+            gap: 6px;              /* минимальный отступ между флагами */
+            padding: 0;
+            background: none;
         }
 
         .lang-btn {
-            background: transparent;
+            background: none;
             border: none;
-            padding: 6px 14px;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 500;
+            padding: 0;
+            margin: 0;
             cursor: pointer;
-            transition: all 0.2s ease;
-            color: #2c3e50;
+            transition: opacity 0.2s ease;
+            opacity: 0.5;          /* неактивные флаги полупрозрачны */
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-            flex-shrink: 1;
-        }
-
-        .lang-btn svg {
-            width: 22px;
-            height: 16px;
-            border-radius: 2px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-        }
-
-        .lang-btn:hover {
-            background: #e9ecef;
+            justify-content: center;
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .lang-btn.active {
-            background: rgb(237, 113, 0);
-            color: white;
-            box-shadow: 0 2px 6px rgba(237, 113, 0, 0.3);
+            opacity: 1;             /* активный флаг полностью видим */
+            background: none;
         }
-        .lang-btn.active:hover {
-            background: rgb(237, 113, 0);
-            text-decoration: none;
+
+        .lang-btn:hover {
+            opacity: 0.8;           /* небольшой эффект при наведении, без фона */
+            background: none;
+        }
+
+        .lang-btn svg {
+            width: 28px;            /* чуть увеличен для удобства */
+            height: 20px;
+            border-radius: 2px;
+            display: block;
         }
 
         .card {
@@ -185,7 +180,7 @@
             border-radius: 12px;
         }
 
-        /* Консоль — новый блок */
+        /* Консоль */
         .console-section {
             margin-top: 24px;
             margin-bottom: 20px;
@@ -313,36 +308,24 @@
                 padding: 18px;
             }
             .language-switcher {
-                gap: 6px;
-                padding: 4px 8px;
-            }
-            .lang-btn {
-                padding: 4px 10px;
-                font-size: 0.75rem;
-                gap: 6px;
+                gap: 4px;
             }
             .lang-btn svg {
-                width: 20px;
-                height: 14px;
+                width: 24px;
+                height: 17px;
             }
             .console-output {
                 height: 160px;
             }
         }
 
-        @media (max-width: 520px) {
-            .language-switcher {
-                gap: 4px;
-                padding: 4px 6px;
-            }
-            .lang-btn {
-                padding: 4px 8px;
-                font-size: 0.7rem;
-                gap: 4px;
-            }
+        @media (max-width: 480px) {
             .lang-btn svg {
-                width: 18px;
-                height: 12px;
+                width: 20px;
+                height: 14px;
+            }
+            .language-switcher {
+                gap: 3px;
             }
         }
     </style>
@@ -352,7 +335,7 @@
 <div class="top-bar">
     <div class="language-switcher" id="langSwitcher">
         <button class="lang-btn" data-lang="en">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="22" height="16">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="28" height="20">
                 <clipPath id="t"><path d="M0,0 v30 h60 v-30 z"/></clipPath>
                 <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
                 <path d="M0,0 L60,30 M60,0 L30,30" stroke="#fff" stroke-width="6"/>
@@ -362,34 +345,34 @@
             </svg>
         </button>
         <button class="lang-btn" data-lang="de">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3" width="22" height="16">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3" width="28" height="20">
                 <rect width="5" height="1" y="0" fill="#000"/>
                 <rect width="5" height="1" y="1" fill="#D00"/>
                 <rect width="5" height="1" y="2" fill="#FFCE00"/>
             </svg>
         </button>
         <button class="lang-btn" data-lang="fr">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="22" height="16">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="28" height="20">
                 <rect width="1" height="2" x="0" fill="#0055A4"/>
                 <rect width="1" height="2" x="1" fill="#fff"/>
                 <rect width="1" height="2" x="2" fill="#EF4135"/>
             </svg>
         </button>
         <button class="lang-btn" data-lang="ru">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="22" height="16">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="28" height="20">
                 <rect width="3" height="2/3" fill="#fff"/>
                 <rect y="0.66" width="3" height="0.66" fill="#0039A6"/>
                 <rect y="1.32" width="3" height="0.68" fill="#D52B1E"/>
             </svg>
         </button>
         <button class="lang-btn" data-lang="ja">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="22" height="16">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="28" height="20">
                 <rect width="3" height="2" fill="#fff"/>
                 <circle cx="1.5" cy="1" r="0.6" fill="#BC002D"/>
             </svg>
         </button>
         <button class="lang-btn" data-lang="zh">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="22" height="16">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" width="28" height="20">
                 <rect width="3" height="2" fill="#DE2910"/>
                 <circle cx="1.2" cy="0.9" r="0.4" fill="#FFDE00"/>
                 <polygon points="1.2,0.7 1.25,0.82 1.38,0.82 1.28,0.89 1.31,1.01 1.2,0.94 1.09,1.01 1.12,0.89 1.02,0.82 1.15,0.82" fill="#FFDE00"/>
@@ -470,10 +453,10 @@
         </div>
     </div>
 
-    <!-- === ВСТРОЕННАЯ КОНСОЛЬ (демонстрационная) === -->
+    <!-- Встроенная консоль -->
     <div class="console-section">
         <div class="console-title">
-            <i class="fas fa-terminal"></i> <span data-i18n="console_title">Interactive Console</span>
+            <i class="fas fa-terminal"></i> <span data-i18n="console_title">Interactive Console </span>
         </div>
         <div class="console-window">
             <div class="console-output" id="consoleOutput">
@@ -498,7 +481,7 @@
     <i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>
 </div>
 
-    <script>
+<script>
     // ---------- TRANSLATIONS ----------
     const translations = {
         en: {
@@ -577,7 +560,7 @@
             warning: '<strong>注意：</strong> 在真实 QPU 上运行需要付费。请先在本地模拟器上进行调试。',
             step6: '<strong>运行：</strong> 点击 <em>Run → Run All Cells</em>。蛋白质结构优化结果将显示在底部单元格中。',
             footer: '为在 AWS 生态系统中快速启动 qFold 而创建。<br><i class="fab fa-github github-icon"></i> <a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a>',
-            console_title: '交互式控制台 '
+            console_title: '交互式控制台（演示）'
         }
     };
 
@@ -605,6 +588,7 @@
                 elements[key].innerHTML = translations[lang][key];
             }
         }
+        // Обновляем активный класс у кнопок
         document.querySelectorAll('.lang-btn').forEach(btn => {
             const btnLang = btn.getAttribute('data-lang');
             if (btnLang === lang) {
