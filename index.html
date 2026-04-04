@@ -44,7 +44,7 @@
       -moz-osx-font-smoothing:auto;
       text-rendering:geometricPrecision;
       image-rendering:pixelated;
-    }
+    } ::-webkit-ыскщддифк{width:0px;}
     #root{width:100%;height:100%}
     .shell{position:relative;width:100%;height:100%;overflow:hidden}
     .bg-canvas{position:absolute!important;inset:0;z-index:0;opacity:.95}
@@ -86,14 +86,71 @@
     .chip.online{color:var(--line);animation:blink .9s steps(2) infinite}
     .chip.warn{color:var(--warn);border-color:var(--warn)}
     .chip.blue{color:var(--blue);border-color:var(--blue)}
-    .leds{display:flex;align-items:center;gap:4px;padding:6px 8px}
-    .led{width:10px;height:10px;border:1px solid #103d2c;background:#05100c;box-shadow:inset 0 0 0 1px rgba(255,255,255,.02)}
-    .led.on{background:var(--line);box-shadow:0 0 8px rgba(24,255,139,.55)}
     .hud-mini{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);white-space:nowrap}
     .hud-mini b{color:var(--text);font-family:"Press Start 2P", monospace;font-size:10px;text-transform:uppercase}
     .speaker,.burger{min-width:44px;padding:6px 10px;font-size:14px;text-align:center;color:var(--blue)}
     .burger{display:none;min-width:42px;min-height:38px;align-items:center;justify-content:center;color:var(--line);font-size:18px}
     .speaker:hover,.burger:hover,.button:hover,.tab:hover,.menu-item:hover,.footer-link:hover{transform:translate(-1px,-1px);filter:brightness(1.16);border-color:var(--line2)}
+    
+    /* Volume controls styling - replaces binary leds */
+    .vol-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(5, 12, 9, 0.7);
+      border: 1px solid rgba(24, 255, 139, 0.5);
+      padding: 4px 10px;
+      font-family: "Press Start 2P", monospace;
+      font-size: 7px;
+      backdrop-filter: blur(2px);
+    }
+    .vol-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--line2);
+    }
+    .vol-item label {
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .vol-slider {
+      width: 70px;
+      height: 4px;
+      -webkit-appearance: none;
+      background: #0b2a1f;
+      border: 1px solid var(--line);
+      outline: none;
+      cursor: pointer;
+    }
+    .vol-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 8px;
+      height: 12px;
+      background: var(--line);
+      border: 1px solid #000;
+      box-shadow: 1px 1px 0 #000;
+      border-radius: 0;
+      cursor: pointer;
+    }
+    .vol-slider::-moz-range-thumb {
+      width: 8px;
+      height: 12px;
+      background: var(--line);
+      border: 1px solid #000;
+      border-radius: 0;
+      cursor: pointer;
+    }
+    @media (max-width: 860px) {
+      .vol-controls { gap: 6px; padding: 2px 6px; }
+      .vol-slider { width: 55px; }
+      .vol-item label { font-size: 6px; }
+    }
+    @media (max-width: 720px) {
+      .vol-controls { display: none; } /* hide on very small to keep layout clean, but still functional via speaker? we keep anyway */
+    }
+    
     .sidebar{
       grid-area:side;position:relative;padding:12px;background:linear-gradient(180deg, rgba(6,14,11,.96), rgba(5,8,8,.90));
       border-right:2px solid rgba(24,255,139,.65);box-shadow:2px 0 0 #000;overflow-y:auto
@@ -199,6 +256,7 @@
       .endpoint-title h2{font-size:22px}
       .endpoint-title p{font-size:16px}
       .card-body{padding:10px}
+      .vol-controls{ display: none; }
     }
   </style>
 </head>
@@ -466,8 +524,12 @@
       { text: "[SYS] Demo API navigation ready.", kind: "ok" }
     ]);
     const [pending, setPending] = useState(true);
+    const [musicVolume, setMusicVolume] = useState(0.5);
+    const [sfxVolume, setSfxVolume] = useState(1.0);
     const logRef = useRef(null);
     const audioRef = useRef(null);
+    const musicRef = useRef(null);
+    const musicStarted = useRef(false);
     const soundRef = useRef(soundOn);
     soundRef.current = soundOn;
 
@@ -486,7 +548,43 @@
       return audioRef.current;
     };
 
-    const ping = async ({ freq = 480, duration = 0.06, type = "square", gain = 0.018, slide = 0 }) => {
+    // Background music setup
+    useEffect(() => {
+      const audio = new Audio("https://qfoldit.github.io/assets/audio/CarrionOST.mp3");
+      audio.loop = true;
+      audio.preload = "auto";
+      musicRef.current = audio;
+      return () => {
+        if (musicRef.current) {
+          musicRef.current.pause();
+          musicRef.current.src = "";
+        }
+      };
+    }, []);
+
+    const startMusicOnInteraction = async () => {
+      if (musicStarted.current) return;
+      if (!musicRef.current) return;
+      try {
+        await musicRef.current.play();
+        musicStarted.current = true;
+        if (soundOn) {
+          musicRef.current.volume = musicVolume;
+        } else {
+          musicRef.current.volume = 0;
+        }
+      } catch (e) { console.warn("music autoplay blocked", e); }
+    };
+
+    // update music volume based on soundOn and musicVolume
+    useEffect(() => {
+      if (musicRef.current) {
+        musicRef.current.volume = soundOn ? musicVolume : 0;
+      }
+    }, [musicVolume, soundOn]);
+
+    // SFX volume multiplier (all ping gains are multiplied by sfxVolume)
+    const ping = async ({ freq = 480, duration = 0.06, type = "square", gain = 0.054, slide = 0 }) => {
       if (!soundRef.current) return;
       const ctx = await ensureAudio();
       if (!ctx) return;
@@ -496,9 +594,10 @@
       osc.type = type;
       osc.frequency.setValueAtTime(freq, now);
       if (slide) osc.frequency.exponentialRampToValueAtTime(Math.max(1, freq + slide), now + duration);
-      amp.gain.setValueAtTime(0.0001, now);
-      amp.gain.exponentialRampToValueAtTime(gain, now + 0.008);
-      amp.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+      const finalGain = gain * sfxVolume;
+      amp.gain.setValueAtTime(0.0003, now);
+      amp.gain.exponentialRampToValueAtTime(finalGain, now + 0.008);
+      amp.gain.exponentialRampToValueAtTime(0.0003, now + duration);
       osc.connect(amp);
       amp.connect(ctx.destination);
       osc.start(now);
@@ -515,9 +614,9 @@
         const g = ctx.createGain();
         o.type = "square";
         o.frequency.value = f;
-        g.gain.value = 0.00075;
-        g.gain.exponentialRampToValueAtTime(0.028, t + 0.01);
-        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.09);
+        const gainVal = 0.084 * sfxVolume;
+        g.gain.value = 0.00225;
+        g.gain.exponentialRampToValueAtTime(gainVal, t + 0.09);
         o.connect(g);
         g.connect(ctx.destination);
         o.start(t);
@@ -535,8 +634,10 @@
       if (next) {
         await ensureAudio();
         await playBootChime();
+        if (musicRef.current && musicStarted.current) musicRef.current.volume = musicVolume;
         logLine("[AUDIO] Interface sound enabled.", "ok");
       } else {
+        if (musicRef.current) musicRef.current.volume = 0;
         logLine("[AUDIO] Interface sound muted.", "warn");
       }
     };
@@ -546,7 +647,7 @@
       setPending(true);
       setRequestCount((v) => v + 1);
       setLoadPct((v) => clamp(v + 7, 12, 96));
-      await ping({ freq: 620, duration: 0.05, gain: 0.12, type: "square" });
+      await ping({ freq: 620, duration: 0.05, gain: 0.36, type: "square" });
 
       const endpoint = selected.path || (selected.endpoints ? selected.endpoints[activeSub].path : "/");
       const method = selected.method || (selected.endpoints ? selected.endpoints[activeSub].method : "GET");
@@ -559,7 +660,7 @@
         setLoadPct((v) => clamp(v - 2, 10, 92));
         logLine(`[RX] ${method} ${endpoint} → 200 OK // demo response generated`, "ok");
         logLine(`[SYS] payload=${JSON.stringify(selected.request).slice(0, 70)}...`, "ok");
-        await ping({ freq: 880, duration: 0.08, gain: 0.135, type: "triangle", slide: 70 });
+        await ping({ freq: 880, duration: 0.08, gain: 0.405, type: "triangle", slide: 70 });
       }, 500);
     };
 
@@ -594,7 +695,6 @@
     }, []);
 
     const bits = useMemo(() => requestCount.toString(2).padStart(8, "0").slice(-8).split(""), [requestCount]);
-    const loadBits = useMemo(() => loadPct.toString(2).padStart(6, "0").slice(-6).split(""), [loadPct]);
 
     const requestView = selected.endpoints ? selected.endpoints[activeSub].request : selected.request;
     const responseView = selected.endpoints ? selected.endpoints[activeSub].response : selected.response;
@@ -603,7 +703,16 @@
     const titleView = selected.endpoints ? selected.endpoints[activeSub].title : selected.title;
     const descView = selected.endpoints ? selected.endpoints[activeSub].description : selected.description;
 
-    return h("div", { className: "shell", onPointerDown: () => { if (soundOn) ensureAudio(); } },
+    const handleMusicVolume = (e) => {
+      const val = parseFloat(e.target.value);
+      setMusicVolume(val);
+    };
+    const handleSfxVolume = (e) => {
+      const val = parseFloat(e.target.value);
+      setSfxVolume(val);
+    };
+
+    return h("div", { className: "shell", onPointerDown: () => { if (soundOn) ensureAudio(); startMusicOnInteraction(); } },
       h(BinaryMatrix),
       h(ThreeScene),
       h("div", { className: "scanlines" }),
@@ -627,9 +736,19 @@
               h("span", { className: "sep" }),
               h("span", null, h("b", null, "BIN"), " ", bits.join(""))
             ),
-            h("div", { className: "leds", title: "Binary load indicator" }, ...loadBits.map((b, i) => h("span", { key: i, className: `led ${b === "1" ? "on" : ""}` }))),
+            // Replaced binary leds with volume controls
+            h("div", { className: "vol-controls" },
+              h("div", { className: "vol-item" },
+                h("label", null, "MUSIC"),
+                h("input", { type: "range", min: 0, max: 1, step: 0.01, value: musicVolume, onChange: handleMusicVolume, className: "vol-slider" })
+              ),
+              h("div", { className: "vol-item" },
+                h("label", null, "SFX"),
+                h("input", { type: "range", min: 0, max: 1, step: 0.01, value: sfxVolume, onChange: handleSfxVolume, className: "vol-slider" })
+              )
+            ),
             h("div", { className: "chip online" }, "SERVER STATUS: ONLINE"),
-            h("button", { className: "speaker", onClick: onToggleSound, onMouseEnter: () => soundOn && ping({ freq: 760, duration: 0.03, gain: 0.075, type: "square" }) }, soundOn ? "SND:ON" : "SND:OFF")
+            h("button", { className: "speaker", onClick: onToggleSound, onMouseEnter: () => soundOn && ping({ freq: 760, duration: 0.03, gain: 0.225, type: "square" }) }, soundOn ? "SND:ON" : "SND:OFF")
           )
         ),
 
@@ -647,9 +766,10 @@
                 setActiveSub(0);
                 setMenuOpen(false);
                 logLine(`[NAV] Focused ${item.path}`, "ok");
-                ping({ freq: 520, duration: 0.035, gain: 0.09, type: "square", slide: 45 });
+                ping({ freq: 520, duration: 0.035, gain: 0.27, type: "square", slide: 45 });
+                startMusicOnInteraction();
               },
-              onMouseEnter: () => soundOn && ping({ freq: 300 + Math.random() * 80, duration: 0.025, gain: 0.0525, type: "triangle" })
+              onMouseEnter: () => soundOn && ping({ freq: 300 + Math.random() * 80, duration: 0.025, gain: 0.1575, type: "triangle" })
             },
               h("div", { className: "kicker" }, item.kicker),
               h("div", { className: "label" }, h("span", null, item.name), h("span", { className: "path" }, item.path))
@@ -695,9 +815,10 @@
                     onClick: () => {
                       setActiveSub(idx);
                       logLine(`[NAV] Switched to ${ep.path}`, "ok");
-                      ping({ freq: 430 + idx * 110, duration: 0.03, gain: 0.075, type: "square" });
+                      ping({ freq: 430 + idx * 110, duration: 0.03, gain: 0.225, type: "square" });
+                      startMusicOnInteraction();
                     },
-                    onMouseEnter: () => soundOn && ping({ freq: 280 + idx * 60, duration: 0.02, gain: 0.045, type: "triangle" })
+                    onMouseEnter: () => soundOn && ping({ freq: 280 + idx * 60, duration: 0.02, gain: 0.135, type: "triangle" })
                   }, ep.path))
                 ) : null,
 
@@ -726,22 +847,23 @@
                     ),
 
                     h("div", { className: "actions" },
-                      h("button", { className: "button primary", onClick: onTryIt, onMouseEnter: () => soundOn && ping({ freq: 680, duration: 0.02, gain: 0.06, type: "triangle" }), disabled: pending }, pending ? "SENDING..." : "TRY IT"),
+                      h("button", { className: "button primary", onClick: onTryIt, onMouseEnter: () => soundOn && ping({ freq: 680, duration: 0.02, gain: 0.18, type: "triangle" }), disabled: pending }, pending ? "SENDING..." : "TRY IT"),
                       h("button", {
                         className: "button",
                         onClick: () => {
                           logLine(`[SYS] Clipboard-ready demo payload refreshed for ${pathView}`, "ok");
                           setLoadPct(v => clamp(v + 4, 10, 96));
-                          ping({ freq: 560, duration: 0.04, gain: 0.09, type: "square" });
+                          ping({ freq: 560, duration: 0.04, gain: 0.135, type: "square" });
+                          startMusicOnInteraction();
                         },
-                        onMouseEnter: () => soundOn && ping({ freq: 360, duration: 0.02, gain: 0.045, type: "triangle" })
+                        onMouseEnter: () => soundOn && ping({ freq: 360, duration: 0.02, gain: 0.135, type: "triangle" })
                       }, "REFRESH SAMPLE"),
                       h("button", {
                         className: "button danger",
                         onClick: () => {
                           setLogs([{ text: "[SYS] Terminal cleared.", kind: "ok" }, { text: "[BOOT] Awaiting user input...", kind: "ok" }]);
                           logLine("[SYS] Log reset complete.", "ok");
-                          ping({ freq: 240, duration: 0.05, gain: 0.105, type: "square", slide: -30 });
+                          ping({ freq: 240, duration: 0.05, gain: 0.315, type: "square", slide: -30 });
                         }
                       }, "CLEAR LOG")
                     )
