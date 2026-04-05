@@ -37,20 +37,43 @@
             color: #c25900;
         }
 
-        /* Переключатель языков — только флаги, плитка */
+        /* Верхняя панель: флаги справа, логотипы партнёров слева */
         .top-bar {
             width: 100%;
             max-width: 1000px;
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .partner-logos {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255,255,255,0.7);
+            padding: 4px 12px;
+            border-radius: 40px;
+            backdrop-filter: blur(2px);
+        }
+
+        .partner-logos img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.2s ease;
+        }
+        .partner-logos img:hover {
+            transform: scale(1.05);
         }
 
         .language-switcher {
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            gap: 6px;              /* минимальный отступ между флагами */
+            gap: 6px;
             padding: 0;
             background: none;
         }
@@ -62,7 +85,7 @@
             margin: 0;
             cursor: pointer;
             transition: opacity 0.2s ease;
-            opacity: 0.5;          /* неактивные флаги полупрозрачны */
+            opacity: 0.5;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -71,17 +94,17 @@
         }
 
         .lang-btn.active {
-            opacity: 1;             /* активный флаг полностью видим */
+            opacity: 1;
             background: none;
         }
 
         .lang-btn:hover {
-            opacity: 0.8;           /* небольшой эффект при наведении, без фона */
+            opacity: 0.8;
             background: none;
         }
 
         .lang-btn svg {
-            width: 28px;            /* чуть увеличен для удобства */
+            width: 28px;
             height: 20px;
             border-radius: 2px;
             display: block;
@@ -120,6 +143,7 @@
             width: 50px;
             height: auto;
             border-radius: 8px;
+            object-fit: contain;
         }
 
         h1 {
@@ -295,7 +319,8 @@
                 padding: 12px;
             }
             .top-bar {
-                margin-bottom: 12px;
+                flex-direction: row;
+                justify-content: space-between;
             }
             .step {
                 flex-direction: column;
@@ -317,6 +342,12 @@
             .console-output {
                 height: 160px;
             }
+            .logo {
+                width: 40px;
+            }
+            .partner-logos img {
+                height: 28px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -327,12 +358,26 @@
             .language-switcher {
                 gap: 3px;
             }
+            .logo {
+                width: 35px;
+            }
+            .partner-logos img {
+                height: 24px;
+            }
+            .partner-logos {
+                padding: 2px 8px;
+                gap: 8px;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="top-bar">
+    <div class="partner-logos">
+        <img src="https://qfoldit.github.io/img/1/logo/iDMT_logo.png" alt="iDMT Logo" title="iDMT - Innovation Centre in Digital Molecular Technologies">
+        <img src="https://qfoldit.github.io/img/h3d_final_logo.png" alt="H3D Logo" title="H3D - Holistic Drug Discovery and Development Centre">
+    </div>
     <div class="language-switcher" id="langSwitcher">
         <button class="lang-btn" data-lang="en">
            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="22" height="16">
@@ -344,7 +389,7 @@
                 <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" stroke-width="3"/>
                 <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
                 <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="5"/>
-            </svg> <!-- EN -->
+            </svg>
         </button>
         <button class="lang-btn" data-lang="de">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3" width="28" height="20">
