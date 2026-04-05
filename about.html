@@ -355,6 +355,22 @@
         }
         .book-meta-link:hover { background: rgba(0,119,255,0.25); color: white; }
 
+        .award-list {
+            list-style: none;
+            margin: 1em 0 1em 1.5em;
+        }
+        .award-list li {
+            margin-bottom: 0.5em;
+            position: relative;
+        }
+        .award-list li::before {
+            content: "🏆";
+            position: absolute;
+            left: -1.8em;
+            top: 0;
+            font-size: 1rem;
+        }
+
         /* Footer with white background and partner logos */
         .footer {
             background-color: white;
@@ -394,80 +410,101 @@
         <div class="status-badge">OPEN SCIENCE PLATFORM</div>
     </div>
 
+    <!-- ==================== 1. PROBLEM & MISSION ==================== -->
     <div class="intro-block">
-        <div class="intro-title"><i class="fas fa-rocket"></i> A Synthesis of Nobel Ideas</div>
-        <p class="intro-text"><strong>qFoldIT</strong> is an open, non‑commercial platform built on discoveries awarded the Nobel Prize, continuing the legacy of <strong>FoldIT</strong> — turning complex molecular science into engaging gameplay accessible to everyone.</p>
-        <p class="intro-text"><strong>qFoldIT combines quantum algorithms, AI, and crowdsourcing in a gaming environment to redefine molecular design and climate challenges. Following the legacy of FoldIT and Nobel laureates, we transform cutting‑edge science into an interactive adventure with high‑performance molecular visualization.</strong></p>
-        
-        <!-- Physics 2024 -->
-        <div class="intro-subtitle"><i class="fas fa-atom"></i> Physics 2024: AI as a Tool for Discovery</div>
-        <p class="intro-text">Awarded to <strong>John Hopfield and Geoffrey Hinton</strong> for foundational AI discoveries. <b>qFoldIT</b> uses Hopfield networks (associative memory) and deep learning for adaptive AI assistants, procedural generation of Arctic landscapes, and molecular structure prediction.</p>
-        
-        <!-- Chemistry 2024 + Demis Hassabis game dev background -->
-        <div class="intro-subtitle"><i class="fas fa-dna"></i> Chemistry 2024: Computational Protein Design & The Game‑Dev Path to Nobel</div>
-        <p class="intro-text"><strong>David Baker</strong> (de novo protein design) and <strong>Demis Hassabis / John Jumper</strong> (AlphaFold) opened the era of computational biology. <b>qFoldIT</b> advances both: gamified molecular design and quantum‑accelerated peptide folding, exploring conformational space at a new level.</p>
-        <p class="intro-text"><i class="fas fa-gamepad" style="color:#0077FF; margin-right:8px;"></i> <strong>The Game Designer Who Won a Nobel:</strong> Just as <strong>George Ahiakwa</strong> (founder of qFoldIT) honed his skills as a developer on <strong>Atomic Heart</strong> (Mundfish), <strong>Demis Hassabis</strong> was one of the most prominent figures in the British gaming industry of the 1990s and early 2000s before revolutionizing biology with AlphaFold. At age 17, he became lead programmer on <strong>Theme Park</strong> (Bullfrog Productions, 1994) under Peter Molyneux. At Lionhead Studios, he was lead AI programmer on <strong>Black & White</strong> (2001). In 1998 he founded <strong>Elixir Studios</strong>, releasing <strong>Republic: The Revolution</strong> and <strong>Evil Genius</strong>. His deep fascination with creating intelligent game AI ultimately led him to neuroscience and then to <strong>DeepMind</strong>, where the same reinforcement‑learning insights were adapted to predict protein folding — earning him the Nobel Prize. <strong>qFoldIT continues this tradition:</strong> a game environment that trains players to become molecular designers, blending AAA game engineering with cutting‑edge science.</p>
+        <div class="intro-title"><i class="fas fa-bullseye"></i> The Protein Folding Challenge</div>
+        <p class="intro-text">Predicting the 3D structure of proteins remains one of the hardest problems in computational biology — NP‑complete even in simplified models. While deep learning (AlphaFold) and citizen science (FoldIT) have made tremendous progress, many cases (intrinsically disordered proteins, membrane proteins, metalloenzymes) still require quantum‑aware energy evaluations and human intuition.</p>
+        <p class="intro-text"><strong>qFoldIT</strong> is an open platform that unifies three complementary approaches: <strong>DeepFoldIT</strong> (neural network initializer), <strong>Rosetta@Home</strong> (classical Metropolis), and <strong>qFold</strong> (quantum‑accelerated Metropolis). Gamification invites thousands of players to contribute, while AAA‑grade visualization (Unigine 2 Sim) makes molecular interactions tangible.</p>
+        <p class="intro-text">The platform is built on Nobel‑prize winning discoveries and is entirely free for academic use.</p>
+    </div>
 
-        <!-- Poster grid for 2024 prizes -->
-        <div class="poster-grid">
-            <div class="poster-block">
-                <img src="https://qfoldit.github.io/img/posters/noble_prize_physics.jpg" alt="Nobel Prize Physics 2024" class="poster-image">
-                <div class="poster-caption"><i class="fas fa-microchip"></i> Hopfield & Hinton — neural network foundations</div>
-            </div>
-            <div class="poster-block">
-                <img src="https://qfoldit.github.io/img/posters/noble_prize_chemistry.jpg" alt="Nobel Prize Chemistry 2024" class="poster-image">
-                <div class="poster-caption"><i class="fas fa-dna"></i> Baker, Hassabis & Jumper — protein design & AlphaFold</div>
+    <!-- ==================== 2. NOBEL FOUNDATION (GROUPED BY THEMES) ==================== -->
+    <div class="intro-block">
+        <div class="intro-title"><i class="fas fa-trophy"></i> Nobel Prize Foundation</div>
+        <p class="intro-text">qFoldIT integrates six Nobel‑awarded breakthroughs, grouped by scientific theme:</p>
+
+        <div class="intro-subtitle"><i class="fas fa-microchip"></i> Artificial Intelligence & Deep Learning</div>
+        <p class="intro-text"><strong>Physics 2024 (Hopfield, Hinton)</strong> — neural networks and associative memory. Used in qFoldIT for adaptive AI assistants, procedural generation of Arctic landscapes, and molecular structure prediction.<br>
+        <strong>Chemistry 2024 (Baker, Hassabis, Jumper)</strong> — de novo protein design and AlphaFold. Our DeepFoldIT module and quantum‑accelerated folding build directly on these advances.<br>
+        <strong>Chemistry 2013 (Karplus, Levitt, Warshel)</strong> — multiscale models for complex chemical systems, underpinning our hybrid quantum‑classical dynamics.</p>
+
+        <div class="intro-subtitle"><i class="fas fa-atom"></i> Quantum Computing & Hardware</div>
+        <p class="intro-text"><strong>Physics 2025 (Clarke, Devoret, Martinis)</strong> — large‑scale quantum systems. The <strong>quantum‑adapter</strong> module provides cloud‑based quantum annealing and VQE calculations for molecular folding, directly leveraging this legacy.</p>
+
+        <div class="intro-subtitle"><i class="fas fa-cubes"></i> Advanced Materials (MOFs)</div>
+        <p class="intro-text"><strong>Chemistry 2025 (Kitagawa, Robson, Yaghi)</strong> — metal‑organic frameworks. qFoldIT extends its molecular design engine to porous materials for carbon capture, catalysis, and hydrogen storage.</p>
+
+        <div class="intro-subtitle"><i class="fas fa-dna"></i> Biomedicine & Evolution</div>
+        <p class="intro-text"><strong>Medicine 2000 (Kandel)</strong> — long‑term potentiation. Our core game loop uses immediate feedback and spaced repetition to strengthen neural pathways.<br>
+        <strong>Chemistry 2018 (Arnold)</strong> — directed evolution of enzymes. Players mutate and select protein variants in a gamified evolution loop, evaluated by ZairaChem AI.</p>
+
+        <div class="intro-subtitle"><i class="fas fa-hand-peace"></i> Climate & Sustainability</div>
+        <p class="intro-text"><strong>Peace 2007 (IPCC, Gore)</strong> — climate change awareness. qFoldIT is the digital twin of the Arctic station “Snezhinka” (AHEAD project, Arctic Council), where players design carbon‑free technologies and bioremediation enzymes.</p>
+
+        <div class="intro-subtitle"><i class="fas fa-brain"></i> Cognitive Science</div>
+        <p class="intro-text"><strong>Economics 2002 (Kahneman)</strong> — two systems of thinking (intuitive System 1 vs analytical System 2). qFoldIT dynamically switches between high‑action Arctic races (System 1) and deep molecular folding puzzles (System 2), preventing fatigue and maintaining flow.</p>
+    </div>
+
+    <!-- ==================== 3. GAMIFICATION & CITIZEN SCIENCE ==================== -->
+    <div class="intro-block">
+        <div class="intro-title"><i class="fas fa-gamepad"></i> Gamification & Citizen Science</div>
+        <p class="intro-text">Three game designers shape the qFoldIT experience:</p>
+        <ul style="margin-left: 2em; margin-bottom: 1.5em;">
+            <li><strong>George Ahiakwa</strong> (founder of qFoldIT) — developer on <strong>Atomic Heart</strong> (Mundfish).</li>
+            <li><strong>Demis Hassabis</strong> — lead programmer on <strong>Theme Park</strong> (Bullfrog), lead AI on <strong>Black & White</strong> (Lionhead), founder of Elixir Studios (<strong>Republic: The Revolution</strong>, <strong>Evil Genius</strong>).</li>
+            <li><strong>Dr. Beata Mierzwa</strong> — creator of the award‑winning educational game <strong>Microscopya</strong>.</li>
+        </ul>
+        <p class="intro-text"><i class="fas fa-lightbulb" style="color:#0077FF; margin-right:8px;"></i> <strong>From Atomic Heart to qFoldIT:</strong> Working on <strong>Atomic Heart</strong> was built around <strong>“science fiction”</strong> — an opportunity to creatively fantasise about the visual realisation and physical behaviour of substances (e.g., the “polymer”). That experience taught how to translate abstract physical properties into compelling, visceral gameplay. qFoldIT applies the same philosophy: molecular interactions, hydrogen bonds, and quantum tunnelling become visible, tangible, and playable — turning hard science into an intuitive experience.</p>
+
+        <div class="intro-subtitle"><i class="fas fa-microscope"></i> Microscopya — An Award‑Winning Science Game</div>
+        <p class="intro-text">Dr. Beata Mierzwa’s game <strong>Microscopya</strong> is a scientifically accurate adventure inside a living cell, hand‑drawn from real microscopy data. It has received multiple prestigious awards:</p>
+        <ul class="award-list">
+            <li><strong>James Paul GEE! Learning Game Awards (2022)</strong> — winner in “Amateur Created” and “People’s Choice”.</li>
+            <li><strong>International Educational Games Competition (ECGBL 2022)</strong> — second place.</li>
+            <li><strong>Serious Play Conference Awards</strong> — recognised for excellence.</li>
+            <li>Media coverage: <em>The Scientist Magazine</em>, <em>Science Magazine</em>, <em>Nerdist</em>, <em>KPBS News</em>.</li>
+        </ul>
+        <p class="intro-text">The same design principles — artistic rigour, biological accuracy, and engaging interactivity — drive qFoldIT. Players not only play but actively contribute to molecular design, with their solutions validated by AI (ZairaChem) and quantum algorithms.</p>
+    </div>
+
+    <!-- ==================== 4. TECHNICAL ARCHITECTURE (with containerization) ==================== -->
+    <div class="intro-block">
+        <div class="intro-title"><i class="fas fa-cogs"></i> Technical Architecture</div>
+        <p class="intro-text">qFoldIT integrates three complementary computational engines:</p>
+        <ul style="margin-left: 2em; margin-bottom: 1.5em;">
+            <li><strong>DeepFoldIT</strong> — a deep residual network (inspired by AlphaFold) predicts torsion angles (φ, ψ) and distances, generating initial conformations.</li>
+            <li><strong>Rosetta@Home</strong> — classical Metropolis Monte Carlo with the Rosetta energy function performs local optimisation on CPU clusters.</li>
+            <li><strong>qFold</strong> — a coined Szegedy quantum walk (quantum Metropolis) that provides quadratic speedup for rugged energy landscapes. It runs on simulators (Qiskit‑Aer) or real quantum backends (IonQ, D‑Wave, Rosatom).</li>
+        </ul>
+        <p class="intro-text"><strong>Quantum adapter</strong> — unified API to multiple QPUs. <strong>Microservices</strong> (bio‑ml, rosetta, quantum‑adapter, autoresearch, animation) are containerised (Docker) and orchestrated by Kubernetes on Amazon EKS.</p>
+        <p class="intro-text"><strong>Visualisation</strong> — Unigine 2 Sim (64‑bit double precision, GPU‑based Gaussian splatting, volumetric raymarching) renders molecules with cinematic quality at 60+ fps, allowing seamless zoom from Arctic landscapes to atomic orbitals.</p>
+        
+        <div class="intro-subtitle"><i class="fas fa-dharmachakra"></i> Containerized Microservices & Orchestration</div>
+        <p class="intro-text">All computational modules — DeepFoldIT, Rosetta, the quantum‑adapter (which hosts the full qFold algorithm), and auxiliary services — run as <strong>Docker containers</strong>. They are orchestrated by <strong>Kubernetes on Amazon EKS</strong>, enabling GPU‑aware scaling, high availability, and seamless integration with cloud services (S3 for PDB storage, RDS for metadata, ElastiCache for session caching, and Secrets Manager for API keys).</p>
+        <p class="intro-text">The <strong>quantum‑adapter container</strong> is the only component that implements the qFold quantum walk (Szegedy walk, Metropolis acceptance, VQE). It communicates with the classical `rosetta` container via gRPC, and with quantum hardware through AWS Braket or the Rosatom QPU API. This strict separation of concerns ensures reproducibility, portability, and independent scaling of classical and quantum workloads.</p>
+        <p class="intro-text">All code is planned for open release (GitHub). Joint Institute for Nuclear Research (JINR, Dubna) and Yonsei University (Seoul) have joined as administrative collaborators on GitHub.</p>
+    </div>
+
+    <!-- ==================== 5. TEAM & PARTNERS ==================== -->
+    <div class="accordion">
+        <div class="accordion-item open">
+            <div class="accordion-header"><span><i class="fas fa-users"></i> Scientific Team & Collaborating Institutions</span><i class="fas fa-chevron-down"></i></div>
+            <div class="accordion-content">
+                <div class="team-grid" id="teamGrid"></div>
+                <p style="margin-top: 30px; color: #8a9099; font-size: 0.9rem;"><i class="fas fa-globe"></i> Additional partners: <strong>Joint Institute for Nuclear Research (JINR, Dubna)</strong> and <strong>Yonsei University (Seoul, Korea)</strong> have joined as administrative collaborators, contributing expertise in machine learning, computational chemistry, and generative AI for protein‑protein interactions.</p>
             </div>
         </div>
+    </div>
 
-        <!-- Physics 2025 -->
-        <div class="intro-subtitle"><i class="fas fa-microchip"></i> Physics 2025: Large‑Scale Quantum Systems</div>
-        <p class="intro-text">Awarded to <strong>John Clarke, Michel Devoret, and John Martinis</strong> for contributions to the understanding of quantum mechanics in large‑scale electrical systems, paving the way for practical quantum computing. <b>qFoldIT</b> directly integrates this legacy via the <strong>quantum‑adapter</strong> module, enabling cloud‑based quantum annealing and VQE calculations for molecular folding tasks.</p>
+    <!-- ==================== 6. OPEN SCIENCE & CALL FOR COLLABORATION ==================== -->
+    <div class="intro-block">
+        <div class="intro-title"><i class="fas fa-lock-open"></i> Open Science & How to Join</div>
+        <p class="intro-text">All results (PDB structures, validation data) will be released under open licenses after internal review. We invite: computational biologists, quantum algorithm researchers, game developers, and citizen scientists. Beta access is free — contact us to participate in the closed beta (planned for late 2026).</p>
         <div class="poster-single">
-            <div class="poster-block">
-                <img src="https://qfoldit.github.io/img/posters/noble_physics_2025.png" alt="Nobel Prize Physics 2025" class="poster-image">
-                <div class="poster-caption"><i class="fas fa-quantum"></i> Clarke, Devoret, Martinis — for quantum computing hardware breakthroughs</div>
-            </div>
+            <img src="https://qfoldit.github.io/img/qFold.png" style="width: 100%;border-radius: 10px;" alt="qFoldIT visualization">
         </div>
-
-        <!-- Chemistry 2025 -->
-        <div class="intro-subtitle"><i class="fas fa-cubes"></i> Chemistry 2025: Metal‑Organic Frameworks (MOFs)</div>
-        <p class="intro-text">Awarded to <strong>Susumu Kitagawa, Richard Robson, and Omar Yaghi</strong> for the development of metal‑organic frameworks — porous crystalline materials with tunable structures. <b>qFoldIT</b> extends its molecular design engine to these next‑generation materials, demonstrating that gamified citizen science can accelerate not only drug discovery but also advanced functional materials for carbon capture, catalysis, and hydrogen storage.</p>
-        <div class="poster-single">
-            <div class="poster-block">
-                <img src="https://qfoldit.github.io/img/posters/noble_chemistry_2025.png" alt="Nobel Prize Chemistry 2025" class="poster-image">
-                <div class="poster-caption"><i class="fas fa-cube"></i> Kitagawa, Robson & Yaghi — metal‑organic frameworks (MOFs)</div>
-            </div>
-        </div>
-
-        <!-- 2007 Peace -->
-        <div class="intro-subtitle"><i class="fas fa-hand-peace"></i> 2007 Nobel Peace Prize: Climate & Sustainability</div>
-        <p class="intro-text"><b>The IPCC and Al Gore</b> highlighted the link between climate and global security. <b>qFoldIT</b> is the digital twin of the Arctic station <b>“Snezhinka”</b> (AHEAD project, Arctic Council). <b>Players immerse in climate challenges</b>, design carbon‑free technologies, and discover enzymes for bioremediation.</p>
-        
-        <!-- 2018 Chemistry (Arnold) -->
-        <div class="intro-subtitle"><i class="fas fa-project-diagram"></i> Chemistry 2018: Directed Evolution of Enzymes</div>
-        <p class="intro-text">Awarded to <strong>Frances Arnold</strong> for the directed evolution of enzymes. In <b>qFoldIT</b>, players mutate and select protein variants in a gamified evolution loop — directly inspired by Arnold’s Nobel‑winning work. The platform’s AI (ZairaChem) evaluates “fitness” (stability, activity), enabling rapid in silico evolution of biocatalysts for industrial and medical applications.</p>
-
-        <!-- 2013 Chemistry -->
-        <div class="intro-subtitle"><i class="fas fa-chalkboard"></i> Chemistry 2013: Multiscale Models for Complex Systems</div>
-        <p class="intro-text">Awarded to <strong>Martin Karplus, Michael Levitt, and Arieh Warshel</strong> for developing multiscale models for complex chemical systems. Their work underpins the classical molecular dynamics (OpenMM) and quantum‑classical hybrid calculations used in <b>qFoldIT</b>’s folding pipeline.</p>
-
-        <!-- 2000 Medicine -->
-        <div class="intro-subtitle"><i class="fas fa-brain"></i> Medicine 2000: Molecular Mechanisms of Memory</div>
-        <p class="intro-text">Awarded to <strong>Eric Kandel</strong> for discoveries on long‑term potentiation (LTP). <b>qFoldIT</b> applies these principles in its core loop: immediate feedback and spaced repetition strengthen neural pathways, turning players into skilled molecular designers.</p>
-
-        <!-- 2002 Economics (Kahneman) – purely cognitive, no financial aspect -->
-        <div class="intro-subtitle"><i class="fas fa-balance-scale"></i> Economics 2002: Two Systems of Thinking</div>
-        <p class="intro-text">Awarded to <strong>Daniel Kahneman</strong> for integrating psychology into economics, particularly the distinction between intuitive (System 1) and analytical (System 2) thinking. <b>qFoldIT</b> dynamically switches between high‑action Arctic races (System 1) and deep molecular folding puzzles (System 2), preventing fatigue and maintaining flow — a pure cognitive design principle without any commercial incentive.</p>
-
-        <div class="intro-subtitle"><i class="fas fa-couch"></i> From Complex Games to Living Room Fun</div>
-        <p class="intro-text"><strong>qFoldIT reimagines the gaming paradigm:</strong> it steps away from solitary, hyper‑complex simulators and returns to the warmth of shared experiences. Like classic board games that once gathered families around a table, qFoldIT turns molecular science into a collaborative adventure — parents and children solving protein folds, exploring Arctic climate scenarios, or designing new molecules side by side. It is not merely a game; it is a new genre of science entertainment designed for the living room, where discovery becomes a family ritual.</p>
-        
-        <img src="https://qfoldit.github.io/img/qFold.png" style="width: 100%;border-radius: 10px;" alt="qFoldIT visualization">
-        
         <div class="intro-subtitle"><i class="fas fa-industry"></i> Industry 4.0 & Synthetic Biology</div>
-        <p class="intro-text"><b>The Fourth Industrial Revolution</b> (term coined at Hannover Fair 2011) is based on the convergence of digital, physical, and biological worlds. <b>qFoldIT</b> embodies its core principle: digital modelling of biological systems <b>(DNA → computer → “living factory”)</b>. This enables drugs tailored to genetic diversity and DNA‑based data storage.</p>
-        <p class="intro-text"><strong>qFoldIT</strong> follows the <b>FoldIT</b> tradition: a community of player‑researchers solves real scientific problems, while quantum algorithms and AI push the boundaries of what is possible. The platform is entirely non‑commercial and open for academic use.</p>
+        <p class="intro-text">qFoldIT embodies the digital‑to‑biological convergence: <strong>DNA → computer → “living factory”</strong>. This enables drugs tailored to genetic diversity, DNA‑based data storage, and distributed biomanufacturing — all within an open, gamified framework.</p>
     </div>
 
     <div class="book-block">
@@ -478,18 +515,6 @@
             <a href="https://books.google.com/books?q=Gaming+Cancer+Jeff+Yoshimi" target="_blank" style="color: #0077FF; margin-left: auto; text-decoration: none;">
                 <i class="fab fa-google"></i> Google Books
             </a>
-        </div>
-    </div>
-
-    <div class="accordion">
-        <div class="accordion-item open">
-            <div class="accordion-header"><span><i class="fas fa-users"></i> Scientific Team & Collaborating Institutions</span><i class="fas fa-chevron-down"></i></div>
-            <div class="accordion-content">
-                <div class="team-grid" id="teamGrid">
-                    <!-- Team cards will be inserted by JavaScript -->
-                </div>
-                <p style="margin-top: 30px; color: #8a9099; font-size: 0.9rem;"><i class="fas fa-globe"></i> Additional partners: <strong>Joint Institute for Nuclear Research (JINR, Dubna)</strong> and <strong>Yonsei University (Seoul, Korea)</strong> have joined as administrative collaborators, contributing expertise in machine learning, computational chemistry, and generative AI for protein‑protein interactions.</p>
-            </div>
         </div>
     </div>
 
@@ -553,11 +578,11 @@
             img: "https://qfoldit.github.io/img/1/Alapkin.png",
             birthDate: "1972-03-01",
             detailIntro: "Professor of Sustainable Reaction Engineering at <strong>University of Cambridge</strong>, Director of the <strong>Institute for Digital Molecular Technologies (iDMT)</strong>. A world leader in digital chemistry, AI‑driven synthesis automation, and green chemical processes.",
-            roleDetail: "<b>Role in qFoldIT:</b> Bridges the gap between in‑game molecular designs and real‑world industrial viability. Leads validation of synthetic accessibility, scalability, and sustainability (green chemistry metrics). Integrates digital twins of chemical reactors and automated synthesis workflows into the qFoldIT ecosystem.",
+            roleDetail: "<b>Role in qFoldIT:</b> Bridges the gap between in‑game molecular designs and real‑world industrial viability. Leads validation of synthetic accessibility, scalability, and sustainability (green chemistry metrics).",
             meta: [
                 '<i class="fas fa-university"></i> University of Cambridge — iDMT',
                 '<i class="fas fa-globe"></i> Website: <a href="https://www.ceb.cam.ac.uk/directory/alexei-lapkin" target="_blank" class="orcid-link">Cambridge profile</a>',
-                '<i class="fas fa-leaf"></i> Expertise: Sustainable Reaction Engineering · Digital Twins · Green Chemistry · Automated Synthesis'
+                '<i class="fas fa-leaf"></i> Expertise: Sustainable Reaction Engineering · Digital Twins · Green Chemistry'
             ]
         },
         {
@@ -565,12 +590,11 @@
             role: "Scientific Director",
             img: "https://qfoldit.github.io/img/1/Kelly_Chibale_0.png",
             birthDate: "1964-03-31",
-            detailIntro: "Founder of H3D (University of Cape Town). <b>Cambridge graduate, Oxford partner</b>, pioneer of drug discovery in Africa, creator of the <b>ZairaChem AI pipeline (15 ADME‑Tox models)</b>. One of Fortune’s most influential leaders.",
+            detailIntro: "Founder of H3D (University of Cape Town). <b>Cambridge graduate, Oxford partner</b>, pioneer of drug discovery in Africa, creator of the <b>ZairaChem AI pipeline (15 ADME‑Tox models)</b>.",
             roleDetail: "Defines disease targets (malaria, TB, AMR), validates methodology, provides access to H3D data. Co‑author of key qFoldIT publications.",
             meta: [
                 '<i class="fas fa-globe"></i> Website: <a href="https://www.kellychibale.co.za/" target="_blank" class="orcid-link">www.kellychibale.co.za</a>',
-                '<i class="fab fa-orcid"></i> ORCID: <a href="https://orcid.org/0000-0002-4541-646X" target="_blank" class="orcid-link">0000-0002-4541-646X</a>',
-                '<i class="fab fa-orcid"></i> Google Scholar: <a href="https://scholar.google.com/citations?user=BAk6GbcAAAAJ&hl=en" target="_blank" class="orcid-link">Kelly Chibale</a>'
+                '<i class="fab fa-orcid"></i> ORCID: <a href="https://orcid.org/0000-0002-4541-646X" target="_blank" class="orcid-link">0000-0002-4541-646X</a>'
             ]
         },
         {
@@ -611,7 +635,7 @@
             img: "https://qfoldit.github.io/img/1/Dr_Beata_Mierzwa.png",
             birthDate: null,
             detailIntro: "Molecular biologist (UCSD, Ludwig Institute) and pioneering science artist. Creator of the educational video game <i>Microscopya</i> and AAAS IF/THEN Ambassador.",
-            roleDetail: "<b>Role in qFoldIT:</b> Translates complex quantum-chemical data into intuitive, AAA-quality visual puzzles. She bridges hardcore laboratory science with user engagement, designing a crisp, high-tech visual language (pure white, vivid blue, deep navy) that makes molecular manipulation accessible without sacrificing scientific rigor. Leads the gamified learning experience.",
+            roleDetail: "<b>Role in qFoldIT:</b> Translates complex quantum-chemical data into intuitive, AAA-quality visual puzzles. Designs a crisp, high-tech visual language (pure white, vivid blue, deep navy) that makes molecular manipulation accessible without sacrificing scientific rigor.",
             meta: [
                 '<i class="fas fa-globe"></i> Website: <a href="https://beatascienceart.com" target="_blank" class="orcid-link">beatascienceart.com</a>',
                 '<i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/beatascienceart" target="_blank" class="orcid-link">Beata Mierzwa</a>'
