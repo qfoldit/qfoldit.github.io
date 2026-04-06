@@ -164,7 +164,7 @@
             transition: max-height 0.4s ease-out, padding 0.3s;
         }
         .accordion-item.open .accordion-content {
-            max-height: 3500px;
+            max-height: 4800px;
             padding: 20px 24px 24px 24px;
         }
 
@@ -253,8 +253,8 @@
         }
         .resources-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
             align-items: start;
         }
         .resources-heading {
@@ -319,6 +319,10 @@
             border-radius: 24px;
             padding: 12px;
             text-align: center;
+            transition: transform 0.2s;
+        }
+        .book-cover-card:hover {
+            transform: translateY(-4px);
         }
         .book-cover-card img {
             max-width: 100%;
@@ -397,9 +401,17 @@
             width: auto;
             filter: brightness(0.95);
         }
+        @media (max-width: 1000px) {
+            .resources-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
         @media (max-width: 700px) {
             .footer { gap: 25px; padding: 16px 20px; }
             .partner-logo-footer { max-height: 40px; }
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -448,11 +460,12 @@
     <!-- ==================== 3. GAMIFICATION & CITIZEN SCIENCE ==================== -->
     <div class="intro-block">
         <div class="intro-title"><i class="fas fa-gamepad"></i> Gamification & Citizen Science</div>
-        <p class="intro-text">Three game designers shape the qFoldIT experience:</p>
+        <p class="intro-text">Four world‑class game designers shape the qFoldIT experience:</p>
         <ul style="margin-left: 2em; margin-bottom: 1.5em;">
             <li><strong>George Ahiakwa</strong> (founder of qFoldIT) — developer on <strong>Atomic Heart</strong> (Mundfish).</li>
             <li><strong>Demis Hassabis</strong> — lead programmer on <strong>Theme Park</strong> (Bullfrog), lead AI on <strong>Black & White</strong> (Lionhead), founder of Elixir Studios (<strong>Republic: The Revolution</strong>, <strong>Evil Genius</strong>).</li>
             <li><strong>Dr. Beata Mierzwa</strong> — creator of the award‑winning educational game <strong>Microscopya</strong>.</li>
+            <li><strong>Robertson Nortey</strong> — Lead Gameplay & Systems Designer (Rocksteady Studios: Batman Arkham series, Suicide Squad; currently at Leti Arts). Brings AAA combat, AI, and open‑world expertise to make molecular folding feel like a blockbuster action puzzle.</li>
         </ul>
         <p class="intro-text"><i class="fas fa-lightbulb" style="color:#0077FF; margin-right:8px;"></i> <strong>From Atomic Heart to qFoldIT:</strong> Working on <strong>Atomic Heart</strong> was built around <strong>“science fiction”</strong> — an opportunity to creatively fantasise about the visual realisation and physical behaviour of substances (e.g., the “polymer”). That experience taught how to translate abstract physical properties into compelling, visceral gameplay. qFoldIT applies the same philosophy: molecular interactions, hydrogen bonds, and quantum tunnelling become visible, tangible, and playable — turning hard science into an intuitive experience.</p>
 
@@ -543,6 +556,14 @@
                 <a href="https://www.cambridge.org/core/books/art-of-molecular-dynamics-simulation/1E9D9F0A6E9A8B1C6D0E2F3A4B5C6D7E" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Explore the classic</a>
                 <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;"><i class="far fa-copyright"></i> Essential reading for molecular modelers</div>
             </div>
+            <div class="book-cover-card">
+                <img src="https://qfoldit.github.io/img/viz/African_Fractals.jpg" alt="African Fractals: Modern Computing and Indigenous Design book cover">
+                <div class="book-title">African Fractals</div>
+                <div class="book-author">Ron Eglash</div>
+                <div class="book-desc">Explores fractal geometry in Sub‑Saharan African architecture, hairstyles, textiles, sculpture, and symbolic systems. Connects indigenous design with modern computing and chaos theory — a blueprint for culturally‑informed generative algorithms in qFoldIT’s procedural content.</div>
+                <a href="https://www.rutgersuniversitypress.org/african-fractals/9780813526140" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Discover the book</a>
+                <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;"><i class="fas fa-fractal"></i> Indigenous algorithms & complexity</div>
+            </div>
         </div>
     </div>
 </div>
@@ -609,6 +630,19 @@
             ]
         },
         {
+            name: "Robertson Nortey",
+            role: "Lead Gameplay & Systems Designer (AAA Integration)",
+            img: "https://qfoldit.github.io/img/1/Robertson_Nortey.jpg",
+            birthDate: null,
+            detailIntro: "Industry veteran with over a decade at <strong>Rocksteady Studios</strong> (London), where he served as Lead Gameplay Programmer on <strong>Batman: Arkham Knight</strong>, <strong>Batman: Arkham VR</strong>, and <strong>Suicide Squad: Kill the Justice League</strong>. Currently Lead Game Developer at <strong>Leti Arts</strong> (Accra, Ghana), creating Afrocentric games that fuse culture and innovation.",
+            roleDetail: "<b>Role in qFoldIT:</b> Architect of the core gameplay loop. Translates complex molecular dynamics (hydrogen bonds, torsion angles, quantum walks) into intuitive, AAA-quality interactions. Designs the progressive difficulty system, haptic feedback for VR folding, and real-time collaborative puzzles. Ensures the platform feels like a blockbuster game, not a laboratory tool.",
+            meta: [
+                '<i class="fab fa-unreal-engine"></i> Unreal Engine & C++ specialist',
+                '<i class="fas fa-robot"></i> AI & systemic game design (Batman Arkham series)',
+                '<i class="fas fa-globe"></i> Leti Arts — <a href="https://www.letiarts.com" target="_blank" class="orcid-link">Africa’s Legends, Karmzah, Puzzle Scout</a>'
+            ]
+        },
+        {
             name: "Dr. George Ahiakwa",
             role: "Founder, CEO, Gamification Architect",
             img: "https://qfoldit.github.io/img/1/AG.png",
@@ -639,6 +673,19 @@
             meta: [
                 '<i class="fas fa-globe"></i> Website: <a href="https://beatascienceart.com" target="_blank" class="orcid-link">beatascienceart.com</a>',
                 '<i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/beatascienceart" target="_blank" class="orcid-link">Beata Mierzwa</a>'
+            ]
+        },
+        {
+            name: "Prof. Ron Eglash",
+            role: "Advisor on Algorithmic Culture & Generative Design",
+            img: "https://qfoldit.github.io/img/1/Prof_Ron_Eglash.jpg",
+            birthDate: null,
+            detailIntro: "Author of <strong>African Fractals: Modern Computing and Indigenous Design</strong>, creator of <strong>Culturally Situated Design Tools (CSDT)</strong>. Professor at University of Michigan, pioneering the intersection of ethno-mathematics, fractal geometry, and computing. His work reveals how indigenous African design traditions encode recursive algorithms — a direct conceptual bridge to molecular self-assembly and procedural generation.",
+            roleDetail: "<b>Role in qFoldIT:</b> Guides the integration of fractal logic and culturally situated pattern languages into the game's puzzle mechanics. Transforms Adinkra symbols and recursive weaving algorithms into modular folding challenges. Ensures that qFoldIT's visual and interaction language respects and amplifies indigenous computational thinking, turning the platform into a living archive of algorithmic heritage.",
+            meta: [
+                '<i class="fas fa-fractal"></i> African Fractals & generative design',
+                '<i class="fas fa-chalkboard-teacher"></i> CSDT — Culturally Situated Design Tools',
+                '<i class="fas fa-globe"></i> <a href="https://www.eglash.org" target="_blank" class="orcid-link">eglash.org</a>'
             ]
         }
     ];
