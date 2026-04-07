@@ -269,51 +269,73 @@
             padding-left: 18px;
         }
         .resources-heading i { color: #0077FF; font-size: 1.8rem; }
-        .links-panel {
+
+        /* New horizontal links section (under book covers) */
+        .horizontal-links {
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+        }
+        .horizontal-links-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .horizontal-links-title i {
+            color: #0077FF;
+        }
+        .links-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .link-horizontal-item {
+            flex: 1;
+            min-width: 220px;
             background: rgba(0,0,0,0.25);
             border-radius: 20px;
-            padding: 8px 4px;
+            padding: 14px 18px;
+            transition: background 0.2s, transform 0.1s;
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        .ref-link-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .link-horizontal-item:hover {
+            background: rgba(0,119,255,0.1);
+            transform: translateY(-2px);
         }
-        .ref-link-list li {
-            margin-bottom: 22px;
-            padding: 10px 14px;
-            border-radius: 16px;
-            background: rgba(255,255,255,0.02);
-            transition: background 0.2s;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .ref-link-list li:hover { background: rgba(0,119,255,0.08); }
-        .ref-link {
+        .link-horizontal-item a {
             display: flex;
             align-items: center;
             gap: 14px;
             text-decoration: none;
             color: #E1E3E6;
             font-weight: 500;
-            font-size: 1.05rem;
         }
-        .ref-link i {
+        .link-horizontal-item a i {
             width: 32px;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: #0077FF;
             text-align: center;
         }
-        .ref-link span { flex: 1; }
-        .ref-link .link-url {
-            font-size: 0.75rem;
+        .link-horizontal-item .link-text {
+            flex: 1;
+        }
+        .link-horizontal-item .link-url {
+            font-size: 0.7rem;
             color: #8a9099;
             font-family: monospace;
             word-break: break-all;
             display: block;
             margin-top: 4px;
         }
-        .ref-link:hover { color: white; }
-        .ref-link:hover .link-url { color: #0077FF; }
+        .link-horizontal-item a:hover .link-url {
+            color: #0077FF;
+        }
+
         .book-cover-card {
             background: rgba(0,0,0,0.2);
             border-radius: 24px;
@@ -399,11 +421,13 @@
         .partner-logo-footer {
             max-height: 55px;
             width: auto;
-        /* filter: brightness(0.95); */
         }
         @media (max-width: 1000px) {
             .resources-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            .links-row {
+                flex-direction: column;
             }
         }
         @media (max-width: 700px) {
@@ -430,7 +454,7 @@
         <p class="intro-text">The platform is built on Nobel‑prize winning discoveries and is entirely free for academic use.</p>
     </div>
 
-    <!-- ==================== 2. NOBEL FOUNDATION (GROUPED BY THEMES) ==================== -->
+    <!-- ==================== 2. NOBEL FOUNDATION ==================== -->
     <div class="intro-block">
         <div class="intro-title"><i class="fas fa-trophy"></i> Nobel Prize Foundation</div>
         <p class="intro-text">qFoldIT integrates six Nobel‑awarded breakthroughs, grouped by scientific theme:</p>
@@ -457,7 +481,7 @@
         <p class="intro-text"><strong>Economics 2002 (Kahneman)</strong> — two systems of thinking (intuitive System 1 vs analytical System 2). qFoldIT dynamically switches between high‑action Arctic races (System 1) and deep molecular folding puzzles (System 2), preventing fatigue and maintaining flow.</p>
     </div>
 
-    <!-- ==================== 3. GAMIFICATION & CITIZEN SCIENCE ==================== -->
+    <!-- ==================== 3. GAMIFICATION ==================== -->
     <div class="intro-block">
         <div class="intro-title"><i class="fas fa-gamepad"></i> Gamification & Citizen Science</div>
         <p class="intro-text">Four world‑class game designers shape the qFoldIT experience:</p>
@@ -480,7 +504,7 @@
         <p class="intro-text">The same design principles — artistic rigour, biological accuracy, and engaging interactivity — drive qFoldIT. Players not only play but actively contribute to molecular design, with their solutions validated by AI (ZairaChem) and quantum algorithms.</p>
     </div>
 
-    <!-- ==================== 4. TECHNICAL ARCHITECTURE (with containerization) ==================== -->
+    <!-- ==================== 4. TECHNICAL ARCHITECTURE ==================== -->
     <div class="intro-block">
         <div class="intro-title"><i class="fas fa-cogs"></i> Technical Architecture</div>
         <p class="intro-text">qFoldIT integrates three complementary computational engines:</p>
@@ -498,7 +522,7 @@
         <p class="intro-text">All code is planned for open release (GitHub). Joint Institute for Nuclear Research (JINR, Dubna) and Yonsei University (Seoul) have joined as administrative collaborators on GitHub.</p>
     </div>
 
-    <!-- ==================== 5. TEAM & PARTNERS ==================== -->
+    <!-- ==================== 5. TEAM ==================== -->
     <div class="accordion">
         <div class="accordion-item open">
             <div class="accordion-header"><span><i class="fas fa-users"></i> Scientific Team & Collaborating Institutions</span><i class="fas fa-chevron-down"></i></div>
@@ -509,10 +533,10 @@
         </div>
     </div>
 
-    <!-- ==================== 6. OPEN SCIENCE & CALL FOR COLLABORATION ==================== -->
+    <!-- ==================== 6. OPEN SCIENCE & CALL ==================== -->
     <div class="intro-block">
         <div class="intro-title"><i class="fas fa-lock-open"></i> Open Science & How to Join</div>
-        <p class="intro-text"><!-- All results (PDB structures, validation data) will be released under open licenses after internal review. --> We invite: computational biologists, quantum algorithm researchers, game developers, and citizen scientists. Beta access is free — contact us to participate in the closed beta (planned for late 2026).</p>
+        <p class="intro-text">We invite: computational biologists, quantum algorithm researchers, game developers, and citizen scientists. Beta access is free — contact us to participate in the closed beta (planned for late 2026).</p>
         <div class="poster-single">
             <img src="https://qfoldit.github.io/img/qFold.png" style="width: 100%;border-radius: 10px;" alt="qFoldIT visualization">
         </div>
@@ -531,23 +555,14 @@
         </div>
     </div>
 
+    <!-- ==================== RESOURCES: BOOK COVERS + HORIZONTAL LINKS ==================== -->
     <div class="resources-container">
         <div class="resources-heading">
             <i class="fas fa-book-open"></i> 
             <span>Open Science & Essential Resources</span>
         </div>
+        <!-- Grid with three book covers (including new journal cover) -->
         <div class="resources-grid">
-            <div class="links-panel">
-                <ul class="ref-link-list">
-                    <li><a href="https://fold.it/" target="_blank" class="ref-link"><i class="fas fa-gamepad"></i><span>FoldIT <span style="font-weight:normal;">— crowdsourced protein folding</span><span class="link-url">https://fold.it/</span></span></a></li>
-                    <li><a href="https://qfold.io/" target="_blank" class="ref-link"><i class="fas fa-chalkboard-user"></i><span>qFold.io <span style="font-weight:normal;">— quantum‑enhanced molecular platform</span><span class="link-url">https://qfold.io/</span></span></a></li>
-                    <li><a href="https://arxiv.org/pdf/2101.10279" target="_blank" class="ref-link"><i class="fas fa-atom"></i><span>qFold (arXiv:2101.10279) <span style="font-weight:normal;">— quantum algorithms for protein folding</span><span class="link-url">arxiv.org/pdf/2101.10279</span></span></a></li>
-                    <li><a href="https://arxiv.org/pdf/2011.03442" target="_blank" class="ref-link"><i class="fas fa-brain"></i><span>DeepFoldIT (arXiv:2011.03442) <span style="font-weight:normal;">— deep learning meets folding games</span><span class="link-url">arxiv.org/pdf/2011.03442</span></span></a></li>
-                </ul>
-                <div style="margin-top: 16px; padding: 12px 8px; font-size: 0.85rem; color: #8a9099; border-top: 1px solid rgba(255,255,255,0.08);">
-                    <i class="fas fa-microscope"></i> These resources embody the core of qFoldIT: gamified discovery, quantum acceleration, and AI‑driven molecular innovation.
-                </div>
-            </div>
             <div class="book-cover-card">
                 <img src="https://qfoldit.github.io/img/viz/ArtOfMolecular.png" alt="The Art of Molecular Dynamics Simulation book cover">
                 <div class="book-title">The Art of Molecular Dynamics Simulation</div>
@@ -563,6 +578,62 @@
                 <div class="book-desc">Explores fractal geometry in Sub‑Saharan African architecture, hairstyles, textiles, sculpture, and symbolic systems. Connects indigenous design with modern computing and chaos theory — a blueprint for culturally‑informed generative algorithms in qFoldIT’s procedural content.</div>
                 <a href="https://www.rutgersuniversitypress.org/african-fractals/9780813526140" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Discover the book</a>
                 <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;"><i class="fas fa-fractal"></i> Indigenous algorithms & complexity</div>
+            </div>
+            <div class="book-cover-card">
+                <img src="https://qfoldit.github.io/img/viz/journal_of_chemistry_education.jpg" alt="Journal of Chemical Education cover">
+                <div class="book-title">Journal of Chemical Education</div>
+                <div class="book-author">ACS Publications</div>
+                <div class="book-desc">Volume 96, Issue 11 — a leading peer-reviewed journal bridging chemistry research and pedagogy. qFoldIT aligns with its mission to advance gamified and quantum‑enabled molecular design in education.</div>
+                <a href="https://pubs.acs.org/journal/jceda8" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Visit ACS Publications</a>
+                <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;"><i class="fas fa-flask"></i> Most Trusted. Most Cited. Most Read.</div>
+            </div>
+        </div>
+
+        <!-- Horizontal links panel (previously .links-panel, now placed below covers as horizontal row) -->
+        <div class="horizontal-links">
+            <div class="horizontal-links-title">
+                <i class="fas fa-link"></i> Key Resources & Publications
+            </div>
+            <div class="links-row">
+                <div class="link-horizontal-item">
+                    <a href="https://fold.it/" target="_blank">
+                        <i class="fas fa-gamepad"></i>
+                        <div class="link-text">
+                            FoldIT — crowdsourced protein folding
+                            <span class="link-url">https://fold.it/</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="link-horizontal-item">
+                    <a href="https://qfold.io/" target="_blank">
+                        <i class="fas fa-chalkboard-user"></i>
+                        <div class="link-text">
+                            qFold.io — quantum‑enhanced molecular platform
+                            <span class="link-url">https://qfold.io/</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="link-horizontal-item">
+                    <a href="https://arxiv.org/pdf/2101.10279" target="_blank">
+                        <i class="fas fa-atom"></i>
+                        <div class="link-text">
+                            qFold (arXiv:2101.10279)
+                            <span class="link-url">arxiv.org/pdf/2101.10279</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="link-horizontal-item">
+                    <a href="https://arxiv.org/pdf/2011.03442" target="_blank">
+                        <i class="fas fa-brain"></i>
+                        <div class="link-text">
+                            DeepFoldIT (arXiv:2011.03442)
+                            <span class="link-url">arxiv.org/pdf/2011.03442</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div style="margin-top: 20px; font-size: 0.85rem; color: #8a9099; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 18px;">
+                <i class="fas fa-microscope"></i> These resources embody the core of qFoldIT: gamified discovery, quantum acceleration, and AI‑driven molecular innovation.
             </div>
         </div>
     </div>
