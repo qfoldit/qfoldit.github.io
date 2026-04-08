@@ -169,7 +169,7 @@
             transition: max-height 0.4s ease-out, padding 0.3s;
         }
         .accordion-item.open .accordion-content {
-            max-height: 5400px;
+            max-height: 5600px;
             padding: 20px 24px 24px 24px;
         }
 
@@ -514,7 +514,7 @@
             </div>
         </div>
 
-        <!-- New posters grid: Drew Berry + Microscopya cover -->
+        <!-- Posters grid: Drew Berry + Microscopya cover -->
         <div class="poster-grid">
             <div class="poster-block">
                 <img src="https://qfoldit.github.io/video/Drew_Berry.png" alt="Drew Berry — animations of unseeable biology, aliens & quantum biology">
@@ -561,9 +561,20 @@
             <li><strong>Jupyter‑native analysis</strong> — NanoVer’s Python client connects directly to the same server, allowing real‑time plotting of energies, trajectories, and forces inside Jupyter notebooks. This bridges gamification with data science.</li>
             <li><strong>Hybrid classical‑quantum pipeline</strong> — OpenMM (integrated with NanoVer Server) provides instant classical response for low‑latency gameplay, while the qFold quantum adapter runs as a background microservice to refine energy landscapes and suggest optimal moves. NanoVer Server seamlessly switches between engines.</li>
         </ul>
+
+        <!-- NEW POSTER: NanoVer Server visual -->
+        <div class="poster-single" style="margin: 20px 0;">
+            <img src="https://qfoldit.github.io/img/posters/NanoVer.jpg" alt="NanoVer Server architecture diagram">
+            <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
+                <i class="fas fa-server"></i>
+                <strong>NanoVer Server — interactive molecular dynamics engine powering qFoldIT’s real‑time multiplayer VR</strong>
+                <span style="margin-left: auto;"><i class="fas fa-vr-cardboard"></i> iMD · OpenMM · gRPC</span>
+            </div>
+        </div>
+
         <p class="intro-text">The communication protocol (gRPC/WebSocket) is language‑agnostic, enabling our Unigine 2 Sim client (C++) to exchange frames and forces with the Python‑based NanoVer Server. The server runs as a containerised microservice alongside the quantum‑adapter and Rosetta modules, orchestrated by Kubernetes. This architecture transforms qFoldIT from a batch‑oriented platform into a <strong>live, interactive, multiplayer molecular playground</strong> where scientific discovery and gamification feed each other in real time.</p>
         <p class="intro-text"><i class="fas fa-check-circle" style="color:#28a745;"></i> <strong>Open source commitment:</strong> NanoVer Server is freely available under CC BY 4.0, and all qFoldIT‑specific adapters will be released on GitHub. Joint Institute for Nuclear Research (JINR) and Yonsei University have already joined as collaborators to co‑develop the integrated platform.</p>
-        <!-- ========== END OF NEW SECTION ========== -->
+        <!-- ========== END OF NANOVER SECTION ========== -->
 
         <div class="intro-subtitle"><i class="fas fa-dharmachakra"></i> Containerized Microservices & Orchestration</div>
         <p class="intro-text">All computational modules — DeepFoldIT, Rosetta, the quantum‑adapter (which hosts the full qFold algorithm), the newly added <strong>NanoVer Server</strong>, and auxiliary services — run as <strong>Docker containers</strong>. They are orchestrated by <strong>Kubernetes on Amazon EKS</strong>, enabling GPU‑aware scaling, high availability, and seamless integration with cloud services (S3 for PDB storage, RDS for metadata, ElastiCache for session caching, and Secrets Manager for API keys).</p>
