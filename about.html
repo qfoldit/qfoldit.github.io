@@ -169,7 +169,7 @@
             transition: max-height 0.4s ease-out, padding 0.3s;
         }
         .accordion-item.open .accordion-content {
-            max-height: 4800px;
+            max-height: 5400px;
             padding: 20px 24px 24px 24px;
         }
 
@@ -435,6 +435,9 @@
         @media (max-width: 700px) {
             .footer { gap: 25px; padding: 16px 20px; }
             .partner-logo-footer { max-height: 40px; }
+            .poster-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -501,7 +504,7 @@
             <li>Media coverage: <em>The Scientist Magazine</em>, <em>Science Magazine</em>, <em>Nerdist</em>, <em>KPBS News</em>.</li>
         </ul>
 
-        <!-- NEW POSTER: Microsoft Xbox Game Camp Africa partnership -->
+        <!-- Microsoft Xbox Game Camp Africa partnership poster -->
         <div class="poster-single" style="margin: 30px 0 20px;">
             <img src="https://qfoldit.github.io/img/posters/microsoft_accepted.png" alt="Microsoft Xbox Game Camp Africa acceptance poster">
             <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
@@ -510,12 +513,33 @@
                 <span style="margin-left: auto; font-size: 0.85rem;"><i class="fas fa-trophy"></i> Milestone for African game development</span>
             </div>
         </div>
-        <p class="intro-text">This recognition from Microsoft validates LetiArts’ leading role in African game innovation. The same creative and technical excellence powers qFoldIT’s gamified molecular design, blending AAA production values with cutting-edge science.</p>
+
+        <!-- New posters grid: Drew Berry + Microscopya cover -->
+        <div class="poster-grid">
+            <div class="poster-block">
+                <img src="https://qfoldit.github.io/video/Drew_Berry.png" alt="Drew Berry — animations of unseeable biology, aliens & quantum biology">
+                <div class="poster-caption">
+                    <i class="fas fa-film"></i>
+                    <strong>Drew Berry — Animations of Unseeable Biology, Aliens & Quantum Biology</strong>
+                    <span style="margin-left: auto;"><i class="fas fa-dna"></i> Molecular visualization pioneer</span>
+                </div>
+            </div>
+            <div class="poster-block">
+                <img src="https://qfoldit.github.io/img/posters/Microscopya_1.jpg" alt="Microscopya game poster — explore the living cell">
+                <div class="poster-caption">
+                    <i class="fas fa-gamepad"></i>
+                    <strong>Microscopya — scientifically accurate adventure inside a living cell</strong>
+                    <span style="margin-left: auto;"><i class="fas fa-award"></i> Award-winning educational game</span>
+                </div>
+            </div>
+        </div>
+
+        <p class="intro-text">This recognition from Microsoft validates LetiArts’ leading role in African game innovation. The same creative and technical excellence powers qFoldIT’s gamified molecular design, blending AAA production values with cutting-edge science. Inspired by world‑class scientific animators like <strong>Drew Berry</strong> (whose breathtaking visualizations of molecular machines and quantum biology set the gold standard), qFoldIT brings the same cinematic wonder to interactive protein folding. The <strong>Microscopya</strong> poster above captures the artistic rigor and biological accuracy that define our approach — turning the invisible into an unforgettable experience.</p>
 
         <p class="intro-text">The same design principles — artistic rigour, biological accuracy, and engaging interactivity — drive qFoldIT. Players not only play but actively contribute to molecular design, with their solutions validated by AI (ZairaChem) and quantum algorithms.</p>
     </div>
 
-    <!-- ==================== 4. TECHNICAL ARCHITECTURE ==================== -->
+    <!-- ==================== 4. TECHNICAL ARCHITECTURE (with NanoVer Server integration) ==================== -->
     <div class="intro-block">
         <div class="intro-title"><i class="fas fa-cogs"></i> Technical Architecture</div>
         <p class="intro-text">qFoldIT integrates three complementary computational engines:</p>
@@ -527,9 +551,23 @@
         <p class="intro-text"><strong>Quantum adapter</strong> — unified API to multiple QPUs. <strong>Microservices</strong> (bio‑ml, rosetta, quantum‑adapter, autoresearch, animation) are containerised (Docker) and orchestrated by Kubernetes on Amazon EKS.</p>
         <p class="intro-text"><strong>Visualisation</strong> — Unigine 2 Sim (64‑bit double precision, GPU‑based Gaussian splatting, volumetric raymarching) renders molecules with cinematic quality at 60+ fps, allowing seamless zoom from Arctic landscapes to atomic orbitals.</p>
         
+        <!-- ========== SECTION: NanoVer Server Integration ========== -->
+        <div class="intro-subtitle"><i class="fas fa-network-wired"></i> Interactive Real‑Time Engine: NanoVer Server</div>
+        <p class="intro-text"><strong>To bring true real‑time interactivity and multi‑user collaborative VR to qFoldIT, we have integrated <a href="https://github.com/irc-sphere/nanover-server-py" style="color:#0077FF;">NanoVer Server</a></strong> — originally developed for interactive molecular dynamics (iMD) in virtual reality (NanoVer ecosystem, JOSS 2025). NanoVer Server acts as the central iMD orchestrator, enabling:</p>
+        <ul style="margin-left: 2em; margin-bottom: 1.5em;">
+            <li><strong>Live force feedback</strong> — Players can “grab” atoms, apply forces in real time, and see the molecular response within milliseconds. The server executes OpenMM steps between frame publications while continuously updating iMD forces.</li>
+            <li><strong>Quantitatively accurate iMD</strong> — Every user‑induced perturbation is recorded (collective forces, potential energy, cumulative work done), making the gamified exploration fully reproducible and citable in scientific publications.</li>
+            <li><strong>Multi‑user colocated/distributed VR</strong> — Multiple researchers wearing Meta Quest headsets (via NanoVer iMD‑VR client) or using desktop Unigine clients can share the same virtual molecular environment, see each other’s avatars, and collaboratively fold proteins from different physical locations.</li>
+            <li><strong>Jupyter‑native analysis</strong> — NanoVer’s Python client connects directly to the same server, allowing real‑time plotting of energies, trajectories, and forces inside Jupyter notebooks. This bridges gamification with data science.</li>
+            <li><strong>Hybrid classical‑quantum pipeline</strong> — OpenMM (integrated with NanoVer Server) provides instant classical response for low‑latency gameplay, while the qFold quantum adapter runs as a background microservice to refine energy landscapes and suggest optimal moves. NanoVer Server seamlessly switches between engines.</li>
+        </ul>
+        <p class="intro-text">The communication protocol (gRPC/WebSocket) is language‑agnostic, enabling our Unigine 2 Sim client (C++) to exchange frames and forces with the Python‑based NanoVer Server. The server runs as a containerised microservice alongside the quantum‑adapter and Rosetta modules, orchestrated by Kubernetes. This architecture transforms qFoldIT from a batch‑oriented platform into a <strong>live, interactive, multiplayer molecular playground</strong> where scientific discovery and gamification feed each other in real time.</p>
+        <p class="intro-text"><i class="fas fa-check-circle" style="color:#28a745;"></i> <strong>Open source commitment:</strong> NanoVer Server is freely available under CC BY 4.0, and all qFoldIT‑specific adapters will be released on GitHub. Joint Institute for Nuclear Research (JINR) and Yonsei University have already joined as collaborators to co‑develop the integrated platform.</p>
+        <!-- ========== END OF NEW SECTION ========== -->
+
         <div class="intro-subtitle"><i class="fas fa-dharmachakra"></i> Containerized Microservices & Orchestration</div>
-        <p class="intro-text">All computational modules — DeepFoldIT, Rosetta, the quantum‑adapter (which hosts the full qFold algorithm), and auxiliary services — run as <strong>Docker containers</strong>. They are orchestrated by <strong>Kubernetes on Amazon EKS</strong>, enabling GPU‑aware scaling, high availability, and seamless integration with cloud services (S3 for PDB storage, RDS for metadata, ElastiCache for session caching, and Secrets Manager for API keys).</p>
-        <p class="intro-text">The <strong>quantum‑adapter container</strong> is the only component that implements the qFold quantum walk (Szegedy walk, Metropolis acceptance, VQE). It communicates with the classical `rosetta` container via gRPC, and with quantum hardware through AWS Braket or the Rosatom QPU API. This strict separation of concerns ensures reproducibility, portability, and independent scaling of classical and quantum workloads.</p>
+        <p class="intro-text">All computational modules — DeepFoldIT, Rosetta, the quantum‑adapter (which hosts the full qFold algorithm), the newly added <strong>NanoVer Server</strong>, and auxiliary services — run as <strong>Docker containers</strong>. They are orchestrated by <strong>Kubernetes on Amazon EKS</strong>, enabling GPU‑aware scaling, high availability, and seamless integration with cloud services (S3 for PDB storage, RDS for metadata, ElastiCache for session caching, and Secrets Manager for API keys).</p>
+        <p class="intro-text">The <strong>quantum‑adapter container</strong> is the only component that implements the qFold quantum walk (Szegedy walk, Metropolis acceptance, VQE). It communicates with the classical `rosetta` container via gRPC, and with quantum hardware through AWS Braket or the Rosatom QPU API. NanoVer Server communicates with both the quantum‑adapter (for background refinement) and the OpenMM engine (for real‑time iMD). This strict separation of concerns ensures reproducibility, portability, and independent scaling of classical, quantum, and interactive workloads.</p>
         <p class="intro-text">All code is planned for open release (GitHub). Joint Institute for Nuclear Research (JINR, Dubna) and Yonsei University (Seoul) have joined as administrative collaborators on GitHub.</p>
     </div>
 
@@ -572,7 +610,7 @@
             <i class="fas fa-book-open"></i> 
             <span>Open Science & Essential Resources</span>
         </div>
-        <!-- Grid with four book/journal covers (including two journal covers) -->
+        <!-- Grid with four book/journal covers (two journals) -->
         <div class="resources-grid">
             <div class="book-cover-card">
                 <img src="https://qfoldit.github.io/img/viz/ArtOfMolecular.png" alt="The Art of Molecular Dynamics Simulation book cover">
@@ -608,7 +646,7 @@
             </div>
         </div>
 
-        <!-- Horizontal links panel (previously .links-panel, now placed below covers as horizontal row) -->
+        <!-- Horizontal links panel (now with 5 links, including NanoVer Server) -->
         <div class="horizontal-links">
             <div class="horizontal-links-title">
                 <i class="fas fa-link"></i> Key Resources & Publications
@@ -650,9 +688,18 @@
                         </div>
                     </a>
                 </div>
+                <div class="link-horizontal-item">
+                    <a href="https://github.com/irc-sphere/nanover-server-py" target="_blank">
+                        <i class="fab fa-python"></i>
+                        <div class="link-text">
+                            NanoVer Server (GitHub)
+                            <span class="link-url">github.com/irc-sphere/nanover-server-py</span>
+                        </div>
+                    </a>
+                </div>
             </div>
             <div style="margin-top: 20px; font-size: 0.85rem; color: #8a9099; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 18px;">
-                <i class="fas fa-microscope"></i> These resources embody the core of qFoldIT: gamified discovery, quantum acceleration, and AI‑driven molecular innovation.
+                <i class="fas fa-microscope"></i> These resources embody the core of qFoldIT: gamified discovery, quantum acceleration, AI‑driven molecular innovation, and now <strong>real‑time interactive dynamics with NanoVer Server</strong>.
             </div>
         </div>
     </div>
