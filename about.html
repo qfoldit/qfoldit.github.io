@@ -781,3 +781,163 @@
         <img src="https://qfoldit.github.io/img/1/logo/leti-arts.png" alt="Leti Arts" class="partner-logo-footer">
     </a>
 </footer>
+
+<script>
+    function calculateAge(birthDateStr) {
+        const today = new Date();
+        const birth = new Date(birthDateStr);
+        let age = today.getFullYear() - birth.getFullYear();
+        const monthDiff = today.getMonth() - birth.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+            age--;
+        }
+        return age;
+    }
+
+    const teamMembers = [
+        {
+            name: "Prof. Alexei Lapkin",
+            role: "Director of Digital Molecular Engineering & Sustainable Synthesis",
+            img: "https://qfoldit.github.io/img/1/Alapkin.png",
+            birthDate: "1972-03-01",
+            detailIntro: "Professor of Sustainable Reaction Engineering at <strong>University of Cambridge</strong>, Director of the <strong>Institute for Digital Molecular Technologies (iDMT)</strong>. A world leader in digital chemistry, AI‑driven synthesis automation, and green chemical processes.",
+            roleDetail: "<b>Role in qFoldIT:</b> Bridges the gap between in‑game molecular designs and real‑world industrial viability. Leads validation of synthetic accessibility, scalability, and sustainability (green chemistry metrics).",
+            meta: [
+                '<i class="fas fa-university"></i> University of Cambridge — iDMT',
+                '<i class="fas fa-globe"></i> Website: <a href="https://www.ceb.cam.ac.uk/directory/alexei-lapkin" target="_blank" class="orcid-link">Cambridge profile</a>',
+                '<i class="fas fa-leaf"></i> Expertise: Sustainable Reaction Engineering · Digital Twins · Green Chemistry'
+            ]
+        },
+        {
+            name: "Prof. Kelly Chibale",
+            role: "Scientific Director",
+            img: "https://qfoldit.github.io/img/1/Kelly_Chibale_0.png",
+            birthDate: "1964-03-31",
+            detailIntro: "Founder of H3D (University of Cape Town). <b>Cambridge graduate, Oxford partner</b>, pioneer of drug discovery in Africa, creator of the <b>ZairaChem AI pipeline (15 ADME‑Tox models)</b>.",
+            roleDetail: "Defines disease targets (malaria, TB, AMR), validates methodology, provides access to H3D data. Co‑author of key qFoldIT publications.",
+            meta: [
+                '<i class="fas fa-globe"></i> Website: <a href="https://www.kellychibale.co.za/" target="_blank" class="orcid-link">www.kellychibale.co.za</a>',
+                '<i class="fab fa-orcid"></i> ORCID: <a href="https://orcid.org/0000-0002-4541-646X" target="_blank" class="orcid-link">0000-0002-4541-646X</a>'
+            ]
+        },
+        {
+            name: "Dr. Godwin Akpeko Dziwornu",
+            role: "Scientific Advisor",
+            img: "https://qfoldit.github.io/img/1/Dziwornu.png",
+            birthDate: "1985-06-15",
+            detailIntro: "Senior Investigator at H3D, expert in African natural products, first MMV grant as PI (bispyrroloiminoquinone).",
+            roleDetail: "Designs molecule generation rules based on natural scaffolds, ensures synthetic accessibility, validates malaria/TB tasks.",
+            meta: [
+                '<i class="fab fa-orcid"></i> ResearchGate: <a href="https://www.researchgate.net/profile/Godwin-Dziwornu" target="_blank" class="orcid-link">Godwin Akpeko Dziwornu</a>'
+            ]
+        },
+        {
+            name: "Robertson Nortey",
+            role: "Lead Gameplay & Systems Designer (AAA Integration)",
+            img: "https://qfoldit.github.io/img/1/Robertson_Nortey.jpg",
+            birthDate: null,
+            detailIntro: "Industry veteran with over a decade at <strong>Rocksteady Studios</strong> (London), where he served as Lead Gameplay Programmer on <strong>Batman: Arkham Knight</strong>, <strong>Batman: Arkham VR</strong>, and <strong>Suicide Squad: Kill the Justice League</strong>. Currently Lead Game Developer at <strong>Leti Arts</strong> (Accra, Ghana), creating Afrocentric games that fuse culture and innovation.",
+            roleDetail: "<b>Role in qFoldIT:</b> Architect of the core gameplay loop. Translates complex molecular dynamics (hydrogen bonds, torsion angles, quantum walks) into intuitive, AAA-quality interactions. Designs the progressive difficulty system, haptic feedback for VR folding, and real-time collaborative puzzles. Ensures the platform feels like a blockbuster game, not a laboratory tool.",
+            meta: [
+                '<i class="fab fa-unreal-engine"></i> Unreal Engine & C++ specialist',
+                '<i class="fas fa-robot"></i> AI & systemic game design (Batman Arkham series)',
+                '<i class="fas fa-globe"></i> Leti Arts — <a href="https://www.letiarts.com" target="_blank" class="orcid-link">Africa’s Legends, Karmzah, Puzzle Scout</a>'
+            ]
+        },
+        {
+            name: "Dr. George Ahiakwa",
+            role: "Founder, CEO, Gamification Architect",
+            img: "https://qfoldit.github.io/img/1/AG.png",
+            birthDate: "1988-01-01",
+            detailIntro: "Game designer (Atomic Heart), descendant of the Ashanti Ahiakwa royal lineage.",
+            roleDetail: "Designs game mechanics, platform architecture, quantum API integration, AAA‑grade visualization. Coordinates scientific collaborations.",
+            meta: [
+                '<i class="fab fa-github"></i> GitHub: <a href="https://github.com/CEPBEP" target="_blank" class="orcid-link">CEPBEP</a>',
+                '<i class="fab fa-orcid"></i> ORCID: <a href="https://orcid.org/0009-0009-3666-9295" target="_blank" class="orcid-link">0009-0009-3666-9295</a>'
+            ]
+        },
+        {
+            name: "Dr. Hanae Henke",
+            role: "Architect of Laboratory Precision",
+            img: "https://qfoldit.github.io/img/1/Dr_Hanae_Henke_169.png",
+            birthDate: "1982-01-01",
+            detailIntro: "Expert in high‑throughput screening (HTS), automation, and GLP standards (Eppendorf AG).",
+            roleDetail: "Advises on <b>VR/AR</b> lab training simulations, ensures alignment with real‑world protocols, validates educational effectiveness.",
+            meta: []
+        },
+        {
+            name: "Dr. Beata Mierzwa",
+            role: "Director of Science Art & Gamified Education",
+            img: "https://qfoldit.github.io/img/1/Dr_Beata_Mierzwa.png",
+            birthDate: null,
+            detailIntro: "Molecular biologist (UCSD, Ludwig Institute) and pioneering science artist. Creator of the educational video game <i>Microscopya</i> and AAAS IF/THEN Ambassador.",
+            roleDetail: "<b>Role in qFoldIT:</b> Translates complex quantum-chemical data into intuitive, AAA-quality visual puzzles. Designs a crisp, high-tech visual language (pure white, vivid blue, deep navy) that makes molecular manipulation accessible without sacrificing scientific rigor.",
+            meta: [
+                '<i class="fas fa-globe"></i> Website: <a href="https://beatascienceart.com" target="_blank" class="orcid-link">beatascienceart.com</a>',
+                '<i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/beatascienceart" target="_blank" class="orcid-link">Beata Mierzwa</a>'
+            ]
+        },
+        {
+            name: "Prof. Ron Eglash",
+            role: "Advisor on Algorithmic Culture & Generative Design",
+            img: "https://qfoldit.github.io/img/1/Prof_Ron_Eglash.jpg",
+            birthDate: null,
+            detailIntro: "Author of <strong>African Fractals: Modern Computing and Indigenous Design</strong>, creator of <strong>Culturally Situated Design Tools (CSDT)</strong>. Professor at University of Michigan, pioneering the intersection of ethno-mathematics, fractal geometry, and computing. His work reveals how indigenous African design traditions encode recursive algorithms — a direct conceptual bridge to molecular self-assembly and procedural generation.",
+            roleDetail: "<b>Role in qFoldIT:</b> Guides the integration of fractal logic and culturally situated pattern languages into the game's puzzle mechanics. Transforms Adinkra symbols and recursive weaving algorithms into modular folding challenges. Ensures that qFoldIT's visual and interaction language respects and amplifies indigenous computational thinking, turning the platform into a living archive of algorithmic heritage.",
+            meta: [
+                '<i class="fas fa-fractal"></i> African Fractals & generative design',
+                '<i class="fas fa-chalkboard-teacher"></i> CSDT — Culturally Situated Design Tools',
+                '<i class="fas fa-globe"></i> <a href="https://www.eglash.org" target="_blank" class="orcid-link">eglash.org</a>'
+            ]
+        },
+        {
+            name: "Karen Happuch",
+            role: "Cultural Visualisation Director & Lead Animator",
+            img: "https://qfoldit.github.io/img/1/Karen-Happuch_1.png",
+            birthDate: null,
+            detailIntro: "Founder and creative director of <strong>KHPH Studios</strong> (Accra, Ghana). Award‑winning animator and visual storyteller whose work bridges traditional Adinkra symbolism with cutting‑edge digital media. Director of the acclaimed short film <i>Abrefi Kɔtɔ</i> and the animated sequence for <i>Africa’s Legends: The Unfinished Business</i>.",
+            roleDetail: "<b>Role in qFoldIT:</b> Architect of the game's visual identity. Translates the abstract logic of <i>African Fractals</i> and molecular dynamics into an intuitive, culturally resonant visual language. From pixel‑art Adinkra patterns on low‑end devices to cinematic, ray‑traced animations on Unigine 2 SIM, Karen's work ensures that qFoldIT is not just scientifically accurate but emotionally and culturally immersive — a game that looks and feels like it belongs to the world.",
+            meta: [
+                '<i class="fas fa-paint-brush"></i> KHPH Studios — animation & visual development',
+                '<i class="fas fa-film"></i> <i>Abrefi Kɔtɔ</i> & Africa\'s Legends',
+                '<i class="fab fa-instagram"></i> <a href="#" target="_blank" class="orcid-link">@khph_studios</a>'
+            ]
+        }
+    ];
+
+    function renderTeam() {
+        const container = document.getElementById('teamGrid');
+        if (!container) return;
+        let html = '';
+        for (const member of teamMembers) {
+            let ageHtml = '';
+            if (member.birthDate) {
+                const age = calculateAge(member.birthDate);
+                ageHtml = `<span class="age-badge">${age} years old</span>`;
+            }
+            html += `
+                <div class="team-card">
+                    <img src="${member.img}" alt="${member.name}" class="team-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22140%22%20viewBox%3D%220%200%20140%20140%22%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20fill%3D%22%231e2328%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%230077FF%22%20font-size%3D%2240%22%20font-family%3D%22FontAwesome%22%3E%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    <div class="team-info">
+                        <div class="team-name">${member.name}</div>
+                        <div class="team-role">${member.role}</div>
+                        <div class="team-detail">${member.detailIntro} ${ageHtml}</div>
+                        <div class="team-detail">${member.roleDetail}</div>
+                        ${member.meta.length ? '<div class="team-meta">' + member.meta.join('</div><div class="team-meta">') + '</div>' : ''}
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+    }
+
+    renderTeam();
+
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', function() {
+            this.closest('.accordion-item').classList.toggle('open');
+        });
+    });
+</script>
+</body>
+</html>
