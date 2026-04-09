@@ -1,6 +1,4 @@
-Обновлён полный HTML-файл. В раздел «Technical Architecture» добавлен подраздел «Quantum Training Module: Cold Atom Lab (NASA/DLR)» с инфографикой DLR, описанием цифрового двойника CAL и таблицей соответствия компонентов реальной лаборатории и игровых механик qFoldIT. Это подчёркивает эволюцию от сити-ферм и микроскопов к квантовым космическим тренажёрам.
 
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -628,3 +626,158 @@
         </div>
         <p class="intro-text"><i class="fas fa-link" style="color:#0077FF; margin-right:6px;"></i> <strong>Integration with the main game:</strong> Data from a successfully calibrated CAL module can boost the accuracy of qFold quantum‑walk calculations, reinforcing the narrative that precise quantum sensing accelerates molecular discovery. This creates a seamless loop between operating space‑grade hardware and solving protein‑folding puzzles — exactly the kind of trans‑disciplinary thinking qFoldIT is designed to cultivate.</p>
         <!-- ========== END OF CAL SECTION ========== -->
+
+        <div class="intro-subtitle"><i class="fas fa-dharmachakra"></i> Containerized Microservices & Orchestration</div>
+        <p class="intro-text">All computational modules — DeepFoldIT, Rosetta, the quantum‑adapter (which hosts the full qFold algorithm), the newly added <strong>NanoVer Server</strong>, and auxiliary services — run as <strong>Docker containers</strong>. They are orchestrated by <strong>Kubernetes on Amazon EKS</strong>, enabling GPU‑aware scaling, high availability, and seamless integration with cloud services (S3 for PDB storage, RDS for metadata, ElastiCache for session caching, and Secrets Manager for API keys).</p>
+        <p class="intro-text">The <strong>quantum‑adapter container</strong> is the only component that implements the qFold quantum walk (Szegedy walk, Metropolis acceptance, VQE). It communicates with the classical `rosetta` container via gRPC, and with quantum hardware through AWS Braket or the Rosatom QPU API. NanoVer Server communicates with both the quantum‑adapter (for background refinement) and the OpenMM engine (for real‑time iMD). This strict separation of concerns ensures reproducibility, portability, and independent scaling of classical, quantum, and interactive workloads.</p>
+        <p class="intro-text">All code is planned for open release (GitHub). Joint Institute for Nuclear Research (JINR, Dubna) and Yonsei University (Seoul) have joined as administrative collaborators on GitHub.</p>
+    </div>
+
+    <!-- ==================== 5. TEAM ==================== -->
+    <div class="accordion">
+        <div class="accordion-item open">
+            <div class="accordion-header"><span><i class="fas fa-users"></i> Scientific Team & Collaborating Institutions</span><i class="fas fa-chevron-down"></i></div>
+            <div class="accordion-content">
+                <div class="team-grid" id="teamGrid"></div>
+                <p style="margin-top: 30px; color: #8a9099; font-size: 0.9rem;"><i class="fas fa-globe"></i> Additional partners: <strong>Joint Institute for Nuclear Research (JINR, Dubna)</strong> and <strong>Yonsei University (Seoul, Korea)</strong> have joined as administrative collaborators, contributing expertise in machine learning, computational chemistry, and generative AI for protein‑protein interactions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 6. OPEN SCIENCE & CALL ==================== -->
+    <div class="intro-block">
+        <div class="intro-title"><i class="fas fa-lock-open"></i> Open Science & How to Join</div>
+        <p class="intro-text">We invite: computational biologists, quantum algorithm researchers, game developers, and citizen scientists. Beta access is free — contact us to participate in the closed beta (planned for late 2026).</p>
+        <div class="poster-single">
+            <img src="https://qfoldit.github.io/img/qFold.png" style="width: 100%;border-radius: 10px;" alt="qFoldIT visualization">
+        </div>
+        <div class="intro-subtitle"><i class="fas fa-industry"></i> Industry 4.0 & Synthetic Biology</div>
+        <p class="intro-text">qFoldIT embodies the digital‑to‑biological convergence: <strong>DNA → computer → “living factory”</strong>. This enables drugs tailored to genetic diversity, DNA‑based data storage, and distributed biomanufacturing — all within an open, gamified framework.</p>
+    </div>
+
+    <div class="book-block">
+        <img src="https://qfoldit.github.io/img/posters/Gaming_Cancer_book.png" alt="Gaming Cancer book cover" class="book-image">
+        <div class="book-caption">
+            <i class="fas fa-book-open"></i> 
+            <strong>Jeff Yoshimi — Gaming Cancer: How Building and Playing Video Games Can Accelerate Scientific Discovery</strong>
+            <a href="https://books.google.com/books?q=Gaming+Cancer+Jeff+Yoshimi" target="_blank" style="color: #0077FF; margin-left: auto; text-decoration: none;">
+                <i class="fab fa-google"></i> Google Books
+            </a>
+        </div>
+    </div>
+
+    <!-- ==================== RESOURCES: BOOK COVERS + HORIZONTAL LINKS ==================== -->
+    <div class="resources-container">
+        <div class="resources-heading">
+            <i class="fas fa-book-open"></i> 
+            <span>Open Science & Essential Resources</span>
+        </div>
+        <!-- Grid with four book/journal covers (two journals) -->
+        <div class="resources-grid">
+            <div class="book-cover-card">
+                <img src="https://qfoldit.github.io/img/viz/ArtOfMolecular.png" alt="The Art of Molecular Dynamics Simulation book cover">
+                <div class="book-title">The Art of Molecular Dynamics Simulation</div>
+                <div class="book-author">D. C. Rapaport</div>
+                <div class="book-desc">A cornerstone text bridging computational physics and molecular visualization. Essential for understanding the simulation core behind qFoldIT’s quantum‑enhanced engine and real‑time molecular puzzles.</div>
+                <a href="https://www.cambridge.org/core/books/art-of-molecular-dynamics-simulation/1E9D9F0A6E9A8B1C6D0E2F3A4B5C6D7E" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Explore the classic</a>
+                <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;"><i class="far fa-copyright"></i> Essential reading for molecular modelers</div>
+            </div>
+            <div class="book-cover-card">
+                <img src="https://qfoldit.github.io/img/viz/African_Fractals.png" alt="African Fractals: Modern Computing and Indigenous Design book cover">
+                <div class="book-title">African Fractals</div>
+                <div class="book-author">Ron Eglash</div>
+                <div class="book-desc">Explores fractal geometry in Sub‑Saharan African architecture, hairstyles, textiles, sculpture, and symbolic systems. Connects indigenous design with modern computing and chaos theory — a blueprint for culturally‑informed generative algorithms in qFoldIT’s procedural content.</div>
+                <a href="https://www.rutgersuniversitypress.org/african-fractals/9780813526140" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Discover the book</a>
+                <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;"><i class="fas fa-fractal"></i> Indigenous algorithms & complexity</div>
+            </div>
+            <div class="book-cover-card">
+                <img src="https://qfoldit.github.io/img/viz/journal_of_chemistry_education.jpg" alt="Journal of Chemical Education cover">
+                <div class="book-title">Journal of Chemical Education</div>
+                <div class="book-author">ACS Publications</div>
+                <div class="book-desc">Volume 96, Issue 11 — a leading peer-reviewed journal bridging chemistry research and pedagogy. qFoldIT aligns with its mission to advance gamified and quantum‑enabled molecular design in education.</div>
+                <a href="https://pubs.acs.org/journal/jceda8" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Visit ACS Publications</a>
+                <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;"><i class="fas fa-flask"></i> Most Trusted. Most Cited. Most Read.</div>
+            </div>
+            <div class="book-cover-card">
+                <img src="https://qfoldit.github.io/img/viz/journal_of_chemistry_education_1.jpg" alt="Interactive Molecular Dynamics in VR — Journal cover">
+                <div class="book-title">Interactive Molecular Dynamics in VR</div>
+                <div class="book-author">O’Connor et al. (J. Chem. Educ.)</div>
+                <div class="book-desc">An open-source multi-person framework for molecular dynamics — from quantum chemistry to drug binding. Demonstrates the power of collaborative VR in chemical education and research, directly informing qFoldIT’s multiplayer folding puzzles.</div>
+                <a href="https://www.intangiblerealitieslab.org/news/interactive-molecular-dynamics-in-virtual-reality-from-quantum-chemistry-to-drug-binding-an-open-source-multi-person-framework" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Read the article</a>
+                <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;"><i class="fas fa-vr-cardboard"></i> VR · Quantum Chemistry · Drug Binding</div>
+            </div>
+        </div>
+
+        <!-- Horizontal links panel (now with 5 links, including NanoVer Server) -->
+        <div class="horizontal-links">
+            <div class="horizontal-links-title">
+                <i class="fas fa-link"></i> Key Resources & Publications
+            </div>
+            <div class="links-row">
+                <div class="link-horizontal-item">
+                    <a href="https://fold.it/" target="_blank">
+                        <i class="fas fa-gamepad"></i>
+                        <div class="link-text">
+                            FoldIT — crowdsourced protein folding
+                            <span class="link-url">https://fold.it/</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="link-horizontal-item">
+                    <a href="https://qfold.io/" target="_blank">
+                        <i class="fas fa-chalkboard-user"></i>
+                        <div class="link-text">
+                            qFold.io — quantum‑enhanced molecular platform
+                            <span class="link-url">https://qfold.io/</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="link-horizontal-item">
+                    <a href="https://arxiv.org/pdf/2101.10279" target="_blank">
+                        <i class="fas fa-atom"></i>
+                        <div class="link-text">
+                            qFold (arXiv:2101.10279)
+                            <span class="link-url">arxiv.org/pdf/2101.10279</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="link-horizontal-item">
+                    <a href="https://arxiv.org/pdf/2011.03442" target="_blank">
+                        <i class="fas fa-brain"></i>
+                        <div class="link-text">
+                            DeepFoldIT (arXiv:2011.03442)
+                            <span class="link-url">arxiv.org/pdf/2011.03442</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="link-horizontal-item">
+                    <a href="https://github.com/irc-sphere/nanover-server-py" target="_blank">
+                        <i class="fab fa-python"></i>
+                        <div class="link-text">
+                            NanoVer Server (GitHub)
+                            <span class="link-url">github.com/irc-sphere/nanover-server-py</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div style="margin-top: 20px; font-size: 0.85rem; color: #8a9099; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 18px;">
+                <i class="fas fa-microscope"></i> These resources embody the core of qFoldIT: gamified discovery, quantum acceleration, AI‑driven molecular innovation, and now <strong>real‑time interactive dynamics with NanoVer Server</strong>.
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <a href="https://www.rosettacommons.org/" target="_blank" title="Rosetta Commons">
+        <img src="https://qfoldit.github.io/img/1/logo/Rosettahome.png" alt="Rosetta Home" class="partner-logo-footer">
+    </a>
+    <a href="https://www.cam.ac.uk/" target="_blank" title="iDMT — Innovation Centre in Digital Molecular Technologies, University of Cambridge">
+        <img src="https://qfoldit.github.io/img/1/logo/iDMT_logo.png" alt="iDMT" class="partner-logo-footer">
+    </a>
+    <a href="https://h3d.uct.ac.za/" target="_blank" title="H3D — Holistic Drug Discovery and Development Centre">
+        <img src="https://qfoldit.github.io/img/h3d_final_logo.png" alt="H3D" class="partner-logo-footer">
+    </a>
+    <a href="https://letiarts.com/" target="_blank" title="Leti Arts — Afrocentric games & interactive narratives">
+        <img src="https://qfoldit.github.io/img/1/logo/leti-arts.png" alt="Leti Arts" class="partner-logo-footer">
+    </a>
+</footer>
