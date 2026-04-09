@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <!-- Adinkra Icons (Gye Nyame etc.) -->
+    <link rel="stylesheet" href="https://ahiakwa.github.io/assets/adinkra-icons/css/icons.css" />
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* ========== RESET & GLOBAL ========== */
@@ -48,6 +50,20 @@
             font-weight: 800;
             color: white;
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        /* Стили для иконки Adinkra (Gye Nyame) */
+        .adinkra-q {
+            display: inline-block;
+            line-height: 1;
+            font-size: 3.8rem;
+            color: #0077FF;
+            vertical-align: middle;
+            margin-right: 4px;
+            transform: translateY(-2px);
+            filter: drop-shadow(0 0 6px rgba(0,119,255,0.4));
         }
         .status-badge {
             background: #28a745;
@@ -439,13 +455,17 @@
             .poster-grid {
                 grid-template-columns: 1fr;
             }
+            .adinkra-q { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
 <div class="dashboard">
     <div class="company-header">
-        <h1 class="company-title"><span style="color: #0077FF;">q</span>FoldIT</h1>
+        <h1 class="company-title">
+            <i class="adk adk-gye-nyame adinkra-q" aria-label="Gye Nyame – божественное верховенство"></i>
+            FoldIT
+        </h1>
         <div class="status-badge">OPEN SCIENCE PLATFORM</div>
     </div>
 
@@ -513,6 +533,16 @@
                 <i class="fab fa-microsoft"></i> 
                 <strong>LetiArts receives official partnership from Microsoft — accepted to Xbox Game Camp Africa</strong>
                 <span style="margin-left: auto; font-size: 0.85rem;"><i class="fas fa-trophy"></i> Milestone for African game development</span>
+            </div>
+        </div>
+
+        <!-- Karen Happuch / Ghana Animation poster -->
+        <div class="poster-single" style="margin: 30px 0 20px;">
+            <img src="https://qfoldit.github.io/img/posters/ghana_animation.png" alt="Ghana animation — Karen Happuch and KHPH Studios">
+            <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
+                <i class="fas fa-paint-brush"></i>
+                <strong>Karen Happuch (KHPH Studios) — “Abrefi Kɔtɔ” and the visual soul of qFoldIT</strong>
+                <span style="margin-left: auto;"><i class="fas fa-fractal"></i> Adinkra · African animation · Cultural storytelling</span>
             </div>
         </div>
 
@@ -592,7 +622,7 @@
             </div>
         </div>
 
-         <!-- Second poster: NASA Cold Lab schematic -->
+        <!-- Second poster: NASA Cold Lab schematic -->
         <div class="poster-single" style="margin: 20px 0;">
             <img src="https://qfoldit.github.io/video/nasacoldlab.jpg" alt="NASA Cold Atom Lab schematic diagram">
             <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
@@ -790,12 +820,7 @@
     <a href="https://letiarts.com/" target="_blank" title="Leti Arts — Afrocentric games & interactive narratives">
         <img src="https://qfoldit.github.io/img/1/logo/leti-arts.png" alt="Leti Arts" class="partner-logo-footer">
     </a>
-    <a href="https://letiarts.com/" target="_blank" title="Leti Arts — Afrocentric games & interactive narratives">
-        <img src="https://africaquantum.org/img/logo_svg.svg" alt="Leti Arts" class="partner-logo-footer">
-    </a>
 </footer>
-
-    
 
 <script>
     function calculateAge(birthDateStr) {
