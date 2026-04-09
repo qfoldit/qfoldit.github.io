@@ -497,4 +497,134 @@
             <li><strong>Robertson Nortey</strong> — Lead Gameplay & Systems Designer (Rocksteady Studios: Batman Arkham series, Suicide Squad; currently at Leti Arts). Brings AAA combat, AI, and open‑world expertise to make molecular folding feel like a blockbuster action puzzle.</li>
             <li><strong>Karen Happuch</strong> — founder of <strong>KHPH Studios</strong> (Ghana), director and animator of the acclaimed short <i>Abrefi Kɔtɔ</i>. She is the visual storyteller who translates Adinkra symbols and African fractal logic into the interactive visual language of qFoldIT, ensuring the game's cultural soul shines at every scale — from 2D pixel art to cinematic VR.</li>
         </ul>
-        <p class="intro-text"><i class="fas fa-lightbulb" style="color:#0077FF; margin-right:8px;"></i> <strong>From Atomic Heart to qFoldIT:</strong> Working on <stro
+        <p class="intro-text"><i class="fas fa-lightbulb" style="color:#0077FF; margin-right:8px;"></i> <strong>From Atomic Heart to qFoldIT:</strong> Working on <strong>Atomic Heart</strong> was built around <strong>“science fiction”</strong> — an opportunity to creatively fantasise about the visual realisation and physical behaviour of substances (e.g., the “polymer”). That experience taught how to translate abstract physical properties into compelling, visceral gameplay. qFoldIT applies the same philosophy: molecular interactions, hydrogen bonds, and quantum tunnelling become visible, tangible, and playable — turning hard science into an intuitive experience.</p>
+
+        <div class="intro-subtitle"><i class="fas fa-microscope"></i> Microscopya — An Award‑Winning Science Game</div>
+        <p class="intro-text">Dr. Beata Mierzwa’s game <strong>Microscopya</strong> is a scientifically accurate adventure inside a living cell, hand‑drawn from real microscopy data. It has received multiple prestigious awards:</p>
+        <ul class="award-list">
+            <li><strong>James Paul GEE! Learning Game Awards (2022)</strong> — winner in “Amateur Created” and “People’s Choice”.</li>
+            <li><strong>International Educational Games Competition (ECGBL 2022)</strong> — second place.</li>
+            <li><strong>Serious Play Conference Awards</strong> — recognised for excellence.</li>
+            <li>Media coverage: <em>The Scientist Magazine</em>, <em>Science Magazine</em>, <em>Nerdist</em>, <em>KPBS News</em>.</li>
+        </ul>
+
+        <!-- Microsoft Xbox Game Camp Africa partnership poster -->
+        <div class="poster-single" style="margin: 30px 0 20px;">
+            <img src="https://qfoldit.github.io/img/posters/microsoft_accepted.png" alt="Microsoft Xbox Game Camp Africa acceptance poster">
+            <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
+                <i class="fab fa-microsoft"></i> 
+                <strong>LetiArts receives official partnership from Microsoft — accepted to Xbox Game Camp Africa</strong>
+                <span style="margin-left: auto; font-size: 0.85rem;"><i class="fas fa-trophy"></i> Milestone for African game development</span>
+            </div>
+        </div>
+
+        <!-- Posters grid: Drew Berry + Microscopya cover -->
+        <div class="poster-grid">
+            <div class="poster-block">
+                <img src="https://qfoldit.github.io/video/Drew_Berry.png" alt="Drew Berry — animations of unseeable biology, aliens & quantum biology">
+                <div class="poster-caption">
+                    <i class="fas fa-film"></i>
+                    <strong>Drew Berry — Animations of Unseeable Biology, Aliens & Quantum Biology</strong>
+                    <span style="margin-left: auto;"><i class="fas fa-dna"></i> Molecular visualization pioneer</span>
+                </div>
+            </div>
+            <div class="poster-block">
+                <img src="https://qfoldit.github.io/img/posters/Microscopya_1.jpg" alt="Microscopya game poster — explore the living cell">
+                <div class="poster-caption">
+                    <i class="fas fa-gamepad"></i>
+                    <strong>Microscopya — scientifically accurate adventure inside a living cell</strong>
+                    <span style="margin-left: auto;"><i class="fas fa-award"></i> Award-winning educational game</span>
+                </div>
+            </div>
+        </div>
+
+        <p class="intro-text">This recognition from Microsoft validates LetiArts’ leading role in African game innovation. The same creative and technical excellence powers qFoldIT’s gamified molecular design, blending AAA production values with cutting-edge science. Inspired by world‑class scientific animators like <strong>Drew Berry</strong> (whose breathtaking visualizations of molecular machines and quantum biology set the gold standard), qFoldIT brings the same cinematic wonder to interactive protein folding. The <strong>Microscopya</strong> poster above captures the artistic rigor and biological accuracy that define our approach — turning the invisible into an unforgettable experience.</p>
+
+        <p class="intro-text">The same design principles — artistic rigour, biological accuracy, and engaging interactivity — drive qFoldIT. Players not only play but actively contribute to molecular design, with their solutions validated by AI (ZairaChem) and quantum algorithms.</p>
+    </div>
+
+    <!-- ==================== 4. TECHNICAL ARCHITECTURE (with NanoVer Server integration & Cold Atom Lab training module) ==================== -->
+    <div class="intro-block">
+        <div class="intro-title"><i class="fas fa-cogs"></i> Technical Architecture</div>
+        <p class="intro-text">qFoldIT integrates three complementary computational engines:</p>
+        <ul style="margin-left: 2em; margin-bottom: 1.5em;">
+            <li><strong>DeepFoldIT</strong> — a deep residual network (inspired by AlphaFold) predicts torsion angles (φ, ψ) and distances, generating initial conformations.</li>
+            <li><strong>Rosetta@Home</strong> — classical Metropolis Monte Carlo with the Rosetta energy function performs local optimisation on CPU clusters.</li>
+            <li><strong>qFold</strong> — a coined Szegedy quantum walk (quantum Metropolis) that provides quadratic speedup for rugged energy landscapes. It runs on simulators (Qiskit‑Aer) or real quantum backends (IonQ, D‑Wave, Rosatom).</li>
+        </ul>
+        <p class="intro-text"><strong>Quantum adapter</strong> — unified API to multiple QPUs. <strong>Microservices</strong> (bio‑ml, rosetta, quantum‑adapter, autoresearch, animation) are containerised (Docker) and orchestrated by Kubernetes on Amazon EKS.</p>
+        <p class="intro-text"><strong>Visualisation</strong> — Unigine 2 Sim (64‑bit double precision, GPU‑based Gaussian splatting, volumetric raymarching) renders molecules with cinematic quality at 60+ fps, allowing seamless zoom from Arctic landscapes to atomic orbitals.</p>
+        
+        <!-- ========== SECTION: NanoVer Server Integration ========== -->
+        <div class="intro-subtitle"><i class="fas fa-network-wired"></i> Interactive Real‑Time Engine: NanoVer Server</div>
+        <p class="intro-text"><strong>To bring true real‑time interactivity and multi‑user collaborative VR to qFoldIT, we have integrated <a href="https://github.com/irc-sphere/nanover-server-py" style="color:#0077FF;">NanoVer Server</a></strong> — originally developed for interactive molecular dynamics (iMD) in virtual reality (NanoVer ecosystem, JOSS 2025). NanoVer Server acts as the central iMD orchestrator, enabling:</p>
+        <ul style="margin-left: 2em; margin-bottom: 1.5em;">
+            <li><strong>Live force feedback</strong> — Players can “grab” atoms, apply forces in real time, and see the molecular response within milliseconds. The server executes OpenMM steps between frame publications while continuously updating iMD forces.</li>
+            <li><strong>Quantitatively accurate iMD</strong> — Every user‑induced perturbation is recorded (collective forces, potential energy, cumulative work done), making the gamified exploration fully reproducible and citable in scientific publications.</li>
+            <li><strong>Multi‑user colocated/distributed VR</strong> — Multiple researchers wearing Meta Quest headsets (via NanoVer iMD‑VR client) or using desktop Unigine clients can share the same virtual molecular environment, see each other’s avatars, and collaboratively fold proteins from different physical locations.</li>
+            <li><strong>Jupyter‑native analysis</strong> — NanoVer’s Python client connects directly to the same server, allowing real‑time plotting of energies, trajectories, and forces inside Jupyter notebooks. This bridges gamification with data science.</li>
+            <li><strong>Hybrid classical‑quantum pipeline</strong> — OpenMM (integrated with NanoVer Server) provides instant classical response for low‑latency gameplay, while the qFold quantum adapter runs as a background microservice to refine energy landscapes and suggest optimal moves. NanoVer Server seamlessly switches between engines.</li>
+        </ul>
+
+        <!-- NEW POSTER: NanoVer Server visual -->
+        <div class="poster-single" style="margin: 20px 0;">
+            <img src="https://qfoldit.github.io/img/posters/NanoVer.jpg" alt="NanoVer Server architecture diagram">
+            <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
+                <i class="fas fa-server"></i>
+                <strong>NanoVer Server — interactive molecular dynamics engine powering qFoldIT’s real‑time multiplayer VR</strong>
+                <span style="margin-left: auto;"><i class="fas fa-vr-cardboard"></i> iMD · OpenMM · gRPC</span>
+            </div>
+        </div>
+
+        <p class="intro-text">The communication protocol (gRPC/WebSocket) is language‑agnostic, enabling our Unigine 2 Sim client (C++) to exchange frames and forces with the Python‑based NanoVer Server. The server runs as a containerised microservice alongside the quantum‑adapter and Rosetta modules, orchestrated by Kubernetes. This architecture transforms qFoldIT from a batch‑oriented platform into a <strong>live, interactive, multiplayer molecular playground</strong> where scientific discovery and gamification feed each other in real time.</p>
+        <p class="intro-text"><i class="fas fa-check-circle" style="color:#28a745;"></i> <strong>Open source commitment:</strong> NanoVer Server is freely available under CC BY 4.0, and all qFoldIT‑specific adapters will be released on GitHub. Joint Institute for Nuclear Research (JINR) and Yonsei University have already joined as collaborators to co‑develop the integrated platform.</p>
+        <!-- ========== END OF NANOVER SECTION ========== -->
+
+        <!-- ========== SECTION: Cold Atom Lab Training Module ========== -->
+        <div class="intro-subtitle"><i class="fas fa-space-shuttle"></i> Quantum Training Module: Cold Atom Lab (NASA/DLR)</div>
+        <p class="intro-text"><strong>From city‑farms and microscopes to space‑grade quantum hardware — qFoldIT extends its digital‑twin philosophy to the Cold Atom Lab (CAL) aboard the ISS.</strong> CAL creates Bose‑Einstein condensates, “giant atoms” that make quantum effects visible on a macroscopic scale. It is the first quantum laboratory in microgravity, achieving seconds‑long coherence times impossible on Earth.</p>
+        
+        <!-- Cold Atom Lab Infographic (DLR) -->
+        <div class="poster-single" style="margin: 20px 0;">
+            <img src="https://www.dlr.de/en/images/missions/horizons/infografik-cal/@@images/image-4404-dfe908dc7a557a4cefbc99a87a1b16e8.jpeg" alt="Cold Atom Lab Infographic — DLR horizons mission">
+            <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
+                <i class="fas fa-atom"></i>
+                <strong>DLR / horizons — Cold Atom Lab: Creating “giant atoms” to observe quantum effects at macroscopic scale</strong>
+                <span style="margin-left: auto;"><i class="fas fa-microgravity"></i> Destiny module · ISS</span>
+            </div>
+        </div>
+
+        <p class="intro-text">In qFoldIT, the CAL module serves as a <strong>high‑fidelity training simulator</strong> — a direct evolution of the platform’s proven ability to control real‑world equipment (lamps, pumps, microscopes) from virtual environments. Players step into the role of a quantum payload operator:</p>
+        <ul style="margin-left: 2em; margin-bottom: 1.5em;">
+            <li><strong>Interactive assembly and calibration</strong> — Align laser beams, tune magnetic traps, and replace optical modules following holographic guides (inspired by the HoloLens 2 procedure performed by astronaut Megan McArthur in 2021).</li>
+            <li><strong>Live BEC visualisation</strong> — Observe the formation of a Bose‑Einstein condensate in real time. The cloud appears as a bright, coherent spot; its lifetime depends on the player's precision in minimising environmental noise.</li>
+            <li><strong>Telemetry dashboard</strong> — Realistic data streams (atom number, temperature, phase‑space density) mirror those seen by operators at NASA JPL, teaching players to interpret the “language” of a quantum sensor.</li>
+            <li><strong>Cross‑platform scalability</strong> — From simplified 2D cooling puzzles (Dendy‑style) to full Unigine 2 SIM VR with volumetric laser beams and tactile feedback via NanoVer.</li>
+        </ul>
+
+        <p class="intro-text"><strong>Scientific and educational value:</strong> The CAL module transforms qFoldIT into a workforce‑development tool for the quantum industry. Students and early‑career researchers gain hands‑on experience with ultra‑cold atom hardware that is physically inaccessible (CAL is the only facility of its kind on orbit). The module aligns with qFoldIT’s core philosophy — using gamification to make cutting‑edge science intuitive, accessible, and playable.</p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0;">
+            <div style="background: rgba(0,119,255,0.1); border-radius: 16px; padding: 16px;">
+                <i class="fas fa-flask" style="color: #0077FF; margin-right: 8px;"></i>
+                <strong style="color: white;">Real CAL component</strong>
+                <ul style="margin-top: 10px; color: #c0c4cc;">
+                    <li>Ultra‑high vacuum chamber & atom chip</li>
+                    <li>Laser cooling & magnetic trapping</li>
+                    <li>Bose‑Einstein condensate formation</li>
+                    <li>Module replacement (HoloLens‑guided)</li>
+                </ul>
+            </div>
+            <div style="background: rgba(0,119,255,0.1); border-radius: 16px; padding: 16px;">
+                <i class="fas fa-vr-cardboard" style="color: #0077FF; margin-right: 8px;"></i>
+                <strong style="color: white;">qFoldIT training simulation</strong>
+                <ul style="margin-top: 10px; color: #c0c4cc;">
+                    <li>3D exploded view with X‑ray inspection</li>
+                    <li>Interactive sliders & real‑time feedback</li>
+                    <li>Live BEC visualisation & lifetime scoring</li>
+                    <li>Step‑by‑step VR/AR maintenance quests</li>
+                </ul>
+            </div>
+        </div>
+        <p class="intro-text"><i class="fas fa-link" style="color:#0077FF; margin-right:6px;"></i> <strong>Integration with the main game:</strong> Data from a successfully calibrated CAL module can boost the accuracy of qFold quantum‑walk calculations, reinforcing the narrative that precise quantum sensing accelerates molecular discovery. This creates a seamless loop between operating space‑grade hardware and solving protein‑folding puzzles — exactly the kind of trans‑disciplinary thinking qFoldIT is designed to cultivate.</p>
+        <!-- ========== END OF CAL SECTION ========== -->
