@@ -6,6 +6,7 @@
 [H3D | Drug Discovery Platform](https://youtu.be/yYfb2_oLlVo)
 
 ![](https://qfoldit.github.io/video/qfolditdna.png)
+![](https://assets.science.nasa.gov/dynamicimage/assets/science/missions/cold-atom-laboratory/Upgrading%20the%20Space%20Station%E2%80%99s%20Cold%20Atom%20Lab%20With%20Mixed%20Reality.png?w=1920&h=1080&fit=clip&crop=faces%2Cfocalpoint)
 ![](https://qfoldit.github.io/img/posters/letti_letters.png)
 
 *An open‑science partner of the [Ersilia Open Source Initiative](https://github.com/ersilia-os/) and [Visualizing biological data](https://vizbi.org/)*
