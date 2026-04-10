@@ -1,240 +1,898 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Octopus Interface</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>qFoldIT — Quantum Glitch | Octopus Corner Fixed</title>
 
-<style>
-body {
-    margin: 0;
-    background: black;
-    color: white;
-    font-family: sans-serif;
-    overflow-x: hidden;
-}
+    <!-- Adinkra Icons -->
+    <link rel="stylesheet" href="https://ahiakwa.github.io/assets/adinkra-icons/css/icons.css" />
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Montserrat -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 
-/* --- HEADER LINE --- */
-.top-bar {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 20;
-}
+    <style>
+        @font-face {
+            font-family: 'GetSchwifty';
+            src: url('https://qfoldit.github.io/assets/get_schwifty.ttf') format('truetype');
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'AdinkraAlphabet';
+            src: url('https://ahiakwa.github.io/assets/adinkra-icons/fonts/Adinkra-Regular.ttf') format('truetype');
+            font-display: swap;
+        }
 
-/* Общий контейнер для иконок */
-.icon-box {
-    height: 64px;
-    display: flex;
-    align-items: center;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Иконки */
-.icon-box img {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
-    transition: transform 0.2s ease;
-}
+        ::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
+        }
 
-.icon-box img:hover {
-    transform: scale(1.05);
-}
+        body {
+            min-height: 100vh;
+            background-color: #020408;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
 
-/* Центральный логотип */
-.center-logo {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    cursor: pointer;
-    z-index: 30;
-}
+        .quantum-kente-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background-image:
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23grain)' opacity='0.045'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 100 100'%3E%3Cdefs%3E%3Cfilter id='q-bloom' x='-100%25' y='-100%25' width='300%25' height='300%25'%3E%3CfeGaussianBlur stdDeviation='1.2' result='blur'/%3E%3CfeMerge%3E%3CfeMergeNode in='blur'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke='%2300F2FF' stroke-width='0.55' stroke-opacity='0.3'%3E%3Cpath d='M50 0 V10 M50 90 V100 M46 4 H54 M46 96 H54' /%3E%3Cpath d='M20 0 V8 M20 92 V100 M17 4 H23 M17 96 H23' /%3E%3Cpath d='M80 0 V8 M80 92 V100 M77 4 H83 M77 96 H83' /%3E%3Cpath d='M0 50 H10 M90 50 H100 M4 46 V54 M96 46 V54' /%3E%3Cpath d='M0 20 H8 M92 20 H100 M4 17 V23 M96 17 V23' /%3E%3Cpath d='M0 80 H8 M92 80 H100 M4 77 V83 M96 77 V83' /%3E%3Cpath d='M50 10 L40 25 M50 10 L60 25 M50 90 L40 75 M50 90 L60 75' stroke-dasharray='1.8 1.6' stroke-opacity='0.5' /%3E%3Cpath d='M10 50 L25 40 M10 50 L25 60 M90 50 L75 40 M90 50 L75 60' stroke-dasharray='1.8 1.6' stroke-opacity='0.5' /%3E%3C/g%3E%3Cg stroke='%23D4AF37'%3E%3Cpath d='M50 10 L90 50 L50 90 L10 50 Z' stroke-width='0.9' stroke-opacity='0.55' /%3E%3Cpath d='M50 25 L75 50 L50 75 L25 50 Z' stroke-width='0.7' stroke-opacity='0.38' /%3E%3Cpath d='M50 38 L62 50 L50 62 L38 50 Z' stroke-width='0.55' stroke-opacity='0.22' /%3E%3Cpath d='M50 46 L54 50 L50 54 L46 50 Z' stroke-width='0.4' stroke-opacity='0.12' /%3E%3C/g%3E%3Cg filter='url(%23q-bloom)'%3E%3Ccircle cx='50' cy='50' r='2.2' fill='%23D4AF37' fill-opacity='1' /%3E%3Ccircle cx='50' cy='50' r='4' fill='%23D4AF37' fill-opacity='0.25' /%3E%3Ccircle cx='50' cy='10' r='0.9' fill='%2300F2FF' fill-opacity='0.9' /%3E%3Ccircle cx='50' cy='90' r='0.9' fill='%2300F2FF' fill-opacity='0.9' /%3E%3Ccircle cx='10' cy='50' r='0.9' fill='%2300F2FF' fill-opacity='0.9' /%3E%3Ccircle cx='90' cy='50' r='0.9' fill='%2300F2FF' fill-opacity='0.9' /%3E%3Ccircle cx='25' cy='25' r='0.7' fill='%23D4AF37' fill-opacity='0.7' /%3E%3Ccircle cx='75' cy='25' r='0.7' fill='%23D4AF37' fill-opacity='0.7' /%3E%3Ccircle cx='25' cy='75' r='0.7' fill='%23D4AF37' fill-opacity='0.7' /%3E%3Ccircle cx='75' cy='75' r='0.7' fill='%23D4AF37' fill-opacity='0.7' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 200px 200px;
+        }
 
-.center-logo img {
-    width: 80px;
-    opacity: 0.9;
-    transition: transform 0.2s ease;
-}
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: radial-gradient(ellipse at 50% 50%,
+                #000000 0%, #000000 22%, rgba(0,0,0,0.85) 42%, transparent 72%);
+            background-size: 100% 52%;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
 
-.center-logo:hover img {
-    transform: scale(1.1);
-}
+        .top-bar {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 25;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: calc(100vw - 40px);
+            gap: 16px;
+            pointer-events: none;
+        }
 
-/* OCTOPUS */
-.octopus-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 25;
-    display: flex;
-    justify-content: flex-end;
-}
+        .top-bar a {
+            pointer-events: auto;
+            text-decoration: none;
+            color: inherit;
+        }
 
-.octopus-matrix {
-    display: inline-grid;
-    gap: 6px;
-    transform-origin: top right;
-}
+        .ldr-sticker {
+            background-color: #000000;
+            padding: 10px 18px;
+            border-radius: 12px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 75, 43, 0.4);
+            box-shadow: 0 0 12px rgba(255, 75, 43, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            cursor: pointer;
+            white-space: nowrap;
+            min-height: 64px;
+        }
+        .ldr-sticker:hover {
+            transform: scale(1.02);
+            border-color: #FF4B2B;
+        }
+        .ldr-icon {
+            font-size: 1.9rem;
+            color: #FF4B2B;
+            filter: drop-shadow(0 0 3px rgba(255, 75, 43, 0.6));
+        }
+        .ldr-plus {
+            color: #FF4B2B;
+            font-size: 1.6rem;
+            font-weight: 800;
+            opacity: 0.8;
+        }
 
-.octopus-img {
-    width: 48px;
-    height: auto;
-    transition: transform 0.1s;
-}
+        .octopus-singular {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            text-align: right;
+            min-height: 64px;
+        }
 
-/* FLASH */
-.flash {
-    position: fixed;
-    inset: 0;
-    background: white;
-    opacity: 0.15;
-    z-index: 999;
-    pointer-events: none;
-}
-</style>
+        .octopus-matrix {
+            position: relative;
+            display: inline-grid;
+            width: fit-content;
+            gap: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 8px;
+            padding: 12px 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.15s ease, opacity 0.15s ease, filter 0.15s ease, background 0.2s, border-color 0.2s;
+            direction: ltr;
+            margin-left: auto;
+            transform-origin: top right;
+            min-height: 64px;
+            align-items: center;
+        }
+
+        .octopus-img {
+            width: 3.6rem;
+            height: 3.6rem;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.08s, filter 0.08s;
+            will-change: transform;
+        }
+
+        .octo-gold,
+        .octo-white,
+        .octo-green,
+        .octo-blue {
+            filter: none;
+            opacity: 0.95;
+        }
+
+        .glitch-octo-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            will-change: transform, opacity, filter;
+            z-index: 5;
+        }
+        .glitch-octo-layer img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .glitch-container {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            filter: drop-shadow(0 0 8px rgba(0, 255, 242, 0.2));
+            margin: 0 auto;
+            width: fit-content;
+            pointer-events: auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            font-size: clamp(16px, 4vw, 24px);
+            padding: 0.5rem 1.5rem;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.8));
+            background: transparent;
+            position: relative;
+            cursor: pointer;
+            user-select: none;
+        }
+        .logo-symbol .adk-gye-nyame {
+            font-size: 6.8em;
+            color: #fff;
+            display: block;
+            line-height: 1;
+            text-shadow: 0 0 6px rgba(212,175,55,0.5);
+        }
+        .logo-fold {
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #fff;
+            font-size: 4.2em;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+        }
+        .logo-uantum {
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #fff;
+            font-size: 2.4em;
+            line-height: 1;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+        .logo-it {
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #fff;
+            font-size: 6.6em;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            white-space: nowrap;
+        }
+
+        .glitch-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            will-change: transform, opacity, clip-path, filter;
+        }
+
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Cfilter id='noiseDynamic'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noiseDynamic)' opacity='0.08'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            pointer-events: none;
+            z-index: 15;
+            mix-blend-mode: overlay;
+            opacity: 0.4;
+            animation: staticNoise 0.2s steps(2) infinite;
+        }
+
+        @keyframes staticNoise {
+            0% { opacity: 0.35; background-position: 0 0; }
+            100% { opacity: 0.5; background-position: 10px 15px; }
+        }
+
+        .flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 255, 242, 0.15);
+            pointer-events: none;
+            z-index: 20;
+            mix-blend-mode: screen;
+            animation: flashFade 0.08s ease-out forwards;
+        }
+
+        @keyframes flashFade {
+            0% { opacity: 1; background: rgba(212, 175, 55, 0.8); }
+            100% { opacity: 0; background: rgba(0, 0, 0, 0); }
+        }
+
+        .footer-icons {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 20px;
+            width: 100vw;
+            z-index: 30;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 0;
+            padding: 0 20px;
+        }
+
+        .icon-button {
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 8px;
+            padding: 12px 16px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.2s, background 0.2s, border-color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 0 0 auto;
+        }
+
+        .icon-button a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 0;
+        }
+
+        .icon-button a i,
+        .icon-button a img {
+            width: 3.6rem;
+            height: 3.6rem;
+            display: block;
+        }
+
+        .icon-button a i {
+            font-size: 3.6rem;
+            color: #e0e0e0;
+        }
+
+        .icon-button a img {
+            filter: brightness(0.9) invert(0);
+        }
+
+        .icon-button:hover {
+            transform: scale(1.02);
+            background: rgba(0,0,0,0.85);
+            border-color: rgba(255,75,43,0.4);
+        }
+
+        .icon-button:hover a i {
+            color: #f0f0f0;
+        }
+
+        .icon-button:hover a img {
+            filter: brightness(1) invert(0);
+        }
+
+        @media (max-width: 680px) {
+            .top-bar {
+                top: 12px;
+                left: 12px;
+                right: 12px;
+                width: calc(100vw - 24px);
+                gap: 10px;
+            }
+
+            .ldr-sticker {
+                gap: 10px;
+                padding: 8px 12px;
+                min-height: 52px;
+            }
+
+            .logo {
+                gap: 0.6rem;
+                font-size: clamp(14px, 3.5vw, 18px);
+            }
+            .logo-symbol .adk-gye-nyame { font-size: 5.2em; }
+            .logo-fold { font-size: 3.5em; }
+            .logo-uantum { font-size: 2.0em; }
+            .logo-it { font-size: 5.5em; }
+            .quantum-kente-bg { background-size: 160px 160px; }
+
+            .octopus-img {
+                width: 2.4rem;
+                height: 2.4rem;
+            }
+            .octopus-matrix {
+                padding: 8px 10px;
+                min-height: 52px;
+            }
+
+            .footer-icons {
+                bottom: 12px;
+                padding: 0 12px;
+            }
+
+            .icon-button {
+                padding: 8px 12px;
+            }
+
+            .icon-button a i,
+            .icon-button a img {
+                width: 2.4rem;
+                height: 2.4rem;
+            }
+
+            .icon-button a i {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-bar {
+                top: 10px;
+                left: 10px;
+                right: 10px;
+                width: calc(100vw - 20px);
+                gap: 8px;
+            }
+
+            .ldr-sticker {
+                gap: 8px;
+                padding: 7px 10px;
+                min-height: 46px;
+            }
+
+            .logo {
+                gap: 0.4rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .logo-symbol .adk-gye-nyame { font-size: 4.5em; }
+            .logo-fold { font-size: 3em; }
+            .logo-uantum { font-size: 1.7em; }
+            .logo-it { font-size: 4.7em; }
+
+            .octopus-img {
+                width: 2rem;
+                height: 2rem;
+            }
+            .octopus-matrix {
+                padding: 7px 9px;
+                min-height: 46px;
+            }
+
+            .icon-button a i,
+            .icon-button a img {
+                width: 2rem;
+                height: 2rem;
+            }
+            .icon-button a i {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- TOP BAR -->
+<div class="quantum-kente-bg" aria-hidden="true"></div>
+
 <div class="top-bar">
-
-    <!-- Love Death Robots -->
-    <a class="icon-box" href="https://www.goethe.de/ins/za/en/kul/mut/plo.html" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Love_Death_%2B_Robots_logo.svg/512px-Love_Death_%2B_Robots_logo.svg.png">
+    <a href="https://www.goethe.de/ins/za/en/kul/mut/plo.html" target="_blank" rel="noopener noreferrer" aria-label="Love Death Robots link">
+        <div class="ldr-sticker" id="toggleEffectsBtn">
+            <i class="fa-solid fa-heart ldr-icon"></i>
+            <i class="fa-solid fa-xmark ldr-icon" style="font-size: 2rem; font-weight: 900;"></i>
+            <i class="fa-solid fa-plus ldr-icon"></i>
+            <i class="fa-solid fa-square ldr-icon"></i>
+        </div>
     </a>
 
-    <!-- Octopus -->
-    <a class="icon-box" href="https://www.goethe.de/ins/gh/en/index.html" target="_blank">
-        <div id="octopusContainer" class="octopus-container"></div>
+    <a href="https://www.goethe.de/ins/gh/en/index.html" target="_blank" rel="noopener noreferrer" aria-label="Octopus Goethe link">
+        <div class="octopus-singular" id="singularOctopus"></div>
     </a>
-
 </div>
 
-<!-- CENTER LOGO -->
-<div class="center-logo" id="trigger">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Logo_Black.svg/512px-Logo_Black.svg.png">
+<div class="glitch-container" id="glitchContainer">
+    <div class="logo" id="baseLogo" role="button" tabindex="0" aria-label="Toggle animations">
+        <div class="logo-symbol"><i class="adk adk-gye-nyame"></i></div>
+        <div class="logo-center">
+            <div class="logo-fold">FOLD</div>
+            <div class="logo-uantum">UANTUM</div>
+        </div>
+        <div class="logo-it">IT</div>
+    </div>
+</div>
+
+<div class="noise-overlay"></div>
+
+<div class="footer-icons">
+    <div class="icon-button">
+        <a href="https://awslabs.github.io/quantum-computing-exploration-for-drug-discovery-on-aws/en/workshop/c-1-protein-folding-quantum-random-walk/protein-folding-qrw-background/" target="_blank" rel="noopener noreferrer">
+            <img src="https://qfoldit.github.io/img/1/logo/amazon-braket.svg" alt="Amazon Braket">
+        </a>
+    </div>
+    <div class="icon-button">
+        <a href="https://github.com/qfoldit" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-github"></i>
+        </a>
+    </div>
+    <div class="icon-button">
+        <a href="https://www.playstation.com/" target="_blank" rel="noopener noreferrer">
+            <img src="https://qfoldit.github.io/assets/Ps-Logo-4.svg" alt="PlayStation">
+        </a>
+    </div>
+    <div class="icon-button">
+        <a href="https://www.xbox.com/" target="_blank" rel="noopener noreferrer">
+            <img src="https://qfoldit.github.io/assets/Xbox_one_logo.svg" alt="Xbox">
+        </a>
+    </div>
+    <div class="icon-button">
+        <a href="https://science.data.nasa.gov/learn/blog/psi-spotlight" target="_blank" rel="noopener noreferrer">
+            <img src="https://qfoldit.github.io/assets/NASA_Wormball_logo.svg" alt="NASA">
+        </a>
+    </div>
 </div>
 
 <script>
-const octopusContainer = document.getElementById('octopusContainer');
+(function() {
+    let effectsEnabled = false;
 
-let effectsEnabled = false;
+    const container = document.getElementById('glitchContainer');
+    const originalLogo = document.getElementById('baseLogo');
+    const octopusContainer = document.getElementById('singularOctopus');
+    const triggerLogo = document.getElementById('baseLogo');
 
-const variants = [
-    { src: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Octopus_icon.svg" }
-];
+    const rand = (min, max) => min + Math.random() * (max - min);
+    const randInt = (min, max) => Math.floor(rand(min, max + 1));
 
-const gridConfigs = [
-    { count: 1, style: 'grid', template: '1fr' },
-    { count: 4, style: 'grid', template: '1fr 1fr' },
-    { count: 6, style: 'grid', template: '1fr 1fr 1fr' }
-];
+    // ---------- ГЛИТЧ ДЛЯ ЦЕНТРАЛЬНОГО ЛОГОТИПА ----------
+    const glitchEffects = [
+        (layer) => { const sx = randInt(-35,35); const sy = randInt(-8,8); layer.style.transform = `translate(${sx}px, ${sy}px)`; layer.style.filter = `hue-rotate(${randInt(-30,30)}deg) saturate(${rand(1.5,3.5)})`; layer.style.opacity = rand(0.4,0.9); return 60+randInt(20,80); },
+        (layer) => { const skX = rand(-25,25); const skY = rand(-15,15); const scX = rand(0.7,1.3); const scY = rand(0.7,1.3); layer.style.transform = `skew(${skX}deg,${skY}deg) scale(${scX},${scY})`; layer.style.filter = `blur(${rand(0.5,4)}px)`; layer.style.opacity = rand(0.5,0.95); return 50+randInt(30,100); },
+        (layer) => { layer.style.filter = `invert(${rand(0.6,1)}) contrast(${rand(1.5,3)}) brightness(${rand(0.8,1.5)})`; layer.style.transform = `translate(${randInt(-20,20)}px,${randInt(-15,15)}px) rotate(${randInt(-5,5)}deg)`; layer.style.opacity = rand(0.7,1); return 45+randInt(20,70); },
+        (layer) => { const ct = randInt(5,70); const cb = randInt(30,95); layer.style.clipPath = `polygon(0% ${ct}%, 100% ${ct}%, 100% ${cb}%, 0% ${cb}%)`; layer.style.transform = `translateX(${randInt(-45,45)}px)`; layer.style.filter = `contrast(${rand(1.2,2.5)})`; layer.style.opacity = rand(0.6,1); return 70+randInt(40,100); },
+        (layer) => { const cl = randInt(10,80); const cr = randInt(20,90); layer.style.clipPath = `polygon(${cl}% 0%, ${cr}% 0%, ${cr}% 100%, ${cl}% 100%)`; layer.style.transform = `translateY(${randInt(-30,30)}px)`; layer.style.filter = `hue-rotate(${randInt(-180,180)}deg)`; layer.style.opacity = rand(0.5,0.9); return 60+randInt(30,90); },
+        (layer) => { layer.style.transform = `scaleX(-1) translateX(${randInt(-50,50)}px) scaleY(${rand(0.6,1.2)})`; layer.style.filter = `blur(${rand(0,3)}px) drop-shadow(${randInt(-8,8)}px ${randInt(-8,8)}px 2px #00f2ff)`; layer.style.opacity = rand(0.4,0.85); return 55+randInt(25,80); },
+        (layer) => { const txt = layer.querySelectorAll('.logo-fold, .logo-uantum, .logo-it'); txt.forEach(b=>{ b.style.letterSpacing=`${randInt(-5,12)}px`; b.style.transform=`translateY(${randInt(-12,12)}px)`; }); const ic = layer.querySelector('.adk-gye-nyame'); if(ic) ic.style.transform = `rotate(${randInt(-15,15)}deg) scale(${rand(0.7,1.3)})`; layer.style.transform = `skewX(${rand(-20,20)}deg)`; layer.style.filter = `brightness(${rand(0.5,1.8)})`; layer.style.opacity = rand(0.6,1); return 80+randInt(40,120); },
+        (layer) => { layer.style.textShadow = `${randInt(-12,12)}px ${randInt(-6,6)}px 0px #ff00cc, ${randInt(-12,12)}px ${randInt(-6,6)}px 0px #00ffff`; layer.style.transform = `translate(${randInt(-15,15)}px,${randInt(-12,12)}px) rotate(${randInt(-3,3)}deg)`; layer.style.filter = `contrast(${rand(1.2,2)}) saturate(${rand(1.5,3)})`; layer.style.opacity = rand(0.5,0.95); return 65+randInt(30,90); },
+        (layer) => { layer.style.filter = `blur(${rand(0.8,5)}px) contrast(${rand(1.5,3)})`; layer.style.transform = `translate(${randInt(-25,25)}px,${randInt(-20,20)}px) scale(${rand(0.8,1.2)})`; layer.style.opacity = rand(0.3,0.8); return 40+randInt(30,70); },
+        (layer) => { layer.style.transform = `translate(${randInt(-40,40)}px,${randInt(-20,20)}px) skew(${rand(-15,15)}deg,${rand(-10,10)}deg)`; layer.style.filter = `hue-rotate(${randInt(-90,90)}deg) invert(${rand(0.2,0.6)})`; layer.style.opacity = rand(0.5,0.9); return 70+randInt(50,100); }
+    ];
 
-function rand(min, max) {
-    return Math.random() * (max - min) + min;
-}
-function randInt(min, max) {
-    return Math.floor(rand(min, max + 1));
-}
-
-/* STATIC INIT */
-function initStatic() {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'octopus-matrix';
-
-    const img = document.createElement('img');
-    img.src = variants[0].src;
-    img.className = 'octopus-img';
-
-    wrapper.appendChild(img);
-
-    octopusContainer.innerHTML = '';
-    octopusContainer.appendChild(wrapper);
-}
-
-/* RANDOMIZE */
-function randomizeOctopus() {
-    if (!effectsEnabled) return;
-
-    const cfg = gridConfigs[randInt(0, gridConfigs.length - 1)];
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'octopus-matrix';
-
-    wrapper.style.display = 'grid';
-    wrapper.style.gridTemplateColumns = cfg.template;
-
-    for (let i = 0; i < cfg.count; i++) {
-        const img = document.createElement('img');
-        img.src = variants[0].src;
-        img.className = 'octopus-img';
-
-        const r = randInt(-6,6);
-        img.style.transform = `rotate(${r}deg)`;
-
-        wrapper.appendChild(img);
+    function clearAllLayers() {
+        document.querySelectorAll('.glitch-layer').forEach(l => l.remove());
     }
 
-    octopusContainer.innerHTML = '';
-    octopusContainer.appendChild(wrapper);
+    function createGlitchLayer() {
+        const c = originalLogo.cloneNode(true);
+        c.style.position = 'absolute';
+        c.style.top = '0';
+        c.style.left = '0';
+        c.style.margin = '0';
+        c.style.padding = '0';
+        c.style.background = 'transparent';
+        c.style.backdropFilter = 'none';
+        c.classList.add('glitch-layer');
+        container.appendChild(c);
+        return c;
+    }
 
-    const flash = document.createElement('div');
-    flash.className = 'flash';
-    document.body.appendChild(flash);
+    let glitchTimeout = null;
+    let microGlitchInterval = null;
+    let extraGlitchInterval = null;
 
-    setTimeout(() => flash.remove(), 80);
-}
+    function applyRandomGlitch() {
+        if (!effectsEnabled) return;
+        clearAllLayers();
 
-/* GLITCH */
-function applyGlitch() {
-    if (!effectsEnabled) return;
+        const cnt = randInt(1, 3);
+        for (let i = 0; i < cnt; i++) {
+            const l = createGlitchLayer();
+            const e = glitchEffects[randInt(0, glitchEffects.length - 1)];
+            const d = e(l);
+            const bm = ['screen', 'lighten', 'difference', 'exclusion', 'color-dodge'];
+            l.style.mixBlendMode = bm[randInt(0, bm.length - 1)];
+            setTimeout(() => { if (l.parentNode) l.remove(); }, d);
+        }
 
-    const matrix = octopusContainer.querySelector('.octopus-matrix');
-    if (!matrix) return;
+        if (Math.random() < 0.4 && effectsEnabled) {
+            const fd = document.createElement('div');
+            fd.classList.add('flash');
+            document.body.appendChild(fd);
+            setTimeout(() => fd.remove(), 80);
+        }
 
-    const imgs = matrix.querySelectorAll('img');
-    if (!imgs.length) return;
+        if (Math.random() < 0.5 && effectsEnabled) {
+            container.style.filter = `blur(${rand(0.5,3)}px) contrast(${rand(1.2,2.5)}) hue-rotate(${randInt(-40,40)}deg)`;
+            setTimeout(() => { container.style.filter = ''; }, randInt(50,150));
+        }
 
-    const target = imgs[randInt(0, imgs.length - 1)];
-    const clone = target.cloneNode(true);
+        glitchTimeout = setTimeout(() => applyRandomGlitch(), randInt(80, 650));
+    }
 
-    const layer = document.createElement('div');
-    layer.appendChild(clone);
+    function microGlitchBase() {
+        if (!effectsEnabled) return;
+        if (Math.random() < 0.3) {
+            const sx = randInt(-8,8);
+            const sy = randInt(-6,6);
+            originalLogo.style.transform = `translate(${sx}px,${sy}px)`;
+            originalLogo.style.filter = `blur(${rand(0,1.5)}px)`;
+            setTimeout(() => {
+                originalLogo.style.transform = '';
+                originalLogo.style.filter = '';
+            }, randInt(30,100));
+        }
+    }
 
-    layer.style.position = 'absolute';
-    layer.style.left = '0';
-    layer.style.top = '0';
+    function startMicroGlitch() {
+        if (microGlitchInterval) clearInterval(microGlitchInterval);
+        microGlitchInterval = setInterval(() => microGlitchBase(), 300);
+    }
 
-    matrix.style.position = 'relative';
-    matrix.appendChild(layer);
+    function startExtraGlitch() {
+        if (extraGlitchInterval) clearInterval(extraGlitchInterval);
+        extraGlitchInterval = setInterval(() => {
+            if (Math.random() < 0.2 && effectsEnabled) {
+                const nl = createGlitchLayer();
+                nl.style.background = `repeating-linear-gradient(0deg, rgba(0,255,242,0.2) 0px, rgba(212,175,55,0.2) 2px, transparent 3px, transparent 8px)`;
+                nl.style.mixBlendMode = 'overlay';
+                nl.style.opacity = '0.5';
+                nl.style.transform = `translate(${randInt(-20,20)}px,${randInt(-15,15)}px)`;
+                setTimeout(() => { if (nl.parentNode) nl.remove(); }, 80);
+            }
+        }, 400);
+    }
 
-    layer.style.transform = `translate(${randInt(-10,10)}px, ${randInt(-10,10)}px)`;
-    layer.style.opacity = 0.7;
-    layer.style.filter = `hue-rotate(${randInt(-40,40)}deg)`;
+    // ---------- ОКТОПУС ----------
+    const variants = [
+        { name: 'gold', src: 'https://qfoldit.github.io/assets/iokwa_gold.svg', class: 'octo-gold' },
+        { name: 'white', src: 'https://blockchainaccreditive.github.io/css/iokwa.svg', class: 'octo-white' },
+        { name: 'green', src: 'https://qfoldit.github.io/assets/iokwa_green.svg', class: 'octo-green' },
+        { name: 'blue', src: 'https://qfoldit.github.io/assets/iokwa_blue.svg', class: 'octo-blue' }
+    ];
 
-    setTimeout(() => layer.remove(), 80);
-}
+    const gridConfigs = [
+        { count: 1, style: 'inline-grid', template: null, gap: 0 },
+        { count: 2, style: 'grid', template: 'repeat(2, 1fr)', gap: 8 },
+        { count: 2, style: 'grid', template: 'repeat(1, 1fr)', gap: 8, flexDir: 'column' },
+        { count: 3, style: 'grid', template: 'repeat(3, 1fr)', gap: 6 },
+        { count: 4, style: 'grid', template: 'repeat(2, 1fr)', gap: 8 },
+        { count: 4, style: 'grid', template: 'repeat(4, 1fr)', gap: 6 },
+        { count: 6, style: 'grid', template: 'repeat(3, 1fr)', gap: 6 },
+        { count: 6, style: 'grid', template: 'repeat(2, 1fr)', gap: 6 },
+        { count: 8, style: 'grid', template: 'repeat(4, 1fr)', gap: 5 },
+        { count: 9, style: 'grid', template: 'repeat(3, 1fr)', gap: 5 }
+    ];
 
-/* LOOP */
-setInterval(() => {
-    randomizeOctopus();
-    applyGlitch();
-}, 700);
+    let octopusMorphTimeout = null;
+    let octopusGlitchInterval = null;
+    let octopusMicroInterval = null;
 
-/* CLICK TO START */
-document.getElementById('trigger').addEventListener('click', () => {
-    effectsEnabled = true;
-});
+    function buildOctopusMatrix(colorVariant, cfg) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'octopus-matrix';
+        wrapper.style.position = 'relative';
+        wrapper.style.width = 'fit-content';
+        wrapper.style.marginLeft = 'auto';
+        wrapper.style.transformOrigin = 'top right';
+        wrapper.style.opacity = '1';
 
-/* INIT */
-initStatic();
+        if (cfg.style === 'grid') {
+            wrapper.style.display = 'grid';
+            wrapper.style.gridTemplateColumns = cfg.template;
+            wrapper.style.gap = cfg.gap + 'px';
+        } else {
+            wrapper.style.display = 'inline-grid';
+            wrapper.style.gap = '0px';
+        }
 
+        const rot = randInt(-4, 4);
+        const scaleRand = rand(0.96, 1.04);
+        wrapper.style.transform = `rotate(${rot}deg) scale(${scaleRand})`;
+
+        for (let i = 0; i < cfg.count; i++) {
+            const img = document.createElement('img');
+            img.src = colorVariant.src;
+            img.classList.add('octopus-img', colorVariant.class);
+            const individualRot = randInt(-7, 7);
+            const individualScale = rand(0.92, 1.05);
+            img.style.transform = `rotate(${individualRot}deg) scale(${individualScale})`;
+            img.style.transition = 'transform 0.1s';
+            wrapper.appendChild(img);
+        }
+
+        return wrapper;
+    }
+
+    function setStaticOctopus() {
+        if (!octopusContainer) return;
+        octopusContainer.innerHTML = '';
+        const wrapper = buildOctopusMatrix(variants[0], { count: 1, style: 'inline-grid', template: null, gap: 0 });
+        wrapper.style.transform = 'rotate(0deg) scale(1)';
+        const img = wrapper.querySelector('img');
+        if (img) img.style.transform = 'rotate(0deg) scale(1)';
+        octopusContainer.appendChild(wrapper);
+    }
+
+    function randomizeOctopus() {
+        if (!effectsEnabled) return;
+        if (!octopusContainer) return;
+
+        const colorVariant = variants[randInt(0, variants.length - 1)];
+        const cfg = gridConfigs[randInt(0, gridConfigs.length - 1)];
+        const wrapper = buildOctopusMatrix(colorVariant, cfg);
+
+        octopusContainer.style.opacity = '0.7';
+        octopusContainer.innerHTML = '';
+        octopusContainer.appendChild(wrapper);
+
+        setTimeout(() => { octopusContainer.style.opacity = '1'; }, 60);
+
+        if (effectsEnabled) {
+            const flashDiv = document.createElement('div');
+            flashDiv.classList.add('flash');
+            document.body.appendChild(flashDiv);
+            setTimeout(() => flashDiv.remove(), 70);
+        }
+
+        setTimeout(() => {
+            const imgs = wrapper.querySelectorAll('img');
+            imgs.forEach(img => {
+                if (Math.random() < 0.6 && effectsEnabled) {
+                    const gx = randInt(-4,4);
+                    const gy = randInt(-3,3);
+                    img.style.transform += ` translate(${gx}px, ${gy}px)`;
+                    img.style.filter = `blur(${rand(0,1)}px)`;
+                    setTimeout(() => {
+                        img.style.transform = img.style.transform.replace(/ translate\([^)]+\)/, '');
+                        img.style.filter = '';
+                    }, 60);
+                }
+            });
+        }, 20);
+    }
+
+    function applyOctopusGlitch() {
+        if (!effectsEnabled) return;
+        if (!octopusContainer) return;
+
+        const matrixDiv = octopusContainer.querySelector('.octopus-matrix');
+        if (!matrixDiv) return;
+
+        const imgs = matrixDiv.querySelectorAll('img');
+        if (imgs.length === 0) return;
+
+        const targetImg = imgs[randInt(0, imgs.length - 1)];
+        const clone = targetImg.cloneNode(true);
+
+        const layerDiv = document.createElement('div');
+        layerDiv.classList.add('glitch-octo-layer');
+        layerDiv.appendChild(clone);
+
+        const matrixRect = matrixDiv.getBoundingClientRect();
+        const imgRect = targetImg.getBoundingClientRect();
+
+        layerDiv.style.position = 'absolute';
+        layerDiv.style.left = (imgRect.left - matrixRect.left) + 'px';
+        layerDiv.style.top = (imgRect.top - matrixRect.top) + 'px';
+        layerDiv.style.width = targetImg.clientWidth + 'px';
+        layerDiv.style.height = targetImg.clientHeight + 'px';
+
+        matrixDiv.appendChild(layerDiv);
+
+        const glitchOps = [
+            (ld) => { const sx=randInt(-18,18); const sy=randInt(-8,8); ld.style.transform=`translate(${sx}px,${sy}px)`; ld.style.filter=`hue-rotate(${randInt(-40,40)}deg) saturate(${rand(1.5,3)})`; ld.style.opacity=rand(0.5,0.9); return 40+randInt(20,60); },
+            (ld) => { const sk=rand(-15,15); const scX=rand(0.85,1.3); const scY=rand(0.85,1.3); ld.style.transform=`skewX(${sk}deg) scale(${scX},${scY})`; ld.style.filter=`blur(${rand(0.5,2.5)}px) brightness(${rand(0.9,1.5)})`; ld.style.opacity=rand(0.5,0.9); return 45+randInt(20,70); },
+            (ld) => { ld.style.filter=`invert(${rand(0.3,0.8)}) contrast(${rand(1.2,2)})`; ld.style.transform=`translate(${randInt(-12,12)}px,${randInt(-10,10)}px) rotate(${randInt(-4,4)}deg)`; ld.style.opacity=rand(0.6,1); return 40+randInt(20,60); },
+            (ld) => { const ct=randInt(15,70); const cb=randInt(40,90); ld.style.clipPath=`polygon(0% ${ct}%, 100% ${ct}%, 100% ${cb}%, 0% ${cb}%)`; ld.style.transform=`translateX(${randInt(-25,25)}px)`; ld.style.filter=`contrast(${rand(1.1,1.9)})`; ld.style.opacity=rand(0.5,0.9); return 50+randInt(25,70); },
+            (ld) => { ld.style.transform=`scaleX(-1) translateX(${randInt(-20,20)}px) scaleY(${rand(0.8,1.2)})`; ld.style.filter=`drop-shadow(${randInt(-4,4)}px ${randInt(-4,4)}px 2px #00f2ff) blur(${rand(0,1.5)}px)`; ld.style.opacity=rand(0.5,0.85); return 45+randInt(20,65); }
+        ];
+
+        const effect = glitchOps[randInt(0, glitchOps.length - 1)];
+        const duration = effect(layerDiv);
+        const blendModes = ['screen', 'lighten', 'difference', 'exclusion'];
+        layerDiv.style.mixBlendMode = blendModes[randInt(0, blendModes.length - 1)];
+
+        setTimeout(() => {
+            if (layerDiv.parentNode) layerDiv.remove();
+        }, duration);
+    }
+
+    function startOctopusMorph() {
+        if (octopusMorphTimeout) clearTimeout(octopusMorphTimeout);
+        const loop = () => {
+            if (effectsEnabled) randomizeOctopus();
+            octopusMorphTimeout = setTimeout(loop, randInt(1800, 4200));
+        };
+        loop();
+    }
+
+    function startOctopusGlitchLoop() {
+        if (octopusGlitchInterval) clearInterval(octopusGlitchInterval);
+        octopusGlitchInterval = setInterval(() => {
+            if (effectsEnabled && Math.random() < 0.7) applyOctopusGlitch();
+        }, randInt(500, 1200));
+    }
+
+    function startOctopusMicro() {
+        if (octopusMicroInterval) clearInterval(octopusMicroInterval);
+        octopusMicroInterval = setInterval(() => {
+            if (!effectsEnabled) return;
+            const matrixDiv = octopusContainer?.querySelector('.octopus-matrix');
+            if (matrixDiv) {
+                const imgs = matrixDiv.querySelectorAll('img');
+                if (imgs.length && Math.random() < 0.4) {
+                    const idx = randInt(0, imgs.length - 1);
+                    const img = imgs[idx];
+                    const sx = randInt(-4,4);
+                    const sy = randInt(-3,3);
+                    img.style.transform += ` translate(${sx}px, ${sy}px)`;
+                    img.style.filter = `blur(${rand(0,1)}px)`;
+                    setTimeout(() => {
+                        img.style.transform = img.style.transform.replace(/ translate\([^)]+\)/, '');
+                        img.style.filter = '';
+                    }, 70);
+                }
+            }
+        }, 400);
+    }
+
+    function startEffects() {
+        if (effectsEnabled) return;
+        effectsEnabled = true;
+        if (glitchTimeout) clearTimeout(glitchTimeout);
+        applyRandomGlitch();
+        startMicroGlitch();
+        startExtraGlitch();
+        startOctopusMorph();
+        startOctopusGlitchLoop();
+        startOctopusMicro();
+        randomizeOctopus();
+
+        const fd = document.createElement('div');
+        fd.classList.add('flash');
+        document.body.appendChild(fd);
+        setTimeout(() => fd.remove(), 100);
+    }
+
+    function stopEffects() {
+        effectsEnabled = false;
+
+        if (glitchTimeout) clearTimeout(glitchTimeout);
+        if (microGlitchInterval) clearInterval(microGlitchInterval);
+        if (extraGlitchInterval) clearInterval(extraGlitchInterval);
+        if (octopusMorphTimeout) clearTimeout(octopusMorphTimeout);
+        if (octopusGlitchInterval) clearInterval(octopusGlitchInterval);
+        if (octopusMicroInterval) clearInterval(octopusMicroInterval);
+
+        clearAllLayers();
+        document.querySelectorAll('.glitch-octo-layer').forEach(l => l.remove());
+
+        setStaticOctopus();
+
+        container.style.filter = '';
+        originalLogo.style.transform = '';
+        originalLogo.style.filter = '';
+    }
+
+    function toggleEffects() {
+        if (effectsEnabled) {
+            stopEffects();
+        } else {
+            startEffects();
+        }
+    }
+
+    function initStatic() {
+        setStaticOctopus();
+
+        document.getElementById('toggleEffectsBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        });
+
+        triggerLogo.addEventListener('click', toggleEffects);
+        triggerLogo.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                toggleEffects();
+            }
+        });
+    }
+
+    initStatic();
+})();
 </script>
 
 </body>
