@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>qFoldIT — Quantum Glitch | Octopus AWS Nasa</title>
+    <title>qFoldIT — Quantum Glitch | Octopus Corner Fixed</title>
 
     <link rel="stylesheet" href="https://ahiakwa.github.io/assets/adinkra-icons/css/icons.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -204,7 +204,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 0.9rem;
+            gap: 0.55rem;
             width: fit-content;
             pointer-events: auto;
         }
@@ -263,9 +263,19 @@
             pointer-events: auto;
         }
 
+        .support-logo-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.15rem;
+            width: fit-content;
+            max-width: min(100%, 420px);
+            margin: 0 auto;
+        }
+
         .support-logo {
             display: block;
-            width: clamp(220px, 32vw, 380px);
             max-width: 100%;
             height: auto;
             object-fit: contain;
@@ -275,9 +285,16 @@
             pointer-events: none;
         }
 
+        .support-logo-iss {
+            width: clamp(220px, 32vw, 380px);
+        }
+
+        .support-logo-ias {
+            width: clamp(70px, 7vw, 115px);
+        }
+
         .support-logo-caption {
             display: block;
-            margin-top: 0.28rem;
             text-align: center;
             font-size: clamp(0.7rem, 1.1vw, 0.95rem);
             letter-spacing: 0.12em;
@@ -287,6 +304,13 @@
             line-height: 1.05;
             white-space: nowrap;
             text-shadow: 0 0 10px rgba(255,255,255,0.08);
+        }
+
+        .support-logo-caption.ias {
+            font-size: clamp(0.55rem, 0.85vw, 0.72rem);
+            letter-spacing: 0.06em;
+            white-space: nowrap;
+            line-height: 1;
         }
 
         .glitch-layer {
@@ -419,7 +443,7 @@
             }
 
             .logo-stack {
-                gap: 0.65rem;
+                gap: 0.45rem;
             }
 
             .logo {
@@ -441,12 +465,20 @@
                 min-height: 52px;
             }
 
-            .support-logo {
+            .support-logo-iss {
                 width: clamp(180px, 46vw, 280px);
+            }
+
+            .support-logo-ias {
+                width: clamp(60px, 8vw, 92px);
             }
 
             .support-logo-caption {
                 font-size: 0.62rem;
+            }
+
+            .support-logo-caption.ias {
+                font-size: 0.52rem;
             }
 
             .footer-icons {
@@ -485,7 +517,7 @@
             }
 
             .logo-stack {
-                gap: 0.5rem;
+                gap: 0.35rem;
             }
 
             .logo {
@@ -498,12 +530,20 @@
             .logo-uantum { font-size: 1.7em; }
             .logo-it { font-size: 4.7em; }
 
-            .support-logo {
+            .support-logo-iss {
                 width: clamp(160px, 55vw, 240px);
+            }
+
+            .support-logo-ias {
+                width: clamp(56px, 9vw, 80px);
             }
 
             .support-logo-caption {
                 font-size: 0.58rem;
+            }
+
+            .support-logo-caption.ias {
+                font-size: 0.5rem;
             }
 
             .octopus-img {
@@ -556,13 +596,26 @@
             <div class="logo-it">IT</div>
         </div>
 
-        <a class="support-logo-link" href="https://www.jpl.nasa.gov/missions/cold-atom-laboratory-cal/" target="_blank" rel="noopener noreferrer" aria-label="Cold Atom Laboratory">
-            <img
-                class="support-logo"
-                src="https://qfoldit.github.io/assets/ISS_Lab_white.svg"
-                alt="ISS Lab"
-            />
-            <span class="support-logo-caption">ISS Cold Atom Laboratory</span>
+        <a class="support-logo-link" href="https://www.jpl.nasa.gov/missions/cold-atom-laboratory-cal/" target="_blank" rel="noopener noreferrer" aria-label="ISS Cold Atom Laboratory">
+            <div class="support-logo-block">
+                <img
+                    class="support-logo support-logo-iss"
+                    src="https://qfoldit.github.io/assets/ISS_Lab_white.svg"
+                    alt="ISS Cold Atom Laboratory"
+                />
+                <span class="support-logo-caption">Cold Atom Laboratory</span>
+            </div>
+        </a>
+
+        <a class="support-logo-link" href="https://arctic-council.org/ru/news/the-snowflake-international-arctic-station-a-hub-for-energy-innovation-and-cultural-exchange/" target="_blank" rel="noopener noreferrer" aria-label="IAS Snowflake Digital Twin">
+            <div class="support-logo-block">
+                <img
+                    class="support-logo support-logo-ias"
+                    src="https://qfoldit.github.io/assets/snowflake_logo_white.png"
+                    alt="IAS Snowflake"
+                />
+                <span class="support-logo-caption ias">IAS Snowflake Digital Twin</span>
+            </div>
         </a>
     </div>
 </div>
@@ -966,6 +1019,5 @@
     initStatic();
 })();
 </script>
-
 </body>
 </html>
