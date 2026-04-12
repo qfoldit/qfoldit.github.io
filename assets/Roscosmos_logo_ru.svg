@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 537.493 341.507">
   <defs>
     <style>
-      .a, .c {
+      .a {
         fill: #6d6e71;
       }
 
@@ -11,6 +11,9 @@
 
       .b {
         fill: #ed1941;
+      }
+      .c {
+        fill: #FFF;
       }
     </style>
   </defs>
