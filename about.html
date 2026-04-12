@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-    <title>qFoldIT — Science Platform for Quantum‑Gamified Molecular Design</title>
+    <title>qFoldIT — Open Science Platform for Quantum‑Gamified Molecular Design</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Шрифт Montserrat для логотипа -->
@@ -247,7 +247,7 @@
             transition: max-height 0.4s ease-out, padding 0.3s;
         }
         .accordion-item.open .accordion-content {
-            max-height: 5600px;
+            max-height: 6000px;
             padding: 20px 24px 24px 24px;
         }
 
@@ -324,6 +324,105 @@
             display: inline-block;
             margin-left: 12px;
             font-weight: normal;
+        }
+
+        /* ----- 4‑LAYER ARCHITECTURE CARDS ----- */
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .arch-card {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 24px;
+            padding: 24px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.2s, border-color 0.2s;
+            text-align: center;
+        }
+        .arch-card:hover {
+            transform: translateY(-6px);
+            border-color: #0077FF;
+            background: rgba(0, 119, 255, 0.05);
+        }
+        .arch-icon {
+            font-size: 3rem;
+            color: #0077FF;
+            margin-bottom: 16px;
+        }
+        .arch-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+        .arch-sub {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a9099;
+            margin-bottom: 14px;
+        }
+        .arch-desc {
+            font-size: 0.85rem;
+            color: #b0b4bc;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        .arch-tech {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            margin-top: auto;
+        }
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            color: #a0c4ff;
+            border: 1px solid rgba(0, 119, 255, 0.2);
+        }
+
+        .pipeline-table {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 12px 20px;
+            margin: 20px 0 10px;
+            background: rgba(0,0,0,0.2);
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .pipeline-step {
+            color: #0077FF;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .pipeline-desc {
+            color: #c0c4cc;
+        }
+        .pipeline-tech {
+            color: #8a9099;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 900px) {
+            .architecture-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 560px) {
+            .architecture-grid {
+                grid-template-columns: 1fr;
+            }
+            .pipeline-table {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
         }
 
         .resources-container {
@@ -638,7 +737,7 @@
         <p class="intro-text">The same design principles — artistic rigour, biological accuracy, and engaging interactivity — drive qFoldIT. Players not only play but actively contribute to molecular design, with their solutions validated by AI (ZairaChem) and quantum algorithms.</p>
     </div>
 
-    <!-- ==================== 4. TECHNICAL ARCHITECTURE (with NanoVer Server integration & Cold Atom Lab training module) ==================== -->
+    <!-- ==================== 4. TECHNICAL ARCHITECTURE (with 4‑layer model, NanoVer, and Cold Atom Lab) ==================== -->
     <div class="intro-block">
         <div class="intro-title"><i class="fas fa-cogs"></i> Technical Architecture</div>
         <p class="intro-text">qFoldIT integrates three complementary computational engines:</p>
@@ -647,21 +746,77 @@
             <li><strong>Rosetta@Home</strong> — classical Metropolis Monte Carlo with the Rosetta energy function performs local optimisation on CPU clusters.</li>
             <li><strong>qFold</strong> — a coined Szegedy quantum walk (quantum Metropolis) that provides quadratic speedup for rugged energy landscapes. It runs on simulators (Qiskit‑Aer) or real quantum backends (IonQ, D‑Wave, Rosatom).</li>
         </ul>
-        <p class="intro-text"><strong>Quantum adapter</strong> — unified API to multiple QPUs. <strong>Microservices</strong> (bio‑ml, rosetta, quantum‑adapter, autoresearch, animation) are containerised (Docker) and orchestrated by Kubernetes on Amazon EKS.</p>
-        <p class="intro-text"><strong>Visualisation</strong> — Unigine 2 Sim (64‑bit double precision, GPU‑based Gaussian splatting, volumetric raymarching) renders molecules with cinematic quality at 60+ fps, allowing seamless zoom from Arctic landscapes to atomic orbitals.</p>
-        
-        <!-- ========== SECTION: NanoVer Server Integration ========== -->
-        <div class="intro-subtitle"><i class="fas fa-network-wired"></i> Interactive Real‑Time Engine</div>
-        <p class="intro-text"><strong>To bring true real‑time interactivity and multi‑user collaborative VR to qFoldIT, we have integrated <a href="https://github.com/irc-sphere/nanover-server-py" style="color:#0077FF;">NanoVer Server</a></strong> — originally developed for interactive molecular dynamics (iMD) in virtual reality (NanoVer ecosystem, JOSS 2025). NanoVer Server acts as the central iMD orchestrator, enabling:</p>
+
+        <!-- ========== 4‑LAYER ARCHITECTURE ========== -->
+        <div class="intro-subtitle"><i class="fas fa-layer-group"></i> Four‑Layer Architecture: NASA Precision Meets Quantum Gaming</div>
+        <p class="intro-text"><strong>qFoldIT solves the fundamental trade‑off of molecular editors: beautiful but imprecise (Unity/Unreal) vs. accurate but cumbersome (command‑line tools).</strong> Our stack combines UNIGINE's 64‑bit precision, NASA‑derived interaction logic, real‑time synchronization via NanoVer, and cloud quantum acceleration into a seamless, gamified experience.</p>
+
+        <div class="architecture-grid">
+            <div class="arch-card">
+                <div class="arch-icon"><i class="fas fa-brain"></i></div>
+                <div class="arch-title">Quantum Backend</div>
+                <div class="arch-sub">«The Brain»</div>
+                <div class="arch-desc">Executes VQE and QAOA to compute the true energy landscape of a conformation. Cloud‑connected to IBM, IonQ, or Rosatom QPUs.</div>
+                <div class="arch-tech">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Qiskit / Cirq</span>
+                    <span class="tech-badge">VQE</span>
+                </div>
+            </div>
+            <div class="arch-card">
+                <div class="arch-icon"><i class="fas fa-network-wired"></i></div>
+                <div class="arch-title">NanoVer Server</div>
+                <div class="arch-sub">«The Nervous System»</div>
+                <div class="arch-desc">gRPC‑based hub that bridges Python quantum routines with C++ UNIGINE. Ensures sub‑millisecond sync for multiplayer iMD.</div>
+                <div class="arch-tech">
+                    <span class="tech-badge">gRPC</span>
+                    <span class="tech-badge">Protobuf</span>
+                    <span class="tech-badge">OpenMM</span>
+                </div>
+            </div>
+            <div class="arch-card">
+                <div class="arch-icon"><i class="fas fa-hand-paper"></i></div>
+                <div class="arch-title">MRET Tools</div>
+                <div class="arch-sub">«The Hands»</div>
+                <div class="arch-desc">NASA‑inspired Mixed Reality Exploration Toolkit. Laser rulers, virtual lab notebooks, snapshot system, and role‑based multiplayer.</div>
+                <div class="arch-tech">
+                    <span class="tech-badge">VR/AR</span>
+                    <span class="tech-badge">Session Mgmt</span>
+                    <span class="tech-badge">Precision UI</span>
+                </div>
+            </div>
+            <div class="arch-card">
+                <div class="arch-icon"><i class="fas fa-eye"></i></div>
+                <div class="arch-title">UNIGINE 2 SIM</div>
+                <div class="arch-sub">«The Eyes»</div>
+                <div class="arch-desc">64‑bit double‑precision engine. Renders electron clouds, H‑bonds, and hydrophobic surfaces without z‑fighting or jitter.</div>
+                <div class="arch-tech">
+                    <span class="tech-badge">Double FP64</span>
+                    <span class="tech-badge">Custom Shaders</span>
+                    <span class="tech-badge">Varjo / OpenXR</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pipeline table -->
+        <div class="pipeline-table">
+            <div class="pipeline-step">1. Input</div><div class="pipeline-desc">Load PDB file into UNIGINE. Instant 3D model with FP64 precision.</div><div class="pipeline-tech">UNIGINE + NanoVer</div>
+            <div class="pipeline-step">2. Action</div><div class="pipeline-desc">Scientist grabs an amino acid via MRET interface.</div><div class="pipeline-tech">MRET → NanoVer</div>
+            <div class="pipeline-step">3. Compute</div><div class="pipeline-desc">OpenMM gives immediate haptic feedback; quantum backend asynchronously refines the energy.</div><div class="pipeline-tech">NanoVer → Qiskit / OpenMM</div>
+            <div class="pipeline-step">4. Visualize</div><div class="pipeline-desc">UNIGINE recolours bonds: 🔴 high energy (unstable) / 🟢 low energy (stable).</div><div class="pipeline-tech">UNIGINE Shaders</div>
+        </div>
+
+        <!-- ========== SECTION: NanoVer Server Integration (expanded) ========== -->
+        <div class="intro-subtitle"><i class="fas fa-server"></i> NanoVer Server: The Communication Backbone</div>
+        <p class="intro-text"><strong>NanoVer is more than an iMD engine — it is the real‑time translation layer that makes the 4‑layer stack possible.</strong> It decouples the fast visual feedback (UNIGINE) from the slower, more accurate quantum evaluations (Qiskit). Every atomic displacement is streamed via gRPC, logged with scientific precision, and immediately reflected in collaborative sessions. This architecture allows researchers in Cambridge and Accra to literally “hold hands” inside the same protein.</p>
         <ul style="margin-left: 2em; margin-bottom: 1.5em;">
-            <li><strong>Live force feedback</strong> — Players can “grab” atoms, apply forces in real time, and see the molecular response within milliseconds. The server executes OpenMM steps between frame publications while continuously updating iMD forces.</li>
-            <li><strong>Quantitatively accurate iMD</strong> — Every user‑induced perturbation is recorded (collective forces, potential energy, cumulative work done), making the gamified exploration fully reproducible and citable in scientific publications.</li>
-            <li><strong>Multi‑user colocated/distributed VR</strong> — Multiple researchers wearing Meta Quest headsets (via NanoVer iMD‑VR client) or using desktop Unigine clients can share the same virtual molecular environment, see each other’s avatars, and collaboratively fold proteins from different physical locations.</li>
-            <li><strong>Jupyter‑native analysis</strong> — NanoVer’s Python client connects directly to the same server, allowing real‑time plotting of energies, trajectories, and forces inside Jupyter notebooks. This bridges gamification with data science.</li>
-            <li><strong>Hybrid classical‑quantum pipeline</strong> — OpenMM (integrated with NanoVer Server) provides instant classical response for low‑latency gameplay, while the qFold quantum adapter runs as a background microservice to refine energy landscapes and suggest optimal moves. NanoVer Server seamlessly switches between engines.</li>
+            <li><strong>Live force feedback</strong> — Players can “grab” atoms, apply forces in real time, and see the molecular response within milliseconds.</li>
+            <li><strong>Quantitatively accurate iMD</strong> — Every perturbation is recorded (collective forces, potential energy, cumulative work), making exploration fully reproducible.</li>
+            <li><strong>Multi‑user colocated/distributed VR</strong> — Share the same virtual environment, see avatars, and collaboratively fold proteins.</li>
+            <li><strong>Jupyter‑native analysis</strong> — Real‑time plotting of energies and trajectories bridges gamification with data science.</li>
         </ul>
 
-        <!-- NEW POSTER: NanoVer Server visual -->
+        <!-- NanoVer poster -->
         <div class="poster-single" style="margin: 20px 0;">
             <img src="https://qfoldit.github.io/img/posters/NanoVer.jpg" alt="NanoVer Server architecture diagram">
             <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
@@ -671,13 +826,9 @@
             </div>
         </div>
 
-        <p class="intro-text">The communication protocol (gRPC/WebSocket) is language‑agnostic, enabling our Unigine 2 Sim client (C++) to exchange frames and forces with the Python‑based NanoVer Server. The server runs as a containerised microservice alongside the quantum‑adapter and Rosetta modules, orchestrated by Kubernetes. This architecture transforms qFoldIT from a batch‑oriented platform into a <strong>live, interactive, multiplayer molecular playground</strong> where scientific discovery and gamification feed each other in real time.</p>
-        <p class="intro-text"><i class="fas fa-check-circle" style="color:#28a745;"></i> <strong>Open source commitment:</strong> NanoVer Server is freely available under CC BY 4.0, and all qFoldIT‑specific adapters will be released on GitHub. Joint Institute for Nuclear Research (JINR) and Yonsei University have already joined as collaborators to co‑develop the integrated platform.</p>
-        <!-- ========== END OF NANOVER SECTION ========== -->
-
         <!-- ========== SECTION: Cold Atom Lab Training Module ========== -->
         <div class="intro-subtitle"><i class="fas fa-space-shuttle"></i> Quantum Training Module: Cold Atom Lab (NASA/DLR)</div>
-        <p class="intro-text"><strong>From city‑farms and microscopes to space‑grade quantum hardware — qFoldIT extends its digital‑twin philosophy to the Cold Atom Lab (CAL) aboard the ISS.</strong> CAL creates Bose‑Einstein condensates, “giant atoms” that make quantum effects visible on a macroscopic scale. It is the first quantum laboratory in microgravity, achieving seconds‑long coherence times impossible on Earth.</p>
+        <p class="intro-text"><strong>From city‑farms and microscopes to space‑grade quantum hardware — qFoldIT extends its digital‑twin philosophy to the Cold Atom Lab (CAL) aboard the ISS.</strong> CAL creates Bose‑Einstein condensates, “giant atoms” that make quantum effects visible on a macroscopic scale.</p>
         
         <!-- Cold Atom Lab Infographic (DLR) -->
         <div class="poster-single" style="margin: 20px 0;">
@@ -689,7 +840,7 @@
             </div>
         </div>
 
-        <!-- Second poster: NASA Cold Lab schematic -->
+        <!-- NASA Cold Lab schematic -->
         <div class="poster-single" style="margin: 20px 0;">
             <img src="https://qfoldit.github.io/video/nasacoldlab.jpg" alt="NASA Cold Atom Lab schematic diagram">
             <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
@@ -699,7 +850,7 @@
             </div>
         </div>
 
-        <!-- Third poster: Astronaut Christina Koch assists with hardware upgrade for NASA's Cold Atom Lab -->
+        <!-- Astronaut Christina Koch poster -->
         <div class="poster-single" style="margin: 20px 0;">
             <img src="https://qfoldit.github.io/video/qFoldIT_Christina_Koch.png" alt="Astronaut Christina Koch assists with a hardware upgrade for NASA's Cold Atom Lab aboard the ISS">
             <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
@@ -712,45 +863,10 @@
             </div>
         </div>
 
-        <p class="intro-text">In qFoldIT, the CAL module serves as a <strong>high‑fidelity training simulator</strong> — a direct evolution of the platform’s proven ability to control real‑world equipment (lamps, pumps, microscopes) from virtual environments. Players step into the role of a quantum payload operator:</p>
-        <ul style="margin-left: 2em; margin-bottom: 1.5em;">
-            <li><strong>Interactive assembly and calibration</strong> — Align laser beams, tune magnetic traps, and replace optical modules following holographic guides (inspired by the HoloLens 2 procedure performed by astronaut Megan McArthur in 2021).</li>
-            <li><strong>Live BEC visualisation</strong> — Observe the formation of a Bose‑Einstein condensate in real time. The cloud appears as a bright, coherent spot; its lifetime depends on the player's precision in minimising environmental noise.</li>
-            <li><strong>Telemetry dashboard</strong> — Realistic data streams (atom number, temperature, phase‑space density) mirror those seen by operators at NASA JPL, teaching players to interpret the “language” of a quantum sensor.</li>
-            <li><strong>Cross‑platform scalability</strong> — From simplified 2D cooling puzzles (Dendy‑style) to full Unigine 2 SIM VR with volumetric laser beams and tactile feedback via NanoVer.</li>
-        </ul>
-
-        <p class="intro-text"><strong>Scientific and educational value:</strong> The CAL module transforms qFoldIT into a workforce‑development tool for the quantum industry. Students and early‑career researchers gain hands‑on experience with ultra‑cold atom hardware that is physically inaccessible (CAL is the only facility of its kind on orbit). The module aligns with qFoldIT’s core philosophy — using gamification to make cutting‑edge science intuitive, accessible, and playable.</p>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0;">
-            <div style="background: rgba(0,119,255,0.1); border-radius: 16px; padding: 16px;">
-                <i class="fas fa-flask" style="color: #0077FF; margin-right: 8px;"></i>
-                <strong style="color: white;">Real CAL component</strong>
-                <ul style="margin-top: 10px; color: #c0c4cc;">
-                    <li>Ultra‑high vacuum chamber & atom chip</li>
-                    <li>Laser cooling & magnetic trapping</li>
-                    <li>Bose‑Einstein condensate formation</li>
-                    <li>Module replacement (HoloLens‑guided)</li>
-                </ul>
-            </div>
-            <div style="background: rgba(0,119,255,0.1); border-radius: 16px; padding: 16px;">
-                <i class="fas fa-vr-cardboard" style="color: #0077FF; margin-right: 8px;"></i>
-                <strong style="color: white;">qFoldIT training simulation</strong>
-                <ul style="margin-top: 10px; color: #c0c4cc;">
-                    <li>3D exploded view with X‑ray inspection</li>
-                    <li>Interactive sliders & real‑time feedback</li>
-                    <li>Live BEC visualisation & lifetime scoring</li>
-                    <li>Step‑by‑step VR/AR maintenance quests</li>
-                </ul>
-            </div>
-        </div>
-        <p class="intro-text"><i class="fas fa-link" style="color:#0077FF; margin-right:6px;"></i> <strong>Integration with the main game:</strong> Data from a successfully calibrated CAL module can boost the accuracy of qFold quantum‑walk calculations, reinforcing the narrative that precise quantum sensing accelerates molecular discovery. This creates a seamless loop between operating space‑grade hardware and solving protein‑folding puzzles — exactly the kind of trans‑disciplinary thinking qFoldIT is designed to cultivate.</p>
-        <!-- ========== END OF CAL SECTION ========== -->
+        <p class="intro-text">In qFoldIT, the CAL module serves as a <strong>high‑fidelity training simulator</strong> — a direct evolution of the platform’s proven ability to control real‑world equipment. Players align laser beams, tune magnetic traps, and replace modules using holographic guides. The module aligns with qFoldIT’s core philosophy — using gamification to make cutting‑edge science intuitive, accessible, and playable.</p>
 
         <div class="intro-subtitle"><i class="fas fa-dharmachakra"></i> Containerized Microservices & Orchestration</div>
-        <p class="intro-text">All computational modules — DeepFoldIT, Rosetta, the quantum‑adapter (which hosts the full qFold algorithm), the newly added <strong>NanoVer Server</strong>, and auxiliary services — run as <strong>Docker containers</strong>. They are orchestrated by <strong>Kubernetes on Amazon EKS</strong>, enabling GPU‑aware scaling, high availability, and seamless integration with cloud services (S3 for PDB storage, RDS for metadata, ElastiCache for session caching, and Secrets Manager for API keys).</p>
-        <p class="intro-text">The <strong>quantum‑adapter container</strong> is the only component that implements the qFold quantum walk (Szegedy walk, Metropolis acceptance, VQE). It communicates with the classical `rosetta` container via gRPC, and with quantum hardware through AWS Braket or the Rosatom QPU API. NanoVer Server communicates with both the quantum‑adapter (for background refinement) and the OpenMM engine (for real‑time iMD). This strict separation of concerns ensures reproducibility, portability, and independent scaling of classical, quantum, and interactive workloads.</p>
-        <p class="intro-text">All code is planned for open release (GitHub). Joint Institute for Nuclear Research (JINR, Dubna) and Yonsei University (Seoul) have joined as administrative collaborators on GitHub.</p>
+        <p class="intro-text">All modules — DeepFoldIT, Rosetta, quantum‑adapter, NanoVer Server — run as <strong>Docker containers</strong> orchestrated by <strong>Kubernetes on Amazon EKS</strong>. This ensures GPU‑aware scaling, high availability, and strict separation of classical, quantum, and interactive workloads. All code is planned for open release on GitHub.</p>
     </div>
 
     <!-- ==================== 5. TEAM ==================== -->
@@ -792,43 +908,39 @@
             <i class="fas fa-book-open"></i> 
             <span>Open Science & Essential Resources</span>
         </div>
-        <!-- Grid with four book/journal covers (two journals) -->
+        <!-- Grid with four book/journal covers -->
         <div class="resources-grid">
             <div class="book-cover-card">
                 <img src="https://qfoldit.github.io/img/viz/ArtOfMolecular.png" alt="The Art of Molecular Dynamics Simulation book cover">
                 <div class="book-title">The Art of Molecular Dynamics Simulation</div>
                 <div class="book-author">D. C. Rapaport</div>
-                <div class="book-desc">A cornerstone text bridging computational physics and molecular visualization. Essential for understanding the simulation core behind qFoldIT’s quantum‑enhanced engine and real‑time molecular puzzles.</div>
+                <div class="book-desc">A cornerstone text bridging computational physics and molecular visualization.</div>
                 <a href="https://www.cambridge.org/core/books/art-of-molecular-dynamics-simulation/1E9D9F0A6E9A8B1C6D0E2F3A4B5C6D7E" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Explore the classic</a>
-                <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;"><i class="far fa-copyright"></i> Essential reading for molecular modelers</div>
             </div>
             <div class="book-cover-card">
                 <img src="https://qfoldit.github.io/img/viz/African_Fractals.png" alt="African Fractals: Modern Computing and Indigenous Design book cover">
                 <div class="book-title">African Fractals</div>
                 <div class="book-author">Ron Eglash</div>
-                <div class="book-desc">Explores fractal geometry in Sub‑Saharan African architecture, hairstyles, textiles, sculpture, and symbolic systems. Connects indigenous design with modern computing and chaos theory — a blueprint for culturally‑informed generative algorithms in qFoldIT’s procedural content.</div>
+                <div class="book-desc">Explores fractal geometry in Sub‑Saharan African architecture, hairstyles, textiles, sculpture, and symbolic systems.</div>
                 <a href="https://www.rutgersuniversitypress.org/african-fractals/9780813526140" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Discover the book</a>
-                <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;"><i class="fas fa-fractal"></i> Indigenous algorithms & complexity</div>
             </div>
             <div class="book-cover-card">
                 <img src="https://qfoldit.github.io/img/viz/journal_of_chemistry_education.jpg" alt="Journal of Chemical Education cover">
                 <div class="book-title">Journal of Chemical Education</div>
                 <div class="book-author">ACS Publications</div>
-                <div class="book-desc">Volume 96, Issue 11 — a leading peer-reviewed journal bridging chemistry research and pedagogy. qFoldIT aligns with its mission to advance gamified and quantum‑enabled molecular design in education.</div>
+                <div class="book-desc">Volume 96, Issue 11 — a leading peer-reviewed journal bridging chemistry research and pedagogy.</div>
                 <a href="https://pubs.acs.org/journal/jceda8" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Visit ACS Publications</a>
-                <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;"><i class="fas fa-flask"></i> Most Trusted. Most Cited. Most Read.</div>
             </div>
             <div class="book-cover-card">
                 <img src="https://qfoldit.github.io/img/viz/journal_of_chemistry_education_1.jpg" alt="Interactive Molecular Dynamics in VR — Journal cover">
                 <div class="book-title">Interactive Molecular Dynamics in VR</div>
                 <div class="book-author">O’Connor et al. (J. Chem. Educ.)</div>
-                <div class="book-desc">An open-source multi-person framework for molecular dynamics — from quantum chemistry to drug binding. Demonstrates the power of collaborative VR in chemical education and research, directly informing qFoldIT’s multiplayer folding puzzles.</div>
+                <div class="book-desc">An open-source multi-person framework for molecular dynamics — from quantum chemistry to drug binding.</div>
                 <a href="https://www.intangiblerealitieslab.org/news/interactive-molecular-dynamics-in-virtual-reality-from-quantum-chemistry-to-drug-binding-an-open-source-multi-person-framework" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Read the article</a>
-                <div style="margin-top: 12px; font-size: 0.7rem; color: #5f6a76;"><i class="fas fa-vr-cardboard"></i> VR · Quantum Chemistry · Drug Binding</div>
             </div>
         </div>
 
-        <!-- Horizontal links panel (now with 5 links, including NanoVer Server) -->
+        <!-- Horizontal links panel -->
         <div class="horizontal-links">
             <div class="horizontal-links-title">
                 <i class="fas fa-link"></i> Key Resources & Publications
@@ -837,51 +949,36 @@
                 <div class="link-horizontal-item">
                     <a href="https://fold.it/" target="_blank">
                         <i class="fas fa-gamepad"></i>
-                        <div class="link-text">
-                            FoldIT — crowdsourced protein folding
-                            <span class="link-url">https://fold.it/</span>
-                        </div>
+                        <div class="link-text">FoldIT — crowdsourced protein folding<span class="link-url">https://fold.it/</span></div>
                     </a>
                 </div>
                 <div class="link-horizontal-item">
                     <a href="https://qfold.io/" target="_blank">
                         <i class="fas fa-chalkboard-user"></i>
-                        <div class="link-text">
-                            qFold.io — quantum‑enhanced molecular platform
-                            <span class="link-url">https://qfold.io/</span>
-                        </div>
+                        <div class="link-text">qFold.io — quantum‑enhanced platform<span class="link-url">https://qfold.io/</span></div>
                     </a>
                 </div>
                 <div class="link-horizontal-item">
                     <a href="https://arxiv.org/pdf/2101.10279" target="_blank">
                         <i class="fas fa-atom"></i>
-                        <div class="link-text">
-                            qFold (arXiv:2101.10279)
-                            <span class="link-url">arxiv.org/pdf/2101.10279</span>
-                        </div>
+                        <div class="link-text">qFold (arXiv:2101.10279)<span class="link-url">arxiv.org/pdf/2101.10279</span></div>
                     </a>
                 </div>
                 <div class="link-horizontal-item">
                     <a href="https://arxiv.org/pdf/2011.03442" target="_blank">
                         <i class="fas fa-brain"></i>
-                        <div class="link-text">
-                            DeepFoldIT (arXiv:2011.03442)
-                            <span class="link-url">arxiv.org/pdf/2011.03442</span>
-                        </div>
+                        <div class="link-text">DeepFoldIT (arXiv:2011.03442)<span class="link-url">arxiv.org/pdf/2011.03442</span></div>
                     </a>
                 </div>
                 <div class="link-horizontal-item">
                     <a href="https://github.com/irc-sphere/nanover-server-py" target="_blank">
                         <i class="fab fa-python"></i>
-                        <div class="link-text">
-                            NanoVer Server (GitHub)
-                            <span class="link-url">github.com/irc-sphere/nanover-server-py</span>
-                        </div>
+                        <div class="link-text">NanoVer Server (GitHub)<span class="link-url">github.com/irc-sphere/nanover-server-py</span></div>
                     </a>
                 </div>
             </div>
             <div style="margin-top: 20px; font-size: 0.85rem; color: #8a9099; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 18px;">
-                <i class="fas fa-microscope"></i> These resources embody the core of qFoldIT: gamified discovery, quantum acceleration, AI‑driven molecular innovation, and now <strong>real‑time interactive dynamics with NanoVer Server</strong>.
+                <i class="fas fa-microscope"></i> These resources embody the core of qFoldIT: gamified discovery, quantum acceleration, AI‑driven molecular innovation, and real‑time interactive dynamics.
             </div>
         </div>
     </div>
@@ -957,7 +1054,7 @@
             img: "https://qfoldit.github.io/img/1/Robertson_Nortey.jpg",
             birthDate: null,
             detailIntro: "Industry veteran with over a decade at <strong>Rocksteady Studios</strong> (London), where he served as Lead Gameplay Programmer on <strong>Batman: Arkham Knight</strong>, <strong>Batman: Arkham VR</strong>, and <strong>Suicide Squad: Kill the Justice League</strong>. Currently Lead Game Developer at <strong>Leti Arts</strong> (Accra, Ghana), creating Afrocentric games that fuse culture and innovation.",
-            roleDetail: "<b>Role in qFoldIT:</b> Architect of the core gameplay loop. Translates complex molecular dynamics (hydrogen bonds, torsion angles, quantum walks) into intuitive, AAA-quality interactions. Designs the progressive difficulty system, haptic feedback for VR folding, and real-time collaborative puzzles. Ensures the platform feels like a blockbuster game, not a laboratory tool.",
+            roleDetail: "<b>Role in qFoldIT:</b> Architect of the core gameplay loop. Translates complex molecular dynamics into intuitive, AAA-quality interactions.",
             meta: [
                 '<i class="fab fa-unreal-engine"></i> Unreal Engine & C++ specialist',
                 '<i class="fas fa-robot"></i> AI & systemic game design (Batman Arkham series)',
@@ -991,7 +1088,7 @@
             img: "https://qfoldit.github.io/img/1/Dr_Beata_Mierzwa.png",
             birthDate: null,
             detailIntro: "Molecular biologist (UCSD, Ludwig Institute) and pioneering science artist. Creator of the educational video game <i>Microscopya</i> and AAAS IF/THEN Ambassador.",
-            roleDetail: "<b>Role in qFoldIT:</b> Translates complex quantum-chemical data into intuitive, AAA-quality visual puzzles. Designs a crisp, high-tech visual language (pure white, vivid blue, deep navy) that makes molecular manipulation accessible without sacrificing scientific rigor.",
+            roleDetail: "<b>Role in qFoldIT:</b> Translates complex quantum-chemical data into intuitive, AAA-quality visual puzzles.",
             meta: [
                 '<i class="fas fa-globe"></i> Website: <a href="https://beatascienceart.com" target="_blank" class="orcid-link">beatascienceart.com</a>',
                 '<i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/beatascienceart" target="_blank" class="orcid-link">Beata Mierzwa</a>'
@@ -1002,8 +1099,8 @@
             role: "Advisor on Algorithmic Culture & Generative Design",
             img: "https://qfoldit.github.io/img/1/Prof_Ron_Eglash.jpg",
             birthDate: null,
-            detailIntro: "Author of <strong>African Fractals: Modern Computing and Indigenous Design</strong>, creator of <strong>Culturally Situated Design Tools (CSDT)</strong>. Professor at University of Michigan, pioneering the intersection of ethno-mathematics, fractal geometry, and computing. His work reveals how indigenous African design traditions encode recursive algorithms — a direct conceptual bridge to molecular self-assembly and procedural generation.",
-            roleDetail: "<b>Role in qFoldIT:</b> Guides the integration of fractal logic and culturally situated pattern languages into the game's puzzle mechanics. Transforms Adinkra symbols and recursive weaving algorithms into modular folding challenges. Ensures that qFoldIT's visual and interaction language respects and amplifies indigenous computational thinking, turning the platform into a living archive of algorithmic heritage.",
+            detailIntro: "Author of <strong>African Fractals: Modern Computing and Indigenous Design</strong>, creator of <strong>Culturally Situated Design Tools (CSDT)</strong>. Professor at University of Michigan.",
+            roleDetail: "<b>Role in qFoldIT:</b> Guides the integration of fractal logic and culturally situated pattern languages into the game's puzzle mechanics.",
             meta: [
                 '<i class="fas fa-fractal"></i> African Fractals & generative design',
                 '<i class="fas fa-chalkboard-teacher"></i> CSDT — Culturally Situated Design Tools',
@@ -1015,8 +1112,8 @@
             role: "Cultural Visualisation Director & Lead Animator",
             img: "https://qfoldit.github.io/img/1/Karen-Happuch_1.png",
             birthDate: null,
-            detailIntro: "Founder and creative director of <strong>KHPH Studios</strong> (Accra, Ghana). Award‑winning animator and visual storyteller whose work bridges traditional Adinkra symbolism with cutting‑edge digital media. Director of the acclaimed short film <i>Abrefi Kɔtɔ</i> and the animated sequence for <i>Africa’s Legends: The Unfinished Business</i>.",
-            roleDetail: "<b>Role in qFoldIT:</b> Architect of the game's visual identity. Translates the abstract logic of <i>African Fractals</i> and molecular dynamics into an intuitive, culturally resonant visual language. From pixel‑art Adinkra patterns on low‑end devices to cinematic, ray‑traced animations on Unigine 2 SIM, Karen's work ensures that qFoldIT is not just scientifically accurate but emotionally and culturally immersive — a game that looks and feels like it belongs to the world.",
+            detailIntro: "Founder and creative director of <strong>KHPH Studios</strong> (Accra, Ghana). Award‑winning animator and visual storyteller bridging Adinkra symbolism with digital media.",
+            roleDetail: "<b>Role in qFoldIT:</b> Architect of the game's visual identity — from pixel‑art Adinkra patterns to cinematic, ray‑traced animations.",
             meta: [
                 '<i class="fas fa-paint-brush"></i> KHPH Studios — animation & visual development',
                 '<i class="fas fa-film"></i> <i>Abrefi Kɔtɔ</i> & Africa\'s Legends',
