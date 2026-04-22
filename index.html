@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>qFoldIT — Quantum FoldIT</title>
+    <title>qFoldIT — Quantum Glitch | Terminal Modal</title>
 
     <link rel="stylesheet" href="https://ahiakwa.github.io/assets/adinkra-icons/css/icons.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
 
     <style>
+        /* ===== existing styles (unchanged) ===== */
         @font-face {
             font-family: 'GetSchwifty';
             src: url('https://qfoldit.github.io/assets/get_schwifty.ttf') format('truetype');
@@ -195,7 +196,7 @@
             object-fit: contain;
         }
 
-        /* Terminal icon styles */
+        /* Terminal icon */
         .terminal-link {
             display: flex;
             align-items: center;
@@ -209,6 +210,7 @@
             min-height: 64px;
             text-decoration: none;
             pointer-events: auto;
+            cursor: pointer;
         }
         .terminal-icon-img {
             width: 3.6rem;
@@ -467,6 +469,96 @@
             filter: brightness(1) invert(0);
         }
 
+        /* ===== MODAL STYLES ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            background: #0b0f14;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 48px;
+            height: 48px;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 32px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1010;
+            transition: transform 0.2s, background 0.2s, border-color 0.2s;
+            padding: 0;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        .modal-close:hover {
+            transform: scale(1.05);
+            background: rgba(0,0,0,0.9);
+            border-color: rgba(255,75,43,0.4);
+            color: #FF4B2B;
+        }
+
+        /* Responsive for modal close button */
+        @media (max-width: 680px) {
+            .modal-close {
+                width: 40px;
+                height: 40px;
+                font-size: 28px;
+                top: 12px;
+                right: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .modal-close {
+                width: 36px;
+                height: 36px;
+                font-size: 24px;
+            }
+        }
+
+        /* ===== existing media queries (unchanged) ===== */
         @media (max-width: 680px) {
             .top-bar {
                 top: 12px;
@@ -638,14 +730,14 @@
         </div>
     </a>
 
-    <!-- New right container: Octopus + Terminal icon -->
+    <!-- Right container: Octopus + Terminal icon -->
     <div class="top-bar-right">
         <a href="https://qfoldit.github.io/about.html" target="_blank" rel="noopener noreferrer" aria-label="Octopus Goethe link">
             <div class="octopus-singular" id="singularOctopus"></div>
         </a>
-        <a href="#" class="terminal-link" aria-label="Terminal" title="qTerminal">
+        <div class="terminal-link" id="terminalTrigger" aria-label="Terminal" title="qTerminal" role="button" tabindex="0">
             <img src="https://qfoldit.github.io/assets/qTrminal.svg" alt="Terminal" class="terminal-icon-img">
-        </a>
+        </div>
     </div>
 </div>
 
@@ -659,22 +751,6 @@
             </div>
             <div class="logo-it">IT</div>
         </div>
-
-        <!-- Support logos commented out but kept for reference -->
-        <!--
-        <a class="support-logo-link" href="https://www.jpl.nasa.gov/missions/cold-atom-laboratory-cal/" target="_blank" rel="noopener noreferrer" aria-label="ISS Cold Atom Laboratory">
-            <div class="support-logo-block">
-                <img class="support-logo support-logo-iss" src="https://qfoldit.github.io/assets/ISS_Lab_white.svg" alt="ISS Cold Atom Laboratory" />
-                <span class="support-logo-caption">Cold Atom Laboratory</span>
-            </div>
-        </a>
-        <a class="support-logo-link" href="https://arctic-council.org/ru/news/the-snowflake-international-arctic-station-a-hub-for-energy-innovation-and-cultural-exchange/" target="_blank" rel="noopener noreferrer" aria-label="IAS Snowflake Digital Twin">
-            <div class="support-logo-block">
-                <img class="support-logo support-logo-ias" src="https://qfoldit.github.io/assets/snowflake_logo_white.png" alt="IAS Snowflake" />
-                <span class="support-logo-caption ias">IAS Snowflake Digital Twin</span>
-            </div>
-        </a>
-        -->
     </div>
 </div>
 
@@ -708,10 +784,20 @@
     </div>
 </div>
 
+<!-- MODAL WINDOW FOR TERMINAL IFRAME -->
+<div id="terminalModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close" id="modalCloseBtn" aria-label="Close terminal">&times;</button>
+        <iframe src="https://cepbep.github.io/code/frame.html" title="qTerminal Frame" allow="fullscreen"></iframe>
+    </div>
+</div>
+
 <script>
 (function() {
-    let effectsEnabled = false;
+    "use strict";
 
+    // ---------- Existing glitch & octopus logic ----------
+    let effectsEnabled = false;
     const container = document.getElementById('glitchContainer');
     const originalLogo = document.getElementById('baseLogo');
     const octopusContainer = document.getElementById('singularOctopus');
@@ -1056,6 +1142,52 @@
         }
     }
 
+    // ---------- TERMINAL MODAL LOGIC ----------
+    const modalOverlay = document.getElementById('terminalModal');
+    const terminalTrigger = document.getElementById('terminalTrigger');
+    const closeBtn = document.getElementById('modalCloseBtn');
+    const iframe = modalOverlay.querySelector('iframe');
+
+    function openModal(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        modalOverlay.classList.add('active');
+        // Optional: reload iframe if needed (uncomment if you want fresh load each time)
+        // iframe.src = iframe.src;
+    }
+
+    function closeModal() {
+        modalOverlay.classList.remove('active');
+    }
+
+    // Event listeners for modal
+    terminalTrigger.addEventListener('click', openModal);
+    terminalTrigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            openModal();
+        }
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    // Close on overlay click (but not when clicking inside iframe)
+    modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+            closeModal();
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+            closeModal();
+        }
+    });
+
+    // ---------- INIT STATIC & GLITCH ----------
     function initStatic() {
         setStaticOctopus();
 
