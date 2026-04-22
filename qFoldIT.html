@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>qFoldIT · The Architect's Sequence</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Adinkra icons -->
+    <link rel="stylesheet" href="https://ahiakwa.github.io/assets/adinkra-icons/css/icons.css">
+    <style>
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; -ms-overflow-style: none; scrollbar-width: none; }
+        html::-webkit-scrollbar { display: none; }
+        body { background: #000; color: #fff; font-family: "Inter", sans-serif; font-weight: 300; line-height: 1.5; overflow-x: hidden; }
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.95; }
+        .content { position: relative; z-index: 5; pointer-events: auto; max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+        section { min-height: 100vh; display: flex; align-items: center; border-bottom: 0.5px solid rgba(255,255,255,0.05); padding: 80px 0; }
+        .section-inner { width: 100%; }
+        h1, h2, h3 { font-weight: 300; letter-spacing: -0.02em; }
+        h2 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 2rem; }
+        .chapter-label { font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase; color: #7f9cbb; margin-bottom: 1rem; }
+        .blueprint-dash { border-bottom: 0.5px dashed #3a6ea5; margin: 1.5rem 0; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        @media (max-width: 800px) { .grid-2 { grid-template-columns: 1fr; } }
+        /* HUD Navigation (CHON) */
+        .hud-nav { position: fixed; bottom: 2rem; right: 2rem; z-index: 100; display: flex; gap: 1.8rem; background: rgba(0,0,0,0.3); backdrop-filter: blur(8px); padding: 0.6rem 1.8rem; border-radius: 60px; border: 0.5px solid rgba(255,255,255,0.1); font-family: 'SF Mono', monospace; }
+        .hud-nav a { color: #b0c8e0; text-decoration: none; font-size: 1.3rem; font-weight: 400; letter-spacing: 2px; transition: 0.2s; }
+        .hud-nav a:hover { color: #fff; text-shadow: 0 0 8px #0077ff; }
+        .hud-nav span { color: #3a5f7a; }
+        .fui-coords { position: fixed; bottom: 2rem; left: 2rem; z-index: 100; font-family: 'SF Mono', monospace; font-size: 0.8rem; color: #6c8aa8; opacity: 0.7; }
+        .site-header { position: fixed; top: 2rem; left: 2rem; z-index: 100; font-weight: 400; letter-spacing: 6px; font-size: 1rem; text-transform: uppercase; color: #fff; mix-blend-mode: difference; }
+        /* Cards & UI */
+        .card { background: rgba(10, 20, 30, 0.4); backdrop-filter: blur(4px); border-radius: 28px; padding: 1.8rem; border: 1px solid rgba(100,180,255,0.1); }
+        .badge { background: #1e3a5f; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.7rem; color: #b8d4ff; }
+        .reveal-text { opacity: 0; transform: translateY(25px); transition: 0.7s cubic-bezier(0.2,0.9,0.1,1); }
+        .reveal-text.visible { opacity: 1; transform: translateY(0); }
+        /* Rapaport quote styling */
+        .rapaport-quote { font-style: italic; border-left: 2px solid #5f9ea0; padding-left: 1.5rem; margin-top: 1.5rem; color: #b0c8e0; font-size: 0.95rem; }
+        /* Скрытый блок хронологии — оставляем display: none */
+    </style>
+    <!-- molecule font (для скрытых блоков, если понадобится) -->
+    <style>@font-face { font-family: 'MoleculeAlphabet'; src: url('https://qfoldit.github.io/assets/MoleculeModelRegularE.ttf') format('truetype'); }</style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    <div class="fui-coords" id="coords">BIO · X:0000 Y:0000 Z:0000</div>
+    <div class="hud-nav">
+        <a href="#bio">H</a> <span>·</span>
+        <a href="#culture">C</a> <span>·</span>
+        <a href="#chaos">O</a> <span>·</span>
+        <a href="#quantum">N</a>
+    </div>
+    <div class="site-header">Q‑FOLD</div>
+
+    <div class="content">
+        <!-- HERO -->
+        <section style="min-height: 90vh; padding-bottom: 2rem;">
+            <div class="section-inner">
+                <div class="chapter-label reveal-text">The Architect's Sequence</div>
+                <h1 style="font-size: clamp(3.5rem, 15vw, 7rem); font-weight: 300; line-height: 1; margin-bottom: 1.5rem;" class="reveal-text">From point-cloud<br>to the quantum states</h1>
+                <div class="reveal-text" style="font-size: 1.3rem; max-width: 700px; color: #c0d4ec;">qFoldIT compiles millions of years of evolutionary instinct and millennia of pattern recognition into a single quantum instruction set.</div>
+                <div class="blueprint-dash reveal-text"></div>
+                <div class="reveal-text" style="display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
+                    <div><span style="color:#5f9ea0;">Pufferfish Protocol</span> · African Fractals · Lorenz Bridge · QUBO</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BIO / H -->
+        <section id="bio">
+            <div class="section-inner grid-2">
+                <div>
+                    <div class="chapter-label reveal-text"><i class="fas fa-fish"></i> I. BIO · H</div>
+                    <h2 class="reveal-text">The Pufferfish<br>Protocol</h2>
+                    <div class="reveal-text" style="color: #b0c6dd;">A simple rule set — radial sweep, threshold avoidance — generates self‑assembly without a blueprint. In qFoldIT, it initializes the particle cloud.</div>
+                    <div class="blueprint-dash reveal-text"></div>
+                    <div class="reveal-text"><code style="color:#88aaff;">r = a + cos(k·θ) + Perlin(time)</code></div>
+                </div>
+                <div class="card reveal-text" style="text-align: center;">
+                    <i class="fas fa-circle-notch" style="font-size: 4rem; color: #3a6ea5; opacity: 0.6;"></i>
+                    <div style="margin-top: 1rem;">30k particles · biological kernel</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CULTURE / C -->
+        <section id="culture">
+            <div class="section-inner grid-2">
+                <div>
+                    <div class="chapter-label reveal-text"><i class="fas fa-draw-polygon"></i> II. CULTURE · C</div>
+                    <h2 class="reveal-text">African<br>Fractals</h2>
+                    <div class="reveal-text">Long before Mandelbrot, the architects of Bambara and Ba‑ila wove recursion into their villages. Our interface grid is a fractal lattice.</div>
+                    <div class="blueprint-dash reveal-text"></div>
+                    <div class="reveal-text"><span class="badge">Adinkra · IFS · Ron Eglash</span></div>
+                </div>
+                <div class="card reveal-text">
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <i class="adk adk-gye-nyame" style="font-size: 3rem;"></i>
+                        <i class="adk adk-sankofa-one" style="font-size: 3rem;"></i>
+                        <i class="adk adk-nkonsonkonson" style="font-size: 3rem;"></i>
+                    </div>
+                    <p style="margin-top: 1rem;">Gye Nyame · Sankofa · Nkonsonkonson — cultural recursion as interface.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAOS / O -->
+        <section id="chaos">
+            <div class="section-inner grid-2">
+                <div>
+                    <div class="chapter-label reveal-text"><i class="fas fa-chart-line"></i> III. CHAOS · O</div>
+                    <h2 class="reveal-text">Lorenz<br>Bridge</h2>
+                    <div class="reveal-text">Molecular docking is a butterfly’s wing in a thunderstorm. Dashed trajectories map the search.</div>
+                    <div class="blueprint-dash reveal-text"></div>
+                    <div class="reveal-text"><code>dx/dt = σ(y−x)  dy/dt = x(ρ−z)−y  dz/dt = xy−βz</code></div>
+                    <!-- RAPAPORT QUOTE -->
+                    <div class="rapaport-quote reveal-text">
+                        «The art of molecular dynamics simulation lies not in the equations themselves, but in the careful choreography of approximations, thermostats, and integrators that breathe life into Newton's recursive dance.»<br>
+                        <span style="display: block; margin-top: 0.5rem; color: #5f9ea0;">— D. C. Rapaport, <em>The Art of Molecular Dynamics Simulation</em></span>
+                    </div>
+                </div>
+                <div class="card reveal-text">
+                    <i class="fas fa-bezier-curve" style="font-size: 3rem; opacity: 0.6;"></i>
+                    <p>Attractor · probability cloud · global minimum</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUANTUM / N + Architecture -->
+        <section id="quantum">
+            <div class="section-inner">
+                <div class="chapter-label reveal-text"><i class="fas fa-atom"></i> IV. QUANTUM · N</div>
+                <h2 class="reveal-text">The CHON Interface</h2>
+                <div class="grid-2" style="margin-top: 1rem;">
+                    <div class="reveal-text">
+                        <p>Navigation rebuilt with H·C·O·N. From hydrogen genesis to AWS Braket QUBO solver.</p>
+                        <div style="display: flex; gap: 1rem; margin: 1.5rem 0;">
+                            <span class="badge">H — genesis</span><span class="badge">C — code</span><span class="badge">O — visuals</span><span class="badge">N — cloud</span>
+                        </div>
+                        <p>20+ microservices on EKS · quantum-adapter (Braket, Rosatom, IBM)</p>
+                    </div>
+                    <div class="card reveal-text">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem;"></i>
+                        <div style="margin-top: 1rem;">AWS · Unigine 2 SIM · NanoVer · ZairaChem</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Блок "Хронология & культурный слой" – СКРЫТ (display: none) -->
+        <section style="display: none;">
+            <!-- содержимое скрыто -->
+        </section>
+        <div style="text-align: center; padding: 2rem 0; color: #4a6a8a;">© Q‑FOLD — The Architect's Sequence · 2027 релиз на VK Play</div>
+    </div>
+
+    <!-- Three.js с УСИЛЕННЫМИ СОСТОЯНИЯМИ и MD-эффектом -->
+    <script type="importmap">
+        {"imports": {"three": "https://unpkg.com/three@0.128.0/build/three.module.js"}}
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+
+        // --- Setup scene ---
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x000000);
+        const camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 12);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+        container.appendChild(renderer.domElement);
+
+        // --- Параметры ---
+        const COUNT = 24000;
+        const geometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(COUNT * 3);
+        const colors = new Float32Array(COUNT * 3);
+
+        // Цвета
+        const c1 = new THREE.Color(0xaaccff);
+        const c2 = new THREE.Color(0xffffff);
+        const c3 = new THREE.Color(0x557799);
+        for (let i = 0; i < COUNT; i++) {
+            const mix = Math.random();
+            let col = c1.clone().lerp(c2, mix * 0.8);
+            if (Math.random() > 0.8) col = c3;
+            colors[i*3] = col.r;
+            colors[i*3+1] = col.g;
+            colors[i*3+2] = col.b;
+        }
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        const material = new THREE.PointsMaterial({
+            size: 0.035,
+            vertexColors: true,
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+            sizeAttenuation: true
+        });
+        const points = new THREE.Points(geometry, material);
+        scene.add(points);
+
+        const grid = new THREE.GridHelper(20, 40, 0x336699, 0x224466);
+        grid.position.z = -2;
+        scene.add(grid);
+
+        // Добавим пунктирные линии (траектории MD) – абстрактная визуализация
+        const lineMaterial = new THREE.LineBasicMaterial({ color: 0x3a6ea5 });
+        for (let k = 0; k < 8; k++) {
+            const pointsArray = [];
+            for (let t = 0; t <= 1; t += 0.05) {
+                const angle = t * Math.PI * 2 + k * 0.8;
+                const r = 5.5 + Math.sin(angle * 3) * 1.2;
+                pointsArray.push(new THREE.Vector3(
+                    Math.cos(angle) * r,
+                    Math.sin(angle * 2) * 2.5,
+                    Math.sin(angle) * r
+                ));
+            }
+            const lineGeo = new THREE.BufferGeometry().setFromPoints(pointsArray);
+            const line = new THREE.Line(lineGeo, lineMaterial);
+            scene.add(line);
+        }
+
+        // --- Генерация целевых позиций для 4 состояний (усиленные) ---
+        const statePositions = [
+            new Float32Array(COUNT * 3), // 0: BIO
+            new Float32Array(COUNT * 3), // 1: FRACTAL
+            new Float32Array(COUNT * 3), // 2: LORENZ
+            new Float32Array(COUNT * 3)  // 3: QUANTUM
+        ];
+
+        function setPos(arr, i, x, y, z) {
+            arr[i*3] = x;
+            arr[i*3+1] = y;
+            arr[i*3+2] = z;
+        }
+
+        // ---- STATE 0: BIO (усиленные гребни) ----
+        for (let i = 0; i < COUNT; i++) {
+            const rBase = 3.0 + Math.random() * 4.0;
+            const theta = Math.random() * Math.PI * 2;
+            const phi = Math.acos(2 * Math.random() - 1);
+            const k = 12;
+            const ridge = Math.cos(theta * k) * 1.2;
+            const r = Math.max(1.5, rBase + ridge);
+            let x = r * Math.sin(phi) * Math.cos(theta);
+            let y = r * Math.sin(phi) * Math.sin(theta) * 0.7;
+            let z = r * Math.cos(phi);
+            x += Math.sin(theta * 6) * 0.4;
+            y += Math.cos(phi * 8) * 0.3;
+            z += Math.sin(theta * 4) * 0.3;
+            setPos(statePositions[0], i, x, y, z);
+        }
+
+        // ---- STATE 1: FRACTAL (более выраженное самоподобие) ----
+        for (let i = 0; i < COUNT; i++) {
+            let x = 0, y = 0, z = 0;
+            const iters = 5 + Math.floor(Math.random() * 8);
+            for (let j = 0; j < iters; j++) {
+                const r = Math.random();
+                if (r < 0.35) {
+                    x = 0.5 * x; y = 0.5 * y; z = 0.5 * z;
+                } else if (r < 0.7) {
+                    x = 0.5 * x + 2.2; y = 0.5 * y + 0.5; z = 0.5 * z;
+                } else {
+                    x = 0.5 * x + 1.0; y = 0.5 * y + 2.0; z = 0.5 * z + 1.0;
+                }
+            }
+            x = (x - 2) * 1.5 + (Math.random()-0.5)*0.3;
+            y = (y - 1.8) * 1.8 + (Math.random()-0.5)*0.3;
+            z = (z - 1) * 1.5 + (Math.random()-0.5)*0.4;
+            setPos(statePositions[1], i, x, y, z);
+        }
+
+        // ---- STATE 2: LORENZ (более размашистый) ----
+        const lorenzPoints = [];
+        let lx = 0.1, ly = 0, lz = 0;
+        const sigma = 10, rho = 28, beta = 8/3;
+        const dt = 0.0035;
+        for (let step = 0; step < 80000; step++) {
+            const dx = sigma * (ly - lx) * dt;
+            const dy = (lx * (rho - lz) - ly) * dt;
+            const dz = (lx * ly - beta * lz) * dt;
+            lx += dx; ly += dy; lz += dz;
+            if (step > 20000 && step % 2 === 0) {
+                lorenzPoints.push({x: lx*0.28, y: ly*0.22, z: lz*0.28});
+            }
+        }
+        for (let i = 0; i < COUNT; i++) {
+            const p = lorenzPoints[Math.floor(Math.random() * lorenzPoints.length)];
+            setPos(statePositions[2], i, p.x + (Math.random()-0.5)*0.4, p.y + (Math.random()-0.5)*0.4, p.z + (Math.random()-0.5)*0.4);
+        }
+
+        // ---- STATE 3: QUANTUM (усиленная решётка) ----
+        for (let i = 0; i < COUNT; i++) {
+            let px, py, pz;
+            if (Math.random() > 0.5) {
+                const r = 3.5 + Math.random() * 2.5;
+                const theta = Math.random() * Math.PI*2;
+                const phi = Math.acos(2*Math.random()-1);
+                px = r * Math.sin(phi)*Math.cos(theta);
+                py = r * Math.sin(phi)*Math.sin(theta);
+                pz = r * Math.cos(phi);
+            } else {
+                const ix = Math.floor(Math.random() * 7) - 3;
+                const iy = Math.floor(Math.random() * 7) - 3;
+                const iz = Math.floor(Math.random() * 7) - 3;
+                px = ix * 1.7;
+                py = iy * 1.7;
+                pz = iz * 1.7;
+                px += (Math.random()-0.5)*0.4;
+                py += (Math.random()-0.5)*0.4;
+                pz += (Math.random()-0.5)*0.4;
+            }
+            setPos(statePositions[3], i, px, py, pz);
+        }
+
+        // Инициализация текущих позиций (BIO)
+        const currentPos = geometry.attributes.position.array;
+        for (let i = 0; i < COUNT*3; i++) currentPos[i] = statePositions[0][i];
+        geometry.attributes.position.needsUpdate = true;
+
+        // --- Управление скроллом ---
+        let scrollProgress = 0;
+        const maxScroll = () => document.body.scrollHeight - window.innerHeight;
+        window.addEventListener('scroll', () => {
+            const st = window.scrollY;
+            const max = maxScroll();
+            scrollProgress = max > 0 ? Math.min(st / max, 1.0) : 0;
+        }, { passive: true });
+
+        function lerp(a, b, t) { return a + (b - a) * t; }
+
+        const coordsEl = document.getElementById('coords');
+        const stateNames = ['BIO', 'FRACTAL', 'CHAOS', 'QUANTUM'];
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            const stateCount = 4;
+            const seg = scrollProgress * (stateCount - 1);
+            const idx0 = Math.floor(seg);
+            const idx1 = Math.min(idx0 + 1, stateCount - 1);
+            const t = seg - idx0;
+            
+            const arr0 = statePositions[idx0];
+            const arr1 = statePositions[idx1];
+            const dest = geometry.attributes.position.array;
+            
+            for (let i = 0; i < COUNT * 3; i++) {
+                dest[i] = lerp(arr0[i], arr1[i], t);
+            }
+            geometry.attributes.position.needsUpdate = true;
+            
+            points.rotation.y += 0.0008;
+            points.rotation.x = 0.15 + scrollProgress * 0.25;
+            
+            if (coordsEl) {
+                const sIdx = Math.min(idx1, 3);
+                coordsEl.innerHTML = `${stateNames[sIdx]} · X:${(points.rotation.y*10).toFixed(0)} Y:${(points.rotation.x*10).toFixed(0)} Z:${(scrollProgress*100).toFixed(0)}`;
+            }
+            
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Reveal-анимации
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal-text').forEach(el => obs.observe(el));
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.reveal-text').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
+            });
+        });
+
+        // CHON навигация
+        document.querySelectorAll('.hud-nav a').forEach(a => {
+            a.addEventListener('click', e => {
+                e.preventDefault();
+                const id = a.getAttribute('href');
+                if (id) document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
