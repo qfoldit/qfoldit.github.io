@@ -230,3 +230,7 @@ For inquiries: **qFoldIT@gmail.com** or reach out via our [website](https://fold
 
 [](https://qfoldit.github.io/qFold.html)
 ![](https://qfoldit.github.io/img/1/qFold.png)
+
+[QFold: Quantum Walks and Deep Learning to Solve Protein Folding](https://arxiv.org/abs/2101.10279)
+[Qfold: A modeling paradigm for the RNA](https://dl.acm.org/doi/10.1007/s10732-021-09471-3)
+
