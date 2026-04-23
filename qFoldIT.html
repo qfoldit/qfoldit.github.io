@@ -31,12 +31,12 @@
         .hud-nav span { color: #3a5f7a; }
         .fui-coords { position: fixed; bottom: 2rem; left: 2rem; z-index: 100; font-family: 'SF Mono', monospace; font-size: 0.8rem; color: #6c8aa8; opacity: 0.7; }
         .site-header { position: fixed; top: 2rem; left: 2rem; z-index: 100; display: flex; align-items: center; gap: 0.2rem; mix-blend-mode: difference; }
-        .logo-gye { font-family: 'adinkraiconfont'; font-size: 5.5rem; color: #fff; line-height: 1; margin-right: 0.1rem; }
-        .logo-fold { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 3.2rem; color: #fff; line-height: 1; letter-spacing: -0.02em; }
-        .logo-uantum { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.8rem; color: #fff; line-height: 1; letter-spacing: 0.02em; }
-        .logo-it { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 5.5rem; color: #fff; line-height: 1; margin-left: 0.3rem; }
+        .logo-gye { font-family: 'adinkraiconfont'; font-size: 4.8rem; color: #fff; line-height: 1; margin-right: 0.1rem; }
+        .logo-fold { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 2.8rem; color: #fff; line-height: 1; letter-spacing: -0.02em; }
+        .logo-uantum { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.6rem; color: #fff; line-height: 1; letter-spacing: 0.02em; }
+        .logo-it { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 4.8rem; color: #fff; line-height: 1; margin-left: 0.3rem; }
         .logo-stack { display: flex; flex-direction: column; align-items: flex-start; }
-        @media (max-width: 600px) { .logo-gye { font-size: 3.8rem; } .logo-fold { font-size: 2.2rem; } .logo-uantum { font-size: 1.3rem; } .logo-it { font-size: 3.8rem; } }
+        @media (max-width: 600px) { .logo-gye { font-size: 3.4rem; } .logo-fold { font-size: 2rem; } .logo-uantum { font-size: 1.2rem; } .logo-it { font-size: 3.4rem; } }
         .card { background: rgba(10, 20, 30, 0.4); backdrop-filter: blur(4px); border-radius: 28px; padding: 1.8rem; border: 1px solid rgba(100,180,255,0.1); }
         .badge { background: #1e3a5f; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.7rem; color: #b8d4ff; }
         .reveal-text { opacity: 0; transform: translateY(25px); transition: 0.7s cubic-bezier(0.2,0.9,0.1,1); }
@@ -46,9 +46,9 @@
         .aws-braket-link i { font-size: 1.4rem; color: #ff9900; }
         .aws-braket-link:hover { border-color: #ff9900; color: #fff; background: rgba(20, 50, 80, 0.5); }
         .hidden-timeline { display: none; }
-        .hero-title { margin-bottom: 2.5rem; }
+        .hero-title { margin-bottom: 2.5rem; font-size: clamp(3rem, 13vw, 6rem) !important; }
 
-        /* Подтекст с фоном #00000073, белым текстом и дополнительным отступом вниз */
+        /* Подтекст с фоном #00000073 и белым текстом */
         .hero-subtitle {
             background-color: #00000073;
             backdrop-filter: blur(2px);
@@ -60,7 +60,7 @@
             margin-top: 16px;
         }
 
-        /* Вертикальный текст The Architect's Sequence у правого края, между стрелками, БЕЛЫЙ */
+        /* Вертикальный текст The Architect's Sequence у правого края, между стрелками */
         .vertical-chapter {
             position: fixed;
             right: 2rem;
@@ -161,7 +161,7 @@
     <div class="content">
         <section style="min-height: 90vh; padding-bottom: 2rem;">
             <div class="section-inner">
-                <h1 class="hero-title reveal-text" style="font-size: clamp(3.5rem, 15vw, 7rem); font-weight: 300; line-height: 1;">From point-cloud<br>to the quantum states</h1>
+                <h1 class="hero-title reveal-text" style="font-weight: 300; line-height: 1;">From point-cloud<br>to the quantum states</h1>
                 <div class="hero-subtitle reveal-text" style="font-size: 1.3rem; max-width: 700px;">qFoldIT compiles millions of years of evolutionary instinct and millennia of pattern recognition into a single quantum instruction set.</div>
                 <div class="blueprint-dash reveal-text"></div>
                 <div class="reveal-text" style="display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
