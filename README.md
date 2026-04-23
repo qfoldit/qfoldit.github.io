@@ -1,5 +1,9 @@
 ### **Gamified Quantum Molecular Design for Global Science**
 
+![](https://qfoldit.github.io/img/1/logo/Dell_Nvidia_Factory.png)
+
+Dell & NVidia: [AI Factory Powering Drug Discovery](https://youtu.be/pl-W5yN8nDQ?si=LQELlfIrC4sS8OZK)
+
 NASA: [Virtual Reality in the 80's](https://youtu.be/gvkA3qG0zuI)
 
 NASA: [Virtual Environment Workstation Project (VIEWLab) VR demo 1989](https://youtu.be/3L0N7CKvOBA)
