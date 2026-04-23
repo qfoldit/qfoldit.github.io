@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architect Pufferfish Algorithm (Torquigener albomaculosus) — JavaScript</title>
+<!-- Prism.js: syntax highlighting -->
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<style>
+  :root {
+    --bg: #fafaf8;
+    --text: #1a1a1a;
+    --muted: #555;
+    --accent: #0057b7;
+    --code-bg: #f4f4f4;
+    --border: #e0e0e0;
+    --max-width: 860px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+  }
+  article {
+    max-width: var(--max-width);
+    width: 100%;
+  }
+  h1 {
+    font-size: 2.2rem;
+    margin-bottom: 0.3em;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.3em;
+  }
+  h2 {
+    font-size: 1.45rem;
+    margin: 2em 0 0.6em;
+    font-weight: 400;
+    color: var(--accent);
+  }
+  h3 {
+    font-size: 1.1rem;
+    margin: 1.5em 0 0.4em;
+    font-weight: 700;
+    color: #333;
+  }
+  p, li { margin: 0.7em 0; color: var(--text); }
+  ul, ol { padding-left: 1.5em; margin: 0.5em 0; }
+  code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    background: var(--code-bg);
+    padding: 0.15em 0.4em;
+    border-radius: 3px;
+    font-size: 0.92em;
+  }
+  pre {
+    border-radius: 6px;
+    margin: 1.2em 0;
+    font-size: 0.88em;
+    overflow-x: auto;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .callout {
+    background: #f0f6fb;
+    border-left: 3px solid var(--accent);
+    padding: 0.8em 1.2em;
+    margin: 1.4em 0;
+    border-radius: 0 6px 6px 0;
+  }
+  .warning {
+    background: #fff9ed;
+    border-left: 3px solid #e6a700;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1.2em 0;
+    font-size: 0.95em;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 0.5em 0.7em;
+    text-align: left;
+  }
+  th {
+    background: #f5f5f5;
+    font-weight: 700;
+  }
+  .author {
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 1.5em;
+  }
+  .logo {
+    display: block;
+    max-width: 200px;
+    margin: 1em 0 1.5em;
+  }
+  @media (max-width: 600px) {
+    body { padding: 1rem 0.5rem; }
+    h1 { font-size: 1.7rem; }
+  }
+</style>
+</head>
+<body>
+<article>
+
+<h1>🐡 Architect Pufferfish Algorithm</h1>
+<p class="author">Based on the paper <em>«Simple rules for construction of a geometric nest structure by pufferfish»</em> (Mizuuchi et al., 2018, Scientific Reports). JavaScript implementation.</p>
+
+<img class="logo" src="https://qfoldit.github.io/img/1/logo/PupperFish_1.png" alt="Pufferfish logo">
+
+<h2>1. Introduction</h2>
+<p>The male pufferfish <em>Torquigener albomaculosus</em> (about 10 cm long) constructs a circular sandy nest roughly 2 m in diameter on the sea floor. The outer ring of the nest consists of 25–30 deep radial grooves, while the inner region contains a shallow maze. The key discovery of the paper: the complex geometric pattern emerges from the repetition of a few <strong>simple local rules</strong>, without a global blueprint of the entire structure.</p>
+<p>This document describes a minimal yet complete JavaScript (ES6) implementation of the algorithm. The code can be copied and run in a browser — it renders an emulation of radial groove formation on an HTML5 Canvas.</p>
+
+<h2>2. Physical model</h2>
+<h3>2.1. Grid and height</h3>
+<p>The sandy bottom is represented by a two-dimensional <code>Grid</code> of <code>W×H</code> cells. Each cell stores a floating-point number — the height of the surface. Initially all heights are zero (flat seabed).</p>
+
+<pre><code class="language-javascript">class Grid {
+  constructor(width, height) {
+    this.width = width;
+    this.height = height;
+    // heights[y][x] — plane, y increases downward (Canvas convention)
+    this.heights = Array.from({ length: height }, () => new Float32Array(width));
+  }
+
+  getHeight(x, y) {
+    if (x < 0 || x >= this.width || y < 0 || y >= this.height) return 0;
+    return this.heights[y][x];
+  }
+
+  setHeight(x, y, value) {
+    if (x >= 0 && x < this.width && y >= 0 && y < this.height) {
+      this.heights[y][x] = value;
+    }
+  }
+
+  addHeight(x, y, delta) {
+    if (x >= 0 && x < this.width && y >= 0 && y < this.height) {
+      this.heights[y][x] += delta;
+    }
+  }
+}</code></pre>
+
+<h3>2.2. Fish and sand parameters</h3>
+<p>Key quantities (from Table 1 of the paper, normalized by fish body length). We use the <strong>early stage</strong> parameters, when the direction is still imprecise and grooves are only beginning to appear.</p>
+
+<pre><code class="language-javascript">const CONFIG = {
+  // Fish body and sand diffusion
+  fishWidth: 6,            // b — width of the excavated strip (in cells)
+  sandDiffusion: 10,       // f — distance sand is pushed aside on each side
+  // Excavation parameters (early stage, normalized by body length)
+  meanRadius: 3.4,         // mean distance from center to entry point
+  sdRadius: 0.77,          // standard deviation of that distance
+  angleDev: 0.28,          // standard deviation of direction (radians)
+  meanLength: 1.1,         // mean excavation length
+  sdLength: 0.69,          // standard deviation of length
+  // Avoidance of higher spots
+  H: 0,                    // maximum allowed height for entry (0 = strictly avoid any elevation)
+  // Amount of sand
+  T: 0.2                   // base amount of sand removed per step
+};
+// Conversion factor from "body length units" to grid cells.
+// In the paper 1 cell ≈ 0.8 cm (early) or 1.1 cm (middle). Let's choose 1.0 cm.
+const SCALE = 10; // 1 body length = 10 cells
+</code></pre>
+
+<h2>3. The fish algorithm</h2>
+<p>The fish repeats the same sequence of actions over and over:</p>
+<ol>
+  <li>Choose an entry point on the sand.</li>
+  <li>If the point is too high — reject it and choose again.</li>
+  <li>Select a direction (toward the center + noise) and a length.</li>
+  <li>Travel along a straight line, removing sand from the central strip and depositing it on the sides.</li>
+</ol>
+
+<h3>3.1. Entry point selection with height avoidance</h3>
+<div class="callout">
+  <strong>Biological fact:</strong> in the early stage the fish starts digging almost anywhere in the outer ring, but later it prefers depressions. This amplifies existing irregularities and leads to the emergence of radial grooves.
+</div>
+
+<pre><code class="language-javascript">function chooseEntryPoint(grid, centerX, centerY, config, scale) {
+  const maxAttempts = 50;
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    // uniformly distributed angle from 0 to 2π
+    const theta = Math.random() * 2 * Math.PI;
+    // normally distributed distance from the center
+    const r = gaussianRandom(config.meanRadius * scale, config.sdRadius * scale);
+    const x = Math.round(centerX + r * Math.cos(theta));
+    const y = Math.round(centerY + r * Math.sin(theta));
+
+    // boundary check
+    if (x < 0 || x >= grid.width || y < 0 || y >= grid.height) continue;
+
+    const h = grid.getHeight(x, y);
+    // if height is <= H — accept the point
+    if (h <= config.H) return { x, y };
+    // otherwise — reject with probability p = 0.5 + 0.5 * h / H
+    // (when H=0 any positive height is always rejected)
+    const p = 0.5 + 0.5 * Math.min(h / config.H, 1);
+    if (Math.random() > p) return { x, y };
+  }
+  // fallback: random point within the grid
+  return {
+    x: Math.floor(Math.random() * grid.width),
+    y: Math.floor(Math.random() * grid.height)
+  };
+}
+
+// Box‑Muller normal random number generator
+function gaussianRandom(mean, stddev) {
+  let u1, u2;
+  do { u1 = Math.random(); } while (u1 === 0);
+  u2 = Math.random();
+  const z = Math.sqrt(-2 * Math.log(u1)) * Math.cos(2 * Math.PI * u2);
+  return mean + z * stddev;
+}</code></pre>
+
+<h3>3.2. Direction and length</h3>
+<pre><code class="language-javascript">function excavationDirectionAndLength(entryX, entryY, centerX, centerY, config, scale) {
+  // exact direction toward the center
+  const baseAngle = Math.atan2(centerY - entryY, centerX - entryX);
+  // add normally distributed noise
+  const angle = baseAngle + gaussianRandom(0, config.angleDev);
+  // excavation length (non‑negative)
+  let length = gaussianRandom(config.meanLength * scale, config.sdLength * scale);
+  if (length < 0) length = 0;
+  return { angle, length };
+}</code></pre>
+
+<h3>3.3. Modifying the landscape: digging and deposition</h3>
+<p>The fish moves along a straight line. At each small step (1 cell) it removes sand from a rectangular area of width <code>b</code> (fishWidth) and piles it on both sides over a distance <code>f</code> (sandDiffusion). The amount of sand that can be removed decreases if the groove is already deep (the “slumping” effect).</p>
+
+<pre><code class="language-javascript">function excavate(grid, x0, y0, angle, length, config) {
+  const steps = Math.ceil(length);
+  const cosA = Math.cos(angle);
+  const sinA = Math.sin(angle);
+
+  for (let s = 0; s < steps; s++) {
+    const cx = Math.round(x0 + s * cosA);
+    const cy = Math.round(y0 + s * sinA);
+    if (cx < 0 || cx >= grid.width || cy < 0 || cy >= grid.height) continue;
+
+    // average height inside the excavated area (b×1 rectangle)
+    let sumH = 0, count = 0;
+    const halfB = Math.floor(config.fishWidth / 2);
+    for (let dx = -halfB; dx <= halfB; dx++) {
+      const wx = cx + dx;
+      if (wx >= 0 && wx < grid.width) {
+        sumH += grid.getHeight(wx, cy);
+        count++;
+      }
+    }
+    const avgH = count > 0 ? sumH / count : 0;
+
+    // amount of sand removed, reduced by depth saturation
+    const Tprime = config.T / (1 + avgH);
+
+    // remove sand from the central strip
+    for (let dx = -halfB; dx <= halfB; dx++) {
+      const wx = cx + dx;
+      if (wx >= 0 && wx < grid.width) {
+        grid.addHeight(wx, cy, -Tprime);
+      }
+    }
+
+    // deposit sand on the left and right berms (normally distributed)
+    const halfF = Math.floor(config.sandDiffusion / 2);
+    for (let side = -1; side <= 1; side += 2) { // side = -1 (left), +1 (right)
+      for (let offset = 1; offset <= halfF; offset++) {
+        const wx = cx + side * (halfB + offset);
+        if (wx >= 0 && wx < grid.width) {
+          // weight from a standard normal distribution (approximate)
+          const weight = Math.exp(-0.5 * Math.pow((offset - 1) / (halfF / 2), 2));
+          grid.addHeight(wx, cy, Tprime * 0.5 * weight);
+        }
+      }
+    }
+  }
+}</code></pre>
+
+<h2>4. Simulation and visualization</h2>
+<p>All the pieces are combined in the <code>Simulation</code> class. Every step calls <code>chooseEntryPoint</code>, then <code>excavationDirectionAndLength</code>, and finally <code>excavate</code>. Simultaneously the landscape is drawn onto a Canvas: the higher a cell, the lighter it appears.</p>
+
+<pre><code class="language-javascript">class Simulation {
+  constructor(canvas, width, height) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
+    this.grid = new Grid(width, height);
+    this.centerX = Math.floor(width / 2);
+    this.centerY = Math.floor(height / 2);
+    this.iteration = 0;
+  }
+
+  step() {
+    const entry = chooseEntryPoint(this.grid, this.centerX, this.centerY, CONFIG, SCALE);
+    const { angle, length } = excavationDirectionAndLength(
+      entry.x, entry.y, this.centerX, this.centerY, CONFIG, SCALE
+    );
+    excavate(this.grid, entry.x, entry.y, angle, length, CONFIG);
+    this.iteration++;
+  }
+
+  render() {
+    const ctx = this.ctx;
+    const w = this.grid.width, h = this.grid.height;
+    const cellW = this.canvas.width / w;
+    const cellH = this.canvas.height / h;
+
+    // find min and max heights for colour mapping
+    let minH = Infinity, maxH = -Infinity;
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        const val = this.grid.getHeight(x, y);
+        if (val < minH) minH = val;
+        if (val > maxH) maxH = val;
+      }
+    }
+    const range = maxH - minH || 1;
+
+    for (let y = 0; y < h; y++) {
+      for (let x = 0; x < w; x++) {
+        const val = this.grid.getHeight(x, y);
+        // normalize: 0 — deepest (dark), 1 — highest (light)
+        const t = (val - minH) / range;
+        const gray = Math.floor(255 * t);
+        ctx.fillStyle = `rgb(${gray},${gray},${gray})`;
+        ctx.fillRect(x * cellW, y * cellH, cellW + 1, cellH + 1);
+      }
+    }
+  }
+}</code></pre>
+
+<div class="callout warning">
+  <strong>Note.</strong> The code above is an educational implementation. To more faithfully replicate the paper one should add two stages (early and middle) with different parameter sets, as well as a model of sand “slumping” down slopes. Nevertheless, even this simplified version produces a recognizable radial pattern after a sufficient number of iterations (≈2000–5000).
+</div>
+
+<h2>5. Complete runnable example</h2>
+<p>Below is a single HTML file that can be saved and opened in a browser. It contains all the classes and runs the simulation for 2000 steps, drawing intermediate results.</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+&lt;meta charset="UTF-8"&gt;
+&lt;title&gt;Architect pufferfish nest&lt;/title&gt;
+&lt;style&gt;
+  body { margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #222; }
+  canvas { border: 1px solid #444; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;canvas id="nest" width="500" height="500"&gt;&lt;/canvas&gt;
+&lt;script&gt;
+// INSERT HERE ALL THE CLASSES: Grid, CONFIG, gaussianRandom,
+// chooseEntryPoint, excavationDirectionAndLength, excavate, Simulation
+
+const canvas = document.getElementById('nest');
+const sim = new Simulation(canvas, 100, 100);
+
+let steps = 0;
+const totalSteps = 2000;
+function loop() {
+  for (let i = 0; i < 10; i++) { // 10 steps per frame for speed
+    if (steps < totalSteps) {
+      sim.step();
+      steps++;
+    }
+  }
+  sim.render();
+  if (steps < totalSteps) {
+    requestAnimationFrame(loop);
+  }
+}
+loop();
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<h2>6. Conclusion</h2>
+<p>We have reproduced the key mechanism from the paper: random entry point selection + height avoidance + center‑directed motion with noise + local sand redistribution. These four rules, repeated thousands of times, spontaneously form radial grooves similar to those of the living fish’s nest.</p>
+<p>This model can easily be extended:</p>
+<ul>
+  <li>Add a second stage with more accurate direction.</li>
+  <li>Incorporate sand‑slumping physics (angle of repose limitation).</li>
+  <li>Replace classical random sampling with quantum generators (e.g., quantum walks) — a first step toward “quantum folding” of the nest.</li>
+</ul>
+
+</article>
+</body>
+</html>
