@@ -117,17 +117,34 @@
 <article>
 
 <h1>🐡 Architect Pufferfish Algorithm (Torquigener albomaculosus)</h1>
-<p class="author">Based on the paper <em>«Simple rules for construction of a geometric nest structure by pufferfish»</em> (Mizuuchi et al., 2018, Scientific Reports). JavaScript implementation.</p>
+<p class="author">
+  Based on two complementary scientific works:<br>
+  <em>«Simple rules for construction of a geometric nest structure by pufferfish»</em>
+  (Mizuuchi et al., 2018, <em>Scientific Reports</em>)<br>
+  and <em>«3D model of the geometric nest structure, the "mystery circle," constructed by pufferfish»</em>
+  (Kawase et al., 2022, <em>Scientific Data</em>).
+  JavaScript implementation.
+</p>
 
 <img class="logo" src="https://qfoldit.github.io/img/1/logo/PupperFish_1.png" alt="Pufferfish logo">
 
 <h2>1. Introduction</h2>
-<p>The male pufferfish <em>Torquigener albomaculosus</em> (about 10 cm long) constructs a circular sandy nest roughly 2 m in diameter on the sea floor. The outer ring of the nest consists of 25–30 deep radial grooves, while the inner region contains a shallow maze. The key discovery of the paper: the complex geometric pattern emerges from the repetition of a few <strong>simple local rules</strong>, without a global blueprint of the entire structure.</p>
-<p>This document describes a minimal yet complete JavaScript (ES6) implementation of the algorithm. The code can be copied and run in a browser — it renders an emulation of radial groove formation on an HTML5 Canvas.</p>
+<p>
+  The male pufferfish <em>Torquigener albomaculosus</em> (about 10 cm long) constructs a circular sandy nest roughly 2 m in diameter on the sea floor.
+  The outer ring consists of 25–30 deep radial grooves, while the inner region contains a shallow maze.
+  The key discovery of Mizuuchi et al. (2018): the complex geometric pattern emerges from the repetition of a few <strong>simple local rules</strong>, without a global blueprint.
+</p>
+<p>
+  A follow‑up study by Kawase et al. (2022) produced the first precise 3D models of completed nests and demonstrated that their radial valleys always channel water and fine sediment toward the centre – a biomimetic principle with potential applications in architecture and engineering.
+</p>
+<p>
+  This document describes a minimal yet complete JavaScript (ES6) implementation of the nest‑building algorithm.
+  The code can be copied and run in a browser – it renders the emergence of radial grooves on an HTML5 Canvas.
+</p>
 
 <h2>2. Physical model</h2>
 <h3>2.1. Grid and height</h3>
-<p>The sandy bottom is represented by a two-dimensional <code>Grid</code> of <code>W×H</code> cells. Each cell stores a floating-point number — the height of the surface. Initially all heights are zero (flat seabed).</p>
+<p>The sandy bottom is represented by a two-dimensional <code>Grid</code> of <code>W×H</code> cells. Each cell stores a floating‑point number – the height of the surface. Initially all heights are zero (flat seabed).</p>
 
 <pre><code class="language-javascript">class Grid {
   constructor(width, height) {
@@ -156,25 +173,40 @@
 }</code></pre>
 
 <h3>2.2. Fish and sand parameters</h3>
-<p>Key quantities (from Table 1 of the paper, normalized by fish body length). We use the <strong>early stage</strong> parameters, when the direction is still imprecise and grooves are only beginning to appear.</p>
+<p>Key quantities from Table 1 of the paper (normalized by fish body length). We use the <strong>early stage</strong> parameters, when the direction is still imprecise and grooves are only beginning to appear. The middle‑stage parameters (more accurate, excavation from existing grooves) are also shown for extension.</p>
 
 <pre><code class="language-javascript">const CONFIG = {
   // Fish body and sand diffusion
   fishWidth: 6,            // b — width of the excavated strip (in cells)
   sandDiffusion: 10,       // f — distance sand is pushed aside on each side
-  // Excavation parameters (early stage, normalized by body length)
-  meanRadius: 3.4,         // mean distance from center to entry point
-  sdRadius: 0.77,          // standard deviation of that distance
-  angleDev: 0.28,          // standard deviation of direction (radians)
-  meanLength: 1.1,         // mean excavation length
-  sdLength: 0.69,          // standard deviation of length
-  // Avoidance of higher spots
-  H: 0,                    // maximum allowed height for entry (0 = strictly avoid any elevation)
+
+  // Early stage parameters (Mizuuchi et al., Table 1)
+  early: {
+    meanRadius: 3.4,         // mean distance from center to entry point
+    sdRadius: 0.77,          // standard deviation of that distance
+    angleDev: 0.28,          // standard deviation of direction (radians)
+    meanLength: 1.1,         // mean excavation length
+    sdLength: 0.69,          // standard deviation of length
+    H: 0                     // maximum allowed height for entry (0 = strictly avoid any elevation)
+  },
+  // Middle stage parameters (for reference; not used in default simulation)
+  middle: {
+    meanRadius: 4.8,
+    sdRadius: 1.0,
+    angleDev: 0.094,
+    meanLength: 1.8,
+    sdLength: 0.96,
+    H: 0
+  },
   // Amount of sand
   T: 0.2                   // base amount of sand removed per step
 };
+
+// Active stage – set to 'early' initially
+let activeStage = CONFIG.early;
+
 // Conversion factor from "body length units" to grid cells.
-// In the paper 1 cell ≈ 0.8 cm (early) or 1.1 cm (middle). Let's choose 1.0 cm.
+// 1 cell ≈ 0.8 cm (early) or 1.1 cm (middle). Here we use a fixed 1.0 cm.
 const SCALE = 10; // 1 body length = 10 cells
 </code></pre>
 
@@ -182,14 +214,14 @@ const SCALE = 10; // 1 body length = 10 cells
 <p>The fish repeats the same sequence of actions over and over:</p>
 <ol>
   <li>Choose an entry point on the sand.</li>
-  <li>If the point is too high — reject it and choose again.</li>
+  <li>If the point is too high – reject it and choose again.</li>
   <li>Select a direction (toward the center + noise) and a length.</li>
   <li>Travel along a straight line, removing sand from the central strip and depositing it on the sides.</li>
 </ol>
 
 <h3>3.1. Entry point selection with height avoidance</h3>
 <div class="callout">
-  <strong>Biological fact:</strong> in the early stage the fish starts digging almost anywhere in the outer ring, but later it prefers depressions. This amplifies existing irregularities and leads to the emergence of radial grooves.
+  <strong>Biological fact:</strong> In the early stage the fish starts digging almost anywhere in the outer ring, but later it prefers depressions. This amplifies existing irregularities and leads to the emergence of radial grooves. The 3D study (Kawase et al.) confirms that the final structure consistently channels flow toward the centre.
 </div>
 
 <pre><code class="language-javascript">function chooseEntryPoint(grid, centerX, centerY, config, scale) {
@@ -206,12 +238,16 @@ const SCALE = 10; // 1 body length = 10 cells
     if (x < 0 || x >= grid.width || y < 0 || y >= grid.height) continue;
 
     const h = grid.getHeight(x, y);
-    // if height is <= H — accept the point
-    if (h <= config.H) return { x, y };
-    // otherwise — reject with probability p = 0.5 + 0.5 * h / H
-    // (when H=0 any positive height is always rejected)
-    const p = 0.5 + 0.5 * Math.min(h / config.H, 1);
-    if (Math.random() > p) return { x, y };
+    if (config.H === 0) {
+      // Strict avoidance: only accept height ≤ 0 (the initial flat surface)
+      if (h <= 0) return { x, y };
+      // otherwise reject immediately (no probability, continue loop)
+    } else {
+      // Probabilistic avoidance as in the paper
+      if (h <= config.H) return { x, y };
+      const p = 0.5 + 0.5 * Math.min(h / config.H, 1);
+      if (Math.random() > p) return { x, y };
+    }
   }
   // fallback: random point within the grid
   return {
@@ -306,9 +342,10 @@ function gaussianRandom(mean, stddev) {
   }
 
   step() {
-    const entry = chooseEntryPoint(this.grid, this.centerX, this.centerY, CONFIG, SCALE);
+    // use the active stage parameters (CONFIG.early or CONFIG.middle)
+    const entry = chooseEntryPoint(this.grid, this.centerX, this.centerY, activeStage, SCALE);
     const { angle, length } = excavationDirectionAndLength(
-      entry.x, entry.y, this.centerX, this.centerY, CONFIG, SCALE
+      entry.x, entry.y, this.centerX, this.centerY, activeStage, SCALE
     );
     excavate(this.grid, entry.x, entry.y, angle, length, CONFIG);
     this.iteration++;
@@ -345,11 +382,11 @@ function gaussianRandom(mean, stddev) {
 }</code></pre>
 
 <div class="callout warning">
-  <strong>Note.</strong> The code above is an educational implementation. To more faithfully replicate the paper one should add two stages (early and middle) with different parameter sets, as well as a model of sand “slumping” down slopes. Nevertheless, even this simplified version produces a recognizable radial pattern after a sufficient number of iterations (≈2000–5000).
+  <strong>Note.</strong> The code above is an educational implementation. To faithfully replicate the full paper one should add two stages (early and middle) with automatic transition, as well as a model of sand “slumping” down slopes. The 3D study by Kawase et al. provides high‑resolution geometry that can be used for computational fluid dynamics (CFD) analysis of these structures.
 </div>
 
 <h2>5. Complete runnable example</h2>
-<p>Below is a single HTML file that can be saved and opened in a browser. It contains all the classes and runs the simulation for 2000 steps, drawing intermediate results.</p>
+<p>Below is a single HTML file that can be saved and opened in a browser. It contains all the classes and runs the simulation for 2000 steps, drawing intermediate results. You can switch between early and middle stage by changing <code>activeStage</code>.</p>
 
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
@@ -370,6 +407,10 @@ function gaussianRandom(mean, stddev) {
 const canvas = document.getElementById('nest');
 const sim = new Simulation(canvas, 100, 100);
 
+// Choose which stage to use: CONFIG.early or CONFIG.middle
+// (Make sure to set activeStage before starting the loop)
+activeStage = CONFIG.early;  // or CONFIG.middle
+
 let steps = 0;
 const totalSteps = 2000;
 function loop() {
@@ -389,18 +430,25 @@ loop();
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
 
-<h2>6. Conclusion</h2>
-<p>We have reproduced the key mechanism from the paper: random entry point selection + height avoidance + center‑directed motion with noise + local sand redistribution. These four rules, repeated thousands of times, spontaneously form radial grooves similar to those of the living fish’s nest.</p>
+<h2>6. Conclusion and further extensions</h2>
+<p>
+  We have reproduced the key mechanism from Mizuuchi et al. (2018): random entry point selection + height avoidance + centre‑directed motion with noise + local sand redistribution.
+  These four rules, repeated thousands of times, spontaneously form radial grooves similar to those of the living fish’s nest.
+  The resulting topography, as documented by Kawase et al. (2022), naturally directs water and sediment toward the centre, suggesting biomimetic applications in fluid control and filtration.
+</p>
 <p>This model can easily be extended:</p>
 <ul>
-  <li>Add a second stage with more accurate direction.</li>
-  <li>Incorporate sand‑slumping physics (angle of repose limitation).</li>
-  <li>Replace classical random sampling with quantum generators (e.g., quantum walks) — a first step toward “quantum folding” of the nest.</li>
+  <li>Add a second stage with more accurate direction (middle stage parameters above).</li>
+  <li>Incorporate sand‑slumping physics (angle of repose limitation) for more realistic profiles.</li>
+  <li>Replace classical random sampling with quantum generators (e.g., quantum walks) – a step toward “quantum folding” of the nest.</li>
+  <li>Use the resulting 3D surface (by interpreting heights as depth) as input for CFD simulations.</li>
 </ul>
 
 <footer style="text-align: center; margin-top: 2em; border-top: 1px solid var(--border); padding-top: 1em;">
   <i class="fab fa-github"></i>
-  <a href="https://github.com/qfoldit" target="_blank">qFoldIT</a>
+  <a href="https://github.com/qfoldit" target="_blank">qFoldIT</a> | 
+  <a href="https://doi.org/10.1038/s41598-018-30857-0" target="_blank">doi : 41598-018-30857-0</a> | 
+  <a href="https://doi.org/10.1038/s41597-022-01466-4" target="_blank">doi : 41597-022-01466-4</a>
 </footer>
 
 </article>
