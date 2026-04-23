@@ -1,12 +1,12 @@
 ### **Gamified Quantum Molecular Design for Global Science**
 
-[NASA Virtual Reality in the 80's](https://youtu.be/gvkA3qG0zuI)
+NASA [Virtual Reality in the 80's](https://youtu.be/gvkA3qG0zuI)
 
-[NASA Virtual Environment Workstation Project (VIEWLab) VR demo 1989](https://youtu.be/3L0N7CKvOBA)
+NASA [Virtual Environment Workstation Project (VIEWLab) VR demo 1989](https://youtu.be/3L0N7CKvOBA)
 
-[QFold: Quantum Walks and Deep Learning to Solve Protein Folding](https://arxiv.org/abs/2101.10279)
+QFold:[Quantum Walks and Deep Learning to Solve Protein Folding](https://arxiv.org/abs/2101.10279)
 
-[Qfold: A modeling paradigm for the RNA](https://dl.acm.org/doi/10.1007/s10732-021-09471-3)
+QFold:[A modeling paradigm for the RNA](https://dl.acm.org/doi/10.1007/s10732-021-09471-3)
 
 [Mixed Reality Meets Quantum Science on the International Space Station](https://youtu.be/5Br-y6S4pMc)
 
