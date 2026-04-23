@@ -33,6 +33,9 @@
 
 ---
 
+[QFold: Quantum Walks and Deep Learning to Solve Protein Folding](https://arxiv.org/abs/2101.10279) <br>
+[Qfold: A modeling paradigm for the RNA](https://dl.acm.org/doi/10.1007/s10732-021-09471-3)
+
 ## 🧬 Mission
 
 **qFoldIT** is a distributed, immersive platform that turns molecular design into a collaborative game. By combining quantum computing, AI‑driven screening, and citizen science, we empower researchers and players worldwide to discover new drug candidates against infectious diseases—starting with malaria, tuberculosis, and antimicrobial resistance (AMR).
@@ -228,9 +231,7 @@ For inquiries: **qFoldIT@gmail.com** or reach out via our [website](https://fold
 *Sankofa: we retrieve wisdom from the past to build the future.*  
 *Gye Nyame: except God, there are no limits.*
 
-[](https://qfoldit.github.io/qFold.html)
+[AWS](https://qfoldit.github.io/qFold.html)
 ![](https://qfoldit.github.io/img/1/qFold.png)
 
-[QFold: Quantum Walks and Deep Learning to Solve Protein Folding](https://arxiv.org/abs/2101.10279) <br>
-[Qfold: A modeling paradigm for the RNA](https://dl.acm.org/doi/10.1007/s10732-021-09471-3)
 
