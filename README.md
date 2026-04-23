@@ -8,7 +8,7 @@ QFold: [Quantum Walks and Deep Learning to Solve Protein Folding](https://arxiv.
 
 QFold: [A modeling paradigm for the RNA](https://dl.acm.org/doi/10.1007/s10732-021-09471-3)
 
-ISS (International Space Station): [Mixed Reality Meets Quantum Science on the ](https://youtu.be/5Br-y6S4pMc)
+ISS : [Mixed Reality Meets Quantum Science on the International Space Station](https://youtu.be/5Br-y6S4pMc)
 
 <!--![](https://issnationallab.org/wp-content/uploads/2025/05/ISSNL-CASIS_Logo_Inline_Black.svg)-->
 <!--![](https://africaquantum.org/img/logo_svg.svg)-->
