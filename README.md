@@ -1,14 +1,14 @@
 ### **Gamified Quantum Molecular Design for Global Science**
 
-NASA [Virtual Reality in the 80's](https://youtu.be/gvkA3qG0zuI)
+NASA: [Virtual Reality in the 80's](https://youtu.be/gvkA3qG0zuI)
 
-NASA [Virtual Environment Workstation Project (VIEWLab) VR demo 1989](https://youtu.be/3L0N7CKvOBA)
+NASA: [Virtual Environment Workstation Project (VIEWLab) VR demo 1989](https://youtu.be/3L0N7CKvOBA)
 
 QFold: [Quantum Walks and Deep Learning to Solve Protein Folding](https://arxiv.org/abs/2101.10279)
 
 QFold: [A modeling paradigm for the RNA](https://dl.acm.org/doi/10.1007/s10732-021-09471-3)
 
-ISS : [Mixed Reality Meets Quantum Science on the International Space Station](https://youtu.be/5Br-y6S4pMc)
+ISS: [Mixed Reality Meets Quantum Science on the International Space Station](https://youtu.be/5Br-y6S4pMc)
 
 <!--![](https://issnationallab.org/wp-content/uploads/2025/05/ISSNL-CASIS_Logo_Inline_Black.svg)-->
 <!--![](https://africaquantum.org/img/logo_svg.svg)-->
@@ -16,8 +16,6 @@ ISS : [Mixed Reality Meets Quantum Science on the International Space Station](h
 ![](https://qfoldit.github.io/video/space_qfold.png)
 
 ![](https://assets.science.nasa.gov/dynamicimage/assets/science/missions/cold-atom-laboratory/Upgrading%20the%20Space%20Station%E2%80%99s%20Cold%20Atom%20Lab%20With%20Mixed%20Reality.png?w=1920&h=1080&fit=clip&crop=faces%2Cfocalpoint)
-
-[Beyond the Code: AI 2050 | Kelly Chibale](https://youtu.be/7KmUzG1hltI)
 
 [iDMT | Cambridge](https://youtu.be/Dd7ZwpgT4nw)
 
