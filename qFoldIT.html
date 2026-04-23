@@ -22,7 +22,6 @@
         .section-inner { width: 100%; }
         h1, h2, h3 { font-weight: 300; letter-spacing: -0.02em; }
         h2 { font-size: clamp(2.5rem, 8vw, 4.5rem); margin-bottom: 2rem; }
-        .chapter-label { font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase; color: #7f9cbb; margin-bottom: 1rem; }
         .blueprint-dash { border-bottom: 0.5px dashed #3a6ea5; margin: 1.5rem 0; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
         @media (max-width: 800px) { .grid-2 { grid-template-columns: 1fr; } }
@@ -47,8 +46,86 @@
         .aws-braket-link i { font-size: 1.4rem; color: #ff9900; }
         .aws-braket-link:hover { border-color: #ff9900; color: #fff; background: rgba(20, 50, 80, 0.5); }
         .hidden-timeline { display: none; }
-        /* увеличен отступ после главного заголовка */
         .hero-title { margin-bottom: 2.5rem; }
+
+        /* Подтекст с фоном #00000073 и белым текстом */
+        .hero-subtitle {
+            background-color: #00000073;
+            backdrop-filter: blur(2px);
+            border-radius: 8px;
+            padding: 0.8rem 1.2rem;
+            display: inline-block;
+            max-width: 700px;
+            color: #ffffff;
+        }
+
+        /* Вертикальный текст The Architect's Sequence у правого края, между стрелками */
+        .vertical-chapter {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 120;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+        .vertical-chapter span {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #7f9cbb;
+            font-weight: 400;
+            white-space: nowrap;
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(4px);
+            padding: 1.5rem 0.5rem;
+            border-radius: 8px;
+            border: 0.5px dashed #3a6ea5;
+        }
+        @media (max-width: 600px) {
+            .vertical-chapter { right: 0.5rem; }
+            .vertical-chapter span { font-size: 0.7rem; padding: 1rem 0.3rem; }
+        }
+
+        /* Стрелки навигации справа – разнесены на 24rem, прямоугольные */
+        .scroll-arrows {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 110;
+            display: flex;
+            flex-direction: column;
+            gap: 24rem;
+        }
+        .scroll-arrow {
+            width: 44px;
+            height: 72px;
+            border: 1px dashed #3a6ea5;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7f9cbb;
+            background: rgba(0,0,0,0.2);
+            backdrop-filter: blur(4px);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1.2rem;
+        }
+        .scroll-arrow:hover {
+            border-color: #0077ff;
+            color: #fff;
+            background: rgba(0,119,255,0.15);
+        }
+        @media (max-width: 600px) {
+            .scroll-arrows { right: 0.5rem; gap: 6rem; }
+            .scroll-arrow { width: 32px; height: 52px; font-size: 1rem; border-radius: 8px; }
+        }
     </style>
 </head>
 <body>
@@ -69,12 +146,22 @@
         <span class="logo-it">IT</span>
     </div>
 
+    <!-- Вертикальный текст между стрелками -->
+    <div class="vertical-chapter">
+        <span>The Architect's Sequence</span>
+    </div>
+
+    <!-- Стрелки навигации (прямоугольные, дальше) -->
+    <div class="scroll-arrows">
+        <div class="scroll-arrow" id="scrollUp" title="Наверх"><i class="fas fa-chevron-up"></i></div>
+        <div class="scroll-arrow" id="scrollDown" title="Вниз"><i class="fas fa-chevron-down"></i></div>
+    </div>
+
     <div class="content">
         <section style="min-height: 90vh; padding-bottom: 2rem;">
             <div class="section-inner">
-                <div class="chapter-label reveal-text">The Architect's Sequence</div>
                 <h1 class="hero-title reveal-text" style="font-size: clamp(3.5rem, 15vw, 7rem); font-weight: 300; line-height: 1;">From point-cloud<br>to the quantum states</h1>
-                <div class="reveal-text" style="font-size: 1.3rem; max-width: 700px; color: #c0d4ec;">qFoldIT compiles millions of years of evolutionary instinct and millennia of pattern recognition into a single quantum instruction set.</div>
+                <div class="hero-subtitle reveal-text" style="font-size: 1.3rem; max-width: 700px;">qFoldIT compiles millions of years of evolutionary instinct and millennia of pattern recognition into a single quantum instruction set.</div>
                 <div class="blueprint-dash reveal-text"></div>
                 <div class="reveal-text" style="display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
                     <div><span style="color:#5f9ea0;">Pufferfish Protocol</span> · African Fractals · Lorenz Bridge · QUBO</div>
@@ -283,6 +370,24 @@
         window.addEventListener('load', () => document.querySelectorAll('.reveal-text').forEach(el => { if(el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible'); }));
 
         document.querySelectorAll('.hud-nav a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); const id = a.getAttribute('href'); if(id) document.querySelector(id).scrollIntoView({behavior:'smooth'}); }));
+
+        // Логика стрелок вверх/вниз
+        const sections = Array.from(document.querySelectorAll('section'));
+        function getCurrentSectionIndex() {
+            const scrollCenter = window.scrollY + window.innerHeight / 2;
+            for (let i = sections.length - 1; i >= 0; i--) {
+                if (sections[i].offsetTop <= scrollCenter) return i;
+            }
+            return 0;
+        }
+        document.getElementById('scrollUp').addEventListener('click', () => {
+            const idx = getCurrentSectionIndex();
+            if (idx > 0) sections[idx - 1].scrollIntoView({ behavior: 'smooth' });
+        });
+        document.getElementById('scrollDown').addEventListener('click', () => {
+            const idx = getCurrentSectionIndex();
+            if (idx < sections.length - 1) sections[idx + 1].scrollIntoView({ behavior: 'smooth' });
+        });
     </script>
 </body>
 </html>
