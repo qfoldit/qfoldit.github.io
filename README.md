@@ -1,7 +1,13 @@
 ### **Gamified Quantum Molecular Design for Global Science**
 
-[NASA Virtual Reality in the 80's](https://youtu.be/gvkA3qG0zuI) <br>
-[NASA Virtual Environment Workstation Project (VIEWLab) VR demo 1989](https://youtu.be/3L0N7CKvOBA) <br>
+[NASA Virtual Reality in the 80's](https://youtu.be/gvkA3qG0zuI)
+
+[NASA Virtual Environment Workstation Project (VIEWLab) VR demo 1989](https://youtu.be/3L0N7CKvOBA)
+
+[QFold: Quantum Walks and Deep Learning to Solve Protein Folding](https://arxiv.org/abs/2101.10279)
+
+[Qfold: A modeling paradigm for the RNA](https://dl.acm.org/doi/10.1007/s10732-021-09471-3)
+
 [Mixed Reality Meets Quantum Science on the International Space Station](https://youtu.be/5Br-y6S4pMc)
 
 <!--![](https://issnationallab.org/wp-content/uploads/2025/05/ISSNL-CASIS_Logo_Inline_Black.svg)-->
@@ -32,9 +38,6 @@
 [![License](https://img.shields.io/badge/License-Proprietary%20with%20Open%20Components-blue)](#) [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/) [![Kubernetes](https://img.shields.io/badge/Kubernetes-1.28%2B-blue)](https://kubernetes.io/) [![Ersilia](https://img.shields.io/badge/Ersilia-Integrated-purple)](https://ersilia.io)
 
 ---
-
-[QFold: Quantum Walks and Deep Learning to Solve Protein Folding](https://arxiv.org/abs/2101.10279) <br>
-[Qfold: A modeling paradigm for the RNA](https://dl.acm.org/doi/10.1007/s10732-021-09471-3)
 
 ## 🧬 Mission
 
@@ -231,7 +234,5 @@ For inquiries: **qFoldIT@gmail.com** or reach out via our [website](https://fold
 *Sankofa: we retrieve wisdom from the past to build the future.*  
 *Gye Nyame: except God, there are no limits.*
 
-[AWS](https://qfoldit.github.io/qFold.html)
+[](https://qfoldit.github.io/qFold.html)
 ![](https://qfoldit.github.io/img/1/qFold.png)
-
-
