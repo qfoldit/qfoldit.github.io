@@ -33,34 +33,51 @@
         .site-header { position: fixed; top: 2rem; left: 2rem; z-index: 100; display: flex; align-items: center; gap: 0.2rem; mix-blend-mode: difference; }
         .logo-gye { font-family: 'adinkraiconfont'; font-size: 4.8rem; color: #fff; line-height: 1; margin-right: 0.1rem; }
         .logo-fold { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 2.8rem; color: #fff; line-height: 1; letter-spacing: -0.02em; }
-        .logo-uantum { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.6rem; color: #fff; line-height: 1; letter-spacing: 0.02em; }
+        .logo-uantum { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.5rem; color: #fff; line-height: 1; letter-spacing: 0.02em; }
         .logo-it { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 4.8rem; color: #fff; line-height: 1; margin-left: 0.3rem; }
         .logo-stack { display: flex; flex-direction: column; align-items: flex-start; }
-        @media (max-width: 600px) { .logo-gye { font-size: 3.4rem; } .logo-fold { font-size: 2rem; } .logo-uantum { font-size: 1.2rem; } .logo-it { font-size: 3.4rem; } }
+        @media (max-width: 600px) { .logo-gye { font-size: 3.4rem; } .logo-fold { font-size: 2rem; } .logo-uantum { font-size: 1.1rem; } .logo-it { font-size: 3.4rem; } }
         .card { background: rgba(10, 20, 30, 0.4); backdrop-filter: blur(4px); border-radius: 28px; padding: 1.8rem; border: 1px solid rgba(100,180,255,0.1); }
         .badge { background: #1e3a5f; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.7rem; color: #b8d4ff; }
         .reveal-text { opacity: 0; transform: translateY(25px); transition: 0.7s cubic-bezier(0.2,0.9,0.1,1); }
         .reveal-text.visible { opacity: 1; transform: translateY(0); }
         .rapaport-quote { font-style: italic; border-left: 2px solid #5f9ea0; padding-left: 1.5rem; margin-top: 1.5rem; color: #b0c8e0; font-size: 0.95rem; }
-        .aws-braket-link { display: inline-flex; align-items: center; gap: 0.6rem; margin-top: 2rem; padding: 0.8rem 1.8rem; border: 1px dashed #3a6ea5; border-radius: 40px; color: #a0c4ff; text-decoration: none; font-family: 'SF Mono', monospace; font-size: 0.9rem; letter-spacing: 0.5px; transition: all 0.2s; backdrop-filter: blur(4px); background: rgba(10, 30, 50, 0.3); }
-        .aws-braket-link i { font-size: 1.4rem; color: #ff9900; }
-        .aws-braket-link:hover { border-color: #ff9900; color: #fff; background: rgba(20, 50, 80, 0.5); }
         .hidden-timeline { display: none; }
-        .hero-title { margin-bottom: 2.5rem; font-size: clamp(3rem, 13vw, 6rem) !important; }
 
-        /* Подтекст с фоном #00000073 и белым текстом */
+        .hero-title {
+            font-size: clamp(3rem, 13vw, 6rem) !important;
+            margin-bottom: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        /* Блок с иконкой AWS и текстом */
         .hero-subtitle {
             background-color: #00000073;
             backdrop-filter: blur(2px);
-            border-radius: 8px;
-            padding: 0.8rem 1.2rem;
-            display: inline-block;
+            padding: 1rem 2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
             max-width: 700px;
             color: #ffffff;
             margin-top: 16px;
+            clip-path: polygon(0 0, calc(100% - 48px) 0, 100% 48px, 100% 100%, 40px 100%, 0 calc(100% - 40px));
+            border: 3px double #ffffff;
+            font-size: 1.3rem;
         }
 
-        /* Вертикальный текст The Architect's Sequence у правого края, между стрелками */
+        .hero-subtitle a {
+            color: #ff9900;
+            font-size: 2rem;
+            line-height: 1;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+
+        .hero-subtitle a:hover {
+            transform: scale(1.1);
+        }
+
         .vertical-chapter {
             position: fixed;
             right: 2rem;
@@ -92,7 +109,6 @@
             .vertical-chapter span { font-size: 0.7rem; padding: 1rem 0.3rem; }
         }
 
-        /* Стрелки навигации справа – разнесены на 24rem, прямоугольные */
         .scroll-arrows {
             position: fixed;
             right: 2rem;
@@ -127,6 +143,29 @@
             .scroll-arrows { right: 0.5rem; gap: 6rem; }
             .scroll-arrow { width: 32px; height: 52px; font-size: 1rem; border-radius: 8px; }
         }
+
+        /* Футер – ссылка на GitHub (белая) */
+        .footer-github {
+            text-align: center;
+            padding: 2rem 0;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        .footer-github a {
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'SF Mono', monospace;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            border-bottom: 0.5px dashed #ffffff;
+            transition: opacity 0.2s;
+        }
+        .footer-github a:hover {
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
@@ -147,12 +186,10 @@
         <span class="logo-it">IT</span>
     </div>
 
-    <!-- Вертикальный текст между стрелками -->
     <div class="vertical-chapter">
         <span>The Architect's Sequence</span>
     </div>
 
-    <!-- Стрелки навигации (прямоугольные, дальше) -->
     <div class="scroll-arrows">
         <div class="scroll-arrow" id="scrollUp" title="Наверх"><i class="fas fa-chevron-up"></i></div>
         <div class="scroll-arrow" id="scrollDown" title="Вниз"><i class="fas fa-chevron-down"></i></div>
@@ -161,17 +198,17 @@
     <div class="content">
         <section style="min-height: 90vh; padding-bottom: 2rem;">
             <div class="section-inner">
-                <h1 class="hero-title reveal-text" style="font-weight: 300; line-height: 1;">From point-cloud<br>to the quantum states</h1>
-                <div class="hero-subtitle reveal-text" style="font-size: 1.3rem; max-width: 700px;">qFoldIT compiles millions of years of evolutionary instinct and millennia of pattern recognition into a single quantum instruction set.</div>
+                <h1 class="hero-title reveal-text">From point-cloud<br>to the quantum states</h1>
+                <div class="hero-subtitle reveal-text">
+                    <a href="https://awslabs.github.io/quantum-computing-exploration-for-drug-discovery-on-aws/en/workshop/c-1-protein-folding-quantum-random-walk/protein-folding-qrw-background/" target="_blank" title="AWS Braket Workshop">
+                        <i class="fab fa-aws"></i>
+                    </a>
+                    <span>qFoldIT compiles millions of years of evolutionary instinct and millennia of pattern recognition into a single quantum instruction set.</span>
+                </div>
                 <div class="blueprint-dash reveal-text"></div>
                 <div class="reveal-text" style="display: flex; gap: 2rem; flex-wrap: wrap; margin-top: 2rem;">
                     <div><span style="color:#5f9ea0;">Pufferfish Protocol</span> · African Fractals · Lorenz Bridge · QUBO</div>
                 </div>
-                <a href="https://awslabs.github.io/quantum-computing-exploration-for-drug-discovery-on-aws/en/workshop/c-1-protein-folding-quantum-random-walk/protein-folding-qrw-background/" target="_blank" class="aws-braket-link reveal-text">
-                    <i class="fab fa-aws"></i> 
-                    <span>AWS Braket</span>
-                    <i class="fas fa-external-link-alt" style="font-size: 0.8rem; opacity: 0.7;"></i>
-                </a>
             </div>
         </section>
 
@@ -252,7 +289,10 @@
         </section>
 
         <div class="hidden-timeline"></div>
-        <div style="text-align: center; padding: 2rem 0; color: #4a6a8a;">© qFoldIT — The Architect's Sequence · 2027 релиз на VK Play</div>
+        <div class="footer-github">
+            <i class="fab fa-github"></i>
+            <a href="https://github.com/qfoldit" target="_blank">qFoldIT</a>
+        </div>
     </div>
 
     <script type="importmap">
@@ -372,7 +412,6 @@
 
         document.querySelectorAll('.hud-nav a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); const id = a.getAttribute('href'); if(id) document.querySelector(id).scrollIntoView({behavior:'smooth'}); }));
 
-        // Логика стрелок вверх/вниз
         const sections = Array.from(document.querySelectorAll('section'));
         function getCurrentSectionIndex() {
             const scrollCenter = window.scrollY + window.innerHeight / 2;
