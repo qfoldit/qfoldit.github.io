@@ -17,6 +17,8 @@ ISS: [Mixed Reality Meets Quantum Science on the International Space Station](ht
 
 ![](https://assets.science.nasa.gov/dynamicimage/assets/science/missions/cold-atom-laboratory/Upgrading%20the%20Space%20Station%E2%80%99s%20Cold%20Atom%20Lab%20With%20Mixed%20Reality.png?w=1920&h=1080&fit=clip&crop=faces%2Cfocalpoint)
 
+[Beyond the Code: AI 2050 | Kelly Chibale](https://youtu.be/7KmUzG1hltI)
+
 [iDMT | Cambridge](https://youtu.be/Dd7ZwpgT4nw)
 
 [H3D | Drug Discovery Platform](https://youtu.be/yYfb2_oLlVo)
