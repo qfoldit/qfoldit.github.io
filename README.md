@@ -23,8 +23,6 @@ ISS: [Mixed Reality Meets Quantum Science on the Space Station](https://youtu.be
 <!--![](https://issnationallab.org/wp-content/uploads/2025/05/ISSNL-CASIS_Logo_Inline_Black.svg)-->
 <!--![](https://africaquantum.org/img/logo_svg.svg)-->
 
-
-
 [Beyond the Code: AI 2050 | Kelly Chibale](https://youtu.be/7KmUzG1hltI)
 
 [iDMT | Cambridge](https://youtu.be/Dd7ZwpgT4nw)
