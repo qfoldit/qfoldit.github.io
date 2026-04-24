@@ -37,9 +37,9 @@ ISS: [Mixed Reality Meets Quantum Science on the Space Station](https://youtu.be
 *An open‑science partner of the [Ersilia Open Source Initiative](https://github.com/ersilia-os/) and [Visualizing biological data](https://vizbi.org/)*
 
 ![](https://qfoldit.github.io/video/Drew_Berry.png)
+![](https://qfoldit.github.io/img/posters/iDMT_Center.png)
 ![](https://qfoldit.github.io/img/Westminster_Labster.png)
 ![](https://joyenergy.github.io/img/Professor_Chibale.png)
-![](https://qfoldit.github.io/img/posters/iDMT_Center.png)
 ![](https://qfoldit.github.io/img/1/logo/idmt.png)
 ![](https://qfoldit.github.io/img/1/logo/idmt_partners.png)
 
