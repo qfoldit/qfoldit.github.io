@@ -1,4 +1,4 @@
-### **Gamified Quantum Molecular Design for Global Science**
+# **Gamified Quantum Molecular Design for Global Science**
 
 ![](https://qfoldit.github.io/video/NVidia_ISING.png)
 ![](https://qfoldit.github.io/video/Nvidia_evo2.jpg)
