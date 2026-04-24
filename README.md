@@ -1,48 +1,24 @@
 ### **Gamified Quantum Molecular Design for Global Science**
 
+![](https://qfoldit.github.io/img/1/logo/Dell_Nvidia_Factory.png)
+
 ![](https://qfoldit.github.io/video/ISS_CAL_MR.png)
 
 ![](https://qfoldit.github.io/video/Artemis_VR.png)
 
 ![](https://qfoldit.github.io/video/space_qfold.png)
 
-![](https://qfoldit.github.io/img/1/logo/Dell_Nvidia_Factory.png)
-
-![](https://qfoldit.github.io/img/1/logo/syntech.png)
-
-<!-- Dell & NVidia: [AI Factory Powering Drug Discovery](https://youtu.be/pl-W5yN8nDQ?si=LQELlfIrC4sS8OZK)
-
-NASA: [Virtual Reality in the 80's](https://youtu.be/gvkA3qG0zuI)
-
-NASA: [Virtual Environment Workstation Project (VIEWLab) VR demo 1989](https://youtu.be/3L0N7CKvOBA)
-
-qFold: [Quantum Walks and Deep Learning to Solve Protein Folding](https://arxiv.org/abs/2101.10279)
-
-qFold: [A modeling paradigm for the RNA](https://dl.acm.org/doi/10.1007/s10732-021-09471-3)
-
-ISS: [Mixed Reality Meets Quantum Science on the Space Station](https://youtu.be/5Br-y6S4pMc) -->
-
-<!--![](https://issnationallab.org/wp-content/uploads/2025/05/ISSNL-CASIS_Logo_Inline_Black.svg)-->
-<!--![](https://africaquantum.org/img/logo_svg.svg)-->
-
-[Beyond the Code: AI 2050 | Kelly Chibale](https://youtu.be/7KmUzG1hltI)
-
-[iDMT | Cambridge](https://youtu.be/Dd7ZwpgT4nw)
-
-[H3D | Drug Discovery Platform](https://youtu.be/yYfb2_oLlVo)
-
 ![](https://qfoldit.github.io/video/qfolditdna.png)
-<!-- ![](https://qfoldit.github.io/img/posters/letti_letters.png) -->
-
-*An open‑science partner of the [Ersilia Open Source Initiative](https://github.com/ersilia-os/) and [Visualizing biological data](https://vizbi.org/)*
 
 ![](https://qfoldit.github.io/video/Drew_Berry.png)
 ![](https://qfoldit.github.io/img/posters/iDMT_Center.png)
 ![](https://qfoldit.github.io/img/Westminster_Labster.png)
 ![](https://joyenergy.github.io/img/Professor_Chibale.png)
+![](https://qfoldit.github.io/img/1/logo/syntech.png)
 ![](https://qfoldit.github.io/img/1/logo/idmt.png)
 ![](https://qfoldit.github.io/img/1/logo/idmt_partners.png)
 
+*An open‑science partner of the [Ersilia Open Source Initiative](https://github.com/ersilia-os/) and [Visualizing biological data](https://vizbi.org/)*
 
 [![License](https://img.shields.io/badge/License-Proprietary%20with%20Open%20Components-blue)](#) [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/) [![Kubernetes](https://img.shields.io/badge/Kubernetes-1.28%2B-blue)](https://kubernetes.io/) [![Ersilia](https://img.shields.io/badge/Ersilia-Integrated-purple)](https://ersilia.io)
 
@@ -245,3 +221,28 @@ For inquiries: **qFoldIT@gmail.com** or reach out via our [website](https://fold
 
 [](https://qfoldit.github.io/qFold.html)
 ![](https://qfoldit.github.io/img/1/qFold.png)
+
+---
+
+<!-- [Beyond the Code: AI 2050 | Kelly Chibale](https://youtu.be/7KmUzG1hltI)
+
+[iDMT | Cambridge](https://youtu.be/Dd7ZwpgT4nw)
+
+[H3D | Drug Discovery Platform](https://youtu.be/yYfb2_oLlVo) -->
+
+<!-- ![](https://qfoldit.github.io/img/posters/letti_letters.png) -->
+
+<!-- Dell & NVidia: [AI Factory Powering Drug Discovery](https://youtu.be/pl-W5yN8nDQ?si=LQELlfIrC4sS8OZK)
+
+NASA: [Virtual Reality in the 80's](https://youtu.be/gvkA3qG0zuI)
+
+NASA: [Virtual Environment Workstation Project (VIEWLab) VR demo 1989](https://youtu.be/3L0N7CKvOBA)
+
+qFold: [Quantum Walks and Deep Learning to Solve Protein Folding](https://arxiv.org/abs/2101.10279)
+
+qFold: [A modeling paradigm for the RNA](https://dl.acm.org/doi/10.1007/s10732-021-09471-3)
+
+ISS: [Mixed Reality Meets Quantum Science on the Space Station](https://youtu.be/5Br-y6S4pMc) -->
+
+<!--![](https://issnationallab.org/wp-content/uploads/2025/05/ISSNL-CASIS_Logo_Inline_Black.svg)-->
+<!--![](https://africaquantum.org/img/logo_svg.svg)-->
