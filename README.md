@@ -2,6 +2,8 @@
 
 ![](https://qfoldit.github.io/video/Artemis_VR.png)
 
+![](https://qfoldit.github.io/video/space_qfold.png)
+
 ![](https://qfoldit.github.io/img/1/logo/Dell_Nvidia_Factory.png)
 
 <!-- Dell & NVidia: [AI Factory Powering Drug Discovery](https://youtu.be/pl-W5yN8nDQ?si=LQELlfIrC4sS8OZK)
@@ -18,8 +20,6 @@ ISS: [Mixed Reality Meets Quantum Science on the Space Station](https://youtu.be
 
 <!--![](https://issnationallab.org/wp-content/uploads/2025/05/ISSNL-CASIS_Logo_Inline_Black.svg)-->
 <!--![](https://africaquantum.org/img/logo_svg.svg)-->
-
-![](https://qfoldit.github.io/video/space_qfold.png)
 
 ![](https://assets.science.nasa.gov/dynamicimage/assets/science/missions/cold-atom-laboratory/Upgrading%20the%20Space%20Station%E2%80%99s%20Cold%20Atom%20Lab%20With%20Mixed%20Reality.png?w=1920&h=1080&fit=clip&crop=faces%2Cfocalpoint)
 
