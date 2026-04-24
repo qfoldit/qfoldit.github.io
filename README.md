@@ -8,6 +8,8 @@
 
 ![](https://qfoldit.github.io/img/1/logo/Dell_Nvidia_Factory.png)
 
+![](https://qfoldit.github.io/img/1/logo/syntech.png)
+
 <!-- Dell & NVidia: [AI Factory Powering Drug Discovery](https://youtu.be/pl-W5yN8nDQ?si=LQELlfIrC4sS8OZK)
 
 NASA: [Virtual Reality in the 80's](https://youtu.be/gvkA3qG0zuI)
@@ -37,7 +39,6 @@ ISS: [Mixed Reality Meets Quantum Science on the Space Station](https://youtu.be
 ![](https://qfoldit.github.io/video/Drew_Berry.png)
 ![](https://qfoldit.github.io/img/Westminster_Labster.png)
 ![](https://joyenergy.github.io/img/Professor_Chibale.png)
-![](https://qfoldit.github.io/img/1/logo/syntech.png)
 ![](https://qfoldit.github.io/img/posters/iDMT_Center.png)
 ![](https://qfoldit.github.io/img/1/logo/idmt.png)
 ![](https://qfoldit.github.io/img/1/logo/idmt_partners.png)
