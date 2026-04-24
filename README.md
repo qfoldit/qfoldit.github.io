@@ -1,15 +1,12 @@
 ### **Gamified Quantum Molecular Design for Global Science**
 
+![](https://qfoldit.github.io/video/NVidia_ISING.png)
+![](https://qfoldit.github.io/video/Nvidia_evo2.jpg)
 ![](https://qfoldit.github.io/img/1/logo/Dell_Nvidia_Factory.png)
-
 ![](https://qfoldit.github.io/video/ISS_CAL_MR.png)
-
 ![](https://qfoldit.github.io/video/Artemis_VR.png)
-
 ![](https://qfoldit.github.io/video/space_qfold.png)
-
 ![](https://qfoldit.github.io/video/qfolditdna.png)
-
 ![](https://qfoldit.github.io/video/Drew_Berry.png)
 ![](https://qfoldit.github.io/img/posters/iDMT_Center.png)
 ![](https://qfoldit.github.io/img/Westminster_Labster.png)
@@ -224,25 +221,21 @@ For inquiries: **qFoldIT@gmail.com** or reach out via our [website](https://fold
 
 ---
 
-<!-- [Beyond the Code: AI 2050 | Kelly Chibale](https://youtu.be/7KmUzG1hltI)
-
-[iDMT | Cambridge](https://youtu.be/Dd7ZwpgT4nw)
-
-[H3D | Drug Discovery Platform](https://youtu.be/yYfb2_oLlVo) -->
-
 <!-- ![](https://qfoldit.github.io/img/posters/letti_letters.png) -->
 
-<!-- Dell & NVidia: [AI Factory Powering Drug Discovery](https://youtu.be/pl-W5yN8nDQ?si=LQELlfIrC4sS8OZK)
+<!-- Kelly Chibale: [Beyond the Code: AI 2050](https://youtu.be/7KmUzG1hltI)
 
-NASA: [Virtual Reality in the 80's](https://youtu.be/gvkA3qG0zuI)
+ISS: [Mixed Reality Meets Quantum Science on the Space Station](https://youtu.be/5Br-y6S4pMc)
 
+NASA: [Virtual Reality in the 80's](https://youtu.be/gvkA3qG0zuI) <br>
 NASA: [Virtual Environment Workstation Project (VIEWLab) VR demo 1989](https://youtu.be/3L0N7CKvOBA)
 
-qFold: [Quantum Walks and Deep Learning to Solve Protein Folding](https://arxiv.org/abs/2101.10279)
 
-qFold: [A modeling paradigm for the RNA](https://dl.acm.org/doi/10.1007/s10732-021-09471-3)
+Dell & NVidia: [AI Factory Powering Drug Discovery](https://youtu.be/pl-W5yN8nDQ?si=LQELlfIrC4sS8OZK) <br>
+NVidia: [AI for Quantum. NVIDIA Ising Accelerates Useful Quantum Computing](https://youtu.be/z978rGwiW6E?si=xbShhPBZyvi62L9_)
 
-ISS: [Mixed Reality Meets Quantum Science on the Space Station](https://youtu.be/5Br-y6S4pMc) -->
+qFold: [Quantum Walks and Deep Learning to Solve Protein Folding](https://arxiv.org/abs/2101.10279) <br>
+qFold: [A modeling paradigm for the RNA](https://dl.acm.org/doi/10.1007/s10732-021-09471-3) -->
 
 <!--![](https://issnationallab.org/wp-content/uploads/2025/05/ISSNL-CASIS_Logo_Inline_Black.svg)-->
 <!--![](https://africaquantum.org/img/logo_svg.svg)-->
