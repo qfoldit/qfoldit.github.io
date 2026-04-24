@@ -1,12 +1,12 @@
 ### **Gamified Quantum Molecular Design for Global Science**
 
+![](https://qfoldit.github.io/img/1/logo/Dell_Nvidia_Factory.png)
+
 ![](https://qfoldit.github.io/video/Artemis_VR.png)
 
 ![](https://qfoldit.github.io/video/space_qfold.png)
 
-![](https://assets.science.nasa.gov/dynamicimage/assets/science/missions/cold-atom-laboratory/Upgrading%20the%20Space%20Station%E2%80%99s%20Cold%20Atom%20Lab%20With%20Mixed%20Reality.png?w=1920&h=1080&fit=clip&crop=faces%2Cfocalpoint)
-
-![](https://qfoldit.github.io/img/1/logo/Dell_Nvidia_Factory.png)
+![](https://qfoldit.github.io/video/ISS_CAL_MR.png)
 
 <!-- Dell & NVidia: [AI Factory Powering Drug Discovery](https://youtu.be/pl-W5yN8nDQ?si=LQELlfIrC4sS8OZK)
 
