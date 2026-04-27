@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+  <meta name="description" content="qFoldIT — open science platform for quantum‑gamified molecular design, cloud rendering, and citizen science." />
+  <title>qFoldIT — Open Science Platform for Quantum‑Gamified Molecular Design</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Adinkra Icons (Gye Nyame) -->
+  <link rel="stylesheet" href="https://ahiakwa.github.io/assets/adinkra-icons/css/icons.css" />
+
+  <style>
+    :root {
+      --bg: #090c10;
+      --bg-elev: rgba(255,255,255,0.04);
+      --bg-elev-2: rgba(255,255,255,0.07);
+      --text: #e8edf2;
+      --muted: #a7b2be;
+      --line: rgba(255,255,255,0.08);
+      --accent: #4ea1ff;
+      --accent-2: #7cdbb6;
+      --good: #39d98a;
+      --warning: #ffd166;
+      --shadow: 0 24px 60px rgba(0,0,0,0.35);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max: 1240px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(78,161,255,0.12), transparent 30%),
+        radial-gradient(circle at top right, rgba(124,219,182,0.10), transparent 26%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 0; height: 0; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .shell {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+      padding: 24px 0 48px;
+    }
+
+    /* ===== HEADER & LOGO ===== */
+    .topbar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 8px 0 16px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      font-size: clamp(16px, 3.5vw, 22px);
+      flex-wrap: wrap;
+    }
+    .logo-symbol {
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo-symbol .adk-gye-nyame {
+      font-size: 6.2em;
+      color: #ffffff;
+      display: block;
+      line-height: 1;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+    .logo-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .logo-fold {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #ffffff;
+      font-size: 4.2em;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+    .logo-uantum {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #ffffff;
+      font-size: 2.4em;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .logo-it {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #ffffff;
+      font-size: 6.6em;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+    }
+    @media (max-width: 680px) {
+      .logo { gap: 0.6rem; }
+      .logo-symbol .adk-gye-nyame { font-size: 5.2em; }
+      .logo-fold { font-size: 3.5em; }
+      .logo-uantum { font-size: 2.0em; }
+      .logo-it { font-size: 5.5em; }
+    }
+    @media (max-width: 480px) {
+      .logo { gap: 0.4rem; }
+      .logo-symbol .adk-gye-nyame { font-size: 4.5em; }
+      .logo-fold { font-size: 3em; }
+      .logo-uantum { font-size: 1.7em; }
+      .logo-it { font-size: 4.7em; }
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text);
+      font-size: 0.88rem;
+      text-decoration: none;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      white-space: nowrap;
+    }
+    .pill:hover { transform: translateY(-1px); background: rgba(255,255,255,0.08); border-color: rgba(78,161,255,0.35); }
+
+    /* ===== HERO ===== */
+    .hero {
+      margin-top: 16px;
+      padding: 34px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -45% auto;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(78,161,255,0.22), transparent 62%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 28px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(78,161,255,0.10);
+      color: #b8d9ff;
+      border: 1px solid rgba(78,161,255,0.16);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .hero h2 {
+      margin: 0;
+      font-family: "Montserrat", sans-serif;
+      font-size: clamp(2rem, 5vw, 4.3rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+    }
+    .hero .lead {
+      margin: 18px 0 0;
+      max-width: 66ch;
+      color: #c7d0da;
+      font-size: 1.03rem;
+    }
+    .nobel-badge {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .nobel-badge span {
+      background: rgba(255,215,0,0.10);
+      border: 1px solid rgba(255,215,0,0.25);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: #ffd966;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.10);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: linear-gradient(135deg, rgba(78,161,255,0.95), rgba(88,132,255,0.95)); color: white; }
+    .btn-secondary { background: rgba(255,255,255,0.04); color: var(--text); }
+    .hero-panel {
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(0,0,0,0.20);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .stat {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat .n {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
+    }
+    .stat .t {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.35;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section {
+      margin-top: 24px;
+      padding: 28px;
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .section h3 {
+      margin: 0 0 10px;
+      font-size: clamp(1.35rem, 2vw, 2rem);
+      letter-spacing: -0.03em;
+    }
+    .section .sub {
+      margin: 0 0 18px;
+      color: var(--muted);
+    }
+
+    .grid-4, .grid-5 {
+      display: grid;
+      gap: 14px;
+    }
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+    .grid-5 { grid-template-columns: repeat(5, 1fr); }
+
+    .stack-card {
+      padding: 18px 16px;
+      border-radius: 18px;
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .stack-card .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(78,161,255,0.12);
+      border: 1px solid rgba(78,161,255,0.18);
+      color: #cfe6ff;
+      font-size: 1rem;
+    }
+    .stack-card h4 { margin: 0; font-size: 1.02rem; }
+    .stack-card p { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+    .stack-tags {
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      font-size: 0.74rem;
+      color: #cfe6ff;
+      border: 1px solid rgba(78,161,255,0.18);
+      background: rgba(78,161,255,0.08);
+      padding: 5px 8px;
+      border-radius: 999px;
+    }
+
+    .flow {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .flow-step {
+      display: grid;
+      grid-template-columns: 130px 1fr 180px;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+    }
+    .flow-step .num {
+      font-weight: 800;
+      color: #b8d9ff;
+      letter-spacing: 0.02em;
+    }
+    .flow-step .desc { color: #d9e1e9; }
+    .flow-step .tech {
+      color: var(--muted);
+      font-size: 0.86rem;
+      text-align: right;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
+
+    /* four-layer architecture visual */
+    .arch-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 16px;
+    }
+    .arch-card {
+      background: rgba(0,0,0,0.25);
+      border-radius: 24px;
+      padding: 24px 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.2s, border-color 0.2s;
+      text-align: center;
+    }
+    .arch-card:hover { transform: translateY(-6px); border-color: var(--accent); }
+    .arch-icon { font-size: 2.8rem; color: var(--accent); margin-bottom: 12px; }
+    .arch-title { font-size: 1.2rem; font-weight: 700; color: white; margin-bottom: 4px; }
+    .arch-sub { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 10px; }
+    .arch-desc { font-size: 0.85rem; color: #b0b4bc; line-height: 1.5; margin-bottom: 12px; }
+    .arch-tech {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-top: auto;
+    }
+    .tech-badge {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 0.7rem;
+      color: #a0c4ff;
+      border: 1px solid rgba(78,161,255,0.2);
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .team-card {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: var(--bg-elev);
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+    .avatar {
+      width: 92px;
+      height: 92px;
+      border-radius: 20px;
+      object-fit: cover;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .team-card h4 { margin: 0; font-size: 1.05rem; }
+    .role { margin: 4px 0 10px; color: #9fc7ff; font-size: 0.92rem; font-weight: 600; }
+    .team-card p { margin: 0; color: var(--muted); font-size: 0.92rem; line-height: 1.5; }
+    .mini-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .mini-link {
+      font-size: 0.84rem;
+      color: #cfe6ff;
+      text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(78,161,255,0.16);
+      background: rgba(78,161,255,0.08);
+    }
+
+    .alliance-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .alliance-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .alliance-card h4 { margin: 0 0 6px; font-size: 1rem; }
+    .alliance-card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+    .footer {
+      padding: 28px 0 18px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-align: center;
+    }
+    .footer-row {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .footer-row a { color: var(--text); opacity: .86; }
+    .footer-row a:hover { opacity: 1; }
+
+    @media (max-width: 1100px) {
+      .grid-5, .grid-4, .arch-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 820px) {
+      .shell { width: min(calc(100% - 20px), var(--max)); }
+      .hero, .section { padding: 22px; }
+      .flow-step { grid-template-columns: 1fr; }
+      .flow-step .tech { text-align: left; }
+      .team-grid { grid-template-columns: 1fr; }
+      .grid-5, .grid-4, .arch-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <!-- ========== HEADER WITH LOGO (from about (5).html) ========== -->
+    <header class="topbar">
+      <div class="logo">
+        <div class="logo-symbol" aria-label="Gye Nyame – divine supremacy">
+          <i class="adk adk-gye-nyame"></i>
+        </div>
+        <div class="logo-center">
+          <div class="logo-fold">FOLD</div>
+          <div class="logo-uantum">UANTUM</div>
+        </div>
+        <div class="logo-it">IT</div>
+      </div>
+      <nav class="pill-row" aria-label="Quick navigation">
+        <a class="pill" href="#architecture"><i class="fa-solid fa-layer-group"></i> Architecture</a>
+        <a class="pill" href="#workflow"><i class="fa-solid fa-diagram-project"></i> Workflow</a>
+        <a class="pill" href="#team"><i class="fa-solid fa-users"></i> Team</a>
+        <a class="pill" href="#alliances"><i class="fa-solid fa-handshake"></i> Alliances</a>
+        <a class="pill" href="#resources"><i class="fa-solid fa-book-open"></i> Resources</a>
+      </nav>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-kicker"><i class="fa-solid fa-cloud"></i> Cloud‑first · simulation‑first · citizen science</div>
+          <h2>Where play builds the molecules of tomorrow</h2>
+          <p class="lead">
+            qFoldIT unifies real‑time 3D simulation, AI‑assisted biomolecular inference, quantum optimization, and multiplayer scientific contribution into one modular platform.
+            Every puzzle solved accelerates the search for new medicines against malaria, tuberculosis, and antimicrobial resistance.
+          </p>
+          <div class="nobel-badge">
+            <span>Nobel Physics 2024 (Hopfield, Hinton)</span>
+            <span>Nobel Chemistry 2024 (Baker, Hassabis, Jumper)</span>
+            <span>Nobel Physics 2025 (Clarke, Devoret, Martinis)</span>
+            <span>Nobel Chemistry 2013 (Karplus, Levitt, Warshel)</span>
+            <span>Nobel Chemistry 2018 (Arnold)</span>
+            <span>Nobel Medicine 2000 (Kandel)</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#architecture"><i class="fa-solid fa-sitemap"></i> Explore the architecture</a>
+            <a class="btn btn-secondary" href="#open-science"><i class="fa-solid fa-lock-open"></i> Open science model</a>
+          </div>
+        </div>
+        <aside class="hero-panel" aria-label="Key facts">
+          <div class="stat-grid">
+            <div class="stat">
+              <div class="n">UNIGINE 2 SIM</div>
+              <div class="t">Core simulation and interactive world runtime.</div>
+            </div>
+            <div class="stat">
+              <div class="n">Cloud Rendering</div>
+              <div class="t">Primary delivery model for remote users and devices.</div>
+            </div>
+            <div class="stat">
+              <div class="n">AWS Braket</div>
+              <div class="t">Quantum execution and hybrid optimization layer.</div>
+            </div>
+            <div class="stat">
+              <div class="n">MMOS</div>
+              <div class="t">Citizen science task distribution and contribution layer.</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ========== MANIFEST: FROM POINT-CLOUD TO QUANTUM STATES ========== -->
+    <section class="section" style="background: transparent; border: none; box-shadow: none; padding-top: 0;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: center;">
+        <div>
+          <div class="hero-kicker"><i class="fa-solid fa-cloud"></i> The Architect's Sequence</div>
+          <h2 style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: clamp(2rem, 5vw, 3.8rem); line-height: 0.98; letter-spacing: -0.04em;">From point‑cloud<br>to the quantum states</h2>
+          <p style="margin: 18px 0 0; color: #c7d0da; font-size: 1.03rem;">
+            qFoldIT compresses millions of years of evolutionary instinct and millennia of pattern recognition into a single quantum instruction set.
+            Every puzzle begins as a cloud of infinite possibilities — and collapses into one validated molecule, ready for real‑world synthesis.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px;">
+            <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 999px; font-size: 0.8rem; color: #b0c8e0;">Pufferfish Protocol</span>
+            <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 999px; font-size: 0.8rem; color: #b0c8e0;">African Fractals</span>
+            <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 999px; font-size: 0.8rem; color: #b0c8e0;">Lorenz Bridge</span>
+            <span style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 5px 10px; border-radius: 999px; font-size: 0.8rem; color: #b0c8e0;">QUBO</span>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <!-- Визуальный якорь: символ трансформации из хаоса в структуру -->
+          <div style="width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(78,161,255,0.25), transparent 70%), radial-gradient(circle at 70% 70%, rgba(124,219,182,0.15), transparent 60%); border: 1px solid rgba(255,255,255,0.08); display: grid; place-items: center; position: relative;">
+            <i class="fas fa-circle-nodes" style="font-size: 5rem; color: #4ea1ff; opacity: 0.7;"></i>
+            <div style="position: absolute; bottom: 24px; font-size: 0.75rem; color: #7cdbb6; letter-spacing: 0.1em;">POINT‑CLOUD → QSTATE</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOUR-LAYER ARCHITECTURE (NASA + NanoVer) ========== -->
+    <section class="section" id="architecture">
+      <h3>Four‑layer architecture · NASA precision meets quantum gaming</h3>
+      <p class="sub">Each layer is independently replaceable and scales from browser to VR.</p>
+      <div class="arch-grid">
+        <div class="arch-card">
+          <div class="arch-icon"><i class="fas fa-brain"></i></div>
+          <div class="arch-title">Quantum Backend</div>
+          <div class="arch-sub">«The Brain»</div>
+          <div class="arch-desc">VQE and QAOA compute the true energy landscape. Connected to IBM, IonQ, or Rosatom QPUs.</div>
+          <div class="arch-tech"><span class="tech-badge">Qiskit</span><span class="tech-badge">VQE</span><span class="tech-badge">Braket</span></div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-icon"><i class="fas fa-network-wired"></i></div>
+          <div class="arch-title">NanoVer Server</div>
+          <div class="arch-sub">«The Nervous System»</div>
+          <div class="arch-desc">gRPC‑based hub bridging Python quantum routines with C++ UNIGINE. Sub‑millisecond sync for multiplayer iMD.</div>
+          <div class="arch-tech"><span class="tech-badge">gRPC</span><span class="tech-badge">Protobuf</span><span class="tech-badge">OpenMM</span></div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-icon"><i class="fas fa-hand-paper"></i></div>
+          <div class="arch-title">MRET Tools</div>
+          <div class="arch-sub">«The Hands»</div>
+          <div class="arch-desc">NASA‑inspired Mixed Reality Exploration Toolkit: laser rulers, virtual lab notebooks, role‑based multiplayer.</div>
+          <div class="arch-tech"><span class="tech-badge">VR/AR</span><span class="tech-badge">Session Mgmt</span><span class="tech-badge">Precision UI</span></div>
+        </div>
+        <div class="arch-card">
+          <div class="arch-icon"><i class="fas fa-eye"></i></div>
+          <div class="arch-title">UNIGINE 2 SIM</div>
+          <div class="arch-sub">«The Eyes»</div>
+          <div class="arch-desc">64‑bit double‑precision engine. Renders electron clouds, H‑bonds, and hydrophobic surfaces without z‑fighting.</div>
+          <div class="arch-tech"><span class="tech-badge">Double FP64</span><span class="tech-badge">Custom Shaders</span><span class="tech-badge">Varjo / OpenXR</span></div>
+        </div>
+      </div>
+
+      <div class="flow" id="workflow">
+        <div class="flow-step">
+          <div class="num">01 · Input</div>
+          <div class="desc">PDB file loaded into UNIGINE. Instant 3D model with FP64 precision.</div>
+          <div class="tech">UNIGINE + NanoVer</div>
+        </div>
+        <div class="flow-step">
+          <div class="num">02 · Propose</div>
+          <div class="desc">Foundry / RosettaFold3 proposes structural candidates and ranked hypotheses.</div>
+          <div class="tech">Foundry → RF3</div>
+        </div>
+        <div class="flow-step">
+          <div class="num">03 · Optimize</div>
+          <div class="desc">Quantum or hybrid subproblems dispatched to AWS Braket while classical pathways continue in parallel.</div>
+          <div class="tech">Braket → results</div>
+        </div>
+        <div class="flow-step">
+          <div class="num">04 · Play</div>
+          <div class="desc">MMOS distributes research microtasks to players, records contributions, and keeps the citizen‑science loop active.</div>
+          <div class="tech">MMOS → tasks</div>
+        </div>
+        <div class="flow-step">
+          <div class="num">05 · Persist</div>
+          <div class="desc">Provenance, logs, and result snapshots are stored in versioned scientific data layers.</div>
+          <div class="tech">Storage → provenance</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== COLD ATOM LAB ========== -->
+    <section class="section">
+      <h3>Cold Atom Lab · quantum training module</h3>
+      <p class="sub">A digital twin of NASA/DLR’s Cold Atom Lab aboard the ISS. Players align lasers, tune magnetic traps, and replace modules using holographic guides — all inside the same VR environment.</p>
+      <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 16px;">
+        <img src="https://www.dlr.de/en/images/missions/horizons/infografik-cal/@@images/image-4404-dfe908dc7a557a4cefbc99a87a1b16e8.jpeg" alt="Cold Atom Lab Infographic" style="border-radius: 14px; max-height: 180px;">
+        <img src="https://qfoldit.github.io/video/nasacoldlab.jpg" alt="NASA Cold Atom Lab schematic" style="border-radius: 14px; max-height: 180px;">
+        <img src="https://www.nasa.gov/wp-content/uploads/2020/05/pia23862-16.jpg" alt="Astronaut Christina Koch with Cold Atom Lab" style="border-radius: 14px; max-height: 180px;">
+        <img src="https://qfoldit.github.io/video/Artemis_VR.png" alt="Artemis VR" style="border-radius: 14px; max-height: 180px;">
+        <img src="https://qfoldit.github.io/video/space_qfold.png" alt="qFoldIT - Cold Atom Lab дополнение для Mission ISS" style="border-radius: 14px; max-height: 180px;">
+      </div>
+      <p class="sub" style="margin-top: 14px;"><i class="fas fa-vr-cardboard"></i> <strong>Artemis VR</strong> — интерактивная среда с той же событийной архитектурой, что и наземные лаборатории qFoldIT: единый код, единые игровые механики, одно научное ядро. <a href="https://store.steampowered.com/app/2720780/Artemis_VR/" target="_blank" style="color: #4ea1ff;">Steam</a></p>
+      <p class="sub" style="margin-top: 8px;"><i class="fas fa-space-shuttle"></i> <strong>Mission ISS: Cold Atom Lab</strong> — обучающий модуль для удалённой работы с квантовым оборудованием CAL на реальных квантовых вычислениях. Интегрируется как дополнение к <a href="https://store.steampowered.com/app/4112660/Mission_ISS/" target="_blank" style="color: #4ea1ff;">Mission ISS</a>. Демонстрирует практическую применимость citizen science в космической программе.</p>
+      <p class="sub" style="margin-top: 14px;"><i class="fas fa-quote-left"></i> Mixed Reality meets quantum science on the ISS — the same principle that allows an astronaut to service hardware guides our gamified simulations.</p>
+    </section>
+
+    <!-- ========== DESIGN PRINCIPLES ========== -->
+    <section class="section">
+      <h3>Design principles</h3>
+      <p class="sub">The logic that keeps the platform readable, scalable, and reusable.</p>
+      <div class="grid-5">
+        <article class="stack-card">
+          <div class="icon"><i class="fa-solid fa-swatchbook"></i></div>
+          <h4>One runtime, many scenarios</h4>
+          <p>Keep the engine stable and move content into packs.</p>
+        </article>
+        <article class="stack-card">
+          <div class="icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <h4>Cloud by default</h4>
+          <p>Heavy rendering and compute live in the cloud so clients stay thin.</p>
+        </article>
+        <article class="stack-card">
+          <div class="icon"><i class="fa-solid fa-diagram-successor"></i></div>
+          <h4>Clear separation of concerns</h4>
+          <p>Simulation, inference, quantum, and task distribution are independently replaceable.</p>
+        </article>
+        <article class="stack-card">
+          <div class="icon"><i class="fa-solid fa-users-gear"></i></div>
+          <h4>Human‑in‑the‑loop research</h4>
+          <p>Players are part of the scientific process, especially where intuition matters.</p>
+        </article>
+        <article class="stack-card">
+          <div class="icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+          <h4>Portable across projects</h4>
+          <p>Stable modules become reusable assets: pack format, UI, task brokers, and workflows.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== TEAM ========== -->
+    <section class="section" id="team">
+      <h3>Scientific team & collaborators</h3>
+      <p class="sub">A core of globally recognised experts augmented by cultural and gameplay veterans.</p>
+      <div class="team-grid">
+        <article class="team-card">
+          <img class="avatar" src="https://qfoldit.github.io/img/1/AG.png" alt="George Ahiakwa" loading="lazy" />
+          <div>
+            <h4>Dr. George Ahiakwa</h4>
+            <div class="role">Founder, CEO, Gamification Architect</div>
+            <p>Game designer (Atomic Heart), descendant of the Ashanti Ahiakwa royal lineage. Owns product direction, game systems, and platform architecture.</p>
+            <div class="mini-links"><a class="mini-link" href="https://github.com/CEPBEP">GitHub</a><a class="mini-link" href="https://orcid.org/0009-0009-3666-9295">ORCID</a></div>
+          </div>
+        </article>
+        <article class="team-card">
+          <img class="avatar" src="https://qfoldit.github.io/img/1/Kelly_Chibale_0.png" alt="Kelly Chibale" loading="lazy" />
+          <div>
+            <h4>Prof. Kelly Chibale</h4>
+            <div class="role">Scientific Director</div>
+            <p>Founder of H3D (UCT), Cambridge graduate, Oxford partner. Defines disease targets (malaria, TB, AMR) and leads ZairaChem AI screening.</p>
+            <div class="mini-links"><a class="mini-link" href="https://www.kellychibale.co.za/">Website</a></div>
+          </div>
+        </article>
+        <article class="team-card">
+          <img class="avatar" src="https://qfoldit.github.io/img/1/Dziwornu.png" alt="Godwin Dziwornu" loading="lazy" />
+          <div>
+            <h4>Dr. Godwin Akpeko Dziwornu</h4>
+            <div class="role">Scientific Advisor</div>
+            <p>Senior Investigator at H3D. Guides natural‑product scaffolds and validates biologically meaningful tasks.</p>
+            <div class="mini-links"><a class="mini-link" href="https://www.researchgate.net/profile/Godwin-Dziwornu">ResearchGate</a></div>
+          </div>
+        </article>
+        <article class="team-card">
+          <img class="avatar" src="https://qfoldit.github.io/img/1/Alapkin.png" alt="Alexei Lapkin" loading="lazy" />
+          <div>
+            <h4>Prof. Alexei Lapkin</h4>
+            <div class="role">Director of Digital Molecular Engineering & Sustainable Synthesis</div>
+            <p>University of Cambridge iDMT. Bridges in‑game molecular designs with real‑world industrial viability and green chemistry.</p>
+            <div class="mini-links"><a class="mini-link" href="https://www.ceb.cam.ac.uk/directory/alexei-lapkin">Cambridge profile</a></div>
+          </div>
+        </article>
+        <article class="team-card">
+          <img class="avatar" src="https://qfoldit.github.io/img/1/Jianmin_Wang.png" alt="Jianmin Wang" loading="lazy" />
+          <div>
+            <h4>Dr. Jianmin Wang</h4>
+            <div class="role">AI Architect for Generative Molecular Design</div>
+            <p>Yonsei University. Author of DiffIUPAC, GENiPPI, TransAntivirus. Powers the molecule‑designer and autoresearch modules.</p>
+            <div class="mini-links"><a class="mini-link" href="https://github.com/AspirinCode">GitHub</a></div>
+          </div>
+        </article>
+        <article class="team-card">
+          <img class="avatar" src="https://qfoldit.github.io/img/1/Prof_Ron_Eglash.jpg" alt="Ron Eglash" loading="lazy" />
+          <div>
+            <h4>Prof. Ron Eglash</h4>
+            <div class="role">Advisor on Algorithmic Culture & Generative Design</div>
+            <p>Author of African Fractals. Integrates fractal logic and culturally situated pattern languages into game mechanics.</p>
+            <div class="mini-links"><a class="mini-link" href="https://www.eglash.org">eglash.org</a></div>
+          </div>
+        </article>
+        <article class="team-card">
+          <img class="avatar" src="https://qfoldit.github.io/img/1/Karen-Happuch_1.png" alt="Karen Happuch" loading="lazy" />
+          <div>
+            <h4>Karen Happuch</h4>
+            <div class="role">Cultural Visualisation Director & Lead Animator</div>
+            <p>Founder of KHPH Studios (Ghana). Animator of Abrefi Kɔtɔ. Architects the visual identity from Adinkra pixel art to cinematic VR.</p>
+            <div class="mini-links"><a class="mini-link" href="#">@khph_studios</a></div>
+          </div>
+        </article>
+        <article class="team-card">
+          <img class="avatar" src="https://qfoldit.github.io/img/1/Dr_Beata_Mierzwa.png" alt="Beata Mierzwa" loading="lazy" />
+          <div>
+            <h4>Dr. Beata Mierzwa</h4>
+            <div class="role">Director of Science Art & Gamified Education</div>
+            <p>Creator of Microscopya. Translates complex quantum‑chemical data into intuitive, AAA‑quality visual puzzles.</p>
+            <div class="mini-links"><a class="mini-link" href="https://beatascienceart.com">beatascienceart.com</a></div>
+          </div>
+        </article>
+        <article class="team-card">
+          <img class="avatar" src="https://qfoldit.github.io/img/1/Robertson_Nortey.jpg" alt="Robertson Nortey" loading="lazy" />
+          <div>
+            <h4>Robertson Nortey</h4>
+            <div class="role">Lead Gameplay & Systems Design</div>
+            <p>Ex‑Rocksteady (Batman Arkham, Suicide Squad). Transforms molecular dynamics into engaging AAA‑grade gameplay.</p>
+            <div class="mini-links"><a class="mini-link" href="https://www.letiarts.com">Leti Arts</a></div>
+          </div>
+        </article>
+        <article class="team-card">
+          <img class="avatar" src="https://qfoldit.github.io/img/1/Dr_Hanae_Henke_169.png" alt="Hanae Henke" loading="lazy" />
+          <div>
+            <h4>Dr. Hanae Henke</h4>
+            <div class="role">Architect of Laboratory Precision</div>
+            <p>Eppendorf AG. Advises VR/AR lab training simulations, ensures alignment with real‑world GLP standards.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== STRATEGIC ALLIANCES ========== -->
+    <section class="section" id="alliances">
+      <h3>Strategic Alliances · citizen science & game‑based research</h3>
+      <p class="sub">Partners who multiply our impact and ensure scientific rigour.</p>
+      <div class="alliance-grid">
+        <div class="alliance-card">
+          <h4><i class="fa-solid fa-flask"></i> MMOS</h4>
+          <p>Infrastructure for citizen science in AAA games (EVE Online, Borderlands Science). Provides the task distribution and contribution tracking layer.</p>
+        </div>
+        <div class="alliance-card">
+          <h4><i class="fa-solid fa-gamepad"></i> Center for Game Science (UW)</h4>
+          <p>Creators of Foldit and Drugit. Bring decades of experience in designing scientific puzzles that millions of players love.</p>
+        </div>
+        <div class="alliance-card">
+          <h4><i class="fa-solid fa-chess-rook"></i> GAME.SCI RE.CENTER (IMT Lucca)</h4>
+          <p>Academic validation of educational and social impact. Certification and exhibition at Lucca Comics & Games.</p>
+        </div>
+        <div class="alliance-card">
+          <h4><i class="fa-brands fa-microsoft"></i> Microsoft (ID@Xbox)</h4>
+          <p>Leti Arts, our design partner, is an accepted Xbox Game Camp studio. Path to mentorship, grants, and global platform distribution.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== OPEN SCIENCE MODEL ========== -->
+    <section class="section" id="open-science">
+      <h3>Open science model</h3>
+      <p class="sub">How contribution, validation, and reuse work in one transparent pipeline.</p>
+      <div class="grid-5">
+        <article class="stack-card">
+          <div class="icon"><i class="fa-solid fa-gamepad"></i></div>
+          <h4>Player contribution</h4>
+          <p>Research actions become game actions. The platform records meaningful decisions, not just clicks.</p>
+        </article>
+        <article class="stack-card">
+          <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h4>Scientific validation</h4>
+          <p>Every contribution is checked against inference, simulation, and external scientific constraints before promotion.</p>
+        </article>
+        <article class="stack-card">
+          <div class="icon"><i class="fa-solid fa-file-contract"></i></div>
+          <h4>Provenance and traceability</h4>
+          <p>Results stay reproducible, exportable, and auditable for publication and partnership work.</p>
+        </article>
+        <article class="stack-card">
+          <div class="icon"><i class="fa-solid fa-satellite-dish"></i></div>
+          <h4>Cloud delivery</h4>
+          <p>Remote rendering and compute as default, so the system works across devices and regions.</p>
+        </article>
+        <article class="stack-card">
+          <div class="icon"><i class="fa-solid fa-rocket"></i></div>
+          <h4>Reuse across projects</h4>
+          <p>Stable modules become reusable assets: scenario packs, orchestration templates, UI kits, or research workflows.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== RESOURCES ========== -->
+    <section class="section" id="resources">
+      <h3>Key resources & publications</h3>
+      <p class="sub">Foundational works and technology providers that make qFoldIT possible.</p>
+      <div class="grid-5" style="margin-bottom: 20px;">
+        <article class="stack-card">
+          <div class="icon"><i class="fa-solid fa-cube"></i></div>
+          <h4>UNIGINE 2 SIM</h4>
+          <p>Real‑time 3D simulation engine with 64‑bit precision.</p>
+          <a class="btn btn-secondary" href="https://unigine.com/products/sim/" target="_blank" rel="noopener noreferrer">Official site</a>
+        </article>
+        <article class="stack-card">
+          <div class="icon"><i class="fa-solid fa-atom"></i></div>
+          <h4>AWS Braket</h4>
+          <p>Managed quantum service for hybrid optimization tasks.</p>
+          <a class="btn btn-secondary" href="https://aws.amazon.com/braket/" target="_blank" rel="noopener noreferrer">Official site</a>
+        </article>
+        <article class="stack-card">
+          <div class="icon"><i class="fa-brands fa-microsoft"></i></div>
+          <h4>RosettaFold3 / Foundry</h4>
+          <p>Biomolecular inference layer for structure generation.</p>
+          <a class="btn btn-secondary" href="https://techcommunity.microsoft.com/" target="_blank" rel="noopener noreferrer">Microsoft Tech Community</a>
+        </article>
+        <article class="stack-card">
+          <div class="icon"><i class="fa-solid fa-wifi"></i></div>
+          <h4>MMOS</h4>
+          <p>Citizen science task distribution infrastructure.</p>
+          <a class="btn btn-secondary" href="https://mmos.ch/" target="_blank" rel="noopener noreferrer">Official site</a>
+        </article>
+        <article class="stack-card">
+          <div class="icon"><i class="fa-solid fa-book"></i></div>
+          <h4>Core bibliotheca</h4>
+          <p>Art of Molecular Dynamics, African Fractals, J Chem Educ, and Science special issues.</p>
+          <a class="btn btn-secondary" href="https://qfoldit.github.io/about.html">Explore →</a>
+        </article>
+      </div>
+      <p class="sub" style="text-align:center; border-top: 1px solid var(--line); padding-top: 16px;">
+        <i class="fas fa-gavel"></i> Open components are licensed for reuse. The platform is built with <i class="fab fa-python"></i> Python, <i class="fab fa-docker"></i> Docker, and <i class="fab fa-aws"></i> AWS.
+      </p>
+    </section>
+
+    <footer class="footer">
+      <div>qFoldIT · <i class="fas fa-leaf"></i> Open science for a healthier planet</div>
+      <div class="footer-row">
+        <a href="#architecture">Architecture</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#team">Team</a>
+        <a href="#alliances">Alliances</a>
+        <a href="#resources">Resources</a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
