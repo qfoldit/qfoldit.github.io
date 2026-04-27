@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>qFoldIT | FoldIT</title>
+    <title>FoldIT | qFoldIT</title>
 
     <link rel="stylesheet" href="https://ahiakwa.github.io/assets/adinkra-icons/css/icons.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -106,7 +106,7 @@
 
         .ldr-sticker {
             background-color: #000000;
-            padding: 10px 18px;
+            padding: 12px 16px;          /* изменено с 10px 18px для одинакового выравнивания */
             border-radius: 12px;
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 75, 43, 0.4);
@@ -139,7 +139,7 @@
         .octopus-singular {
             display: flex;
             justify-content: flex-end;
-            align-items: center;  /* изменено с flex-start на center для выравнивания с соседними иконками */
+            align-items: center;          /* уже было изменено ранее */
             text-align: right;
             min-height: 64px;
         }
@@ -568,9 +568,13 @@
                 gap: 10px;
             }
 
+            .top-bar-right {
+                margin-top: -9px;       /* поднимаем правый верхний блок на 9px */
+            }
+
             .ldr-sticker {
                 gap: 10px;
-                padding: 8px 12px;
+                padding: 8px 12px;       /* одинаковый с другими */
                 min-height: 52px;
             }
 
@@ -593,7 +597,7 @@
                 height: 2.4rem;
             }
             .octopus-matrix {
-                padding: 8px 10px;
+                padding: 8px 12px;
                 min-height: 52px;
             }
 
@@ -651,9 +655,13 @@
                 gap: 8px;
             }
 
+            .top-bar-right {
+                margin-top: -9px;       /* поднимаем правый верхний блок на 9px */
+            }
+
             .ldr-sticker {
                 gap: 8px;
-                padding: 7px 10px;
+                padding: 7px 10px;       /* одинаковый с другими */
                 min-height: 46px;
             }
 
@@ -692,7 +700,7 @@
                 height: 2rem;
             }
             .octopus-matrix {
-                padding: 7px 9px;
+                padding: 7px 10px;
                 min-height: 46px;
             }
 
@@ -1157,15 +1165,12 @@
             e.stopPropagation();
         }
         modalOverlay.classList.add('active');
-        // Optional: reload iframe if needed (uncomment if you want fresh load each time)
-        // iframe.src = iframe.src;
     }
 
     function closeModal() {
         modalOverlay.classList.remove('active');
     }
 
-    // Event listeners for modal
     terminalTrigger.addEventListener('click', openModal);
     terminalTrigger.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -1176,14 +1181,12 @@
 
     closeBtn.addEventListener('click', closeModal);
 
-    // Close on overlay click (but not when clicking inside iframe)
     modalOverlay.addEventListener('click', (e) => {
         if (e.target === modalOverlay) {
             closeModal();
         }
     });
 
-    // Close on Escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
             closeModal();
