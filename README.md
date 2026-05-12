@@ -58,6 +58,7 @@ Together, we are building an **open‑source ecosystem** where AI models are not
 ## 🏗️ Technical Architecture
 
 ![](https://qfoldit.github.io/img/posters/medChem.png)
+![](https://qfoldit.github.io/img/jpmorgan.png)
 
 qFoldIT follows a **microservices architecture** with containerisation (Docker) and orchestration (Kubernetes). Each service is designed to be stateless, horizontally scalable, and optimised for hybrid cloud infrastructure leveraging Singapore’s advanced computing resources.
 
