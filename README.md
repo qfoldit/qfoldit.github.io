@@ -1,5 +1,6 @@
 # **Gamified Quantum Molecular Design for Global Science** 
 
+![](https://qfoldit.github.io/img/dna_binarization.png)
 ![](https://qfoldit.github.io/video/CGS_LOGO.png)
 ![](https://qfoldit.github.io/video/CGS_CENTER_WHITE.png)
 ![](https://qfoldit.github.io/video/GSRC.png)
