@@ -1,3 +1,13 @@
+# **Gamified Quantum Molecular Design for Global Science**
+
+David Baker - [Protein Folding Code: Won a Nobel Prize](https://youtu.be/cx7l9ZGFZkw)
+
+Kelly Chibale - [Beyond the Code: AI 2050](https://youtu.be/7KmUzG1hltI)
+
+Silvia Holler - [Future of folding: Cotraslational folding simulation](https://youtu.be/C_QIO--OUf4)
+
+Alexei Lapkin - [iDMT: Innovation Centre in Digital Molecular Technologies](https://youtu.be/Dd7ZwpgT4nw)
+
 Scientific Publication - [Playing Dice with the Universe: Programming Quantum Computers to Play Traditional Games](https://arxiv.org/abs/2604.23819)
 
 ![](https://qfoldit.github.io/img/posters/David_Baker_AT_FoldIT_LAB_OFFICE.png)
