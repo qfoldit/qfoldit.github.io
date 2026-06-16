@@ -1,860 +1,793 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Gold Storage Ghana — Citizenship as Margin Leverage</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0a0a0a;
-            --bg2: #111111;
-            --card: #161616;
-            --card2: #1c1c1c;
-            --border: #2a2a2a;
-            --border-light: #333;
-            --text: #d4d4d4;
-            --text2: #999;
-            --text3: #6b6b6b;
-            --gold: #c49b4c;
-            --gold-light: #d4af6e;
-            --gold-pale: #b8934a;
-            --gold-bg: rgba(196, 155, 76, 0.06);
-            --gold-border: rgba(196, 155, 76, 0.25);
-            --gold-glow: rgba(196, 155, 76, 0.18);
-            --green: #5a9e6f;
-            --red: #c74b4b;
-            --white: #f0ece6;
-            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>GOLD FINANCE — Мгновенные официальные документы в Гане</title>
+  <meta name="description" content="Автономная платформа: $0 за обслуживание, комиссия только с продаж. Легально, защищено от санкций, капитал в международном поле. Цены в рублях.">
+  <!-- Paystack SDK -->
+  <script src="https://js.paystack.co/v1/inline.js"></script>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ----- ГЛОБАЛЬНЫЕ СТИЛИ ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    ::-webkit-scrollbar {width: 0;background: transparent;}
+    :root {
+      --mono-0: #ffffff;
+      --mono-50: #f8f9fa;
+      --mono-100: #f1f3f5;
+      --mono-200: #e9ecef;
+      --mono-300: #dee2e6;
+      --mono-400: #ced4da;
+      --mono-500: #adb5bd;
+      --mono-600: #868e96;
+      --mono-700: #495057;
+      --mono-800: #343a40;
+      --mono-900: #212529;
+      --mono-950: #0b0d0f;
+      --accent: #0052cc;
+      --accent-light: #e6f0ff;
+      --accent-hover: #003d99;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --shadow-card: 0 12px 28px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+      --transition: 0.2s ease;
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        html,
-        body {
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            font-family: var(--font);
-            background: var(--bg);
-            color: var(--text);
-            -webkit-font-smoothing: antialiased;
-            user-select: none;
-            -webkit-user-select: none;
-        }
+    body {
+      font-family: var(--font);
+      background: var(--mono-0);
+      color: var(--mono-900);
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-        body {
-            display: flex;
-            flex-direction: column;
-        }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
 
-        /* HEADER */
-        header {
-            flex: 0 0 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 24px;
-            border-bottom: 1px solid var(--border);
-            background: var(--bg2);
-            backdrop-filter: blur(8px);
-            z-index: 10;
-        }
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .logo-icon {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #c49b4c, #8b6914);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            font-weight: 800;
-            color: #0a0a0a;
-            flex-shrink: 0;
-            box-shadow: 0 0 18px var(--gold-glow);
-        }
-        .logo-text {
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 0.02em;
-            color: var(--white);
-        }
-        .logo-sub {
-            font-weight: 400;
-            font-size: 9px;
-            color: var(--text3);
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-        }
-        .live-ticker {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 7px 16px;
-        }
-        .live-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: var(--green);
-            animation: pulse-dot 2s infinite;
-            flex-shrink: 0;
-        }
-        @keyframes pulse-dot {
-            0%,
-            100% {
-                box-shadow: 0 0 4px var(--green);
-            }
-            50% {
-                box-shadow: 0 0 14px var(--green), 0 0 24px rgba(90, 158, 111, 0.5);
-            }
-        }
-        .ticker-label {
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 0.07em;
-            color: var(--text3);
-        }
-        .ticker-price {
-            font-weight: 700;
-            font-size: 17px;
-            color: var(--gold-light);
-            letter-spacing: 0.02em;
-            transition: color 0.3s;
-        }
-        .ticker-price.pulse {
-            color: #fff;
-            text-shadow: 0 0 18px var(--gold-glow);
-        }
-        .ticker-unit {
-            font-size: 9px;
-            color: var(--text3);
-        }
-        .ticker-gram {
-            font-size: 11px;
-            color: var(--text2);
-            margin-left: 8px;
-            padding-left: 8px;
-            border-left: 1px solid var(--border-light);
-            font-weight: 500;
-        }
+    h1, h2, h3 {
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      line-height: 1.2;
+    }
 
-        /* MAIN GRID */
-        main {
-            flex: 1;
-            display: flex;
-            overflow: hidden;
-            height: calc(100vh - 60px);
-        }
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      color: var(--mono-900);
+    }
 
-        /* LEFT PANEL */
-        .info-panel {
-            flex: 1 1 55%;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            border-right: 1px solid var(--border);
-            padding: 10px 16px 10px 20px;
-            gap: 8px;
-        }
-        .tab-header {
-            display: flex;
-            gap: 8px;
-            flex-shrink: 0;
-        }
-        .tab-btn {
-            padding: 8px 16px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            border: 1px solid var(--border);
-            background: transparent;
-            color: var(--text2);
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.25s;
-            font-family: var(--font);
-            white-space: nowrap;
-        }
-        .tab-btn.active {
-            background: var(--gold-bg);
-            border-color: var(--gold-border);
-            color: var(--gold-light);
-            box-shadow: 0 0 12px var(--gold-glow);
-        }
-        .tab-content {
-            flex: 1;
-            overflow-y: auto;
-            scrollbar-width: thin;
-            scrollbar-color: #333 #161616;
-            padding-right: 6px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        .tab-content::-webkit-scrollbar {
-            width: 4px;
-        }
-        .tab-content::-webkit-scrollbar-track {
-            background: #161616;
-        }
-        .tab-content::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 4px;
-        }
-        .info-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 10px 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            transition: border-color 0.3s;
-        }
-        .info-card.gold-accent {
-            border-left: 2px solid var(--gold);
-            background: var(--gold-bg);
-        }
-        .info-card .card-icon {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--gold-light);
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-        }
-        .info-card .card-title {
-            font-weight: 600;
-            font-size: 12px;
-            color: var(--white);
-            line-height: 1.3;
-        }
-        .info-card .card-desc {
-            font-size: 10px;
-            color: var(--text2);
-            line-height: 1.45;
-        }
-        .highlight {
-            color: var(--gold-light);
-            font-weight: 600;
-        }
-        .advantage-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-        }
-        .adv-card {
-            background: var(--card2);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            padding: 8px 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-        }
-        .adv-card .adv-title {
-            font-weight: 700;
-            font-size: 10px;
-            color: var(--gold-light);
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-        }
-        .adv-card .adv-desc {
-            font-size: 9px;
-            color: var(--text2);
-            line-height: 1.35;
-        }
-        .adv-card .adv-figure {
-            font-weight: 700;
-            font-size: 13px;
-            color: var(--white);
-            margin-top: 2px;
-        }
-        .summary-strip {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 8px 12px;
-            flex-wrap: wrap;
-            margin-top: 4px;
-        }
-        .summary-strip .stat {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-        .summary-strip .stat-val {
-            font-weight: 700;
-            font-size: 14px;
-            color: var(--gold-light);
-        }
-        .summary-strip .stat-lbl {
-            font-size: 9px;
-            color: var(--text3);
-            letter-spacing: 0.04em;
-        }
-        .divider {
-            width: 1px;
-            height: 22px;
-            background: var(--border-light);
-            flex-shrink: 0;
-        }
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      margin-bottom: 0.6rem;
+      color: var(--mono-900);
+    }
 
-        /* RIGHT PANEL (CALCULATOR) */
-        .calc-panel {
-            flex: 0 0 400px;
-            width: 400px;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding: 10px 16px 10px 12px;
-            overflow: hidden;
-            background: var(--bg);
-        }
-        .calc-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 8px;
-        }
-        .calc-header h2 {
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--white);
-            letter-spacing: 0.02em;
-        }
-        .storage-toggle {
-            display: flex;
-            background: var(--card);
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            overflow: hidden;
-            flex-shrink: 0;
-        }
-        .storage-toggle button {
-            padding: 6px 10px;
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            border: none;
-            cursor: pointer;
-            background: transparent;
-            color: var(--text2);
-            transition: 0.2s;
-            font-family: var(--font);
-            white-space: nowrap;
-        }
-        .storage-toggle button.active {
-            background: var(--gold-bg);
-            color: var(--gold-light);
-            box-shadow: inset 0 0 0 1px rgba(196, 155, 76, 0.3);
-        }
-        .calc-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 12px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            flex: 1;
-        }
-        .slider-group {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .slider-labels {
-            display: flex;
-            justify-content: space-between;
-            font-size: 8px;
-            color: var(--text3);
-            letter-spacing: 0.04em;
-        }
-        input[type="range"] {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 4px;
-            border-radius: 3px;
-            background: linear-gradient(to right, #2a2a2a, #3a3a3a 40%, #c49b4c 85%, #d4af6e);
-            outline: none;
-            cursor: pointer;
-        }
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #1a1a1a;
-            border: 2px solid var(--gold);
-            cursor: pointer;
-            box-shadow: 0 0 14px var(--gold-glow);
-        }
-        .weight-display {
-            display: flex;
-            align-items: baseline;
-            gap: 5px;
-            justify-content: center;
-        }
-        .weight-display .big-num {
-            font-size: 32px;
-            font-weight: 800;
-            color: var(--white);
-            letter-spacing: -0.02em;
-            line-height: 1;
-        }
-        .weight-display .unit {
-            font-size: 12px;
-            color: var(--text2);
-            font-weight: 500;
-        }
-        .result-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-        }
-        .result-item {
-            background: var(--card2);
-            border-radius: 6px;
-            padding: 8px 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-            border: 1px solid var(--border);
-        }
-        .result-item .rlabel {
-            font-size: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text3);
-        }
-        .result-item .rval {
-            font-weight: 700;
-            font-size: 13px;
-            color: var(--white);
-        }
-        .result-item .rval.gold-highlight {
-            color: var(--gold-light);
-        }
-        .threshold-bar {
-            display: flex;
-            gap: 3px;
-            height: 5px;
-            border-radius: 3px;
-            overflow: hidden;
-            margin-top: 2px;
-        }
-        .threshold-bar .seg {
-            flex: 1;
-            transition: background 0.3s;
-            border-radius: 1px;
-        }
-        .seg.expensive {
-            background: #3a2020;
-        }
-        .seg.moderate {
-            background: #3a3020;
-        }
-        .seg.economical {
-            background: #1f3025;
-        }
-        .seg.active-seg {
-            filter: brightness(1.9);
-            box-shadow: 0 0 8px currentColor;
-        }
-        .threshold-label {
-            font-size: 8px;
-            color: var(--text3);
-            text-align: center;
-            letter-spacing: 0.04em;
-            margin-top: 1px;
-        }
-        .delivery-note {
-            font-size: 9px;
-            color: var(--text3);
-            text-align: center;
-            padding: 4px 8px;
-            background: var(--card2);
-            border-radius: 4px;
-            letter-spacing: 0.03em;
-            line-height: 1.35;
-        }
-        .delivery-note strong {
-            color: var(--gold-light);
-            font-weight: 600;
-        }
-    </style>
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.3rem;
+    }
+
+    p, li {
+      font-size: 1rem;
+      color: var(--mono-700);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 12px 28px;
+      border-radius: var(--radius-sm);
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      text-decoration: none;
+      white-space: nowrap;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 4px 12px rgba(0,82,204,0.3);
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 6px 16px rgba(0,82,204,0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border: 1.5px solid var(--accent);
+    }
+
+    .btn-outline:hover {
+      background: var(--accent-light);
+    }
+
+    .btn-lg {
+      padding: 16px 36px;
+      font-size: 1.1rem;
+      border-radius: var(--radius-md);
+    }
+
+    /* ----- ХЕДЕР ----- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--mono-200);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--mono-900);
+      text-decoration: none;
+      letter-spacing: -0.03em;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--mono-700);
+      transition: color var(--transition);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .header-cta {
+      background: var(--accent);
+      color: white !important;
+      padding: 8px 18px;
+      border-radius: var(--radius-sm);
+    }
+
+    .header-cta:hover {
+      background: var(--accent-hover);
+      color: white !important;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--mono-800);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        padding: 24px;
+        box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        border-bottom: 1px solid var(--mono-200);
+        gap: 16px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .header-cta {
+        align-self: flex-start;
+      }
+    }
+
+    /* ----- ГЕРОЙ ----- */
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      max-width: 800px;
+      margin: 0 auto 1rem;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      font-size: 1.2rem;
+      color: var(--mono-600);
+    }
+
+    /* ----- СЕТКА ПРЕИМУЩЕСТВ (4 элемента) ----- */
+    .features {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 28px;
+    }
+
+    .feature-card {
+      background: var(--mono-50);
+      border-radius: var(--radius-lg);
+      padding: 28px 20px;
+      transition: all var(--transition);
+      border: 1px solid var(--mono-200);
+    }
+
+    .feature-card:hover {
+      box-shadow: var(--shadow-card);
+      border-color: var(--mono-300);
+    }
+
+    .feature-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: var(--accent-light);
+      border-radius: 12px;
+      margin-bottom: 16px;
+      color: var(--accent);
+      font-size: 24px; /* для иконок FA */
+    }
+
+    .feature-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    /* ----- ЦЕНЫ ----- */
+    .pricing {
+      padding: 60px 0;
+      background: var(--mono-50);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 28px;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+
+    .pricing-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      border: 1px solid var(--mono-200);
+      text-align: center;
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pricing-card:hover {
+      box-shadow: var(--shadow-card);
+      border-color: var(--accent);
+    }
+
+    .pricing-card.popular {
+      border: 2px solid var(--accent);
+      position: relative;
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 16px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .plan-name {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--mono-800);
+    }
+
+    .plan-price {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--mono-900);
+      margin-bottom: 4px;
+    }
+
+    .plan-price span {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--mono-600);
+    }
+
+    .plan-features {
+      list-style: none;
+      margin: 24px 0;
+      flex: 1;
+    }
+
+    .plan-features li {
+      margin-bottom: 10px;
+      color: var(--mono-700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .plan-features li::before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .btn-select {
+      margin-top: auto;
+    }
+
+    /* ----- ФОРМА ----- */
+    .order {
+      padding: 60px 0;
+    }
+
+    .form-wrapper {
+      max-width: 520px;
+      margin: 0 auto;
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      border: 1px solid var(--mono-200);
+      box-shadow: var(--shadow-card);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: var(--mono-800);
+      font-size: 0.9rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--mono-300);
+      border-radius: var(--radius-sm);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color var(--transition);
+      background: var(--mono-0);
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0,82,204,0.1);
+    }
+
+    .form-submit {
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .form-message {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      min-height: 24px;
+    }
+
+    /* ----- ФУТЕР ----- */
+    .site-footer {
+      margin-top: auto;
+      background: var(--mono-50);
+      border-top: 1px solid var(--mono-200);
+      padding: 28px 0;
+      font-size: 0.85rem;
+      color: var(--mono-600);
+      text-align: center;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--mono-200);
+      margin: 16px 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-in {
+      animation: fadeIn 0.6s ease forwards;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="logo-area">
-            <div class="logo-icon">Au</div>
-            <div>
-                <div class="logo-text">Gold Storage Ghana</div>
-                <div class="logo-sub">Ghanaian Citizen — Your trusted custodian</div>
-            </div>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="logo">GOLD<span> FINANCE</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Меню">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#features">Преимущества</a>
+        <a href="#pricing">Цены</a>
+        <a href="#order" class="header-cta">Начать сейчас</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Герой -->
+    <section class="hero container animate-in">
+      <h1>Официальный цифровой Сертификат владения (Certificate of Ownership)</h1>
+      <p>
+        Платформа с нулевой стоимостью обслуживания: Комиссия только при продаже.
+        Весь входящий поток защищён от санкций, капитал работает в международном правовом поле.
+      </p>
+      <a href="#order" class="btn btn-primary btn-lg">Оформить заказ</a>
+    </section>
+
+    <!-- Преимущества -->
+    <section id="features" class="features container">
+      <div class="section-title">
+        <h2>Почему выбирают GOLD FINANCE</h2>
+        <p>Сочетание скорости, закона и финансовой свободы</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card animate-in">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3>Мгновенная обработка</h3>
+          <p>Автоматическое формирование документов. Среднее время доставки — менее 5 минут после оплаты.</p>
         </div>
-        <div class="live-ticker">
-            <div class="live-dot" title="Real-time price updates"></div>
-            <span class="ticker-label">XAU/USD</span>
-            <span class="ticker-price" id="livePrice">—</span>
-            <span class="ticker-unit">/oz</span>
-            <span class="ticker-gram" id="livePriceGram">—/g</span>
+        <div class="feature-card animate-in">
+          <div class="feature-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h3>Безопасная доставка</h3>
+          <p>Зашифрованная отправка на email. Доступ только у вас.</p>
         </div>
-    </header>
+        <div class="feature-card animate-in">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>100% легально (RGD)</h3>
+          <p>Полное соответствие Регистрационной палате Ганы. Ваши данные под защитой.</p>
+        </div>
+        <div class="feature-card animate-in">
+          <div class="feature-icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+          <h3>$0 ежемесячных расходов</h3>
+          <p>Никакой абонентской платы. Paystack взимает комиссию только с успешных транзакций.</p>
+        </div>
+      </div>
+      <!-- Дополнительные гарантии -->
+      <div style="margin-top: 36px; display: flex; flex-wrap: wrap; gap: 24px; justify-content: center;">
+        <div style="display: flex; align-items: center; gap: 10px; max-width: 320px;">
+          <i class="fas fa-shield-alt" style="font-size: 1.8rem; color: var(--accent);"></i>
+          <p style="font-size:0.95rem;"><strong>Защита от санкций</strong><br>Входящие платежи не подпадают под ограничения благодаря юрисдикции и структуре компании.</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; max-width: 320px;">
+          <i class="fas fa-globe" style="font-size: 1.8rem; color: var(--accent);"></i>
+          <p style="font-size:0.95rem;"><strong>Международный капитал</strong><br>Средства хранятся и движутся в правовом поле, обеспечивающем полную прозрачность и свободу.</p>
+        </div>
+      </div>
+    </section>
 
-    <main>
-        <!-- Left info panel with tabs -->
-        <section class="info-panel">
-            <div class="tab-header">
-                <button class="tab-btn active" id="tabService" onclick="switchTab('service')">Service & Conditions</button>
-                <button class="tab-btn" id="tabCitizen" onclick="switchTab('citizen')">Citizenship — Margin Leverage</button>
-            </div>
+    <!-- Цены в рублях -->
+    <section id="pricing" class="pricing">
+      <div class="container">
+        <div class="section-title">
+          <h2>Прозрачные тарифы</h2>
+          <p>Оплата только за результат. Никаких скрытых комиссий за обслуживание.</p>
+        </div>
+        <div class="pricing-grid">
+          <div class="pricing-card animate-in" id="plan-standard">
+            <div class="plan-name">Стандарт</div>
+            <div class="plan-price">1 500 <span>₽</span></div>
+            <ul class="plan-features">
+              <li>Обработка до 24 часов</li>
+              <li>Доставка на email</li>
+              <li>Поддержка в мессенджере</li>
+            </ul>
+            <button class="btn btn-outline btn-select" data-plan="standard" data-amount="1500">Выбрать план</button>
+          </div>
+          <div class="pricing-card popular animate-in" id="plan-express">
+            <div class="popular-badge">Рекомендуем</div>
+            <div class="plan-name">Экспресс</div>
+            <div class="plan-price">3 500 <span>₽</span></div>
+            <ul class="plan-features">
+              <li>Обработка за 1 час</li>
+              <li>Приоритетная поддержка</li>
+              <li>Дополнительная проверка</li>
+            </ul>
+            <button class="btn btn-primary btn-select" data-plan="express" data-amount="3500">Выбрать план</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <!-- Tab 1: Service description -->
-            <div class="tab-content" id="contentService">
-                <div class="info-card gold-accent">
-                    <span class="card-icon">◆ Independent storage</span>
-                    <span class="card-title">PMMC, banks, refinery</span>
-                    <span class="card-desc">Gold is stored at <span class="highlight">Precious Minerals Marketing Company</span>, Ecobank, Standard Chartered or Royal Ghana Gold Refinery. Insurance by Lloyd's of London.</span>
-                </div>
-                <div class="info-card">
-                    <span class="card-icon">◈ Ownership documents</span>
-                    <span class="card-title">SKR & pool certificates</span>
-                    <span class="card-desc">Personalized Safe Keeping Receipt (SKR) or pool certificate. Documents recognized under international law and by banks worldwide.</span>
-                </div>
-                <div class="info-card">
-                    <span class="card-icon">◉ Consolidation & cargo</span>
-                    <span class="card-title">Quarterly shipment from 15 kg</span>
-                    <span class="card-desc">Transport by Brinks / Malca-Amit. <span class="highlight">Up to 70% savings</span> on logistics through group export. Unit delivery cost drops as the pool grows.</span>
-                </div>
-                <div class="info-card gold-accent">
-                    <span class="card-icon">◎ Buyback option</span>
-                    <span class="card-title">LBMA sales inside Ghana</span>
-                    <span class="card-desc">Gold buyback by the company with payment in USD/EUR to a foreign account. No physical delivery and no extra fees.</span>
-                </div>
-                <div class="summary-strip">
-                    <div class="stat">
-                        <span class="stat-val">0.5–1%</span>
-                        <span class="stat-lbl">Annual fee</span>
-                    </div>
-                    <span class="divider"></span>
-                    <div class="stat">
-                        <span class="stat-val">15 kg</span>
-                        <span class="stat-lbl">Min. shipment</span>
-                    </div>
-                    <span class="divider"></span>
-                    <div class="stat">
-                        <span class="stat-val">~$0.37/g</span>
-                        <span class="stat-lbl">Delivery from 20 kg</span>
-                    </div>
-                </div>
-            </div>
+    <!-- Форма заказа -->
+    <section id="order" class="order container">
+      <div class="section-title">
+        <h2>Купить Золото</h2>
+        <p>Заполните поля — откроется безопасная оплата через Paystack</p>
+      </div>
+      <div class="form-wrapper animate-in">
+        <form id="orderForm">
+          <div class="form-group">
+            <label for="fullname">Полное имя *</label>
+            <input type="text" id="fullname" name="fullname" placeholder="Иван Иванов" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" name="email" placeholder="ivan@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">WhatsApp / Телефон *</label>
+            <input type="tel" id="phone" name="phone" placeholder="+7 900 123-45-67" required>
+          </div>
+          <div class="form-group">
+            <label for="plan">Выбранный план *</label>
+            <select id="plan" name="plan" required>
+              <option value="" disabled selected>-- Выберите план --</option>
+              <option value="standard">Стандарт (1 500 ₽)</option>
+              <option value="express">Экспресс (3 500 ₽)</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg form-submit">Оплатить и получить</button>
+          <div id="formMessage" class="form-message"></div>
+        </form>
+      </div>
+    </section>
+  </main>
 
-            <!-- Tab 2: Citizenship advantages -->
-            <div class="tab-content" id="contentCitizen" style="display:none;">
-                <div class="advantage-grid">
-                    <div class="adv-card">
-                        <span class="adv-title">🔹 Direct ASM purchases</span>
-                        <span class="adv-desc">Negotiations in Twi, no intermediaries. <span class="highlight">15–20% discount from LBMA</span>. Foreigners lose 5–7% to agents.</span>
-                        <span class="adv-figure">+ $5,000–7,000 / kg</span>
-                    </div>
-                    <div class="adv-card">
-                        <span class="adv-title">🔸 Taxes & licenses</span>
-                        <span class="adv-desc">100% wholly Ghanaian company. Minimal PMMC duties, preferential taxation, no equity partner.</span>
-                        <span class="adv-figure">+ $2,000–3,000 / kg</span>
-                    </div>
-                    <div class="adv-card">
-                        <span class="adv-title">🔹 Banks without KYC barrier</span>
-                        <span class="adv-desc">Accounts at Ecobank / GCB Bank with Ghana Card. Zero freezing risk, saving on compliance lawyers.</span>
-                        <span class="adv-figure">+ $1,500 / kg</span>
-                    </div>
-                    <div class="adv-card">
-                        <span class="adv-title">🔸 PMMC speed</span>
-                        <span class="adv-desc">Assaying and SKR in 3 days instead of 3 weeks. Fast capital turnover increases annual cycles.</span>
-                        <span class="adv-figure">Acceleration ×3</span>
-                    </div>
-                </div>
-                <div class="info-card gold-accent" style="margin-top:2px;">
-                    <span class="card-icon">💰 Total citizenship effect</span>
-                    <span class="card-title">Infrastructure cost — almost zero</span>
-                    <span class="card-desc">On each kilogram of gold, your status adds <span class="highlight">$8,500–$11,500</span> net margin compared to a non-resident. This is your personal economic rent that a foreigner cannot replicate.</span>
-                </div>
-                <div class="summary-strip">
-                    <div class="stat">
-                        <span class="stat-val">$8.5k–11.5k</span>
-                        <span class="stat-lbl">Extra margin per kg</span>
-                    </div>
-                    <span class="divider"></span>
-                    <div class="stat">
-                        <span class="stat-val">100%</span>
-                        <span class="stat-lbl">Asset control</span>
-                    </div>
-                    <span class="divider"></span>
-                    <div class="stat">
-                        <span class="stat-val">3 days</span>
-                        <span class="stat-lbl">SKR issuance</span>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <small>© 2026 <b>GOLD FINANCE</b>. Все права защищены.</small>
+      <small>Сервис не является государственным органом. Работаем в соответствии с <b>RGD Ghana</b>.</small>
+      <small>Платежи защищены <b>Paystack (PCI DSS)</b>. Принимаем карты <b>Visa/Mastercard</b>, мобильные деньги. Внимание: для работы с рублями может потребоваться смена платёжного шлюза.</small>
+    </div>
+  </footer>
 
-        <!-- Right panel: calculator -->
-        <section class="calc-panel">
-            <div class="calc-header">
-                <h2>Calculator</h2>
-                <div class="storage-toggle">
-                    <button id="btnAllocated" class="active" onclick="setStorageMode('allocated')">Allocated</button>
-                    <button id="btnUnallocated" onclick="setStorageMode('unallocated')">Unallocated</button>
-                </div>
-            </div>
-            <div class="calc-card">
-                <div class="slider-group">
-                    <div class="slider-labels"><span>500 g</span><span>1 kg</span><span>5 kg</span><span>15 kg</span><span>30 kg</span><span>50 kg</span></div>
-                    <input type="range" id="weightSlider" min="500" max="50000" value="5000" step="100" oninput="updateCalculator()">
-                </div>
-                <div class="weight-display">
-                    <span class="big-num" id="displayWeight">5.00</span>
-                    <span class="unit">kg</span>
-                </div>
-                <div class="result-grid">
-                    <div class="result-item">
-                        <span class="rlabel">Gold value</span>
-                        <span class="rval gold-highlight" id="resValue">—</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="rlabel">Storage / year</span>
-                        <span class="rval" id="resStorageFee">—</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="rlabel">Delivery (estimate)</span>
-                        <span class="rval" id="resDelivery">—</span>
-                    </div>
-                    <div class="result-item">
-                        <span class="rlabel">Delivery per gram</span>
-                        <span class="rval" id="resDeliveryPerGram">—</span>
-                    </div>
-                </div>
-                <div class="threshold-bar" id="thresholdBar">
-                    <div class="seg expensive" id="seg1"></div>
-                    <div class="seg moderate" id="seg2"></div>
-                    <div class="seg economical" id="seg3"></div>
-                </div>
-                <div class="threshold-label" id="thresholdLabel">Delivery economic zone</div>
-                <div class="delivery-note" id="deliveryNote">—</div>
-            </div>
-        </section>
-    </main>
+  <script>
+    (function() {
+      // --- ВАЖНО: Paystack не поддерживает RUB. Для реальных платежей в рублях замените шлюз на YooKassa, Stripe и т.п. ---
+      const PAYSTACK_PUBLIC_KEY = 'pk_live_placeholder'; // Замените на реальный ключ (если используете Paystack для других валют)
+      const FORMSPREE_ENDPOINT = 'https://formspree.io/f/your-form-id'; // ID вашей формы Formspree
 
-    <script>
-        (function() {
-            // State
-            let goldPriceOZ = 2425.0;
-            let storageMode = 'allocated';
-            const OZ_TO_GRAM = 31.1034768;
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      const orderForm = document.getElementById('orderForm');
+      const planSelect = document.getElementById('plan');
+      const formMessage = document.getElementById('formMessage');
+      const selectButtons = document.querySelectorAll('.btn-select');
 
-            // DOM elements
-            const livePriceEl = document.getElementById('livePrice');
-            const livePriceGramEl = document.getElementById('livePriceGram');
-            const weightSlider = document.getElementById('weightSlider');
-            const displayWeight = document.getElementById('displayWeight');
-            const resValue = document.getElementById('resValue');
-            const resStorageFee = document.getElementById('resStorageFee');
-            const resDelivery = document.getElementById('resDelivery');
-            const resDeliveryPerGram = document.getElementById('resDeliveryPerGram');
-            const thresholdLabel = document.getElementById('thresholdLabel');
-            const deliveryNote = document.getElementById('deliveryNote');
-            const seg1 = document.getElementById('seg1');
-            const seg2 = document.getElementById('seg2');
-            const seg3 = document.getElementById('seg3');
-            const btnAllocated = document.getElementById('btnAllocated');
-            const btnUnallocated = document.getElementById('btnUnallocated');
+      menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+      });
 
-            // Fetch gold price from API
-            async function fetchGoldPrice() {
-                try {
-                    const controller = new AbortController();
-                    const timeout = setTimeout(() => controller.abort(), 5000);
-                    const resp = await fetch('https://api.metals.live/v1/spot/gold', {
-                        signal: controller.signal,
-                        cache: 'no-cache'
-                    });
-                    clearTimeout(timeout);
-                    if (!resp.ok) throw new Error('API error');
-                    const data = await resp.json();
-                    let price = null;
-                    if (Array.isArray(data) && data.length > 0 && data[0].price) {
-                        price = parseFloat(data[0].price);
-                    } else if (data.price) {
-                        price = parseFloat(data.price);
-                    } else if (typeof data === 'number') {
-                        price = data;
-                    }
-                    if (price && price > 500 && price < 10000) {
-                        goldPriceOZ = price;
-                    }
-                } catch (e) {
-                    console.log('Using fallback gold price: $' + goldPriceOZ);
-                }
-                updatePriceDisplay();
-                updateCalculator();
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          if (window.innerWidth <= 768) navLinks.classList.remove('active');
+        });
+      });
+
+      // Выбор плана → прокрутка и автозаполнение
+      selectButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const plan = btn.getAttribute('data-plan');
+          document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+          if (planSelect) {
+            planSelect.value = plan;
+            planSelect.style.borderColor = '#0052cc';
+            setTimeout(() => { planSelect.style.borderColor = ''; }, 1500);
+          }
+        });
+      });
+
+      // Отправка формы с Paystack (RUB – не поддерживается, код для примера)
+      orderForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        formMessage.textContent = '';
+        formMessage.style.color = '';
+
+        const fullname = document.getElementById('fullname').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const plan = planSelect.value;
+
+        if (!fullname || !email || !phone || !plan) {
+          formMessage.textContent = 'Пожалуйста, заполните все поля.';
+          formMessage.style.color = '#d32f2f';
+          return;
+        }
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+          formMessage.textContent = 'Некорректный email.';
+          formMessage.style.color = '#d32f2f';
+          return;
+        }
+
+        const amountRUB = plan === 'express' ? 3500 : 1500;
+        const submitBtn = orderForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Ожидание оплаты...';
+        formMessage.textContent = 'Открывается безопасная форма Paystack...';
+        formMessage.style.color = '#0052cc';
+
+        payWithPaystack(email, amountRUB, plan, fullname, phone,
+          async function(response) {
+            formMessage.textContent = 'Оплата подтверждена! Отправляем данные...';
+            formMessage.style.color = '#2e7d32';
+            try {
+              const formData = new FormData();
+              formData.append('fullname', fullname);
+              formData.append('email', email);
+              formData.append('phone', phone);
+              formData.append('plan', plan);
+              formData.append('amount', amountRUB + ' RUB');
+              formData.append('transaction_ref', response.reference);
+              formData.append('status', response.status);
+              formData.append('_subject', `Новый заказ: ${fullname} - ${plan}`);
+
+              const res = await fetch(FORMSPREE_ENDPOINT, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+              });
+              if (res.ok) {
+                formMessage.textContent = 'Спасибо! Ваш заказ принят. Документ придёт на указанный email.';
+                orderForm.reset();
+                planSelect.value = '';
+              } else {
+                const errData = await res.json().catch(() => ({}));
+                throw new Error(errData.error || 'Ошибка сервера');
+              }
+            } catch (err) {
+              console.error(err);
+              formMessage.textContent = 'Оплата прошла, но не удалось отправить данные. Напишите нам: support@docughana.com';
+              formMessage.style.color = '#d32f2f';
+            } finally {
+              submitBtn.disabled = false;
+              submitBtn.textContent = originalText;
             }
+          },
+          function(error) {
+            console.error(error);
+            formMessage.textContent = error.message || 'Платёж отменён или не удался. Попробуйте снова.';
+            formMessage.style.color = '#d32f2f';
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalText;
+          }
+        );
+      });
 
-            function updatePriceDisplay() {
-                const priceGram = goldPriceOZ / OZ_TO_GRAM;
-                livePriceEl.textContent = '$' + goldPriceOZ.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                livePriceGramEl.textContent = '$' + priceGram.toFixed(2) + '/g';
-                livePriceEl.classList.add('pulse');
-                setTimeout(() => livePriceEl.classList.remove('pulse'), 600);
+      function payWithPaystack(email, amountRUB, plan, fullname, phone, onSuccess, onError) {
+        const handler = PaystackPop.setup({
+          key: PAYSTACK_PUBLIC_KEY,
+          email: email,
+          amount: Math.round(amountRUB * 100),
+          currency: 'RUB',
+          ref: 'DG' + Date.now() + Math.floor(Math.random() * 1000),
+          metadata: {
+            custom_fields: [
+              { display_name: "Full Name", variable_name: "full_name", value: fullname },
+              { display_name: "Phone", variable_name: "phone", value: phone },
+              { display_name: "Plan", variable_name: "plan", value: plan }
+            ]
+          },
+          channels: ['card', 'mobile_money'],
+          label: "GOLD FINANCE",
+          onClose: function() {
+            onError(new Error('Окно оплаты закрыто.'));
+          },
+          callback: function(response) {
+            if (response.status === 'success') {
+              onSuccess(response);
+            } else {
+              onError(new Error('Статус транзакции: ' + response.status));
             }
+          }
+        });
+        handler.openIframe();
+      }
 
-            // Core calculator logic
-            function updateCalculator() {
-                const weightGrams = parseInt(weightSlider.value);
-                const weightKg = weightGrams / 1000;
-                const pricePerGram = goldPriceOZ / OZ_TO_GRAM;
-                const totalValue = weightGrams * pricePerGram;
-
-                // Display weight
-                if (weightGrams >= 1000) {
-                    displayWeight.textContent = weightKg.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-                } else {
-                    displayWeight.textContent = weightGrams.toLocaleString('en-US');
-                }
-
-                // Gold value
-                resValue.textContent = '$' + totalValue.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-
-                // Storage fee
-                const feeRate = storageMode === 'allocated' ? 0.01 : 0.0075;
-                const annualFee = totalValue * feeRate;
-                resStorageFee.textContent = '$' + annualFee.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + ' (' + (feeRate * 100).toFixed(2) + '%)';
-
-                // Delivery cost model
-                const baseFee = 1000;
-                const perKgRate = 80;
-                const insuranceRate = 0.002;
-                const customsFixed = 300;
-                const customsRate = 0.001;
-                const deliveryTotal = baseFee + perKgRate * weightKg + insuranceRate * totalValue + customsFixed + customsRate * totalValue;
-                const deliveryPerGram = deliveryTotal / weightGrams;
-
-                if (weightGrams >= 1000) {
-                    resDelivery.textContent = '$' + deliveryTotal.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
-                } else {
-                    resDelivery.textContent = 'min. 1 kg';
-                }
-                resDeliveryPerGram.textContent = weightGrams >= 1000 ? '$' + deliveryPerGram.toFixed(2) + '/g' : '—';
-
-                updateThreshold(weightGrams, deliveryPerGram);
-                updateDeliveryNote(weightGrams, deliveryPerGram);
-            }
-
-            function updateThreshold(weightGrams, deliveryPerGram) {
-                seg1.classList.remove('active-seg');
-                seg2.classList.remove('active-seg');
-                seg3.classList.remove('active-seg');
-                seg1.style.background = '#3a2020';
-                seg2.style.background = '#3a3020';
-                seg3.style.background = '#1f3025';
-
-                if (weightGrams < 5000) {
-                    seg1.classList.add('active-seg');
-                    seg1.style.background = '#5a3030';
-                    thresholdLabel.textContent = 'Zone: Expensive delivery (≤ 5 kg)';
-                } else if (weightGrams < 15000) {
-                    seg2.classList.add('active-seg');
-                    seg2.style.background = '#5a4a30';
-                    thresholdLabel.textContent = 'Zone: Moderate delivery (5–15 kg)';
-                } else {
-                    seg3.classList.add('active-seg');
-                    seg3.style.background = '#2a4a35';
-                    thresholdLabel.textContent = 'Zone: Economical delivery (≥ 15 kg)';
-                }
-            }
-
-            function updateDeliveryNote(weightGrams, deliveryPerGram) {
-                if (weightGrams < 1000) {
-                    deliveryNote.innerHTML = '<strong>Minimum 1 kg for delivery.</strong> Accumulate more to reach better rates.';
-                } else if (weightGrams < 5000) {
-                    deliveryNote.innerHTML = 'Delivery <strong>$' + deliveryPerGram.toFixed(2) + '/g</strong> — above optimum. Recommended from 5 kg.';
-                } else if (weightGrams < 15000) {
-                    deliveryNote.innerHTML = 'Unit cost <strong>$' + deliveryPerGram.toFixed(2) + '/g</strong>. Acceptable. Target 15 kg for maximum efficiency zone.';
-                } else {
-                    deliveryNote.innerHTML = '✅ Excellent volume! Delivery only <strong>$' + deliveryPerGram.toFixed(2) + '/g</strong>. Perfect for quarterly consolidation.';
-                }
-            }
-
-            // Storage mode toggle (exposed to global)
-            window.setStorageMode = function(mode) {
-                storageMode = mode;
-                btnAllocated.classList.toggle('active', mode === 'allocated');
-                btnUnallocated.classList.toggle('active', mode === 'unallocated');
-                updateCalculator();
-            };
-
-            // Tab switching
-            window.switchTab = function(tab) {
-                const serviceTab = document.getElementById('tabService');
-                const citizenTab = document.getElementById('tabCitizen');
-                const contentService = document.getElementById('contentService');
-                const contentCitizen = document.getElementById('contentCitizen');
-
-                if (tab === 'service') {
-                    serviceTab.classList.add('active');
-                    citizenTab.classList.remove('active');
-                    contentService.style.display = 'flex';
-                    contentCitizen.style.display = 'none';
-                } else {
-                    citizenTab.classList.add('active');
-                    serviceTab.classList.remove('active');
-                    contentCitizen.style.display = 'flex';
-                    contentService.style.display = 'none';
-                }
-            };
-
-            // Initialization
-            weightSlider.value = 5000;
-            updateCalculator();
-            fetchGoldPrice();
-            setInterval(fetchGoldPrice, 60000);
-
-            // Mouse wheel + arrow keys support for slider
-            weightSlider.addEventListener('wheel', function(e) {
-                e.preventDefault();
-                const delta = e.deltaY > 0 ? -500 : 500;
-                this.value = Math.max(500, Math.min(50000, parseInt(this.value) + delta));
-                updateCalculator();
-            }, { passive: false });
-
-            weightSlider.addEventListener('keydown', function(e) {
-                if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    this.value = Math.min(50000, parseInt(this.value) + 500);
-                    updateCalculator();
-                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    this.value = Math.max(500, parseInt(this.value) - 500);
-                    updateCalculator();
-                }
-            });
-        })();
-    </script>
+      // Анимация появления
+      const animated = document.querySelectorAll('.animate-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      animated.forEach(el => {
+        el.style.animationPlayState = 'paused';
+        observer.observe(el);
+      });
+    })();
+  </script>
 </body>
 </html>
