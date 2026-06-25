@@ -57,12 +57,12 @@ qFoldIT brings together a world‑class, multidisciplinary team spanning drug di
 |------|------|---------------|
 | **Prof. Kelly Chibale** | Scientific Director | Founder of H3D (UCT); Cambridge graduate, Oxford partner; pioneer of African drug discovery; creator of the ZairaChem AI pipeline. Defines disease targets (malaria, TB, AMR) and validates methodology. |
 | **Dr. Godwin Akpeko Dziwornu** | Scientific Advisor | Senior Investigator at H3D; expert in African natural products; first MMV grant as PI (bispyrroloiminoquinone). Designs molecule generation rules based on natural scaffolds. |
-| **Robertson Nortey** | Lead Gameplay & Systems Designer | Veteran from Rocksteady Studios (Batman: Arkham Knight, Arkham VR, Suicide Squad); currently Lead Game Developer at Leti Arts. Architects the core gameplay loop, translating complex molecular dynamics into AAA‑quality interactions. |
-| **Dr. George Ahiakwa** | Founder, CEO, Gamification Architect | Game designer (Atomic Heart), descendant of the Ashanti Ahiakwa royal lineage. Designs game mechanics, platform architecture, quantum API integration, and AAA‑grade visualisation. Coordinates all scientific collaborations. |
+| **Dr. George Ahiakwa (CEPBEP)** | Founder, CEO, Gamification Architect | Game designer (Atomic Heart), descendant of the Ashanti Ahiakwa royal lineage. Designs game mechanics, platform architecture, quantum API integration, and AAA‑grade visualisation. Coordinates all scientific collaborations. |
 | **Jianmin Wang (AspirinCode)** | Lead Engineer | Core developer implementing quantum folding, microservices orchestration, and integration of AI/ML models. Brings deep expertise in cheminformatics and distributed systems. |
 | **Mao Jiashun (shunsunsun)** | AI/ML Researcher | PhD‑level researcher focusing on deep learning for bioinformatics, protein language models, and optimisation of the `autoresearch` pipeline. |
 | **Dr. Silvia Holler** | Consultant for Synthetic Biology | Expert in bioengineering, artificial biology, and nanotechnology; EU grant coordinator. Advises on experimental validation and lab‑scale implementation of designed molecules. |
 | **Dr. Neil Voss** | Scientific & Technical Consultant (Structural Biology) | Creator of Appion and Leginon (cryo‑EM pipelines); Associate Professor. Integrates cryo‑EM data into qFoldIT’s visualisation and validation modules, ensuring structural accuracy. |
+| **Robertson Nortey** | Lead Gameplay & Systems Designer | Veteran from Rocksteady Studios (Batman: Arkham Knight, Arkham VR, Suicide Squad); currently Lead Game Developer at Leti Arts. Architects the core gameplay loop, translating complex molecular dynamics into AAA‑quality interactions. |
 | **Karen Happuch** | Cultural Visualisation Director & Lead Animator | Founder of KHPH Studios (Ghana); first woman in Ghana to direct a full‑length animated feature. Designs visual identity – from pixel‑art Adinkra patterns to cinematic ray‑traced animations. |
 | **Prof. Alexei Lapkin** | Director of Digital Molecular Engineering | Professor at University of Cambridge, Director of iDMT. Bridges in‑game molecular designs with industrial viability, validating synthetic accessibility, scalability, and sustainability. |
 | **Dr. Beata Mierzwa** | Director of Science Art & Gamified Education | Molecular biologist (UCSD, Ludwig Institute) and science artist; creator of the game *Microscopya*; AAAS IF/THEN Ambassador. Translates quantum‑chemical data into intuitive visual puzzles. |
@@ -101,12 +101,6 @@ We are proud to collaborate with leading institutions and companies that share o
 
 ---
 
-*An open‑science partner of the [Ersilia Open Source Initiative](https://github.com/ersilia-os/) and [Visualizing biological data](https://vizbi.org/)*
-
-[![License](https://img.shields.io/badge/License-Proprietary%20with%20Open%20Components-blue)](#) [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/) [![Kubernetes](https://img.shields.io/badge/Kubernetes-1.28%2B-blue)](https://kubernetes.io/) [![Ersilia](https://img.shields.io/badge/Ersilia-Integrated-purple)](https://ersilia.io)
-
----
-
 ## 🏗️ Technical Architecture
 
 ![](https://qfoldit.github.io/img/posters/medChem.png)
@@ -114,21 +108,30 @@ We are proud to collaborate with leading institutions and companies that share o
 
 qFoldIT follows a **microservices architecture** with containerisation (Docker) and orchestration (Kubernetes). Each service is designed to be stateless, horizontally scalable, and optimised for hybrid cloud infrastructure leveraging Singapore’s advanced computing resources.
 
-### Core Microservices
+### Core Microservices (Production-Ready Spec)
 
-| Service | Description | Key Libraries / Tools |
-|---------|-------------|------------------------|
-| `bio‑ml` | AI/ML for bio‑ and chemoinformatics | DeepFold‑PLM, DeepMol, nanoGPT‑Bio, *Ersilia models*, PyTorch, TensorFlow |
-| `plant` | Digital phenotyping & plant simulation | DeepPlant, OpenAlea (L‑systems) |
-| `rosetta` | Classical & quantum‑accelerated folding | Rosetta, QuPepFold, OpenMM, MDAnalysis |
-| `animation` | Real‑time molecular rendering | Science in Motion, Gaussian Splatting (compute shaders) |
-| `autoresearch` | Autonomous AI scientist (ZairaChem pipeline) | 15+ ADME‑Tox models, calls other services via gRPC |
-| `quantum‑adapter` | Unified interface to quantum backends | Qiskit‑Aer, Singapore quantum resources (CQT, NSCC) |
-| `mining‑bioox` | Bio‑oxidation of refractory gold ores | Kinetic modelling, Acidithiobacillus ferrooxidans simulations |
-| `mining‑biosorption` | Biosorption of lithium, cobalt, nickel | Langmuir/Freundlich models, fungal cell‑wall interactions |
-| `mining‑cyanide` | Biodegradation of cyanide wastes | Cyanide hydratase kinetics |
-| `oilgas‑meor` | Microbial enhanced oil recovery | Consortium modelling |
-| `nanover-server` | Real‑time interactive molecular dynamics (iMD) in VR | OpenMM, websockets |
+| Service Container | Primary Domain & Sub‑systems | Key Libraries, Frameworks & Core Tools |
+|-------------------|------------------------------|----------------------------------------|
+| `bio‑ml` | AI/ML for Bio‑ and Chemoinformatics, Synthetic Biology Genomics | NVIDIA Evo, DeepFold‑PLM, DeepMol, nanoGPT‑Bio, Ersilia Models, PyTorch, Triton Inference Server, FlashAttention |
+| `deepplant‑core` | Predictive Regulatory Genomics & Digital Phenotyping (Micro‑level) | DeepPlant, DeepPlantPhenomics, PyTorch, SciPy (NPK Matrix Solvers), NumPy, OpenCV‑Python‑Headless, FastAPI |
+| `openalea‑lpy` | Functional‑Structural Plant Modelling & 3D Topology (Macro‑level) | OpenAlea Core, L‑Py (L‑systems), PlantGL, MTG (Multi‑scale Tree Graphs), Trimesh, NetworkX, Mamba/Conda Runtimes |
+| `rosetta` | Classical & Quantum‑Accelerated Structural Biology & Protein Folding | Rosetta, QuPepFold, OpenMM, MDAnalysis, BioPython, C++ Runtimes |
+| `animation` | Real‑Time Molecular Rendering & Neural Volumetric Visualization | Science in Motion Core, 3D Gaussian Splatting (Taichi/WebGPU), Compute Shaders, PyTorch‑3D, gRPC |
+| `autoresearch` | Autonomous AI Scientist & Multi‑Agent Lab Orchestrator (ZairaChem Pipeline) | LangChain / CrewAI (LLM‑Agents), vLLM (Local LLM Execution), Pydantic v2, 15+ ADME‑Tox Models, gRPC / Protocol Buffers |
+| `quantum‑adapter` | Unified Hardware‑Agnostic Interface to Quantum Simulation Backends | Qiskit‑Aer, Qiskit Runtime, CQT/NSCC Remote APIs, CUDA‑Quantum |
+| `mining‑bioox` | Bio‑Oxidation & Heap Leaching Optimization of Refractory Gold Ores | SciPy (Kinetic ODE Modelling), Acidithiobacillus ferrooxidans Metabolic Flux Analysis (COBRApy) |
+| `mining‑biosorption` | Biosorption Kinetics of Critical Metals (Lithium, Cobalt, Nickel) | Langmuir & Freundlich Isotherm Solvers, Fungal Cell‑Wall Component Layout Matrix Models, NumPy |
+| `mining‑cyanide` | Enzymatic & Microbial Biodegradation of Hazardous Cyanide Wastes | Cyanide Hydratase Michaelis‑Menten Kinetic Simulators, BioChemical Systems Theory (BST) Tools |
+| `oilgas‑meor` | Microbial Enhanced Oil Recovery (MEOR) Multi‑Species Fluid Dynamics | Consortium Metabolic Network Modelling, Pore‑Scale Fluid Dynamics Simulators, OpenFOAM Integration |
+| `nanover‑server` | Real‑Time Interactive Molecular Dynamics (iMD) & Multiplayer VR Streams | OpenMM Engine, Node.JS / Python WebSockets (asyncio), Msgpack, High‑Throughput Memory Buffers |
+
+### Architectural Highlights
+
+- **Plant Split**: `deepplant‑core` (ML/GPU layer) and `openalea‑lpy` (Geometry/CPU layer) eliminate Python‑C++ runtime and CUDA conflicts, ensuring clean separation between predictive genomics and structural plant modelling.
+- **NVIDIA Evo Integration**: Added to `bio‑ml` along with Triton and FlashAttention for cutting‑edge genomic foundation model capabilities.
+- **LLM Orchestration**: `autoresearch` now explicitly uses LangChain / CrewAI for autonomous agent coordination and vLLM for efficient local LLM execution, enabling natural‑language interfaces (e.g., PlantGPT) and dynamic task delegation.
+- **Visual Upgrades**: `animation` supports compute shader‑driven 3D Gaussian Splatting for photorealistic molecular and plant structure rendering, seamlessly integrated with the game client via gRPC.
+- **Industrial Modules**: `mining‑bioox`, `mining‑biosorption`, `mining‑cyanide`, and `oilgas‑meor` extend the platform beyond pharma into sustainable resource extraction and energy, directly addressing the needs of ECOWAS, the Middle East, and space resource utilisation.
 
 ### Container Orchestration
 
@@ -149,7 +152,7 @@ A simplified architecture diagram:
 ```
 [Game Clients via Steam] → API Gateway → [Microservices] → [Quantum Backends / S3 / RabbitMQ]
                                                     ↑
-                                                    └── Autoresearch (orchestrates workflows)
+                                                    └── Autoresearch (orchestrates workflows via LangChain/CrewAI)
 ```
 
 ---
@@ -298,6 +301,8 @@ For inquiries: **qFoldIT@gmail.com** or reach out via our [website](https://fold
 
 - **Prof. Kelly Chibale** and **Dr. Godwin Dziwornu** for scientific leadership and the foundational work at H3D.
 - **Ersilia Open Source Initiative** for the model hub and shared vision of open science.
+- **Center for Game Science (CGS), University of Washington** – for pioneering citizen‑science gaming and providing a direct lineage to Foldit.
+- **Game Science Research Center (GSRC), Italy** – for advancing game‑based learning and providing academic networks across Europe.
 - **Centre for Quantum Technologies (CQT)** and the **National Supercomputing Centre (NSCC) Singapore** for providing quantum and HPC resources.
 - **National Quantum Strategy (Singapore)** for supporting the development of accessible quantum computing infrastructure.
 - **Leti Arts** (Robertson Nortey) and **KHPH Studios** (Karen Happuch) for exceptional game design and visual storytelling.
@@ -317,7 +322,7 @@ For inquiries: **qFoldIT@gmail.com** or reach out via our [website](https://fold
 [](https://qfoldit.github.io/qFold.html)
 ![](https://qfoldit.github.io/img/1/qFold.png)
 
-
+---
 
 <!-- https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Partners-With-Industry-Leaders-to-Advance-Genomics-Drug-Discovery-and-Healthcare/default.aspx -->
 
@@ -327,11 +332,13 @@ For inquiries: **qFoldIT@gmail.com** or reach out via our [website](https://fold
 
 <!-- ![](https://qfoldit.github.io/img/posters/letti_letters.png) -->
 
-<!-- ISS: [Mixed Reality Meets Quantum Science on the Space Station](https://youtu.be/5Br-y6S4pMc) -->
+<!-- 
 
-<!--
+ISS: [Mixed Reality Meets Quantum Science on the Space Station](https://youtu.be/5Br-y6S4pMc)
+
 NASA: [Virtual Reality in the 80's](https://youtu.be/gvkA3qG0zuI) <br>
 NASA: [Virtual Environment Workstation Project (VIEWLab) VR demo 1989](https://youtu.be/3L0N7CKvOBA)
+
 
 Dell & NVidia: [AI Factory Powering Drug Discovery](https://youtu.be/pl-W5yN8nDQ?si=LQELlfIrC4sS8OZK) <br>
 NVidia: [AI for Quantum. NVIDIA Ising Accelerates Useful Quantum Computing](https://youtu.be/z978rGwiW6E?si=xbShhPBZyvi62L9_)
