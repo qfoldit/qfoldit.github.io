@@ -90,12 +90,20 @@ We are proud to collaborate with leading institutions and companies that share o
 |---------|------|---------------|
 | **Ersilia Open Source Initiative** | Technology partner | Integration of Ersilia’s AI models (ZairaChem, Isaura) into our `autoresearch` and `bio‑ml` services. Joint workshops and training for capacity building in the Global South. |
 | **H3D (University of Cape Town)** | Scientific core | Disease targets (malaria, TB, AMR); validation of molecular structures; access to H3D’s compound libraries and screening data. |
+| **Center for Game Science (CGS), University of Washington** | Gamification & citizen science legacy | CGS, led by Professor Zoran Popović, pioneered **Foldit** — the original protein‑folding game that proved crowdsourced gameplay can solve real scientific problems. qFoldIT builds on this legacy, extending the citizen‑science model with quantum acceleration, AI‑driven screening, and a full commercialisation pipeline. CGS’s expertise in scientific discovery games, educational tools for STEM, and cognitive skill development directly informs our game design and player engagement strategies. |
+| **Game Science Research Center (GSRC)** | Academic network & game‑based learning | GSRC is an **inter‑university research centre** with administrative headquarters at the **IMT School for Advanced Studies Lucca**, Italy. Founded in 2019 by IMT Lucca and Lucca Crea, it is the first research centre in Italy dedicated to game science in all its forms. GSRC promotes research on game effectiveness, training courses, and workshops on game production and design. Through its network of member universities (including OGS since 2022), GSRC provides qFoldIT with access to European academic expertise in game‑based learning, serious games for education, and technology transfer in the gaming sector. |
 | **Leti Arts** | Game development | Lead game design and asset production by Robertson Nortey; cultural integration of African storytelling and art. |
 | **KHPH Studios** | Visualisation & animation | Creation of the game’s visual identity, Adinkra‑inspired UI, and cinematic animations. |
 | **Institute for Digital Molecular Technologies (iDMT), Cambridge** | Synthetic chemistry & scale‑up | Validation of synthetic accessibility, scalability, and sustainability for in‑game designed molecules. |
 | **Centre for Quantum Technologies (CQT) & National Supercomputing Centre (NSCC) Singapore** | Quantum & HPC resources | Access to ion‑trap and superconducting quantum processors; GPU‑accelerated HPC clusters for AI and simulations. |
 | **Dell & NVIDIA** | AI infrastructure | Dell AI Factory with NVIDIA GPUs powers our `bio‑ml`, `animation`, and `quantum-adapter` services; NVIDIA BioNeMo framework used for generative molecular design. |
 | **Bank of Ghana (e‑CEDI)** | Financial infrastructure | CBDC integration for royalty payments and in‑game economy, ensuring transparency and financial inclusion for African participants. |
+
+---
+
+*An open‑science partner of the [Ersilia Open Source Initiative](https://github.com/ersilia-os/) and [Visualizing biological data](https://vizbi.org/)*
+
+[![License](https://img.shields.io/badge/License-Proprietary%20with%20Open%20Components-blue)](#) [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/) [![Kubernetes](https://img.shields.io/badge/Kubernetes-1.28%2B-blue)](https://kubernetes.io/) [![Ersilia](https://img.shields.io/badge/Ersilia-Integrated-purple)](https://ersilia.io)
 
 ---
 
