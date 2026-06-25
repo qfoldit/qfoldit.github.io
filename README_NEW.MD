@@ -279,7 +279,7 @@ This long‑term vision (100‑300 years) positions qFoldIT as the **operating s
 
 We welcome collaboration in the spirit of Ersilia’s community. You can contribute in several ways:
 
-- **Code**: Help improve our open‑source components (model wrappers, quantum adapter, documentation). See our [GitHub](https://github.com/qfoldit) (coming soon).
+- **Code**: Help improve our open‑source components (model wrappers, quantum adapter, documentation). See our [GitHub](https://github.com/qfoldit).
 - **Science**: Validate molecular structures, propose new disease targets, or use qFoldIT in your research.
 - **Training**: Partner with us to run workshops that combine Ersilia’s AI models with qFoldIT’s gamified interface.
 - **Funding**: Support our mission through grants, corporate sponsorship, or licensing partnerships.
