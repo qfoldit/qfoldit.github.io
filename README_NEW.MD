@@ -97,7 +97,7 @@ We are proud to collaborate with leading institutions and companies that share o
 | **Institute for Digital Molecular Technologies (iDMT), Cambridge** | Synthetic chemistry & scale‑up | Validation of synthetic accessibility, scalability, and sustainability for in‑game designed molecules. |
 | **Centre for Quantum Technologies (CQT) & National Supercomputing Centre (NSCC) Singapore** | Quantum & HPC resources | Access to ion‑trap and superconducting quantum processors; GPU‑accelerated HPC clusters for AI and simulations. |
 | **Dell & NVIDIA** | AI infrastructure | Dell AI Factory with NVIDIA GPUs powers our `bio‑ml`, `animation`, and `quantum-adapter` services; NVIDIA BioNeMo framework used for generative molecular design. |
-| **Bank of Ghana (e‑CEDI)** | Financial infrastructure | CBDC integration for royalty payments and in‑game economy, ensuring transparency and financial inclusion for African participants. |
+| **Bank of Ghana (e‑CEDI)** | Financial infrastructure | CBDC integration for royalty payments and in‑game economy, ensuring transparency and financial inclusion<!-- for African participants -->. |
 
 ---
 
