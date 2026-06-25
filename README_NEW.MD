@@ -250,8 +250,6 @@ For inquiries: **qFoldIT@gmail.com** or reach out via our [website](https://fold
 [](https://qfoldit.github.io/qFold.html)
 ![](https://qfoldit.github.io/img/1/qFold.png)
 
----
-
 <!-- https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Partners-With-Industry-Leaders-to-Advance-Genomics-Drug-Discovery-and-Healthcare/default.aspx -->
 
 <!-- Nobel Prize lecture: [David Baker About Folding](https://www.youtube.com/watch?v=KbDvQgsOI-E) -->
