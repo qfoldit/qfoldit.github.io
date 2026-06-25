@@ -110,20 +110,20 @@ qFoldIT follows a **microservices architecture** with containerisation (Docker) 
 
 ### Core Microservices (Production-Ready Spec)
 
-| Service Container | Primary Domain & Sub‑systems | Key Libraries, Frameworks & Core Tools |
-|-------------------|------------------------------|----------------------------------------|
-| `bio‑ml` | AI/ML for Bio‑ and Chemoinformatics, Synthetic Biology Genomics | NVIDIA Evo, DeepFold‑PLM, DeepMol, nanoGPT‑Bio, Ersilia Models, PyTorch, Triton Inference Server, FlashAttention |
-| `deepplant‑core` | Predictive Regulatory Genomics & Digital Phenotyping (Micro‑level) | DeepPlant, DeepPlantPhenomics, PyTorch, SciPy (NPK Matrix Solvers), NumPy, OpenCV‑Python‑Headless, FastAPI |
-| `openalea‑lpy` | Functional‑Structural Plant Modelling & 3D Topology (Macro‑level) | OpenAlea Core, L‑Py (L‑systems), PlantGL, MTG (Multi‑scale Tree Graphs), Trimesh, NetworkX, Mamba/Conda Runtimes |
-| `rosetta` | Classical & Quantum‑Accelerated Structural Biology & Protein Folding | Rosetta, QuPepFold, OpenMM, MDAnalysis, BioPython, C++ Runtimes |
-| `animation` | Real‑Time Molecular Rendering & Neural Volumetric Visualization | Science in Motion Core, 3D Gaussian Splatting (Taichi/WebGPU), Compute Shaders, PyTorch‑3D, gRPC |
-| `autoresearch` | Autonomous AI Scientist & Multi‑Agent Lab Orchestrator (ZairaChem Pipeline) | LangChain / CrewAI (LLM‑Agents), vLLM (Local LLM Execution), Pydantic v2, 15+ ADME‑Tox Models, gRPC / Protocol Buffers |
-| `quantum‑adapter` | Unified Hardware‑Agnostic Interface to Quantum Simulation Backends | Qiskit‑Aer, Qiskit Runtime, CQT/NSCC Remote APIs, CUDA‑Quantum |
-| `mining‑bioox` | Bio‑Oxidation & Heap Leaching Optimization of Refractory Gold Ores | SciPy (Kinetic ODE Modelling), Acidithiobacillus ferrooxidans Metabolic Flux Analysis (COBRApy) |
-| `mining‑biosorption` | Biosorption Kinetics of Critical Metals (Lithium, Cobalt, Nickel) | Langmuir & Freundlich Isotherm Solvers, Fungal Cell‑Wall Component Layout Matrix Models, NumPy |
-| `mining‑cyanide` | Enzymatic & Microbial Biodegradation of Hazardous Cyanide Wastes | Cyanide Hydratase Michaelis‑Menten Kinetic Simulators, BioChemical Systems Theory (BST) Tools |
-| `oilgas‑meor` | Microbial Enhanced Oil Recovery (MEOR) Multi‑Species Fluid Dynamics | Consortium Metabolic Network Modelling, Pore‑Scale Fluid Dynamics Simulators, OpenFOAM Integration |
-| `nanover‑server` | Real‑Time Interactive Molecular Dynamics (iMD) & Multiplayer VR Streams | OpenMM Engine, Node.JS / Python WebSockets (asyncio), Msgpack, High‑Throughput Memory Buffers |
+| Service Container | Primary Domain & Sub‑systems |
+|-------------------|------------------------------|
+| `bio‑ml` | AI/ML for Bio‑ and Chemoinformatics, Synthetic Biology Genomics |
+| `deepplant‑core` | Predictive Regulatory Genomics & Digital Phenotyping (Micro‑level) |
+| `openalea‑lpy` | Functional‑Structural Plant Modelling & 3D Topology (Macro‑level) |
+| `rosetta` | Classical & Quantum‑Accelerated Structural Biology & Protein Folding |
+| `animation` | Real‑Time Molecular Rendering & Neural Volumetric Visualization |
+| `autoresearch` | Autonomous AI Scientist & Multi‑Agent Lab Orchestrator (ZairaChem Pipeline) |
+| `quantum‑adapter` | Unified Hardware‑Agnostic Interface to Quantum Simulation Backends |
+| `mining‑bioox` | Bio‑Oxidation & Heap Leaching Optimization of Refractory Gold Ores |
+| `mining‑biosorption` | Biosorption Kinetics of Critical Metals (Lithium, Cobalt, Nickel) |
+| `mining‑cyanide` | Enzymatic & Microbial Biodegradation of Hazardous Cyanide Wastes |
+| `oilgas‑meor` | Microbial Enhanced Oil Recovery (MEOR) Multi‑Species Fluid Dynamics |
+| `nanover‑server` | Real‑Time Interactive Molecular Dynamics (iMD) & Multiplayer VR Streams |
 
 ### Architectural Highlights
 
