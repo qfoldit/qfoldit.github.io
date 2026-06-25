@@ -1,6 +1,3 @@
-Обновил README, сохранив все изображения, видео-ссылки и закомментированный код. Добавил расширенное описание команды, партнёрств, промышленных и космических применений, а также экономическую модель распределения вознаграждений.
-
-```markdown
 # **Gamified Quantum Molecular Drug Design for Global Science**
 
 David Baker - [Protein Folding Code: Won a Nobel Prize](https://youtu.be/cx7l9ZGFZkw)
