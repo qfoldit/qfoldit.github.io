@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>qFoldIT — Дашборд CAMEO & Royalties</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* =============== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ =============== */
+        :root {
+            --bg-primary: #0F0F14;
+            --bg-secondary: #1A1B24;
+            --bg-card: #242633;
+            --bg-card-hover: #2D2F3D;
+            --text-primary: #E8E9F0;
+            --text-secondary: #A0A3B5;
+            --text-muted: #6B7084;
+            --border-color: #323545;
+            --blue: #4A76F5;
+            --purple: #7B4AE2;
+            --cyan: #00C9A7;
+            --orange: #FF6B35;
+            --gradient-main: linear-gradient(135deg, var(--blue), var(--purple));
+            --shadow: 0 4px 20px rgba(0,0,0,0.5);
+            --radius: 12px;
+            --transition: 0.25s ease;
+        }
+        /* =============== БАЗОВЫЙ СБРОС =============== */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            line-height: 1.5;
+        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 8px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--blue); }
+
+        .app {
+            max-width: 1440px;
+            width: 100%;
+        }
+        /* =============== КОМПОНЕНТЫ =============== */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: background var(--transition), border-color var(--transition);
+        }
+        .card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--blue);
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+        .badge-blue { background: var(--blue); color: #fff; }
+        .badge-purple { background: var(--purple); color: #fff; }
+        .badge-cyan { background: var(--cyan); color: #0F0F14; }
+        .badge-orange { background: var(--orange); color: #0F0F14; }
+        .badge-gray { background: var(--border-color); color: var(--text-secondary); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            color: #fff;
+            background: var(--gradient-main);
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(74,118,245,0.4); }
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        .btn-outline:hover { background: var(--bg-card-hover); color: #fff; border-color: var(--blue); }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            border: 1px solid var(--border-color);
+            transition: all var(--transition);
+        }
+        .stat-card:hover { border-color: var(--blue); transform: translateY(-2px); }
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 4px;
+            color: #fff;
+        }
+        .stat-value .currency { font-size: 1rem; font-weight: 400; color: var(--text-secondary); margin-left: 4px; }
+
+        /* Таблицы */
+        .table-wrap {
+            overflow-x: auto;
+            margin-top: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        th {
+            text-align: left;
+            padding: 12px 12px 12px 0;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            border-bottom: 1px solid var(--border-color);
+        }
+        td {
+            padding: 12px 12px 12px 0;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(74,118,245,0.05); }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            width: 100%;
+            max-width: 120px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-main);
+            border-radius: 4px;
+            transition: width 0.6s ease;
+        }
+
+        /* графики (простые) */
+        .chart-bar {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            height: 100px;
+            padding-top: 10px;
+        }
+        .chart-bar-item {
+            flex: 1;
+            background: var(--blue);
+            border-radius: 4px 4px 0 0;
+            min-height: 8px;
+            transition: height 0.4s ease;
+            position: relative;
+        }
+        .chart-bar-item:hover { opacity: 0.8; }
+        .chart-bar-label {
+            font-size: 0.6rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 4px;
+        }
+
+        /* Логотип */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .logo-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-main);
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.4rem;
+            -webkit-text-fill-color: #fff;
+            text-fill-color: #fff;
+        }
+
+        /* Лента событий */
+        .log-entry {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .log-entry:last-child { border-bottom: none; }
+        .log-time { color: var(--text-secondary); font-size: 0.7rem; white-space: nowrap; }
+        .log-icon { width: 20px; text-align: center; color: var(--text-secondary); }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            .stat-value { font-size: 1.4rem; }
+            .card { padding: 16px; }
+        }
+        @media (max-width: 480px) {
+            .stat-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-in {
+            animation: fadeInUp 0.3s ease forwards;
+        }
+        .highlight-flash {
+            animation: flashBg 1s ease;
+        }
+        @keyframes flashBg {
+            0%, 100% { background: transparent; }
+            30% { background: rgba(0,201,167,0.15); }
+        }
+
+        /* Доп. стили для тултипов */
+        .tooltip-trigger {
+            cursor: help;
+            border-bottom: 1px dashed var(--text-secondary);
+        }
+        .text-cyan { color: var(--cyan); }
+        .text-orange { color: var(--orange); }
+        .text-blue { color: var(--blue); }
+        .text-purple { color: var(--purple); }
+        .fw-bold { font-weight: 700; }
+        .mt-2 { margin-top: 12px; }
+        .mb-2 { margin-bottom: 12px; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+        .gap-2 { gap: 8px; }
+        .d-flex { display: flex; align-items: center; }
+        .flex-wrap { flex-wrap: wrap; }
+        .me-1 { margin-right: 4px; }
+        .me-2 { margin-right: 8px; }
+        .ms-1 { margin-left: 4px; }
+        .text-center { text-align: center; }
+    </style>
+</head>
+<body>
+<div class="app">
+
+    <!-- ================= HEADER ================= -->
+    <header class="flex-between mb-4" style="padding: 8px 0;">
+        <div class="logo">
+            <span class="logo-icon"><i class="fas fa-dna"></i></span>
+            <span>qFoldIT</span>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+            <span class="badge badge-cyan" id="liveIndicator"><i class="fas fa-circle me-1" style="font-size:0.6rem;"></i> LIVE</span>
+            <button class="btn btn-outline" style="padding: 6px 14px; font-size:0.8rem;" onclick="refreshData()"><i class="fas fa-sync-alt me-1"></i> Обновить</button>
+            <span style="color:var(--text-secondary); font-size:0.85rem;">RU</span>
+        </div>
+    </header>
+
+    <!-- ================= KPI ================= -->
+    <section class="stat-grid" id="kpiGrid">
+        <div class="stat-card animate-in">
+            <div class="stat-label"><i class="fas fa-bullseye me-1"></i> Активные мишени (CAMEO)</div>
+            <div class="stat-value" id="kpiTargets">14</div>
+        </div>
+        <div class="stat-card animate-in" style="animation-delay:0.05s;">
+            <div class="stat-label"><i class="fas fa-dna me-1"></i> Решено игроками</div>
+            <div class="stat-value" id="kpiSolved">328</div>
+        </div>
+        <div class="stat-card animate-in" style="animation-delay:0.1s;">
+            <div class="stat-label"><i class="fas fa-coins me-1"></i> Выплачено роялти</div>
+            <div class="stat-value" id="kpiPaid">2.6 <span class="currency">млн ₽</span></div>
+        </div>
+        <div class="stat-card animate-in" style="animation-delay:0.15s;">
+            <div class="stat-label"><i class="fas fa-users me-1"></i> Активных игроков (24ч)</div>
+            <div class="stat-value" id="kpiDAU">1 247</div>
+        </div>
+        <div class="stat-card animate-in" style="animation-delay:0.2s;">
+            <div class="stat-label"><i class="fas fa-clock me-1"></i> Среднее время на структуру</div>
+            <div class="stat-value" id="kpiAvgTime">6.8 <span class="currency">ч</span></div>
+        </div>
+        <div class="stat-card animate-in" style="animation-delay:0.25s;">
+            <div class="stat-label"><i class="fas fa-trophy me-1"></i> Место в CAMEO</div>
+            <div class="stat-value" id="kpiRank">#2</div>
+        </div>
+    </section>
+
+    <!-- ================= CAMEO БЛОК ================= -->
+    <section class="card mb-4 animate-in">
+        <div class="flex-between mb-2">
+            <h3 style="font-size:1.1rem; font-weight:600;"><i class="fas fa-flask me-2"></i>Интеграция с CAMEO</h3>
+            <span class="badge badge-blue"><i class="far fa-clock me-1"></i>Обновлено: сегодня 14:23</span>
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:20px;">
+            <div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID мишени</th>
+                                <th>Сложность</th>
+                                <th>Статус</th>
+                                <th>Прогресс</th>
+                                <th>Рейтинг</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cameoTableBody">
+                            <!-- рендерится JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <div style="font-size:0.8rem; color:var(--text-secondary);">Поступление мишеней за неделю</div>
+                <div class="chart-bar" id="weeklyChart" style="height:80px; margin-top:8px;">
+                    <!-- заполняется JS -->
+                </div>
+                <div class="d-flex flex-wrap gap-2 mt-2">
+                    <span class="badge badge-cyan">Easy 4</span>
+                    <span class="badge badge-blue">Medium 6</span>
+                    <span class="badge badge-orange">Hard 3</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ROYALTIES БЛОК (ЦЕНТРАЛЬНЫЙ) ================= -->
+    <section class="card mb-4 animate-in" style="border-color: var(--cyan);">
+        <div class="flex-between mb-2">
+            <h3 style="font-size:1.1rem; font-weight:600;"><i class="fas fa-gem me-2"></i>Роялти — кто платит, за что и сколько</h3>
+            <span class="badge badge-cyan"><i class="fas fa-lock me-1"></i>Эскроу: 1 240 000 ₽</span>
+        </div>
+
+        <!-- Карточки-статистики по роялти -->
+        <div class="stat-grid" style="grid-template-columns: repeat(4,1fr); margin-bottom:20px;">
+            <div class="stat-card">
+                <div class="stat-label"><i class="fas fa-file-contract me-1"></i>Активных контрактов</div>
+                <div class="stat-value" style="font-size:1.4rem;">11</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label"><i class="fas fa-hand-holding-usd me-1"></i>Средняя выплата</div>
+                <div class="stat-value" style="font-size:1.4rem;">42 500 ₽</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label"><i class="fas fa-hourglass-half me-1"></i>Среднее время решения</div>
+                <div class="stat-value" style="font-size:1.4rem;">6.8 ч</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label"><i class="fas fa-wallet me-1"></i>Выплачено игрокам</div>
+                <div class="stat-value" style="font-size:1.4rem;">2 600 000 ₽</div>
+            </div>
+        </div>
+
+        <!-- Таблица платежей -->
+        <div class="flex-between">
+            <span style="font-weight:600;">История выплат</span>
+            <div class="d-flex gap-2">
+                <select style="background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color); border-radius:6px; padding:4px 8px;" id="customerFilter">
+                    <option>Все заказчики</option>
+                    <option>Biocad</option>
+                    <option>GNPC</option>
+                    <option>AstraZeneca</option>
+                    <option>Aramco</option>
+                    <option>Medical Genomics</option>
+                    <option>Genotek</option>
+                </select>
+                <select style="background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color); border-radius:6px; padding:4px 8px;" id="statusFilter">
+                    <option>Все статусы</option>
+                    <option>Выплачено</option>
+                    <option>В обработке</option>
+                    <option>Ожидает подтверждения</option>
+                </select>
+            </div>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Заказчик</th>
+                        <th>Мишень</th>
+                        <th>Сумма (₽)</th>
+                        <th>Статус</th>
+                        <th>Игрок(и)</th>
+                        <th>Время (ч)</th>
+                        <th>Дата выплаты</th>
+                    </tr>
+                </thead>
+                <tbody id="royaltyTableBody">
+                    <!-- рендерится JS -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Инфографика цикла -->
+        <div style="margin-top:24px; background:var(--bg-secondary); border-radius:var(--radius); padding:16px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center;">
+            <div style="display:flex; gap:8px; flex-wrap:wrap; font-size:0.85rem;">
+                <span><span class="badge badge-blue">1</span> Заказчик ставит задачу + бюджет</span>
+                <span>→</span>
+                <span><span class="badge badge-purple">2</span> Мишень → игра (рейд)</span>
+                <span>→</span>
+                <span><span class="badge badge-cyan">3</span> Игроки решают (1–72 ч)</span>
+                <span>→</span>
+                <span><span class="badge badge-orange">4</span> Валидация квантовым бэкендом</span>
+                <span>→</span>
+                <span><span class="badge badge-blue">5</span> Заказчик подтверждает</span>
+                <span>→</span>
+                <span><span class="badge badge-cyan"><i class="fas fa-gem me-1"></i></span> 70% игрокам, 20% платформе, 10% науке</span>
+            </div>
+            <div>
+                <span class="badge badge-cyan" style="font-size:0.9rem;"><i class="fas fa-clock me-1"></i>⏱ Среднее время: 6.8 ч</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= ИГРОВАЯ АКТИВНОСТЬ ================= -->
+    <section class="card mb-4 animate-in">
+        <div class="flex-between mb-2">
+            <h3 style="font-size:1.1rem; font-weight:600;"><i class="fas fa-gamepad me-2"></i>Игровая активность</h3>
+            <span class="badge badge-blue"><i class="fas fa-user me-1"></i>DAU 1 247</span>
+        </div>
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:20px;">
+            <div>
+                <div style="height:80px; display:flex; align-items:flex-end; gap:6px;" id="dauChart">
+                    <!-- заполняется JS -->
+                </div>
+                <div style="font-size:0.7rem; color:var(--text-secondary); margin-top:4px;">DAU за последние 7 дней</div>
+            </div>
+            <div>
+                <div style="font-weight:600; font-size:0.9rem;"><i class="fas fa-trophy me-1"></i>Топ-игроки</div>
+                <div id="topPlayers" style="margin-top:8px;">
+                    <!-- рендерится JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= СИСТЕМНЫЕ ЛОГИ ================= -->
+    <section class="card animate-in">
+        <div class="flex-between mb-2">
+            <h3 style="font-size:1.1rem; font-weight:600;"><i class="fas fa-list me-2"></i>Системные события</h3>
+            <span class="badge badge-gray"><i class="fas fa-sync-alt fa-spin me-1"></i>в реальном времени</span>
+        </div>
+        <div id="logContainer" style="max-height:180px; overflow-y:auto;">
+            <!-- рендерится JS -->
+        </div>
+    </section>
+
+</div>
+
+<script>
+    // =================================================================
+    //  МОКОВЫЕ ДАННЫЕ (с добавленными заказчиками)
+    // =================================================================
+    const cameoTargets = [
+        { id: 'C001', difficulty: 'Hard', status: 'В игре', progress: 65, rating: null },
+        { id: 'C002', difficulty: 'Medium', status: 'Обработана', progress: 100, rating: 0.92 },
+        { id: 'C003', difficulty: 'Easy', status: 'Отправлена', progress: 100, rating: 0.88 },
+        { id: 'C004', difficulty: 'Hard', status: 'Новая', progress: 0, rating: null },
+        { id: 'C005', difficulty: 'Medium', status: 'В игре', progress: 40, rating: null },
+    ];
+
+    const royaltyPayments = [
+        { customer: 'Biocad', target: 'C001', amount: 45000, status: 'Выплачено', players: '@player1, @player2', hours: 12.5, date: '20.06.2026' },
+        { customer: 'GNPC', target: 'MINING_07', amount: 120000, status: 'В обработке', players: '@player3', hours: 8.0, date: '—' },
+        { customer: 'AstraZeneca', target: 'DRUG_22', amount: 85000, status: 'Ожидает подтверждения', players: '@player4, @player5', hours: 15.2, date: '—' },
+        { customer: 'Biocad', target: 'C002', amount: 32000, status: 'Выплачено', players: '@player6', hours: 5.3, date: '18.06.2026' },
+        { customer: 'GNPC', target: 'MINING_12', amount: 95000, status: 'Выплачено', players: '@player7, @player8', hours: 9.1, date: '15.06.2026' },
+        // Новые заказчики
+        { customer: 'Aramco', target: 'OIL_003', amount: 68000, status: 'Выплачено', players: '@player9, @player10', hours: 10.2, date: '22.06.2026' },
+        { customer: 'Medical Genomics', target: 'MG_007', amount: 54000, status: 'В обработке', players: '@player11', hours: 6.5, date: '—' },
+        { customer: 'Genotek', target: 'GT_012', amount: 76000, status: 'Ожидает подтверждения', players: '@player12, @player13', hours: 14.0, date: '—' },
+    ];
+
+    const logs = [
+        { time: '14:23', icon: 'fa-download', msg: 'Получена новая мишень C006 (Hard) от CAMEO' },
+        { time: '13:55', icon: 'fa-check-circle', msg: 'Игроки завершили рейд по C003 — отправлено в CAMEO' },
+        { time: '12:10', icon: 'fa-gem', msg: 'Выплачено 45 000 ₽ игрокам за структуру C001 (Biocad)' },
+        { time: '11:45', icon: 'fa-cog', msg: 'Запущен препроцессинг для мишени C005' },
+        { time: '10:00', icon: 'fa-trophy', msg: 'Сервер qFoldIT поднялся на #2 в рейтинге CAMEO' },
+        { time: '09:30', icon: 'fa-file-signature', msg: 'Новый контракт с Aramco на 3 мишени' },
+        { time: '08:15', icon: 'fa-dna', msg: 'Medical Genomics добавила целевую последовательность' },
+    ];
+
+    // =================================================================
+    //  РЕНДЕРИНГ
+    // =================================================================
+    function renderCameo() {
+        const tbody = document.getElementById('cameoTableBody');
+        tbody.innerHTML = cameoTargets.map(t => `
+            <tr>
+                <td><span class="fw-bold">${t.id}</span></td>
+                <td><span class="badge ${t.difficulty === 'Hard' ? 'badge-orange' : t.difficulty === 'Medium' ? 'badge-blue' : 'badge-cyan'}">${t.difficulty}</span></td>
+                <td>${t.status}</td>
+                <td>
+                    <div class="progress-bar"><div class="progress-fill" style="width:${t.progress}%;"></div></div>
+                    <span style="font-size:0.7rem; color:var(--text-secondary);">${t.progress}%</span>
+                </td>
+                <td>${t.rating ? t.rating.toFixed(2) : '—'}</td>
+            </tr>
+        `).join('');
+    }
+
+    function renderRoyalties() {
+        const tbody = document.getElementById('royaltyTableBody');
+        tbody.innerHTML = royaltyPayments.map(p => `
+            <tr>
+                <td>${p.customer}</td>
+                <td>${p.target}</td>
+                <td>${p.amount.toLocaleString()} ₽</td>
+                <td><span class="badge ${p.status === 'Выплачено' ? 'badge-cyan' : p.status === 'В обработке' ? 'badge-blue' : 'badge-orange'}">${p.status}</span></td>
+                <td>${p.players}</td>
+                <td>${p.hours}</td>
+                <td>${p.date}</td>
+            </tr>
+        `).join('');
+    }
+
+    function renderLogs() {
+        const container = document.getElementById('logContainer');
+        container.innerHTML = logs.map(l => `
+            <div class="log-entry">
+                <span class="log-time">${l.time}</span>
+                <span class="log-icon"><i class="fas ${l.icon}"></i></span>
+                <span>${l.msg}</span>
+            </div>
+        `).join('');
+    }
+
+    function renderWeeklyChart() {
+        const container = document.getElementById('weeklyChart');
+        const days = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+        const vals = [5, 8, 3, 7, 6, 9, 4];
+        const max = Math.max(...vals);
+        container.innerHTML = vals.map((v,i) => `
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center;">
+                <div class="chart-bar-item" style="height:${(v/max)*70+10}px; background:${i%2===0 ? 'var(--blue)' : 'var(--purple)'};"></div>
+                <div class="chart-bar-label">${days[i]}</div>
+            </div>
+        `).join('');
+    }
+
+    function renderDAU() {
+        const container = document.getElementById('dauChart');
+        const days = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+        const vals = [980, 1050, 1200, 1150, 1300, 1247, 1180];
+        const max = Math.max(...vals);
+        container.innerHTML = vals.map((v,i) => `
+            <div style="flex:1; display:flex; flex-direction:column; align-items:center;">
+                <div class="chart-bar-item" style="height:${(v/max)*70+10}px; background:var(--cyan);"></div>
+                <div class="chart-bar-label">${days[i]}</div>
+                <span style="font-size:0.6rem; color:var(--text-secondary);">${v}</span>
+            </div>
+        `).join('');
+    }
+
+    function renderTopPlayers() {
+        const container = document.getElementById('topPlayers');
+        const players = [
+            { name: '@player1', solved: 24 },
+            { name: '@player7', solved: 19 },
+            { name: '@player3', solved: 17 },
+            { name: '@player4', solved: 14 },
+        ];
+        container.innerHTML = players.map(p => `
+            <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--border-color); font-size:0.85rem;">
+                <span>${p.name}</span>
+                <span style="color:var(--text-secondary);">${p.solved} структур</span>
+            </div>
+        `).join('');
+    }
+
+    // =================================================================
+    //  ОБНОВЛЕНИЕ (имитация реального времени)
+    // =================================================================
+    function refreshData() {
+        const paid = document.getElementById('kpiPaid');
+        const current = parseFloat(paid.textContent);
+        if (!isNaN(current)) {
+            const newVal = (current + Math.random() * 0.1).toFixed(1);
+            paid.innerHTML = newVal + ' <span class="currency">млн ₽</span>';
+        }
+        const btn = document.querySelector('.btn-outline');
+        btn.style.transform = 'scale(0.95)';
+        setTimeout(() => btn.style.transform = '', 200);
+        const logContainer = document.getElementById('logContainer');
+        const newLog = document.createElement('div');
+        newLog.className = 'log-entry highlight-flash';
+        const now = new Date();
+        const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+        newLog.innerHTML = `
+            <span class="log-time">${time}</span>
+            <span class="log-icon"><i class="fas fa-sync-alt"></i></span>
+            <span>Данные обновлены (ручная синхронизация)</span>
+        `;
+        logContainer.prepend(newLog);
+        if (logContainer.children.length > 20) {
+            logContainer.removeChild(logContainer.lastChild);
+        }
+    }
+
+    // =================================================================
+    //  ИНИЦИАЛИЗАЦИЯ
+    // =================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        renderCameo();
+        renderRoyalties();
+        renderLogs();
+        renderWeeklyChart();
+        renderDAU();
+        renderTopPlayers();
+
+        setInterval(() => {
+            const logContainer = document.getElementById('logContainer');
+            const newLog = document.createElement('div');
+            newLog.className = 'log-entry highlight-flash';
+            const now = new Date();
+            const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+            const events = [
+                { icon: 'fa-chart-line', msg: 'Получен новый рейтинг CAMEO' },
+                { icon: 'fa-bolt', msg: 'Игроки завершили рейд' },
+                { icon: 'fa-gem', msg: 'Выплата по контракту подтверждена' },
+                { icon: 'fa-download', msg: 'Новая мишень от CAMEO' },
+                { icon: 'fa-file-signature', msg: 'Подписан новый контракт с заказчиком' }
+            ];
+            const randomEvent = events[Math.floor(Math.random() * events.length)];
+            newLog.innerHTML = `
+                <span class="log-time">${time}</span>
+                <span class="log-icon"><i class="fas ${randomEvent.icon}"></i></span>
+                <span>${randomEvent.msg}</span>
+            `;
+            logContainer.prepend(newLog);
+            if (logContainer.children.length > 20) {
+                logContainer.removeChild(logContainer.lastChild);
+            }
+        }, 30000);
+    });
+</script>
+</body>
+</html>              
