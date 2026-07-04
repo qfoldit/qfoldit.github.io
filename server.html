@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>qFoldIT — Дашборд CAMEO & Royalties</title>
+    <title>qFoldIT — Tokenized Ecosystem Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* =============== ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ =============== */
         :root {
             --bg-primary: #0F0F14;
             --bg-secondary: #1A1B24;
@@ -26,7 +25,6 @@
             --radius: 12px;
             --transition: 0.25s ease;
         }
-        /* =============== БАЗОВЫЙ СБРОС =============== */
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -43,11 +41,7 @@
         ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 8px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--blue); }
 
-        .app {
-            max-width: 1440px;
-            width: 100%;
-        }
-        /* =============== КОМПОНЕНТЫ =============== */
+        .app { max-width: 1440px; width: 100%; }
         .card {
             background: var(--bg-card);
             border-radius: var(--radius);
@@ -56,10 +50,7 @@
             border: 1px solid var(--border-color);
             transition: background var(--transition), border-color var(--transition);
         }
-        .card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--blue);
-        }
+        .card:hover { background: var(--bg-card-hover); border-color: var(--blue); }
         .badge {
             display: inline-block;
             padding: 4px 12px;
@@ -74,7 +65,6 @@
         .badge-cyan { background: var(--cyan); color: #0F0F14; }
         .badge-orange { background: var(--orange); color: #0F0F14; }
         .badge-gray { background: var(--border-color); color: var(--text-secondary); }
-
         .btn {
             display: inline-flex;
             align-items: center;
@@ -126,16 +116,8 @@
         }
         .stat-value .currency { font-size: 1rem; font-weight: 400; color: var(--text-secondary); margin-left: 4px; }
 
-        /* Таблицы */
-        .table-wrap {
-            overflow-x: auto;
-            margin-top: 12px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.9rem;
-        }
+        .table-wrap { overflow-x: auto; margin-top: 12px; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
         th {
             text-align: left;
             padding: 12px 12px 12px 0;
@@ -169,14 +151,7 @@
             transition: width 0.6s ease;
         }
 
-        /* графики (простые) */
-        .chart-bar {
-            display: flex;
-            align-items: flex-end;
-            gap: 8px;
-            height: 100px;
-            padding-top: 10px;
-        }
+        .chart-bar { display: flex; align-items: flex-end; gap: 8px; height: 100px; padding-top: 10px; }
         .chart-bar-item {
             flex: 1;
             background: var(--blue);
@@ -186,14 +161,8 @@
             position: relative;
         }
         .chart-bar-item:hover { opacity: 0.8; }
-        .chart-bar-label {
-            font-size: 0.6rem;
-            color: var(--text-secondary);
-            text-align: center;
-            margin-top: 4px;
-        }
+        .chart-bar-label { font-size: 0.6rem; color: var(--text-secondary); text-align: center; margin-top: 4px; }
 
-        /* Логотип */
         .logo {
             display: flex;
             align-items: center;
@@ -220,7 +189,6 @@
             text-fill-color: #fff;
         }
 
-        /* Лента событий */
         .log-entry {
             padding: 8px 0;
             border-bottom: 1px solid var(--border-color);
@@ -233,7 +201,6 @@
         .log-time { color: var(--text-secondary); font-size: 0.7rem; white-space: nowrap; }
         .log-icon { width: 20px; text-align: center; color: var(--text-secondary); }
 
-        /* Адаптивность */
         @media (max-width: 768px) {
             body { padding: 12px; }
             .stat-grid { grid-template-columns: 1fr 1fr; }
@@ -244,27 +211,17 @@
             .stat-grid { grid-template-columns: 1fr; }
         }
 
-        /* Анимации */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-in {
-            animation: fadeInUp 0.3s ease forwards;
-        }
-        .highlight-flash {
-            animation: flashBg 1s ease;
-        }
+        .animate-in { animation: fadeInUp 0.3s ease forwards; }
+        .highlight-flash { animation: flashBg 1s ease; }
         @keyframes flashBg {
             0%, 100% { background: transparent; }
             30% { background: rgba(0,201,167,0.15); }
         }
 
-        /* Доп. стили для тултипов */
-        .tooltip-trigger {
-            cursor: help;
-            border-bottom: 1px dashed var(--text-secondary);
-        }
         .text-cyan { color: var(--cyan); }
         .text-orange { color: var(--orange); }
         .text-blue { color: var(--blue); }
@@ -280,6 +237,15 @@
         .me-2 { margin-right: 8px; }
         .ms-1 { margin-left: 4px; }
         .text-center { text-align: center; }
+        select.currency-select {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -293,44 +259,77 @@
         </div>
         <div class="d-flex gap-2 flex-wrap">
             <span class="badge badge-cyan" id="liveIndicator"><i class="fas fa-circle me-1" style="font-size:0.6rem;"></i> LIVE</span>
-            <button class="btn btn-outline" style="padding: 6px 14px; font-size:0.8rem;" onclick="refreshData()"><i class="fas fa-sync-alt me-1"></i> Обновить</button>
-            <span style="color:var(--text-secondary); font-size:0.85rem;">RU</span>
+            <select class="currency-select" id="currencySwitcher">
+                <option value="USD" selected>USD ($)</option>
+                <option value="EUR">EUR (€)</option>
+                <option value="SAR">SAR (﷼)</option>
+                <option value="JPY">JPY (¥)</option>
+            </select>
+            <button class="btn btn-outline" style="padding: 6px 14px; font-size:0.8rem;" onclick="refreshData()"><i class="fas fa-sync-alt me-1"></i> Refresh</button>
+            <span style="color:var(--text-secondary); font-size:0.85rem;">EN</span>
         </div>
     </header>
 
-    <!-- ================= KPI ================= -->
+    <!-- ================= KPI (Tokenized Ecosystem) ================= -->
     <section class="stat-grid" id="kpiGrid">
         <div class="stat-card animate-in">
-            <div class="stat-label"><i class="fas fa-bullseye me-1"></i> Активные мишени (CAMEO)</div>
-            <div class="stat-value" id="kpiTargets">14</div>
+            <div class="stat-label"><i class="fas fa-coins me-1"></i> QFLD Token Price</div>
+            <div class="stat-value" id="kpiTokenPrice">$0.30</div>
         </div>
         <div class="stat-card animate-in" style="animation-delay:0.05s;">
-            <div class="stat-label"><i class="fas fa-dna me-1"></i> Решено игроками</div>
-            <div class="stat-value" id="kpiSolved">328</div>
+            <div class="stat-label"><i class="fas fa-chart-line me-1"></i> Market Cap (Fully Diluted)</div>
+            <div class="stat-value" id="kpiMarketCap">$30.00M</div>
         </div>
         <div class="stat-card animate-in" style="animation-delay:0.1s;">
-            <div class="stat-label"><i class="fas fa-coins me-1"></i> Выплачено роялти</div>
-            <div class="stat-value" id="kpiPaid">2.6 <span class="currency">млн ₽</span></div>
+            <div class="stat-label"><i class="fas fa-dna me-1"></i> Active CAMEO Targets</div>
+            <div class="stat-value" id="kpiTargets">14</div>
         </div>
         <div class="stat-card animate-in" style="animation-delay:0.15s;">
-            <div class="stat-label"><i class="fas fa-users me-1"></i> Активных игроков (24ч)</div>
-            <div class="stat-value" id="kpiDAU">1 247</div>
+            <div class="stat-label"><i class="fas fa-check-circle me-1"></i> Structures Solved (by Players)</div>
+            <div class="stat-value" id="kpiSolved">328</div>
         </div>
         <div class="stat-card animate-in" style="animation-delay:0.2s;">
-            <div class="stat-label"><i class="fas fa-clock me-1"></i> Среднее время на структуру</div>
-            <div class="stat-value" id="kpiAvgTime">6.8 <span class="currency">ч</span></div>
+            <div class="stat-label"><i class="fas fa-gem me-1"></i> Total Royalties Paid</div>
+            <div class="stat-value" id="kpiPaid">$2.60M</div>
         </div>
         <div class="stat-card animate-in" style="animation-delay:0.25s;">
-            <div class="stat-label"><i class="fas fa-trophy me-1"></i> Место в CAMEO</div>
-            <div class="stat-value" id="kpiRank">#2</div>
+            <div class="stat-label"><i class="fas fa-users me-1"></i> Daily Active Players</div>
+            <div class="stat-value" id="kpiDAU">1 247</div>
         </div>
     </section>
 
-    <!-- ================= CAMEO БЛОК ================= -->
+    <!-- ================= DEPARTMENT & TOKEN ALLOCATION (Snapshot) ================= -->
     <section class="card mb-4 animate-in">
         <div class="flex-between mb-2">
-            <h3 style="font-size:1.1rem; font-weight:600;"><i class="fas fa-flask me-2"></i>Интеграция с CAMEO</h3>
-            <span class="badge badge-blue"><i class="far fa-clock me-1"></i>Обновлено: сегодня 14:23</span>
+            <h3 style="font-size:1.1rem; font-weight:600;"><i class="fas fa-cubes me-2"></i>Tokenized Departments & Pools</h3>
+            <span class="badge badge-blue"><i class="fas fa-link me-1"></i>Smart Contract: 0xQFLD...a1b2</span>
+        </div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Department</th>
+                        <th>Key Microservices</th>
+                        <th>Token Pool</th>
+                        <th>Allocated Value</th>
+                        <th>Revenue Share (Platform 20%)</th>
+                    </tr>
+                </thead>
+                <tbody id="departmentTableBody">
+                    <!-- JS rendered with currency -->
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-top: 12px; font-size:0.8rem; color:var(--text-secondary);">
+            <i class="fas fa-info-circle me-1"></i> Founder retains 51% (control). Department pools are fixed; internal redistribution managed by department heads via IPFS‑recorded agreements.
+        </div>
+    </section>
+
+    <!-- ================= INDUSTRIAL CAMEO LEADERBOARD ================= -->
+    <section class="card mb-4 animate-in">
+        <div class="flex-between mb-2">
+            <h3 style="font-size:1.1rem; font-weight:600;"><i class="fas fa-flask me-2"></i>Industrial CAMEO Leaderboard</h3>
+            <span class="badge badge-blue"><i class="far fa-clock me-1"></i>Updated: Today 14:23</span>
         </div>
         <div style="display:grid; grid-template-columns: 2fr 1fr; gap:20px;">
             <div>
@@ -338,24 +337,20 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>ID мишени</th>
-                                <th>Сложность</th>
-                                <th>Статус</th>
-                                <th>Прогресс</th>
-                                <th>Рейтинг</th>
+                                <th>Target ID</th>
+                                <th>Module</th>
+                                <th>Difficulty</th>
+                                <th>Status</th>
+                                <th>Accuracy Score</th>
                             </tr>
                         </thead>
-                        <tbody id="cameoTableBody">
-                            <!-- рендерится JS -->
-                        </tbody>
+                        <tbody id="cameoTableBody"></tbody>
                     </table>
                 </div>
             </div>
             <div>
-                <div style="font-size:0.8rem; color:var(--text-secondary);">Поступление мишеней за неделю</div>
-                <div class="chart-bar" id="weeklyChart" style="height:80px; margin-top:8px;">
-                    <!-- заполняется JS -->
-                </div>
+                <div style="font-size:0.8rem; color:var(--text-secondary);">Weekly Targets Submitted</div>
+                <div class="chart-bar" id="weeklyChart" style="height:80px; margin-top:8px;"></div>
                 <div class="d-flex flex-wrap gap-2 mt-2">
                     <span class="badge badge-cyan">Easy 4</span>
                     <span class="badge badge-blue">Medium 6</span>
@@ -365,51 +360,50 @@
         </div>
     </section>
 
-    <!-- ================= ROYALTIES БЛОК (ЦЕНТРАЛЬНЫЙ) ================= -->
+    <!-- ================= ROYALTIES & REVENUE DISTRIBUTION ================= -->
     <section class="card mb-4 animate-in" style="border-color: var(--cyan);">
         <div class="flex-between mb-2">
-            <h3 style="font-size:1.1rem; font-weight:600;"><i class="fas fa-gem me-2"></i>Роялти — кто платит, за что и сколько</h3>
-            <span class="badge badge-cyan"><i class="fas fa-lock me-1"></i>Эскроу: 1 240 000 ₽</span>
+            <h3 style="font-size:1.1rem; font-weight:600;"><i class="fas fa-gem me-2"></i>Royalties — Who Pays, What & How (70/20/10)</h3>
+            <span class="badge badge-cyan" id="escrowBadge"><i class="fas fa-lock me-1"></i>Escrow: $1 240 000</span>
         </div>
 
-        <!-- Карточки-статистики по роялти -->
         <div class="stat-grid" style="grid-template-columns: repeat(4,1fr); margin-bottom:20px;">
             <div class="stat-card">
-                <div class="stat-label"><i class="fas fa-file-contract me-1"></i>Активных контрактов</div>
+                <div class="stat-label"><i class="fas fa-file-contract me-1"></i>Active Contracts</div>
                 <div class="stat-value" style="font-size:1.4rem;">11</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label"><i class="fas fa-hand-holding-usd me-1"></i>Средняя выплата</div>
-                <div class="stat-value" style="font-size:1.4rem;">42 500 ₽</div>
+                <div class="stat-label"><i class="fas fa-hand-holding-usd me-1"></i>Avg Payout</div>
+                <div class="stat-value" style="font-size:1.4rem;" id="avgPayout">$42 500</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label"><i class="fas fa-hourglass-half me-1"></i>Среднее время решения</div>
-                <div class="stat-value" style="font-size:1.4rem;">6.8 ч</div>
+                <div class="stat-label"><i class="fas fa-hourglass-half me-1"></i>Avg Solve Time</div>
+                <div class="stat-value" style="font-size:1.4rem;">6.8 <span class="currency">h</span></div>
             </div>
             <div class="stat-card">
-                <div class="stat-label"><i class="fas fa-wallet me-1"></i>Выплачено игрокам</div>
-                <div class="stat-value" style="font-size:1.4rem;">2 600 000 ₽</div>
+                <div class="stat-label"><i class="fas fa-wallet me-1"></i>Paid to Players (70%)</div>
+                <div class="stat-value" style="font-size:1.4rem;" id="paidToPlayers">$2 600 000</div>
             </div>
         </div>
 
-        <!-- Таблица платежей -->
         <div class="flex-between">
-            <span style="font-weight:600;">История выплат</span>
+            <span style="font-weight:600;">Payment History</span>
             <div class="d-flex gap-2">
                 <select style="background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color); border-radius:6px; padding:4px 8px;" id="customerFilter">
-                    <option>Все заказчики</option>
+                    <option>All Customers</option>
                     <option>Biocad</option>
                     <option>GNPC</option>
                     <option>AstraZeneca</option>
                     <option>Aramco</option>
+                    <option>Joy Energy</option>
                     <option>Medical Genomics</option>
                     <option>Genotek</option>
                 </select>
                 <select style="background:var(--bg-secondary); color:var(--text-primary); border:1px solid var(--border-color); border-radius:6px; padding:4px 8px;" id="statusFilter">
-                    <option>Все статусы</option>
-                    <option>Выплачено</option>
-                    <option>В обработке</option>
-                    <option>Ожидает подтверждения</option>
+                    <option>All Status</option>
+                    <option>Paid</option>
+                    <option>Processing</option>
+                    <option>Pending Confirmation</option>
                 </select>
             </div>
         </div>
@@ -417,126 +411,195 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Заказчик</th>
-                        <th>Мишень</th>
-                        <th>Сумма (₽)</th>
-                        <th>Статус</th>
-                        <th>Игрок(и)</th>
-                        <th>Время (ч)</th>
-                        <th>Дата выплаты</th>
+                        <th>Customer</th>
+                        <th>Target</th>
+                        <th>Department</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Player(s)</th>
+                        <th>Time (h)</th>
+                        <th>Date</th>
                     </tr>
                 </thead>
-                <tbody id="royaltyTableBody">
-                    <!-- рендерится JS -->
-                </tbody>
+                <tbody id="royaltyTableBody"></tbody>
             </table>
         </div>
 
-        <!-- Инфографика цикла -->
         <div style="margin-top:24px; background:var(--bg-secondary); border-radius:var(--radius); padding:16px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; align-items:center;">
             <div style="display:flex; gap:8px; flex-wrap:wrap; font-size:0.85rem;">
-                <span><span class="badge badge-blue">1</span> Заказчик ставит задачу + бюджет</span>
+                <span><span class="badge badge-blue">1</span> Customer submits task + budget</span>
                 <span>→</span>
-                <span><span class="badge badge-purple">2</span> Мишень → игра (рейд)</span>
+                <span><span class="badge badge-purple">2</span> Target → Game (Raid)</span>
                 <span>→</span>
-                <span><span class="badge badge-cyan">3</span> Игроки решают (1–72 ч)</span>
+                <span><span class="badge badge-cyan">3</span> Players solve (1‑72 h)</span>
                 <span>→</span>
-                <span><span class="badge badge-orange">4</span> Валидация квантовым бэкендом</span>
+                <span><span class="badge badge-orange">4</span> Quantum backend validates</span>
                 <span>→</span>
-                <span><span class="badge badge-blue">5</span> Заказчик подтверждает</span>
+                <span><span class="badge badge-blue">5</span> Customer confirms</span>
                 <span>→</span>
-                <span><span class="badge badge-cyan"><i class="fas fa-gem me-1"></i></span> 70% игрокам, 20% платформе, 10% науке</span>
+                <span><span class="badge badge-cyan"><i class="fas fa-gem me-1"></i></span> 70% Players, 20% Platform (token holders), 10% Ecosystem Fund</span>
             </div>
             <div>
-                <span class="badge badge-cyan" style="font-size:0.9rem;"><i class="fas fa-clock me-1"></i>⏱ Среднее время: 6.8 ч</span>
+                <span class="badge badge-cyan" style="font-size:0.9rem;"><i class="fas fa-clock me-1"></i>⏱ Avg cycle: 6.8 h</span>
             </div>
         </div>
     </section>
 
-    <!-- ================= ИГРОВАЯ АКТИВНОСТЬ ================= -->
+    <!-- ================= GAMING ACTIVITY & TOP PLAYERS ================= -->
     <section class="card mb-4 animate-in">
         <div class="flex-between mb-2">
-            <h3 style="font-size:1.1rem; font-weight:600;"><i class="fas fa-gamepad me-2"></i>Игровая активность</h3>
-            <span class="badge badge-blue"><i class="fas fa-user me-1"></i>DAU 1 247</span>
+            <h3 style="font-size:1.1rem; font-weight:600;"><i class="fas fa-gamepad me-2"></i>Gaming Activity</h3>
+            <span class="badge badge-blue"><i class="fas fa-user me-1"></i>DAU 1 247</span>
         </div>
         <div style="display:grid; grid-template-columns: 2fr 1fr; gap:20px;">
             <div>
-                <div style="height:80px; display:flex; align-items:flex-end; gap:6px;" id="dauChart">
-                    <!-- заполняется JS -->
-                </div>
-                <div style="font-size:0.7rem; color:var(--text-secondary); margin-top:4px;">DAU за последние 7 дней</div>
+                <div style="height:80px; display:flex; align-items:flex-end; gap:6px;" id="dauChart"></div>
+                <div style="font-size:0.7rem; color:var(--text-secondary); margin-top:4px;">Daily Active Users (last 7 days)</div>
             </div>
             <div>
-                <div style="font-weight:600; font-size:0.9rem;"><i class="fas fa-trophy me-1"></i>Топ-игроки</div>
-                <div id="topPlayers" style="margin-top:8px;">
-                    <!-- рендерится JS -->
-                </div>
+                <div style="font-weight:600; font-size:0.9rem;"><i class="fas fa-trophy me-1"></i>Top Players (by solved)</div>
+                <div id="topPlayers" style="margin-top:8px;"></div>
             </div>
         </div>
     </section>
 
-    <!-- ================= СИСТЕМНЫЕ ЛОГИ ================= -->
+    <!-- ================= SYSTEM LOGS ================= -->
     <section class="card animate-in">
         <div class="flex-between mb-2">
-            <h3 style="font-size:1.1rem; font-weight:600;"><i class="fas fa-list me-2"></i>Системные события</h3>
-            <span class="badge badge-gray"><i class="fas fa-sync-alt fa-spin me-1"></i>в реальном времени</span>
+            <h3 style="font-size:1.1rem; font-weight:600;"><i class="fas fa-list me-2"></i>System Events</h3>
+            <span class="badge badge-gray"><i class="fas fa-sync-alt fa-spin me-1"></i>Real‑time</span>
         </div>
-        <div id="logContainer" style="max-height:180px; overflow-y:auto;">
-            <!-- рендерится JS -->
-        </div>
+        <div id="logContainer" style="max-height:180px; overflow-y:auto;"></div>
     </section>
 
 </div>
 
 <script>
     // =================================================================
-    //  МОКОВЫЕ ДАННЫЕ (с добавленными заказчиками)
+    //  CURRENCY CONFIGURATION
     // =================================================================
+    const currencies = {
+        USD: { symbol: '$', rate: 1, decimals: 2, suffix: '' },
+        EUR: { symbol: '€', rate: 0.85, decimals: 2, suffix: '' },
+        SAR: { symbol: '﷼', rate: 3.75, decimals: 2, suffix: '' },
+        JPY: { symbol: '¥', rate: 110, decimals: 0, suffix: '' }
+    };
+    let currentCurrency = 'USD';
+
+    // Format an amount (in USD) to the selected currency
+    function formatMoney(usdAmount) {
+        const cur = currencies[currentCurrency];
+        const converted = usdAmount * cur.rate;
+        const symbol = cur.symbol;
+        const decimals = cur.decimals;
+        // Format with commas, fixed decimals
+        const formatted = converted.toLocaleString('en-US', {
+            minimumFractionDigits: decimals,
+            maximumFractionDigits: decimals
+        });
+        // For JPY, symbol goes before number with space? Usually ¥1,000. We'll do symbol + formatted
+        return symbol + formatted;
+    }
+
+    // Compact format for large numbers (millions, etc.)
+    function formatMoneyCompact(usdAmount) {
+        const cur = currencies[currentCurrency];
+        const converted = usdAmount * cur.rate;
+        if (converted >= 1e6) {
+            return cur.symbol + (converted / 1e6).toFixed(1) + 'M';
+        } else if (converted >= 1e3) {
+            return cur.symbol + (converted / 1e3).toFixed(1) + 'K';
+        } else {
+            return formatMoney(usdAmount);
+        }
+    }
+
+    // =================================================================
+    //  MOCK DATA (values in USD)
+    // =================================================================
+    const tokenPriceUSD = 0.30;
+    const totalSupply = 100_000_000; // 100M tokens
+    const marketCapUSD = tokenPriceUSD * totalSupply; // $30,000,000
+    const totalRoyaltiesPaidUSD = 2_600_000;
+    const escrowUSD = 1_240_000;
+    const avgPayoutUSD = 42_500;
+    const paidToPlayersUSD = 2_600_000;
+
+    const departmentPools = [
+        { name: 'R&D', microservices: 'rosetta, mining‑bioox, oilgas‑meor, …', poolPercent: 15, valueUSD: marketCapUSD * 0.15 },
+        { name: 'Engineering', microservices: 'api-gateway, fold-core, infrastructure', poolPercent: 8, valueUSD: marketCapUSD * 0.08 },
+        { name: 'Game & Visuals', microservices: 'Unigine/UE5 client, UI/UX', poolPercent: 6, valueUSD: marketCapUSD * 0.06 },
+        { name: 'Business Dev', microservices: 'B2B contracts, licensing, grants', poolPercent: 7, valueUSD: marketCapUSD * 0.07 },
+        { name: 'Reserve / Options', microservices: 'Future hires, strategic advisors', poolPercent: 13, valueUSD: marketCapUSD * 0.13 }
+    ];
+
     const cameoTargets = [
-        { id: 'C001', difficulty: 'Hard', status: 'В игре', progress: 65, rating: null },
-        { id: 'C002', difficulty: 'Medium', status: 'Обработана', progress: 100, rating: 0.92 },
-        { id: 'C003', difficulty: 'Easy', status: 'Отправлена', progress: 100, rating: 0.88 },
-        { id: 'C004', difficulty: 'Hard', status: 'Новая', progress: 0, rating: null },
-        { id: 'C005', difficulty: 'Medium', status: 'В игре', progress: 40, rating: null },
+        { id: 'C001', module: 'Protein Fold', difficulty: 'Hard', status: 'In Game', progress: 65, score: null },
+        { id: 'MINING_07', module: 'mining‑bioox', difficulty: 'Medium', status: 'Validated', progress: 100, score: 0.94 },
+        { id: 'OIL_003', module: 'oilgas‑meor', difficulty: 'Hard', status: 'Submitted', progress: 100, score: 0.89 },
+        { id: 'MG_007', module: 'bio-ml', difficulty: 'Easy', status: 'New', progress: 0, score: null },
+        { id: 'C005', module: 'Protein Fold', difficulty: 'Medium', status: 'In Game', progress: 40, score: null },
     ];
 
     const royaltyPayments = [
-        { customer: 'Biocad', target: 'C001', amount: 45000, status: 'Выплачено', players: '@player1, @player2', hours: 12.5, date: '20.06.2026' },
-        { customer: 'GNPC', target: 'MINING_07', amount: 120000, status: 'В обработке', players: '@player3', hours: 8.0, date: '—' },
-        { customer: 'AstraZeneca', target: 'DRUG_22', amount: 85000, status: 'Ожидает подтверждения', players: '@player4, @player5', hours: 15.2, date: '—' },
-        { customer: 'Biocad', target: 'C002', amount: 32000, status: 'Выплачено', players: '@player6', hours: 5.3, date: '18.06.2026' },
-        { customer: 'GNPC', target: 'MINING_12', amount: 95000, status: 'Выплачено', players: '@player7, @player8', hours: 9.1, date: '15.06.2026' },
-        // Новые заказчики
-        { customer: 'Aramco', target: 'OIL_003', amount: 68000, status: 'Выплачено', players: '@player9, @player10', hours: 10.2, date: '22.06.2026' },
-        { customer: 'Medical Genomics', target: 'MG_007', amount: 54000, status: 'В обработке', players: '@player11', hours: 6.5, date: '—' },
-        { customer: 'Genotek', target: 'GT_012', amount: 76000, status: 'Ожидает подтверждения', players: '@player12, @player13', hours: 14.0, date: '—' },
+        { customer: 'Biocad', target: 'C001', department: 'R&D', amount: 45000, status: 'Paid', players: '@player1, @player2', hours: 12.5, date: '20.06.2026' },
+        { customer: 'GNPC', target: 'MINING_07', department: 'R&D', amount: 120000, status: 'Processing', players: '@player3', hours: 8.0, date: '—' },
+        { customer: 'AstraZeneca', target: 'DRUG_22', department: 'R&D', amount: 85000, status: 'Pending Confirmation', players: '@player4, @player5', hours: 15.2, date: '—' },
+        { customer: 'Biocad', target: 'C002', department: 'R&D', amount: 32000, status: 'Paid', players: '@player6', hours: 5.3, date: '18.06.2026' },
+        { customer: 'Joy Energy', target: 'OIL_003', department: 'R&D', amount: 68000, status: 'Paid', players: '@player9, @player10', hours: 10.2, date: '22.06.2026' },
+        { customer: 'Medical Genomics', target: 'MG_007', department: 'R&D', amount: 54000, status: 'Processing', players: '@player11', hours: 6.5, date: '—' },
+        { customer: 'Genotek', target: 'GT_012', department: 'Engineering', amount: 76000, status: 'Pending Confirmation', players: '@player12, @player13', hours: 14.0, date: '—' },
+        { customer: 'GNPC', target: 'MINING_12', department: 'R&D', amount: 95000, status: 'Paid', players: '@player7, @player8', hours: 9.1, date: '15.06.2026' },
     ];
 
     const logs = [
-        { time: '14:23', icon: 'fa-download', msg: 'Получена новая мишень C006 (Hard) от CAMEO' },
-        { time: '13:55', icon: 'fa-check-circle', msg: 'Игроки завершили рейд по C003 — отправлено в CAMEO' },
-        { time: '12:10', icon: 'fa-gem', msg: 'Выплачено 45 000 ₽ игрокам за структуру C001 (Biocad)' },
-        { time: '11:45', icon: 'fa-cog', msg: 'Запущен препроцессинг для мишени C005' },
-        { time: '10:00', icon: 'fa-trophy', msg: 'Сервер qFoldIT поднялся на #2 в рейтинге CAMEO' },
-        { time: '09:30', icon: 'fa-file-signature', msg: 'Новый контракт с Aramco на 3 мишени' },
-        { time: '08:15', icon: 'fa-dna', msg: 'Medical Genomics добавила целевую последовательность' },
+        { time: '14:23', icon: 'fa-download', msg: 'New target C006 (Hard) received from CAMEO' },
+        { time: '13:55', icon: 'fa-check-circle', msg: 'Players completed raid on C003 – sent to CAMEO' },
+        { time: '12:10', icon: 'fa-gem', msg: 'Paid $45 000 to players for structure C001 (Biocad, R&D)' },
+        { time: '11:45', icon: 'fa-cog', msg: 'Preprocessing started for target C005' },
+        { time: '10:00', icon: 'fa-trophy', msg: 'qFoldIT ranked #2 in Industrial CAMEO Leaderboard' },
+        { time: '09:30', icon: 'fa-file-signature', msg: 'New contract signed with Joy Energy for 3 oilgas‑meor targets' },
+        { time: '08:15', icon: 'fa-dna', msg: 'Medical Genomics added a custom target sequence' },
+        { time: '07:50', icon: 'fa-coins', msg: 'Ecosystem Fund (10%) allocated $12 000 for community grants' },
     ];
 
     // =================================================================
-    //  РЕНДЕРИНГ
+    //  RENDERING FUNCTIONS (currency-aware)
     // =================================================================
+    function renderKPI() {
+        document.getElementById('kpiTokenPrice').innerHTML = formatMoney(tokenPriceUSD);
+        document.getElementById('kpiMarketCap').innerHTML = formatMoneyCompact(marketCapUSD);
+        document.getElementById('kpiPaid').innerHTML = formatMoneyCompact(totalRoyaltiesPaidUSD);
+    }
+
+    function renderDepartments() {
+        const tbody = document.getElementById('departmentTableBody');
+        tbody.innerHTML = departmentPools.map(d => {
+            const badgeClass = d.name.includes('R&D') ? 'badge-blue' : 
+                               d.name.includes('Engineering') ? 'badge-purple' :
+                               d.name.includes('Game') ? 'badge-cyan' :
+                               d.name.includes('Business') ? 'badge-orange' : 'badge-gray';
+            return `
+                <tr>
+                    <td><span class="badge ${badgeClass}">${d.name}</span></td>
+                    <td>${d.microservices}</td>
+                    <td>${d.poolPercent}%</td>
+                    <td>${formatMoneyCompact(d.valueUSD)}</td>
+                    <td>Dividends from relevant contracts</td>
+                </tr>
+            `;
+        }).join('');
+    }
+
     function renderCameo() {
         const tbody = document.getElementById('cameoTableBody');
         tbody.innerHTML = cameoTargets.map(t => `
             <tr>
                 <td><span class="fw-bold">${t.id}</span></td>
+                <td>${t.module}</td>
                 <td><span class="badge ${t.difficulty === 'Hard' ? 'badge-orange' : t.difficulty === 'Medium' ? 'badge-blue' : 'badge-cyan'}">${t.difficulty}</span></td>
                 <td>${t.status}</td>
-                <td>
-                    <div class="progress-bar"><div class="progress-fill" style="width:${t.progress}%;"></div></div>
-                    <span style="font-size:0.7rem; color:var(--text-secondary);">${t.progress}%</span>
-                </td>
-                <td>${t.rating ? t.rating.toFixed(2) : '—'}</td>
+                <td>${t.score ? t.score.toFixed(2) : '—'}</td>
             </tr>
         `).join('');
     }
@@ -547,13 +610,19 @@
             <tr>
                 <td>${p.customer}</td>
                 <td>${p.target}</td>
-                <td>${p.amount.toLocaleString()} ₽</td>
-                <td><span class="badge ${p.status === 'Выплачено' ? 'badge-cyan' : p.status === 'В обработке' ? 'badge-blue' : 'badge-orange'}">${p.status}</span></td>
+                <td><span class="badge badge-blue">${p.department}</span></td>
+                <td>${formatMoney(p.amount)}</td>
+                <td><span class="badge ${p.status === 'Paid' ? 'badge-cyan' : p.status === 'Processing' ? 'badge-blue' : 'badge-orange'}">${p.status}</span></td>
                 <td>${p.players}</td>
                 <td>${p.hours}</td>
                 <td>${p.date}</td>
             </tr>
         `).join('');
+
+        // Update summary stats
+        document.getElementById('avgPayout').innerHTML = formatMoney(avgPayoutUSD);
+        document.getElementById('paidToPlayers').innerHTML = formatMoney(paidToPlayersUSD);
+        document.getElementById('escrowBadge').innerHTML = `<i class="fas fa-lock me-1"></i>Escrow: ${formatMoney(escrowUSD)}`;
     }
 
     function renderLogs() {
@@ -569,7 +638,7 @@
 
     function renderWeeklyChart() {
         const container = document.getElementById('weeklyChart');
-        const days = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+        const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
         const vals = [5, 8, 3, 7, 6, 9, 4];
         const max = Math.max(...vals);
         container.innerHTML = vals.map((v,i) => `
@@ -582,7 +651,7 @@
 
     function renderDAU() {
         const container = document.getElementById('dauChart');
-        const days = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+        const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
         const vals = [980, 1050, 1200, 1150, 1300, 1247, 1180];
         const max = Math.max(...vals);
         container.innerHTML = vals.map((v,i) => `
@@ -605,24 +674,34 @@
         container.innerHTML = players.map(p => `
             <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px solid var(--border-color); font-size:0.85rem;">
                 <span>${p.name}</span>
-                <span style="color:var(--text-secondary);">${p.solved} структур</span>
+                <span style="color:var(--text-secondary);">${p.solved} structures</span>
             </div>
         `).join('');
     }
 
     // =================================================================
-    //  ОБНОВЛЕНИЕ (имитация реального времени)
+    //  UPDATE ALL MONEY DISPLAYS WHEN CURRENCY CHANGES
+    // =================================================================
+    function updateAllMoney() {
+        renderKPI();
+        renderDepartments();
+        renderRoyalties();
+        // Log mentions are static text, but we could update if needed (they contain $ amounts)
+    }
+
+    document.getElementById('currencySwitcher').addEventListener('change', function(e) {
+        currentCurrency = e.target.value;
+        updateAllMoney();
+    });
+
+    // =================================================================
+    //  REAL‑TIME UPDATES SIMULATION
     // =================================================================
     function refreshData() {
-        const paid = document.getElementById('kpiPaid');
-        const current = parseFloat(paid.textContent);
-        if (!isNaN(current)) {
-            const newVal = (current + Math.random() * 0.1).toFixed(1);
-            paid.innerHTML = newVal + ' <span class="currency">млн ₽</span>';
-        }
-        const btn = document.querySelector('.btn-outline');
-        btn.style.transform = 'scale(0.95)';
-        setTimeout(() => btn.style.transform = '', 200);
+        // Simulate slight increase in royalties paid
+        const paidEl = document.getElementById('kpiPaid');
+        // We don't actually modify the underlying data, just re-render (maybe add a small random bump)
+        // For demonstration, we just re-render with current values and log.
         const logContainer = document.getElementById('logContainer');
         const newLog = document.createElement('div');
         newLog.className = 'log-entry highlight-flash';
@@ -631,7 +710,7 @@
         newLog.innerHTML = `
             <span class="log-time">${time}</span>
             <span class="log-icon"><i class="fas fa-sync-alt"></i></span>
-            <span>Данные обновлены (ручная синхронизация)</span>
+            <span>Dashboard manually refreshed</span>
         `;
         logContainer.prepend(newLog);
         if (logContainer.children.length > 20) {
@@ -639,42 +718,46 @@
         }
     }
 
+    // Auto‑insert random log events every 30s
+    setInterval(() => {
+        const logContainer = document.getElementById('logContainer');
+        const newLog = document.createElement('div');
+        newLog.className = 'log-entry highlight-flash';
+        const now = new Date();
+        const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
+        const events = [
+            { icon: 'fa-chart-line', msg: 'New CAMEO rating received' },
+            { icon: 'fa-bolt', msg: 'Players completed a raid' },
+            { icon: 'fa-gem', msg: 'Royalty payment confirmed on smart contract' },
+            { icon: 'fa-download', msg: 'New target from Industrial CAMEO' },
+            { icon: 'fa-file-signature', msg: 'New contract signed with a biotech partner' },
+            { icon: 'fa-coins', msg: '10% Ecosystem Fund disbursed for community grant' }
+        ];
+        const randomEvent = events[Math.floor(Math.random() * events.length)];
+        newLog.innerHTML = `
+            <span class="log-time">${time}</span>
+            <span class="log-icon"><i class="fas ${randomEvent.icon}"></i></span>
+            <span>${randomEvent.msg}</span>
+        `;
+        logContainer.prepend(newLog);
+        if (logContainer.children.length > 20) {
+            logContainer.removeChild(logContainer.lastChild);
+        }
+    }, 30000);
+
     // =================================================================
-    //  ИНИЦИАЛИЗАЦИЯ
+    //  INITIAL RENDER
     // =================================================================
     document.addEventListener('DOMContentLoaded', () => {
+        // Set initial currency to USD (already selected in <select>)
+        currentCurrency = 'USD';
+        updateAllMoney();
         renderCameo();
-        renderRoyalties();
         renderLogs();
         renderWeeklyChart();
         renderDAU();
         renderTopPlayers();
-
-        setInterval(() => {
-            const logContainer = document.getElementById('logContainer');
-            const newLog = document.createElement('div');
-            newLog.className = 'log-entry highlight-flash';
-            const now = new Date();
-            const time = now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
-            const events = [
-                { icon: 'fa-chart-line', msg: 'Получен новый рейтинг CAMEO' },
-                { icon: 'fa-bolt', msg: 'Игроки завершили рейд' },
-                { icon: 'fa-gem', msg: 'Выплата по контракту подтверждена' },
-                { icon: 'fa-download', msg: 'Новая мишень от CAMEO' },
-                { icon: 'fa-file-signature', msg: 'Подписан новый контракт с заказчиком' }
-            ];
-            const randomEvent = events[Math.floor(Math.random() * events.length)];
-            newLog.innerHTML = `
-                <span class="log-time">${time}</span>
-                <span class="log-icon"><i class="fas ${randomEvent.icon}"></i></span>
-                <span>${randomEvent.msg}</span>
-            `;
-            logContainer.prepend(newLog);
-            if (logContainer.children.length > 20) {
-                logContainer.removeChild(logContainer.lastChild);
-            }
-        }, 30000);
     });
 </script>
 </body>
-</html>              
+</html>
