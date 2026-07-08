@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>qFoldIT — Open Science Platform for Quantum‑Gamified Molecular Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://ahiakwa.github.io/assets/adinkra-icons/css/icons.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ========== RESET & GLOBAL ========== */
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #0A0C0F;
+            font-family: "Inter", sans-serif;
+            color: #E1E3E6;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .dashboard {
+            flex: 1;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 24px 40px;
+        }
+
+        .company-header {
+            margin: 40px 0 30px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
+        }
+
+        /* ----- ЛОГОТИП (белый, без фона) ----- */
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1rem;
+            font-size: clamp(16px, 3.5vw, 22px);
+        }
+        .logo-symbol {
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-symbol .adk-gye-nyame {
+            font-size: 6.2em;
+            color: #ffffff;
+            display: block;
+            line-height: 1;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+        .logo-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+        .logo-fold {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #ffffff;
+            font-size: 4.2em;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+        }
+        .logo-uantum {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #ffffff;
+            font-size: 2.4em;
+            line-height: 1;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+        }
+        .logo-it {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #ffffff;
+            font-size: 6.6em;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Адаптивность логотипа */
+        @media (max-width: 680px) {
+            .logo { gap: 0.6rem; }
+            .logo-symbol .adk-gye-nyame { font-size: 5.2em; }
+            .logo-fold { font-size: 3.5em; }
+            .logo-uantum { font-size: 2.0em; }
+            .logo-it { font-size: 5.5em; }
+        }
+        @media (max-width: 480px) {
+            .logo { gap: 0.4rem; }
+            .logo-symbol .adk-gye-nyame { font-size: 4.5em; }
+            .logo-fold { font-size: 3em; }
+            .logo-uantum { font-size: 1.7em; }
+            .logo-it { font-size: 4.7em; }
+        }
+
+        .status-badge {
+            background: #28a745;
+            color: white;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .intro-block {
+            background: rgba(20, 25, 30, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .intro-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .intro-title i { color: #0077FF; }
+        .intro-subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            margin: 30px 0 15px;
+            border-bottom: 1px solid #2a3035;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .intro-text {
+            color: #c0c4cc;
+            line-height: 1.7;
+            margin-bottom: 1.5em;
+        }
+        .poster-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 40px 0;
+        }
+        .poster-block {
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(20, 25, 30, 0.8);
+        }
+        .poster-single {
+            margin: 20px 0;
+        }
+        .poster-single img, .poster-block img {
+            width: 100%;
+            border-radius: 20px;
+            display: block;
+        }
+        .book-block {
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(20, 25, 30, 0.8);
+            margin: 20px 0 40px;
+        }
+        .poster-image, .book-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .poster-image:hover, .book-image:hover { transform: scale(1.02); }
+        .poster-caption, .book-caption {
+            padding: 16px 24px;
+            color: #8a9099;
+            font-size: 0.95rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .poster-caption i, .book-caption i { color: #0077FF; }
+
+        .accordion { margin: 30px 0 50px; }
+        .accordion-item {
+            background: rgba(20, 25, 30, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            overflow: hidden;
+        }
+        .accordion-header {
+            padding: 20px 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: white;
+            background: rgba(30,35,40,0.5);
+            transition: background 0.2s;
+        }
+        .accordion-header:hover { background: rgba(40,45,50,0.8); }
+        .accordion-header i { transition: transform 0.3s; color: #0077FF; }
+        .accordion-item.open .accordion-header i:last-child { transform: rotate(180deg); }
+        .accordion-content {
+            max-height: 0;
+            padding: 0 24px;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.3s;
+        }
+        .accordion-item.open .accordion-content {
+            max-height: 6000px;
+            padding: 20px 24px 24px 24px;
+        }
+
+        .team-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .team-card {
+            background: rgba(0,0,0,0.3);
+            border-radius: 24px;
+            padding: 24px;
+            border-left: 5px solid #0077FF;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: flex-start;
+        }
+        .team-photo {
+            flex-shrink: 0;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #1e2328;
+            border: 2px solid #0077FF;
+        }
+        .team-info {
+            flex: 1;
+        }
+        .team-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+        .team-role {
+            font-size: 1.1rem;
+            color: #0077FF;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.3px;
+        }
+        .team-detail {
+            color: #b0b4bc;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+        .team-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #8a9099;
+        }
+        .team-meta i {
+            width: 20px;
+            color: #0077FF;
+        }
+        .orcid-link {
+            color: #a6ce39;
+            text-decoration: none;
+            font-family: monospace;
+        }
+        .orcid-link:hover {
+            text-decoration: underline;
+        }
+        .age-badge {
+            background: rgba(0,119,255,0.2);
+            border-radius: 30px;
+            padding: 2px 12px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-left: 12px;
+            font-weight: normal;
+        }
+
+        /* ----- 4‑LAYER ARCHITECTURE CARDS ----- */
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .arch-card {
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 24px;
+            padding: 24px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: transform 0.2s, border-color 0.2s;
+            text-align: center;
+        }
+        .arch-card:hover {
+            transform: translateY(-6px);
+            border-color: #0077FF;
+            background: rgba(0, 119, 255, 0.05);
+        }
+        .arch-icon {
+            font-size: 3rem;
+            color: #0077FF;
+            margin-bottom: 16px;
+        }
+        .arch-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 8px;
+        }
+        .arch-sub {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a9099;
+            margin-bottom: 14px;
+        }
+        .arch-desc {
+            font-size: 0.85rem;
+            color: #b0b4bc;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+        .arch-tech {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            margin-top: auto;
+        }
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            color: #a0c4ff;
+            border: 1px solid rgba(0, 119, 255, 0.2);
+        }
+
+        .pipeline-table {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 12px 20px;
+            margin: 20px 0 10px;
+            background: rgba(0,0,0,0.2);
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .pipeline-step {
+            color: #0077FF;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .pipeline-desc {
+            color: #c0c4cc;
+        }
+        .pipeline-tech {
+            color: #8a9099;
+            font-family: monospace;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 900px) {
+            .architecture-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 560px) {
+            .architecture-grid {
+                grid-template-columns: 1fr;
+            }
+            .pipeline-table {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+        }
+
+        .resources-container {
+            background: rgba(20, 25, 30, 0.8);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            padding: 28px 30px;
+            margin: 20px 0 30px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 28px;
+            align-items: start;
+        }
+        .resources-heading {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 4px solid #0077FF;
+            padding-left: 18px;
+        }
+        .resources-heading i { color: #0077FF; font-size: 1.8rem; }
+
+        .horizontal-links {
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+        }
+        .horizontal-links-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .horizontal-links-title i {
+            color: #0077FF;
+        }
+        .links-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+        .link-horizontal-item {
+            flex: 1;
+            min-width: 220px;
+            background: rgba(0,0,0,0.25);
+            border-radius: 20px;
+            padding: 14px 18px;
+            transition: background 0.2s, transform 0.1s;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .link-horizontal-item:hover {
+            background: rgba(0,119,255,0.1);
+            transform: translateY(-2px);
+        }
+        .link-horizontal-item a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: #E1E3E6;
+            font-weight: 500;
+        }
+        .link-horizontal-item a i {
+            width: 32px;
+            font-size: 1.6rem;
+            color: #0077FF;
+            text-align: center;
+        }
+        .link-horizontal-item .link-text {
+            flex: 1;
+        }
+        .link-horizontal-item .link-url {
+            font-size: 0.7rem;
+            color: #8a9099;
+            font-family: monospace;
+            word-break: break-all;
+            display: block;
+            margin-top: 4px;
+        }
+        .link-horizontal-item a:hover .link-url {
+            color: #0077FF;
+        }
+
+        .book-cover-card {
+            background: rgba(0,0,0,0.2);
+            border-radius: 24px;
+            padding: 12px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .book-cover-card:hover {
+            transform: translateY(-4px);
+        }
+        .book-cover-card img {
+            max-width: 100%;
+            border-radius: 18px;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: transform 0.25s ease;
+        }
+        .book-cover-card img:hover { transform: scale(1.01); }
+        .book-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 18px 0 8px;
+            color: white;
+        }
+        .book-author { color: #8a9099; font-size: 0.9rem; margin-bottom: 12px; }
+        .book-desc {
+            font-size: 0.85rem;
+            color: #b0b4bc;
+            line-height: 1.5;
+            margin: 12px 0;
+        }
+        .book-meta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,119,255,0.12);
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            color: #a0c4ff;
+            margin-top: 8px;
+        }
+        .book-meta-link:hover { background: rgba(0,119,255,0.25); color: white; }
+
+        .award-list {
+            list-style: none;
+            margin: 1em 0 1em 1.5em;
+        }
+        .award-list li {
+            margin-bottom: 0.5em;
+            position: relative;
+        }
+        .award-list li::before {
+            content: "🏆";
+            position: absolute;
+            left: -1.8em;
+            top: 0;
+            font-size: 1rem;
+        }
+
+        .footer {
+            background-color: white;
+            padding: 20px 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            width: 100%;
+            flex-shrink: 0;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        .footer a {
+            display: inline-flex;
+            align-items: center;
+            transition: transform 0.2s ease;
+        }
+        .footer a:hover {
+            transform: scale(1.05);
+        }
+        .partner-logo-footer {
+            max-height: 55px;
+            width: auto;
+        }
+        @media (max-width: 1000px) {
+            .links-row {
+                flex-direction: column;
+            }
+        }
+        @media (max-width: 700px) {
+            .footer { gap: 25px; padding: 16px 20px; }
+            .partner-logo-footer { max-height: 40px; }
+            .poster-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="dashboard">
+    <div class="company-header">
+        <div class="logo">
+            <div class="logo-symbol" aria-label="Gye Nyame – божественное верховенство">
+                <i class="adk adk-gye-nyame"></i>
+            </div>
+            <div class="logo-center">
+                <div class="logo-fold">FOLD</div>
+                <div class="logo-uantum">UANTUM</div>
+            </div>
+            <div class="logo-it">IT</div>
+        </div>
+        <div class="status-badge">OPEN SCIENCE PLATFORM</div>
+    </div>
+
+    <!-- ==================== 1. PROBLEM & MISSION ==================== -->
+    <div class="intro-block">
+        <div class="intro-title"><i class="fas fa-bullseye"></i> The Protein Folding Challenge</div>
+        <p class="intro-text">Predicting the 3D structure of proteins remains one of the hardest problems in computational biology — NP‑complete even in simplified models. While deep learning (AlphaFold) and citizen science (FoldIT) have made tremendous progress, many cases (intrinsically disordered proteins, membrane proteins, metalloenzymes) still require quantum‑aware energy evaluations and human intuition.</p>
+        <p class="intro-text"><strong>qFoldIT</strong> is an open platform that unifies three complementary approaches: <strong>DeepFoldIT</strong> (neural network initializer), <strong>Rosetta@Home</strong> (classical Metropolis), and <strong>qFold</strong> (quantum‑accelerated Metropolis). Gamification invites thousands of players to contribute, while AAA‑grade visualization (Unigine 2 Sim) makes molecular interactions tangible.</p>
+        <p class="intro-text">The platform is built on Nobel‑prize winning discoveries and is entirely free for academic use.</p>
+    </div>
+
+    <!-- ==================== 2. NOBEL FOUNDATION ==================== -->
+    <div class="intro-block">
+        <div class="intro-title"><i class="fas fa-trophy"></i> Nobel Prize Foundation</div>
+        <p class="intro-text">qFoldIT integrates six Nobel‑awarded breakthroughs, grouped by scientific theme:</p>
+
+        <div class="intro-subtitle"><i class="fas fa-microchip"></i> Artificial Intelligence & Deep Learning</div>
+        <p class="intro-text"><strong>Physics 2024 (Hopfield, Hinton)</strong> — neural networks and associative memory. Used in qFoldIT for adaptive AI assistants, procedural generation of Arctic landscapes, and molecular structure prediction.<br>
+        <strong>Chemistry 2024 (Baker, Hassabis, Jumper)</strong> — de novo protein design and AlphaFold. Our DeepFoldIT module and quantum‑accelerated folding build directly on these advances.<br>
+        <strong>Chemistry 2013 (Karplus, Levitt, Warshel)</strong> — multiscale models for complex chemical systems, underpinning our hybrid quantum‑classical dynamics.</p>
+
+        <div class="intro-subtitle"><i class="fas fa-atom"></i> Quantum Computing & Hardware</div>
+        <p class="intro-text"><strong>Physics 2025 (Clarke, Devoret, Martinis)</strong> — large‑scale quantum systems. The <strong>quantum‑adapter</strong> module provides cloud‑based quantum annealing and VQE calculations for molecular folding, directly leveraging this legacy.</p>
+
+        <div class="intro-subtitle"><i class="fas fa-cubes"></i> Advanced Materials (MOFs)</div>
+        <p class="intro-text"><strong>Chemistry 2025 (Kitagawa, Robson, Yaghi)</strong> — metal‑organic frameworks. qFoldIT extends its molecular design engine to porous materials for carbon capture, catalysis, and hydrogen storage.</p>
+
+        <div class="intro-subtitle"><i class="fas fa-dna"></i> Biomedicine & Evolution</div>
+        <p class="intro-text"><strong>Medicine 2000 (Kandel)</strong> — long‑term potentiation. Our core game loop uses immediate feedback and spaced repetition to strengthen neural pathways.<br>
+        <strong>Chemistry 2018 (Arnold)</strong> — directed evolution of enzymes. Players mutate and select protein variants in a gamified evolution loop, evaluated by ZairaChem AI.</p>
+
+        <div class="intro-subtitle"><i class="fas fa-hand-peace"></i> Climate & Sustainability</div>
+        <p class="intro-text"><strong>Peace 2007 (IPCC, Gore)</strong> — climate change awareness. qFoldIT is the digital twin of the Arctic station “Snezhinka” (AHEAD project, Arctic Council), where players design carbon‑free technologies and bioremediation enzymes.</p>
+
+        <div class="intro-subtitle"><i class="fas fa-brain"></i> Cognitive Science</div>
+        <p class="intro-text"><strong>Economics 2002 (Kahneman)</strong> — two systems of thinking (intuitive System 1 vs analytical System 2). qFoldIT dynamically switches between high‑action Arctic races (System 1) and deep molecular folding puzzles (System 2), preventing fatigue and maintaining flow.</p>
+    </div>
+
+    <!-- ==================== 3. GAMIFICATION & CITIZEN SCIENCE ==================== -->
+    <div class="intro-block">
+        <div class="intro-title"><i class="fas fa-gamepad"></i> Gamification & Citizen Science</div>
+        <p class="intro-text">Five world‑class game designers and visual artists shape the qFoldIT experience:</p>
+        <ul style="margin-left: 2em; margin-bottom: 1.5em;">
+            <li><strong>George Ahiakwa</strong> (founder of qFoldIT) — developer on <strong>Atomic Heart</strong> (Mundfish).</li>
+            <li><strong>Demis Hassabis</strong> — lead programmer on <strong>Theme Park</strong> (Bullfrog), lead AI on <strong>Black & White</strong> (Lionhead), founder of Elixir Studios (<strong>Republic: The Revolution</strong>, <strong>Evil Genius</strong>).</li>
+            <li><strong>Dr. Beata Mierzwa</strong> — creator of the award‑winning educational game <strong>Microscopya</strong>.</li>
+            <li><strong>Robertson Nortey</strong> — Lead Gameplay & Systems Designer (Rocksteady Studios: Batman Arkham series, Suicide Squad; currently at Leti Arts). Brings AAA combat, AI, and open‑world expertise to make molecular folding feel like a blockbuster action puzzle.</li>
+            <li><strong>Karen Happuch</strong> — founder of <strong>KHPH Studios</strong> (Ghana), director and animator of the acclaimed short <i>Abrefi Kɔtɔ</i>. She is the visual storyteller who translates Adinkra symbols and African fractal logic into the interactive visual language of qFoldIT, ensuring the game's cultural soul shines at every scale — from 2D pixel art to cinematic VR.</li>
+        </ul>
+        <p class="intro-text"><i class="fas fa-lightbulb" style="color:#0077FF; margin-right:8px;"></i> <strong>From Atomic Heart to qFoldIT:</strong> Working on <strong>Atomic Heart</strong> was built around <strong>“science fiction”</strong> — an opportunity to creatively fantasise about the visual realisation and physical behaviour of substances (e.g., the “polymer”). That experience taught how to translate abstract physical properties into compelling, visceral gameplay. qFoldIT applies the same philosophy: molecular interactions, hydrogen bonds, and quantum tunnelling become visible, tangible, and playable — turning hard science into an intuitive experience.</p>
+
+        <div class="intro-subtitle"><i class="fas fa-microscope"></i> Microscopya — An Award‑Winning Science Game</div>
+        <p class="intro-text">Dr. Beata Mierzwa’s game <strong>Microscopya</strong> is a scientifically accurate adventure inside a living cell, hand‑drawn from real microscopy data. It has received multiple prestigious awards:</p>
+        <ul class="award-list">
+            <li><strong>James Paul GEE! Learning Game Awards (2022)</strong> — winner in “Amateur Created” and “People’s Choice”.</li>
+            <li><strong>International Educational Games Competition (ECGBL 2022)</strong> — second place.</li>
+            <li><strong>Serious Play Conference Awards</strong> — recognised for excellence.</li>
+            <li>Media coverage: <em>The Scientist Magazine</em>, <em>Science Magazine</em>, <em>Nerdist</em>, <em>KPBS News</em>.</li>
+        </ul>
+
+        <div class="poster-single" style="margin: 30px 0 20px;">
+            <img src="https://qfoldit.github.io/img/posters/microsoft_accepted.png" alt="Microsoft Xbox Game Camp Africa acceptance poster">
+            <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
+                <i class="fab fa-microsoft"></i> 
+                <strong>LetiArts receives official partnership from Microsoft — accepted to Xbox Game Camp Africa</strong>
+                <span style="margin-left: auto; font-size: 0.85rem;"><i class="fas fa-trophy"></i> Milestone for African game development</span>
+            </div>
+        </div>
+
+        <div class="poster-single" style="margin: 30px 0 20px;">
+            <img src="https://qfoldit.github.io/img/posters/ghana_animation.png" alt="Ghana animation — Karen Happuch and KHPH Studios">
+            <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
+                <i class="fas fa-paint-brush"></i>
+                <strong>Karen Happuch (KHPH Studios) — “Abrefi Kɔtɔ” and the visual soul of qFoldIT</strong>
+                <span style="margin-left: auto;"><i class="fas fa-fractal"></i> Adinkra · African animation · Cultural storytelling</span>
+            </div>
+        </div>
+
+        <div class="poster-grid">
+            <div class="poster-block">
+                <img src="https://qfoldit.github.io/video/Drew_Berry.png" alt="Drew Berry — animations of unseeable biology, aliens & quantum biology">
+                <div class="poster-caption">
+                    <i class="fas fa-film"></i>
+                    <strong>Drew Berry — Animations of Unseeable Biology, Aliens & Quantum Biology</strong>
+                    <span style="margin-left: auto;"><i class="fas fa-dna"></i> Molecular visualization pioneer</span>
+                </div>
+            </div>
+            <div class="poster-block">
+                <img src="https://qfoldit.github.io/img/posters/Microscopya_1.jpg" alt="Microscopya game poster — explore the living cell">
+                <div class="poster-caption">
+                    <i class="fas fa-gamepad"></i>
+                    <strong>Microscopya — scientifically accurate adventure inside a living cell</strong>
+                    <span style="margin-left: auto;"><i class="fas fa-award"></i> Award-winning educational game</span>
+                </div>
+            </div>
+        </div>
+
+        <p class="intro-text">This recognition from Microsoft validates LetiArts’ leading role in African game innovation. The same creative and technical excellence powers qFoldIT’s gamified molecular design, blending AAA production values with cutting-edge science. Inspired by world‑class scientific animators like <strong>Drew Berry</strong> (whose breathtaking visualizations of molecular machines and quantum biology set the gold standard), qFoldIT brings the same cinematic wonder to interactive protein folding. The <strong>Microscopya</strong> poster above captures the artistic rigor and biological accuracy that define our approach — turning the invisible into an unforgettable experience.</p>
+
+        <p class="intro-text">The same design principles — artistic rigour, biological accuracy, and engaging interactivity — drive qFoldIT. Players not only play but actively contribute to molecular design, with their solutions validated by AI (ZairaChem) and quantum algorithms.</p>
+    </div>
+
+    <!-- ==================== 4. TECHNICAL ARCHITECTURE ==================== -->
+    <div class="intro-block">
+        <div class="intro-title"><i class="fas fa-cogs"></i> Technical Architecture</div>
+        <p class="intro-text">qFoldIT integrates three complementary computational engines:</p>
+        <ul style="margin-left: 2em; margin-bottom: 1.5em;">
+            <li><strong>DeepFoldIT</strong> — a deep residual network (inspired by AlphaFold) predicts torsion angles (φ, ψ) and distances, generating initial conformations.</li>
+            <li><strong>Rosetta@Home</strong> — classical Metropolis Monte Carlo with the Rosetta energy function performs local optimisation on CPU clusters.</li>
+            <li><strong>qFold</strong> — a coined Szegedy quantum walk (quantum Metropolis) that provides quadratic speedup for rugged energy landscapes. It runs on simulators (Qiskit‑Aer) or real quantum backends (IonQ, D‑Wave, Rosatom).</li>
+        </ul>
+
+        <div class="intro-subtitle"><i class="fas fa-layer-group"></i> Four‑Layer Architecture: NASA Precision Meets Quantum Gaming</div>
+        <p class="intro-text"><strong>qFoldIT solves the fundamental trade‑off of molecular editors: beautiful but imprecise (Unity/Unreal) vs. accurate but cumbersome (command‑line tools).</strong> Our stack combines UNIGINE's 64‑bit precision, NASA‑derived interaction logic, real‑time synchronization via NanoVer, and cloud quantum acceleration into a seamless, gamified experience.</p>
+
+        <div class="architecture-grid">
+            <div class="arch-card">
+                <div class="arch-icon"><i class="fas fa-brain"></i></div>
+                <div class="arch-title">Quantum Backend</div>
+                <div class="arch-sub">«The Brain»</div>
+                <div class="arch-desc">Executes VQE and QAOA to compute the true energy landscape of a conformation. Cloud‑connected to IBM, IonQ, or Rosatom QPUs.</div>
+                <div class="arch-tech">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Qiskit / Cirq</span>
+                    <span class="tech-badge">VQE</span>
+                </div>
+            </div>
+            <div class="arch-card">
+                <div class="arch-icon"><i class="fas fa-network-wired"></i></div>
+                <div class="arch-title">NanoVer Server</div>
+                <div class="arch-sub">«The Nervous System»</div>
+                <div class="arch-desc">gRPC‑based hub that bridges Python quantum routines with C++ UNIGINE. Ensures sub‑millisecond sync for multiplayer iMD.</div>
+                <div class="arch-tech">
+                    <span class="tech-badge">gRPC</span>
+                    <span class="tech-badge">Protobuf</span>
+                    <span class="tech-badge">OpenMM</span>
+                </div>
+            </div>
+            <div class="arch-card">
+                <div class="arch-icon"><i class="fas fa-hand-paper"></i></div>
+                <div class="arch-title">MRET Tools</div>
+                <div class="arch-sub">«The Hands»</div>
+                <div class="arch-desc">NASA‑inspired Mixed Reality Exploration Toolkit. Laser rulers, virtual lab notebooks, snapshot system, and role‑based multiplayer.</div>
+                <div class="arch-tech">
+                    <span class="tech-badge">VR/AR</span>
+                    <span class="tech-badge">Session Mgmt</span>
+                    <span class="tech-badge">Precision UI</span>
+                </div>
+            </div>
+            <div class="arch-card">
+                <div class="arch-icon"><i class="fas fa-eye"></i></div>
+                <div class="arch-title">UNIGINE 2 SIM</div>
+                <div class="arch-sub">«The Eyes»</div>
+                <div class="arch-desc">64‑bit double‑precision engine. Renders electron clouds, H‑bonds, and hydrophobic surfaces without z‑fighting or jitter.</div>
+                <div class="arch-tech">
+                    <span class="tech-badge">Double FP64</span>
+                    <span class="tech-badge">Custom Shaders</span>
+                    <span class="tech-badge">Varjo / OpenXR</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="pipeline-table">
+            <div class="pipeline-step">1. Input</div><div class="pipeline-desc">Load PDB file into UNIGINE. Instant 3D model with FP64 precision.</div><div class="pipeline-tech">UNIGINE + NanoVer</div>
+            <div class="pipeline-step">2. Action</div><div class="pipeline-desc">Scientist grabs an amino acid via MRET interface.</div><div class="pipeline-tech">MRET → NanoVer</div>
+            <div class="pipeline-step">3. Compute</div><div class="pipeline-desc">OpenMM gives immediate haptic feedback; quantum backend asynchronously refines the energy.</div><div class="pipeline-tech">NanoVer → Qiskit / OpenMM</div>
+            <div class="pipeline-step">4. Visualize</div><div class="pipeline-desc">UNIGINE recolours bonds: 🔴 high energy (unstable) / 🟢 low energy (stable).</div><div class="pipeline-tech">UNIGINE Shaders</div>
+        </div>
+
+        <div class="intro-subtitle"><i class="fas fa-server"></i> NanoVer Server: The Communication Backbone</div>
+        <p class="intro-text"><strong>NanoVer is more than an iMD engine — it is the real‑time translation layer that makes the 4‑layer stack possible.</strong> It decouples the fast visual feedback (UNIGINE) from the slower, more accurate quantum evaluations (Qiskit). Every atomic displacement is streamed via gRPC, logged with scientific precision, and immediately reflected in collaborative sessions.</p>
+        <ul style="margin-left: 2em; margin-bottom: 1.5em;">
+            <li><strong>Live force feedback</strong> — Players can “grab” atoms, apply forces in real time, and see the molecular response within milliseconds.</li>
+            <li><strong>Quantitatively accurate iMD</strong> — Every perturbation is recorded, making exploration fully reproducible.</li>
+            <li><strong>Multi‑user colocated/distributed VR</strong> — Share the same virtual environment and collaboratively fold proteins.</li>
+            <li><strong>Jupyter‑native analysis</strong> — Real‑time plotting of energies bridges gamification with data science.</li>
+        </ul>
+
+        <div class="poster-single" style="margin: 20px 0;">
+            <img src="https://qfoldit.github.io/img/posters/NanoVer.jpg" alt="NanoVer Server architecture diagram">
+            <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
+                <i class="fas fa-server"></i>
+                <strong>NanoVer Server — interactive molecular dynamics engine powering qFoldIT’s real‑time multiplayer VR</strong>
+                <span style="margin-left: auto;"><i class="fas fa-vr-cardboard"></i> iMD · OpenMM · gRPC</span>
+            </div>
+        </div>
+
+        <div class="intro-subtitle"><i class="fas fa-space-shuttle"></i> Quantum Training Module: Cold Atom Lab (NASA/DLR)</div>
+        <p class="intro-text"><strong>From city‑farms and microscopes to space‑grade quantum hardware — qFoldIT extends its digital‑twin philosophy to the Cold Atom Lab (CAL) aboard the ISS.</strong> CAL creates Bose‑Einstein condensates, “giant atoms” that make quantum effects visible on a macroscopic scale.</p>
+        
+        <div class="poster-single" style="margin: 20px 0;">
+            <img src="https://www.dlr.de/en/images/missions/horizons/infografik-cal/@@images/image-4404-dfe908dc7a557a4cefbc99a87a1b16e8.jpeg" alt="Cold Atom Lab Infographic — DLR horizons mission">
+            <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
+                <i class="fas fa-atom"></i>
+                <strong>DLR / horizons — Cold Atom Lab: Creating “giant atoms” to observe quantum effects at macroscopic scale</strong>
+                <span style="margin-left: auto;"><i class="fas fa-microgravity"></i> Destiny module · ISS</span>
+            </div>
+        </div>
+
+        <div class="poster-single" style="margin: 20px 0;">
+            <img src="https://qfoldit.github.io/video/nasacoldlab.jpg" alt="NASA Cold Atom Lab schematic diagram">
+            <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
+                <i class="fas fa-microchip"></i>
+                <strong>NASA Cold Atom Lab — instrument schematic: lasers, magnetic traps, and ultra‑high vacuum chamber</strong>
+                <span style="margin-left: auto;"><i class="fas fa-project-diagram"></i> Quantum sensor architecture</span>
+            </div>
+        </div>
+
+        <div class="poster-single" style="margin: 20px 0;">
+            <img src="https://qfoldit.github.io/video/qFoldIT_Christina_Koch.png" alt="Astronaut Christina Koch assists with a hardware upgrade for NASA's Cold Atom Lab aboard the ISS">
+            <div class="poster-caption" style="margin-top: 12px; background: rgba(0,0,0,0.3); border-radius: 20px;">
+                <i class="fas fa-user-astronaut"></i>
+                <strong>Astronaut Christina Koch assists with a hardware upgrade for NASA's Cold Atom Lab</strong>
+                <span style="margin-left: auto;">
+                    <i class="fas fa-external-link-alt"></i> 
+                    <a href="https://science.data.nasa.gov/learn/blog/psi-spotlight" target="_blank" style="color: #0077FF; text-decoration: none;">NASA PSI Spotlight</a>
+                </span>
+            </div>
+        </div>
+
+        <p class="intro-text">In qFoldIT, the CAL module serves as a <strong>high‑fidelity training simulator</strong> — a direct evolution of the platform’s proven ability to control real‑world equipment. Players align laser beams, tune magnetic traps, and replace modules using holographic guides.</p>
+
+        <div class="intro-subtitle"><i class="fas fa-dharmachakra"></i> Containerized Microservices & Orchestration</div>
+        <p class="intro-text">All modules — DeepFoldIT, Rosetta, quantum‑adapter, NanoVer Server — run as <strong>Docker containers</strong> orchestrated by <strong>Kubernetes on Amazon EKS</strong>. This ensures GPU‑aware scaling, high availability, and strict separation of classical, quantum, and interactive workloads. All code is planned for open release on GitHub.</p>
+    </div>
+
+    <!-- ==================== 5. TEAM ==================== -->
+    <div class="accordion">
+        <div class="accordion-item open">
+            <div class="accordion-header"><span><i class="fas fa-users"></i> Scientific Team & Collaborating Institutions</span><i class="fas fa-chevron-down"></i></div>
+            <div class="accordion-content">
+                <div class="team-grid" id="teamGrid"></div>
+                <p style="margin-top: 30px; color: #8a9099; font-size: 0.9rem;"><i class="fas fa-globe"></i> Additional partners: <strong>Joint Institute for Nuclear Research (JINR, Dubna)</strong> and <strong>Yonsei University (Seoul, Korea)</strong> have joined as administrative collaborators, contributing expertise in machine learning, computational chemistry, and generative AI for protein‑protein interactions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 6. OPEN SCIENCE & CALL ==================== -->
+    <div class="intro-block">
+        <div class="intro-title"><i class="fas fa-lock-open"></i> Open Science & How to Join</div>
+        <p class="intro-text">We invite: computational biologists, quantum algorithm researchers, game developers, and citizen scientists. Beta access is free — contact us to participate in the closed beta (planned for late 2026).</p>
+        <div class="poster-single">
+            <img src="https://qfoldit.github.io/img/qFold.png" style="width: 100%;border-radius: 10px;" alt="qFoldIT visualization">
+        </div>
+        <div class="intro-subtitle"><i class="fas fa-industry"></i> Industry 4.0 & Synthetic Biology</div>
+        <p class="intro-text">qFoldIT embodies the digital‑to‑biological convergence: <strong>DNA → computer → “living factory”</strong>. This enables drugs tailored to genetic diversity, DNA‑based data storage, and distributed biomanufacturing — all within an open, gamified framework.</p>
+    </div>
+
+    <div class="book-block">
+        <img src="https://qfoldit.github.io/img/posters/Gaming_Cancer_book.png" alt="Gaming Cancer book cover" class="book-image">
+        <div class="book-caption">
+            <i class="fas fa-book-open"></i> 
+            <strong>Jeff Yoshimi — Gaming Cancer: How Building and Playing Video Games Can Accelerate Scientific Discovery</strong>
+            <a href="https://books.google.com/books?q=Gaming+Cancer+Jeff+Yoshimi" target="_blank" style="color: #0077FF; margin-left: auto; text-decoration: none;">
+                <i class="fab fa-google"></i> Google Books
+            </a>
+        </div>
+    </div>
+
+    <!-- ==================== RESOURCES: BOOK COVERS + HORIZONTAL LINKS ==================== -->
+    <div class="resources-container">
+        <div class="resources-heading">
+            <i class="fas fa-book-open"></i> 
+            <span>Open Science & Essential Resources</span>
+        </div>
+        <div class="resources-grid">
+            <div class="book-cover-card">
+                <img src="https://qfoldit.github.io/img/viz/ArtOfMolecular.png" alt="The Art of Molecular Dynamics Simulation book cover">
+                <div class="book-title">The Art of Molecular Dynamics Simulation</div>
+                <div class="book-author">D. C. Rapaport</div>
+                <div class="book-desc">A cornerstone text bridging computational physics and molecular visualization. Essential for the simulation core behind qFoldIT.</div>
+                <a href="https://www.cambridge.org/core/books/art-of-molecular-dynamics-simulation/1E9D9F0A6E9A8B1C6D0E2F3A4B5C6D7E" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Explore the classic</a>
+            </div>
+            <div class="book-cover-card">
+                <img src="https://qfoldit.github.io/img/viz/African_Fractals.png" alt="African Fractals: Modern Computing and Indigenous Design book cover">
+                <div class="book-title">African Fractals</div>
+                <div class="book-author">Ron Eglash</div>
+                <div class="book-desc">Explores fractal geometry in Sub‑Saharan African architecture, hairstyles, textiles, sculpture, and symbolic systems. Blueprint for culturally‑informed generative algorithms.</div>
+                <a href="https://www.rutgersuniversitypress.org/african-fractals/9780813526140" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Discover the book</a>
+            </div>
+            <div class="book-cover-card">
+                <img src="https://qfoldit.github.io/img/viz/journal_of_chemistry_education.jpg" alt="Journal of Chemical Education cover">
+                <div class="book-title">Journal of Chemical Education</div>
+                <div class="book-author">ACS Publications</div>
+                <div class="book-desc">Volume 96, Issue 11 — a leading peer-reviewed journal bridging chemistry research and pedagogy.</div>
+                <a href="https://pubs.acs.org/journal/jceda8" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Visit ACS Publications</a>
+            </div>
+            <div class="book-cover-card">
+                <img src="https://qfoldit.github.io/img/viz/journal_of_chemistry_education_1.jpg" alt="Interactive Molecular Dynamics in VR — Journal cover">
+                <div class="book-title">Interactive Molecular Dynamics in VR</div>
+                <div class="book-author">O’Connor et al. (J. Chem. Educ.)</div>
+                <div class="book-desc">An open-source multi-person framework for molecular dynamics — from quantum chemistry to drug binding.</div>
+                <a href="https://www.intangiblerealitieslab.org/news/interactive-molecular-dynamics-in-virtual-reality-from-quantum-chemistry-to-drug-binding-an-open-source-multi-person-framework" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> Read the article</a>
+            </div>
+            <div class="book-cover-card">
+                <img src="https://qfoldit.github.io/video/nasa_mret.jpg" alt="NASA Cutting Edge Winter 2020 – Discovery in a Headset">
+                <div class="book-title">NASA Cutting Edge</div>
+                <div class="book-author">Winter 2020 · Vol. 16(2)</div>
+                <div class="book-desc">"Discovery in a Headset" — immersive technologies are revolutionizing how we interact with complex scientific data.</div>
+                <div style="margin-top: 8px; font-size: 0.7rem; color: #8a9099;">
+                    <i class="fas fa-quote-right"></i> NASA vision shared by qFoldIT.
+                </div>
+            </div>
+            <div class="book-cover-card">
+                <img src="https://qfoldit.github.io/img/viz/SCIENCE_JOURNAL_2021_08_20.jpg" alt="Science 20 Aug 2021">
+                <div class="book-title">Science, Vol. 373, Issue 6557</div>
+                <div class="book-author">20 August 2021</div>
+                <div class="book-desc">"Predicting structures: Deep learning accurately folds proteins" — the fundamental basis of DeepFoldIT. Also covers SARS‑CoV‑2 evolution, hydraulic fracturing ecology, and bio‑cognitive analogies for game design.</div>
+                <a href="https://doi.org/10.1126/science.373.6557" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> DOI: 10.1126/science.373.6557</a>
+            </div>
+            <div class="book-cover-card">
+                <img src="https://qfoldit.github.io/img/viz/SCIENCE_JOURNAL_2024_04_19.jpg" alt="Science 19 Apr 2024">
+                <div class="book-title">Science, Vol. 384, Issue 6693</div>
+                <div class="book-author">19 April 2024</div>
+                <div class="book-desc">"Designed to bind: Deep learning for protein and ligand modeling" — a direct modern advancement of the methods integrated into qFoldIT. Also features Antarctic climate drilling, urban subsidence, and bacteriophage therapy.</div>
+                <a href="https://doi.org/10.1126/science.384.6693" target="_blank" class="book-meta-link"><i class="fas fa-external-link-alt"></i> DOI: 10.1126/science.384.6693</a>
+            </div>
+        </div>
+
+        <div class="horizontal-links">
+            <div class="horizontal-links-title">
+                <i class="fas fa-link"></i> Key Resources & Publications
+            </div>
+            <div class="links-row">
+                <div class="link-horizontal-item">
+                    <a href="https://fold.it/" target="_blank">
+                        <i class="fas fa-gamepad"></i>
+                        <div class="link-text">FoldIT — crowdsourced protein folding<span class="link-url">https://fold.it/</span></div>
+                    </a>
+                </div>
+                <div class="link-horizontal-item">
+                    <a href="https://qfold.io/" target="_blank">
+                        <i class="fas fa-chalkboard-user"></i>
+                        <div class="link-text">qFold.io — quantum‑enhanced platform<span class="link-url">https://qfold.io/</span></div>
+                    </a>
+                </div>
+                <div class="link-horizontal-item">
+                    <a href="https://arxiv.org/pdf/2101.10279" target="_blank">
+                        <i class="fas fa-atom"></i>
+                        <div class="link-text">qFold (arXiv:2101.10279)<span class="link-url">arxiv.org/pdf/2101.10279</span></div>
+                    </a>
+                </div>
+                <div class="link-horizontal-item">
+                    <a href="https://arxiv.org/pdf/2011.03442" target="_blank">
+                        <i class="fas fa-brain"></i>
+                        <div class="link-text">DeepFoldIT (arXiv:2011.03442)<span class="link-url">arxiv.org/pdf/2011.03442</span></div>
+                    </a>
+                </div>
+                <div class="link-horizontal-item">
+                    <a href="https://github.com/irc-sphere/nanover-server-py" target="_blank">
+                        <i class="fab fa-python"></i>
+                        <div class="link-text">NanoVer Server (GitHub)<span class="link-url">github.com/irc-sphere/nanover-server-py</span></div>
+                    </a>
+                </div>
+            </div>
+            <div style="margin-top: 20px; font-size: 0.85rem; color: #8a9099; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 18px;">
+                <i class="fas fa-microscope"></i> These resources embody the core of qFoldIT: gamified discovery, quantum acceleration, AI‑driven molecular innovation, and real‑time interactive dynamics.
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <a href="https://www.rosettacommons.org/" target="_blank" title="Rosetta Commons">
+        <img src="https://qfoldit.github.io/img/1/logo/Rosettahome.png" alt="Rosetta Home" class="partner-logo-footer">
+    </a>
+    <a href="https://www.cam.ac.uk/" target="_blank" title="iDMT — Innovation Centre in Digital Molecular Technologies, University of Cambridge">
+        <img src="https://qfoldit.github.io/img/1/logo/iDMT_logo.png" alt="iDMT" class="partner-logo-footer">
+    </a>
+    <a href="https://h3d.uct.ac.za/" target="_blank" title="H3D — Holistic Drug Discovery and Development Centre">
+        <img src="https://qfoldit.github.io/img/h3d_final_logo.png" alt="H3D" class="partner-logo-footer">
+    </a>
+    <a href="https://letiarts.com/" target="_blank" title="Leti Arts — Afrocentric games & interactive narratives">
+        <img src="https://qfoldit.github.io/img/1/logo/leti-arts.png" alt="Leti Arts" class="partner-logo-footer">
+    </a>
+</footer>
+
+<script>
+    function calculateAge(birthDateStr) {
+        const today = new Date();
+        const birth = new Date(birthDateStr);
+        let age = today.getFullYear() - birth.getFullYear();
+        const monthDiff = today.getMonth() - birth.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate())) {
+            age--;
+        }
+        return age;
+    }
+
+    const teamMembers = [
+        {
+            name: "Prof. Alexei Lapkin",
+            role: "Director of Digital Molecular Engineering & Sustainable Synthesis",
+            img: "https://qfoldit.github.io/img/1/Alapkin.png",
+            birthDate: "1972-03-01",
+            detailIntro: "Professor of Sustainable Reaction Engineering at <strong>University of Cambridge</strong>, Director of the <strong>Institute for Digital Molecular Technologies (iDMT)</strong>.",
+            roleDetail: "<b>Role in qFoldIT:</b> Bridges the gap between in‑game molecular designs and real‑world industrial viability. Leads validation of synthetic accessibility, scalability, and sustainability.",
+            meta: [
+                '<i class="fas fa-university"></i> University of Cambridge — iDMT',
+                '<i class="fas fa-globe"></i> Website: <a href="https://www.ceb.cam.ac.uk/directory/alexei-lapkin" target="_blank" class="orcid-link">Cambridge profile</a>',
+                '<i class="fas fa-leaf"></i> Expertise: Sustainable Reaction Engineering · Digital Twins · Green Chemistry'
+            ]
+        },
+        {
+            name: "Prof. Kelly Chibale",
+            role: "Scientific Director",
+            img: "https://qfoldit.github.io/img/1/Kelly_Chibale_0.png",
+            birthDate: "1964-03-31",
+            detailIntro: "Founder of H3D (University of Cape Town). <b>Cambridge graduate, Oxford partner</b>, pioneer of drug discovery in Africa, creator of the <b>ZairaChem AI pipeline</b>.",
+            roleDetail: "Defines disease targets (malaria, TB, AMR), validates methodology, provides access to H3D data. Co‑author of key qFoldIT publications.",
+            meta: [
+                '<i class="fas fa-globe"></i> Website: <a href="https://www.kellychibale.co.za/" target="_blank" class="orcid-link">www.kellychibale.co.za</a>',
+                '<i class="fab fa-orcid"></i> ORCID: <a href="https://orcid.org/0000-0002-4541-646X" target="_blank" class="orcid-link">0000-0002-4541-646X</a>'
+            ]
+        },
+        {
+            name: "Dr. Godwin Akpeko Dziwornu",
+            role: "Scientific Advisor",
+            img: "https://qfoldit.github.io/img/1/Dziwornu.png",
+            birthDate: "1985-06-15",
+            detailIntro: "Senior Investigator at H3D, expert in African natural products, first MMV grant as PI (bispyrroloiminoquinone).",
+            roleDetail: "Designs molecule generation rules based on natural scaffolds, ensures synthetic accessibility, validates malaria/TB tasks.",
+            meta: [
+                '<i class="fab fa-orcid"></i> ResearchGate: <a href="https://www.researchgate.net/profile/Godwin-Dziwornu" target="_blank" class="orcid-link">Godwin Akpeko Dziwornu</a>'
+            ]
+        },
+        {
+            name: "Robertson Nortey",
+            role: "Lead Gameplay & Systems Designer (AAA Integration)",
+            img: "https://qfoldit.github.io/img/1/Robertson_Nortey.jpg",
+            birthDate: null,
+            detailIntro: "Industry veteran with over a decade at <strong>Rocksteady Studios</strong> (Batman: Arkham Knight, Arkham VR, Suicide Squad). Currently Lead Game Developer at <strong>Leti Arts</strong> (Accra, Ghana).",
+            roleDetail: "<b>Role in qFoldIT:</b> Architect of the core gameplay loop. Translates complex molecular dynamics into intuitive, AAA-quality interactions.",
+            meta: [
+                '<i class="fab fa-unreal-engine"></i> Unreal Engine & C++ specialist',
+                '<i class="fas fa-robot"></i> AI & systemic game design',
+                '<i class="fas fa-globe"></i> Leti Arts — <a href="https://www.letiarts.com" target="_blank" class="orcid-link">Africa’s Legends, Karmzah, Puzzle Scout</a>'
+            ]
+        },
+        {
+            name: "Dr. George Ahiakwa",
+            role: "Founder, CEO, Gamification Architect",
+            img: "https://qfoldit.github.io/img/1/AG.png",
+            birthDate: "1988-01-01",
+            detailIntro: "Game designer (Atomic Heart), descendant of the Ashanti Ahiakwa royal lineage.",
+            roleDetail: "Designs game mechanics, platform architecture, quantum API integration, AAA‑grade visualization. Coordinates scientific collaborations.",
+            meta: [
+                '<i class="fab fa-github"></i> GitHub: <a href="https://github.com/CEPBEP" target="_blank" class="orcid-link">CEPBEP</a>',
+                '<i class="fab fa-orcid"></i> ORCID: <a href="https://orcid.org/0009-0009-3666-9295" target="_blank" class="orcid-link">0009-0009-3666-9295</a>'
+            ]
+        },
+        {
+            name: "Dr. Hanae Henke",
+            role: "Architect of Laboratory Precision",
+            img: "https://qfoldit.github.io/img/1/Dr_Hanae_Henke_169.png",
+            birthDate: "1982-01-01",
+            detailIntro: "Expert in high‑throughput screening (HTS), automation, and GLP standards (Eppendorf AG).",
+            roleDetail: "Advises on <b>VR/AR</b> lab training simulations, ensures alignment with real‑world protocols, validates educational effectiveness.",
+            meta: []
+        },
+        {
+            name: "Dr. Beata Mierzwa",
+            role: "Director of Science Art & Gamified Education",
+            img: "https://qfoldit.github.io/img/1/Dr_Beata_Mierzwa.png",
+            birthDate: null,
+            detailIntro: "Molecular biologist (UCSD, Ludwig Institute) and pioneering science artist. Creator of the educational video game <i>Microscopya</i> and AAAS IF/THEN Ambassador.",
+            roleDetail: "<b>Role in qFoldIT:</b> Translates complex quantum-chemical data into intuitive, AAA-quality visual puzzles.",
+            meta: [
+                '<i class="fas fa-globe"></i> Website: <a href="https://beatascienceart.com" target="_blank" class="orcid-link">beatascienceart.com</a>',
+                '<i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/beatascienceart" target="_blank" class="orcid-link">Beata Mierzwa</a>'
+            ]
+        },
+        {
+            name: "Prof. Ron Eglash",
+            role: "Advisor on Algorithmic Culture & Generative Design",
+            img: "https://qfoldit.github.io/img/1/Prof_Ron_Eglash.jpg",
+            birthDate: null,
+            detailIntro: "Author of <strong>African Fractals: Modern Computing and Indigenous Design</strong>, creator of <strong>Culturally Situated Design Tools (CSDT)</strong>. Professor at University of Michigan.",
+            roleDetail: "<b>Role in qFoldIT:</b> Guides the integration of fractal logic and culturally situated pattern languages into the game's puzzle mechanics.",
+            meta: [
+                '<i class="fas fa-fractal"></i> African Fractals & generative design',
+                '<i class="fas fa-chalkboard-teacher"></i> CSDT — Culturally Situated Design Tools',
+                '<i class="fas fa-globe"></i> <a href="https://www.eglash.org" target="_blank" class="orcid-link">eglash.org</a>'
+            ]
+        },
+        {
+            name: "Karen Happuch",
+            role: "Cultural Visualisation Director & Lead Animator",
+            img: "https://qfoldit.github.io/img/1/Karen-Happuch_1.png",
+            birthDate: null,
+            detailIntro: "Founder and creative director of <strong>KHPH Studios</strong> (Accra, Ghana). Award‑winning animator and visual storyteller bridging Adinkra symbolism with digital media.",
+            roleDetail: "<b>Role in qFoldIT:</b> Architect of the game's visual identity — from pixel‑art Adinkra patterns to cinematic, ray‑traced animations.",
+            meta: [
+                '<i class="fas fa-paint-brush"></i> KHPH Studios — animation & visual development',
+                '<i class="fas fa-film"></i> <i>Abrefi Kɔtɔ</i> & Africa\'s Legends',
+                '<i class="fab fa-instagram"></i> <a href="#" target="_blank" class="orcid-link">@khph_studios</a>'
+            ]
+        }
+    ];
+
+    function renderTeam() {
+        const container = document.getElementById('teamGrid');
+        if (!container) return;
+        let html = '';
+        for (const member of teamMembers) {
+            let ageHtml = '';
+            if (member.birthDate) {
+                const age = calculateAge(member.birthDate);
+                ageHtml = `<span class="age-badge">${age} years old</span>`;
+            }
+            html += `
+                <div class="team-card">
+                    <img src="${member.img}" alt="${member.name}" class="team-photo" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22140%22%20height%3D%22140%22%20viewBox%3D%220%200%20140%20140%22%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20fill%3D%22%231e2328%22%2F%3E%3Ctext%20x%3D%2250%25%22%20y%3D%2250%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20fill%3D%22%230077FF%22%20font-size%3D%2240%22%20font-family%3D%22FontAwesome%22%3E%3C%2Ftext%3E%3C%2Fsvg%3E';">
+                    <div class="team-info">
+                        <div class="team-name">${member.name}</div>
+                        <div class="team-role">${member.role}</div>
+                        <div class="team-detail">${member.detailIntro} ${ageHtml}</div>
+                        <div class="team-detail">${member.roleDetail}</div>
+                        ${member.meta.length ? '<div class="team-meta">' + member.meta.join('</div><div class="team-meta">') + '</div>' : ''}
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+    }
+
+    renderTeam();
+
+    document.querySelectorAll('.accordion-header').forEach(header => {
+        header.addEventListener('click', function() {
+            this.closest('.accordion-item').classList.toggle('open');
+        });
+    });
+</script>
+</body>
+</html>
