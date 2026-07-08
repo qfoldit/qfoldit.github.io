@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
 
     <style>
-        /* ----- глобальное скрытие скроллбаров ----- */
         * {
             scrollbar-width: none !important;
             -ms-overflow-style: none !important;
@@ -37,7 +36,6 @@
             background: transparent !important;
         }
 
-        /* ----- общие стили ----- */
         * {
             margin: 0;
             padding: 0;
@@ -59,7 +57,6 @@
             width: 100%;
         }
 
-        /* ----- header ----- */
         .header {
             display: flex;
             align-items: center;
@@ -349,7 +346,6 @@
             opacity: 0.7;
         }
 
-        /* ----- footer ----- */
         .page-footer {
             margin-top: 2.5rem;
             padding-top: 1.2rem;
@@ -370,7 +366,6 @@
             color: hsl(14.8, 63.1%, 59.6%);
         }
 
-        /* ----- responsive ----- */
         @media (max-width: 600px) {
             body {
                 padding: 1rem 0.6rem 1.5rem;
@@ -422,9 +417,8 @@
 <body>
 <div class="container">
 
-    <!-- ===== HEADER ===== -->
     <header class="header">
-        <!-- Левый бренд: qfoldit -->
+
         <div class="brand">
             <div class="brand-icon"><i class="fas fa-cube"></i></div>
             <div>
@@ -433,14 +427,12 @@
             </div>
         </div>
 
-        <!-- Центральная статистика -->
         <div class="badge-stats">
             <span><i class="fas fa-microchip"></i> 11 skills</span>
             <span><i class="fas fa-server"></i> 11 services</span>
             <span><i class="fas fa-code-branch"></i> MCP unified</span>
         </div>
 
-        <!-- Правый бренд: Claude Science -->
         <div class="brand-right">
             <a href="https://claude.com/product/claude-science" target="_blank">
                 <div class="brand-text">
@@ -454,7 +446,6 @@
         </div>
     </header>
 
-    <!-- ===== PROJECT STRUCTURE ===== -->
     <div class="structure-wrapper">
         <div class="tree">
             <div><span class="folder">qfoldit/</span></div>
@@ -744,15 +735,13 @@
         </div>
     </div>
 
-    <!-- ===== FOOTER (изменён) ===== -->
     <footer class="page-footer">
         <span>
-            <i class="fas fa-cube" style="color:hsl(14.8, 63.1%, 59.6%); opacity:0.5;"></i>
-            · unified MCP ecosystem
+            <i class="fas fa-cube" style="color:hsl(14.8, 63.1%, 59.6%); opacity:0.5;"></i> unified MCP ecosystem
         </span>
         <span>
             <i class="fab fa-github"></i>
-            <a href="https://github.com/qfoldit" target="_blank">github.com</a>
+            <a href="https://github.com/qfoldit" target="_blank">github</a>
         </span>
     </footer>
 
