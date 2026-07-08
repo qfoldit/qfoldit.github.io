@@ -95,7 +95,14 @@
         .brand-icon img.error {
             display: none;
         }
-        .brand h1 {
+
+        .brand .brand-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1.2;
+        }
+        .brand .brand-text .name {
             font-size: 1.75rem;
             font-weight: 700;
             letter-spacing: -0.02em;
@@ -104,16 +111,12 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        .brand .tag {
-            font-size: 0.65rem;
-            font-weight: 500;
+        .brand .brand-text .sub {
+            font-size: 0.6rem;
             color: #888;
-            background: rgba(255,255,255,0.06);
-            padding: 0.15rem 0.6rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.06);
             -webkit-text-fill-color: #888;
-            white-space: nowrap;
+            background: none;
+            font-weight: 400;
         }
 
         .stats {
@@ -404,11 +407,8 @@
                 flex-wrap: wrap;
                 gap: 0.5rem 1rem;
             }
-            .brand h1 {
+            .brand .brand-text .name {
                 font-size: 1.3rem;
-            }
-            .brand .tag {
-                font-size: 0.55rem;
             }
             .stats {
                 font-size: 0.7rem;
@@ -437,12 +437,11 @@
             .brand {
                 flex: 0 0 auto;
             }
-            .brand h1 {
+            .brand .brand-text .name {
                 font-size: 1.1rem;
             }
-            .brand .tag {
+            .brand .brand-text .sub {
                 font-size: 0.5rem;
-                padding: 0.1rem 0.4rem;
             }
             .brand-icon {
                 width: 4.2rem;
@@ -497,7 +496,7 @@
             }
             .structure-wrapper {
                 padding: 0.8rem 1rem;
-                margin-top: 0;
+                margin-top: 0.4rem;
             }
             .tree {
                 font-size: 0.65rem;
@@ -505,9 +504,6 @@
             }
             .tree .indent {
                 width: 1.2rem;
-            }
-            .structure-wrapper {
-                margin-top: 0.4rem;
             }
         }
     </style>
@@ -520,9 +516,9 @@
                 <img src="https://qfoldit.github.io/img/1/logo/amazon-braket.svg" alt="qfoldit" onerror="this.classList.add('error'); this.nextElementSibling.style.display='block';" />
                 <i class="fas fa-cube fallback-icon"></i>
             </div>
-            <div>
-                <h1>qfoldit</h1>
-                <span class="tag">on Amazon Braket</span>
+            <div class="brand-text">
+                <span class="name">qfoldit</span>
+                <span class="sub">on Amazon Braket</span>
             </div>
         </div>
 
