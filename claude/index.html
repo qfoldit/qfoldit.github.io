@@ -4,17 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>qfoldit · skills & structure</title>
-
-    <!-- Font Awesome 6.5.1 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
-    <!-- Google Font: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
-
     <style>
-        /* ----- глобальное скрытие скроллбаров ----- */
         * {
             scrollbar-width: none !important;
             -ms-overflow-style: none !important;
@@ -36,8 +30,6 @@
             height: 0px !important;
             background: transparent !important;
         }
-
-        /* ----- общие стили ----- */
         * {
             margin: 0;
             padding: 0;
@@ -59,22 +51,21 @@
             width: 100%;
         }
 
-        /* ----- header ----- */
         .header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 1rem 2rem;
+            flex-wrap: nowrap;
+            gap: 0.8rem 1.2rem;
             padding-bottom: 1.2rem;
             border-bottom: 1px solid rgba(255,255,255,0.06);
             margin-bottom: 1.8rem;
         }
-
         .brand {
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            flex: 0 0 auto;
         }
         .brand-icon {
             font-size: 2rem;
@@ -86,6 +77,23 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 1px solid rgba(230, 130, 70, 0.15);
+        }
+        .brand-icon img {
+            width: 2.2rem;
+            height: 2.2rem;
+            display: block;
+            border-radius: 4px;
+        }
+        .brand-icon .fallback-icon {
+            display: none;
+            font-size: 2rem;
+        }
+        .brand-icon img.error + .fallback-icon {
+            display: block;
+        }
+        .brand-icon img.error {
+            display: none;
         }
         .brand h1 {
             font-size: 1.75rem;
@@ -97,30 +105,35 @@
             background-clip: text;
         }
         .brand .tag {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 500;
             color: #888;
             background: rgba(255,255,255,0.06);
-            padding: 0.2rem 0.7rem;
+            padding: 0.15rem 0.6rem;
             border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.06);
             -webkit-text-fill-color: #888;
+            white-space: nowrap;
         }
 
-        .badge-stats {
+        .stats {
+            flex: 1 1 auto;
             display: flex;
+            justify-content: center;
             align-items: center;
             gap: 1.5rem;
             font-size: 0.8rem;
             color: #aaa;
             flex-wrap: wrap;
+            min-width: 0;
         }
-        .badge-stats span {
+        .stats span {
             display: flex;
             align-items: center;
             gap: 0.4rem;
+            white-space: nowrap;
         }
-        .badge-stats i {
+        .stats i {
             color: hsl(14.8, 63.1%, 59.6%);
             font-size: 0.85rem;
         }
@@ -130,10 +143,17 @@
             align-items: center;
             gap: 0.75rem;
             text-align: right;
+            flex: 0 0 auto;
         }
         .brand-right .brand-icon {
             background: rgba(230, 130, 70, 0.12);
             border: 1px solid rgba(230, 130, 70, 0.2);
+            width: 3.2rem;
+            height: 3.2rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .brand-right .brand-icon img {
             width: 2rem;
@@ -170,7 +190,6 @@
             gap: 0.75rem;
         }
 
-        /* ----- structure block ----- */
         .structure-wrapper {
             background: #111111;
             border-radius: 16px;
@@ -183,7 +202,7 @@
         .structure-title {
             display: flex;
             align-items: center;
-            justify-content: flex-start;  /* выравнивание по левому краю */
+            justify-content: flex-start;
             font-size: 1.2rem;
             color: hsl(14.8, 63.1%, 59.6%);
             margin-bottom: 0.8rem;
@@ -219,14 +238,12 @@
             width: 1.8rem;
         }
 
-        /* ----- grid ----- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.25rem;
         }
 
-        /* ----- card ----- */
         .card {
             background: #151515;
             border-radius: 16px;
@@ -362,7 +379,6 @@
             opacity: 0.7;
         }
 
-        /* ----- footer ----- */
         .page-footer {
             margin-top: 2.5rem;
             padding-top: 1.2rem;
@@ -383,26 +399,76 @@
             color: hsl(14.8, 63.1%, 59.6%);
         }
 
-        /* ----- responsive ----- */
+        @media (max-width: 900px) {
+            .header {
+                flex-wrap: wrap;
+                gap: 0.5rem 1rem;
+            }
+            .brand h1 {
+                font-size: 1.3rem;
+            }
+            .brand .tag {
+                font-size: 0.55rem;
+            }
+            .stats {
+                font-size: 0.7rem;
+                gap: 0.8rem;
+                flex: 1 1 100%;
+                justify-content: center;
+                order: 3;
+            }
+            .brand-right .brand-text .name {
+                font-size: 1.1rem;
+            }
+        }
+
         @media (max-width: 600px) {
             body {
                 padding: 1rem 0.6rem 1.5rem;
             }
             .header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
+                flex-wrap: wrap;
+                gap: 0.4rem 0.8rem;
+                justify-content: center;
+            }
+            .brand {
+                flex: 0 0 auto;
             }
             .brand h1 {
-                font-size: 1.3rem;
-            }
-            .brand-right .brand-text .name {
                 font-size: 1.1rem;
             }
-            .badge-stats {
-                font-size: 0.7rem;
-                gap: 0.8rem;
-                flex-wrap: wrap;
+            .brand .tag {
+                font-size: 0.5rem;
+                padding: 0.1rem 0.4rem;
+            }
+            .brand-icon {
+                width: 2.6rem;
+                height: 2.6rem;
+            }
+            .brand-icon img {
+                width: 1.8rem;
+                height: 1.8rem;
+            }
+            .stats {
+                font-size: 0.6rem;
+                gap: 0.5rem;
+                flex: 1 1 100%;
+                justify-content: center;
+                order: 3;
+            }
+            .brand-right .brand-text .name {
+                font-size: 0.9rem;
+            }
+            .brand-right .brand-text .sub {
+                font-size: 0.5rem;
+            }
+            .brand-right .brand-icon {
+                width: 2.6rem;
+                height: 2.6rem;
+            }
+            .brand-right .brand-icon img {
+                width: 1.6rem;
+                height: 1.6rem;
             }
             .grid {
                 grid-template-columns: 1fr;
@@ -421,39 +487,29 @@
             .tree .indent {
                 width: 1.2rem;
             }
-            .brand-right {
-                align-self: flex-start;
-            }
-        }
-        @media (min-width: 601px) and (max-width: 900px) {
-            .grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
     </style>
 </head>
 <body>
 <div class="container">
-
-    <!-- ===== HEADER ===== -->
     <header class="header">
-        <!-- Левый бренд: qfoldit -->
         <div class="brand">
-            <div class="brand-icon"><i class="fas fa-cube"></i></div>
+            <div class="brand-icon">
+                <img src="https://qfoldit.github.io/img/1/logo/amazon-braket.svg" alt="qfoldit" onerror="this.classList.add('error'); this.nextElementSibling.style.display='block';" />
+                <i class="fas fa-cube fallback-icon"></i>
+            </div>
             <div>
                 <h1>qfoldit</h1>
-                <span class="tag">ecosystem · v1.0</span>
+                <span class="tag">on Amazon Braket</span>
             </div>
         </div>
 
-        <!-- Центральная статистика -->
-        <div class="badge-stats">
+        <div class="stats">
             <span><i class="fas fa-microchip"></i> 11 skills</span>
             <span><i class="fas fa-server"></i> 11 services</span>
             <span><i class="fas fa-code-branch"></i> MCP unified</span>
         </div>
 
-        <!-- Правый бренд: Claude Science -->
         <div class="brand-right">
             <a href="https://claude.com/product/claude-science" target="_blank">
                 <div class="brand-text">
@@ -467,7 +523,6 @@
         </div>
     </header>
 
-    <!-- ===== PROJECT STRUCTURE (с иконкой слева) ===== -->
     <div class="structure-wrapper">
         <div class="structure-title">
             <i class="fas fa-sitemap"></i>
@@ -490,9 +545,7 @@
         </div>
     </div>
 
-    <!-- ===== GRID (SKILLS) ===== -->
     <div class="grid">
-        <!-- 1. quantum -->
         <div class="card">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-atom"></i></div>
@@ -516,7 +569,6 @@
             </div>
         </div>
 
-        <!-- 2. qFold (оранжевый бейдж с чёрным текстом) -->
         <div class="card" style="border-color: rgba(230, 130, 70, 0.3);">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-dna"></i></div>
@@ -541,7 +593,6 @@
             </div>
         </div>
 
-        <!-- 3. EVO2 (оранжевый бейдж с чёрным текстом) -->
         <div class="card" style="border-color: rgba(230, 130, 70, 0.3);">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-robot"></i></div>
@@ -566,7 +617,6 @@
             </div>
         </div>
 
-        <!-- 4. RosettaFold3 (оранжевый бейдж с чёрным текстом) -->
         <div class="card" style="border-color: rgba(230, 130, 70, 0.3);">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-cubes"></i></div>
@@ -591,7 +641,6 @@
             </div>
         </div>
 
-        <!-- 5. oilgas -->
         <div class="card">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-oil-can"></i></div>
@@ -615,7 +664,6 @@
             </div>
         </div>
 
-        <!-- 6. prospecting -->
         <div class="card">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-search-location"></i></div>
@@ -639,7 +687,6 @@
             </div>
         </div>
 
-        <!-- 7. mining -->
         <div class="card">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-hammer"></i></div>
@@ -663,7 +710,6 @@
             </div>
         </div>
 
-        <!-- 8. meor -->
         <div class="card">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-bacteria"></i></div>
@@ -687,7 +733,6 @@
             </div>
         </div>
 
-        <!-- 9. plant-growth -->
         <div class="card">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-seedling"></i></div>
@@ -711,7 +756,6 @@
             </div>
         </div>
 
-        <!-- 10. l-systems -->
         <div class="card">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-tree"></i></div>
@@ -735,7 +779,6 @@
             </div>
         </div>
 
-        <!-- 11. plastic-char -->
         <div class="card">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-recycle"></i></div>
@@ -760,17 +803,16 @@
         </div>
     </div>
 
-    <!-- ===== FOOTER ===== -->
     <footer class="page-footer">
         <span>
-            <i class="fas fa-cube" style="color:hsl(14.8, 63.1%, 59.6%); opacity:0.5;"></i> unified MCP ecosystem
+            <i class="fas fa-cube" style="color:hsl(14.8, 63.1%, 59.6%); opacity:0.5;"></i>
+            · unified MCP ecosystem
         </span>
         <span>
             <i class="fab fa-github"></i>
-            <a href="https://github.com/qfoldit" target="_blank">github</a>
+            <a href="https://github.com/qfoldit" target="_blank">github.com</a>
         </span>
     </footer>
-
 </div>
 </body>
 </html>
