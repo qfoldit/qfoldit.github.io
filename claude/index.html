@@ -61,6 +61,7 @@
             border-bottom: 1px solid rgba(255,255,255,0.06);
             margin-bottom: 1.8rem;
         }
+
         .brand {
             display: flex;
             align-items: center;
@@ -95,7 +96,6 @@
         .brand-icon img.error {
             display: none;
         }
-
         .brand .brand-text {
             display: flex;
             flex-direction: column;
@@ -191,6 +191,18 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
+        }
+
+        .center-image {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0 2rem 0;
+        }
+        .center-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
         .structure-wrapper {
@@ -487,6 +499,9 @@
                 width: 2.8rem;
                 height: 2.8rem;
             }
+            .center-image {
+                margin: 0.8rem 0 1.2rem 0;
+            }
             .grid {
                 grid-template-columns: 1fr;
                 gap: 0.9rem;
@@ -517,7 +532,7 @@
                 <i class="fas fa-cube fallback-icon"></i>
             </div>
             <div class="brand-text">
-                <span class="name">qFoldIT</span>
+                <span class="name">qfoldit</span>
                 <span class="sub">on Amazon Braket</span>
             </div>
         </div>
@@ -540,6 +555,10 @@
             </a>
         </div>
     </header>
+
+    <div class="center-image">
+        <img src="https://koronaebola.github.io/4.png" alt="qfoldit banner" />
+    </div>
 
     <div class="structure-wrapper">
         <div class="structure-title">
