@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
 
     <style>
+        /* ----- глобальное скрытие скроллбаров ----- */
         * {
             scrollbar-width: none !important;
             -ms-overflow-style: none !important;
@@ -36,6 +37,7 @@
             background: transparent !important;
         }
 
+        /* ----- общие стили ----- */
         * {
             margin: 0;
             padding: 0;
@@ -57,6 +59,7 @@
             width: 100%;
         }
 
+        /* ----- header ----- */
         .header {
             display: flex;
             align-items: center;
@@ -176,6 +179,19 @@
             margin-bottom: 2rem;
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
             overflow: hidden;
+        }
+        .structure-title {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;  /* выравнивание по левому краю */
+            font-size: 1.2rem;
+            color: hsl(14.8, 63.1%, 59.6%);
+            margin-bottom: 0.8rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 0.6rem;
+        }
+        .structure-title i {
+            font-size: 1.4rem;
         }
         .tree {
             font-family: 'Inter', monospace;
@@ -346,6 +362,7 @@
             opacity: 0.7;
         }
 
+        /* ----- footer ----- */
         .page-footer {
             margin-top: 2.5rem;
             padding-top: 1.2rem;
@@ -366,19 +383,7 @@
             color: hsl(14.8, 63.1%, 59.6%);
         }
 
-        .structure-title {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #ccc;
-    letter-spacing: 0.02em;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-    padding-bottom: 0.6rem;
-    margin-bottom: 0.8rem;
-}
-
+        /* ----- responsive ----- */
         @media (max-width: 600px) {
             body {
                 padding: 1rem 0.6rem 1.5rem;
@@ -430,22 +435,25 @@
 <body>
 <div class="container">
 
+    <!-- ===== HEADER ===== -->
     <header class="header">
-
+        <!-- Левый бренд: qfoldit -->
         <div class="brand">
             <div class="brand-icon"><i class="fas fa-cube"></i></div>
             <div>
-                <h1>qFoldIT</h1>
+                <h1>qfoldit</h1>
                 <span class="tag">ecosystem · v1.0</span>
             </div>
         </div>
 
+        <!-- Центральная статистика -->
         <div class="badge-stats">
             <span><i class="fas fa-microchip"></i> 11 skills</span>
             <span><i class="fas fa-server"></i> 11 services</span>
             <span><i class="fas fa-code-branch"></i> MCP unified</span>
         </div>
 
+        <!-- Правый бренд: Claude Science -->
         <div class="brand-right">
             <a href="https://claude.com/product/claude-science" target="_blank">
                 <div class="brand-text">
@@ -459,12 +467,11 @@
         </div>
     </header>
 
+    <!-- ===== PROJECT STRUCTURE (с иконкой слева) ===== -->
     <div class="structure-wrapper">
-        
         <div class="structure-title">
             <i class="fas fa-sitemap"></i>
         </div>
-        
         <div class="tree">
             <div><span class="folder">qfoldit/</span></div>
             <div><span class="indent"></span>├── <span class="folder">.github/workflows/</span> <span class="file">deploy.yml</span></div>
@@ -509,12 +516,12 @@
             </div>
         </div>
 
-        <!-- 2. qFold -->
+        <!-- 2. qFold (оранжевый бейдж с чёрным текстом) -->
         <div class="card" style="border-color: rgba(230, 130, 70, 0.3);">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-dna"></i></div>
                 <div class="card-title-group">
-                    <div class="card-title">qfold <span class="badge" style="background: #e68246;color:black;">Braket</span></div>
+                    <div class="card-title">qfold <span class="badge" style="background: #e68246; color: black;">Braket</span></div>
                     <div class="card-purpose">Quantum protein folding on Amazon Braket</div>
                 </div>
             </div>
@@ -534,12 +541,12 @@
             </div>
         </div>
 
-        <!-- 3. EVO2 -->
+        <!-- 3. EVO2 (оранжевый бейдж с чёрным текстом) -->
         <div class="card" style="border-color: rgba(230, 130, 70, 0.3);">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-robot"></i></div>
                 <div class="card-title-group">
-                    <div class="card-title">evo2 <span class="badge" style="background: #e68246;color:black;">ESM‑2</span></div>
+                    <div class="card-title">evo2 <span class="badge" style="background: #e68246; color: black;">ESM‑2</span></div>
                     <div class="card-purpose">Evolutionary scale protein language model</div>
                 </div>
             </div>
@@ -559,12 +566,12 @@
             </div>
         </div>
 
-        <!-- 4. RosettaFold3 -->
+        <!-- 4. RosettaFold3 (оранжевый бейдж с чёрным текстом) -->
         <div class="card" style="border-color: rgba(230, 130, 70, 0.3);">
             <div class="card-header">
                 <div class="card-icon"><i class="fas fa-cubes"></i></div>
                 <div class="card-title-group">
-                    <div class="card-title">rosettafold3 <span class="badge" style="background: #e68246;color:black;">full‑atom</span></div>
+                    <div class="card-title">rosettafold3 <span class="badge" style="background: #e68246; color: black;">full‑atom</span></div>
                     <div class="card-purpose">Accurate biomolecular structure prediction</div>
                 </div>
             </div>
@@ -753,6 +760,7 @@
         </div>
     </div>
 
+    <!-- ===== FOOTER ===== -->
     <footer class="page-footer">
         <span>
             <i class="fas fa-cube" style="color:hsl(14.8, 63.1%, 59.6%); opacity:0.5;"></i> unified MCP ecosystem
