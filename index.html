@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MCP + FORTNITE · FUI HUD</title>
-
-    <!-- Fortnite Fonts -->
+    <title>FORTNITE · SCIENCE</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
         @font-face {
             font-family: 'Burbank Big Condensed';
@@ -21,8 +20,6 @@
             font-style: normal;
             font-display: swap;
         }
-
-        /* ── RESET & FULL VIEWPORT ── */
         *,
         *::before,
         *::after {
@@ -30,17 +27,14 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         html,
         body {
             width: 100%;
             height: 100%;
             overflow: hidden;
             background: #0a0a0f;
-            font-family: 'Burbank Big Condensed', 'Georgia', 'Times New Roman', serif;
+            font-family: 'Burbank Big Condensed', sans-serif;
         }
-
-        /* hide scrollbar — all browsers */
         ::-webkit-scrollbar {
             display: none;
             width: 0;
@@ -50,8 +44,6 @@
             scrollbar-width: none;
             -ms-overflow-style: none;
         }
-
-        /* ── HERO ── */
         .hero {
             position: relative;
             width: 100vw;
@@ -64,12 +56,6 @@
             overflow: hidden;
             user-select: none;
         }
-
-        /* ═══════════════════════════════════════════ */
-        /*  F U I   H U D   B A C K G R O U N D      */
-        /* ═══════════════════════════════════════════ */
-
-        /* 1. Digital Grid */
         .hero::before {
             content: '';
             position: absolute;
@@ -83,7 +69,6 @@
             z-index: 0;
             animation: gridScroll 30s linear infinite;
         }
-
         @keyframes gridScroll {
             0% {
                 transform: translate(0, 0);
@@ -92,7 +77,6 @@
                 transform: translate(50px, 50px);
             }
         }
-
         .hero .grid-overlay {
             position: absolute;
             inset: 0;
@@ -105,7 +89,6 @@
             z-index: 0;
             animation: gridScroll 20s linear infinite reverse;
         }
-
         .hero .scanline {
             position: absolute;
             top: 0;
@@ -118,7 +101,6 @@
             filter: blur(0.5px);
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
         }
-
         @keyframes scanMove {
             0% {
                 top: 0;
@@ -135,19 +117,16 @@
                 opacity: 0.3;
             }
         }
-
         .hud-corner {
             position: absolute;
             z-index: 1;
             pointer-events: none;
             opacity: 0.25;
         }
-
         .hud-corner svg {
             width: 60px;
             height: 60px;
         }
-
         .hud-corner.tl {
             top: 20px;
             left: 20px;
@@ -167,14 +146,12 @@
             right: 20px;
             transform: scale(-1, -1);
         }
-
         .hud-side {
             position: absolute;
             z-index: 1;
             pointer-events: none;
             opacity: 0.12;
         }
-
         .hud-side.left {
             top: 80px;
             left: 10px;
@@ -182,7 +159,6 @@
             width: 1px;
             background: linear-gradient(to bottom, transparent, rgba(0, 255, 255, 0.3), transparent);
         }
-
         .hud-side.right {
             top: 80px;
             right: 10px;
@@ -190,7 +166,6 @@
             width: 1px;
             background: linear-gradient(to bottom, transparent, rgba(0, 255, 255, 0.3), transparent);
         }
-
         .hud-particles {
             position: absolute;
             inset: 0;
@@ -198,7 +173,6 @@
             z-index: 1;
             overflow: hidden;
         }
-
         .hud-particle {
             position: absolute;
             width: 2px;
@@ -207,7 +181,6 @@
             border-radius: 50%;
             animation: floatParticle 12s infinite linear;
         }
-
         .hud-particle:nth-child(1) {
             left: 5%;
             top: 15%;
@@ -262,7 +235,6 @@
             animation-duration: 19s;
             animation-delay: 0.5s;
         }
-
         @keyframes floatParticle {
             0% {
                 transform: translate(0, 0) scale(1);
@@ -279,7 +251,6 @@
                 opacity: 0;
             }
         }
-
         .hud-particle:nth-child(1) {
             --tx: 60px;
             --ty: -120px;
@@ -312,21 +283,18 @@
             --tx: -50px;
             --ty: -150px;
         }
-
         .hud-cross {
             position: absolute;
             z-index: 1;
             pointer-events: none;
             opacity: 0.06;
         }
-
         .hud-cross::before,
         .hud-cross::after {
             content: '';
             position: absolute;
             background: rgba(0, 255, 255, 0.3);
         }
-
         .hud-cross::before {
             width: 1px;
             height: 120px;
@@ -334,7 +302,6 @@
             left: 50%;
             transform: translateX(-50%);
         }
-
         .hud-cross::after {
             width: 120px;
             height: 1px;
@@ -342,7 +309,6 @@
             left: -60px;
             transform: translateY(-50%);
         }
-
         .hud-cross .dot {
             position: absolute;
             top: 50%;
@@ -354,7 +320,6 @@
             background: rgba(0, 255, 255, 0.2);
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
         }
-
         .hud-label {
             position: absolute;
             z-index: 1;
@@ -366,7 +331,6 @@
             text-transform: uppercase;
             pointer-events: none;
         }
-
         .hud-label.tl {
             top: 85px;
             left: 30px;
@@ -383,7 +347,6 @@
             bottom: 85px;
             right: 30px;
         }
-
         .hero .glow-overlay {
             position: absolute;
             inset: 0;
@@ -393,11 +356,6 @@
             pointer-events: none;
             z-index: 0;
         }
-
-        /* ═══════════════════════════════════════════ */
-        /*  T O P   B A R                            */
-        /* ═══════════════════════════════════════════ */
-
         .top-bar {
             position: absolute;
             top: 0;
@@ -410,11 +368,9 @@
             z-index: 10;
             pointer-events: none;
         }
-
         .top-bar>* {
             pointer-events: auto;
         }
-
         .lego-logo {
             height: clamp(64px, 8vw, 112px);
             width: auto;
@@ -430,8 +386,6 @@
             display: block;
             border-radius: 8px;
         }
-
-        /* Title */
         .main-title {
             font-family: 'Burbank Big Condensed', sans-serif;
             font-weight: 900;
@@ -439,9 +393,7 @@
             letter-spacing: 0.06em;
             text-transform: uppercase;
             color: #fff;
-            text-shadow:
-                0 0 20px rgba(0, 255, 255, 0.15),
-                0 0 60px rgba(0, 255, 255, 0.05);
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.15), 0 0 60px rgba(0, 255, 255, 0.05);
             background: linear-gradient(135deg, #ffffff 40%, #88ffff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -449,8 +401,16 @@
             animation: titleGlow 4s ease-in-out infinite alternate;
             text-align: center;
             padding: 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
-
+        .main-title .fa-xmark {
+            font-size: 0.8em;
+            color: red;
+            -webkit-text-fill-color: red;
+            background: none;
+        }
         @keyframes titleGlow {
             0% {
                 filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.1));
@@ -459,11 +419,6 @@
                 filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.25));
             }
         }
-
-        /* ═══════════════════════════════════════════ */
-        /*  L O G O S   C O N T A I N E R             */
-        /* ═══════════════════════════════════════════ */
-
         .logos {
             display: flex;
             align-items: center;
@@ -471,12 +426,15 @@
             gap: clamp(2rem, 8vw, 6rem);
             position: relative;
             z-index: 2;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             padding: 1rem;
             margin-top: clamp(1rem, 2vh, 2rem);
+            width: 90%;
+            max-width: 1200px;
         }
-
-        /* ── DIVIDER ── */
+        .logos>* {
+            flex-shrink: 0;
+        }
         .divider {
             display: flex;
             flex-direction: column;
@@ -491,7 +449,6 @@
             animation: dividerPulse 3s ease-in-out infinite alternate;
             padding: 0 0.5rem;
         }
-
         .divider span {
             display: block;
             line-height: 0.8;
@@ -502,7 +459,6 @@
             background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.15), transparent);
             margin: 0.6rem 0;
         }
-
         @keyframes dividerPulse {
             0% {
                 opacity: 0.4;
@@ -513,8 +469,6 @@
                 transform: scale(1.05);
             }
         }
-
-        /* ── WARNER BROS GAMING LOGO (external) ── */
         .logo-wbg {
             display: flex;
             flex-direction: column;
@@ -522,19 +476,16 @@
             animation: logoEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
             filter: drop-shadow(0 0 40px rgba(0, 255, 255, 0.04));
             transition: filter 0.6s ease;
+            flex-shrink: 0;
         }
-
         .logo-wbg:hover {
             filter: drop-shadow(0 0 60px rgba(0, 255, 255, 0.15));
         }
-
         .logo-wbg img {
             width: clamp(140px, 22vw, 260px);
             height: auto;
             display: block;
         }
-
-        /* ── DISNEY LOGO (external) ── */
         .logo-disney {
             display: flex;
             flex-direction: column;
@@ -542,18 +493,16 @@
             animation: logoEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
             filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.04));
             transition: filter 0.6s ease;
+            flex-shrink: 0;
         }
-
         .logo-disney:hover {
             filter: drop-shadow(0 0 60px rgba(255, 255, 255, 0.12));
         }
-
         .logo-disney img {
             width: clamp(200px, 32vw, 400px);
             height: auto;
             display: block;
         }
-
         @keyframes logoEntrance {
             0% {
                 opacity: 0;
@@ -564,8 +513,6 @@
                 transform: scale(1) translateY(0);
             }
         }
-
-        /* ── TAGLINE ── */
         .tagline {
             margin-top: clamp(1.8rem, 3.5vw, 4rem);
             font-size: clamp(0.75rem, 1.1vw, 1.3rem);
@@ -580,7 +527,6 @@
             padding: 0 1rem;
             animation: taglineFade 2s ease 1.2s both;
         }
-
         .tagline span {
             display: inline-block;
             background: rgba(0, 255, 255, 0.02);
@@ -589,7 +535,6 @@
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 0.02);
         }
-
         @keyframes taglineFade {
             0% {
                 opacity: 0;
@@ -600,14 +545,9 @@
                 transform: translateY(0);
             }
         }
-
-        /* ═══════════════════════════════════════════ */
-        /*  F O O T E R   I C O N S   (Platforms)    */
-        /* ═══════════════════════════════════════════ */
-
         .platform-icons {
             position: absolute;
-            bottom: clamp(4rem, 5vh, 6rem);
+            bottom: clamp(5.5rem, 7vh, 8rem);
             left: 0;
             width: 100%;
             display: flex;
@@ -619,7 +559,6 @@
             z-index: 2;
             animation: bottomFade 2.5s ease 1.8s both;
         }
-
         .platform-icons a {
             display: inline-flex;
             align-items: center;
@@ -630,19 +569,16 @@
             color: rgba(255, 255, 255, 0.6);
             opacity: 0.8;
         }
-
         .platform-icons a:hover {
             color: #ffffff;
             opacity: 1;
             transform: scale(1.1);
         }
-
         .platform-icons svg {
             fill: currentColor;
             width: 100%;
             height: 100%;
         }
-
         .platform-icons img {
             height: 100%;
             width: auto;
@@ -651,42 +587,66 @@
             opacity: 0.7;
             transition: opacity 0.3s ease;
         }
-
         .platform-icons a:hover img {
             opacity: 1;
             filter: brightness(0) invert(1) drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
         }
-
-        /* ── BOTTOM BAR ── */
+        .github-link {
+            position: absolute;
+            bottom: clamp(2rem, 2.5vh, 3rem);
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.6rem;
+            z-index: 2;
+            font-family: 'Burbank Big Condensed', sans-serif;
+            font-weight: 700;
+            font-size: clamp(0.8rem, 1vw, 1.2rem);
+            letter-spacing: 0.15em;
+            color: rgba(255, 255, 255, 0.3);
+            text-transform: uppercase;
+            animation: bottomFade 2.5s ease 2.2s both;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .github-link:hover {
+            color: #ffffff;
+        }
+        .github-link i {
+            font-size: 1.4em;
+        }
+        .github-link span {
+            color: inherit;
+        }
         .bottom-bar {
             position: absolute;
-            bottom: clamp(0.8rem, 1.5vh, 1.5rem);
+            bottom: clamp(0.4rem, 0.8vh, 0.8rem);
             left: 0;
             width: 100%;
             display: flex;
             justify-content: center;
             gap: clamp(1.5rem, 4vw, 4rem);
             z-index: 2;
-            font-size: clamp(0.5rem, 0.7vw, 0.75rem);
+            font-size: clamp(0.4rem, 0.5vw, 0.6rem);
             letter-spacing: 0.3em;
-            color: rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.03);
             text-transform: uppercase;
             font-family: 'Burbank Big Condensed', sans-serif;
             font-weight: 700;
             padding: 0 1rem;
             animation: bottomFade 2.5s ease 1.8s both;
         }
-
         .bottom-bar .dot {
             display: inline-block;
             width: 4px;
             height: 4px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.03);
             margin: 0 0.2rem;
             vertical-align: middle;
         }
-
         @keyframes bottomFade {
             0% {
                 opacity: 0;
@@ -697,13 +657,9 @@
                 transform: translateY(0);
             }
         }
-
-        /* ── RESPONSIVE ── */
         @media (max-width: 720px) {
             .top-bar {
                 padding: 0.8rem 1rem;
-                flex-direction: row;
-                gap: 0.5rem;
             }
             .lego-logo {
                 height: clamp(56px, 7vw, 80px);
@@ -712,58 +668,54 @@
                 font-size: clamp(1.2rem, 4vw, 2.2rem);
                 letter-spacing: 0.04em;
             }
-
             .logos {
                 gap: 1.2rem;
-                flex-direction: column;
-                margin-top: 0.5rem;
+                flex-wrap: nowrap;
+                width: 95%;
+                overflow-x: auto;
+                justify-content: center;
             }
-
+            .logos>* {
+                flex-shrink: 0;
+            }
             .divider {
                 flex-direction: row;
                 gap: 0.8rem;
                 padding: 0.2rem 0;
             }
             .divider .line {
-                width: 50px;
+                width: 30px;
                 height: 1px;
                 margin: 0;
             }
             .divider span {
-                font-size: 1.4rem;
+                font-size: 1.2rem;
             }
-
             .logo-wbg img {
-                width: 120px;
+                width: 100px;
             }
             .logo-disney img {
-                width: 180px;
+                width: 140px;
             }
-
             .tagline {
-                margin-top: 1.2rem;
-                font-size: 0.6rem;
-                letter-spacing: 0.4em;
+                margin-top: 1rem;
+                font-size: 0.5rem;
             }
-            .tagline span {
-                padding: 0.2rem 1rem;
-            }
-
             .platform-icons {
-                bottom: clamp(3.5rem, 4vh, 5rem);
+                bottom: clamp(4.5rem, 5vh, 6rem);
                 gap: 0.6rem;
             }
             .platform-icons a {
                 height: clamp(24px, 2.5vw, 32px);
             }
-
-            .bottom-bar {
-                bottom: 0.8rem;
-                font-size: 0.45rem;
-                gap: 1rem;
-                letter-spacing: 0.2em;
+            .github-link {
+                bottom: clamp(1.5rem, 2vh, 2.5rem);
+                font-size: clamp(0.7rem, 0.9vw, 1rem);
             }
-
+            .bottom-bar {
+                font-size: 0.4rem;
+                gap: 0.8rem;
+            }
             .hud-corner svg {
                 width: 36px;
                 height: 36px;
@@ -795,48 +747,49 @@
                 display: none;
             }
         }
-
         @media (max-width: 420px) {
             .top-bar {
                 padding: 0.5rem 0.8rem;
             }
             .lego-logo {
-                height: 48px;
+                height: 44px;
             }
             .main-title {
-                font-size: 1rem;
+                font-size: 0.9rem;
                 letter-spacing: 0.02em;
             }
-
             .logo-wbg img {
-                width: 90px;
+                width: 80px;
             }
             .logo-disney img {
-                width: 140px;
+                width: 110px;
             }
             .logos {
                 gap: 0.8rem;
             }
             .divider span {
-                font-size: 1rem;
+                font-size: 0.9rem;
             }
             .divider .line {
-                width: 30px;
+                width: 20px;
             }
-
             .platform-icons {
-                bottom: 3rem;
+                bottom: 3.5rem;
                 gap: 0.4rem;
             }
             .platform-icons a {
                 height: 20px;
             }
+            .github-link {
+                bottom: 1.2rem;
+                font-size: 0.6rem;
+                gap: 0.3rem;
+            }
             .bottom-bar {
-                font-size: 0.4rem;
-                gap: 0.6rem;
+                font-size: 0.35rem;
+                gap: 0.5rem;
             }
         }
-
         @media (prefers-reduced-motion: reduce) {
             *,
             *::before,
@@ -848,16 +801,10 @@
         }
     </style>
 </head>
-
 <body>
-
     <section class="hero">
-
-        <!-- ===== FUI HUD BACKGROUND ===== -->
-        
         <div class="grid-overlay"></div>
         <div class="scanline"></div>
-
         <div class="hud-corner tl">
             <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 60V54C0 24.177 24.177 0 54 0H60" stroke="rgba(0,255,255,0.3)" stroke-width="1.5"/>
@@ -890,12 +837,8 @@
                 <rect x="4" y="4" width="1" height="6" fill="rgba(0,255,255,0.2)" />
             </svg>
         </div>
-
-        <!-- Боковые линии -->
         <div class="hud-side left"></div>
         <div class="hud-side right"></div>
-
-        <!-- HUD-частицы -->
         <div class="hud-particles">
             <div class="hud-particle"></div>
             <div class="hud-particle"></div>
@@ -906,46 +849,27 @@
             <div class="hud-particle"></div>
             <div class="hud-particle"></div>
         </div>
-
-        <!-- Центральный крест -->
-        <div class="hud-cross">
-            <div class="dot"></div>
-        </div>
-
-        <!-- HUD-метки -->
+        <div class="hud-cross"><div class="dot"></div></div>
         <div class="hud-label tl">SYS::ONLINE</div>
         <div class="hud-label tr">UEFN::v1.0</div>
         <div class="hud-label bl">FORTITE::ACTIVE</div>
         <div class="hud-label br">MCP::LINK</div>
-
-        <!-- Glow overlay -->
         <div class="glow-overlay"></div>
 
-        <!-- ===== TOP BAR ===== -->
-
         <div class="top-bar">
-            <!-- Lego logo (top-left) -->
             <div class="lego-logo">
                 <img src="https://qfoldit.github.io/assets/lego_brand.svg" alt="LEGO" />
             </div>
-
-            <!-- Main Title -->
-            <div class="main-title">SCIENCE + FORTNITE</div>
-
-            <!-- spacer for flex alignment -->
+            <div class="main-title">
+                FORTNITE <i class="fas fa-xmark"></i> SCIENCE
+            </div>
             <div style="width: clamp(32px, 4vw, 56px);"></div>
         </div>
 
-        <!-- ===== LOGOS ===== -->
-
         <div class="logos">
-
-            <!-- WARNER BROS GAMING (external) -->
             <div class="logo-wbg">
                 <img src="https://qfoldit.github.io/assets/wb-games-logo-white.svg" alt="Warner Bros. Gaming" />
             </div>
-
-            <!-- DIVIDER -->
             <div class="divider">
                 <span>&#9679;</span>
                 <div class="line"></div>
@@ -953,101 +877,73 @@
                 <div class="line"></div>
                 <span>&#9679;</span>
             </div>
-
-            <!-- DISNEY (external) -->
             <div class="logo-disney">
                 <img src="https://qfoldit.github.io/assets/Disney_Logo_White.svg" alt="Disney" />
             </div>
-
         </div>
 
-        <!-- ===== TAGLINE ===== -->
         <div class="tagline">
             <span>✦ 2026 ✦</span>
         </div>
 
-        <!-- ===== PLATFORM ICONS (footer) ===== -->
         <div class="platform-icons">
-            <!-- Epic Games -->
             <a href="https://store.epicgames.com/ru/p/fortnite" target="_blank" aria-label="Epic Games" title="Epic Games">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M18.723 2.5c1.102 0 1.505.401 1.506 1.487v13.244c0 .17-.032.477-.087.608a.9.9 0 0 1-.21.334c-.107.099-.29.202-.378.242l-7.127 3a1.1 1.1 0 0 1-.853 0l-7.127-3a1.7 1.7 0 0 1-.378-.241.9.9 0 0 1-.21-.335c-.055-.131-.086-.438-.086-.608V3.986c0-1.086.403-1.487 1.505-1.487zM9.324 18.485a.06.06 0 0 0-.036.054q0 .012.005.022a.06.06 0 0 0 .031.032l2.58 1.093a.23.23 0 0 0 .181 0l2.6-1.093.02-.013.012-.018.005-.023-.005-.022-.013-.019-.019-.013-.022-.005H9.347zM7.3 13.87q-.259 0-.48.088a1.15 1.15 0 0 0-.632.61q-.091.208-.091.45v.006q0 .25.092.46.093.21.255.36.164.152.385.237.222.085.484.085.306 0 .55-.098.24-.098.42-.243v-.994H7.255v.45h.44v.267a.64.64 0 0 1-.357.092.6.6 0 0 1-.437-.173.6.6 0 0 1-.126-.193.7.7 0 0 1-.044-.247v-.006a.63.63 0 0 1 .165-.43.57.57 0 0 1 .406-.176q.166 0 .293.054a1 1 0 0 1 .247.154l.363-.432q-.18-.151-.393-.236a1.4 1.4 0 0 0-.513-.085m9.635.005a1.2 1.2 0 0 0-.362.052.8.8 0 0 0-.272.147.63.63 0 0 0-.232.508v.007q0 .17.066.285.065.115.178.192.114.078.267.126.153.05.332.09.115.025.187.05a.6.6 0 0 1 .115.048.16.16 0 0 1 .058.053q.016.026.017.06v.007a.12.12 0 0 1-.065.112.4.4 0 0 1-.19.04q-.39 0-.725-.265l-.344.406q.207.183.476.275.27.091.57.091.204 0 .37-.049a.8.8 0 0 0 .285-.141.7.7 0 0 0 .184-.226.7.7 0 0 0 .065-.304v-.005a.6.6 0 0 0-.058-.268.5.5 0 0 0-.166-.19 1 1 0 0 0-.263-.134 3 3 0 0 0-.347-.097 2 2 0 0 1-.19-.049 1 1 0 0 1-.117-.047.16.16 0 0 1-.061-.051.12.12 0 0 1-.018-.067v-.007q.001-.06.056-.1a.3.3 0 0 1 .168-.041q.15 0 .31.056.162.055.315.162l.31-.432a1.3 1.3 0 0 0-.408-.22q-.225-.075-.511-.074m-8.455 2.244h.652l.16-.394h.861l.163.394h.665l-.953-2.224h-.596zm2.717 0h.607v-1.262l.568.858h.013l.571-.864v1.268h.616V13.91h-.654l-.533.855-.533-.855h-.655zm2.79 0h1.812v-.52h-1.2v-.35h1.073v-.482h-1.073v-.335h1.184v-.52h-1.797zm-4.012-.87h-.502l.252-.628zM15.946 4.82c-.914 0-1.367.448-1.367 1.353v4.705c0 .906.453 1.352 1.368 1.352h.557c.915 0 1.367-.447 1.367-1.352V9.182h-1.104v1.643c0 .292-.137.427-.42.427h-.211c-.294 0-.43-.135-.43-.427v-4.6c0-.29.135-.426.43-.426h.19c.283 0 .42.135.42.427V7.65h1.104V6.163c0-.905-.442-1.343-1.357-1.343zM6.15 12.17h2.524v-1.01H7.275V8.963h1.326v-1.01H7.275v-2.06h1.378v-1.01H6.15zm3.068 0h1.125V9.525h.641c.915 0 1.368-.448 1.368-1.353V6.236c0-.906-.453-1.353-1.368-1.353H9.218zm3.641-.001h1.125V4.883H12.86zm-2.053-6.307c.283 0 .42.135.42.427V8.12c0 .291-.136.427-.42.427h-.463V5.86z"/>
                 </svg>
             </a>
-
-            <!-- Unreal Engine -->
             <a href="https://www.unrealengine.com/ru/" target="_blank" aria-label="Unreal Engine" title="Unreal Engine">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2m-.906 3.948a6.2 6.2 0 0 0-3.109 1.434 6.09 6.09 0 0 0-2.106 4.665s.612-1.915 1.38-2.092a.742.742 0 0 1 .93.742v4.495c0 .456-.294.555-.565.55a2.4 2.4 0 0 1-.542-.101 6.12 6.12 0 0 0 4.837 2.48l1.657-1.666.982 1.105c2.445-1.155 3.212-3.289 3.384-4.12-.894.916-1.883 1.844-2.548 1.202 0-.035-.037-3.437-.037-4.835 0-1.883 1.78-3.288 1.793-3.3-.986.176-2.17.527-3.427 1.76q-.17.17-.322.355c-.538-.412-1.237-.289-1.237-.289.377.207.754.811.754 1.31v4.91c-.012.011-.827.724-1.456.724a.9.9 0 0 1-.732-.37 1 1 0 0 1-.125-.215V8.626c-.187.154-.82.282-.82-.769 0-.653.47-1.431 1.309-1.909"/>
                 </svg>
             </a>
-
-            <!-- PC (Игра для ПК) -->
-            <a href="https://www.fortnite.com/download?lang=ru" target="_blank" aria-label="Игра для ПК" title="Игра для ПК">
+            <a href="https://www.fortnite.com/download?lang=ru" target="_blank" aria-label="PC" title="PC">
                 <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/KA6d6NZXSlaxhPy5eAYf" alt="PC" />
             </a>
-
-            <!-- PlayStation -->
             <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation" title="PlayStation">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22.343 19.12c.558.032.896.465.877.98-.02.551-.435.92-.973.901-.56-.02-.939-.45-.909-1.008.03-.527.464-.906 1.005-.874m-.055.142a.773.773 0 0 0-.802.8c.001.463.34.803.797.803a.78.78 0 0 0 .795-.805.775.775 0 0 0-.79-.798M8.975 2.64c1.043.19 2.07.465 3.09.75q.877.249 1.745.522c.91.285 1.814.607 2.637 1.088.37.22.723.469 1.026.771.328.317.597.688.794 1.097.36.737.482 1.56.518 2.37.017.528.016 1.06-.085 1.582a3.7 3.7 0 0 1-.478 1.294 2.4 2.4 0 0 1-.888.842 2.4 2.4 0 0 1-1.155.267c-.606.006-1.194-.183-1.738-.432l-.005-2.668V6.972q0-.242-.047-.48c-.046-.246-.148-.494-.345-.66a1 1 0 0 0-.468-.217.48.48 0 0 0-.461.175c-.177.217-.223.505-.23.774l-.002 14.283q-1.954-.608-3.908-1.22-.002-8.493 0-16.987m13.432 16.876c.142.002.242.07.27.181.036.147-.003.303-.174.358l-.005.002v.008c.083.031.117.103.141.18q.048.158.099.316l.013.039h-.203l-.008-.035-.075-.27c-.034-.118-.075-.15-.197-.154l-.162-.002.001.46h-.196v-1.085s.343 0 .496.002m-4.462-5.643c1.273.005 2.553.16 3.772.536.24.072.47.164.71.239.423.152.85.337 1.19.638.203.183.38.43.382.711.012.23-.093.45-.245.62-.288.316-.668.534-1.05.724-.407.204-.844.336-1.27.491l-7.81 2.758v-2.201c.001-.017.007-.032.028-.035l5.942-2.084c.268-.097.556-.17.783-.347.093-.072.184-.187.14-.31-.049-.107-.162-.168-.267-.212-.297-.115-.62-.137-.935-.146a4.8 4.8 0 0 0-1.46.22c-1.41.485-2.82.976-4.231 1.461v-2.309a14.8 14.8 0 0 1 3.16-.687c.386-.044.774-.053 1.16-.067m4.161 6.132h.142a.6.6 0 0 0 .115-.01c.092-.018.144-.087.14-.183-.003-.09-.054-.15-.143-.157a5 5 0 0 0-.254-.006z"/>
                 </svg>
             </a>
-
-            <!-- PlayStation 5 -->
             <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation 5" title="PlayStation 5">
                 <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/WhxwsUG5QUhr9xYWZ6FA" alt="PS5" />
             </a>
-
-            <!-- PlayStation 4 -->
             <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation 4" title="PlayStation 4">
                 <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/T5zoHcW8SpqCQ5gjQ5S1" alt="PS4" />
             </a>
-
-            <!-- Xbox -->
             <a href="https://www.xbox.com/games/store/fortnite/bt5p2x999vh2" target="_blank" aria-label="Xbox" title="Xbox">
                 <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/CHAtzJR0GI4pD4PiKQxQ" alt="Xbox" />
             </a>
-
-            <!-- Xbox Series X|S -->
             <a href="https://www.xbox.com/games/store/fortnite/bt5p2x999vh2" target="_blank" aria-label="Xbox Series X|S" title="Xbox Series X|S">
                 <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/P6XlS1FQ56Y8NXslBgUK" alt="Xbox Series" />
             </a>
-
-            <!-- Nintendo Switch -->
             <a href="https://www.nintendo.com/games/detail/fortnite-switch" target="_blank" aria-label="Nintendo Switch" title="Nintendo Switch">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M15.184 3c1.298 0 1.7.01 1.961.056 1.946.335 3.426 1.8 3.795 3.742.052.272.06.91.06 5.183 0 4.567.005 5.105-.139 5.598-.025.085-.054.17-.089.273a6 6 0 0 1-.279.652 4.65 4.65 0 0 1-3.575 2.46c-.358.037-3.251.052-3.352.014-.055-.025-.06-.863-.06-8.974 0-4.91.012-8.938.027-8.978.011-.015.757-.026 1.651-.026m-5.789.004c2.185-.004 2.248 0 2.286.067.026.064.037 2.912.037 8.945 0 8.154-.004 8.873-.06 8.93-.056.055-.276.058-2.36.043-2.016-.011-2.33-.022-2.575-.078-1.886-.44-3.214-1.77-3.627-3.638-.075-.346-.078-.452-.09-4.937C2.989 7.45 3 7.08 3.164 6.45a4.65 4.65 0 0 1 3.69-3.391c.235-.041.768-.052 2.542-.056m-.611 1.453c-1.595.004-1.823.026-2.314.224A3.2 3.2 0 0 0 4.54 6.986c-.078.37-.08 9.642.003 10.019a3.16 3.16 0 0 0 2.34 2.437c.28.071.43.078 1.828.093l1.516.019V4.453zm8.73 6.687a1.81 1.81 0 0 0-2.18 1.207c-.093.29-.097.767-.015 1.05a1.835 1.835 0 0 0 2.196 1.245c.573-.152 1.021-.566 1.249-1.155.123-.32.126-.835.003-1.185a1.82 1.82 0 0 0-1.252-1.162M7.175 6.73c.939-.186 1.848.455 2.008 1.413.138.805-.35 1.592-1.159 1.864-.197.067-.301.077-.595.066-.325-.011-.389-.025-.638-.148a1.7 1.7 0 0 1-.802-.806c-.119-.238-.137-.317-.152-.611-.03-.566.163-1.047.554-1.386a2 2 0 0 1 .784-.392"/>
                 </svg>
             </a>
-
-            <!-- Nintendo Switch 2 -->
             <a href="https://www.nintendo.com/games/detail/fortnite-switch-2" target="_blank" aria-label="Nintendo Switch 2" title="Nintendo Switch 2">
                 <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cm8zzae4r1g7z06oj8hbgpfaz" alt="Switch 2" />
             </a>
-
-            <!-- Android -->
             <a href="https://store.epicgames.com/download/android?p=fortnite&amp;lang=ru" target="_blank" aria-label="Android" title="Android">
                 <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/3CWE1VlwQmSRnNkAdxd8" alt="Android" />
             </a>
-
-            <!-- OneStore -->
             <a href="https://m.onestore.co.kr/ko-kr/apps/appsDetail.omp?prodId=0000779798" target="_blank" aria-label="OneStore" title="OneStore">
                 <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmbp7vi6m0c3q07mvb2vxvu7s" alt="OneStore" />
             </a>
-
-            <!-- Luna -->
             <a href="https://luna.amazon.com/game/fortnite?g=web&amp;ref=tmp_ext_epic" target="_blank" aria-label="Amazon Luna" title="Amazon Luna">
                 <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmhwnqdpu379j07ogp3mewuu7" alt="Luna" />
             </a>
-
-            <!-- GeForce Now -->
             <a href="https://www.nvidia.com/en-us/geforce-now/" target="_blank" aria-label="GeForce Now" title="GeForce Now">
                 <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmhwn7osa33zd07ogkrhs0w0v" alt="GeForce Now" />
             </a>
         </div>
 
-        <!-- ===== BOTTOM BAR ===== -->
+        <a href="https://github.com/qfoldit" target="_blank" class="github-link">
+            <i class="fab fa-github"></i>
+            <span>GITHUB</span>
+        </a>
+
         <div class="bottom-bar">
             <span>Warner Bros. Gaming</span>
             <span class="dot"></span>
@@ -1055,8 +951,6 @@
             <span class="dot"></span>
             <span>UEFN</span>
         </div>
-
     </section>
-
 </body>
 </html>
