@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Available IP · qFoldIT</title>
+    <title>Fortnite · qFoldIT · UEFN</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
         @font-face {
@@ -340,7 +340,7 @@
             color: rgba(0, 255, 255, 0.08);
             text-transform: uppercase;
             pointer-events: none;
-            transform: translateY(-2vh); /* shift up by 2vh */
+            transform: translateY(-2vh);
         }
         .hud-label.tl {
             top: 85px;
@@ -358,7 +358,6 @@
             bottom: 85px;
             right: 30px;
         }
-        /* New mid labels for Warner Bros. and Disney */
         .hud-label.mid-left {
             left: 30px;
             top: 50%;
@@ -387,7 +386,6 @@
             z-index: 0;
         }
 
-        /* Hero logos — full viewport, side by side */
         .hero-logos {
             position: relative;
             z-index: 2;
@@ -423,7 +421,6 @@
             background: rgba(10, 10, 15, 0.3);
         }
 
-        /* Top bar — fully transparent, glass only on logo and title */
         .top-bar {
             position: fixed;
             top: 0;
@@ -484,6 +481,8 @@
             border: none;
             box-shadow: none;
             padding: 0;
+            font-family: 'Burbank Big Condensed', sans-serif;
+            font-weight: 700;
             font-size: clamp(1.8rem, 5vw, 4.5rem);
             letter-spacing: 0.06em;
             text-transform: uppercase;
@@ -497,14 +496,41 @@
             text-align: right;
             display: flex;
             align-items: center;
-            gap: 0.3rem;
+            gap: 0.6rem; /* увеличенный пробел между элементами */
         }
-        .main-title .fa-xmark {
-            font-size: 0.8em;
-            color: red;
-            -webkit-text-fill-color: red;
-            background: none;
-            transform: translateY(-1vh); /* shift up by 1vh */
+        /* Буква X — уменьшена в 2 раза относительно предыдущего размера, с отступами */
+        .main-title .title-x {
+            position: relative;
+            display: inline-block;
+            flex: 0 0 auto;
+            width: 0.175em;          /* половина от 0.35em */
+            height: 0.175em;         /* половина от 0.35em */
+            margin: 0 0.15em;        /* явные отступы слева и справа */
+            transform: translateY(-0.02em);
+            background: transparent;
+            -webkit-text-fill-color: initial;
+        }
+
+        .main-title .title-x::before,
+        .main-title .title-x::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0.07em;           /* половина от 0.14em */
+            height: 0.425em;         /* половина от 0.85em */
+            border-radius: 0;        /* квадратные, без скругления */
+            background: #ff1515;
+            box-shadow: none;
+            transform-origin: center;
+        }
+
+        .main-title .title-x::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .main-title .title-x::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
         }
         @keyframes titleGlow {
             0% {
@@ -515,7 +541,6 @@
             }
         }
 
-        /* Scrollable content — appears below hero-logos */
         .content-wrapper {
             position: relative;
             z-index: 2;
@@ -525,7 +550,6 @@
             min-height: 100vh;
         }
 
-        /* Tables */
         .table-section {
             margin-bottom: 2.5rem;
             background: rgba(10, 10, 15, 0.85);
@@ -582,7 +606,6 @@
         .table-section table tr:last-child td {
             border-bottom: none;
         }
-        /* Two-column tables */
         .table-section table td:first-child {
             font-weight: 700;
             color: #ffffff;
@@ -593,7 +616,6 @@
         .table-section table td:last-child {
             width: 72%;
         }
-        /* Three-column tables */
         .table-section.summary-table table td:nth-child(1) {
             width: 18%;
             min-width: 120px;
@@ -719,7 +741,6 @@
             color: #88ffff;
         }
 
-        /* Fixed footer */
         .footer-wrapper {
             position: fixed;
             bottom: 0;
@@ -804,9 +825,11 @@
             text-transform: uppercase;
             gap: 0.6rem;
             transition: color 0.3s ease;
+            text-decoration: none;
         }
         .footer-wrapper .github-link:hover {
             color: #ffffff;
+            text-decoration: none;
         }
         .footer-wrapper .github-link i {
             font-size: 1.4em;
@@ -826,20 +849,20 @@
             }
         }
 
-        /* Responsive */
+        /* Responsive — mobile with doubled sizes for LEGO logo, main title, and platform icons */
         @media (max-width: 720px) {
             .top-bar {
                 padding: 0.8rem 1rem;
             }
             .glass-left {
-                height: clamp(56px, 7vw, 80px);
-                padding: 6px 12px;
+                height: clamp(112px, 14vw, 160px);
+                padding: 12px 24px;
             }
             .glass-right {
-                padding: 0.2rem 1rem;
+                padding: 0.4rem 2.4rem;
             }
             .glass-right .main-title {
-                font-size: clamp(1.2rem, 4vw, 2.2rem);
+                font-size: clamp(2.4rem, 8vw, 4.4rem);
                 letter-spacing: 0.04em;
             }
             .content-wrapper {
@@ -869,15 +892,16 @@
                 min-width: 0;
             }
             .footer-wrapper .platform-icons {
-                padding: 0.4rem 0.8rem 0.2rem;
-                gap: 0.6rem;
+                padding: 0.8rem 1.6rem 0.4rem;
+                gap: clamp(1.6rem, 3vw, 3.6rem);
             }
             .footer-wrapper .platform-icons a {
-                height: clamp(24px, 2.5vw, 32px);
+                height: clamp(48px, 5vw, 64px);
             }
             .footer-wrapper .github-link {
                 font-size: clamp(0.7rem, 0.9vw, 1rem);
                 padding: 0.1rem 0;
+                text-decoration: none;
             }
             .hud-corner svg {
                 width: 36px;
@@ -914,23 +938,27 @@
             .hud-cross {
                 display: none;
             }
+            .hero-logos {
+                transform: translateY(-5%);
+            }
             .hero-logos .logo {
                 padding: 1.5rem;
             }
         }
+
         @media (max-width: 420px) {
             .top-bar {
                 padding: 0.5rem 0.8rem;
             }
             .glass-left {
-                height: 44px;
-                padding: 4px 10px;
+                height: 88px;
+                padding: 8px 16px;
             }
             .glass-right {
-                padding: 0.1rem 0.8rem;
+                padding: 0.2rem 1.2rem;
             }
             .glass-right .main-title {
-                font-size: 0.9rem;
+                font-size: 1.8rem;
                 letter-spacing: 0.02em;
             }
             .content-wrapper {
@@ -957,16 +985,20 @@
                 min-width: 0;
             }
             .footer-wrapper .platform-icons {
-                padding: 0.3rem 0.5rem 0.1rem;
-                gap: 0.4rem;
+                padding: 0.6rem 1rem 0.2rem;
+                gap: 0.8rem;
             }
             .footer-wrapper .platform-icons a {
-                height: 20px;
+                height: 40px;
             }
             .footer-wrapper .github-link {
                 font-size: 0.6rem;
                 padding: 0.1rem 0;
                 gap: 0.3rem;
+                text-decoration: none;
+            }
+            .hero-logos {
+                transform: translateY(-8%);
             }
             .hero-logos .logo {
                 padding: 1rem;
@@ -978,6 +1010,7 @@
                 opacity: 0.4;
             }
         }
+
         @media (prefers-reduced-motion: reduce) {
             *,
             *::before,
@@ -991,7 +1024,7 @@
 </head>
 <body>
     <section class="hero">
-        <!-- Background layers (fixed) -->
+        <!-- Background layers -->
         <div class="grid-overlay"></div>
         <div class="scanline"></div>
         <div class="hud-corner tl">
@@ -1039,20 +1072,18 @@
             <div class="hud-particle"></div>
         </div>
 
-        <!-- HUD Cross and corner labels — shifted up by 2vh -->
+        <!-- HUD Cross and corner labels -->
         <div class="hud-cross"><div class="dot"></div></div>
         <div class="hud-label tl">SYS::ONLINE</div>
         <div class="hud-label tr">UEFN::v1.0</div>
         <div class="hud-label bl">FORTITE::ACTIVE</div>
         <div class="hud-label br">MCP::LINK</div>
-
-        <!-- Side labels -->
         <div class="hud-label mid-left">WARNER BROS. GAMING</div>
         <div class="hud-label mid-right">WALT DISNEY</div>
 
         <div class="glow-overlay"></div>
 
-        <!-- Fixed top bar with glassmorphism -->
+        <!-- Top bar with glassmorphism -->
         <div class="top-bar">
             <div class="glass-left">
                 <div class="lego-logo">
@@ -1061,7 +1092,7 @@
             </div>
             <div class="glass-right">
                 <div class="main-title">
-                    FORTNITE <i class="fas fa-xmark"></i> SCIENCE
+                    FORTNITE <span class="title-x" aria-hidden="true"></span> SCIENCE
                 </div>
             </div>
         </div>
