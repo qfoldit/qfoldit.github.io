@@ -1,1233 +1,1062 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="refresh" content="150; url=https://qfoldit.github.io/assets/qrjoke/birthday.jpg">
-    
-    <title>FoldIT | qFoldIT</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MCP + FORTNITE · FUI HUD</title>
 
-    <link rel="stylesheet" href="https://ahiakwa.github.io/assets/adinkra-icons/css/icons.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
-
+    <!-- Fortnite Fonts -->
     <style>
-        /* ===== existing styles (unchanged) ===== */
         @font-face {
-            font-family: 'GetSchwifty';
-            src: url('https://qfoldit.github.io/assets/get_schwifty.ttf') format('truetype');
+            font-family: 'Burbank Big Condensed';
+            src: url('https://foldnite.github.io/assets/font/burbankbigcondensed_bold.otf') format('opentype');
+            font-weight: 700;
+            font-style: normal;
             font-display: swap;
         }
         @font-face {
-            font-family: 'AdinkraAlphabet';
-            src: url('https://ahiakwa.github.io/assets/adinkra-icons/fonts/Adinkra-Regular.ttf') format('truetype');
+            font-family: 'Burbank Big Condensed';
+            src: url('https://foldnite.github.io/assets/font/burbankbigcondensed_black.otf') format('opentype');
+            font-weight: 900;
+            font-style: normal;
             font-display: swap;
         }
 
-        * {
+        /* ── RESET & FULL VIEWPORT ── */
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        ::-webkit-scrollbar {
-            width: 0;
-            background: transparent;
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #0a0a0f;
+            font-family: 'Burbank Big Condensed', 'Georgia', 'Times New Roman', serif;
         }
 
-        body {
-            min-height: 100vh;
-            background-color: #020408;
-            font-family: 'Montserrat', sans-serif;
-            overflow: hidden;
+        /* hide scrollbar — all browsers */
+        ::-webkit-scrollbar {
+            display: none;
+            width: 0;
+            height: 0;
+        }
+        * {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        /* ── HERO ── */
+        .hero {
             position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #0a0a0f;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* ═══════════════════════════════════════════ */
+        /*  F U I   H U D   B A C K G R O U N D      */
+        /* ═══════════════════════════════════════════ */
+
+        /* 1. Digital Grid */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center center;
+            pointer-events: none;
+            z-index: 0;
+            animation: gridScroll 30s linear infinite;
+        }
+
+        @keyframes gridScroll {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        .hero .grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: center center;
+            pointer-events: none;
+            z-index: 0;
+            animation: gridScroll 20s linear infinite reverse;
+        }
+
+        .hero .scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.15), rgba(0, 255, 255, 0.4), rgba(0, 255, 255, 0.15), transparent);
+            z-index: 1;
+            animation: scanMove 4s ease-in-out infinite;
+            filter: blur(0.5px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+        }
+
+        @keyframes scanMove {
+            0% {
+                top: 0;
+                opacity: 0.3;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                top: 100%;
+                opacity: 0.3;
+            }
+        }
+
+        .hud-corner {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.25;
+        }
+
+        .hud-corner svg {
+            width: 60px;
+            height: 60px;
+        }
+
+        .hud-corner.tl {
+            top: 20px;
+            left: 20px;
+        }
+        .hud-corner.tr {
+            top: 20px;
+            right: 20px;
+            transform: scaleX(-1);
+        }
+        .hud-corner.bl {
+            bottom: 20px;
+            left: 20px;
+            transform: scaleY(-1);
+        }
+        .hud-corner.br {
+            bottom: 20px;
+            right: 20px;
+            transform: scale(-1, -1);
+        }
+
+        .hud-side {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.12;
+        }
+
+        .hud-side.left {
+            top: 80px;
+            left: 10px;
+            height: calc(100% - 160px);
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(0, 255, 255, 0.3), transparent);
+        }
+
+        .hud-side.right {
+            top: 80px;
+            right: 10px;
+            height: calc(100% - 160px);
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(0, 255, 255, 0.3), transparent);
+        }
+
+        .hud-particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .hud-particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(0, 255, 255, 0.15);
+            border-radius: 50%;
+            animation: floatParticle 12s infinite linear;
+        }
+
+        .hud-particle:nth-child(1) {
+            left: 5%;
+            top: 15%;
+            animation-duration: 14s;
+        }
+        .hud-particle:nth-child(2) {
+            left: 15%;
+            top: 75%;
+            animation-duration: 18s;
+            animation-delay: 2s;
+            background: rgba(255, 0, 255, 0.1);
+        }
+        .hud-particle:nth-child(3) {
+            left: 30%;
+            top: 5%;
+            animation-duration: 16s;
+            animation-delay: 4s;
+            width: 3px;
+            height: 3px;
+        }
+        .hud-particle:nth-child(4) {
+            left: 50%;
+            top: 90%;
+            animation-duration: 20s;
+            animation-delay: 1s;
+        }
+        .hud-particle:nth-child(5) {
+            left: 70%;
+            top: 20%;
+            animation-duration: 15s;
+            animation-delay: 3s;
+            background: rgba(0, 255, 255, 0.08);
+        }
+        .hud-particle:nth-child(6) {
+            left: 85%;
+            top: 70%;
+            animation-duration: 22s;
+            animation-delay: 5s;
+            width: 3px;
+            height: 3px;
+        }
+        .hud-particle:nth-child(7) {
+            left: 92%;
+            top: 10%;
+            animation-duration: 17s;
+            animation-delay: 2.5s;
+            background: rgba(255, 0, 255, 0.08);
+        }
+        .hud-particle:nth-child(8) {
+            left: 45%;
+            top: 45%;
+            animation-duration: 19s;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx, 40px), var(--ty, -80px)) scale(0.2);
+                opacity: 0;
+            }
+        }
+
+        .hud-particle:nth-child(1) {
+            --tx: 60px;
+            --ty: -120px;
+        }
+        .hud-particle:nth-child(2) {
+            --tx: -40px;
+            --ty: -80px;
+        }
+        .hud-particle:nth-child(3) {
+            --tx: 30px;
+            --ty: -140px;
+        }
+        .hud-particle:nth-child(4) {
+            --tx: -60px;
+            --ty: -100px;
+        }
+        .hud-particle:nth-child(5) {
+            --tx: 50px;
+            --ty: -130px;
+        }
+        .hud-particle:nth-child(6) {
+            --tx: -30px;
+            --ty: -110px;
+        }
+        .hud-particle:nth-child(7) {
+            --tx: 80px;
+            --ty: -90px;
+        }
+        .hud-particle:nth-child(8) {
+            --tx: -50px;
+            --ty: -150px;
+        }
+
+        .hud-cross {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.06;
+        }
+
+        .hud-cross::before,
+        .hud-cross::after {
+            content: '';
+            position: absolute;
+            background: rgba(0, 255, 255, 0.3);
+        }
+
+        .hud-cross::before {
+            width: 1px;
+            height: 120px;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .hud-cross::after {
+            width: 120px;
+            height: 1px;
+            top: 50%;
+            left: -60px;
+            transform: translateY(-50%);
+        }
+
+        .hud-cross .dot {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(0, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+        }
+
+        .hud-label {
+            position: absolute;
+            z-index: 1;
+            font-family: 'Burbank Big Condensed', sans-serif;
+            font-weight: 700;
+            font-size: clamp(0.5rem, 0.6vw, 0.8rem);
+            letter-spacing: 0.3em;
+            color: rgba(0, 255, 255, 0.08);
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+
+        .hud-label.tl {
+            top: 85px;
+            left: 30px;
+        }
+        .hud-label.tr {
+            top: 85px;
+            right: 30px;
+        }
+        .hud-label.bl {
+            bottom: 85px;
+            left: 30px;
+        }
+        .hud-label.br {
+            bottom: 85px;
+            right: 30px;
+        }
+
+        .hero .glow-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.03) 0%, transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.02) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ═══════════════════════════════════════════ */
+        /*  T O P   B A R                            */
+        /* ═══════════════════════════════════════════ */
+
+        .top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.2rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .top-bar>* {
+            pointer-events: auto;
+        }
+
+        .lego-logo {
+            height: clamp(64px, 8vw, 112px);
+            width: auto;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.05));
+            transition: filter 0.3s ease;
+        }
+        .lego-logo:hover {
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.15));
+        }
+        .lego-logo img {
+            height: 100%;
+            width: auto;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* Title */
+        .main-title {
+            font-family: 'Burbank Big Condensed', sans-serif;
+            font-weight: 900;
+            font-size: clamp(1.8rem, 5vw, 4.5rem);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #fff;
+            text-shadow:
+                0 0 20px rgba(0, 255, 255, 0.15),
+                0 0 60px rgba(0, 255, 255, 0.05);
+            background: linear-gradient(135deg, #ffffff 40%, #88ffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 4s ease-in-out infinite alternate;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        @keyframes titleGlow {
+            0% {
+                filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.1));
+            }
+            100% {
+                filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.25));
+            }
+        }
+
+        /* ═══════════════════════════════════════════ */
+        /*  L O G O S   C O N T A I N E R             */
+        /* ═══════════════════════════════════════════ */
+
+        .logos {
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: clamp(2rem, 8vw, 6rem);
+            position: relative;
+            z-index: 2;
+            flex-wrap: wrap;
+            padding: 1rem;
+            margin-top: clamp(1rem, 2vh, 2rem);
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            display: flex;
             flex-direction: column;
-        }
-
-        .quantum-kente-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            background-image:
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23grain)' opacity='0.045'/%3E%3C/svg%3E"),
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 100 100'%3E%3Cdefs%3E%3Cfilter id='q-bloom' x='-100%25' y='-100%25' width='300%25' height='300%25'%3E%3CfeGaussianBlur stdDeviation='1.2' result='blur'/%3E%3CfeMerge%3E%3CfeMergeNode in='blur'/%3E%3CfeMergeNode in='SourceGraphic'/%3E%3C/feMerge%3E%3C/filter%3E%3C/defs%3E%3Cg fill='none' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg stroke='%2300F2FF' stroke-width='0.55' stroke-opacity='0.3'%3E%3Cpath d='M50 0 V10 M50 90 V100 M46 4 H54 M46 96 H54' /%3E%3Cpath d='M20 0 V8 M20 92 V100 M17 4 H23 M17 96 H23' /%3E%3Cpath d='M80 0 V8 M80 92 V100 M77 4 H83 M77 96 H83' /%3E%3Cpath d='M0 50 H10 M90 50 H100 M4 46 V54 M96 46 V54' /%3E%3Cpath d='M0 20 H8 M92 20 H100 M4 17 V23 M96 17 V23' /%3E%3Cpath d='M0 80 H8 M92 80 H100 M4 77 V83 M96 77 V83' /%3E%3Cpath d='M50 10 L40 25 M50 10 L60 25 M50 90 L40 75 M50 90 L60 75' stroke-dasharray='1.8 1.6' stroke-opacity='0.5' /%3E%3Cpath d='M10 50 L25 40 M10 50 L25 60 M90 50 L75 40 M90 50 L75 60' stroke-dasharray='1.8 1.6' stroke-opacity='0.5' /%3E%3C/g%3E%3Cg stroke='%23D4AF37'%3E%3Cpath d='M50 10 L90 50 L50 90 L10 50 Z' stroke-width='0.9' stroke-opacity='0.55' /%3E%3Cpath d='M50 25 L75 50 L50 75 L25 50 Z' stroke-width='0.7' stroke-opacity='0.38' /%3E%3Cpath d='M50 38 L62 50 L50 62 L38 50 Z' stroke-width='0.55' stroke-opacity='0.22' /%3E%3Cpath d='M50 46 L54 50 L50 54 L46 50 Z' stroke-width='0.4' stroke-opacity='0.12' /%3E%3C/g%3E%3Cg filter='url(%23q-bloom)'%3E%3Ccircle cx='50' cy='50' r='2.2' fill='%23D4AF37' fill-opacity='1' /%3E%3Ccircle cx='50' cy='50' r='4' fill='%23D4AF37' fill-opacity='0.25' /%3E%3Ccircle cx='50' cy='10' r='0.9' fill='%2300F2FF' fill-opacity='0.9' /%3E%3Ccircle cx='50' cy='90' r='0.9' fill='%2300F2FF' fill-opacity='0.9' /%3E%3Ccircle cx='10' cy='50' r='0.9' fill='%2300F2FF' fill-opacity='0.9' /%3E%3Ccircle cx='90' cy='50' r='0.9' fill='%2300F2FF' fill-opacity='0.9' /%3E%3Ccircle cx='25' cy='25' r='0.7' fill='%23D4AF37' fill-opacity='0.7' /%3E%3Ccircle cx='75' cy='25' r='0.7' fill='%23D4AF37' fill-opacity='0.7' /%3E%3Ccircle cx='25' cy='75' r='0.7' fill='%23D4AF37' fill-opacity='0.7' /%3E%3Ccircle cx='75' cy='75' r='0.7' fill='%23D4AF37' fill-opacity='0.7' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            background-repeat: repeat;
-            background-size: 200px 200px;
-        }
-
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            background: radial-gradient(ellipse at 50% 50%,
-                #000000 0%, #000000 22%, rgba(0,0,0,0.85) 42%, transparent 72%);
-            background-size: 100% 52%;
-            background-repeat: no-repeat;
-            background-position: center center;
-        }
-
-        .top-bar {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            z-index: 25;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            width: calc(100vw - 40px);
-            gap: 16px;
-            pointer-events: none;
-        }
-
-        .top-bar a {
-            pointer-events: auto;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .top-bar-right {
-            display: flex;
             align-items: center;
-            gap: 16px;
-            margin-left: auto;
-            pointer-events: auto;
+            justify-content: center;
+            color: rgba(0, 255, 255, 0.15);
+            font-size: clamp(1.8rem, 4vw, 3.6rem);
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            font-family: 'Burbank Big Condensed', serif;
+            text-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
+            animation: dividerPulse 3s ease-in-out infinite alternate;
+            padding: 0 0.5rem;
         }
 
-        .ldr-sticker {
-            background-color: #000000;
-            padding: 12px 16px;          /* изменено с 10px 18px для одинакового выравнивания */
-            border-radius: 12px;
+        .divider span {
+            display: block;
+            line-height: 0.8;
+        }
+        .divider .line {
+            width: clamp(40px, 6vw, 80px);
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.15), transparent);
+            margin: 0.6rem 0;
+        }
+
+        @keyframes dividerPulse {
+            0% {
+                opacity: 0.4;
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+        }
+
+        /* ── WARNER BROS GAMING LOGO (external) ── */
+        .logo-wbg {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: logoEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+            filter: drop-shadow(0 0 40px rgba(0, 255, 255, 0.04));
+            transition: filter 0.6s ease;
+        }
+
+        .logo-wbg:hover {
+            filter: drop-shadow(0 0 60px rgba(0, 255, 255, 0.15));
+        }
+
+        .logo-wbg img {
+            width: clamp(140px, 22vw, 260px);
+            height: auto;
+            display: block;
+        }
+
+        /* ── DISNEY LOGO (external) ── */
+        .logo-disney {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: logoEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+            filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.04));
+            transition: filter 0.6s ease;
+        }
+
+        .logo-disney:hover {
+            filter: drop-shadow(0 0 60px rgba(255, 255, 255, 0.12));
+        }
+
+        .logo-disney img {
+            width: clamp(200px, 32vw, 400px);
+            height: auto;
+            display: block;
+        }
+
+        @keyframes logoEntrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.85) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* ── TAGLINE ── */
+        .tagline {
+            margin-top: clamp(1.8rem, 3.5vw, 4rem);
+            font-size: clamp(0.75rem, 1.1vw, 1.3rem);
+            letter-spacing: 0.6em;
+            color: rgba(255, 255, 255, 0.06);
+            text-transform: uppercase;
+            font-family: 'Burbank Big Condensed', sans-serif;
+            font-weight: 700;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 0 1rem;
+            animation: taglineFade 2s ease 1.2s both;
+        }
+
+        .tagline span {
+            display: inline-block;
+            background: rgba(0, 255, 255, 0.02);
+            padding: 0.3rem 1.8rem;
+            border-radius: 30px;
             backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 75, 43, 0.4);
-            box-shadow: 0 0 12px rgba(255, 75, 43, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        @keyframes taglineFade {
+            0% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ═══════════════════════════════════════════ */
+        /*  F O O T E R   I C O N S   (Platforms)    */
+        /* ═══════════════════════════════════════════ */
+
+        .platform-icons {
+            position: absolute;
+            bottom: clamp(4rem, 5vh, 6rem);
+            left: 0;
+            width: 100%;
             display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 14px;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-            cursor: pointer;
-            white-space: nowrap;
-            min-height: 64px;
-            pointer-events: auto;
+            flex-wrap: wrap;
+            gap: clamp(0.8rem, 1.5vw, 1.8rem);
+            padding: 0 1rem;
+            z-index: 2;
+            animation: bottomFade 2.5s ease 1.8s both;
         }
-        .ldr-sticker:hover {
-            transform: scale(1.02);
-            border-color: #FF4B2B;
-        }
-        .ldr-icon {
-            font-size: 1.9rem;
-            color: #FF4B2B;
-            filter: drop-shadow(0 0 3px rgba(255, 75, 43, 0.6));
-        }
-        .ldr-plus {
-            color: #FF4B2B;
-            font-size: 1.6rem;
-            font-weight: 800;
+
+        .platform-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: clamp(28px, 3vw, 40px);
+            width: auto;
+            transition: filter 0.3s ease, transform 0.2s ease;
+            color: rgba(255, 255, 255, 0.6);
             opacity: 0.8;
         }
 
-        .octopus-singular {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;          /* уже было изменено ранее */
-            text-align: right;
-            min-height: 64px;
-        }
-
-        .octopus-matrix {
-            position: relative;
-            display: inline-grid;
-            width: fit-content;
-            gap: 0;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(8px);
-            border-radius: 8px;
-            padding: 12px 16px;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.15s ease, opacity 0.15s ease, filter 0.15s ease, background 0.2s, border-color 0.2s;
-            direction: ltr;
-            margin-left: auto;
-            transform-origin: top right;
-            min-height: 64px;
-            align-items: center;
-        }
-
-        .octopus-img {
-            width: 3.6rem;
-            height: 3.6rem;
-            object-fit: contain;
-            display: block;
-            transition: transform 0.08s, filter 0.08s;
-            will-change: transform;
-        }
-
-        .octo-gold,
-        .octo-white,
-        .octo-green,
-        .octo-blue {
-            filter: none;
-            opacity: 0.95;
-        }
-
-        .glitch-octo-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            mix-blend-mode: screen;
-            will-change: transform, opacity, filter;
-            z-index: 5;
-        }
-        .glitch-octo-layer img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* Terminal icon */
-        .terminal-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(8px);
-            border-radius: 8px;
-            padding: 12px 16px;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.2s, background 0.2s, border-color 0.2s;
-            min-height: 64px;
-            text-decoration: none;
-            pointer-events: auto;
-            cursor: pointer;
-        }
-        .terminal-icon-img {
-            width: 3.6rem;
-            height: 3.6rem;
-            object-fit: contain;
-            filter: brightness(0.9) invert(0);
-            display: block;
-        }
-        .terminal-link:hover {
-            transform: scale(1.02);
-            background: rgba(0,0,0,0.85);
-            border-color: rgba(255,75,43,0.4);
-        }
-        .terminal-link:hover .terminal-icon-img {
-            filter: brightness(1) invert(0);
-        }
-
-        .glitch-container {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            filter: drop-shadow(0 0 8px rgba(0, 255, 242, 0.2));
-            margin: 0 auto;
-            width: fit-content;
-            pointer-events: auto;
-        }
-
-        .logo-stack {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.55rem;
-            width: fit-content;
-            pointer-events: auto;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1.2rem;
-            font-size: clamp(16px, 4vw, 24px);
-            padding: 0.5rem 1.5rem;
-            filter: drop-shadow(0 0 15px rgba(0,0,0,0.8));
-            background: transparent;
-            position: relative;
-            cursor: pointer;
-            user-select: none;
-        }
-        .logo-symbol .adk-gye-nyame {
-            font-size: 6.8em;
-            color: #fff;
-            display: block;
-            line-height: 1;
-            text-shadow: 0 0 6px rgba(212,175,55,0.5);
-        }
-        .logo-fold {
-            font-weight: 800;
-            text-transform: uppercase;
-            color: #fff;
-            font-size: 4.2em;
-            line-height: 1;
-            letter-spacing: -0.02em;
-            white-space: nowrap;
-        }
-        .logo-uantum {
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #fff;
-            font-size: 2.4em;
-            line-height: 1;
-            letter-spacing: 0.02em;
-            white-space: nowrap;
-        }
-        .logo-it {
-            font-weight: 800;
-            text-transform: uppercase;
-            color: #fff;
-            font-size: 6.6em;
-            line-height: 1;
-            letter-spacing: -0.03em;
-            white-space: nowrap;
-        }
-
-        .support-logo-link {
-            display: block;
-            text-decoration: none;
-            pointer-events: auto;
-        }
-
-        .support-logo-block {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.15rem;
-            width: fit-content;
-            max-width: min(100%, 420px);
-            margin: 0 auto;
-        }
-
-        .support-logo {
-            display: block;
-            max-width: 100%;
-            height: auto;
-            object-fit: contain;
-            opacity: 0.96;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.08));
-            user-select: none;
-            pointer-events: none;
-        }
-
-        .support-logo-iss {
-            width: clamp(220px, 32vw, 380px);
-        }
-
-        .support-logo-ias {
-            width: clamp(70px, 7vw, 115px);
-        }
-
-        .support-logo-caption {
-            display: block;
-            text-align: center;
-            font-size: clamp(0.7rem, 1.1vw, 0.95rem);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.96);
-            font-weight: 700;
-            line-height: 1.05;
-            white-space: nowrap;
-            text-shadow: 0 0 10px rgba(255,255,255,0.08);
-        }
-
-        .support-logo-caption.ias {
-            font-size: clamp(0.55rem, 0.85vw, 0.72rem);
-            letter-spacing: 0.06em;
-            white-space: nowrap;
-            line-height: 1;
-        }
-
-        .glitch-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            mix-blend-mode: screen;
-            will-change: transform, opacity, clip-path, filter;
-        }
-
-        .noise-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'%3E%3Cfilter id='noiseDynamic'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noiseDynamic)' opacity='0.08'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            pointer-events: none;
-            z-index: 15;
-            mix-blend-mode: overlay;
-            opacity: 0.4;
-            animation: staticNoise 0.2s steps(2) infinite;
-        }
-
-        @keyframes staticNoise {
-            0% { opacity: 0.35; background-position: 0 0; }
-            100% { opacity: 0.5; background-position: 10px 15px; }
-        }
-
-        .flash {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 255, 242, 0.15);
-            pointer-events: none;
-            z-index: 20;
-            mix-blend-mode: screen;
-            animation: flashFade 0.08s ease-out forwards;
-        }
-
-        @keyframes flashFade {
-            0% { opacity: 1; background: rgba(212, 175, 55, 0.8); }
-            100% { opacity: 0; background: rgba(0, 0, 0, 0); }
-        }
-
-        .footer-icons {
-            position: fixed;
-            left: 0;
-            right: 0;
-            bottom: 20px;
-            width: 100vw;
-            z-index: 30;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            gap: 0;
-            padding: 0 20px;
-        }
-
-        .icon-button {
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(8px);
-            border-radius: 8px;
-            padding: 12px 16px;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.2s, background 0.2s, border-color 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex: 0 0 auto;
-        }
-
-        .icon-button a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 0;
-        }
-
-        .icon-button a i,
-        .icon-button a img {
-            width: 3.6rem;
-            height: 3.6rem;
-            display: block;
-        }
-
-        .icon-button a i {
-            font-size: 3.6rem;
-            color: #e0e0e0;
-        }
-
-        .icon-button a img {
-            filter: brightness(0.9) invert(0);
-        }
-
-        .icon-button:hover {
-            transform: scale(1.02);
-            background: rgba(0,0,0,0.85);
-            border-color: rgba(255,75,43,0.4);
-        }
-
-        .icon-button:hover a i {
-            color: #f0f0f0;
-        }
-
-        .icon-button:hover a img {
-            filter: brightness(1) invert(0);
-        }
-
-        /* ===== MODAL STYLES ===== */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .modal-overlay.active {
+        .platform-icons a:hover {
+            color: #ffffff;
             opacity: 1;
-            visibility: visible;
+            transform: scale(1.1);
         }
 
-        .modal-content {
-            position: relative;
+        .platform-icons svg {
+            fill: currentColor;
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
-        .modal-content iframe {
-            width: 100%;
+        .platform-icons img {
             height: 100%;
-            border: none;
-            outline: none;
-            background: #0b0f14;
+            width: auto;
+            display: block;
+            filter: brightness(0) invert(1);
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
         }
 
-        .modal-close {
+        .platform-icons a:hover img {
+            opacity: 1;
+            filter: brightness(0) invert(1) drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
+        }
+
+        /* ── BOTTOM BAR ── */
+        .bottom-bar {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 48px;
-            height: 48px;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 8px;
-            color: #fff;
-            font-size: 32px;
-            line-height: 1;
+            bottom: clamp(0.8rem, 1.5vh, 1.5rem);
+            left: 0;
+            width: 100%;
             display: flex;
-            align-items: center;
             justify-content: center;
-            cursor: pointer;
-            z-index: 1010;
-            transition: transform 0.2s, background 0.2s, border-color 0.2s;
-            padding: 0;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            gap: clamp(1.5rem, 4vw, 4rem);
+            z-index: 2;
+            font-size: clamp(0.5rem, 0.7vw, 0.75rem);
+            letter-spacing: 0.3em;
+            color: rgba(255, 255, 255, 0.04);
+            text-transform: uppercase;
+            font-family: 'Burbank Big Condensed', sans-serif;
+            font-weight: 700;
+            padding: 0 1rem;
+            animation: bottomFade 2.5s ease 1.8s both;
         }
 
-        .modal-close:hover {
-            transform: scale(1.05);
-            background: rgba(0,0,0,0.9);
-            border-color: rgba(255,75,43,0.4);
-            color: #FF4B2B;
+        .bottom-bar .dot {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.04);
+            margin: 0 0.2rem;
+            vertical-align: middle;
         }
 
-        /* Responsive for modal close button */
-        @media (max-width: 680px) {
-            .modal-close {
-                width: 40px;
-                height: 40px;
-                font-size: 28px;
-                top: 12px;
-                right: 12px;
+        @keyframes bottomFade {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        @media (max-width: 480px) {
-            .modal-close {
+        /* ── RESPONSIVE ── */
+        @media (max-width: 720px) {
+            .top-bar {
+                padding: 0.8rem 1rem;
+                flex-direction: row;
+                gap: 0.5rem;
+            }
+            .lego-logo {
+                height: clamp(56px, 7vw, 80px);
+            }
+            .main-title {
+                font-size: clamp(1.2rem, 4vw, 2.2rem);
+                letter-spacing: 0.04em;
+            }
+
+            .logos {
+                gap: 1.2rem;
+                flex-direction: column;
+                margin-top: 0.5rem;
+            }
+
+            .divider {
+                flex-direction: row;
+                gap: 0.8rem;
+                padding: 0.2rem 0;
+            }
+            .divider .line {
+                width: 50px;
+                height: 1px;
+                margin: 0;
+            }
+            .divider span {
+                font-size: 1.4rem;
+            }
+
+            .logo-wbg img {
+                width: 120px;
+            }
+            .logo-disney img {
+                width: 180px;
+            }
+
+            .tagline {
+                margin-top: 1.2rem;
+                font-size: 0.6rem;
+                letter-spacing: 0.4em;
+            }
+            .tagline span {
+                padding: 0.2rem 1rem;
+            }
+
+            .platform-icons {
+                bottom: clamp(3.5rem, 4vh, 5rem);
+                gap: 0.6rem;
+            }
+            .platform-icons a {
+                height: clamp(24px, 2.5vw, 32px);
+            }
+
+            .bottom-bar {
+                bottom: 0.8rem;
+                font-size: 0.45rem;
+                gap: 1rem;
+                letter-spacing: 0.2em;
+            }
+
+            .hud-corner svg {
                 width: 36px;
                 height: 36px;
-                font-size: 24px;
             }
-        }
-
-        /* ===== existing media queries (unchanged) ===== */
-        @media (max-width: 680px) {
-            .top-bar {
+            .hud-corner.tl {
                 top: 12px;
                 left: 12px;
+            }
+            .hud-corner.tr {
+                top: 12px;
                 right: 12px;
-                width: calc(100vw - 24px);
-                gap: 10px;
             }
-
-            .top-bar-right {
-                margin-top: -9px;       /* поднимаем правый верхний блок на 9px */
-            }
-
-            .ldr-sticker {
-                gap: 10px;
-                padding: 8px 12px;       /* одинаковый с другими */
-                min-height: 52px;
-            }
-
-            .logo-stack {
-                gap: 0.45rem;
-            }
-
-            .logo {
-                gap: 0.6rem;
-                font-size: clamp(14px, 3.5vw, 18px);
-            }
-            .logo-symbol .adk-gye-nyame { font-size: 5.2em; }
-            .logo-fold { font-size: 3.5em; }
-            .logo-uantum { font-size: 2.0em; }
-            .logo-it { font-size: 5.5em; }
-            .quantum-kente-bg { background-size: 160px 160px; }
-
-            .octopus-img {
-                width: 2.4rem;
-                height: 2.4rem;
-            }
-            .octopus-matrix {
-                padding: 8px 12px;
-                min-height: 52px;
-            }
-
-            .terminal-link {
-                padding: 8px 12px;
-                min-height: 52px;
-            }
-            .terminal-icon-img {
-                width: 2.4rem;
-                height: 2.4rem;
-            }
-
-            .support-logo-iss {
-                width: clamp(180px, 46vw, 280px);
-            }
-
-            .support-logo-ias {
-                width: clamp(60px, 8vw, 92px);
-            }
-
-            .support-logo-caption {
-                font-size: 0.62rem;
-            }
-
-            .support-logo-caption.ias {
-                font-size: 0.52rem;
-            }
-
-            .footer-icons {
+            .hud-corner.bl {
                 bottom: 12px;
-                padding: 0 12px;
+                left: 12px;
             }
-
-            .icon-button {
-                padding: 8px 12px;
+            .hud-corner.br {
+                bottom: 12px;
+                right: 12px;
             }
-
-            .icon-button a i,
-            .icon-button a img {
-                width: 2.4rem;
-                height: 2.4rem;
+            .hud-label {
+                display: none;
             }
-
-            .icon-button a i {
-                font-size: 2.4rem;
+            .hud-side.left,
+            .hud-side.right {
+                display: none;
+            }
+            .hud-cross {
+                display: none;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 420px) {
             .top-bar {
-                top: 10px;
-                left: 10px;
-                right: 10px;
-                width: calc(100vw - 20px);
-                gap: 8px;
+                padding: 0.5rem 0.8rem;
+            }
+            .lego-logo {
+                height: 48px;
+            }
+            .main-title {
+                font-size: 1rem;
+                letter-spacing: 0.02em;
             }
 
-            .top-bar-right {
-                margin-top: -9px;       /* поднимаем правый верхний блок на 9px */
+            .logo-wbg img {
+                width: 90px;
+            }
+            .logo-disney img {
+                width: 140px;
+            }
+            .logos {
+                gap: 0.8rem;
+            }
+            .divider span {
+                font-size: 1rem;
+            }
+            .divider .line {
+                width: 30px;
             }
 
-            .ldr-sticker {
-                gap: 8px;
-                padding: 7px 10px;       /* одинаковый с другими */
-                min-height: 46px;
-            }
-
-            .logo-stack {
-                gap: 0.35rem;
-            }
-
-            .logo {
+            .platform-icons {
+                bottom: 3rem;
                 gap: 0.4rem;
-                flex-wrap: wrap;
-                justify-content: center;
             }
-            .logo-symbol .adk-gye-nyame { font-size: 4.5em; }
-            .logo-fold { font-size: 3em; }
-            .logo-uantum { font-size: 1.7em; }
-            .logo-it { font-size: 4.7em; }
+            .platform-icons a {
+                height: 20px;
+            }
+            .bottom-bar {
+                font-size: 0.4rem;
+                gap: 0.6rem;
+            }
+        }
 
-            .support-logo-iss {
-                width: clamp(160px, 55vw, 240px);
-            }
-
-            .support-logo-ias {
-                width: clamp(56px, 9vw, 80px);
-            }
-
-            .support-logo-caption {
-                font-size: 0.58rem;
-            }
-
-            .support-logo-caption.ias {
-                font-size: 0.5rem;
-            }
-
-            .octopus-img {
-                width: 2rem;
-                height: 2rem;
-            }
-            .octopus-matrix {
-                padding: 7px 10px;
-                min-height: 46px;
-            }
-
-            .terminal-link {
-                padding: 7px 10px;
-                min-height: 46px;
-            }
-            .terminal-icon-img {
-                width: 2rem;
-                height: 2rem;
-            }
-
-            .icon-button a i,
-            .icon-button a img {
-                width: 2rem;
-                height: 2rem;
-            }
-            .icon-button a i {
-                font-size: 2rem;
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
 </head>
+
 <body>
 
-<div class="quantum-kente-bg" aria-hidden="true"></div>
+    <section class="hero">
 
-<div class="top-bar">
-    <a href="https://www.goethe.de/ins/za/en/kul/mut/plo.html" target="_blank" rel="noopener noreferrer" aria-label="Love Death Robots link">
-        <div class="ldr-sticker" id="toggleEffectsBtn">
-            <i class="fa-solid fa-heart ldr-icon"></i>
-            <i class="fa-solid fa-xmark ldr-icon" style="font-size: 2rem; font-weight: 900;"></i>
-            <i class="fa-solid fa-plus ldr-icon" style="color:white;"></i>
-            <i class="fa-solid fa-square ldr-icon"></i>
+        <!-- ===== FUI HUD BACKGROUND ===== -->
+        
+        <div class="grid-overlay"></div>
+        <div class="scanline"></div>
+
+        <div class="hud-corner tl">
+            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 60V54C0 24.177 24.177 0 54 0H60" stroke="rgba(0,255,255,0.3)" stroke-width="1.5"/>
+                <path d="M0 50V54C0 30.177 20.177 10 44 10H50" stroke="rgba(0,255,255,0.1)" stroke-width="1"/>
+                <rect x="4" y="4" width="6" height="1" fill="rgba(0,255,255,0.2)" />
+                <rect x="4" y="4" width="1" height="6" fill="rgba(0,255,255,0.2)" />
+            </svg>
         </div>
-    </a>
-
-    <!-- Right container: NASA icon + UNICORN icon + Octopus + Terminal icon -->
-    <div class="top-bar-right">
-        <a href="https://science.data.nasa.gov/learn/blog/psi-spotlight" target="_blank" rel="noopener noreferrer" class="terminal-link" aria-label="NASA" title="NASA">
-            <img src="https://qfoldit.github.io/assets/NASA_Wormball_logo.svg" alt="NASA" class="terminal-icon-img">
-        </a>
-        <!-- Добавлена иконка Unicorn (Take My Muffin) -->
-        <a href="https://qfoldit.github.io/muffin_unikorn.png" target="_blank" rel="noopener noreferrer" class="terminal-link" aria-label="Unicorn Take My Muffin" title="Unicorn Take My Muffin">
-            <img src="https://qfoldit.github.io/assets/muffin_unikorn.png" alt="Unicorn" class="terminal-icon-img">
-        </a>
-        <a href="https://qfoldit.github.io/about.html" target="_blank" rel="noopener noreferrer" aria-label="Octopus Goethe link">
-            <div class="octopus-singular" id="singularOctopus"></div>
-        </a>
-        <div class="terminal-link" id="terminalTrigger" aria-label="Terminal" title="qTerminal" role="button" tabindex="0">
-            <img src="https://qfoldit.github.io/assets/qTrminal.svg" alt="Terminal" class="terminal-icon-img">
+        <div class="hud-corner tr">
+            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 60V54C0 24.177 24.177 0 54 0H60" stroke="rgba(0,255,255,0.3)" stroke-width="1.5"/>
+                <path d="M0 50V54C0 30.177 20.177 10 44 10H50" stroke="rgba(0,255,255,0.1)" stroke-width="1"/>
+                <rect x="4" y="4" width="6" height="1" fill="rgba(0,255,255,0.2)" />
+                <rect x="4" y="4" width="1" height="6" fill="rgba(0,255,255,0.2)" />
+            </svg>
         </div>
-    </div>
-</div>
+        <div class="hud-corner bl">
+            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 60V54C0 24.177 24.177 0 54 0H60" stroke="rgba(0,255,255,0.3)" stroke-width="1.5"/>
+                <path d="M0 50V54C0 30.177 20.177 10 44 10H50" stroke="rgba(0,255,255,0.1)" stroke-width="1"/>
+                <rect x="4" y="4" width="6" height="1" fill="rgba(0,255,255,0.2)" />
+                <rect x="4" y="4" width="1" height="6" fill="rgba(0,255,255,0.2)" />
+            </svg>
+        </div>
+        <div class="hud-corner br">
+            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 60V54C0 24.177 24.177 0 54 0H60" stroke="rgba(0,255,255,0.3)" stroke-width="1.5"/>
+                <path d="M0 50V54C0 30.177 20.177 10 44 10H50" stroke="rgba(0,255,255,0.1)" stroke-width="1"/>
+                <rect x="4" y="4" width="6" height="1" fill="rgba(0,255,255,0.2)" />
+                <rect x="4" y="4" width="1" height="6" fill="rgba(0,255,255,0.2)" />
+            </svg>
+        </div>
 
-<div class="glitch-container" id="glitchContainer">
-    <div class="logo-stack">
-        <div class="logo" id="baseLogo" role="button" tabindex="0" aria-label="Toggle animations">
-            <div class="logo-symbol"><i class="adk adk-gye-nyame"></i></div>
-            <div class="logo-center">
-                <div class="logo-fold">FOLD</div>
-                <div class="logo-uantum">UANTUM</div>
+        <!-- Боковые линии -->
+        <div class="hud-side left"></div>
+        <div class="hud-side right"></div>
+
+        <!-- HUD-частицы -->
+        <div class="hud-particles">
+            <div class="hud-particle"></div>
+            <div class="hud-particle"></div>
+            <div class="hud-particle"></div>
+            <div class="hud-particle"></div>
+            <div class="hud-particle"></div>
+            <div class="hud-particle"></div>
+            <div class="hud-particle"></div>
+            <div class="hud-particle"></div>
+        </div>
+
+        <!-- Центральный крест -->
+        <div class="hud-cross">
+            <div class="dot"></div>
+        </div>
+
+        <!-- HUD-метки -->
+        <div class="hud-label tl">SYS::ONLINE</div>
+        <div class="hud-label tr">UEFN::v1.0</div>
+        <div class="hud-label bl">FORTITE::ACTIVE</div>
+        <div class="hud-label br">MCP::LINK</div>
+
+        <!-- Glow overlay -->
+        <div class="glow-overlay"></div>
+
+        <!-- ===== TOP BAR ===== -->
+
+        <div class="top-bar">
+            <!-- Lego logo (top-left) — external URL, увеличен и скруглён -->
+            <div class="lego-logo">
+                <img src="https://qfoldit.github.io/assets/lego_brand.svg" alt="LEGO" />
             </div>
-            <div class="logo-it">IT</div>
+
+            <!-- Main Title — изменён на "MCP + FORTNITE" -->
+            <div class="main-title">SCIENCE + FORTNITE</div>
+
+            <!-- spacer for flex alignment -->
+            <div style="width: clamp(32px, 4vw, 56px);"></div>
         </div>
-    </div>
-</div>
-
-<div class="noise-overlay"></div>
-
-<div class="footer-icons">
-    <div class="icon-button">
-        <a href="https://awslabs.github.io/quantum-computing-exploration-for-drug-discovery-on-aws/en/workshop/c-1-protein-folding-quantum-random-walk/protein-folding-qrw-background/" target="_blank" rel="noopener noreferrer">
-            <img src="https://qfoldit.github.io/img/1/logo/amazon-braket.svg" alt="Amazon Braket">
-        </a>
-    </div>
-    <div class="icon-button">
-        <a href="https://github.com/qfoldit" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-github"></i>
-        </a>
-    </div>
-    <div class="icon-button">
-        <a href="https://www.playstation.com/" target="_blank" rel="noopener noreferrer">
-            <img src="https://qfoldit.github.io/assets/Ps-Logo-4.svg" alt="PlayStation">
-        </a>
-    </div>
-    <div class="icon-button">
-        <a href="https://www.xbox.com/" target="_blank" rel="noopener noreferrer">
-            <img src="https://qfoldit.github.io/assets/Xbox_one_logo.svg" alt="Xbox">
-        </a>
-    </div>
-    <div class="icon-button">
-        <a href="https://store.steampowered.com/" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-steam"></i>
-        </a>
-    </div>
-</div>
-
-<!-- MODAL WINDOW FOR TERMINAL IFRAME -->
-<div id="terminalModal" class="modal-overlay">
-    <div class="modal-content">
-        <button class="modal-close" id="modalCloseBtn" aria-label="Close terminal">&times;</button>
-        <iframe src="https://stackblitz.com/github.com/CEPBEP/quantum-computing-exploration-for-drug-discovery-on-aws?embed=1" title="qTerminal Frame" allow="fullscreen"></iframe>
-    </div>
-</div>
-
-<script>
-(function() {
-    "use strict";
-
-    // ---------- Existing glitch & octopus logic ----------
-    let effectsEnabled = false;
-    const container = document.getElementById('glitchContainer');
-    const originalLogo = document.getElementById('baseLogo');
-    const octopusContainer = document.getElementById('singularOctopus');
-    const triggerLogo = document.getElementById('baseLogo');
-
-    const rand = (min, max) => min + Math.random() * (max - min);
-    const randInt = (min, max) => Math.floor(rand(min, max + 1));
-
-    const glitchEffects = [
-        (layer) => { const sx = randInt(-35,35); const sy = randInt(-8,8); layer.style.transform = `translate(${sx}px, ${sy}px)`; layer.style.filter = `hue-rotate(${randInt(-30,30)}deg) saturate(${rand(1.5,3.5)})`; layer.style.opacity = rand(0.4,0.9); return 60+randInt(20,80); },
-        (layer) => { const skX = rand(-25,25); const skY = rand(-15,15); const scX = rand(0.7,1.3); const scY = rand(0.7,1.3); layer.style.transform = `skew(${skX}deg,${skY}deg) scale(${scX},${scY})`; layer.style.filter = `blur(${rand(0.5,4)}px)`; layer.style.opacity = rand(0.5,0.95); return 50+randInt(30,100); },
-        (layer) => { layer.style.filter = `invert(${rand(0.6,1)}) contrast(${rand(1.5,3)}) brightness(${rand(0.8,1.5)})`; layer.style.transform = `translate(${randInt(-20,20)}px,${randInt(-15,15)}px) rotate(${randInt(-5,5)}deg)`; layer.style.opacity = rand(0.7,1); return 45+randInt(20,70); },
-        (layer) => { const ct = randInt(5,70); const cb = randInt(30,95); layer.style.clipPath = `polygon(0% ${ct}%, 100% ${ct}%, 100% ${cb}%, 0% ${cb}%)`; layer.style.transform = `translateX(${randInt(-45,45)}px)`; layer.style.filter = `contrast(${rand(1.2,2.5)})`; layer.style.opacity = rand(0.6,1); return 70+randInt(40,100); },
-        (layer) => { const cl = randInt(10,80); const cr = randInt(20,90); layer.style.clipPath = `polygon(${cl}% 0%, ${cr}% 0%, ${cr}% 100%, ${cl}% 100%)`; layer.style.transform = `translateY(${randInt(-30,30)}px)`; layer.style.filter = `hue-rotate(${randInt(-180,180)}deg)`; layer.style.opacity = rand(0.5,0.9); return 60+randInt(30,90); },
-        (layer) => { layer.style.transform = `scaleX(-1) translateX(${randInt(-50,50)}px) scaleY(${rand(0.6,1.2)})`; layer.style.filter = `blur(${rand(0,3)}px) drop-shadow(${randInt(-8,8)}px ${randInt(-8,8)}px 2px #00f2ff)`; layer.style.opacity = rand(0.4,0.85); return 55+randInt(25,80); },
-        (layer) => { const txt = layer.querySelectorAll('.logo-fold, .logo-uantum, .logo-it'); txt.forEach(b=>{ b.style.letterSpacing=`${randInt(-5,12)}px`; b.style.transform=`translateY(${randInt(-12,12)}px)`; }); const ic = layer.querySelector('.adk-gye-nyame'); if(ic) ic.style.transform = `rotate(${randInt(-15,15)}deg) scale(${rand(0.7,1.3)})`; layer.style.transform = `skewX(${rand(-20,20)}deg)`; layer.style.filter = `brightness(${rand(0.5,1.8)})`; layer.style.opacity = rand(0.6,1); return 80+randInt(40,120); },
-        (layer) => { layer.style.textShadow = `${randInt(-12,12)}px ${randInt(-6,6)}px 0px #ff00cc, ${randInt(-12,12)}px ${randInt(-6,6)}px 0px #00ffff`; layer.style.transform = `translate(${randInt(-15,15)}px,${randInt(-12,12)}px) rotate(${randInt(-3,3)}deg)`; layer.style.filter = `contrast(${rand(1.2,2)}) saturate(${rand(1.5,3)})`; layer.style.opacity = rand(0.5,0.95); return 65+randInt(30,90); },
-        (layer) => { layer.style.filter = `blur(${rand(0.8,5)}px) contrast(${rand(1.5,3)})`; layer.style.transform = `translate(${randInt(-25,25)}px,${randInt(-20,20)}px) scale(${rand(0.8,1.2)})`; layer.style.opacity = rand(0.3,0.8); return 40+randInt(30,70); },
-        (layer) => { layer.style.transform = `translate(${randInt(-40,40)}px,${randInt(-20,20)}px) skew(${rand(-15,15)}deg,${rand(-10,10)}deg)`; layer.style.filter = `hue-rotate(${randInt(-90,90)}deg) invert(${rand(0.2,0.6)})`; layer.style.opacity = rand(0.5,0.9); return 70+randInt(50,100); }
-    ];
-
-    function clearAllLayers() {
-        document.querySelectorAll('.glitch-layer').forEach(l => l.remove());
-    }
-
-    function createGlitchLayer() {
-        const c = originalLogo.cloneNode(true);
-        c.style.position = 'absolute';
-        c.style.top = '0';
-        c.style.left = '0';
-        c.style.margin = '0';
-        c.style.padding = '0';
-        c.style.background = 'transparent';
-        c.style.backdropFilter = 'none';
-        c.classList.add('glitch-layer');
-        container.appendChild(c);
-        return c;
-    }
-
-    let glitchTimeout = null;
-    let microGlitchInterval = null;
-    let extraGlitchInterval = null;
-
-    function applyRandomGlitch() {
-        if (!effectsEnabled) return;
-        clearAllLayers();
-
-        const cnt = randInt(1, 3);
-        for (let i = 0; i < cnt; i++) {
-            const l = createGlitchLayer();
-            const e = glitchEffects[randInt(0, glitchEffects.length - 1)];
-            const d = e(l);
-            const bm = ['screen', 'lighten', 'difference', 'exclusion', 'color-dodge'];
-            l.style.mixBlendMode = bm[randInt(0, bm.length - 1)];
-            setTimeout(() => { if (l.parentNode) l.remove(); }, d);
-        }
-
-        if (Math.random() < 0.4 && effectsEnabled) {
-            const fd = document.createElement('div');
-            fd.classList.add('flash');
-            document.body.appendChild(fd);
-            setTimeout(() => fd.remove(), 80);
-        }
-
-        if (Math.random() < 0.5 && effectsEnabled) {
-            container.style.filter = `blur(${rand(0.5,3)}px) contrast(${rand(1.2,2.5)}) hue-rotate(${randInt(-40,40)}deg)`;
-            setTimeout(() => { container.style.filter = ''; }, randInt(50,150));
-        }
-
-        glitchTimeout = setTimeout(() => applyRandomGlitch(), randInt(80, 650));
-    }
-
-    function microGlitchBase() {
-        if (!effectsEnabled) return;
-        if (Math.random() < 0.3) {
-            const sx = randInt(-8,8);
-            const sy = randInt(-6,6);
-            originalLogo.style.transform = `translate(${sx}px,${sy}px)`;
-            originalLogo.style.filter = `blur(${rand(0,1.5)}px)`;
-            setTimeout(() => {
-                originalLogo.style.transform = '';
-                originalLogo.style.filter = '';
-            }, randInt(30,100));
-        }
-    }
-
-    function startMicroGlitch() {
-        if (microGlitchInterval) clearInterval(microGlitchInterval);
-        microGlitchInterval = setInterval(() => microGlitchBase(), 300);
-    }
-
-    function startExtraGlitch() {
-        if (extraGlitchInterval) clearInterval(extraGlitchInterval);
-        extraGlitchInterval = setInterval(() => {
-            if (Math.random() < 0.2 && effectsEnabled) {
-                const nl = createGlitchLayer();
-                nl.style.background = `repeating-linear-gradient(0deg, rgba(0,255,242,0.2) 0px, rgba(212,175,55,0.2) 2px, transparent 3px, transparent 8px)`;
-                nl.style.mixBlendMode = 'overlay';
-                nl.style.opacity = '0.5';
-                nl.style.transform = `translate(${randInt(-20,20)}px,${randInt(-15,15)}px)`;
-                setTimeout(() => { if (nl.parentNode) nl.remove(); }, 80);
-            }
-        }, 400);
-    }
-
-    const variants = [
-        { name: 'gold', src: 'https://qfoldit.github.io/assets/iokwa_gold.svg', class: 'octo-gold' },
-        { name: 'white', src: 'https://blockchainaccreditive.github.io/css/iokwa.svg', class: 'octo-white' },
-        { name: 'green', src: 'https://qfoldit.github.io/assets/iokwa_green.svg', class: 'octo-green' },
-        { name: 'blue', src: 'https://qfoldit.github.io/assets/iokwa_blue.svg', class: 'octo-blue' }
-    ];
-
-    const gridConfigs = [
-        { count: 1, style: 'inline-grid', template: null, gap: 0 },
-        { count: 2, style: 'grid', template: 'repeat(2, 1fr)', gap: 8 },
-        { count: 2, style: 'grid', template: 'repeat(1, 1fr)', gap: 8, flexDir: 'column' },
-        { count: 3, style: 'grid', template: 'repeat(3, 1fr)', gap: 6 },
-        { count: 4, style: 'grid', template: 'repeat(2, 1fr)', gap: 8 },
-        { count: 4, style: 'grid', template: 'repeat(4, 1fr)', gap: 6 },
-        { count: 6, style: 'grid', template: 'repeat(3, 1fr)', gap: 6 },
-        { count: 6, style: 'grid', template: 'repeat(2, 1fr)', gap: 6 },
-        { count: 8, style: 'grid', template: 'repeat(4, 1fr)', gap: 5 },
-        { count: 9, style: 'grid', template: 'repeat(3, 1fr)', gap: 5 }
-    ];
-
-    let octopusMorphTimeout = null;
-    let octopusGlitchInterval = null;
-    let octopusMicroInterval = null;
-
-    function buildOctopusMatrix(colorVariant, cfg) {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'octopus-matrix';
-        wrapper.style.position = 'relative';
-        wrapper.style.width = 'fit-content';
-        wrapper.style.marginLeft = 'auto';
-        wrapper.style.transformOrigin = 'top right';
-        wrapper.style.opacity = '1';
-
-        if (cfg.style === 'grid') {
-            wrapper.style.display = 'grid';
-            wrapper.style.gridTemplateColumns = cfg.template;
-            wrapper.style.gap = cfg.gap + 'px';
-        } else {
-            wrapper.style.display = 'inline-grid';
-            wrapper.style.gap = '0px';
-        }
-
-        const rot = randInt(-4, 4);
-        const scaleRand = rand(0.96, 1.04);
-        wrapper.style.transform = `rotate(${rot}deg) scale(${scaleRand})`;
-
-        for (let i = 0; i < cfg.count; i++) {
-            const img = document.createElement('img');
-            img.src = colorVariant.src;
-            img.classList.add('octopus-img', colorVariant.class);
-            const individualRot = randInt(-7, 7);
-            const individualScale = rand(0.92, 1.05);
-            img.style.transform = `rotate(${individualRot}deg) scale(${individualScale})`;
-            img.style.transition = 'transform 0.1s';
-            wrapper.appendChild(img);
-        }
-
-        return wrapper;
-    }
-
-    function setStaticOctopus() {
-        if (!octopusContainer) return;
-        octopusContainer.innerHTML = '';
-        const wrapper = buildOctopusMatrix(variants[0], { count: 1, style: 'inline-grid', template: null, gap: 0 });
-        wrapper.style.transform = 'rotate(0deg) scale(1)';
-        const img = wrapper.querySelector('img');
-        if (img) img.style.transform = 'rotate(0deg) scale(1)';
-        octopusContainer.appendChild(wrapper);
-    }
-
-    function randomizeOctopus() {
-        if (!effectsEnabled) return;
-        if (!octopusContainer) return;
-
-        const colorVariant = variants[randInt(0, variants.length - 1)];
-        const cfg = gridConfigs[randInt(0, gridConfigs.length - 1)];
-        const wrapper = buildOctopusMatrix(colorVariant, cfg);
-
-        octopusContainer.style.opacity = '0.7';
-        octopusContainer.innerHTML = '';
-        octopusContainer.appendChild(wrapper);
-
-        setTimeout(() => { octopusContainer.style.opacity = '1'; }, 60);
-
-        if (effectsEnabled) {
-            const flashDiv = document.createElement('div');
-            flashDiv.classList.add('flash');
-            document.body.appendChild(flashDiv);
-            setTimeout(() => flashDiv.remove(), 70);
-        }
-
-        setTimeout(() => {
-            const imgs = wrapper.querySelectorAll('img');
-            imgs.forEach(img => {
-                if (Math.random() < 0.6 && effectsEnabled) {
-                    const gx = randInt(-4,4);
-                    const gy = randInt(-3,3);
-                    img.style.transform += ` translate(${gx}px, ${gy}px)`;
-                    img.style.filter = `blur(${rand(0,1)}px)`;
-                    setTimeout(() => {
-                        img.style.transform = img.style.transform.replace(/ translate\([^)]+\)/, '');
-                        img.style.filter = '';
-                    }, 60);
-                }
-            });
-        }, 20);
-    }
-
-    function applyOctopusGlitch() {
-        if (!effectsEnabled) return;
-        if (!octopusContainer) return;
-
-        const matrixDiv = octopusContainer.querySelector('.octopus-matrix');
-        if (!matrixDiv) return;
-
-        const imgs = matrixDiv.querySelectorAll('img');
-        if (imgs.length === 0) return;
-
-        const targetImg = imgs[randInt(0, imgs.length - 1)];
-        const clone = targetImg.cloneNode(true);
-
-        const layerDiv = document.createElement('div');
-        layerDiv.classList.add('glitch-octo-layer');
-        layerDiv.appendChild(clone);
-
-        const matrixRect = matrixDiv.getBoundingClientRect();
-        const imgRect = targetImg.getBoundingClientRect();
-
-        layerDiv.style.position = 'absolute';
-        layerDiv.style.left = (imgRect.left - matrixRect.left) + 'px';
-        layerDiv.style.top = (imgRect.top - matrixRect.top) + 'px';
-        layerDiv.style.width = targetImg.clientWidth + 'px';
-        layerDiv.style.height = targetImg.clientHeight + 'px';
-
-        matrixDiv.appendChild(layerDiv);
-
-        const glitchOps = [
-            (ld) => { const sx=randInt(-18,18); const sy=randInt(-8,8); ld.style.transform=`translate(${sx}px,${sy}px)`; ld.style.filter=`hue-rotate(${randInt(-40,40)}deg) saturate(${rand(1.5,3)})`; ld.style.opacity=rand(0.5,0.9); return 40+randInt(20,60); },
-            (ld) => { const sk=rand(-15,15); const scX=rand(0.85,1.3); const scY=rand(0.85,1.3); ld.style.transform=`skewX(${sk}deg) scale(${scX},${scY})`; ld.style.filter=`blur(${rand(0.5,2.5)}px) brightness(${rand(0.9,1.5)})`; ld.style.opacity=rand(0.5,0.9); return 45+randInt(20,70); },
-            (ld) => { ld.style.filter=`invert(${rand(0.3,0.8)}) contrast(${rand(1.2,2)})`; ld.style.transform=`translate(${randInt(-12,12)}px,${randInt(-10,10)}px) rotate(${randInt(-4,4)}deg)`; ld.style.opacity=rand(0.6,1); return 40+randInt(20,60); },
-            (ld) => { const ct=randInt(15,70); const cb=randInt(40,90); ld.style.clipPath=`polygon(0% ${ct}%, 100% ${ct}%, 100% ${cb}%, 0% ${cb}%)`; ld.style.transform=`translateX(${randInt(-25,25)}px)`; ld.style.filter=`contrast(${rand(1.1,1.9)})`; ld.style.opacity=rand(0.5,0.9); return 50+randInt(25,70); },
-            (ld) => { ld.style.transform=`scaleX(-1) translateX(${randInt(-20,20)}px) scaleY(${rand(0.8,1.2)})`; ld.style.filter=`drop-shadow(${randInt(-4,4)}px ${randInt(-4,4)}px 2px #00f2ff) blur(${rand(0,1.5)}px)`; ld.style.opacity=rand(0.5,0.85); return 45+randInt(20,65); }
-        ];
-
-        const effect = glitchOps[randInt(0, glitchOps.length - 1)];
-        const duration = effect(layerDiv);
-        const blendModes = ['screen', 'lighten', 'difference', 'exclusion'];
-        layerDiv.style.mixBlendMode = blendModes[randInt(0, blendModes.length - 1)];
-
-        setTimeout(() => {
-            if (layerDiv.parentNode) layerDiv.remove();
-        }, duration);
-    }
-
-    function startOctopusMorph() {
-        if (octopusMorphTimeout) clearTimeout(octopusMorphTimeout);
-        const loop = () => {
-            if (effectsEnabled) randomizeOctopus();
-            octopusMorphTimeout = setTimeout(loop, randInt(1800, 4200));
-        };
-        loop();
-    }
-
-    function startOctopusGlitchLoop() {
-        if (octopusGlitchInterval) clearInterval(octopusGlitchInterval);
-        octopusGlitchInterval = setInterval(() => {
-            if (effectsEnabled && Math.random() < 0.7) applyOctopusGlitch();
-        }, randInt(500, 1200));
-    }
-
-    function startOctopusMicro() {
-        if (octopusMicroInterval) clearInterval(octopusMicroInterval);
-        octopusMicroInterval = setInterval(() => {
-            if (!effectsEnabled) return;
-            const matrixDiv = octopusContainer?.querySelector('.octopus-matrix');
-            if (matrixDiv) {
-                const imgs = matrixDiv.querySelectorAll('img');
-                if (imgs.length && Math.random() < 0.4) {
-                    const idx = randInt(0, imgs.length - 1);
-                    const img = imgs[idx];
-                    const sx = randInt(-4,4);
-                    const sy = randInt(-3,3);
-                    img.style.transform += ` translate(${sx}px, ${sy}px)`;
-                    img.style.filter = `blur(${rand(0,1)}px)`;
-                    setTimeout(() => {
-                        img.style.transform = img.style.transform.replace(/ translate\([^)]+\)/, '');
-                        img.style.filter = '';
-                    }, 70);
-                }
-            }
-        }, 400);
-    }
-
-    function startEffects() {
-        if (effectsEnabled) return;
-        effectsEnabled = true;
-        if (glitchTimeout) clearTimeout(glitchTimeout);
-        applyRandomGlitch();
-        startMicroGlitch();
-        startExtraGlitch();
-        startOctopusMorph();
-        startOctopusGlitchLoop();
-        startOctopusMicro();
-        randomizeOctopus();
-
-        const fd = document.createElement('div');
-        fd.classList.add('flash');
-        document.body.appendChild(fd);
-        setTimeout(() => fd.remove(), 100);
-    }
-
-    function stopEffects() {
-        effectsEnabled = false;
-
-        if (glitchTimeout) clearTimeout(glitchTimeout);
-        if (microGlitchInterval) clearInterval(microGlitchInterval);
-        if (extraGlitchInterval) clearInterval(extraGlitchInterval);
-        if (octopusMorphTimeout) clearTimeout(octopusMorphTimeout);
-        if (octopusGlitchInterval) clearInterval(octopusGlitchInterval);
-        if (octopusMicroInterval) clearInterval(octopusMicroInterval);
-
-        clearAllLayers();
-        document.querySelectorAll('.glitch-octo-layer').forEach(l => l.remove());
-
-        setStaticOctopus();
-
-        container.style.filter = '';
-        originalLogo.style.transform = '';
-        originalLogo.style.filter = '';
-    }
-
-    function toggleEffects() {
-        if (effectsEnabled) {
-            stopEffects();
-        } else {
-            startEffects();
-        }
-    }
-
-    // ---------- TERMINAL MODAL LOGIC ----------
-    const modalOverlay = document.getElementById('terminalModal');
-    const terminalTrigger = document.getElementById('terminalTrigger');
-    const closeBtn = document.getElementById('modalCloseBtn');
-    const iframe = modalOverlay.querySelector('iframe');
-
-    function openModal(e) {
-        if (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-        modalOverlay.classList.add('active');
-    }
-
-    function closeModal() {
-        modalOverlay.classList.remove('active');
-    }
-
-    terminalTrigger.addEventListener('click', openModal);
-    terminalTrigger.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            openModal();
-        }
-    });
-
-    closeBtn.addEventListener('click', closeModal);
-
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-            closeModal();
-        }
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
-            closeModal();
-        }
-    });
-
-    // ---------- INIT STATIC & GLITCH ----------
-    function initStatic() {
-        setStaticOctopus();
-
-        document.getElementById('toggleEffectsBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            return false;
-        });
-
-        triggerLogo.addEventListener('click', toggleEffects);
-        triggerLogo.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleEffects();
-            }
-        });
-    }
-
-    initStatic();
-})();
-</script>
+
+        <!-- ===== LOGOS ===== -->
+
+        <div class="logos">
+
+            <!-- WARNER BROS GAMING (external) -->
+            <div class="logo-wbg">
+                <img src="https://qfoldit.github.io/assets/wb-games-logo-white.svg" alt="Warner Bros. Gaming" />
+            </div>
+
+            <!-- DIVIDER -->
+            <div class="divider">
+                <span>&#9679;</span>
+                <div class="line"></div>
+                <span>&</span>
+                <div class="line"></div>
+                <span>&#9679;</span>
+            </div>
+
+            <!-- DISNEY (external) -->
+            <div class="logo-disney">
+                <img src="https://qfoldit.github.io/assets/Disney_Logo_White.svg" alt="Disney" />
+            </div>
+
+        </div>
+
+        <!-- ===== TAGLINE ===== -->
+        <div class="tagline">
+            <span>✦ 2026 ✦</span>
+        </div>
+
+        <!-- ===== PLATFORM ICONS (footer) ===== -->
+        <div class="platform-icons">
+            <!-- Epic Games -->
+            <a href="https://store.epicgames.com/ru/p/fortnite" target="_blank" aria-label="Epic Games" title="Epic Games">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                    <path d="M18.723 2.5c1.102 0 1.505.401 1.506 1.487v13.244c0 .17-.032.477-.087.608a.9.9 0 0 1-.21.334c-.107.099-.29.202-.378.242l-7.127 3a1.1 1.1 0 0 1-.853 0l-7.127-3a1.7 1.7 0 0 1-.378-.241.9.9 0 0 1-.21-.335c-.055-.131-.086-.438-.086-.608V3.986c0-1.086.403-1.487 1.505-1.487zM9.324 18.485a.06.06 0 0 0-.036.054q0 .012.005.022a.06.06 0 0 0 .031.032l2.58 1.093a.23.23 0 0 0 .181 0l2.6-1.093.02-.013.012-.018.005-.023-.005-.022-.013-.019-.019-.013-.022-.005H9.347zM7.3 13.87q-.259 0-.48.088a1.15 1.15 0 0 0-.632.61q-.091.208-.091.45v.006q0 .25.092.46.093.21.255.36.164.152.385.237.222.085.484.085.306 0 .55-.098.24-.098.42-.243v-.994H7.255v.45h.44v.267a.64.64 0 0 1-.357.092.6.6 0 0 1-.437-.173.6.6 0 0 1-.126-.193.7.7 0 0 1-.044-.247v-.006a.63.63 0 0 1 .165-.43.57.57 0 0 1 .406-.176q.166 0 .293.054a1 1 0 0 1 .247.154l.363-.432q-.18-.151-.393-.236a1.4 1.4 0 0 0-.513-.085m9.635.005a1.2 1.2 0 0 0-.362.052.8.8 0 0 0-.272.147.63.63 0 0 0-.232.508v.007q0 .17.066.285.065.115.178.192.114.078.267.126.153.05.332.09.115.025.187.05a.6.6 0 0 1 .115.048.16.16 0 0 1 .058.053q.016.026.017.06v.007a.12.12 0 0 1-.065.112.4.4 0 0 1-.19.04q-.39 0-.725-.265l-.344.406q.207.183.476.275.27.091.57.091.204 0 .37-.049a.8.8 0 0 0 .285-.141.7.7 0 0 0 .184-.226.7.7 0 0 0 .065-.304v-.005a.6.6 0 0 0-.058-.268.5.5 0 0 0-.166-.19 1 1 0 0 0-.263-.134 3 3 0 0 0-.347-.097 2 2 0 0 1-.19-.049 1 1 0 0 1-.117-.047.16.16 0 0 1-.061-.051.12.12 0 0 1-.018-.067v-.007q.001-.06.056-.1a.3.3 0 0 1 .168-.041q.15 0 .31.056.162.055.315.162l.31-.432a1.3 1.3 0 0 0-.408-.22q-.225-.075-.511-.074m-8.455 2.244h.652l.16-.394h.861l.163.394h.665l-.953-2.224h-.596zm2.717 0h.607v-1.262l.568.858h.013l.571-.864v1.268h.616V13.91h-.654l-.533.855-.533-.855h-.655zm2.79 0h1.812v-.52h-1.2v-.35h1.073v-.482h-1.073v-.335h1.184v-.52h-1.797zm-4.012-.87h-.502l.252-.628zM15.946 4.82c-.914 0-1.367.448-1.367 1.353v4.705c0 .906.453 1.352 1.368 1.352h.557c.915 0 1.367-.447 1.367-1.352V9.182h-1.104v1.643c0 .292-.137.427-.42.427h-.211c-.294 0-.43-.135-.43-.427v-4.6c0-.29.135-.426.43-.426h.19c.283 0 .42.135.42.427V7.65h1.104V6.163c0-.905-.442-1.343-1.357-1.343zM6.15 12.17h2.524v-1.01H7.275V8.963h1.326v-1.01H7.275v-2.06h1.378v-1.01H6.15zm3.068 0h1.125V9.525h.641c.915 0 1.368-.448 1.368-1.353V6.236c0-.906-.453-1.353-1.368-1.353H9.218zm3.641-.001h1.125V4.883H12.86zm-2.053-6.307c.283 0 .42.135.42.427V8.12c0 .291-.136.427-.42.427h-.463V5.86z"/>
+                </svg>
+            </a>
+
+            <!-- Unreal Engine -->
+            <a href="https://www.unrealengine.com/ru/" target="_blank" aria-label="Unreal Engine" title="Unreal Engine">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                    <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2m-.906 3.948a6.2 6.2 0 0 0-3.109 1.434 6.09 6.09 0 0 0-2.106 4.665s.612-1.915 1.38-2.092a.742.742 0 0 1 .93.742v4.495c0 .456-.294.555-.565.55a2.4 2.4 0 0 1-.542-.101 6.12 6.12 0 0 0 4.837 2.48l1.657-1.666.982 1.105c2.445-1.155 3.212-3.289 3.384-4.12-.894.916-1.883 1.844-2.548 1.202 0-.035-.037-3.437-.037-4.835 0-1.883 1.78-3.288 1.793-3.3-.986.176-2.17.527-3.427 1.76q-.17.17-.322.355c-.538-.412-1.237-.289-1.237-.289.377.207.754.811.754 1.31v4.91c-.012.011-.827.724-1.456.724a.9.9 0 0 1-.732-.37 1 1 0 0 1-.125-.215V8.626c-.187.154-.82.282-.82-.769 0-.653.47-1.431 1.309-1.909"/>
+                </svg>
+            </a>
+
+            <!-- PC (Игра для ПК) -->
+            <a href="https://www.fortnite.com/download?lang=ru" target="_blank" aria-label="Игра для ПК" title="Игра для ПК">
+                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/KA6d6NZXSlaxhPy5eAYf" alt="PC" />
+            </a>
+
+            <!-- PlayStation -->
+            <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation" title="PlayStation">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                    <path d="M22.343 19.12c.558.032.896.465.877.98-.02.551-.435.92-.973.901-.56-.02-.939-.45-.909-1.008.03-.527.464-.906 1.005-.874m-.055.142a.773.773 0 0 0-.802.8c.001.463.34.803.797.803a.78.78 0 0 0 .795-.805.775.775 0 0 0-.79-.798M8.975 2.64c1.043.19 2.07.465 3.09.75q.877.249 1.745.522c.91.285 1.814.607 2.637 1.088.37.22.723.469 1.026.771.328.317.597.688.794 1.097.36.737.482 1.56.518 2.37.017.528.016 1.06-.085 1.582a3.7 3.7 0 0 1-.478 1.294 2.4 2.4 0 0 1-.888.842 2.4 2.4 0 0 1-1.155.267c-.606.006-1.194-.183-1.738-.432l-.005-2.668V6.972q0-.242-.047-.48c-.046-.246-.148-.494-.345-.66a1 1 0 0 0-.468-.217.48.48 0 0 0-.461.175c-.177.217-.223.505-.23.774l-.002 14.283q-1.954-.608-3.908-1.22-.002-8.493 0-16.987m13.432 16.876c.142.002.242.07.27.181.036.147-.003.303-.174.358l-.005.002v.008c.083.031.117.103.141.18q.048.158.099.316l.013.039h-.203l-.008-.035-.075-.27c-.034-.118-.075-.15-.197-.154l-.162-.002.001.46h-.196v-1.085s.343 0 .496.002m-4.462-5.643c1.273.005 2.553.16 3.772.536.24.072.47.164.71.239.423.152.85.337 1.19.638.203.183.38.43.382.711.012.23-.093.45-.245.62-.288.316-.668.534-1.05.724-.407.204-.844.336-1.27.491l-7.81 2.758v-2.201c.001-.017.007-.032.028-.035l5.942-2.084c.268-.097.556-.17.783-.347.093-.072.184-.187.14-.31-.049-.107-.162-.168-.267-.212-.297-.115-.62-.137-.935-.146a4.8 4.8 0 0 0-1.46.22c-1.41.485-2.82.976-4.231 1.461v-2.309a14.8 14.8 0 0 1 3.16-.687c.386-.044.774-.053 1.16-.067m4.161 6.132h.142a.6.6 0 0 0 .115-.01c.092-.018.144-.087.14-.183-.003-.09-.054-.15-.143-.157a5 5 0 0 0-.254-.006z"/>
+                </svg>
+            </a>
+
+            <!-- PlayStation 5 -->
+            <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation 5" title="PlayStation 5">
+                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/WhxwsUG5QUhr9xYWZ6FA" alt="PS5" />
+            </a>
+
+            <!-- PlayStation 4 -->
+            <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation 4" title="PlayStation 4">
+                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/T5zoHcW8SpqCQ5gjQ5S1" alt="PS4" />
+            </a>
+
+            <!-- Xbox -->
+            <a href="https://www.xbox.com/games/store/fortnite/bt5p2x999vh2" target="_blank" aria-label="Xbox" title="Xbox">
+                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/CHAtzJR0GI4pD4PiKQxQ" alt="Xbox" />
+            </a>
+
+            <!-- Xbox Series X|S -->
+            <a href="https://www.xbox.com/games/store/fortnite/bt5p2x999vh2" target="_blank" aria-label="Xbox Series X|S" title="Xbox Series X|S">
+                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/P6XlS1FQ56Y8NXslBgUK" alt="Xbox Series" />
+            </a>
+
+            <!-- Nintendo Switch -->
+            <a href="https://www.nintendo.com/games/detail/fortnite-switch" target="_blank" aria-label="Nintendo Switch" title="Nintendo Switch">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                    <path d="M15.184 3c1.298 0 1.7.01 1.961.056 1.946.335 3.426 1.8 3.795 3.742.052.272.06.91.06 5.183 0 4.567.005 5.105-.139 5.598-.025.085-.054.17-.089.273a6 6 0 0 1-.279.652 4.65 4.65 0 0 1-3.575 2.46c-.358.037-3.251.052-3.352.014-.055-.025-.06-.863-.06-8.974 0-4.91.012-8.938.027-8.978.011-.015.757-.026 1.651-.026m-5.789.004c2.185-.004 2.248 0 2.286.067.026.064.037 2.912.037 8.945 0 8.154-.004 8.873-.06 8.93-.056.055-.276.058-2.36.043-2.016-.011-2.33-.022-2.575-.078-1.886-.44-3.214-1.77-3.627-3.638-.075-.346-.078-.452-.09-4.937C2.989 7.45 3 7.08 3.164 6.45a4.65 4.65 0 0 1 3.69-3.391c.235-.041.768-.052 2.542-.056m-.611 1.453c-1.595.004-1.823.026-2.314.224A3.2 3.2 0 0 0 4.54 6.986c-.078.37-.08 9.642.003 10.019a3.16 3.16 0 0 0 2.34 2.437c.28.071.43.078 1.828.093l1.516.019V4.453zm8.73 6.687a1.81 1.81 0 0 0-2.18 1.207c-.093.29-.097.767-.015 1.05a1.835 1.835 0 0 0 2.196 1.245c.573-.152 1.021-.566 1.249-1.155.123-.32.126-.835.003-1.185a1.82 1.82 0 0 0-1.252-1.162M7.175 6.73c.939-.186 1.848.455 2.008 1.413.138.805-.35 1.592-1.159 1.864-.197.067-.301.077-.595.066-.325-.011-.389-.025-.638-.148a1.7 1.7 0 0 1-.802-.806c-.119-.238-.137-.317-.152-.611-.03-.566.163-1.047.554-1.386a2 2 0 0 1 .784-.392"/>
+                </svg>
+            </a>
+
+            <!-- Nintendo Switch 2 -->
+            <a href="https://www.nintendo.com/games/detail/fortnite-switch-2" target="_blank" aria-label="Nintendo Switch 2" title="Nintendo Switch 2">
+                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cm8zzae4r1g7z06oj8hbgpfaz" alt="Switch 2" />
+            </a>
+
+            <!-- Android -->
+            <a href="https://store.epicgames.com/download/android?p=fortnite&amp;lang=ru" target="_blank" aria-label="Android" title="Android">
+                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/3CWE1VlwQmSRnNkAdxd8" alt="Android" />
+            </a>
+
+            <!-- OneStore -->
+            <a href="https://m.onestore.co.kr/ko-kr/apps/appsDetail.omp?prodId=0000779798" target="_blank" aria-label="OneStore" title="OneStore">
+                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmbp7vi6m0c3q07mvb2vxvu7s" alt="OneStore" />
+            </a>
+
+            <!-- Luna -->
+            <a href="https://luna.amazon.com/game/fortnite?g=web&amp;ref=tmp_ext_epic" target="_blank" aria-label="Amazon Luna" title="Amazon Luna">
+                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmhwnqdpu379j07ogp3mewuu7" alt="Luna" />
+            </a>
+
+            <!-- GeForce Now -->
+            <a href="https://www.nvidia.com/en-us/geforce-now/" target="_blank" aria-label="GeForce Now" title="GeForce Now">
+                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmhwn7osa33zd07ogkrhs0w0v" alt="GeForce Now" />
+            </a>
+        </div>
+
+        <!-- ===== BOTTOM BAR ===== -->
+        <div class="bottom-bar">
+            <span>Warner Bros. Gaming</span>
+            <span class="dot"></span>
+            <span>Disney</span>
+            <span class="dot"></span>
+            <span>UEFN</span>
+        </div>
+
+    </section>
+
 </body>
 </html>
-
-
-
-<!--
-
-https://t.me/+CEjbbNhu0Z5hODYy
-
--->
