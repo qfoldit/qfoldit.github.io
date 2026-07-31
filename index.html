@@ -64,17 +64,17 @@
                 linear-gradient(rgba(0, 255, 255, 0.04) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 255, 0.04) 1px, transparent 1px);
             background-size: 50px 50px;
-            background-position: center center;
+            background-position: 0 0;
             pointer-events: none;
             z-index: 0;
             animation: gridScroll 30s linear infinite;
         }
         @keyframes gridScroll {
             0% {
-                transform: translate(0, 0);
+                background-position: 0 0;
             }
             100% {
-                transform: translate(50px, 50px);
+                background-position: 50px 50px;
             }
         }
         .hero .grid-overlay {
@@ -84,10 +84,18 @@
                 linear-gradient(rgba(0, 255, 255, 0.015) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(0, 255, 255, 0.015) 1px, transparent 1px);
             background-size: 20px 20px;
-            background-position: center center;
+            background-position: 0 0;
             pointer-events: none;
             z-index: 0;
-            animation: gridScroll 20s linear infinite reverse;
+            animation: gridScrollSmall 20s linear infinite reverse;
+        }
+        @keyframes gridScrollSmall {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 20px 20px;
+            }
         }
         .hero .scanline {
             position: absolute;
@@ -435,40 +443,6 @@
         .logos>* {
             flex-shrink: 0;
         }
-        .divider {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: rgba(0, 255, 255, 0.15);
-            font-size: clamp(1.8rem, 4vw, 3.6rem);
-            font-weight: 300;
-            letter-spacing: 0.2em;
-            font-family: 'Burbank Big Condensed', serif;
-            text-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
-            animation: dividerPulse 3s ease-in-out infinite alternate;
-            padding: 0 0.5rem;
-        }
-        .divider span {
-            display: block;
-            line-height: 0.8;
-        }
-        .divider .line {
-            width: clamp(40px, 6vw, 80px);
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.15), transparent);
-            margin: 0.6rem 0;
-        }
-        @keyframes dividerPulse {
-            0% {
-                opacity: 0.4;
-                transform: scale(0.95);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1.05);
-            }
-        }
         .logo-wbg {
             display: flex;
             flex-direction: column;
@@ -511,38 +485,6 @@
             100% {
                 opacity: 1;
                 transform: scale(1) translateY(0);
-            }
-        }
-        .tagline {
-            margin-top: clamp(1.8rem, 3.5vw, 4rem);
-            font-size: clamp(0.75rem, 1.1vw, 1.3rem);
-            letter-spacing: 0.6em;
-            color: rgba(255, 255, 255, 0.06);
-            text-transform: uppercase;
-            font-family: 'Burbank Big Condensed', sans-serif;
-            font-weight: 700;
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 0 1rem;
-            animation: taglineFade 2s ease 1.2s both;
-        }
-        .tagline span {
-            display: inline-block;
-            background: rgba(0, 255, 255, 0.02);
-            padding: 0.3rem 1.8rem;
-            border-radius: 30px;
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.02);
-        }
-        @keyframes taglineFade {
-            0% {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
             }
         }
         .platform-icons {
@@ -678,28 +620,11 @@
             .logos>* {
                 flex-shrink: 0;
             }
-            .divider {
-                flex-direction: row;
-                gap: 0.8rem;
-                padding: 0.2rem 0;
-            }
-            .divider .line {
-                width: 30px;
-                height: 1px;
-                margin: 0;
-            }
-            .divider span {
-                font-size: 1.2rem;
-            }
             .logo-wbg img {
                 width: 100px;
             }
             .logo-disney img {
                 width: 140px;
-            }
-            .tagline {
-                margin-top: 1rem;
-                font-size: 0.5rem;
             }
             .platform-icons {
                 bottom: clamp(4.5rem, 5vh, 6rem);
@@ -766,12 +691,6 @@
             }
             .logos {
                 gap: 0.8rem;
-            }
-            .divider span {
-                font-size: 0.9rem;
-            }
-            .divider .line {
-                width: 20px;
             }
             .platform-icons {
                 bottom: 3.5rem;
@@ -870,20 +789,9 @@
             <div class="logo-wbg">
                 <img src="https://qfoldit.github.io/assets/wb-games-logo-white.svg" alt="Warner Bros. Gaming" />
             </div>
-            <div class="divider">
-                <span>&#9679;</span>
-                <div class="line"></div>
-                <span>&</span>
-                <div class="line"></div>
-                <span>&#9679;</span>
-            </div>
             <div class="logo-disney">
                 <img src="https://qfoldit.github.io/assets/Disney_Logo_White.svg" alt="Disney" />
             </div>
-        </div>
-
-        <div class="tagline">
-            <span>✦ 2026 ✦</span>
         </div>
 
         <div class="platform-icons">
