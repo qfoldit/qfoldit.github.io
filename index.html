@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fortnite · qFoldIT · UEFN</title>
+    <title>Available IP · qFoldIT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
         @font-face {
@@ -289,11 +289,14 @@
             --tx: -50px;
             --ty: -150px;
         }
+
+        /* HUD cross and labels — shifted up by 2vh */
         .hud-cross {
             position: fixed;
             z-index: 1;
             pointer-events: none;
             opacity: 0.06;
+            transform: translateY(-2vh);
         }
         .hud-cross::before,
         .hud-cross::after {
@@ -326,6 +329,7 @@
             background: rgba(0, 255, 255, 0.2);
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
         }
+
         .hud-label {
             position: fixed;
             z-index: 1;
@@ -336,6 +340,7 @@
             color: rgba(0, 255, 255, 0.08);
             text-transform: uppercase;
             pointer-events: none;
+            transform: translateY(-2vh); /* shift up by 2vh */
         }
         .hud-label.tl {
             top: 85px;
@@ -357,7 +362,7 @@
         .hud-label.mid-left {
             left: 30px;
             top: 50%;
-            transform: translateY(-50%);
+            transform: translateY(-50%) translateY(-2vh);
             writing-mode: vertical-rl;
             letter-spacing: 0.4em;
             font-size: clamp(0.6rem, 0.8vw, 1rem);
@@ -366,7 +371,7 @@
         .hud-label.mid-right {
             right: 30px;
             top: 50%;
-            transform: translateY(-50%);
+            transform: translateY(-50%) translateY(-2vh);
             writing-mode: vertical-rl;
             letter-spacing: 0.4em;
             font-size: clamp(0.6rem, 0.8vw, 1rem);
@@ -499,6 +504,7 @@
             color: red;
             -webkit-text-fill-color: red;
             background: none;
+            transform: translateY(-1vh); /* shift up by 1vh */
         }
         @keyframes titleGlow {
             0% {
@@ -713,7 +719,7 @@
             color: #88ffff;
         }
 
-        /* Fixed footer — bottom bar removed */
+        /* Fixed footer */
         .footer-wrapper {
             position: fixed;
             bottom: 0;
@@ -808,8 +814,6 @@
         .footer-wrapper .github-link span {
             color: inherit;
         }
-
-        /* Remove bottom-bar styles - no longer needed */
 
         @keyframes bottomFade {
             0% {
@@ -1035,20 +1039,20 @@
             <div class="hud-particle"></div>
         </div>
 
-        <!-- HUD Cross and corner labels -->
+        <!-- HUD Cross and corner labels — shifted up by 2vh -->
         <div class="hud-cross"><div class="dot"></div></div>
         <div class="hud-label tl">SYS::ONLINE</div>
         <div class="hud-label tr">UEFN::v1.0</div>
         <div class="hud-label bl">FORTITE::ACTIVE</div>
         <div class="hud-label br">MCP::LINK</div>
 
-        <!-- New side labels for Warner Bros. and Disney -->
+        <!-- Side labels -->
         <div class="hud-label mid-left">WARNER BROS. GAMING</div>
-        <div class="hud-label mid-right">WALT DISNEY GAMES</div>
+        <div class="hud-label mid-right">WALT DISNEY</div>
 
         <div class="glow-overlay"></div>
 
-        <!-- Fixed top bar with glassmorphism, logo left, title right -->
+        <!-- Fixed top bar with glassmorphism -->
         <div class="top-bar">
             <div class="glass-left">
                 <div class="lego-logo">
@@ -1062,7 +1066,7 @@
             </div>
         </div>
 
-        <!-- Hero Logos: full viewport, side by side, equal size -->
+        <!-- Hero Logos -->
         <div class="hero-logos">
             <div class="logo logo-wbg">
                 <img src="https://qfoldit.github.io/assets/wb-games-logo-white.svg" alt="Warner Bros. Gaming" />
@@ -1072,7 +1076,7 @@
             </div>
         </div>
 
-        <!-- Scrollable content with tables (below hero) -->
+        <!-- Scrollable content -->
         <div class="content-wrapper">
 
             <!-- LEGO -->
@@ -1266,7 +1270,7 @@
                 <div class="subnote">🔬 Full ownership – no licensing restrictions</div>
             </div>
 
-            <!-- Icon Series (Celebrity Ecosystem) -->
+            <!-- Icon Series -->
             <div class="table-section icon-series-table">
                 <h2><i class="fas fa-star"></i> Icon Series</h2>
                 <table>
