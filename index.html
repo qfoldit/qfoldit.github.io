@@ -445,7 +445,7 @@
             background: rgba(10, 10, 15, 0.35);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-radius: 6px;
+            border-radius: 14px;
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
             padding: 8px 16px;
@@ -496,16 +496,16 @@
             text-align: right;
             display: flex;
             align-items: center;
-            gap: 0.6rem; /* увеличенный пробел между элементами */
+            gap: 0.6rem;
         }
         /* Буква X — уменьшена в 2 раза относительно предыдущего размера, с отступами */
         .main-title .title-x {
             position: relative;
             display: inline-block;
             flex: 0 0 auto;
-            width: 0.175em;          /* половина от 0.35em */
-            height: 0.175em;         /* половина от 0.35em */
-            margin: 0 0.15em;        /* явные отступы слева и справа */
+            width: 0.175em;
+            height: 0.175em;
+            margin: 0 0.15em;
             transform: translateY(-0.02em);
             background: transparent;
             -webkit-text-fill-color: initial;
@@ -517,9 +517,9 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 0.07em;           /* половина от 0.14em */
-            height: 0.425em;         /* половина от 0.85em */
-            border-radius: 0;        /* квадратные, без скругления */
+            width: 0.07em;
+            height: 0.425em;
+            border-radius: 0;
             background: #ff1515;
             box-shadow: none;
             transform-origin: center;
@@ -715,7 +715,7 @@
         }
         .table-section .legal-note {
             font-size: 0.95em;
-            color: rgba(255, 255, 255, 0.7);
+            color: #ffffff !important; /* белый текст, приоритет */
             background: rgba(255, 0, 0, 0.05);
             border-left: 3px solid rgba(255, 200, 0, 0.5);
             padding: 0.8rem 1rem;
@@ -724,6 +724,13 @@
         }
         .table-section .legal-note strong {
             color: #ffdd44;
+        }
+        .table-section .legal-note i {
+            margin-right: 0.6rem;
+            color: #88ffff;
+        }
+        .table-section .legal-note p {
+            color: #ffffff !important; /* явно для параграфа */
         }
         .table-section .legal-note ul {
             margin: 0.5rem 0 0 1.2rem;
@@ -1235,7 +1242,7 @@
 
             <!-- Gaming collaborations -->
             <div class="table-section">
-                <h2><i class="fas fa-gamepad"></i> Gaming Collaborations (Epic Games)</h2>
+                <h2><i class="fas fa-gamepad"></i> Gaming Collaborations (Epic Games Store)</h2>
                 <table>
                     <thead><tr><th>Franchise / Game</th><th>Characters</th></tr></thead>
                     <tbody>
@@ -1382,6 +1389,11 @@
                     </tbody>
                 </table>
                 <div class="subnote">This list is complete based on current agreements as of July 31, 2026.</div>
+            </div>
+
+            <!-- Legal Disclaimer (English) with white text and icon -->
+            <div class="table-section legal-note">
+                <p><i class="fas fa-info-circle"></i><strong>Disclaimer:</strong> qFoldIT is an independent scientific data automation platform. All mentioned trademarks (LEGO, Disney, WBD, Fortnite) belong to their respective owners. Asset visualization is performed by the Unreal Engine 6 runtime environment under the official Epic Games user agreements.</p>
             </div>
 
         </div> <!-- end content-wrapper -->
