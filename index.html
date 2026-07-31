@@ -49,15 +49,14 @@
             width: 100vw;
             height: 100vh;
             background: #0a0a0f;
-            overflow: hidden;
+            overflow-y: auto;
             user-select: none;
-            display: flex;
-            flex-direction: column;
+            display: block;
         }
-        /* Background layers */
+        /* Background layers - fixed */
         .hero::before {
             content: '';
-            position: absolute;
+            position: fixed;
             inset: 0;
             background-image:
                 linear-gradient(rgba(0, 255, 255, 0.04) 1px, transparent 1px),
@@ -77,7 +76,7 @@
             }
         }
         .hero .grid-overlay {
-            position: absolute;
+            position: fixed;
             inset: 0;
             background-image:
                 linear-gradient(rgba(0, 255, 255, 0.015) 1px, transparent 1px),
@@ -97,7 +96,7 @@
             }
         }
         .hero .scanline {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -125,7 +124,7 @@
             }
         }
         .hud-corner {
-            position: absolute;
+            position: fixed;
             z-index: 1;
             pointer-events: none;
             opacity: 0.25;
@@ -154,7 +153,7 @@
             transform: scale(-1, -1);
         }
         .hud-side {
-            position: absolute;
+            position: fixed;
             z-index: 1;
             pointer-events: none;
             opacity: 0.12;
@@ -174,7 +173,7 @@
             background: linear-gradient(to bottom, transparent, rgba(0, 255, 255, 0.3), transparent);
         }
         .hud-particles {
-            position: absolute;
+            position: fixed;
             inset: 0;
             pointer-events: none;
             z-index: 1;
@@ -291,7 +290,7 @@
             --ty: -150px;
         }
         .hud-cross {
-            position: absolute;
+            position: fixed;
             z-index: 1;
             pointer-events: none;
             opacity: 0.06;
@@ -328,7 +327,7 @@
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
         }
         .hud-label {
-            position: absolute;
+            position: fixed;
             z-index: 1;
             font-family: 'Burbank Big Condensed', sans-serif;
             font-weight: 700;
@@ -355,7 +354,7 @@
             right: 30px;
         }
         .hero .glow-overlay {
-            position: absolute;
+            position: fixed;
             inset: 0;
             background:
                 radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.03) 0%, transparent 60%),
@@ -363,16 +362,60 @@
             pointer-events: none;
             z-index: 0;
         }
-        /* Top bar */
-        .top-bar {
+
+        /* Hero logos — full viewport, side by side */
+        .hero-logos {
             position: relative;
-            z-index: 10;
-            padding: .25rem 2rem;
+            z-index: 2;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            pointer-events: none;
+        }
+        .hero-logos .logo {
+            flex: 1 1 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+        .hero-logos .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.05));
+            transition: filter 0.3s ease;
+        }
+        .hero-logos .logo-wbg {
+            background: rgba(10, 10, 15, 0.3);
+            border-right: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .hero-logos .logo-disney {
+            background: rgba(10, 10, 15, 0.3);
+        }
+
+        /* Top bar — glassmorphism */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 20;
+            padding: 1.2rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             pointer-events: none;
-            flex-shrink: 0;
+            background: rgba(10, 10, 15, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
         }
         .top-bar>* {
             pointer-events: auto;
@@ -425,19 +468,17 @@
                 filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.25));
             }
         }
-        /* Scrollable content */
+
+        /* Scrollable content — appears below hero-logos */
         .content-wrapper {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1rem 2rem 14rem;
             position: relative;
             z-index: 2;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+            padding: 1rem 2rem 14rem;
+            background: rgba(10, 10, 15, 0.92);
+            backdrop-filter: blur(4px);
+            min-height: 100vh;
         }
-        .content-wrapper::-webkit-scrollbar {
-            display: none;
-        }
+
         /* Tables */
         .table-section {
             margin-bottom: 2.5rem;
@@ -495,7 +536,7 @@
         .table-section table tr:last-child td {
             border-bottom: none;
         }
-        /* Двухстолбцовые таблицы */
+        /* Two-column tables */
         .table-section table td:first-child {
             font-weight: 700;
             color: #ffffff;
@@ -506,7 +547,7 @@
         .table-section table td:last-child {
             width: 72%;
         }
-        /* Трёхстолбцовая таблица: Summary Registry */
+        /* Three-column tables */
         .table-section.summary-table table td:nth-child(1) {
             width: 18%;
             min-width: 120px;
@@ -526,7 +567,6 @@
         .table-section.summary-table table th:nth-child(3) {
             width: 25%;
         }
-        /* Трёхстолбцовая таблица: Film & TV */
         .table-section.film-tv-table table td:nth-child(1) {
             width: 18%;
             min-width: 120px;
@@ -546,7 +586,6 @@
         .table-section.film-tv-table table th:nth-child(3) {
             width: 25%;
         }
-        /* Трёхстолбцовая таблица: Icon Series */
         .table-section.icon-series-table table td:nth-child(1) {
             width: 18%;
             min-width: 120px;
@@ -565,10 +604,6 @@
         }
         .table-section.icon-series-table table th:nth-child(3) {
             width: 25%;
-        }
-        /* Остальные трёхстолбцовые таблицы (если есть) */
-        .table-section table td:nth-child(3) {
-            /* для статусных столбцов в других трёхколоночных таблицах */
         }
         .status-badge {
             display: inline-block;
@@ -637,6 +672,7 @@
             left: 0;
             color: #88ffff;
         }
+
         /* Fixed footer */
         .footer-wrapper {
             position: fixed;
@@ -769,6 +805,7 @@
                 transform: translateY(0);
             }
         }
+
         /* Responsive */
         @media (max-width: 720px) {
             .top-bar {
@@ -795,7 +832,6 @@
             .table-section table td:last-child {
                 width: 65%;
             }
-            /* Переопределение для трёхстолбцовых на мобильных */
             .table-section.summary-table table td:nth-child(1),
             .table-section.summary-table table td:nth-child(2),
             .table-section.summary-table table td:nth-child(3),
@@ -854,6 +890,9 @@
             .hud-cross {
                 display: none;
             }
+            .hero-logos .logo {
+                padding: 1.5rem;
+            }
         }
         @media (max-width: 420px) {
             .top-bar {
@@ -906,6 +945,9 @@
                 gap: 0.5rem;
                 padding: 0.1rem 0.5rem 0.2rem;
             }
+            .hero-logos .logo {
+                padding: 1rem;
+            }
         }
         @media (prefers-reduced-motion: reduce) {
             *,
@@ -920,7 +962,7 @@
 </head>
 <body>
     <section class="hero">
-        <!-- Background layers -->
+        <!-- Background layers (fixed) -->
         <div class="grid-overlay"></div>
         <div class="scanline"></div>
         <div class="hud-corner tl">
@@ -974,7 +1016,7 @@
         <div class="hud-label br">MCP::LINK</div>
         <div class="glow-overlay"></div>
 
-        <!-- Top bar -->
+        <!-- Fixed top bar with glassmorphism -->
         <div class="top-bar">
             <div class="lego-logo">
                 <img src="https://qfoldit.github.io/assets/lego_brand.svg" alt="LEGO" />
@@ -985,7 +1027,17 @@
             <div style="width: clamp(32px, 4vw, 56px);"></div>
         </div>
 
-        <!-- Scrollable content with tables -->
+        <!-- Hero Logos: full viewport, side by side, equal size -->
+        <div class="hero-logos">
+            <div class="logo logo-wbg">
+                <img src="https://qfoldit.github.io/assets/wb-games-logo-white.svg" alt="Warner Bros. Gaming" />
+            </div>
+            <div class="logo logo-disney">
+                <img src="https://qfoldit.github.io/assets/Disney_Logo_White.svg" alt="Disney" />
+            </div>
+        </div>
+
+        <!-- Scrollable content with tables (below hero) -->
         <div class="content-wrapper">
 
             <!-- LEGO -->
@@ -1130,7 +1182,7 @@
                 <div class="subnote">✅ Active crossovers via Epic Games Store</div>
             </div>
 
-            <!-- Film & TV — с классом для расширенного столбца Characters -->
+            <!-- Film & TV -->
             <div class="table-section film-tv-table">
                 <h2><i class="fas fa-film"></i> Film & TV (other franchises)</h2>
                 <table>
@@ -1179,7 +1231,7 @@
                 <div class="subnote">🔬 Full ownership – no licensing restrictions</div>
             </div>
 
-            <!-- ★ Icon Series (Celebrity Ecosystem) – fully in English, legal note removed -->
+            <!-- Icon Series (Celebrity Ecosystem) -->
             <div class="table-section icon-series-table">
                 <h2><i class="fas fa-star"></i> Icon Series</h2>
                 <table>
@@ -1239,10 +1291,9 @@
                         </tr>
                     </tbody>
                 </table>
-                <!-- legal-note and following subnote removed per request -->
             </div>
 
-            <!-- Summary Registry — с классом для расширенного столбца Universe -->
+            <!-- Summary Registry -->
             <div class="table-section summary-table">
                 <h2><i class="fas fa-table"></i> Summary Registry of Available Universes</h2>
                 <table>
@@ -1263,7 +1314,7 @@
                 <div class="subnote">This list is complete based on current agreements as of July 31, 2026.</div>
             </div>
 
-        </div>
+        </div> <!-- end content-wrapper -->
 
         <!-- Fixed footer -->
         <div class="footer-wrapper">
