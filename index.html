@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FORTNITE · SCIENCE</title>
+    <title>Available IP · qFoldIT</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <style>
         @font-face {
@@ -48,14 +48,13 @@
             position: relative;
             width: 100vw;
             height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
             background: #0a0a0f;
             overflow: hidden;
             user-select: none;
+            display: flex;
+            flex-direction: column;
         }
+        /* Background layers */
         .hero::before {
             content: '';
             position: absolute;
@@ -364,17 +363,16 @@
             pointer-events: none;
             z-index: 0;
         }
+        /* Top bar */
         .top-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.2rem 2rem;
+            position: relative;
+            z-index: 10;
+            padding: .25rem 2rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            z-index: 10;
             pointer-events: none;
+            flex-shrink: 0;
         }
         .top-bar>* {
             pointer-events: auto;
@@ -427,165 +425,337 @@
                 filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.25));
             }
         }
-        .logos {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: clamp(2rem, 8vw, 6rem);
+        /* Scrollable content */
+        .content-wrapper {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem 2rem 14rem;
             position: relative;
             z-index: 2;
-            flex-wrap: nowrap;
-            padding: 1rem;
-            margin-top: clamp(1rem, 2vh, 2rem);
-            width: 90%;
-            max-width: 1200px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
         }
-        .logos>* {
-            flex-shrink: 0;
+        .content-wrapper::-webkit-scrollbar {
+            display: none;
         }
-        .logo-wbg {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: logoEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
-            filter: drop-shadow(0 0 40px rgba(0, 255, 255, 0.04));
-            transition: filter 0.6s ease;
-            flex-shrink: 0;
+        /* Tables */
+        .table-section {
+            margin-bottom: 2.5rem;
+            background: rgba(10, 10, 15, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 255, 255, 0.12);
+            border-radius: 14px;
+            padding: 1.2rem 1.5rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
         }
-        .logo-wbg:hover {
-            filter: drop-shadow(0 0 60px rgba(0, 255, 255, 0.15));
+        .table-section h2 {
+            font-family: 'Burbank Big Condensed', sans-serif;
+            font-weight: 900;
+            font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+            letter-spacing: 0.04em;
+            color: #88ffff;
+            text-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
+            margin-bottom: 0.8rem;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.15);
+            padding-bottom: 0.4rem;
+            text-transform: uppercase;
         }
-        .logo-wbg img {
-            width: clamp(140px, 22vw, 260px);
-            height: auto;
-            display: block;
+        .table-section h2 i {
+            margin-right: 12px;
+            color: rgba(0, 255, 255, 0.4);
         }
-        .logo-disney {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: logoEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
-            filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.04));
-            transition: filter 0.6s ease;
-            flex-shrink: 0;
+        .table-section table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: 'Burbank Big Condensed', sans-serif;
+            font-weight: 400;
+            font-size: clamp(1rem, 1.2vw, 1.2rem);
+            color: #e8f0f8;
         }
-        .logo-disney:hover {
-            filter: drop-shadow(0 0 60px rgba(255, 255, 255, 0.12));
+        .table-section table th {
+            text-align: left;
+            padding: 0.6rem 0.9rem;
+            font-weight: 700;
+            color: #aaeeff;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+            background: rgba(0, 255, 255, 0.06);
+            font-size: 0.95em;
         }
-        .logo-disney img {
-            width: clamp(200px, 32vw, 400px);
-            height: auto;
-            display: block;
+        .table-section table td {
+            padding: 0.6rem 0.9rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            vertical-align: top;
+            background: rgba(255, 255, 255, 0.02);
         }
-        @keyframes logoEntrance {
-            0% {
-                opacity: 0;
-                transform: scale(0.85) translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
+        .table-section table tr:nth-child(even) td {
+            background: rgba(255, 255, 255, 0.04);
         }
-        .platform-icons {
+        .table-section table tr:last-child td {
+            border-bottom: none;
+        }
+        /* Двухстолбцовые таблицы */
+        .table-section table td:first-child {
+            font-weight: 700;
+            color: #ffffff;
+            width: 28%;
+            min-width: 160px;
+            background: rgba(0, 255, 255, 0.05);
+        }
+        .table-section table td:last-child {
+            width: 72%;
+        }
+        /* Трёхстолбцовая таблица: Summary Registry */
+        .table-section.summary-table table td:nth-child(1) {
+            width: 18%;
+            min-width: 120px;
+        }
+        .table-section.summary-table table td:nth-child(2) {
+            width: 57%;
+        }
+        .table-section.summary-table table td:nth-child(3) {
+            width: 25%;
+        }
+        .table-section.summary-table table th:nth-child(1) {
+            width: 18%;
+        }
+        .table-section.summary-table table th:nth-child(2) {
+            width: 57%;
+        }
+        .table-section.summary-table table th:nth-child(3) {
+            width: 25%;
+        }
+        /* Трёхстолбцовая таблица: Film & TV */
+        .table-section.film-tv-table table td:nth-child(1) {
+            width: 18%;
+            min-width: 120px;
+        }
+        .table-section.film-tv-table table td:nth-child(2) {
+            width: 57%;
+        }
+        .table-section.film-tv-table table td:nth-child(3) {
+            width: 25%;
+        }
+        .table-section.film-tv-table table th:nth-child(1) {
+            width: 18%;
+        }
+        .table-section.film-tv-table table th:nth-child(2) {
+            width: 57%;
+        }
+        .table-section.film-tv-table table th:nth-child(3) {
+            width: 25%;
+        }
+        /* Трёхстолбцовая таблица: Icon Series */
+        .table-section.icon-series-table table td:nth-child(1) {
+            width: 18%;
+            min-width: 120px;
+        }
+        .table-section.icon-series-table table td:nth-child(2) {
+            width: 57%;
+        }
+        .table-section.icon-series-table table td:nth-child(3) {
+            width: 25%;
+        }
+        .table-section.icon-series-table table th:nth-child(1) {
+            width: 18%;
+        }
+        .table-section.icon-series-table table th:nth-child(2) {
+            width: 57%;
+        }
+        .table-section.icon-series-table table th:nth-child(3) {
+            width: 25%;
+        }
+        /* Остальные трёхстолбцовые таблицы (если есть) */
+        .table-section table td:nth-child(3) {
+            /* для статусных столбцов в других трёхколоночных таблицах */
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.1rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            background: rgba(0, 255, 0, 0.15);
+            color: #88ff88;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            margin-left: 0.4rem;
+        }
+        .status-badge.partial {
+            background: rgba(255, 200, 0, 0.15);
+            color: #ffdd44;
+            border-color: rgba(255, 200, 0, 0.3);
+        }
+        .status-badge.skins {
+            background: rgba(0, 150, 255, 0.15);
+            color: #66bbff;
+            border-color: rgba(0, 150, 255, 0.3);
+        }
+        .status-badge.active {
+            background: rgba(0, 255, 200, 0.15);
+            color: #66ffcc;
+            border-color: rgba(0, 255, 200, 0.3);
+        }
+        .status-badge.expected {
+            background: rgba(255, 100, 100, 0.15);
+            color: #ff8888;
+            border-color: rgba(255, 100, 100, 0.3);
+        }
+        .table-section .subnote {
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 0.6rem;
+            border-top: 1px dashed rgba(255, 255, 255, 0.08);
+            padding-top: 0.6rem;
+            letter-spacing: 0.02em;
+        }
+        .table-section .legal-note {
+            font-size: 0.95em;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 0, 0, 0.05);
+            border-left: 3px solid rgba(255, 200, 0, 0.5);
+            padding: 0.8rem 1rem;
+            margin-top: 1.2rem;
+            border-radius: 6px;
+        }
+        .table-section .legal-note strong {
+            color: #ffdd44;
+        }
+        .table-section .legal-note ul {
+            margin: 0.5rem 0 0 1.2rem;
+            list-style: none;
+        }
+        .table-section .legal-note ul li {
+            margin-bottom: 0.3rem;
+            position: relative;
+            padding-left: 1.2rem;
+        }
+        .table-section .legal-note ul li::before {
+            content: '▸';
             position: absolute;
-            bottom: clamp(5.5rem, 7vh, 8rem);
             left: 0;
+            color: #88ffff;
+        }
+        /* Fixed footer */
+        .footer-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(8px);
+            border-top: 1px solid rgba(0, 255, 255, 0.06);
+            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.6);
+            animation: bottomFade 2.5s ease 1.8s both;
+            pointer-events: none;
+            padding: 0;
+        }
+        .footer-wrapper>* {
+            pointer-events: auto;
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
+        }
+        .footer-wrapper .platform-icons {
+            padding: 0.6rem 1rem 0.3rem;
             gap: clamp(0.8rem, 1.5vw, 1.8rem);
-            padding: 0 1rem;
-            z-index: 2;
-            animation: bottomFade 2.5s ease 1.8s both;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            backdrop-filter: none;
+            animation: none;
+            position: static;
+            bottom: auto;
+            left: auto;
+            width: 100%;
         }
-        .platform-icons a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+        .footer-wrapper .platform-icons a {
             height: clamp(28px, 3vw, 40px);
-            width: auto;
+            color: rgba(255, 255, 255, 0.7);
+            opacity: 0.9;
             transition: filter 0.3s ease, transform 0.2s ease;
-            color: rgba(255, 255, 255, 0.6);
-            opacity: 0.8;
         }
-        .platform-icons a:hover {
+        .footer-wrapper .platform-icons a:hover {
             color: #ffffff;
             opacity: 1;
             transform: scale(1.1);
         }
-        .platform-icons svg {
+        .footer-wrapper .platform-icons svg {
             fill: currentColor;
             width: 100%;
             height: 100%;
         }
-        .platform-icons img {
+        .footer-wrapper .platform-icons img {
             height: 100%;
             width: auto;
             display: block;
             filter: brightness(0) invert(1);
-            opacity: 0.7;
+            opacity: 0.8;
             transition: opacity 0.3s ease;
         }
-        .platform-icons a:hover img {
+        .footer-wrapper .platform-icons a:hover img {
             opacity: 1;
             filter: brightness(0) invert(1) drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
         }
-        .github-link {
-            position: absolute;
-            bottom: clamp(2rem, 2.5vh, 3rem);
-            left: 0;
+        .footer-wrapper .github-link {
+            position: static;
+            bottom: auto;
+            left: auto;
             width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 0.6rem;
-            z-index: 2;
-            font-family: 'Burbank Big Condensed', sans-serif;
-            font-weight: 700;
-            font-size: clamp(0.8rem, 1vw, 1.2rem);
+            padding: 0.2rem 0 0.2rem;
+            background: transparent;
+            backdrop-filter: none;
+            border: none;
+            box-shadow: none;
+            animation: none;
+            font-size: clamp(0.9rem, 1.1vw, 1.3rem);
             letter-spacing: 0.15em;
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(255, 255, 255, 0.4);
             text-transform: uppercase;
-            animation: bottomFade 2.5s ease 2.2s both;
-            text-decoration: none;
+            gap: 0.6rem;
             transition: color 0.3s ease;
         }
-        .github-link:hover {
+        .footer-wrapper .github-link:hover {
             color: #ffffff;
         }
-        .github-link i {
+        .footer-wrapper .github-link i {
             font-size: 1.4em;
         }
-        .github-link span {
+        .footer-wrapper .github-link span {
             color: inherit;
         }
-        .bottom-bar {
-            position: absolute;
-            bottom: clamp(0.4rem, 0.8vh, 0.8rem);
-            left: 0;
+        .footer-wrapper .bottom-bar {
+            position: static;
+            bottom: auto;
+            left: auto;
             width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: clamp(1.5rem, 4vw, 4rem);
-            z-index: 2;
-            font-size: clamp(0.4rem, 0.5vw, 0.6rem);
+            padding: 0.2rem 1rem 0.4rem;
+            background: transparent;
+            backdrop-filter: none;
+            border: none;
+            box-shadow: none;
+            animation: none;
+            font-size: clamp(0.5rem, 0.6vw, 0.7rem);
             letter-spacing: 0.3em;
-            color: rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.15);
             text-transform: uppercase;
-            font-family: 'Burbank Big Condensed', sans-serif;
-            font-weight: 700;
-            padding: 0 1rem;
-            animation: bottomFade 2.5s ease 1.8s both;
+            gap: clamp(1.5rem, 4vw, 4rem);
+            pointer-events: none;
         }
-        .bottom-bar .dot {
+        .footer-wrapper .bottom-bar .dot {
             display: inline-block;
             width: 4px;
             height: 4px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.06);
             margin: 0 0.2rem;
             vertical-align: middle;
         }
@@ -599,6 +769,7 @@
                 transform: translateY(0);
             }
         }
+        /* Responsive */
         @media (max-width: 720px) {
             .top-bar {
                 padding: 0.8rem 1rem;
@@ -610,36 +781,48 @@
                 font-size: clamp(1.2rem, 4vw, 2.2rem);
                 letter-spacing: 0.04em;
             }
-            .logos {
-                gap: 1.2rem;
-                flex-wrap: nowrap;
-                width: 95%;
-                overflow-x: auto;
-                justify-content: center;
+            .content-wrapper {
+                padding: 0.8rem 1rem 12rem;
             }
-            .logos>* {
-                flex-shrink: 0;
+            .table-section {
+                padding: 0.8rem 1rem;
+                margin-bottom: 1.5rem;
             }
-            .logo-wbg img {
-                width: 100px;
+            .table-section table td:first-child {
+                width: 35%;
+                min-width: 120px;
             }
-            .logo-disney img {
-                width: 140px;
+            .table-section table td:last-child {
+                width: 65%;
             }
-            .platform-icons {
-                bottom: clamp(4.5rem, 5vh, 6rem);
+            /* Переопределение для трёхстолбцовых на мобильных */
+            .table-section.summary-table table td:nth-child(1),
+            .table-section.summary-table table td:nth-child(2),
+            .table-section.summary-table table td:nth-child(3),
+            .table-section.film-tv-table table td:nth-child(1),
+            .table-section.film-tv-table table td:nth-child(2),
+            .table-section.film-tv-table table td:nth-child(3),
+            .table-section.icon-series-table table td:nth-child(1),
+            .table-section.icon-series-table table td:nth-child(2),
+            .table-section.icon-series-table table td:nth-child(3) {
+                width: auto;
+                min-width: 0;
+            }
+            .footer-wrapper .platform-icons {
+                padding: 0.4rem 0.8rem 0.2rem;
                 gap: 0.6rem;
             }
-            .platform-icons a {
+            .footer-wrapper .platform-icons a {
                 height: clamp(24px, 2.5vw, 32px);
             }
-            .github-link {
-                bottom: clamp(1.5rem, 2vh, 2.5rem);
+            .footer-wrapper .github-link {
                 font-size: clamp(0.7rem, 0.9vw, 1rem);
+                padding: 0.1rem 0;
             }
-            .bottom-bar {
-                font-size: 0.4rem;
+            .footer-wrapper .bottom-bar {
+                font-size: 0.45rem;
                 gap: 0.8rem;
+                padding: 0.1rem 0.8rem 0.3rem;
             }
             .hud-corner svg {
                 width: 36px;
@@ -683,30 +866,45 @@
                 font-size: 0.9rem;
                 letter-spacing: 0.02em;
             }
-            .logo-wbg img {
-                width: 80px;
+            .content-wrapper {
+                padding: 0.5rem 0.8rem 10rem;
             }
-            .logo-disney img {
-                width: 110px;
+            .table-section table td:first-child {
+                width: 40%;
+                min-width: 90px;
+                font-size: 0.9rem;
             }
-            .logos {
-                gap: 0.8rem;
+            .table-section table td:last-child {
+                font-size: 0.9rem;
             }
-            .platform-icons {
-                bottom: 3.5rem;
+            .table-section.summary-table table td:nth-child(1),
+            .table-section.summary-table table td:nth-child(2),
+            .table-section.summary-table table td:nth-child(3),
+            .table-section.film-tv-table table td:nth-child(1),
+            .table-section.film-tv-table table td:nth-child(2),
+            .table-section.film-tv-table table td:nth-child(3),
+            .table-section.icon-series-table table td:nth-child(1),
+            .table-section.icon-series-table table td:nth-child(2),
+            .table-section.icon-series-table table td:nth-child(3) {
+                width: auto;
+                min-width: 0;
+            }
+            .footer-wrapper .platform-icons {
+                padding: 0.3rem 0.5rem 0.1rem;
                 gap: 0.4rem;
             }
-            .platform-icons a {
+            .footer-wrapper .platform-icons a {
                 height: 20px;
             }
-            .github-link {
-                bottom: 1.2rem;
+            .footer-wrapper .github-link {
                 font-size: 0.6rem;
+                padding: 0.1rem 0;
                 gap: 0.3rem;
             }
-            .bottom-bar {
-                font-size: 0.35rem;
+            .footer-wrapper .bottom-bar {
+                font-size: 0.4rem;
                 gap: 0.5rem;
+                padding: 0.1rem 0.5rem 0.2rem;
             }
         }
         @media (prefers-reduced-motion: reduce) {
@@ -722,6 +920,7 @@
 </head>
 <body>
     <section class="hero">
+        <!-- Background layers -->
         <div class="grid-overlay"></div>
         <div class="scanline"></div>
         <div class="hud-corner tl">
@@ -775,6 +974,7 @@
         <div class="hud-label br">MCP::LINK</div>
         <div class="glow-overlay"></div>
 
+        <!-- Top bar -->
         <div class="top-bar">
             <div class="lego-logo">
                 <img src="https://qfoldit.github.io/assets/lego_brand.svg" alt="LEGO" />
@@ -785,79 +985,353 @@
             <div style="width: clamp(32px, 4vw, 56px);"></div>
         </div>
 
-        <div class="logos">
-            <div class="logo-wbg">
-                <img src="https://qfoldit.github.io/assets/wb-games-logo-white.svg" alt="Warner Bros. Gaming" />
+        <!-- Scrollable content with tables -->
+        <div class="content-wrapper">
+
+            <!-- LEGO -->
+            <div class="table-section">
+                <h2><i class="fas fa-cubes"></i> LEGO Group</h2>
+                <table>
+                    <thead><tr><th>Category</th><th>Available worlds / characters</th></tr></thead>
+                    <tbody>
+                        <tr><td>Base LEGO styles</td><td>1200+ LEGO versions of all existing Fortnite skins (including original heroes, licensed characters, Battle Pass skins)</td></tr>
+                        <tr><td>LEGO Fortnite</td><td>All characters in LEGO style available in LEGO Fortnite mode</td></tr>
+                        <tr><td>Themed sets</td><td>LEGO Star Wars, LEGO Marvel, LEGO Ninjago, LEGO Castle, LEGO Pirates, LEGO City</td></tr>
+                    </tbody>
+                </table>
+                <div class="subnote">✅ Full access via LEGO Fortnite integration</div>
             </div>
-            <div class="logo-disney">
-                <img src="https://qfoldit.github.io/assets/Disney_Logo_White.svg" alt="Disney" />
+
+            <!-- Marvel -->
+            <div class="table-section">
+                <h2><i class="fas fa-mask"></i> Marvel (Disney)</h2>
+                <table>
+                    <thead><tr><th>Characters</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Avengers</td><td>Thor, Iron Man, Captain America, Hulk, Black Widow, Falcon</td></tr>
+                        <tr><td>Guardians of the Galaxy</td><td>Star-Lord, Gamora, Groot, Rocket</td></tr>
+                        <tr><td>Spider‑Man</td><td>Spider‑Man (multiple versions), Miles Morales</td></tr>
+                        <tr><td>X‑Men / Mutants</td><td>Wolverine (including Peelverine hybrid), Deadpool, Gwenpool, Emma Frost, Magik</td></tr>
+                        <tr><td>Villains</td><td>Doctor Doom, Thanos, Punisher, Mysterio</td></tr>
+                        <tr><td>Other heroes</td><td>Black Panther (Shuri), War Machine, Luna Snow, Captain Jones</td></tr>
+                    </tbody>
+                </table>
+                <div class="subnote">✅ IP Partner Program – full character roster</div>
             </div>
+
+            <!-- Star Wars -->
+            <div class="table-section">
+                <h2><i class="fas fa-jedi"></i> Star Wars (Disney)</h2>
+                <table>
+                    <thead><tr><th>Era / Series</th><th>Characters</th></tr></thead>
+                    <tbody>
+                        <tr><td>Original Trilogy</td><td>Luke Skywalker, Han Solo, Princess Leia, Darth Vader, Yoda</td></tr>
+                        <tr><td>Prequels</td><td>Anakin Skywalker, Obi‑Wan Kenobi, Palpatine</td></tr>
+                        <tr><td>Sequels</td><td>Rey, Kylo Ren, Finn</td></tr>
+                        <tr><td>The Mandalorian</td><td>Din Djarin (The Mandalorian), Grogu (Baby Yoda), Moff Gideon, IG‑11</td></tr>
+                        <tr><td>Others</td><td>Boba Fett, Stormtroopers, Darth Jar Jar (Sith skin)</td></tr>
+                    </tbody>
+                </table>
+                <div class="subnote">✅ IP Partner Program + SDK – 48 Star Wars skins in Fortnite</div>
+            </div>
+
+            <!-- Disney Classic / Pixar -->
+            <div class="table-section">
+                <h2><i class="fas fa-flag"></i> Classic Disney / Pixar</h2>
+                <table>
+                    <thead><tr><th>Franchise</th><th>Characters</th></tr></thead>
+                    <tbody>
+                        <tr><td>Incredibles</td><td>Mr. Incredible, Elastigirl</td></tr>
+                        <tr><td>Pirates of the Caribbean</td><td>Jack Sparrow</td></tr>
+                        <tr><td>Classic villains</td><td>Maleficent, Captain Hook, Cruella de Vil</td></tr>
+                        <tr><td>Avatar</td><td>Jake Sully, Neytiri</td></tr>
+                        <tr><td>Hoppers</td><td>Tom Lizard</td></tr>
+                        <tr><td>Other</td><td>Hercules, Hades</td></tr>
+                    </tbody>
+                </table>
+                <div class="subnote">✅ IP Partner Program – active collaborations</div>
+            </div>
+
+            <!-- The Simpsons -->
+            <div class="table-section">
+                <h2><i class="fas fa-doughnut"></i> The Simpsons (20th Century Animation)</h2>
+                <table>
+                    <thead><tr><th>Category</th><th>Available content</th></tr></thead>
+                    <tbody>
+                        <tr><td>Simpson family</td><td>Homer, Marge, Bart, Lisa, Maggie</td></tr>
+                        <tr><td>Springfield residents</td><td>Ned Flanders, Moe (tavern owner)</td></tr>
+                        <tr><td>Crossover skins</td><td>John Wick in Simpsons style, Blinky Fishstick, Springfielder Peely</td></tr>
+                        <tr><td>Locations</td><td>Springfield (Reload map), Springfield Nuclear Power Plant, Moe's Tavern, Simpson house</td></tr>
+                    </tbody>
+                </table>
+                <div class="subnote">🟡 Partial – full IP Toolkit expected in 2026</div>
+            </div>
+
+            <!-- Futurama -->
+            <div class="table-section">
+                <h2><i class="fas fa-rocket"></i> Futurama (20th Television)</h2>
+                <table>
+                    <thead><tr><th>Characters</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Main cast</td><td>Philip J. Fry, Turanga Leela, Bender (robot)</td></tr>
+                        <tr><td>Items</td><td>Robo‑beam weapon, Planet Express signage</td></tr>
+                    </tbody>
+                </table>
+                <div class="subnote">🟡 Skins only – full toolkit requires additional approval from 20th Television Animation</div>
+            </div>
+
+            <!-- DC Comics -->
+            <div class="table-section">
+                <h2><i class="fas fa-bolt"></i> DC Comics (Warner Bros.)</h2>
+                <table>
+                    <thead><tr><th>Group</th><th>Characters</th></tr></thead>
+                    <tbody>
+                        <tr><td>Justice League</td><td>Batman (multiple versions, including summer), Superman, Wonder Woman, Flash</td></tr>
+                        <tr><td>Suicide Squad</td><td>Harley Quinn (multiple versions, including summer), Poison Ivy (summer)</td></tr>
+                        <tr><td>Bat‑family</td><td>Robin, Nightwing, Catwoman (summer)</td></tr>
+                        <tr><td>Other heroes</td><td>Cyborg, Beast Boy, Raven, Dreamer</td></tr>
+                        <tr><td>Villains</td><td>Joker, Bloodsport</td></tr>
+                    </tbody>
+                </table>
+                <div class="subnote">✅ IP Partner Program – 24+ DC skins</div>
+            </div>
+
+            <!-- Rick and Morty -->
+            <div class="table-section">
+                <h2><i class="fas fa-vial"></i> Rick and Morty (Warner Bros.)</h2>
+                <table>
+                    <thead><tr><th>Wave</th><th>Characters / Items</th></tr></thead>
+                    <tbody>
+                        <tr><td>Wave 1–2</td><td>Rick Sanchez, Morty Smith</td></tr>
+                        <tr><td>Wave 3 (Mar 2026)</td><td>Pickle Rick, Rick Prime, Mr. BC, Squanchy</td></tr>
+                        <tr><td>Other</td><td>Summer, Jerry, Snowball</td></tr>
+                        <tr><td>Items</td><td>Rick's spaceship (glider), backpacks</td></tr>
+                    </tbody>
+                </table>
+                <div class="subnote">✅ IP Partner Program – full character set</div>
+            </div>
+
+            <!-- Gaming collaborations -->
+            <div class="table-section">
+                <h2><i class="fas fa-gamepad"></i> Gaming Collaborations (Epic Games Store)</h2>
+                <table>
+                    <thead><tr><th>Franchise / Game</th><th>Characters</th></tr></thead>
+                    <tbody>
+                        <tr><td>Resident Evil</td><td>Grace Ashcroft</td></tr>
+                        <tr><td>Street Fighter</td><td>Cammy</td></tr>
+                        <tr><td>Solo Leveling</td><td>Sung Jin‑Woo, Igris</td></tr>
+                        <tr><td>Mortal Kombat</td><td>Kitana</td></tr>
+                        <tr><td>Sonic Racing</td><td>Sonic characters (expected)</td></tr>
+                        <tr><td>God of War</td><td>Kratos</td></tr>
+                        <tr><td>Halo</td><td>Master Chief</td></tr>
+                        <tr><td>Other</td><td>Crash Bandicoot, Resident Evil: Requiem</td></tr>
+                    </tbody>
+                </table>
+                <div class="subnote">✅ Active crossovers via Epic Games Store</div>
+            </div>
+
+            <!-- Film & TV — с классом для расширенного столбца Characters -->
+            <div class="table-section film-tv-table">
+                <h2><i class="fas fa-film"></i> Film & TV (other franchises)</h2>
+                <table>
+                    <thead><tr><th>Franchise</th><th>Characters</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td>John Wick</td><td>John Wick (including Simpsons‑style version)</td><td>✅ Active</td></tr>
+                        <tr><td>Rambo</td><td>Rambo</td><td>🟡 Expected 2026</td></tr>
+                        <tr><td>South Park</td><td>Eric Cartman (Awesom‑O), Kenny (Princess Kenny), Butters (Professor Chaos), Kyle, Stan</td><td>✅ Active</td></tr>
+                        <tr><td>Amazing Digital Circus</td><td>Characters</td><td>🟡 Expected 2026</td></tr>
+                        <tr><td>Bob's Burgers</td><td>Bob Belcher</td><td>🟡 Expected 2026</td></tr>
+                        <tr><td>Cleveland Show</td><td>Cleveland Brown</td><td>🟡 Expected 2026</td></tr>
+                        <tr><td>King of the Hill</td><td>Hank Hill</td><td>🟡 Expected 2026</td></tr>
+                        <tr><td>Game of Thrones</td><td>Jon Snow</td><td>✅ Active</td></tr>
+                    </tbody>
+                </table>
+                <div class="subnote">Multiple active and upcoming collaborations</div>
+            </div>
+
+            <!-- Anime -->
+            <div class="table-section">
+                <h2><i class="fas fa-otter"></i> Anime</h2>
+                <table>
+                    <thead><tr><th>Franchise</th><th>Characters</th></tr></thead>
+                    <tbody>
+                        <tr><td>Naruto</td><td>Naruto, Sasuke, Sakura, Kakashi</td></tr>
+                        <tr><td>Dragon Ball</td><td>Goku</td></tr>
+                        <tr><td>Attack on Titan</td><td>Characters</td></tr>
+                        <tr><td>Jujutsu Kaisen</td><td>Itadori</td></tr>
+                    </tbody>
+                </table>
+                <div class="subnote">✅ Active crossovers</div>
+            </div>
+
+            <!-- qFoldIT scientific content -->
+            <div class="table-section">
+                <h2><i class="fas fa-flask"></i> qFoldIT (own scientific content – no license required)</h2>
+                <table>
+                    <thead><tr><th>Category</th><th>Description</th></tr></thead>
+                    <tbody>
+                        <tr><td>Molecular structures</td><td>3D configurations of atoms, proteins, peptides</td></tr>
+                        <tr><td>L‑systems</td><td>Fractal structures for level generation</td></tr>
+                        <tr><td>UAG‑graphs</td><td>Engine‑neutral scene description</td></tr>
+                        <tr><td>Scientific data</td><td>Energy profiles, ADMET parameters</td></tr>
+                    </tbody>
+                </table>
+                <div class="subnote">🔬 Full ownership – no licensing restrictions</div>
+            </div>
+
+            <!-- ★ Icon Series (Celebrity Ecosystem) – fully in English, legal note removed -->
+            <div class="table-section icon-series-table">
+                <h2><i class="fas fa-star"></i> Icon Series</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Content Category</th>
+                            <th>Available Personalities / Avatars</th>
+                            <th>Usage &amp; Gamification in UE6</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Musicians and Superstars</td>
+                            <td>
+                                • Eminem<br>
+                                • Ariana Grande<br>
+                                • Travis Scott<br>
+                                • The Weeknd<br>
+                                • Billie Eilish<br>
+                                • Lady Gaga<br>
+                                • Snoop Dogg
+                            </td>
+                            <td>Hosting virtual scientific symposia, gamification via Verse rhythm mechanics (e.g., molecular bond oscillation frequency synchronised with artist track BPM).</td>
+                        </tr>
+                        <tr>
+                            <td>World‑Class Athletes</td>
+                            <td>
+                                • LeBron James<br>
+                                • Neymar Jr.<br>
+                                • Patrick Mahomes<br>
+                                • Lewis Hamilton<br>
+                                • Chloe Kim<br>
+                                • Giannis Antetokounmpo
+                            </td>
+                            <td>Ideal for simulating physical loads, speed mechanics, and kinetic energy. For example, Lewis Hamilton can act as a “guide” in modules studying hydrodynamics or polymer resistance.</td>
+                        </tr>
+                        <tr>
+                            <td>Top Streamers and Bloggers</td>
+                            <td>
+                                • Ninja (Tyler Blevins)<br>
+                                • MrBeast (Jimmy Donaldson)<br>
+                                • Lachlan<br>
+                                • TheGrefg<br>
+                                • Ali‑A<br>
+                                • SypherPK
+                            </td>
+                            <td>Promoting citizen science. MrBeast’s persona is perfect for triggering “science grants” and awarding in‑game rewards to players who discover valuable L‑systems.</td>
+                        </tr>
+                        <tr>
+                            <td>Pop Culture and Film Stars</td>
+                            <td>
+                                • Keanu Reeves — as John Wick<br>
+                                • Ryan Reynolds — as Guy from <em>Free Guy</em><br>
+                                • Dwayne “The Rock” Johnson — as The Foundation
+                            </td>
+                            <td>Building the simulator’s narrative. Charismatic NPC mentors who assign R&D optimisation tasks in the labs.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- legal-note and following subnote removed per request -->
+            </div>
+
+            <!-- Summary Registry — с классом для расширенного столбца Universe -->
+            <div class="table-section summary-table">
+                <h2><i class="fas fa-table"></i> Summary Registry of Available Universes</h2>
+                <table>
+                    <thead><tr><th>Rightsholder</th><th>Universe</th><th>Status in UEFN</th></tr></thead>
+                    <tbody>
+                        <tr><td>LEGO Group</td><td>LEGO Fortnite, LEGO Star Wars, LEGO Marvel, LEGO Ninjago, etc.</td><td>✅ Full access</td></tr>
+                        <tr><td>Disney / Marvel</td><td>Marvel (Avengers, X‑Men, Guardians, Spider‑Man, etc.)</td><td>✅ IP Partner Program</td></tr>
+                        <tr><td>Disney / Star Wars</td><td>Star Wars (all eras, Mandalorian)</td><td>✅ IP Partner Program + SDK</td></tr>
+                        <tr><td>Disney / Classic</td><td>Incredibles, Pirates of the Caribbean, Avatar, classic villains</td><td>✅ IP Partner Program</td></tr>
+                        <tr><td>Disney / 20th Century</td><td>Simpsons (Springfield, characters)</td><td>🟡 Partial (full Toolkit – 2026)</td></tr>
+                        <tr><td>Disney / 20th Television</td><td>Futurama (Fry, Leela, Bender)</td><td>🟡 Skins only</td></tr>
+                        <tr><td>Warner Bros.</td><td>DC Comics (Batman, Harley Quinn, Justice League)</td><td>✅ IP Partner Program</td></tr>
+                        <tr><td>Warner Bros.</td><td>Rick and Morty (Rick, Morty, Pickle Rick)</td><td>✅ IP Partner Program</td></tr>
+                        <tr><td>Various</td><td>John Wick, Rambo, South Park, Game of Thrones, anime (Naruto, Dragon Ball, etc.)</td><td>✅ Active crossovers</td></tr>
+                        <tr><td>Epic Games (Icon Series)</td><td>Musicians, athletes, streamers, movie stars (see table above)</td><td>✅ Full runtime access</td></tr>
+                    </tbody>
+                </table>
+                <div class="subnote">This list is complete based on current agreements as of July 31, 2026.</div>
+            </div>
+
         </div>
 
-        <div class="platform-icons">
-            <a href="https://store.epicgames.com/ru/p/fortnite" target="_blank" aria-label="Epic Games" title="Epic Games">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18.723 2.5c1.102 0 1.505.401 1.506 1.487v13.244c0 .17-.032.477-.087.608a.9.9 0 0 1-.21.334c-.107.099-.29.202-.378.242l-7.127 3a1.1 1.1 0 0 1-.853 0l-7.127-3a1.7 1.7 0 0 1-.378-.241.9.9 0 0 1-.21-.335c-.055-.131-.086-.438-.086-.608V3.986c0-1.086.403-1.487 1.505-1.487zM9.324 18.485a.06.06 0 0 0-.036.054q0 .012.005.022a.06.06 0 0 0 .031.032l2.58 1.093a.23.23 0 0 0 .181 0l2.6-1.093.02-.013.012-.018.005-.023-.005-.022-.013-.019-.019-.013-.022-.005H9.347zM7.3 13.87q-.259 0-.48.088a1.15 1.15 0 0 0-.632.61q-.091.208-.091.45v.006q0 .25.092.46.093.21.255.36.164.152.385.237.222.085.484.085.306 0 .55-.098.24-.098.42-.243v-.994H7.255v.45h.44v.267a.64.64 0 0 1-.357.092.6.6 0 0 1-.437-.173.6.6 0 0 1-.126-.193.7.7 0 0 1-.044-.247v-.006a.63.63 0 0 1 .165-.43.57.57 0 0 1 .406-.176q.166 0 .293.054a1 1 0 0 1 .247.154l.363-.432q-.18-.151-.393-.236a1.4 1.4 0 0 0-.513-.085m9.635.005a1.2 1.2 0 0 0-.362.052.8.8 0 0 0-.272.147.63.63 0 0 0-.232.508v.007q0 .17.066.285.065.115.178.192.114.078.267.126.153.05.332.09.115.025.187.05a.6.6 0 0 1 .115.048.16.16 0 0 1 .058.053q.016.026.017.06v.007a.12.12 0 0 1-.065.112.4.4 0 0 1-.19.04q-.39 0-.725-.265l-.344.406q.207.183.476.275.27.091.57.091.204 0 .37-.049a.8.8 0 0 0 .285-.141.7.7 0 0 0 .184-.226.7.7 0 0 0 .065-.304v-.005a.6.6 0 0 0-.058-.268.5.5 0 0 0-.166-.19 1 1 0 0 0-.263-.134 3 3 0 0 0-.347-.097 2 2 0 0 1-.19-.049 1 1 0 0 1-.117-.047.16.16 0 0 1-.061-.051.12.12 0 0 1-.018-.067v-.007q.001-.06.056-.1a.3.3 0 0 1 .168-.041q.15 0 .31.056.162.055.315.162l.31-.432a1.3 1.3 0 0 0-.408-.22q-.225-.075-.511-.074m-8.455 2.244h.652l.16-.394h.861l.163.394h.665l-.953-2.224h-.596zm2.717 0h.607v-1.262l.568.858h.013l.571-.864v1.268h.616V13.91h-.654l-.533.855-.533-.855h-.655zm2.79 0h1.812v-.52h-1.2v-.35h1.073v-.482h-1.073v-.335h1.184v-.52h-1.797zm-4.012-.87h-.502l.252-.628zM15.946 4.82c-.914 0-1.367.448-1.367 1.353v4.705c0 .906.453 1.352 1.368 1.352h.557c.915 0 1.367-.447 1.367-1.352V9.182h-1.104v1.643c0 .292-.137.427-.42.427h-.211c-.294 0-.43-.135-.43-.427v-4.6c0-.29.135-.426.43-.426h.19c.283 0 .42.135.42.427V7.65h1.104V6.163c0-.905-.442-1.343-1.357-1.343zM6.15 12.17h2.524v-1.01H7.275V8.963h1.326v-1.01H7.275v-2.06h1.378v-1.01H6.15zm3.068 0h1.125V9.525h.641c.915 0 1.368-.448 1.368-1.353V6.236c0-.906-.453-1.353-1.368-1.353H9.218zm3.641-.001h1.125V4.883H12.86zm-2.053-6.307c.283 0 .42.135.42.427V8.12c0 .291-.136.427-.42.427h-.463V5.86z"/>
-                </svg>
-            </a>
-            <a href="https://www.unrealengine.com/ru/" target="_blank" aria-label="Unreal Engine" title="Unreal Engine">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2m-.906 3.948a6.2 6.2 0 0 0-3.109 1.434 6.09 6.09 0 0 0-2.106 4.665s.612-1.915 1.38-2.092a.742.742 0 0 1 .93.742v4.495c0 .456-.294.555-.565.55a2.4 2.4 0 0 1-.542-.101 6.12 6.12 0 0 0 4.837 2.48l1.657-1.666.982 1.105c2.445-1.155 3.212-3.289 3.384-4.12-.894.916-1.883 1.844-2.548 1.202 0-.035-.037-3.437-.037-4.835 0-1.883 1.78-3.288 1.793-3.3-.986.176-2.17.527-3.427 1.76q-.17.17-.322.355c-.538-.412-1.237-.289-1.237-.289.377.207.754.811.754 1.31v4.91c-.012.011-.827.724-1.456.724a.9.9 0 0 1-.732-.37 1 1 0 0 1-.125-.215V8.626c-.187.154-.82.282-.82-.769 0-.653.47-1.431 1.309-1.909"/>
-                </svg>
-            </a>
-            <a href="https://www.fortnite.com/download?lang=ru" target="_blank" aria-label="PC" title="PC">
-                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/KA6d6NZXSlaxhPy5eAYf" alt="PC" />
-            </a>
-            <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation" title="PlayStation">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22.343 19.12c.558.032.896.465.877.98-.02.551-.435.92-.973.901-.56-.02-.939-.45-.909-1.008.03-.527.464-.906 1.005-.874m-.055.142a.773.773 0 0 0-.802.8c.001.463.34.803.797.803a.78.78 0 0 0 .795-.805.775.775 0 0 0-.79-.798M8.975 2.64c1.043.19 2.07.465 3.09.75q.877.249 1.745.522c.91.285 1.814.607 2.637 1.088.37.22.723.469 1.026.771.328.317.597.688.794 1.097.36.737.482 1.56.518 2.37.017.528.016 1.06-.085 1.582a3.7 3.7 0 0 1-.478 1.294 2.4 2.4 0 0 1-.888.842 2.4 2.4 0 0 1-1.155.267c-.606.006-1.194-.183-1.738-.432l-.005-2.668V6.972q0-.242-.047-.48c-.046-.246-.148-.494-.345-.66a1 1 0 0 0-.468-.217.48.48 0 0 0-.461.175c-.177.217-.223.505-.23.774l-.002 14.283q-1.954-.608-3.908-1.22-.002-8.493 0-16.987m13.432 16.876c.142.002.242.07.27.181.036.147-.003.303-.174.358l-.005.002v.008c.083.031.117.103.141.18q.048.158.099.316l.013.039h-.203l-.008-.035-.075-.27c-.034-.118-.075-.15-.197-.154l-.162-.002.001.46h-.196v-1.085s.343 0 .496.002m-4.462-5.643c1.273.005 2.553.16 3.772.536.24.072.47.164.71.239.423.152.85.337 1.19.638.203.183.38.43.382.711.012.23-.093.45-.245.62-.288.316-.668.534-1.05.724-.407.204-.844.336-1.27.491l-7.81 2.758v-2.201c.001-.017.007-.032.028-.035l5.942-2.084c.268-.097.556-.17.783-.347.093-.072.184-.187.14-.31-.049-.107-.162-.168-.267-.212-.297-.115-.62-.137-.935-.146a4.8 4.8 0 0 0-1.46.22c-1.41.485-2.82.976-4.231 1.461v-2.309a14.8 14.8 0 0 1 3.16-.687c.386-.044.774-.053 1.16-.067m4.161 6.132h.142a.6.6 0 0 0 .115-.01c.092-.018.144-.087.14-.183-.003-.09-.054-.15-.143-.157a5 5 0 0 0-.254-.006z"/>
-                </svg>
-            </a>
-            <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation 5" title="PlayStation 5">
-                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/WhxwsUG5QUhr9xYWZ6FA" alt="PS5" />
-            </a>
-            <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation 4" title="PlayStation 4">
-                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/T5zoHcW8SpqCQ5gjQ5S1" alt="PS4" />
-            </a>
-            <a href="https://www.xbox.com/games/store/fortnite/bt5p2x999vh2" target="_blank" aria-label="Xbox" title="Xbox">
-                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/CHAtzJR0GI4pD4PiKQxQ" alt="Xbox" />
-            </a>
-            <a href="https://www.xbox.com/games/store/fortnite/bt5p2x999vh2" target="_blank" aria-label="Xbox Series X|S" title="Xbox Series X|S">
-                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/P6XlS1FQ56Y8NXslBgUK" alt="Xbox Series" />
-            </a>
-            <a href="https://www.nintendo.com/games/detail/fortnite-switch" target="_blank" aria-label="Nintendo Switch" title="Nintendo Switch">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15.184 3c1.298 0 1.7.01 1.961.056 1.946.335 3.426 1.8 3.795 3.742.052.272.06.91.06 5.183 0 4.567.005 5.105-.139 5.598-.025.085-.054.17-.089.273a6 6 0 0 1-.279.652 4.65 4.65 0 0 1-3.575 2.46c-.358.037-3.251.052-3.352.014-.055-.025-.06-.863-.06-8.974 0-4.91.012-8.938.027-8.978.011-.015.757-.026 1.651-.026m-5.789.004c2.185-.004 2.248 0 2.286.067.026.064.037 2.912.037 8.945 0 8.154-.004 8.873-.06 8.93-.056.055-.276.058-2.36.043-2.016-.011-2.33-.022-2.575-.078-1.886-.44-3.214-1.77-3.627-3.638-.075-.346-.078-.452-.09-4.937C2.989 7.45 3 7.08 3.164 6.45a4.65 4.65 0 0 1 3.69-3.391c.235-.041.768-.052 2.542-.056m-.611 1.453c-1.595.004-1.823.026-2.314.224A3.2 3.2 0 0 0 4.54 6.986c-.078.37-.08 9.642.003 10.019a3.16 3.16 0 0 0 2.34 2.437c.28.071.43.078 1.828.093l1.516.019V4.453zm8.73 6.687a1.81 1.81 0 0 0-2.18 1.207c-.093.29-.097.767-.015 1.05a1.835 1.835 0 0 0 2.196 1.245c.573-.152 1.021-.566 1.249-1.155.123-.32.126-.835.003-1.185a1.82 1.82 0 0 0-1.252-1.162M7.175 6.73c.939-.186 1.848.455 2.008 1.413.138.805-.35 1.592-1.159 1.864-.197.067-.301.077-.595.066-.325-.011-.389-.025-.638-.148a1.7 1.7 0 0 1-.802-.806c-.119-.238-.137-.317-.152-.611-.03-.566.163-1.047.554-1.386a2 2 0 0 1 .784-.392"/>
-                </svg>
-            </a>
-            <a href="https://www.nintendo.com/games/detail/fortnite-switch-2" target="_blank" aria-label="Nintendo Switch 2" title="Nintendo Switch 2">
-                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cm8zzae4r1g7z06oj8hbgpfaz" alt="Switch 2" />
-            </a>
-            <a href="https://store.epicgames.com/download/android?p=fortnite&amp;lang=ru" target="_blank" aria-label="Android" title="Android">
-                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/3CWE1VlwQmSRnNkAdxd8" alt="Android" />
-            </a>
-            <a href="https://m.onestore.co.kr/ko-kr/apps/appsDetail.omp?prodId=0000779798" target="_blank" aria-label="OneStore" title="OneStore">
-                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmbp7vi6m0c3q07mvb2vxvu7s" alt="OneStore" />
-            </a>
-            <a href="https://luna.amazon.com/game/fortnite?g=web&amp;ref=tmp_ext_epic" target="_blank" aria-label="Amazon Luna" title="Amazon Luna">
-                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmhwnqdpu379j07ogp3mewuu7" alt="Luna" />
-            </a>
-            <a href="https://www.nvidia.com/en-us/geforce-now/" target="_blank" aria-label="GeForce Now" title="GeForce Now">
-                <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmhwn7osa33zd07ogkrhs0w0v" alt="GeForce Now" />
-            </a>
-        </div>
+        <!-- Fixed footer -->
+        <div class="footer-wrapper">
+            <div class="platform-icons">
+                <a href="https://store.epicgames.com/ru/p/fortnite" target="_blank" aria-label="Epic Games" title="Epic Games">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.723 2.5c1.102 0 1.505.401 1.506 1.487v13.244c0 .17-.032.477-.087.608a.9.9 0 0 1-.21.334c-.107.099-.29.202-.378.242l-7.127 3a1.1 1.1 0 0 1-.853 0l-7.127-3a1.7 1.7 0 0 1-.378-.241.9.9 0 0 1-.21-.335c-.055-.131-.086-.438-.086-.608V3.986c0-1.086.403-1.487 1.505-1.487zM9.324 18.485a.06.06 0 0 0-.036.054q0 .012.005.022a.06.06 0 0 0 .031.032l2.58 1.093a.23.23 0 0 0 .181 0l2.6-1.093.02-.013.012-.018.005-.023-.005-.022-.013-.019-.019-.013-.022-.005H9.347zM7.3 13.87q-.259 0-.48.088a1.15 1.15 0 0 0-.632.61q-.091.208-.091.45v.006q0 .25.092.46.093.21.255.36.164.152.385.237.222.085.484.085.306 0 .55-.098.24-.098.42-.243v-.994H7.255v.45h.44v.267a.64.64 0 0 1-.357.092.6.6 0 0 1-.437-.173.6.6 0 0 1-.126-.193.7.7 0 0 1-.044-.247v-.006a.63.63 0 0 1 .165-.43.57.57 0 0 1 .406-.176q.166 0 .293.054a1 1 0 0 1 .247.154l.363-.432q-.18-.151-.393-.236a1.4 1.4 0 0 0-.513-.085m9.635.005a1.2 1.2 0 0 0-.362.052.8.8 0 0 0-.272.147.63.63 0 0 0-.232.508v.007q0 .17.066.285.065.115.178.192.114.078.267.126.153.05.332.09.115.025.187.05a.6.6 0 0 1 .115.048.16.16 0 0 1 .058.053q.016.026.017.06v.007a.12.12 0 0 1-.065.112.4.4 0 0 1-.19.04q-.39 0-.725-.265l-.344.406q.207.183.476.275.27.091.57.091.204 0 .37-.049a.8.8 0 0 0 .285-.141.7.7 0 0 0 .184-.226.7.7 0 0 0 .065-.304v-.005a.6.6 0 0 0-.058-.268.5.5 0 0 0-.166-.19 1 1 0 0 0-.263-.134 3 3 0 0 0-.347-.097 2 2 0 0 1-.19-.049 1 1 0 0 1-.117-.047.16.16 0 0 1-.061-.051.12.12 0 0 1-.018-.067v-.007q.001-.06.056-.1a.3.3 0 0 1 .168-.041q.15 0 .31.056.162.055.315.162l.31-.432a1.3 1.3 0 0 0-.408-.22q-.225-.075-.511-.074m-8.455 2.244h.652l.16-.394h.861l.163.394h.665l-.953-2.224h-.596zm2.717 0h.607v-1.262l.568.858h.013l.571-.864v1.268h.616V13.91h-.654l-.533.855-.533-.855h-.655zm2.79 0h1.812v-.52h-1.2v-.35h1.073v-.482h-1.073v-.335h1.184v-.52h-1.797zm-4.012-.87h-.502l.252-.628zM15.946 4.82c-.914 0-1.367.448-1.367 1.353v4.705c0 .906.453 1.352 1.368 1.352h.557c.915 0 1.367-.447 1.367-1.352V9.182h-1.104v1.643c0 .292-.137.427-.42.427h-.211c-.294 0-.43-.135-.43-.427v-4.6c0-.29.135-.426.43-.426h.19c.283 0 .42.135.42.427V7.65h1.104V6.163c0-.905-.442-1.343-1.357-1.343zM6.15 12.17h2.524v-1.01H7.275V8.963h1.326v-1.01H7.275v-2.06h1.378v-1.01H6.15zm3.068 0h1.125V9.525h.641c.915 0 1.368-.448 1.368-1.353V6.236c0-.906-.453-1.353-1.368-1.353H9.218zm3.641-.001h1.125V4.883H12.86zm-2.053-6.307c.283 0 .42.135.42.427V8.12c0 .291-.136.427-.42.427h-.463V5.86z"/>
+                    </svg>
+                </a>
+                <a href="https://www.unrealengine.com/ru/" target="_blank" aria-label="Unreal Engine" title="Unreal Engine">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2m-.906 3.948a6.2 6.2 0 0 0-3.109 1.434 6.09 6.09 0 0 0-2.106 4.665s.612-1.915 1.38-2.092a.742.742 0 0 1 .93.742v4.495c0 .456-.294.555-.565.55a2.4 2.4 0 0 1-.542-.101 6.12 6.12 0 0 0 4.837 2.48l1.657-1.666.982 1.105c2.445-1.155 3.212-3.289 3.384-4.12-.894.916-1.883 1.844-2.548 1.202 0-.035-.037-3.437-.037-4.835 0-1.883 1.78-3.288 1.793-3.3-.986.176-2.17.527-3.427 1.76q-.17.17-.322.355c-.538-.412-1.237-.289-1.237-.289.377.207.754.811.754 1.31v4.91c-.012.011-.827.724-1.456.724a.9.9 0 0 1-.732-.37 1 1 0 0 1-.125-.215V8.626c-.187.154-.82.282-.82-.769 0-.653.47-1.431 1.309-1.909"/>
+                    </svg>
+                </a>
+                <a href="https://www.fortnite.com/download?lang=ru" target="_blank" aria-label="PC" title="PC">
+                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/KA6d6NZXSlaxhPy5eAYf" alt="PC" />
+                </a>
+                <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation" title="PlayStation">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.343 19.12c.558.032.896.465.877.98-.02.551-.435.92-.973.901-.56-.02-.939-.45-.909-1.008.03-.527.464-.906 1.005-.874m-.055.142a.773.773 0 0 0-.802.8c.001.463.34.803.797.803a.78.78 0 0 0 .795-.805.775.775 0 0 0-.79-.798M8.975 2.64c1.043.19 2.07.465 3.09.75q.877.249 1.745.522c.91.285 1.814.607 2.637 1.088.37.22.723.469 1.026.771.328.317.597.688.794 1.097.36.737.482 1.56.518 2.37.017.528.016 1.06-.085 1.582a3.7 3.7 0 0 1-.478 1.294 2.4 2.4 0 0 1-.888.842 2.4 2.4 0 0 1-1.155.267c-.606.006-1.194-.183-1.738-.432l-.005-2.668V6.972q0-.242-.047-.48c-.046-.246-.148-.494-.345-.66a1 1 0 0 0-.468-.217.48.48 0 0 0-.461.175c-.177.217-.223.505-.23.774l-.002 14.283q-1.954-.608-3.908-1.22-.002-8.493 0-16.987m13.432 16.876c.142.002.242.07.27.181.036.147-.003.303-.174.358l-.005.002v.008c.083.031.117.103.141.18q.048.158.099.316l.013.039h-.203l-.008-.035-.075-.27c-.034-.118-.075-.15-.197-.154l-.162-.002.001.46h-.196v-1.085s.343 0 .496.002m-4.462-5.643c1.273.005 2.553.16 3.772.536.24.072.47.164.71.239.423.152.85.337 1.19.638.203.183.38.43.382.711.012.23-.093.45-.245.62-.288.316-.668.534-1.05.724-.407.204-.844.336-1.27.491l-7.81 2.758v-2.201c.001-.017.007-.032.028-.035l5.942-2.084c.268-.097.556-.17.783-.347.093-.072.184-.187.14-.31-.049-.107-.162-.168-.267-.212-.297-.115-.62-.137-.935-.146a4.8 4.8 0 0 0-1.46.22c-1.41.485-2.82.976-4.231 1.461v-2.309a14.8 14.8 0 0 1 3.16-.687c.386-.044.774-.053 1.16-.067m4.161 6.132h.142a.6.6 0 0 0 .115-.01c.092-.018.144-.087.14-.183-.003-.09-.054-.15-.143-.157a5 5 0 0 0-.254-.006z"/>
+                    </svg>
+                </a>
+                <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation 5" title="PlayStation 5">
+                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/WhxwsUG5QUhr9xYWZ6FA" alt="PS5" />
+                </a>
+                <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation 4" title="PlayStation 4">
+                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/T5zoHcW8SpqCQ5gjQ5S1" alt="PS4" />
+                </a>
+                <a href="https://www.xbox.com/games/store/fortnite/bt5p2x999vh2" target="_blank" aria-label="Xbox" title="Xbox">
+                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/CHAtzJR0GI4pD4PiKQxQ" alt="Xbox" />
+                </a>
+                <a href="https://www.xbox.com/games/store/fortnite/bt5p2x999vh2" target="_blank" aria-label="Xbox Series X|S" title="Xbox Series X|S">
+                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/P6XlS1FQ56Y8NXslBgUK" alt="Xbox Series" />
+                </a>
+                <a href="https://www.nintendo.com/games/detail/fortnite-switch" target="_blank" aria-label="Nintendo Switch" title="Nintendo Switch">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.184 3c1.298 0 1.7.01 1.961.056 1.946.335 3.426 1.8 3.795 3.742.052.272.06.91.06 5.183 0 4.567.005 5.105-.139 5.598-.025.085-.054.17-.089.273a6 6 0 0 1-.279.652 4.65 4.65 0 0 1-3.575 2.46c-.358.037-3.251.052-3.352.014-.055-.025-.06-.863-.06-8.974 0-4.91.012-8.938.027-8.978.011-.015.757-.026 1.651-.026m-5.789.004c2.185-.004 2.248 0 2.286.067.026.064.037 2.912.037 8.945 0 8.154-.004 8.873-.06 8.93-.056.055-.276.058-2.36.043-2.016-.011-2.33-.022-2.575-.078-1.886-.44-3.214-1.77-3.627-3.638-.075-.346-.078-.452-.09-4.937C2.989 7.45 3 7.08 3.164 6.45a4.65 4.65 0 0 1 3.69-3.391c.235-.041.768-.052 2.542-.056m-.611 1.453c-1.595.004-1.823.026-2.314.224A3.2 3.2 0 0 0 4.54 6.986c-.078.37-.08 9.642.003 10.019a3.16 3.16 0 0 0 2.34 2.437c.28.071.43.078 1.828.093l1.516.019V4.453zm8.73 6.687a1.81 1.81 0 0 0-2.18 1.207c-.093.29-.097.767-.015 1.05a1.835 1.835 0 0 0 2.196 1.245c.573-.152 1.021-.566 1.249-1.155.123-.32.126-.835.003-1.185a1.82 1.82 0 0 0-1.252-1.162M7.175 6.73c.939-.186 1.848.455 2.008 1.413.138.805-.35 1.592-1.159 1.864-.197.067-.301.077-.595.066-.325-.011-.389-.025-.638-.148a1.7 1.7 0 0 1-.802-.806c-.119-.238-.137-.317-.152-.611-.03-.566.163-1.047.554-1.386a2 2 0 0 1 .784-.392"/>
+                    </svg>
+                </a>
+                <a href="https://www.nintendo.com/games/detail/fortnite-switch-2" target="_blank" aria-label="Nintendo Switch 2" title="Nintendo Switch 2">
+                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cm8zzae4r1g7z06oj8hbgpfaz" alt="Switch 2" />
+                </a>
+                <a href="https://store.epicgames.com/download/android?p=fortnite&amp;lang=ru" target="_blank" aria-label="Android" title="Android">
+                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/3CWE1VlwQmSRnNkAdxd8" alt="Android" />
+                </a>
+                <a href="https://m.onestore.co.kr/ko-kr/apps/appsDetail.omp?prodId=0000779798" target="_blank" aria-label="OneStore" title="OneStore">
+                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmbp7vi6m0c3q07mvb2vxvu7s" alt="OneStore" />
+                </a>
+                <a href="https://luna.amazon.com/game/fortnite?g=web&amp;ref=tmp_ext_epic" target="_blank" aria-label="Amazon Luna" title="Amazon Luna">
+                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmhwnqdpu379j07ogp3mewuu7" alt="Luna" />
+                </a>
+                <a href="https://www.nvidia.com/en-us/geforce-now/" target="_blank" aria-label="GeForce Now" title="GeForce Now">
+                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmhwn7osa33zd07ogkrhs0w0v" alt="GeForce Now" />
+                </a>
+            </div>
 
-        <a href="https://github.com/qfoldit" target="_blank" class="github-link">
-            <i class="fab fa-github"></i>
-            <span>GITHUB</span>
-        </a>
+            <a href="https://github.com/qfoldit" target="_blank" class="github-link">
+                <i class="fab fa-github"></i>
+                <span>GITHUB</span>
+            </a>
 
-        <div class="bottom-bar">
-            <span>Warner Bros. Gaming</span>
-            <span class="dot"></span>
-            <span>Disney</span>
-            <span class="dot"></span>
-            <span>UEFN</span>
+            <div class="bottom-bar">
+                <span>Warner Bros. Gaming</span>
+                <span class="dot"></span>
+                <span>Disney</span>
+                <span class="dot"></span>
+                <span>UEFN</span>
+            </div>
         </div>
     </section>
 </body>
