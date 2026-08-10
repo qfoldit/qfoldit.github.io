@@ -468,7 +468,6 @@
             display: block;
         }
 
-        /* Правая часть — два независимых блока */
         .glass-right {
             display: flex;
             align-items: center;
@@ -480,7 +479,6 @@
             padding: 0;
         }
 
-        /* Блок с иконкой Epic Games */
         .epic-block {
             background: rgba(10, 10, 15, 0.35);
             backdrop-filter: blur(12px);
@@ -512,7 +510,6 @@
             opacity: 1;
         }
 
-        /* Блок с текстом Fortnite × SCIENCE */
         .title-block {
             background: rgba(10, 10, 15, 0.35);
             backdrop-filter: blur(12px);
@@ -695,6 +692,7 @@
             }
         }
 
+        /* Мобильные устройства: скрываем блок с текстом "FORTNITE SCIENCE" */
         @media (max-width: 720px) {
             .top-bar {
                 padding: 0.8rem 1rem;
@@ -710,14 +708,11 @@
                 padding: 0.3rem 0.4rem;
             }
             .epic-block .epic-logo-small {
-                height: clamp(36px, 4vw, 52px);
+                height: clamp(48px, 6vw, 72px);
             }
+            /* Скрываем блок с текстом */
             .title-block {
-                padding: 0.3rem 1.2rem;
-            }
-            .title-block .main-title {
-                font-size: clamp(2.4rem, 8vw, 4.4rem);
-                letter-spacing: 0.04em;
+                display: none !important;
             }
             .footer-wrapper .platform-icons {
                 padding: 0.8rem 1.6rem 0.4rem;
@@ -789,14 +784,11 @@
                 padding: 0.2rem 0.3rem;
             }
             .epic-block .epic-logo-small {
-                height: clamp(28px, 3.5vw, 40px);
+                height: clamp(40px, 5vw, 56px);
             }
+            /* Скрываем блок с текстом (уже скрыт на 720, но оставим для надёжности) */
             .title-block {
-                padding: 0.2rem 0.8rem;
-            }
-            .title-block .main-title {
-                font-size: 1.8rem;
-                letter-spacing: 0.02em;
+                display: none !important;
             }
             .footer-wrapper .platform-icons {
                 padding: 0.6rem 1rem 0.2rem;
@@ -902,7 +894,6 @@
                 </div>
             </div>
             <div class="glass-right">
-                <!-- Блок с иконкой Epic Games -->
                 <div class="epic-block">
                     <div class="epic-logo-small">
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -910,7 +901,6 @@
                         </svg>
                     </div>
                 </div>
-                <!-- Блок с текстом -->
                 <div class="title-block">
                     <div class="main-title">
                         FORTNITE <span class="title-x" aria-hidden="true"></span> SCIENCE
