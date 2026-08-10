@@ -510,6 +510,16 @@
     const players = new Map(); // id -> { model, mixer, actions, targetPos, targetRot, targetAnim, nick, messageIconSprite }
     const unreadCounts = new Map(); // sender id -> unread count
 
+    // Every nickname shown in the UI (3D label, player graph, chat header, notifications) goes
+    // through this single choke point. It strips anything outside printable ASCII — Cyrillic
+    // included — so a stale/unpatched server, a third-party relay, or a player's own free-text
+    // input can never surface non-English text anywhere in the running app. When nothing usable
+    // survives the filter, it falls back to the same "Player 1234" pattern used everywhere else.
+    function sanitizeNick(raw, fallbackId) {
+        const cleaned = typeof raw === 'string' ? raw.replace(/[^\x20-\x7E]/g, '').trim() : '';
+        return cleaned || ('Player ' + String(fallbackId || '').slice(0, 4));
+    }
+
     const ws = new WebSocket(SERVER_URL);
     ws.onopen = () => console.log('WebSocket connected');
     ws.onmessage = (event) => {
@@ -519,12 +529,13 @@
             case 'welcome':
                 myId = msg.id;
                 myNickname = "Player " + myId.slice(0, 4);
-                msg.players.forEach(p => { if (p.id !== myId) addRemotePlayer(p.id, p.nick); });
+                msg.players.forEach(p => { if (p.id !== myId) addRemotePlayer(p.id, sanitizeNick(p.nick, p.id)); });
+                if (msg.scienceState) applyRemoteScientificState(msg.scienceState, 'the session'); // catch up on the current experiment
                 drawGraph();
                 updateLabPlayerCount();
                 break;
             case 'player-joined':
-                if (msg.id !== myId) addRemotePlayer(msg.id, msg.nick);
+                if (msg.id !== myId) addRemotePlayer(msg.id, sanitizeNick(msg.nick, msg.id));
                 updateLabPlayerCount();
                 break;
             case 'player-left':
@@ -534,11 +545,11 @@
             case 'nickname-changed':
                 if (msg.id !== myId && players.has(msg.id)) {
                     const p = players.get(msg.id);
-                    p.nick = msg.nick;
+                    p.nick = sanitizeNick(msg.nick, msg.id);
                     if (p.model) {
                         const oldLabel = p.model.getObjectByName('label');
                         if (oldLabel) p.model.remove(oldLabel);
-                        const newLabel = createTextLabel(msg.nick, '#444');
+                        const newLabel = createTextLabel(p.nick, '#444');
                         newLabel.name = 'label';
                         p.model.add(newLabel);
                     }
@@ -562,10 +573,10 @@
 
             // ---- qFoldIT scientific-state session sync (relayed like any other message) ----
             case 'science-state':
-                if (msg.originId !== myId) applyRemoteScientificState(msg.state, msg.originNick);
+                if (msg.originId !== myId) applyRemoteScientificState(msg.state, sanitizeNick(msg.originNick, msg.originId));
                 break;
             case 'science-clear':
-                if (msg.originId !== myId) applyRemoteScientificClear(msg.originNick);
+                if (msg.originId !== myId) applyRemoteScientificClear(sanitizeNick(msg.originNick, msg.originId));
                 break;
         }
         drawGraph();
@@ -764,8 +775,14 @@
         document.getElementById('nick-input').value = myNickname;
         document.getElementById('nickname-modal').style.display = 'block';
     };
+    // Strip anything outside printable ASCII as the player types, so Cyrillic (or any other
+    // non-English script) never even makes it into the field, rather than being caught later.
+    document.getElementById('nick-input').addEventListener('input', (e) => {
+        const cleaned = e.target.value.replace(/[^\x20-\x7E]/g, '');
+        if (cleaned !== e.target.value) e.target.value = cleaned;
+    });
     window.saveNickname = () => {
-        const val = document.getElementById('nick-input').value.trim();
+        const val = sanitizeNick(document.getElementById('nick-input').value.trim(), myId);
         if (val && val !== myNickname) {
             myNickname = val;
             const oldLabel = localModel?.getObjectByName('label');
