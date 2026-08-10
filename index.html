@@ -491,9 +491,10 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            height: clamp(64px, 8vw, 112px);
         }
         .epic-block .epic-logo-small {
-            height: clamp(44px, 5vw, 72px);
+            height: 100%;
             width: auto;
             display: flex;
             align-items: center;
@@ -692,7 +693,6 @@
             }
         }
 
-        /* Мобильные устройства: скрываем блок с текстом "FORTNITE SCIENCE" */
         @media (max-width: 720px) {
             .top-bar {
                 padding: 0.8rem 1rem;
@@ -705,12 +705,12 @@
                 gap: 0.5rem;
             }
             .epic-block {
-                padding: 0.3rem 0.4rem;
+                height: clamp(112px, 14vw, 160px);
+                padding: 12px 16px;
             }
             .epic-block .epic-logo-small {
-                height: clamp(48px, 6vw, 72px);
+                height: 100%;
             }
-            /* Скрываем блок с текстом */
             .title-block {
                 display: none !important;
             }
@@ -781,12 +781,12 @@
                 gap: 0.3rem;
             }
             .epic-block {
-                padding: 0.2rem 0.3rem;
+                height: 88px;
+                padding: 8px 12px;
             }
             .epic-block .epic-logo-small {
-                height: clamp(40px, 5vw, 56px);
+                height: 100%;
             }
-            /* Скрываем блок с текстом (уже скрыт на 720, но оставим для надёжности) */
             .title-block {
                 display: none !important;
             }
