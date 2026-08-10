@@ -53,7 +53,6 @@
             user-select: none;
             display: block;
         }
-        /* Background layers - fixed */
         .hero::before {
             content: '';
             position: fixed;
@@ -290,7 +289,6 @@
             --ty: -150px;
         }
 
-        /* HUD cross and labels — shifted up by 2vh */
         .hud-cross {
             position: fixed;
             z-index: 1;
@@ -399,7 +397,7 @@
             pointer-events: none;
         }
         .hero-logos .logo {
-            flex: 1 1 50%;
+            flex: 1 1 0;
             height: 100%;
             display: flex;
             align-items: center;
@@ -414,11 +412,12 @@
             transition: filter 0.3s ease;
         }
         .hero-logos .logo-wbg {
-            background: rgba(10, 10, 15, 0.3);
-            border-right: 1px solid rgba(255, 255, 255, 0.06);
+            background: transparent;
+            border: none;
         }
         .hero-logos .logo-disney {
-            background: rgba(10, 10, 15, 0.3);
+            background: transparent;
+            border: none;
         }
 
         .top-bar {
@@ -440,8 +439,7 @@
             pointer-events: auto;
         }
 
-        .glass-left,
-        .glass-right {
+        .glass-left {
             background: rgba(10, 10, 15, 0.35);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
@@ -453,13 +451,7 @@
             align-items: center;
             justify-content: center;
             pointer-events: auto;
-        }
-        .glass-left {
             height: clamp(64px, 8vw, 112px);
-            padding: 8px 16px;
-        }
-        .glass-right {
-            padding: 0.4rem 1.8rem;
         }
         .glass-left .lego-logo {
             height: 100%;
@@ -475,7 +467,65 @@
             width: auto;
             display: block;
         }
-        .glass-right .main-title {
+
+        /* Правая часть — два независимых блока */
+        .glass-right {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            pointer-events: auto;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+        }
+
+        /* Блок с иконкой Epic Games */
+        .epic-block {
+            background: rgba(10, 10, 15, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            padding: 0.4rem 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .epic-block .epic-logo-small {
+            height: clamp(44px, 5vw, 72px);
+            width: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .epic-block .epic-logo-small svg {
+            height: 100%;
+            width: auto;
+            fill: #ffffff;
+            opacity: 0.95;
+            transition: opacity 0.3s ease;
+        }
+        .epic-block .epic-logo-small svg:hover {
+            opacity: 1;
+        }
+
+        /* Блок с текстом Fortnite × SCIENCE */
+        .title-block {
+            background: rgba(10, 10, 15, 0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            padding: 0.4rem 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .title-block .main-title {
             background: transparent;
             backdrop-filter: none;
             border: none;
@@ -498,8 +548,7 @@
             align-items: center;
             gap: 0.6rem;
         }
-        /* Буква X — уменьшена в 2 раза относительно предыдущего размера, с отступами */
-        .main-title .title-x {
+        .title-block .main-title .title-x {
             position: relative;
             display: inline-block;
             flex: 0 0 auto;
@@ -510,9 +559,8 @@
             background: transparent;
             -webkit-text-fill-color: initial;
         }
-
-        .main-title .title-x::before,
-        .main-title .title-x::after {
+        .title-block .main-title .title-x::before,
+        .title-block .main-title .title-x::after {
             content: "";
             position: absolute;
             top: 50%;
@@ -524,12 +572,10 @@
             box-shadow: none;
             transform-origin: center;
         }
-
-        .main-title .title-x::before {
+        .title-block .main-title .title-x::before {
             transform: translate(-50%, -50%) rotate(45deg);
         }
-
-        .main-title .title-x::after {
+        .title-block .main-title .title-x::after {
             transform: translate(-50%, -50%) rotate(-45deg);
         }
         @keyframes titleGlow {
@@ -539,236 +585,6 @@
             100% {
                 filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.25));
             }
-        }
-
-        .content-wrapper {
-            position: relative;
-            z-index: 2;
-            padding: 1rem 2rem 14rem;
-            background: rgba(10, 10, 15, 0.92);
-            backdrop-filter: blur(4px);
-            min-height: 100vh;
-        }
-
-        .table-section {
-            margin-bottom: 2.5rem;
-            background: rgba(10, 10, 15, 0.85);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 255, 255, 0.12);
-            border-radius: 14px;
-            padding: 1.2rem 1.5rem;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
-        }
-        .table-section h2 {
-            font-family: 'Burbank Big Condensed', sans-serif;
-            font-weight: 900;
-            font-size: clamp(1.6rem, 2.8vw, 2.4rem);
-            letter-spacing: 0.04em;
-            color: #88ffff;
-            text-shadow: 0 0 25px rgba(0, 255, 255, 0.2);
-            margin-bottom: 0.8rem;
-            border-bottom: 2px solid rgba(0, 255, 255, 0.15);
-            padding-bottom: 0.4rem;
-            text-transform: uppercase;
-        }
-        .table-section h2 i {
-            margin-right: 12px;
-            color: rgba(0, 255, 255, 0.4);
-        }
-        .table-section h3 {
-            font-family: 'Burbank Big Condensed', sans-serif;
-            font-weight: 700;
-            font-size: clamp(1.3rem, 1.8vw, 1.8rem);
-            color: #aaeeff;
-            text-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
-            margin-top: 1.8rem;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid rgba(0, 255, 255, 0.15);
-            padding-bottom: 0.3rem;
-            letter-spacing: 0.03em;
-        }
-        .table-section h3 i {
-            margin-right: 10px;
-            color: rgba(0, 255, 255, 0.5);
-        }
-        .table-section h4 {
-            font-family: 'Burbank Big Condensed', sans-serif;
-            font-weight: 700;
-            font-size: clamp(1.1rem, 1.4vw, 1.4rem);
-            color: #ffffff;
-            margin-top: 1.4rem;
-            margin-bottom: 0.6rem;
-            letter-spacing: 0.02em;
-        }
-        .table-section table {
-            width: 100%;
-            border-collapse: collapse;
-            font-family: 'Burbank Big Condensed', sans-serif;
-            font-weight: 400;
-            font-size: clamp(0.95rem, 1.1vw, 1.1rem);
-            color: #e8f0f8;
-        }
-        .table-section table th {
-            text-align: left;
-            padding: 0.6rem 0.9rem;
-            font-weight: 700;
-            color: #aaeeff;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            border-bottom: 2px solid rgba(0, 255, 255, 0.2);
-            background: rgba(0, 255, 255, 0.06);
-            font-size: 0.9em;
-        }
-        .table-section table td {
-            padding: 0.6rem 0.9rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-            vertical-align: top;
-            background: rgba(255, 255, 255, 0.02);
-        }
-        .table-section table tr:nth-child(even) td {
-            background: rgba(255, 255, 255, 0.04);
-        }
-        .table-section table tr:last-child td {
-            border-bottom: none;
-        }
-        .table-section table td:first-child {
-            font-weight: 700;
-            color: #ffffff;
-            background: rgba(0, 255, 255, 0.05);
-        }
-        .table-section.team-table table td:first-child {
-            width: 18%;
-            min-width: 120px;
-        }
-        .table-section.team-table table td:nth-child(2) {
-            width: 30%;
-        }
-        .table-section.team-table table td:nth-child(3) {
-            width: 32%;
-        }
-        .table-section.team-table table td:nth-child(4) {
-            width: 20%;
-        }
-        .table-section.team-table-sci table td:first-child {
-            width: 18%;
-            min-width: 120px;
-        }
-        .table-section.team-table-sci table td:nth-child(2) {
-            width: 28%;
-        }
-        .table-section.team-table-sci table td:nth-child(3) {
-            width: 30%;
-        }
-        .table-section.team-table-sci table td:nth-child(4) {
-            width: 24%;
-        }
-        .table-section.team-table-vfx table td:first-child {
-            width: 20%;
-            min-width: 130px;
-        }
-        .table-section.team-table-vfx table td:nth-child(2) {
-            width: 30%;
-        }
-        .table-section.team-table-vfx table td:nth-child(3) {
-            width: 30%;
-        }
-        .table-section.team-table-vfx table td:nth-child(4) {
-            width: 20%;
-        }
-        .status-badge {
-            display: inline-block;
-            padding: 0.1rem 0.7rem;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            background: rgba(0, 255, 0, 0.15);
-            color: #88ff88;
-            border: 1px solid rgba(0, 255, 0, 0.3);
-            margin-left: 0.4rem;
-        }
-        .status-badge.partial {
-            background: rgba(255, 200, 0, 0.15);
-            color: #ffdd44;
-            border-color: rgba(255, 200, 0, 0.3);
-        }
-        .status-badge.skins {
-            background: rgba(0, 150, 255, 0.15);
-            color: #66bbff;
-            border-color: rgba(0, 150, 255, 0.3);
-        }
-        .status-badge.active {
-            background: rgba(0, 255, 200, 0.15);
-            color: #66ffcc;
-            border-color: rgba(0, 255, 200, 0.3);
-        }
-        .status-badge.expected {
-            background: rgba(255, 100, 100, 0.15);
-            color: #ff8888;
-            border-color: rgba(255, 100, 100, 0.3);
-        }
-        .table-section .subnote {
-            font-size: 0.9em;
-            color: rgba(255, 255, 255, 0.5);
-            margin-top: 0.6rem;
-            border-top: 1px dashed rgba(255, 255, 255, 0.08);
-            padding-top: 0.6rem;
-            letter-spacing: 0.02em;
-        }
-        .table-section .legal-note {
-            font-size: 0.95em;
-            color: #ffffff !important;
-            background: rgba(255, 0, 0, 0.05);
-            border-left: 3px solid rgba(255, 200, 0, 0.5);
-            padding: 0.8rem 1rem;
-            margin-top: 1.2rem;
-            border-radius: 6px;
-        }
-        .table-section .legal-note strong {
-            color: #ffdd44;
-        }
-        .table-section .legal-note i {
-            margin-right: 0.6rem;
-            color: #88ffff;
-        }
-        .table-section .legal-note p {
-            color: #ffffff !important;
-            text-align: justify;
-        }
-        .table-section .legal-note ul {
-            margin: 0.5rem 0 0 1.2rem;
-            list-style: none;
-        }
-        .table-section .legal-note ul li {
-            margin-bottom: 0.3rem;
-            position: relative;
-            padding-left: 1.2rem;
-        }
-        .table-section .legal-note ul li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: #88ffff;
-        }
-        .table-section .team-intro {
-            color: #e8f0f8;
-            margin-bottom: 1rem;
-            font-size: clamp(1rem, 1.2vw, 1.2rem);
-            line-height: 1.4;
-        }
-        .table-section .team-intro strong {
-            color: #88ffff;
-        }
-        .table-section .team-verification {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.9em;
-            margin-top: 0.8rem;
-            border-top: 1px dashed rgba(255, 255, 255, 0.08);
-            padding-top: 0.8rem;
-            line-height: 1.5;
-        }
-        .table-section .team-verification strong {
-            color: #aaeeff;
         }
 
         .footer-wrapper {
@@ -879,7 +695,6 @@
             }
         }
 
-        /* Responsive — mobile with doubled sizes for LEGO logo, main title, and platform icons */
         @media (max-width: 720px) {
             .top-bar {
                 padding: 0.8rem 1rem;
@@ -889,40 +704,20 @@
                 padding: 12px 24px;
             }
             .glass-right {
-                padding: 0.4rem 2.4rem;
+                gap: 0.5rem;
             }
-            .glass-right .main-title {
+            .epic-block {
+                padding: 0.3rem 0.4rem;
+            }
+            .epic-block .epic-logo-small {
+                height: clamp(36px, 4vw, 52px);
+            }
+            .title-block {
+                padding: 0.3rem 1.2rem;
+            }
+            .title-block .main-title {
                 font-size: clamp(2.4rem, 8vw, 4.4rem);
                 letter-spacing: 0.04em;
-            }
-            .content-wrapper {
-                padding: 0.8rem 1rem 12rem;
-            }
-            .table-section {
-                padding: 0.8rem 1rem;
-                margin-bottom: 1.5rem;
-            }
-            .table-section table td:first-child {
-                width: 35%;
-                min-width: 100px;
-            }
-            .table-section table td:last-child {
-                width: 65%;
-            }
-            .table-section.team-table table td:first-child,
-            .table-section.team-table table td:nth-child(2),
-            .table-section.team-table table td:nth-child(3),
-            .table-section.team-table table td:nth-child(4),
-            .table-section.team-table-sci table td:first-child,
-            .table-section.team-table-sci table td:nth-child(2),
-            .table-section.team-table-sci table td:nth-child(3),
-            .table-section.team-table-sci table td:nth-child(4),
-            .table-section.team-table-vfx table td:first-child,
-            .table-section.team-table-vfx table td:nth-child(2),
-            .table-section.team-table-vfx table td:nth-child(3),
-            .table-section.team-table-vfx table td:nth-child(4) {
-                width: auto;
-                min-width: 0;
             }
             .footer-wrapper .platform-icons {
                 padding: 0.8rem 1.6rem 0.4rem;
@@ -988,37 +783,20 @@
                 padding: 8px 16px;
             }
             .glass-right {
-                padding: 0.2rem 1.2rem;
+                gap: 0.3rem;
             }
-            .glass-right .main-title {
+            .epic-block {
+                padding: 0.2rem 0.3rem;
+            }
+            .epic-block .epic-logo-small {
+                height: clamp(28px, 3.5vw, 40px);
+            }
+            .title-block {
+                padding: 0.2rem 0.8rem;
+            }
+            .title-block .main-title {
                 font-size: 1.8rem;
                 letter-spacing: 0.02em;
-            }
-            .content-wrapper {
-                padding: 0.5rem 0.8rem 10rem;
-            }
-            .table-section table td:first-child {
-                width: 40%;
-                min-width: 80px;
-                font-size: 0.85rem;
-            }
-            .table-section table td:last-child {
-                font-size: 0.85rem;
-            }
-            .table-section.team-table table td:first-child,
-            .table-section.team-table table td:nth-child(2),
-            .table-section.team-table table td:nth-child(3),
-            .table-section.team-table table td:nth-child(4),
-            .table-section.team-table-sci table td:first-child,
-            .table-section.team-table-sci table td:nth-child(2),
-            .table-section.team-table-sci table td:nth-child(3),
-            .table-section.team-table-sci table td:nth-child(4),
-            .table-section.team-table-vfx table td:first-child,
-            .table-section.team-table-vfx table td:nth-child(2),
-            .table-section.team-table-vfx table td:nth-child(3),
-            .table-section.team-table-vfx table td:nth-child(4) {
-                width: auto;
-                min-width: 0;
             }
             .footer-wrapper .platform-icons {
                 padding: 0.6rem 1rem 0.2rem;
@@ -1060,7 +838,6 @@
 </head>
 <body>
     <section class="hero">
-        <!-- Background layers -->
         <div class="grid-overlay"></div>
         <div class="scanline"></div>
         <div class="hud-corner tl">
@@ -1108,7 +885,6 @@
             <div class="hud-particle"></div>
         </div>
 
-        <!-- HUD Cross and corner labels -->
         <div class="hud-cross"><div class="dot"></div></div>
         <div class="hud-label tl">SYS::ONLINE</div>
         <div class="hud-label tr">UEFN::v1.0</div>
@@ -1119,7 +895,6 @@
 
         <div class="glow-overlay"></div>
 
-        <!-- Top bar with glassmorphism -->
         <div class="top-bar">
             <div class="glass-left">
                 <div class="lego-logo">
@@ -1127,13 +902,23 @@
                 </div>
             </div>
             <div class="glass-right">
-                <div class="main-title">
-                    FORTNITE <span class="title-x" aria-hidden="true"></span> SCIENCE
+                <!-- Блок с иконкой Epic Games -->
+                <div class="epic-block">
+                    <div class="epic-logo-small">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.723 2.5c1.102 0 1.505.401 1.506 1.487v13.244c0 .17-.032.477-.087.608a.9.9 0 0 1-.21.334c-.107.099-.29.202-.378.242l-7.127 3a1.1 1.1 0 0 1-.853 0l-7.127-3a1.7 1.7 0 0 1-.378-.241.9.9 0 0 1-.21-.335c-.055-.131-.086-.438-.086-.608V3.986c0-1.086.403-1.487 1.505-1.487zM9.324 18.485a.06.06 0 0 0-.036.054q0 .012.005.022a.06.06 0 0 0 .031.032l2.58 1.093a.23.23 0 0 0 .181 0l2.6-1.093.02-.013.012-.018.005-.023-.005-.022-.013-.019-.019-.013-.022-.005H9.347zM7.3 13.87q-.259 0-.48.088a1.15 1.15 0 0 0-.632.61q-.091.208-.091.45v.006q0 .25.092.46.093.21.255.36.164.152.385.237.222.085.484.085.306 0 .55-.098.24-.098.42-.243v-.994H7.255v.45h.44v.267a.64.64 0 0 1-.357.092.6.6 0 0 1-.437-.173.6.6 0 0 1-.126-.193.7.7 0 0 1-.044-.247v-.006a.63.63 0 0 1 .165-.43.57.57 0 0 1 .406-.176q.166 0 .293.054a1 1 0 0 1 .247.154l.363-.432q-.18-.151-.393-.236a1.4 1.4 0 0 0-.513-.085m9.635.005a1.2 1.2 0 0 0-.362.052.8.8 0 0 0-.272.147.63.63 0 0 0-.232.508v.007q0 .17.066.285.065.115.178.192.114.078.267.126.153.05.332.09.115.025.187.05a.6.6 0 0 1 .115.048.16.16 0 0 1 .058.053q.016.026.017.06v.007a.12.12 0 0 1-.065.112.4.4 0 0 1-.19.04q-.39 0-.725-.265l-.344.406q.207.183.476.275.27.091.57.091.204 0 .37-.049a.8.8 0 0 0 .285-.141.7.7 0 0 0 .184-.226.7.7 0 0 0 .065-.304v-.005a.6.6 0 0 0-.058-.268.5.5 0 0 0-.166-.19 1 1 0 0 0-.263-.134 3 3 0 0 0-.347-.097 2 2 0 0 1-.19-.049 1 1 0 0 1-.117-.047.16.16 0 0 1-.061-.051.12.12 0 0 1-.018-.067v-.007q.001-.06.056-.1a.3.3 0 0 1 .168-.041q.15 0 .31.056.162.055.315.162l.31-.432a1.3 1.3 0 0 0-.408-.22q-.225-.075-.511-.074m-8.455 2.244h.652l.16-.394h.861l.163.394h.665l-.953-2.224h-.596zm2.717 0h.607v-1.262l.568.858h.013l.571-.864v1.268h.616V13.91h-.654l-.533.855-.533-.855h-.655zm2.79 0h1.812v-.52h-1.2v-.35h1.073v-.482h-1.073v-.335h1.184v-.52h-1.797zm-4.012-.87h-.502l.252-.628zM15.946 4.82c-.914 0-1.367.448-1.367 1.353v4.705c0 .906.453 1.352 1.368 1.352h.557c.915 0 1.367-.447 1.367-1.352V9.182h-1.104v1.643c0 .292-.137.427-.42.427h-.211c-.294 0-.43-.135-.43-.427v-4.6c0-.29.135-.426.43-.426h.19c.283 0 .42.135.42.427V7.65h1.104V6.163c0-.905-.442-1.343-1.357-1.343zM6.15 12.17h2.524v-1.01H7.275V8.963h1.326v-1.01H7.275v-2.06h1.378v-1.01H6.15zm3.068 0h1.125V9.525h.641c.915 0 1.368-.448 1.368-1.353V6.236c0-.906-.453-1.353-1.368-1.353H9.218zm3.641-.001h1.125V4.883H12.86zm-2.053-6.307c.283 0 .42.135.42.427V8.12c0 .291-.136.427-.42.427h-.463V5.86z"/>
+                        </svg>
+                    </div>
+                </div>
+                <!-- Блок с текстом -->
+                <div class="title-block">
+                    <div class="main-title">
+                        FORTNITE <span class="title-x" aria-hidden="true"></span> SCIENCE
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Hero Logos -->
         <div class="hero-logos">
             <div class="logo logo-wbg">
                 <img src="https://qfoldit.github.io/assets/wb-games-logo-white.svg" alt="Warner Bros. Gaming" />
@@ -1143,600 +928,8 @@
             </div>
         </div>
 
-<!--
-        <div class="content-wrapper">
-
-            <div class="table-section">
-                <h2><i class="fas fa-cubes"></i> LEGO Group</h2>
-                <table>
-                    <thead><tr><th>Category</th><th>Available worlds / characters</th></tr></thead>
-                    <tbody>
-                        <tr><td>Base LEGO styles</td><td>1200+ LEGO versions of all existing Fortnite skins (including original heroes, licensed characters, Battle Pass skins)</td></tr>
-                        <tr><td>LEGO Fortnite</td><td>All characters in LEGO style available in LEGO Fortnite mode</td></tr>
-                        <tr><td>Themed sets</td><td>LEGO Star Wars, LEGO Marvel, LEGO Ninjago, LEGO Castle, LEGO Pirates, LEGO City</td></tr>
-                    </tbody>
-                </table>
-                <div class="subnote">✅ Full access via LEGO Fortnite integration</div>
-            </div>
-
-            <div class="table-section">
-                <h2><i class="fas fa-mask"></i> Marvel (Disney)</h2>
-                <table>
-                    <thead><tr><th>Characters</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td>Avengers</td><td>Thor, Iron Man, Captain America, Hulk, Black Widow, Falcon</td></tr>
-                        <tr><td>Guardians of the Galaxy</td><td>Star-Lord, Gamora, Groot, Rocket</td></tr>
-                        <tr><td>Spider‑Man</td><td>Spider‑Man (multiple versions), Miles Morales</td></tr>
-                        <tr><td>X‑Men / Mutants</td><td>Wolverine (including Peelverine hybrid), Deadpool, Gwenpool, Emma Frost, Magik</td></tr>
-                        <tr><td>Villains</td><td>Doctor Doom, Thanos, Punisher, Mysterio</td></tr>
-                        <tr><td>Other heroes</td><td>Black Panther (Shuri), War Machine, Luna Snow, Captain Jones</td></tr>
-                    </tbody>
-                </table>
-                <div class="subnote">✅ IP Partner Program – full character roster</div>
-            </div>
-
-            <div class="table-section">
-                <h2><i class="fas fa-jedi"></i> Star Wars (Disney)</h2>
-                <table>
-                    <thead><tr><th>Era / Series</th><th>Characters</th></tr></thead>
-                    <tbody>
-                        <tr><td>Original Trilogy</td><td>Luke Skywalker, Han Solo, Princess Leia, Darth Vader, Yoda</td></tr>
-                        <tr><td>Prequels</td><td>Anakin Skywalker, Obi‑Wan Kenobi, Palpatine</td></tr>
-                        <tr><td>Sequels</td><td>Rey, Kylo Ren, Finn</td></tr>
-                        <tr><td>The Mandalorian</td><td>Din Djarin (The Mandalorian), Grogu (Baby Yoda), Moff Gideon, IG‑11</td></tr>
-                        <tr><td>Others</td><td>Boba Fett, Stormtroopers, Darth Jar Jar (Sith skin)</td></tr>
-                    </tbody>
-                </table>
-                <div class="subnote">✅ IP Partner Program + SDK – 48 Star Wars skins in Fortnite</div>
-            </div>
-
-            <div class="table-section">
-                <h2><i class="fas fa-flag"></i> Classic Disney / Pixar</h2>
-                <table>
-                    <thead><tr><th>Franchise</th><th>Characters</th></tr></thead>
-                    <tbody>
-                        <tr><td>Incredibles</td><td>Mr. Incredible, Elastigirl</td></tr>
-                        <tr><td>Pirates of the Caribbean</td><td>Jack Sparrow</td></tr>
-                        <tr><td>Classic villains</td><td>Maleficent, Captain Hook, Cruella de Vil</td></tr>
-                        <tr><td>Avatar</td><td>Jake Sully, Neytiri</td></tr>
-                        <tr><td>Hoppers</td><td>Tom Lizard</td></tr>
-                        <tr><td>Other</td><td>Hercules, Hades</td></tr>
-                    </tbody>
-                </table>
-                <div class="subnote">✅ IP Partner Program – active collaborations</div>
-            </div>
-
-            <div class="table-section">
-                <h2><i class="fas fa-doughnut"></i> The Simpsons (20th Century Animation)</h2>
-                <table>
-                    <thead><tr><th>Category</th><th>Available content</th></tr></thead>
-                    <tbody>
-                        <tr><td>Simpson family</td><td>Homer, Marge, Bart, Lisa, Maggie</td></tr>
-                        <tr><td>Springfield residents</td><td>Ned Flanders, Moe (tavern owner)</td></tr>
-                        <tr><td>Crossover skins</td><td>John Wick in Simpsons style, Blinky Fishstick, Springfielder Peely</td></tr>
-                        <tr><td>Locations</td><td>Springfield (Reload map), Springfield Nuclear Power Plant, Moe's Tavern, Simpson house</td></tr>
-                    </tbody>
-                </table>
-                <div class="subnote">🟡 Partial – full IP Toolkit expected in 2026</div>
-            </div>
-
-            <div class="table-section">
-                <h2><i class="fas fa-rocket"></i> Futurama (20th Television)</h2>
-                <table>
-                    <thead><tr><th>Characters</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td>Main cast</td><td>Philip J. Fry, Turanga Leela, Bender (robot)</td></tr>
-                        <tr><td>Items</td><td>Robo‑beam weapon, Planet Express signage</td></tr>
-                    </tbody>
-                </table>
-                <div class="subnote">🟡 Skins only – full toolkit requires additional approval from 20th Television Animation</div>
-            </div>
-
-            <div class="table-section">
-                <h2><i class="fas fa-bolt"></i> DC Comics (Warner Bros.)</h2>
-                <table>
-                    <thead><tr><th>Group</th><th>Characters</th></tr></thead>
-                    <tbody>
-                        <tr><td>Justice League</td><td>Batman (multiple versions, including summer), Superman, Wonder Woman, Flash</td></tr>
-                        <tr><td>Suicide Squad</td><td>Harley Quinn (multiple versions, including summer), Poison Ivy (summer)</td></tr>
-                        <tr><td>Bat‑family</td><td>Robin, Nightwing, Catwoman (summer)</td></tr>
-                        <tr><td>Other heroes</td><td>Cyborg, Beast Boy, Raven, Dreamer</td></tr>
-                        <tr><td>Villains</td><td>Joker, Bloodsport</td></tr>
-                    </tbody>
-                </table>
-                <div class="subnote">✅ IP Partner Program – 24+ DC skins</div>
-            </div>
-
-            <div class="table-section">
-                <h2><i class="fas fa-vial"></i> Rick and Morty (Warner Bros.)</h2>
-                <table>
-                    <thead><tr><th>Wave</th><th>Characters / Items</th></tr></thead>
-                    <tbody>
-                        <tr><td>Wave 1–2</td><td>Rick Sanchez, Morty Smith</td></tr>
-                        <tr><td>Wave 3 (Mar 2026)</td><td>Pickle Rick, Rick Prime, Mr. BC, Squanchy</td></tr>
-                        <tr><td>Other</td><td>Summer, Jerry, Snowball</td></tr>
-                        <tr><td>Items</td><td>Rick's spaceship (glider), backpacks</td></tr>
-                    </tbody>
-                </table>
-                <div class="subnote">✅ IP Partner Program – full character set</div>
-            </div>
-
-            <div class="table-section">
-                <h2><i class="fas fa-gamepad"></i> Gaming Collaborations (Epic Games Store)</h2>
-                <table>
-                    <thead><tr><th>Franchise / Game</th><th>Characters</th></tr></thead>
-                    <tbody>
-                        <tr><td>Resident Evil</td><td>Grace Ashcroft</td></tr>
-                        <tr><td>Street Fighter</td><td>Cammy</td></tr>
-                        <tr><td>Solo Leveling</td><td>Sung Jin‑Woo, Igris</td></tr>
-                        <tr><td>Mortal Kombat</td><td>Kitana</td></tr>
-                        <tr><td>Sonic Racing</td><td>Sonic characters (expected)</td></tr>
-                        <tr><td>God of War</td><td>Kratos</td></tr>
-                        <tr><td>Halo</td><td>Master Chief</td></tr>
-                        <tr><td>Other</td><td>Crash Bandicoot, Resident Evil: Requiem</td></tr>
-                    </tbody>
-                </table>
-                <div class="subnote">✅ Active crossovers via Epic Games Store</div>
-            </div>
-
-            <div class="table-section">
-                <h2><i class="fas fa-film"></i> Paramount Global / Nickelodeon</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Rightsholder</th>
-                            <th>Universe</th>
-                            <th>Status in UEFN</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Paramount Global / Nickelodeon</strong></td>
-                            <td>Teenage Mutant Ninja Turtles (TMNT) Sandbox</td>
-                            <td style="color: #2ecc71;"><strong>Verse Compiler Status: Validated Build ✅</strong></td>
-                            <td>Provides mapping of UAG geometric nodes to native New York location prefabs and weapon physical components (with automatic 15% royalty withholding in favor of Paramount).</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="table-section film-tv-table">
-                <h2><i class="fas fa-film"></i> Film & TV (other franchises)</h2>
-                <table>
-                    <thead><tr><th>Franchise</th><th>Characters</th><th>Status</th></tr></thead>
-                    <tbody>
-                        <tr><td>John Wick</td><td>John Wick (including Simpsons‑style version)</td><td>✅ Active</td></tr>
-                        <tr><td>Rambo</td><td>Rambo</td><td>🟡 Expected 2026</td></tr>
-                        <tr><td>South Park</td><td>Eric Cartman (Awesom‑O), Kenny (Princess Kenny), Butters (Professor Chaos), Kyle, Stan</td><td>✅ Active</td></tr>
-                        <tr><td>Amazing Digital Circus</td><td>Characters</td><td>🟡 Expected 2026</td></tr>
-                        <tr><td>Bob's Burgers</td><td>Bob Belcher</td><td>🟡 Expected 2026</td></tr>
-                        <tr><td>Cleveland Show</td><td>Cleveland Brown</td><td>🟡 Expected 2026</td></tr>
-                        <tr><td>King of the Hill</td><td>Hank Hill</td><td>🟡 Expected 2026</td></tr>
-                        <tr><td>Game of Thrones</td><td>Jon Snow</td><td>✅ Active</td></tr>
-                    </tbody>
-                </table>
-                <div class="subnote">Multiple active and upcoming collaborations</div>
-            </div>
-
-            <div class="table-section">
-                <h2><i class="fas fa-otter"></i> Anime</h2>
-                <table>
-                    <thead><tr><th>Franchise</th><th>Characters</th></tr></thead>
-                    <tbody>
-                        <tr><td>Naruto</td><td>Naruto, Sasuke, Sakura, Kakashi</td></tr>
-                        <tr><td>Dragon Ball</td><td>Goku</td></tr>
-                        <tr><td>Attack on Titan</td><td>Characters</td></tr>
-                        <tr><td>Jujutsu Kaisen</td><td>Itadori</td></tr>
-                    </tbody>
-                </table>
-                <div class="subnote">✅ Active crossovers</div>
-            </div>
-
-            <div class="table-section">
-                <h2><i class="fas fa-flask"></i> qFoldIT (own scientific content – no license required)</h2>
-                <table>
-                    <thead><tr><th>Category</th><th>Description</th></tr></thead>
-                    <tbody>
-                        <tr><td>Molecular structures</td><td>3D configurations of atoms, proteins, peptides</td></tr>
-                        <tr><td>L‑systems</td><td>Fractal structures for level generation</td></tr>
-                        <tr><td>UAG‑graphs</td><td>Engine‑neutral scene description</td></tr>
-                        <tr><td>Scientific data</td><td>Energy profiles, ADMET parameters</td></tr>
-                    </tbody>
-                </table>
-                <div class="subnote">🔬 Full ownership – no licensing restrictions</div>
-            </div>
-
-            <div class="table-section icon-series-table">
-                <h2><i class="fas fa-star"></i> Icon Series</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Content Category</th>
-                            <th>Available Personalities / Avatars</th>
-                            <th>Usage &amp; Gamification in UE5/UE6</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Musicians and Superstars</td>
-                            <td>
-                                • Eminem<br>
-                                • Ariana Grande<br>
-                                • Travis Scott<br>
-                                • The Weeknd<br>
-                                • Billie Eilish<br>
-                                • Lady Gaga<br>
-                                • Snoop Dogg
-                            </td>
-                            <td>Hosting virtual scientific symposia, gamification via Verse rhythm mechanics (e.g., molecular bond oscillation frequency synchronised with artist track BPM).</td>
-                        </tr>
-                        <tr>
-                            <td>World‑Class Athletes</td>
-                            <td>
-                                • LeBron James<br>
-                                • Neymar Jr.<br>
-                                • Patrick Mahomes<br>
-                                • Lewis Hamilton<br>
-                                • Chloe Kim<br>
-                                • Giannis Antetokounmpo
-                            </td>
-                            <td>Ideal for simulating physical loads, speed mechanics, and kinetic energy. For example, Lewis Hamilton can act as a “guide” in modules studying hydrodynamics or polymer resistance.</td>
-                        </tr>
-                        <tr>
-                            <td>Top Streamers and Bloggers</td>
-                            <td>
-                                • Ninja (Tyler Blevins)<br>
-                                • MrBeast (Jimmy Donaldson)<br>
-                                • Lachlan<br>
-                                • TheGrefg<br>
-                                • Ali‑A<br>
-                                • SypherPK
-                            </td>
-                            <td>Promoting citizen science. MrBeast’s persona is perfect for triggering “science grants” and awarding in‑game rewards to players who discover valuable L‑systems.</td>
-                        </tr>
-                        <tr>
-                            <td>Pop Culture and Film Stars</td>
-                            <td>
-                                • Keanu Reeves — as John Wick<br>
-                                • Ryan Reynolds — as Guy from <em>Free Guy</em><br>
-                                • Dwayne “The Rock” Johnson — as The Foundation
-                            </td>
-                            <td>Building the simulator’s narrative. Charismatic NPC mentors who assign R&D optimisation tasks in the labs.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="table-section summary-table">
-                <h2><i class="fas fa-table"></i> Summary Registry of Available Universes</h2>
-                <table>
-                    <thead><tr><th>Rightsholder</th><th>Universe</th><th>Status in UEFN</th></tr></thead>
-                    <tbody>
-                        <tr><td>LEGO Group</td><td>LEGO Fortnite, LEGO Star Wars, LEGO Marvel, LEGO Ninjago, etc.</td><td>✅ Full access</td></tr>
-                        <tr><td>Disney / Marvel</td><td>Marvel (Avengers, X‑Men, Guardians, Spider‑Man, etc.)</td><td>✅ IP Partner Program</td></tr>
-                        <tr><td>Disney / Star Wars</td><td>Star Wars (all eras, Mandalorian)</td><td>✅ IP Partner Program + SDK</td></tr>
-                        <tr><td>Disney / Classic</td><td>Incredibles, Pirates of the Caribbean, Avatar, classic villains</td><td>✅ IP Partner Program</td></tr>
-                        <tr><td>Disney / 20th Century</td><td>Simpsons (Springfield, characters)</td><td>🟡 Partial (full Toolkit – 2026)</td></tr>
-                        <tr><td>Disney / 20th Television</td><td>Futurama (Fry, Leela, Bender)</td><td>🟡 Skins only</td></tr>
-                        <tr><td>Warner Bros.</td><td>DC Comics (Batman, Harley Quinn, Justice League)</td><td>✅ IP Partner Program</td></tr>
-                        <tr><td>Warner Bros.</td><td>Rick and Morty (Rick, Morty, Pickle Rick)</td><td>✅ IP Partner Program</td></tr>
-                        <tr><td>Various</td><td>John Wick, Rambo, South Park, Game of Thrones, anime (Naruto, Dragon Ball, etc.)</td><td>✅ Active crossovers</td></tr>
-                        <tr><td>Epic Games (Icon Series)</td><td>Musicians, athletes, streamers, movie stars (see table above)</td><td>✅ Full runtime access</td></tr>
-                    </tbody>
-                </table>
-                <div class="subnote">This list is complete based on current agreements as of July 31, 2026.</div>
-            </div>
-
-            <div class="table-section team-table">
-                <h2><i class="fas fa-users"></i> Proof of Team &amp; Professional Credentials</h2>
-
-                <p class="team-intro">
-                    qFoldIT is developed and maintained by an international, cross-disciplinary team of software engineers, scientific-computing researchers, UEFN creators, open-source developers, computational biologists, game-development professionals, and visual-effects and animation specialists.
-                </p>
-
-                <p class="team-intro">
-                    The individuals listed below hold <strong>Owner-level roles within the qFoldIT GitHub organization</strong> and/or contribute to qFoldIT through their respective technical and scientific expertise.
-                </p>
-
-                <p class="team-intro">
-                    The professional and academic affiliations shown below describe the individual contributors' backgrounds. They do <strong>not</strong> constitute institutional affiliations, sponsorships, endorsements, or partnerships between qFoldIT and the listed universities, laboratories, companies, studios, or other organizations unless expressly stated.
-                </p>
-
-                <h3><i class="fas fa-dna"></i> Scientific Computing, AI &amp; Structural Biology</h3>
-
-                <table class="team-table-sci">
-                    <thead>
-                        <tr>
-                            <th>Team Member</th>
-                            <th>Professional / Academic Affiliation</th>
-                            <th>Core Expertise</th>
-                            <th>qFoldIT-Relevant Experience</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Xiaopeng Xu, Ph.D.</strong></td>
-                            <td><strong>KAUST — King Abdullah University of Science and Technology</strong> · Research Scientist</td>
-                            <td>Agentic AI, protein design, synthetic biology, scientific computing</td>
-                            <td>Creator / developer associated with <strong>ProteinMCP</strong>, an agentic-AI framework for autonomous protein engineering</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Jeonghyeon Kim</strong></td>
-                            <td><strong>Duke University — Biomedical Engineering · Romero Lab</strong> · PhD Student</td>
-                            <td>Computational bioengineering, AI-driven protein design, therapeutic protein engineering</td>
-                            <td>Creator / developer of <strong>protein-design-mcp</strong> and contributor to computational protein-design workflows</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Jianmin Wang, Ph.D.</strong></td>
-                            <td><strong>Yonsei University</strong> · Integrative Biotechnology &amp; Translational Medicine</td>
-                            <td>Drug discovery, medicinal chemistry, chemoinformatics, bioinformatics, deep learning and AI</td>
-                            <td>Creator of <strong>protein/drug-design computational tooling</strong> and contributor to molecular generative-model research</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Jiashun Mao, Ph.D.</strong></td>
-                            <td><strong>Yonsei University</strong> · Integrative Biotechnology &amp; Translational Medicine</td>
-                            <td>Computational biology, molecular modelling, deep learning, molecular generative models, drug design</td>
-                            <td>Research experience in computational drug design, QSAR, molecular generation and scientific AI</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Silvia Holler, Ph.D.</strong></td>
-                            <td><strong>University of Trento — CIBIO</strong></td>
-                            <td>Artificial life, synthetic biology, protocells, biotechnology and biological systems</td>
-                            <td>Scientific expertise relevant to biological modelling, computational representation and interdisciplinary scientific visualization</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Kelly Chibale, Prof.</strong></td>
-                            <td><strong>University of Cape Town — H3D</strong> · Professor of Organic Chemistry / Director of H3D</td>
-                            <td>Drug discovery, medicinal chemistry, infectious-disease research and pharmaceutical science</td>
-                            <td>Scientific and drug-discovery expertise contributing to the project's interdisciplinary scientific context</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="subnote" style="margin-top: 0.8rem;">
-                    Xiaopeng Xu's current professional site identifies him as a Research Scientist at KAUST working on agentic AI, protein design and synthetic biology, while the 2026 <em>Protein Science</em> paper on ProteinMCP lists his KAUST affiliations and credits him with conceptualization, methodology, software, validation, visualization and other contributions.
-                    <br><br>
-                    The official Romero Lab page identifies <strong>Jeonghyeon Kim as a PhD student in Duke Biomedical Engineering</strong> and notes his B.S. and M.S. from Seoul National University.
-                    <br><br>
-                    Peer-reviewed publications identify <strong>Jianmin Wang and Jiashun Mao with Yonsei University's Interdisciplinary Graduate Program in Integrative Biotechnology and Translational Medicine</strong>, including research on deep molecular generative models for drug design.
-                    <br><br>
-                    <strong>Silvia Holler</strong> is publicly identified as an Assistant Professor RTDa at the University of Trento's CIBIO, with research involving artificial life, protocells and related biological systems.
-                    <br><br>
-                    <strong>Prof. Kelly Chibale</strong> is officially identified by the University of Cape Town as Professor of Organic Chemistry and Founder/Director of the H3D Centre, with a research focus on drug discovery and development.
-                </div>
-
-                <h3><i class="fas fa-code"></i> UEFN, Software Engineering &amp; Open-Source Infrastructure</h3>
-
-                <table class="team-table-sci">
-                    <thead>
-                        <tr>
-                            <th>Team Member</th>
-                            <th>Professional / Academic Affiliation</th>
-                            <th>Core Expertise</th>
-                            <th>qFoldIT-Relevant Experience</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Ocean Bennett</strong></td>
-                            <td><strong>Southern New Hampshire University</strong> · Computer Science</td>
-                            <td>AI automation, systems engineering, Rust, Python, TypeScript, Node, Verse / UEFN</td>
-                            <td>Creator of <strong>UEFN-TOOLBELT</strong>; UEFN tooling and automation</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Bao Wang, Ph.D.</strong></td>
-                            <td><strong>Computational Biology / Data Science / Evolutionary Genomics</strong></td>
-                            <td>Computational biology, data science, evolutionary genomics</td>
-                            <td>Scientific computing, biological data processing and computational analysis</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Jianmin Wang, Ph.D.</strong></td>
-                            <td><strong>Yonsei University</strong></td>
-                            <td>AI for science, data science, drug discovery and bioinformatics</td>
-                            <td>Open-source scientific software and computational drug-design projects</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Mao Jiashun / Jiashun Mao, Ph.D.</strong></td>
-                            <td><strong>Yonsei University</strong></td>
-                            <td>Computational biology and deep learning</td>
-                            <td>Molecular generative models and computational drug-design research</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Jianmin Wang / AspirinCode</strong></td>
-                            <td><strong>Yonsei University</strong></td>
-                            <td>Python, C/C++, Linux, AI, data science, bioinformatics</td>
-                            <td>Large-scale open-source scientific-computing development</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="subnote" style="margin-top: 0.8rem;">
-                    Ocean Bennett's public professional site identifies him as an AI Automation Engineer, lists Southern New Hampshire University Computer Science (2024–2028), and explicitly lists Verse / UEFN among his technology stack.
-                    <br><br>
-                    Bao Wang's public professional site describes his work around <strong>computational biology, data science and evolutionary genomics</strong>. The site is used here to document professional expertise rather than to infer an institutional employer that is not explicitly stated there.
-                    <br><br>
-                    Jianmin Wang's public profiles and academic publications connect him with Yonsei University and research in drug discovery, data science, AI, chemoinformatics and bioinformatics.
-                </div>
-
-                <h3><i class="fas fa-film"></i> VFX, Animation, Cinematics &amp; Real-Time Graphics</h3>
-
-                <h4>Robertson Nartey</h4>
-                <p style="color: #e8f0f8; margin-bottom: 0.6rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    <strong style="color: #88ffff;">VFX Artist &amp; Animator · Game Cinematics / Visual Effects</strong>
-                </p>
-                <p style="color: #e8f0f8; margin-bottom: 0.6rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    <strong>Core Specialization:</strong> High-fidelity 3D asset animation, particle dynamics, cinematic visual effects (VFX), character animation, and real-time 3D environment integration.
-                </p>
-                <p style="color: #e8f0f8; margin-bottom: 0.6rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    <strong>Professional Experience:</strong> Experience in VFX, animation, cinematic production, and real-time game-graphics workflows, including production environments associated with AAA games and major entertainment franchises.
-                </p>
-                <p style="color: #e8f0f8; margin-bottom: 0.8rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    <strong>qFoldIT Contribution:</strong> Applies professional experience in cinematic graphics and real-time 3D production to the evaluation and visualization of complex scientific geometry, including UAG graph structures, procedural/L-system geometry, high-poly meshes, animation systems, and real-time rendering workflows.
-                </p>
-                <p style="color: #e8f0f8; margin-bottom: 0.8rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    <strong>Technical Focus:</strong> Unreal Engine / UEFN workflows, real-time rendering, procedural geometry, skeletal and character animation, particle systems, cinematic asset preparation, and automated geometry transformation.
-                </p>
-
-                <h4 style="margin-top: 1rem;">Technical Competency Matrix</h4>
-
-                <table class="team-table-vfx">
-                    <thead>
-                        <tr>
-                            <th>Dimension</th>
-                            <th>Professional Competency</th>
-                            <th>qFoldIT Application</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>High-Fidelity 3D Assets</strong></td>
-                            <td>Complex meshes, character assets, animation-ready geometry and cinematic asset workflows</td>
-                            <td>Evaluation and visualization of scientific meshes, molecular structures, UAG graphs and procedural geometry</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Real-Time Rendering</strong></td>
-                            <td>Real-time lighting, materials, animation, particle systems and GPU-oriented rendering workflows</td>
-                            <td>Benchmarking scientific visualization and interactive 3D scenes in supported real-time environments</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Cinematic Production</strong></td>
-                            <td>VFX, animation, cinematic sequences and production-oriented asset pipelines</td>
-                            <td>Visualization and presentation of scientific simulations and automated spatial transformations</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Procedural Geometry</strong></td>
-                            <td>3D transformations, spatial structures, animation systems and geometry processing</td>
-                            <td>UAG-graph and L-system visualization, procedural scene generation and automated geometry workflows</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Unreal / UEFN</strong></td>
-                            <td>Real-time 3D engine and interactive-content workflows</td>
-                            <td>Runtime visualization, scene integration and technical compatibility testing</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Production Pipeline</strong></td>
-                            <td>AAA-oriented asset preparation and multidisciplinary production workflows</td>
-                            <td>Translation of scientific data structures into production-oriented interactive 3D representations</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="subnote" style="margin-top: 0.8rem;">
-                    Robertson Nartey's professional credentials are presented as evidence of <strong>graphics, animation, VFX and real-time 3D production expertise</strong>. Where specific commercial productions or entertainment franchises are referenced, the reference describes professional or technical context and does not imply that the corresponding publisher, studio or rights holder endorses, sponsors, certifies, licenses or is otherwise affiliated with qFoldIT.
-                </div>
-
-                <h3><i class="fas fa-cube"></i> Spatial Geometry, Game Systems &amp; Interactive Visualization</h3>
-
-                <p style="color: #e8f0f8; margin-bottom: 0.8rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    qFoldIT combines scientific computing with spatial and interactive-computing concepts.
-                </p>
-
-                <p style="color: #e8f0f8; margin-bottom: 0.6rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    Members of the team have experience spanning:
-                </p>
-
-                <ul style="color: #e8f0f8; margin-left: 1.5rem; margin-bottom: 0.8rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem); list-style: none;">
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• procedural and computational geometry;</li>
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• molecular and structural representations;</li>
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• game-development systems;</li>
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• real-time 3D rendering;</li>
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• UEFN / Unreal workflows;</li>
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• scientific visualization;</li>
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• automated scene generation;</li>
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• MCP-based scientific infrastructure;</li>
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• computational protein design;</li>
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• molecular generative models.</li>
-                </ul>
-
-                <p style="color: #e8f0f8; margin-bottom: 0.8rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    The team's experience associated with projects such as <strong>UEFN-TOOLBELT, ProteinMCP, protein-design-mcp, Tetrisphere</strong>, and other scientific or entertainment projects informs the technical design of qFoldIT.
-                </p>
-
-                <div class="subnote" style="margin-top: 0.4rem;">
-                    These references describe <strong>individual contributors' professional or technical backgrounds</strong>. They do not imply that qFoldIT owns the underlying intellectual property of those projects or that the respective publishers, studios, universities, laboratories or rights holders are qFoldIT partners.
-                </div>
-
-                <h3><i class="fas fa-flask"></i> Scientific Validation &amp; Computational Responsibility</h3>
-
-                <p style="color: #e8f0f8; margin-bottom: 0.6rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    qFoldIT applies computational methods from structural biology, molecular modelling, protein design, scientific data processing and computational geometry.
-                </p>
-
-                <p style="color: #e8f0f8; margin-bottom: 0.6rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    Where qFoldIT uses third-party scientific software, libraries, datasets, models, algorithms or repositories, those components remain subject to their respective licences and terms.
-                </p>
-
-                <p style="color: #e8f0f8; margin-bottom: 0.6rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    Scientific outputs generated by qFoldIT should be interpreted according to the applicable computational methods, input data, models and validation procedures. Professional credentials of team members do not constitute a guarantee that every generated model, simulation or scientific result is experimentally validated.
-                </p>
-
-                <h3><i class="fas fa-shield-alt"></i> Team Verification Notice</h3>
-
-                <p style="color: #e8f0f8; margin-bottom: 0.6rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    The qFoldIT GitHub organization assigns <strong>Owner-level administrative roles</strong> to members of its development organization. GitHub Owner status refers specifically to administrative authority within the qFoldIT GitHub organization.
-                </p>
-
-                <p style="color: #e8f0f8; margin-bottom: 0.6rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    An individual's Owner status does not, by itself, constitute a statement concerning:
-                </p>
-
-                <ul style="color: #e8f0f8; margin-left: 1.5rem; margin-bottom: 0.6rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem); list-style: none;">
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• corporate ownership of qFoldIT;</li>
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• employment by a third-party organization;</li>
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• copyright ownership of every project associated with that individual;</li>
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• ownership of third-party intellectual property;</li>
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• licensing of third-party trademarks, characters, artwork or game assets;</li>
-                    <li style="margin-bottom: 0.2rem; padding-left: 1.2rem; position: relative;">• endorsement or sponsorship by an individual's university, laboratory, employer, publisher or other organization.</li>
-                </ul>
-
-                <p style="color: #e8f0f8; margin-bottom: 0.6rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    The professional and academic affiliations displayed in this section are provided to document the team's <strong>verifiable professional background and technical expertise</strong>.
-                </p>
-
-                <h3><i class="fas fa-gavel"></i> Third-Party Rights</h3>
-
-                <p style="color: #e8f0f8; margin-bottom: 0.6rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    References to universities, laboratories, companies, studios, publishers, games, films, characters, brands, franchises, trademarks or other third-party properties are provided for professional, technical, scientific, historical, research or identification purposes.
-                </p>
-
-                <p style="color: #e8f0f8; margin-bottom: 0.6rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    Unless expressly stated otherwise, such references do <strong>not</strong> imply endorsement, sponsorship, certification, partnership, employment, licensing, authorization or official affiliation between qFoldIT and the referenced third party.
-                </p>
-
-                <p style="color: #e8f0f8; margin-bottom: 0.6rem; font-size: clamp(0.95rem, 1.1vw, 1.1rem);">
-                    All third-party intellectual-property rights remain with their respective owners and are governed by the applicable licences, agreements and laws.
-                </p>
-
-                <div class="team-verification">
-                    <strong>Verification Scope:</strong> <strong>GitHub Organization Owner</strong> means that the individual has been granted the Owner role within the qFoldIT GitHub organization. GitHub documentation defines organization owners as having full administrative access to the organization and its repositories.
-                    <br><br>
-                    This table documents <strong>organizational membership, professional credentials, project participation, and publicly verifiable technical experience</strong>. It does not, by itself, establish copyright ownership of every project listed, employment by any third-party company, or ownership of third-party intellectual property.
-                    <br><br>
-                    Professional credits and previous work are attributed to the respective individual contributor. References to commercial games, publishers, studios, entertainment franchises, trademarks, characters, or other third-party properties do not imply endorsement, sponsorship, certification, licensing, or official affiliation with qFoldIT unless expressly stated.
-                    <br><br>
-                    Where available, primary links to GitHub profiles, repositories, official creator profiles, professional portfolios, research profiles, and project pages should be used as the evidence source.
-                </div>
-            </div>
-            -->
-        
-            <div class="table-section legal-note">
-                <p style="color: #FFF; text-align: justify;">
-                    <strong>Legal Disclaimer:</strong> qFoldIT is an independent open-source scientific automation and infrastructure platform. qFoldIT does not hold, claim, or transfer commercial licenses for intellectual property owned by The Walt Disney Company, Warner Bros. Discovery, The LEGO Group, or Epic Games, Inc. All references to specific brands, universes, or assets indicate runtime compatibility validation within the Unreal Engine 5/6 (UE5/UE6) / UEFN ecosystem. Visual assets are rendered natively on the client-side under Epic Games' end-user agreements. The core software operates strictly on abstract mathematical data graphs (UAG) via remote MCP servers.
-                </p>
-            </div>
-
-        <!--
-        </div>
-        -->
-
         <div class="footer-wrapper">
             <div class="platform-icons">
-                <a href="https://store.epicgames.com/ru/p/fortnite" target="_blank" aria-label="Epic Games" title="Epic Games">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18.723 2.5c1.102 0 1.505.401 1.506 1.487v13.244c0 .17-.032.477-.087.608a.9.9 0 0 1-.21.334c-.107.099-.29.202-.378.242l-7.127 3a1.1 1.1 0 0 1-.853 0l-7.127-3a1.7 1.7 0 0 1-.378-.241.9.9 0 0 1-.21-.335c-.055-.131-.086-.438-.086-.608V3.986c0-1.086.403-1.487 1.505-1.487zM9.324 18.485a.06.06 0 0 0-.036.054q0 .012.005.022a.06.06 0 0 0 .031.032l2.58 1.093a.23.23 0 0 0 .181 0l2.6-1.093.02-.013.012-.018.005-.023-.005-.022-.013-.019-.019-.013-.022-.005H9.347zM7.3 13.87q-.259 0-.48.088a1.15 1.15 0 0 0-.632.61q-.091.208-.091.45v.006q0 .25.092.46.093.21.255.36.164.152.385.237.222.085.484.085.306 0 .55-.098.24-.098.42-.243v-.994H7.255v.45h.44v.267a.64.64 0 0 1-.357.092.6.6 0 0 1-.437-.173.6.6 0 0 1-.126-.193.7.7 0 0 1-.044-.247v-.006a.63.63 0 0 1 .165-.43.57.57 0 0 1 .406-.176q.166 0 .293.054a1 1 0 0 1 .247.154l.363-.432q-.18-.151-.393-.236a1.4 1.4 0 0 0-.513-.085m9.635.005a1.2 1.2 0 0 0-.362.052.8.8 0 0 0-.272.147.63.63 0 0 0-.232.508v.007q0 .17.066.285.065.115.178.192.114.078.267.126.153.05.332.09.115.025.187.05a.6.6 0 0 1 .115.048.16.16 0 0 1 .058.053q.016.026.017.06v.007a.12.12 0 0 1-.065.112.4.4 0 0 1-.19.04q-.39 0-.725-.265l-.344.406q.207.183.476.275.27.091.57.091.204 0 .37-.049a.8.8 0 0 0 .285-.141.7.7 0 0 0 .184-.226.7.7 0 0 0 .065-.304v-.005a.6.6 0 0 0-.058-.268.5.5 0 0 0-.166-.19 1 1 0 0 0-.263-.134 3 3 0 0 0-.347-.097 2 2 0 0 1-.19-.049 1 1 0 0 1-.117-.047.16.16 0 0 1-.061-.051.12.12 0 0 1-.018-.067v-.007q.001-.06.056-.1a.3.3 0 0 1 .168-.041q.15 0 .31.056.162.055.315.162l.31-.432a1.3 1.3 0 0 0-.408-.22q-.225-.075-.511-.074m-8.455 2.244h.652l.16-.394h.861l.163.394h.665l-.953-2.224h-.596zm2.717 0h.607v-1.262l.568.858h.013l.571-.864v1.268h.616V13.91h-.654l-.533.855-.533-.855h-.655zm2.79 0h1.812v-.52h-1.2v-.35h1.073v-.482h-1.073v-.335h1.184v-.52h-1.797zm-4.012-.87h-.502l.252-.628zM15.946 4.82c-.914 0-1.367.448-1.367 1.353v4.705c0 .906.453 1.352 1.368 1.352h.557c.915 0 1.367-.447 1.367-1.352V9.182h-1.104v1.643c0 .292-.137.427-.42.427h-.211c-.294 0-.43-.135-.43-.427v-4.6c0-.29.135-.426.43-.426h.19c.283 0 .42.135.42.427V7.65h1.104V6.163c0-.905-.442-1.343-1.357-1.343zM6.15 12.17h2.524v-1.01H7.275V8.963h1.326v-1.01H7.275v-2.06h1.378v-1.01H6.15zm3.068 0h1.125V9.525h.641c.915 0 1.368-.448 1.368-1.353V6.236c0-.906-.453-1.353-1.368-1.353H9.218zm3.641-.001h1.125V4.883H12.86zm-2.053-6.307c.283 0 .42.135.42.427V8.12c0 .291-.136.427-.42.427h-.463V5.86z"/>
-                    </svg>
-                </a>
                 <a href="https://www.unrealengine.com/ru/" target="_blank" aria-label="Unreal Engine" title="Unreal Engine">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2m-.906 3.948a6.2 6.2 0 0 0-3.109 1.434 6.09 6.09 0 0 0-2.106 4.665s.612-1.915 1.38-2.092a.742.742 0 0 1 .93.742v4.495c0 .456-.294.555-.565.55a2.4 2.4 0 0 1-.542-.101 6.12 6.12 0 0 0 4.837 2.48l1.657-1.666.982 1.105c2.445-1.155 3.212-3.289 3.384-4.12-.894.916-1.883 1.844-2.548 1.202 0-.035-.037-3.437-.037-4.835 0-1.883 1.78-3.288 1.793-3.3-.986.176-2.17.527-3.427 1.76q-.17.17-.322.355c-.538-.412-1.237-.289-1.237-.289.377.207.754.811.754 1.31v4.91c-.012.011-.827.724-1.456.724a.9.9 0 0 1-.732-.37 1 1 0 0 1-.125-.215V8.626c-.187.154-.82.282-.82-.769 0-.653.47-1.431 1.309-1.909"/>
