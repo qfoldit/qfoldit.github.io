@@ -248,6 +248,7 @@
             letter-spacing: 0.15em;
             text-transform: uppercase;
             color: var(--gold-glow);
+            text-align: center;
         }
 
         .source-credit {
