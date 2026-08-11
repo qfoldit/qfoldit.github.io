@@ -1,0 +1,287 @@
+:root {
+            --bg-deep: #050505;
+            --gold-glow: #D4AF37;
+            --gold-dim: #9A7B1C;
+            --text-main: #F5F5F7;
+            --text-muted: #8E8E93;
+            --border-line: rgba(212, 175, 55, 0.15);
+            --panel-bg: rgba(10, 10, 10, 0.75);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background-color: var(--bg-deep);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--text-main);
+            position: relative;
+        }
+
+        /* 3D Viewport Background Canvas */
+        #simulation-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* Cinematic HUD Overlay */
+        .hud-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px;
+            background: radial-gradient(circle at center, transparent 30%, rgba(5,5,5,0.6) 100%);
+        }
+
+        .interactive {
+            pointer-events: auto;
+        }
+
+        /* Top Header System */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .brand-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .logo-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #FFF 0%, var(--gold-glow) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* Core Node Status Indicator */
+        .mcp-status-node {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-line);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 12px 24px;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--gold-glow);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--gold-glow);
+            animation: pulse 2s infinite;
+        }
+
+        .status-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--text-main);
+        }
+
+        /* Main Scientific Center Statement */
+        .center-matrix {
+            align-self: center;
+            text-align: center;
+            max-width: 720px;
+            margin-top: -40px;
+        }
+
+        h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 44px;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+
+        h1 strong {
+            font-weight: 700;
+            color: var(--gold-glow);
+        }
+
+        .manifesto-pitch {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        /* Lower Telemetry Deck */
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            width: 100%;
+        }
+
+        .telemetry-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(120px, auto));
+            gap: 40px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-line);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 20px 40px;
+            border-radius: 16px;
+        }
+
+        .metric-block {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .metric-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+        }
+
+        .metric-value {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* Call To Action Controls */
+        .action-deck {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-premium {
+            background: linear-gradient(135deg, var(--gold-glow) 0%, var(--gold-dim) 100%);
+            border: none;
+            color: #050505;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Sources / attribution deck */
+        .sources-deck {
+            display: flex;
+            gap: 16px;
+            margin: 24px 0;
+            align-self: center;
+        }
+
+        .source-chip {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-line);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 10px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .source-chip:hover {
+            border-color: var(--gold-glow);
+            transform: translateY(-2px);
+        }
+
+        .source-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold-glow);
+        }
+
+        .source-credit {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border-line);
+            color: var(--text-main);
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gold-glow);
+            color: var(--gold-glow);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(212, 175, 55, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+
+        @media (max-width: 768px) {
+            .hud-layer { padding: 20px; }
+            h1 { font-size: 32px; }
+            .telemetry-grid { display: none; }
+        }
