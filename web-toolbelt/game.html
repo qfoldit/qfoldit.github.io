@@ -108,13 +108,13 @@
             </p>
             <div class="lab-pdb-row">
                 <select id="pdb-preset-select" onchange="labApplyPdbPreset()">
-                    <option value="">Choose a known structure…</option> <br>
+                    <option value="">Choose a known structure…</option>
                     <option value="6VXX">SARS-CoV-2 spike glycoprotein (6VXX)</option>
                     <option value="3CSY">Ebola virus glycoprotein, prefusion (3CSY)</option>
                     <option value="2X8L">Malaria — P. falciparum lactate dehydrogenase (2X8L)</option>
                     <option value="custom">Custom PDB ID…</option>
                 </select>
-            </div>
+            </div> <br>
             <div class="lab-pdb-row">
                 <input type="text" id="pdb-id-input" placeholder="PDB ID" value="6VXX" maxlength="4">
                 <button class="lab-btn" onclick="labLoadPdb()"><i class="fa-solid fa-magnifying-glass"></i> Load structure</button>
