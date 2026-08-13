@@ -108,7 +108,7 @@
             </p>
             <div class="lab-pdb-row">
                 <select id="pdb-preset-select" onchange="labApplyPdbPreset()">
-                    <option value="">Choose a known structure…</option>
+                    <option value="">Choose a known structure…</option> <br>
                     <option value="6VXX">SARS-CoV-2 spike glycoprotein (6VXX)</option>
                     <option value="3CSY">Ebola virus glycoprotein, prefusion (3CSY)</option>
                     <option value="2X8L">Malaria — P. falciparum lactate dehydrogenase (2X8L)</option>
@@ -166,10 +166,10 @@
             <div class="lab-pdb-row">
                 <input type="text" id="vc-commit-message" placeholder="Commit message" maxlength="80">
                 <button class="lab-btn" onclick="vcCommit()"><i class="fa-solid fa-code-commit"></i> Commit</button>
-            </div>
+            </div> <br>
             <div class="lab-pdb-row">
                 <select id="vc-branch-select" onchange="vcSwitchBranch(this.value)"></select>
-            </div>
+            </div> <br>
             <div class="lab-pdb-row">
                 <input type="text" id="vc-branch-name" placeholder="New branch name" maxlength="24">
                 <button class="lab-btn" onclick="vcCreateBranch()"><i class="fa-solid fa-code-branch"></i> Branch</button>
