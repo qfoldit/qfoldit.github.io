@@ -232,6 +232,8 @@ For inquiries: **qFoldIT@gmail.com** or reach out via our [website](https://fold
 
 ---
 
+<!--
+
 ## 📄 License & Legal
 
 - **Proprietary components**: Game client, certain visual assets, and the “Stop in Time” mechanic are protected by commercial licenses.
@@ -258,6 +260,8 @@ For inquiries: **qFoldIT@gmail.com** or reach out via our [website](https://fold
 - The **Ashanti royal lineage** for the symbols Sankofa and Gye Nyame, inspiring our mission to bridge past wisdom with future innovation.
 
 ---
+
+-->
 
 **qFoldIT – where every player becomes a co‑inventor.**  
 *Sankofa: we retrieve wisdom from the past to build the future.*  
