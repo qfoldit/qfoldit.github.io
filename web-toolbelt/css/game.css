@@ -1,0 +1,584 @@
+/* Display / HUD font.
+ * The person asked to pull Fortnite's actual logo/UI face (Burbank Big Condensed) from an
+ * unofficial mirror (foldnite.github.io). That font is a commercial House Industries release
+ * that Epic Games licenses for Fortnite; it isn't ours to redistribute, and hotlinking an
+ * unauthorized mirror carries real copyright/trademark risk plus the reliability risk of a
+ * third-party GitHub Pages host disappearing. "Big Shoulders Display" is a free, properly
+ * licensed (SIL Open Font License) condensed/heavy display face from Google Fonts that gives
+ * the same chunky game-HUD feel without any of that risk. Swap --font-hud below if you later
+ * secure a proper Burbank license. */
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&display=swap');
+
+:root {
+            --brand: #007bff;
+            --lab: #16e0bd;
+            --lab-dark: #0b1220;
+            --lab-panel: #121a2b;
+            --font-hud: 'Big Shoulders Display', 'Segoe UI', sans-serif;
+        }
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* ---------- Players / P2P graph ---------- */
+        #p2p-graph-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            z-index: 10;
+            cursor: pointer;
+            user-select: none;
+            padding: 0;
+        }
+        #p2p-graph-container:hover { transform: scale(1.05); }
+        #p2p-graph { display: block; }
+
+        /* ---------- Interaction menu ---------- */
+        #interaction-menu {
+            display: none;
+            position: fixed;
+            background: white;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+            z-index: 2000;
+            min-width: 200px;
+        }
+        .menu-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.2s;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .menu-item:hover { background: #f0f7ff; color: #007bff; }
+        .menu-item.disabled { color: #ccc; cursor: not-allowed; }
+        .menu-header {
+            font-weight: bold;
+            font-family: var(--font-hud);
+            letter-spacing: 0.02em;
+            font-size: 15px;
+            padding: 5px 15px 10px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 5px;
+            color: #666;
+        }
+
+        /* ---------- Nickname modal ---------- */
+        #nickname-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 3000;
+            text-align: center;
+        }
+        #nickname-modal h3 {
+            font-family: var(--font-hud);
+            font-weight: 900;
+            letter-spacing: 0.02em;
+            font-size: 22px;
+            margin: 0 0 14px;
+        }
+        #nickname-modal input {
+            padding: 10px;
+            width: 200px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            outline: none;
+        }
+        #nickname-modal button {
+            padding: 10px 25px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #character-picker-title {
+            margin: 4px 0 10px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #666;
+        }
+        #character-picker {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .character-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            width: 76px;
+            padding: 10px 6px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            font-size: 11px;
+            color: #555;
+            transition: all 0.15s;
+        }
+        .character-option i { font-size: 20px; color: #999; }
+        .character-option:hover { border-color: #99c8ff; }
+        .character-option.selected { border-color: #007bff; background: #f0f7ff; }
+        .character-option.selected i, .character-option.selected span { color: #007bff; }
+
+        /* ---------- Chat ---------- */
+        #chat-modal {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 320px;
+            max-height: 400px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.25);
+            z-index: 2500;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        #chat-header {
+            background: #007bff;
+            color: white;
+            padding: 12px 16px;
+            font-weight: bold;
+            font-family: var(--font-hud);
+            letter-spacing: 0.02em;
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px;
+            background: #f9f9f9;
+            min-height: 150px;
+            max-height: 250px;
+            font-size: 14px;
+        }
+        .chat-msg { margin-bottom: 8px; padding: 6px 10px; border-radius: 10px; max-width: 80%; word-wrap: break-word; }
+        .chat-msg.mine { background: #007bff; color: white; margin-left: auto; }
+        .chat-msg.other { background: #e5e5ea; color: #333; }
+        .chat-time { font-size: 10px; opacity: 0.7; display: block; margin-top: 2px; }
+        #chat-input-area { display: flex; border-top: 1px solid #eee; padding: 8px; background: white; }
+        #chat-input { flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 8px 14px; outline: none; font-size: 14px; }
+        #chat-send { background: #007bff; color: white; border: none; border-radius: 20px; padding: 8px 16px; margin-left: 8px; cursor: pointer; font-weight: bold; }
+
+        /* ---------- Loading ---------- */
+        #loading-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            gap: 14px;
+        }
+        .spinner {
+            width: 50px; height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #007bff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* ---------- Notifications ---------- */
+        #notification-container {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            pointer-events: none;
+        }
+        .notification {
+            background: rgba(0,0,0,0.85);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 28px;
+            font-size: 15px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            animation: notif-slide-in 0.4s ease-out, notif-fade-out 0.4s 2.6s forwards;
+            max-width: 340px;
+            text-align: center;
+            pointer-events: auto;
+        }
+        .notification.persistent { animation: notif-slide-in 0.4s ease-out; }
+        @keyframes notif-slide-in {
+            from { opacity: 0; transform: translateY(-30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        @keyframes notif-fade-out {
+            from { opacity: 1; transform: translateY(0) scale(1); }
+            to { opacity: 0; transform: translateY(-20px) scale(0.9); }
+        }
+
+        /* ---------- qFoldIT Science Lab (pop-science skin over the standardized WebMCP layer) ---------- */
+        #lab-toggle {
+            position: fixed;
+            left: 20px;
+            bottom: 30px;
+            z-index: 2600;
+            background: linear-gradient(135deg, var(--lab-dark), #1c2c4a);
+            color: var(--lab);
+            border: 1px solid rgba(22,224,189,0.5);
+            padding: 12px 18px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-family: var(--font-hud);
+            letter-spacing: 0.03em;
+            font-size: 15px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        #lab-toggle .dot {
+            width: 9px; height: 9px; border-radius: 50%;
+            background: #666;
+            box-shadow: 0 0 6px #666;
+        }
+        #lab-toggle .dot.online { background: var(--lab); box-shadow: 0 0 8px var(--lab); }
+
+        #lab-panel {
+            display: none;
+            position: fixed;
+            left: 20px;
+            bottom: 90px;
+            width: 340px;
+            max-height: 72vh;
+            background: var(--lab-panel);
+            color: #eaf6ff;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            z-index: 2600;
+            overflow: hidden;
+            flex-direction: column;
+            font-size: 13px;
+            border: 1px solid rgba(22,224,189,0.25);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        #lab-panel::-webkit-scrollbar { display: none; width: 0; height: 0; }
+        #lab-panel-header {
+            background: linear-gradient(135deg, #0b1220, #16233d);
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(22,224,189,0.2);
+        }
+        #lab-panel-header h3 { margin: 0; font-size: 17px; color: var(--lab); font-family: var(--font-hud); letter-spacing: 0.03em; }
+        #lab-panel-header small { display: block; color: #8fa3c0; font-weight: normal; margin-top: 2px; }
+        #lab-panel-body {
+            padding: 14px 16px;
+            overflow-y: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        #lab-panel-body::-webkit-scrollbar { display: none; width: 0; height: 0; }
+        .lab-section { margin-bottom: 16px; }
+        .lab-section h4 {
+            margin: 0 0 8px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #7fd8c9;
+        }
+        .lab-btn {
+            background: rgba(22,224,189,0.12);
+            border: 1px solid rgba(22,224,189,0.4);
+            color: #eaf6ff;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12.5px;
+            margin: 0 6px 6px 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.15s;
+        }
+        .lab-btn:hover { background: rgba(22,224,189,0.28); }
+        .lab-btn.danger { border-color: rgba(255,99,99,0.5); }
+        .lab-btn.danger:hover { background: rgba(255,99,99,0.18); }
+        .lab-note {
+            font-size: 11px;
+            line-height: 1.5;
+            color: #8fa3c0;
+            margin: 0 0 10px;
+        }
+        .lab-pdb-row { display: flex; gap: 6px; }
+        #pdb-id-input {
+            flex: 1;
+            min-width: 0;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(22,224,189,0.35);
+            color: #eaf6ff;
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 12.5px;
+            text-transform: uppercase;
+            outline: none;
+        }
+        #pdb-id-input::placeholder { color: #6f84a0; text-transform: none; }
+        #vc-commit-message, #vc-branch-name {
+            min-width: 0;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(22,224,189,0.35);
+            color: #eaf6ff;
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 12.5px;
+            outline: none;
+        }
+        #vc-commit-message::placeholder, #vc-branch-name::placeholder { color: #6f84a0; }
+        #pdb-preset-select {
+            width: 100%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(22,224,189,0.35);
+            color: #eaf6ff;
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 12.5px;
+            outline: none;
+        }
+        #pdb-preset-select option { background: #121a2b; color: #eaf6ff; }
+
+        #vc-branch-select {
+            width: 100%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(22,224,189,0.35);
+            color: #eaf6ff;
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 12.5px;
+            outline: none;
+        }
+        #vc-branch-select option { background: #121a2b; color: #eaf6ff; }
+        #vc-commit-message, #vc-branch-name { flex: 1; }
+        #vc-history-list { max-height: 150px; overflow-y: auto; margin-top: 8px; scrollbar-width: none; -ms-overflow-style: none; }
+        #vc-history-list::-webkit-scrollbar { display: none; width: 0; height: 0; }
+        .vc-revision {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding: 7px 9px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.03);
+            margin-bottom: 4px;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        .vc-revision:hover { border-color: rgba(22,224,189,0.35); }
+        .vc-revision.current { border-color: var(--lab); background: rgba(22,224,189,0.08); }
+        .vc-hash { font-family: 'Consolas', 'Courier New', monospace; font-size: 10.5px; color: var(--lab); }
+        .vc-msg { font-size: 12px; color: #eaf6ff; }
+        .vc-meta { font-size: 10px; color: #7f92ad; }
+        #vc-empty { color: #7f92ad; font-style: italic; font-size: 12px; margin-top: 6px; }
+        .lab-telemetry {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .lab-metric {
+            background: rgba(255,255,255,0.04);
+            border-radius: 8px;
+            padding: 8px 10px;
+        }
+        .lab-metric .val { font-size: 16px; font-weight: bold; color: var(--lab); }
+        .lab-metric .lbl { font-size: 10.5px; color: #9db3d0; text-transform: uppercase; }
+        #lab-object-list {
+            list-style: none; margin: 0; padding: 0; max-height: 140px; overflow-y: auto;
+            scrollbar-width: none; -ms-overflow-style: none;
+        }
+        #lab-object-list::-webkit-scrollbar { display: none; width: 0; height: 0; }
+        #lab-object-list li {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 6px 8px; border-radius: 6px; background: rgba(255,255,255,0.03);
+            margin-bottom: 4px;
+        }
+        #lab-object-list li span.rm { cursor: pointer; color: #ff8080; }
+        #lab-empty { color: #7f92ad; font-style: italic; }
+        #lab-log {
+            background: #060a12;
+            border-radius: 8px;
+            padding: 8px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 11px;
+            max-height: 130px;
+            overflow-y: auto;
+            color: #7fe0c9;
+            line-height: 1.5;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        #lab-log::-webkit-scrollbar { display: none; width: 0; height: 0; }
+        #lab-log .call-name { color: var(--lab); }
+        #lab-panel-footer {
+            padding: 10px 16px;
+            border-top: 1px solid rgba(22,224,189,0.15);
+            font-size: 11px;
+            color: #7f92ad;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #lab-panel-footer a { color: #7fd8c9; text-decoration: none; }
+        #lab-panel-footer a:hover { text-decoration: underline; }
+
+        #about-modal {
+            display: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            z-index: 5000;
+            max-width: 420px;
+            font-size: 13.5px;
+            line-height: 1.6;
+        }
+        #about-modal h3 { margin-top: 0; }
+        #about-modal button {
+            margin-top: 14px; padding: 8px 18px; border: none; border-radius: 8px;
+            background: #007bff; color: white; cursor: pointer; font-weight: bold;
+        }
+        #viewport-preview {
+            display: none;
+            position: fixed;
+            z-index: 5000;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: #000;
+            padding: 10px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+        #viewport-preview img { max-width: 60vw; max-height: 60vh; display: block; border-radius: 6px; }
+        #viewport-preview .actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 8px; }
+        #viewport-preview button {
+            padding: 6px 14px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold;
+        }
+
+        /* ---------- Mobile touch controls ---------- */
+        /* Hidden by default; shown only when JS detects a touch-capable device (body.is-touch),
+         * so desktop mouse/keyboard users never see an on-screen joystick they don't need. */
+        #mobile-controls { display: none; }
+        body.is-touch #mobile-controls { display: block; }
+
+        /* Desktop-only affordances that make no sense on touch (hover menu, drag-to-pan graph). */
+        body.is-touch #p2p-graph-container { opacity: 0.9; }
+
+        #joystick-base {
+            position: fixed;
+            left: 26px;
+            bottom: 26px;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: rgba(20, 20, 20, 0.35);
+            border: 2px solid rgba(255,255,255,0.5);
+            z-index: 2400;
+            touch-action: none;
+        }
+        #joystick-knob {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 48px; height: 48px;
+            margin: -24px 0 0 -24px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.85);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            transition: transform 0.03s linear;
+            pointer-events: none;
+        }
+
+        #mobile-action-buttons {
+            position: fixed;
+            right: 20px;
+            bottom: 26px;
+            z-index: 2400;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            align-items: center;
+        }
+        #mobile-action-buttons button {
+            width: 62px; height: 62px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.6);
+            background: rgba(0, 123, 255, 0.55);
+            color: white;
+            font-size: 22px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+            touch-action: none;
+        }
+        #mobile-run-btn { background: rgba(20,20,20,0.45); }
+        #mobile-run-btn.active { background: rgba(255,140,0,0.75); border-color: #ffb020; }
+
+        #mobile-crosshair {
+            position: fixed;
+            top: 50%; left: 50%;
+            width: 14px; height: 14px;
+            margin: -7px 0 0 -7px;
+            border: 2px solid rgba(255,255,255,0.7);
+            border-radius: 50%;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* Comfortable tap targets for chat / interaction menu on touch screens. */
+        body.is-touch .menu-item { padding: 14px 18px; font-size: 15px; }
+        body.is-touch #chat-input, body.is-touch #chat-send { padding: 12px 16px; }
+
+        /* The joystick occupies the bottom-left corner on touch devices, so move the Science
+         * Lab entry point out of the way instead of letting them overlap. */
+        body.is-touch #lab-toggle { left: 16px; bottom: auto; top: 20px; }
+        body.is-touch #lab-panel { left: 16px; bottom: auto; top: 76px; max-height: 60vh; width: min(340px, calc(100vw - 32px)); }
+
+        /* Chat sits above the mobile action buttons instead of overlapping them, and fits narrow screens. */
+        body.is-touch #chat-modal { bottom: 160px; right: 16px; width: min(320px, calc(100vw - 32px)); }

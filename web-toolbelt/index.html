@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>WEB-TOOLBELT // Sovereign AI Simulation Sandbox</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+    <!-- Target injection for Three.js viewports -->
+    <canvas id="simulation-canvas"></canvas>
+
+    <!-- UI Overlay Systems -->
+    <div class="hud-layer">
+        
+        <!-- Top Nav Deck -->
+        <header>
+            <div class="brand-meta">
+                <div class="logo-text">Web-Toolbelt</div>
+                <div class="tagline">Sovereign AI Execution Layer</div>
+            </div>
+            <div class="mcp-status-node interactive" title="The WebMCP bridge and tool registry run inside game.html, not on this landing page.">
+                <div class="pulse-dot"></div>
+                <div class="status-text">MCP // BRIDGE READY IN SANDBOX</div>
+            </div>
+        </header>
+
+        <!-- Center Purpose Core -->
+        <div class="center-matrix">
+            <h1>Zero-Install <strong>3D Laboratory</strong><br>for Autonomous Agents</h1>
+            <p class="manifesto-pitch">
+                Bridging LLM cognitive reasoning with real-time browser physical worlds. Built on the Model Context
+                Protocol and Three.js to enable instant, zero-install multiplayer science sandboxes — scientific
+                state loading, session-synced experiments, and lightweight local physics previews — directly through
+                the qFoldIT Science Lab.
+            </p>
+        </div>
+
+        <!-- Attribution / related research this toolbelt draws on -->
+        <div class="sources-deck interactive">
+            <a class="source-chip" href="https://github.com/qfoldit/Virtual-Lab-Simulation" target="_blank" rel="noopener">
+                <span class="source-label">Protocol Authoring</span>
+                <span class="source-credit">Virtual-Lab-Simulation — Neil Voss</span>
+            </a>
+            <a class="source-chip" href="https://github.com/skandiz/DropleX" target="_blank" rel="noopener">
+                <span class="source-label">Droplet Research</span>
+                <span class="source-credit">DropleX — M. Scandola, with S. Holler (Univ. of Trento)</span>
+            </a>
+            <a class="source-chip" href="https://www.rcsb.org" target="_blank" rel="noopener">
+                <span class="source-label">Live Structure Data</span>
+                <span class="source-credit">RCSB Protein Data Bank — public API, reference data for CAMEO</span>
+            </a>
+        </div>
+
+        <!-- Lower Controls and Diagnostics -->
+        <footer>
+            <div class="telemetry-grid">
+                <div class="metric-block">
+                    <div class="metric-label">Engine Core</div>
+                    <div class="metric-value">Three.js r160</div>
+                </div>
+                <div class="metric-block">
+                    <div class="metric-label">Physics</div>
+                    <div class="metric-value">Local preview solver</div>
+                </div>
+                <div class="metric-block">
+                    <div class="metric-label">IO Protocol</div>
+                    <div class="metric-value">WebMCP v1.0</div>
+                </div>
+            </div>
+
+            <div class="action-deck interactive">
+                <button class="btn-premium" onclick="window.location.href='game.html'">Enter Sandbox</button>
+                <button class="btn-secondary" onclick="window.open('https://github.com/qfoldit/WEB-TOOLBELT', '_blank')">Source Repository</button>
+            </div>
+        </footer>
+
+    </div>
+
+    <script type="importmap">
+        { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+    </script>
+    <script type="module" src="js/index.js"></script>
+</body>
+</html>
