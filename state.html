@@ -1,0 +1,628 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>qFoldIT — Project Dashboard</title>
+<style>
+  :root{
+    --bg:#0b0f14;
+    --bg-panel:#11161d;
+    --bg-panel-2:#151b23;
+    --line:#232b36;
+    --ink:#e7ecf2;
+    --ink-dim:#8c98a8;
+    --ink-faint:#5c6b7d;
+    --accent:#5ee6c9;      /* quantum teal — signature accent */
+    --accent-soft:rgba(94,230,201,.12);
+    --amber:#e8a83c;
+    --amber-soft:rgba(232,168,60,.12);
+    --rose:#e8637a;
+    --rose-soft:rgba(232,99,122,.12);
+    --violet:#9d8cf0;
+    --violet-soft:rgba(157,140,240,.12);
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --sans: -apple-system, "Segoe UI", Inter, system-ui, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  ::-webkit-scrollbar{width:0;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(94,230,201,.07), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(157,140,240,.06), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  main{max-width:1180px;margin:0 auto;padding:56px 28px 90px}
+
+  /* ---------- hero ---------- */
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);flex:none}
+  h1{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(34px,5vw,54px);
+    line-height:1.06;
+    margin:0 0 14px;
+    letter-spacing:-.01em;
+  }
+  h1 em{font-style:italic;color:var(--accent)}
+  .hero-sub{
+    color:var(--ink-dim);
+    max-width:640px;
+    font-size:16px;
+    margin-bottom:6px;
+  }
+  .hero-meta{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--ink-faint,#5c6b7d);
+    margin-top:22px;
+    display:flex;flex-wrap:wrap;gap:6px 22px;
+  }
+  .hero-meta a{color:var(--ink-dim);text-decoration:none;border-bottom:1px dotted var(--line)}
+  .hero-meta a:hover{color:var(--accent);border-color:var(--accent)}
+
+  /* ---------- section scaffolding ---------- */
+  section{margin-top:64px}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+  h2{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:22px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .section-note{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint,#5c6b7d);text-align:right}
+
+  /* ---------- top metric strip ---------- */
+  .metric-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .metric{
+    background:var(--bg-panel);
+    padding:22px 18px;
+  }
+  .metric .n{
+    font-family:var(--mono);
+    font-size:30px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:-.02em;
+  }
+  .metric .l{font-size:12.5px;color:var(--ink-dim);margin-top:6px}
+
+  /* ---------- pipeline ---------- */
+  .pipeline{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:26px 28px;
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--ink-dim);
+  }
+  .pipeline .step{color:var(--ink);padding:3px 0}
+  .pipeline .arrow{color:var(--accent);padding-left:2px}
+  .pipeline .branch{padding-left:26px;position:relative}
+  .pipeline .branch .tag{color:var(--accent)}
+  .pipeline .status-ok{color:var(--accent)}
+  .pipeline .status-warn{color:var(--amber)}
+  .pipeline .status-info{color:var(--violet)}
+
+  /* ---------- cards ---------- */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px 20px 18px;
+    position:relative;
+  }
+  .card .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .card .name{font-family:var(--mono);font-weight:600;font-size:14px;letter-spacing:.01em}
+  .badge{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;
+    padding:3px 9px;border-radius:100px;white-space:nowrap;
+  }
+  .badge.ok{background:var(--accent-soft);color:var(--accent)}
+  .badge.warn{background:var(--amber-soft);color:var(--amber)}
+  .badge.info{background:var(--violet-soft);color:var(--violet)}
+  .badge.off{background:rgba(140,152,168,.1);color:var(--ink-dim)}
+  .card .stat-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-top:1px solid var(--line)}
+  .card .stat-row:first-of-type{border-top:none;margin-top:2px}
+  .card .stat-row .k{color:var(--ink-dim)}
+  .card .stat-row .v{font-family:var(--mono);text-align:right}
+  .card .foot{margin-top:12px;font-size:12px;color:var(--ink-dim)}
+
+  /* ---------- capability matrix ---------- */
+  .matrix-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px}
+  table.matrix{border-collapse:collapse;width:100%;min-width:640px;font-size:13px}
+  table.matrix th, table.matrix td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line)}
+  table.matrix thead th{
+    font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--ink-dim);background:var(--bg-panel-2);
+  }
+  table.matrix tbody th{font-weight:500;background:var(--bg-panel);white-space:nowrap}
+  table.matrix tbody tr:last-child td, table.matrix tbody tr:last-child th{border-bottom:none}
+  td.cell{text-align:center}
+  .pill{
+    display:inline-block;min-width:74px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.03em;
+    padding:4px 0;border-radius:8px;text-align: center;
+  }
+  .pill.success{background:var(--accent-soft);color:var(--accent)}
+  .pill.partial{background:var(--amber-soft);color:var(--amber)}
+  .pill.supported{background:var(--accent-soft);color:var(--accent)}
+  .pill.native{background:var(--violet-soft);color:var(--violet)}
+  .pill.na{background:transparent;color:var(--ink-faint,#5c6b7d)}
+
+  /* ---------- evidence list ---------- */
+  .evidence{display:flex;flex-direction:column;gap:10px}
+  .ev-row{
+    display:grid;grid-template-columns:38px 1fr auto;gap:14px;align-items:start;
+    background:var(--bg-panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px;
+  }
+  .ev-badge{
+    font-family:var(--mono);font-weight:700;font-size:13px;text-align:center;
+    border-radius:8px;padding:6px 0;
+  }
+  .ev-badge.E2{background:var(--accent-soft);color:var(--accent)}
+  .ev-badge.E1{background:var(--amber-soft);color:var(--amber)}
+  .ev-title{font-size:13.5px}
+  .ev-title b{font-weight:600}
+  .ev-basis{color:var(--ink-dim);font-size:12.5px;margin-top:3px}
+  .ev-ref{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint,#5c6b7d);white-space:nowrap;padding-top:3px}
+
+  /* ---------- ci ---------- */
+  .ci-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+  .ci-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .ci-card .name{font-family:var(--mono);font-size:13px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+  .ci-card .cmd{font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-top:8px;overflow-x:auto;white-space:pre}
+
+  /* ---------- repo list ---------- */
+  .repo-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .repo-group{background:var(--bg-panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .repo-group h3{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-dim);margin:0 0 10px;font-weight:500}
+  .repo-group ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+  .repo-group li{
+    font-family:var(--mono);font-size:11.5px;color:var(--ink);
+    background:var(--bg-panel-2);border:1px solid var(--line);border-radius:7px;padding:4px 9px;
+  }
+  .repo-group li.included{border-color:rgba(94,230,201,.35);color:var(--accent)}
+
+  /* ---------- roadmap ---------- */
+  .roadmap{display:flex;flex-direction:column;border-left:2px solid var(--line);margin-left:6px}
+  .rm-item{position:relative;padding:2px 0 26px 26px}
+  .rm-item::before{
+    content:"";position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--accent);
+  }
+  .rm-item .rm-tag{font-family:var(--mono);font-size:10.5px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em}
+  .rm-item .rm-body{font-size:13.5px;color:var(--ink-dim);margin-top:4px;max-width:760px}
+  .rm-item .rm-body b{color:var(--ink);font-weight:600}
+
+  footer{
+    margin-top:70px;padding-top:22px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:11.5px;color:var(--ink-faint,#5c6b7d);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  @media (max-width:640px){
+    main{padding:40px 18px 70px}
+    .hero-meta{flex-direction:column;gap:4px}
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <div class="eyebrow">qFoldIT · org.github.com/qfoldit · dashboard v1.1</div>
+  <h1>One scientific problem.<br><em>Five runtimes,</em> one canonical state.</h1>
+  <p class="hero-sub">A live snapshot of the qFoldIT workspace: engine toolbelts, the cross-engine capability
+  matrix, evidence levels behind each unlocked gameplay pattern, and what's verified vs. still open —
+  compiled from the reorganized workspace archive (<code>STATUS.md</code>, per-toolbelt manifests, the
+  reference compiler, and the org's own architecture doc). Updated 2026‑08‑13 11:30 to include
+  <b>WEB-TOOLBELT (src/)</b> and <b>QFOLDIT-STANDALONE</b> manifests and compile results.</p>
+  <div class="hero-meta">
+    <span>Snapshot date: 2026‑08‑13 11:30 UTC</span>
+    <span>Workspace: 637 files · ~68&nbsp;MB, reorganized into 5 top-level folders</span>
+    <span><a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a></span>
+    <span style="color:var(--accent)">Updated: WEB-TOOLBELT (src/) + QFOLDIT-STANDALONE now have qfoldit.adapter.json and compile results</span>
+  </div>
+
+  <!-- ============ TOP METRICS ============ -->
+  <section>
+    <div class="metric-grid">
+      <div class="metric"><div class="n">561+</div><div class="l">Registered tools across 4 toolbelts</div></div>
+      <div class="metric"><div class="n">103+</div><div class="l">Tool categories</div></div>
+      <div class="metric"><div class="n">5</div><div class="l">Deployment targets (3 engines + web + desktop)</div></div>
+      <div class="metric"><div class="n">27</div><div class="l">Public repos in the org</div></div>
+      <div class="metric"><div class="n">2 / 3</div><div class="l">Engines at 5/5 pattern compile success</div></div>
+      <div class="metric"><div class="n">1</div><div class="l">Pattern at evidence level E2</div></div>
+    </div>
+  </section>
+
+  <!-- ============ CONTROL PLANE ============ -->
+  <section>
+    <div class="section-head">
+      <h2>Control plane</h2>
+      <div class="section-note">scientific state → UAG → routing policy → engine toolbelts</div>
+    </div>
+    <div class="pipeline">
+      <div class="step">Scientific state <span class="arrow">↓</span></div>
+      <div class="step">Scientific experience model <span class="arrow">↓</span></div>
+      <div class="step">UAG — Universal Assembly Graph <span class="arrow">↓</span></div>
+      <div class="step">Capability registry + canonical actions <span class="arrow">↓</span></div>
+      <div class="step">Routing policy</div>
+      <div class="branch">├── <span class="tag">UEFN-TOOLBELT</span> — 356 tools, 55+ categories <span class="status-warn">(0/5 compile · adapter present, all capabilities partial)</span></div>
+      <div class="branch">├── <span class="tag">UNITY-TOOLBELT</span> — 109 tools, 24 categories <span class="status-ok">(5/5 compile · supported)</span></div>
+      <div class="branch">├── <span class="tag">UNIGINE-TOOLBELT</span> — 90 tools, 23 categories <span class="status-ok">(5/5 compile · supported)</span></div>
+      <div class="branch">├── <span class="tag">WEB-TOOLBELT</span> (src/) — 16 tools <span class="status-warn">(0/5 compile · manifest present, no UAG bridge / interaction / vis)</span></div>
+      <div class="branch">├── <span class="tag">WEB-TOOLBELT</span> (static/) — 6 WebMCP commands, live sandbox <span class="status-info">(presentation layer, not in compiler)</span></div>
+      <div class="branch">└── <span class="tag">QFOLDIT-STANDALONE</span> — 37 tools, desktop (Electron) <span class="status-warn">(0/5 compile · manifest present, blocked only by scientific.visualization on 2 patterns)</span></div>
+    </div>
+  </section>
+
+  <!-- ============ TOOLBELTS ============ -->
+  <section>
+    <div class="section-head">
+      <h2>Engine toolbelts</h2>
+      <div class="section-note">tool counts measured directly from source (decorator / attribute grep), not from stale registries</div>
+    </div>
+    <div class="card-grid">
+
+      <div class="card">
+        <div class="top"><span class="name">UEFN-TOOLBELT</span><span class="badge warn">Partial</span></div>
+        <div class="stat-row"><span class="k">Tools</span><span class="v">356 (org page: 358+)</span></div>
+        <div class="stat-row"><span class="k">Categories</span><span class="v">55+</span></div>
+        <div class="stat-row"><span class="k">Language</span><span class="v">Python</span></div>
+        <div class="stat-row"><span class="k">MCP mode</span><span class="v">external process</span></div>
+        <div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0</span></div>
+        <div class="stat-row"><span class="k">Test suite</span><span class="v">117 / 117 passing</span></div>
+        <div class="stat-row"><span class="k">Adapter manifest</span><span class="v">present (all capabilities partial)</span></div>
+        <div class="foot">No live-engine verification yet; all four gate capabilities are <b style="color:var(--amber)">partial</b>. The closest path to success is implementing the Python equivalents of Unity/UNIGINE's UAGBridgeTools.</div>
+      </div>
+
+      <div class="card">
+        <div class="top"><span class="name">UNITY-TOOLBELT</span><span class="badge ok">Supported</span></div>
+        <div class="stat-row"><span class="k">Tools</span><span class="v">109 (spec: 105 · org page: 102)</span></div>
+        <div class="stat-row"><span class="k">Categories</span><span class="v">24</span></div>
+        <div class="stat-row"><span class="k">Language</span><span class="v">C#</span></div>
+        <div class="stat-row"><span class="k">MCP mode</span><span class="v">native in-editor bridge</span></div>
+        <div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0 (attribution)</span></div>
+        <div class="stat-row"><span class="k">CI</span><span class="v">workflow added, unverified*</span></div>
+        <div class="stat-row"><span class="k">Compile result</span><span class="v" style="color:var(--accent)">5/5 success</span></div>
+        <div class="foot">Real live callback (<code>OnMouseDown → UnityEvent</code>) confirmed in <code>QFoldITInteractable.cs</code>.</div>
+      </div>
+
+      <div class="card">
+        <div class="top"><span class="name">UNIGINE-TOOLBELT</span><span class="badge ok">Supported</span></div>
+        <div class="stat-row"><span class="k">Tools</span><span class="v">90 (spec: 84)</span></div>
+        <div class="stat-row"><span class="k">Categories</span><span class="v">23</span></div>
+        <div class="stat-row"><span class="k">Language</span><span class="v">C#</span></div>
+        <div class="stat-row"><span class="k">MCP mode</span><span class="v">external process + official MCPBridge</span></div>
+        <div class="stat-row"><span class="k">License</span><span class="v">custom</span></div>
+        <div class="stat-row"><span class="k">CI</span><span class="v">6 / 6 tests passing</span></div>
+        <div class="stat-row"><span class="k">Compile result</span><span class="v" style="color:var(--accent)">5/5 success</span></div>
+        <div class="foot">Interaction is physics-selectability + persisted registry — honestly scoped as narrower than Unity's live callback.</div>
+      </div>
+
+      <div class="card">
+        <div class="top"><span class="name">WEB-TOOLBELT (src/)</span><span class="badge warn">Partial</span></div>
+        <div class="stat-row"><span class="k">Tools</span><span class="v">16 (measured from src/)</span></div>
+        <div class="stat-row"><span class="k">Stack</span><span class="v">TypeScript + Vite</span></div>
+        <div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0</span></div>
+        <div class="stat-row"><span class="k">Build</span><span class="v">tsc + vite — clean</span></div>
+        <div class="stat-row"><span class="k">Adapter manifest</span><span class="v">present (0/5 partial)</span></div>
+        <div class="stat-row"><span class="k">Compile result</span><span class="v" style="color:var(--amber)">0/5 success, 5/5 partial</span></div>
+        <div class="foot">No <code>interaction</code>, <code>geometry.procedural</code>, <code>camera</code>, <code>lighting</code>, or <code>scientific.visualization</code> — the least built-out MCP codebase.</div>
+      </div>
+
+      <div class="card">
+        <div class="top"><span class="name">QFOLDIT-STANDALONE</span><span class="badge warn">Partial (close)</span></div>
+        <div class="stat-row"><span class="k">Tools</span><span class="v">37 (13 categories)</span></div>
+        <div class="stat-row"><span class="k">Language</span><span class="v">TypeScript + Electron</span></div>
+        <div class="stat-row"><span class="k">MCP mode</span><span class="v">local WebSocket bridge, 127.0.0.1</span></div>
+        <div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0-only</span></div>
+        <div class="stat-row"><span class="k">Build</span><span class="v">node --check · electron-builder (win/mac/linux)</span></div>
+        <div class="stat-row"><span class="k">Adapter manifest</span><span class="v">present (0/5 partial)</span></div>
+        <div class="stat-row"><span class="k">Compile result</span><span class="v" style="color:var(--amber)">0/5 success, 2/5 blocked only by scientific.visualization</span></div>
+        <div class="foot">Offline-first desktop packaging of the WEB-TOOLBELT runtime. <b style="color:var(--accent)">The closest target to 5/5 success</b> — implementing <code>scientific_visualization_create</code> would flip 2 patterns to success.</div>
+      </div>
+
+      <div class="card">
+        <div class="top"><span class="name">WEB-TOOLBELT (static/)</span><span class="badge info">Live sandbox</span></div>
+        <div class="stat-row"><span class="k">Tools</span><span class="v">6 WebMCP commands</span></div>
+        <div class="stat-row"><span class="k">Stack</span><span class="v">Three.js + WebGPU + Rapier.js</span></div>
+        <div class="stat-row"><span class="k">Deploy</span><span class="v">qfoldit.github.io/web-toolbelt/</span></div>
+        <div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0 (core) + ARR (static site)</span></div>
+        <div class="stat-row"><span class="k">Build</span><span class="v">plain JS, no Vite</span></div>
+        <div class="foot">Not in the compiler — this is a separate presentation layer with real PDB fetching and multiplayer, but no MCP tool registry. It may be folded into <code>src/</code> in the future.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ CAPABILITY MATRIX ============ -->
+  <section>
+    <div class="section-head">
+      <h2>P0 / P1 / P2 capability matrix</h2>
+      <div class="section-note">from the framework's own roadmap — status per engine, on shipped code only</div>
+    </div>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead>
+          <tr><th>Capability</th><th>Priority</th><th style="text-align:center">UEFN</th><th style="text-align:center">Unity</th><th style="text-align:center">UNIGINE</th><th style="text-align:center">WEB-TOOLBELT (src/)</th><th style="text-align:center">QFOLDIT-STANDALONE</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>scientific.visualization</th><td>P0</td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill supported">supported</span></td>
+            <td class="cell"><span class="pill supported">supported</span></td>
+            <td class="cell"><span class="pill na">unsupported</span></td>
+            <td class="cell"><span class="pill na">unsupported</span></td>
+          </tr>
+          <tr>
+            <th>interaction</th><td>P0</td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill supported">supported</span></td>
+            <td class="cell"><span class="pill supported">supported</span></td>
+            <td class="cell"><span class="pill na">unsupported</span></td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+          </tr>
+          <tr>
+            <th>geometry.procedural</th><td>P1</td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill native">native</span></td>
+            <td class="cell"><span class="pill native">native</span></td>
+            <td class="cell"><span class="pill na">unsupported</span></td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+          </tr>
+          <tr>
+            <th>physics.joints</th><td>P2 (backlog)</td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill supported">supported</span></td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill na">unsupported</span></td>
+            <td class="cell"><span class="pill supported">supported</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ COMPILE RESULT ============ -->
+  <section>
+    <div class="section-head">
+      <h2>Cross-engine compile result</h2>
+      <div class="section-note">reference/compiler.py × gameplay-patterns.unlocked.json, re-run and confirmed with all manifests present</div>
+    </div>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead>
+          <tr><th>Pattern</th><th style="text-align:center">UEFN</th><th style="text-align:center">Unity</th><th style="text-align:center">UNIGINE</th><th style="text-align:center">WEB-TOOLBELT (src/)</th><th style="text-align:center">QFOLDIT-STANDALONE</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>protein_folding_construction</th>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill success">success</span></td>
+            <td class="cell"><span class="pill success">success</span></td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+          </tr>
+          <tr><th>quantum_ground_state_portal</th>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill success">success</span></td>
+            <td class="cell"><span class="pill success">success</span></td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+          </tr>
+          <tr><th>hp_lattice_spatial_puzzle</th>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill success">success</span></td>
+            <td class="cell"><span class="pill success">success</span></td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+          </tr>
+          <tr><th>admet_safety_strategy</th>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill success">success</span></td>
+            <td class="cell"><span class="pill success">success</span></td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+          </tr>
+          <tr><th>l_systems_procedural_construction</th>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill success">success</span></td>
+            <td class="cell"><span class="pill success">success</span></td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+            <td class="cell"><span class="pill partial">partial</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ EVIDENCE LEVELS ============ -->
+  <section>
+    <div class="section-head">
+      <h2>Evidence level per unlocked pattern</h2>
+      <div class="section-note">E2 = cross-validated against an independent method or literature benchmark · E1 = computational prediction only</div>
+    </div>
+    <div class="evidence">
+      <div class="ev-row">
+        <div class="ev-badge E2">E2</div>
+        <div><div class="ev-title"><b>quantum_ground_state_portal</b></div>
+          <div class="ev-basis">VQE result cross-checked against exact diagonalization <i>and</i> the published H₂/STO‑3G benchmark (−1.1373 Hartree) — the only pattern with two independent evidence types at once.</div>
+        </div>
+        <div class="ev-ref">qfoldit_quantum_lab</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-badge E1">E1</div>
+        <div><div class="ev-title"><b>protein_folding_construction</b></div>
+          <div class="ev-basis">Backend verified end-to-end; folding prediction itself not yet cross-checked against an independent method.</div>
+        </div>
+        <div class="ev-ref">protein_design_mcp</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-badge E1">E1</div>
+        <div><div class="ev-title"><b>hp_lattice_spatial_puzzle</b></div>
+          <div class="ev-basis">QAOA circuit run on a local simulator; no cross-model or benchmark comparison recorded yet.</div>
+        </div>
+        <div class="ev-ref">qfoldit_qfold_lab</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-badge E1">E1</div>
+        <div><div class="ev-title"><b>admet_safety_strategy</b></div>
+          <div class="ev-basis">Live, authorized third-party API — connected, not yet independently benchmark-validated. The least confirmed of the five despite being a real commercial service.</div>
+        </div>
+        <div class="ev-ref">boltz_api</div>
+      </div>
+      <div class="ev-row">
+        <div class="ev-badge E1">E1</div>
+        <div><div class="ev-title"><b>l_systems_procedural_construction</b></div>
+          <div class="ev-basis">Output field mapping flagged as best-effort from public docs, not independently inspected — first candidate for re-check once the schema is confirmed.</div>
+        </div>
+        <div class="ev-ref">qfoldit_plant_growth_lab</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CI / BUILD STATUS ============ -->
+  <section>
+    <div class="section-head">
+      <h2>CI &amp; build verification</h2>
+      <div class="section-note">what was actually re-run this pass, not just read</div>
+    </div>
+    <div class="ci-grid">
+      <div class="ci-card">
+        <div class="name">UEFN-TOOLBELT <span class="badge ok">verified</span></div>
+        <div class="cmd">pytest tests/  → 117/117 passing</div>
+      </div>
+      <div class="ci-card">
+        <div class="name">UNIGINE-TOOLBELT <span class="badge ok">verified</span></div>
+        <div class="cmd">pytest tests/test_mcp_server.py → 6/6 passing</div>
+      </div>
+      <div class="ci-card">
+        <div class="name">WEB-TOOLBELT (src/) <span class="badge ok">verified</span></div>
+        <div class="cmd">npm ci && npm run build → clean (vite/client types fix applied)</div>
+      </div>
+      <div class="ci-card">
+        <div class="name">UNITY-TOOLBELT <span class="badge warn">unverified*</span></div>
+        <div class="cmd">game-ci/unity-test-runner
+* needs a Unity license secret — not yet run by hand</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REPO INVENTORY ============ -->
+  <section>
+    <div class="section-head">
+      <h2>Org repository inventory</h2>
+      <div class="section-note">27 public repos on github.com/qfoldit · grouped by role · highlighted = in this workspace archive</div>
+    </div>
+    <div class="repo-groups">
+      <div class="repo-group">
+        <h3>Core stack — in this workspace</h3>
+        <ul>
+          <li class="included">UEFN-TOOLBELT</li>
+          <li class="included">UNITY-TOOLBELT</li>
+          <li class="included">UNIGINE-TOOLBELT</li>
+          <li class="included">WEB-TOOLBELT</li>
+          <li class="included">QFOLDIT-STANDALONE</li>
+        </ul>
+      </div>
+      <div class="repo-group">
+        <h3>Core stack — referenced, not in archive</h3>
+        <ul>
+          <li>Scientific-Object-Schema</li>
+          <li>Protein-Design-MCP</li>
+          <li>Atomic-MCP</li>
+          <li>UEFN-VERSE-MCP</li>
+          <li>science-skills</li>
+          <li>qfoldit.github.io</li>
+          <li>.github</li>
+        </ul>
+      </div>
+      <div class="repo-group">
+        <h3>Additional MCP servers</h3>
+        <ul>
+          <li>Game-MCP</li>
+          <li>Protein-MCP</li>
+          <li>qFold-MCP</li>
+        </ul>
+      </div>
+      <div class="repo-group">
+        <h3>Pre-publication / shared-only</h3>
+        <ul>
+          <li>engine-adapter-spec</li>
+          <li>scientific-gameplay-framework</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROADMAP ============ -->
+  <section>
+    <div class="section-head">
+      <h2>Suggested next steps</h2>
+      <div class="section-note">ordered by impact, none blocking the others</div>
+    </div>
+    <div class="roadmap">
+      <div class="rm-item">
+        <div class="rm-tag">Highest impact</div>
+        <div class="rm-body"><b>Implement <code>scientific.visualization</code> for QFOLDIT-STANDALONE.</b> This is the cheapest path to a third 5/5 target — the manifest already exists, and 2 of 5 patterns are blocked only by this capability. Work is just a <code>scientific_visualization_create</code> tool + a <code>scientific_subject</code> entry in UAG validator.</div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-tag">Quick win</div>
+        <div class="rm-body"><b>Run the Unity CI workflow once by hand</b> (<code>workflow_dispatch</code>) with a licensed Unity install — it's the one workflow in the workspace that hasn't produced a real green check yet.</div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-tag">Low risk</div>
+        <div class="rm-body"><b>Reconcile the three drifting tool-count figures</b> (org page vs. spec vs. direct count) by wiring a CI step that regenerates the count from source on every push, so it can't drift again.</div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-tag">Documentation sync</div>
+        <div class="rm-body"><b>Update <code>STATUS.md</code> and <code>ARCHITECTURE.md</code></b> to reflect that WEB-TOOLBELT (src/) and QFOLDIT-STANDALONE now have <code>qfoldit.adapter.json</code> and compile measurements — all current docs still refer to them as "no manifest".</div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-tag">Feature</div>
+        <div class="rm-body"><b>Port QFOLDIT-STANDALONE's <code>renderer/</code> modules back into WEB-TOOLBELT (src/)</b> — Standalone already has UAG bridge, physics joints, camera, lighting, animation, audio, asset loading. Copying those would close Web's gap in one pass.</div>
+      </div>
+      <div class="rm-item">
+        <div class="rm-tag">Registry</div>
+        <div class="rm-body"><b>Merge the two pending entries</b> in <code>05-drafts-pilot/drafts/science_mcp_registry.additions.json</code> once a live reachability check confirms them, per the schema's own gate rule.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Sources: STATUS.md · cross-engine-compile-report.md · per-toolbelt qfoldit.adapter.json · 03-org-docs/ARCHITECTURE.md</span>
+    <span>Built with the "never fabricate" rule — every number here traces to a file in the workspace</span>
+  </footer>
+
+</main>
+</body>
+</html>
