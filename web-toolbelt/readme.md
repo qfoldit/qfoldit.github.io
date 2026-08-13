@@ -5,7 +5,7 @@ standardized qFoldIT WebMCP tool bridge — the same tool contract shared
 across qFoldIT's other toolbelts (UEFN, Unity, UNIGINE) — wrapped in a
 playful, game-like front end.
 
-Live at: `github.com/qfoldit/qfoldit.github.io/web-toolbelt`
+Live at: `github.com/qfoldit/qfoldit.github.io/web-toolbelt/`
 Companion repo: `github.com/qfoldit/WEB-TOOLBELT`
 
 ## What's here
