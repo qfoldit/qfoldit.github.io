@@ -18,6 +18,8 @@ Realtime Statistics - [CAMEO: automated benchmarking of structure prediction ser
  <img src="https://qfoldit.github.io/img/posters/David_Baker_AT_FoldIT_LAB_OFFICE.png"/>
 </a>
 
+<!--
+
 ![](https://qfoldit.github.io/video/CGS_LOGO.png)
 ![](https://qfoldit.github.io/video/CGS_CENTER_WHITE.png)
 ![](https://qfoldit.github.io/video/GSRC.png)
@@ -38,6 +40,8 @@ Realtime Statistics - [CAMEO: automated benchmarking of structure prediction ser
 ![](https://qfoldit.github.io/img/1/logo/idmt.png)
 ![](https://qfoldit.github.io/img/1/logo/idmt_partners.png)
 
+-->
+
 *An open‑science partner of the [Ersilia Open Source Initiative](https://github.com/ersilia-os/) and [Visualizing biological data](https://vizbi.org/)*
 
 [![License](https://img.shields.io/badge/License-Proprietary%20with%20Open%20Components-blue)](#) [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/) [![Kubernetes](https://img.shields.io/badge/Kubernetes-1.28%2B-blue)](https://kubernetes.io/) [![Ersilia](https://img.shields.io/badge/Ersilia-Integrated-purple)](https://ersilia.io)
@@ -51,6 +55,9 @@ Realtime Statistics - [CAMEO: automated benchmarking of structure prediction ser
 We are proud to align with the **Ersilia Open Source Initiative**: we share the commitment to open, accessible AI tools for the Global South. qFoldIT extends Ersilia’s model hub with an interactive, gamified layer that scales scientific contribution to thousands of participants while maintaining rigorous open‑science principles.
 
 ---
+
+
+<!--
 
 ## 🌟 Team
 
@@ -73,6 +80,8 @@ qFoldIT brings together a world‑class, multidisciplinary team spanning drug di
 | **Dr. Hanae Henke** | Architect of Laboratory Precision | Global Marketing Manager at Eppendorf AG; expert in automated liquid handling and GLP standards. Advises on VR/AR lab training simulations and ensures alignment with real‑world protocols. |
 
 ---
+
+-->
 
 ## 🌍 Why qFoldIT ?
 
