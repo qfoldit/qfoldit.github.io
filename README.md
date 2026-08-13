@@ -147,6 +147,8 @@ qFoldIT inherits the proven citizen‑science mechanics of FoldIT but adds three
 2. **Direct commercialisation** – validated molecules are registered on a private blockchain (Proof of Authority) with authorship linked to the player’s Steam ID. Smart contracts distribute royalties automatically.
 3. **Psychological engagement** – the patented “Stop in Time” mechanic (RU2051730C1) lets players decide when to stop an experiment, balancing risk and reward—activating dopamine circuits and teaching decision‑making under uncertainty.
 
+<!--
+
 ### In‑Game Economy: Photons & Energy
 
 - **Photons** – premium currency pegged to a generic **Central Bank Digital Currency (CBDC)** framework. This provides a stable, transparent value store and can later be adapted to specific national digital currencies (e.g., eCedi, digital dollar, etc.). Photons are earned through gameplay or purchased; they are used for cosmetics, battle passes, and optional risk‑management items.
@@ -166,6 +168,8 @@ qFoldIT inherits the proven citizen‑science mechanics of FoldIT but adds three
 All transactions are recorded on a private blockchain, ensuring transparency and auditability.
 
 ---
+
+-->
 
 ## 🔓 Open Science & Reproducibility
 
