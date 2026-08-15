@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>qFoldIT — Unified Dashboard (v2.1) with INDUSTRIAL‑CAMEO Proxy</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+  :root{
+    --bg:#0b0f14;
+    --bg-panel:#11161d;
+    --bg-panel-2:#151b23;
+    --line:#232b36;
+    --ink:#e7ecf2;
+    --ink-dim:#8c98a8;
+    --ink-faint:#5c6b7d;
+    --accent:#5ee6c9;
+    --accent-soft:rgba(94,230,201,.12);
+    --amber:#e8a83c;
+    --amber-soft:rgba(232,168,60,.12);
+    --rose:#e8637a;
+    --rose-soft:rgba(232,99,122,.12);
+    --violet:#9d8cf0;
+    --violet-soft:rgba(157,140,240,.12);
+    --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    --sans: -apple-system, "Segoe UI", Inter, system-ui, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  ::-webkit-scrollbar{width:0;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 15% -10%, rgba(94,230,201,.07), transparent 60%),
+      radial-gradient(900px 500px at 100% 0%, rgba(157,140,240,.06), transparent 55%),
+      var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  main{max-width:1180px;margin:0 auto;padding:56px 28px 90px}
+
+  /* ---------- hero ---------- */
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow i{color:var(--accent);font-size:10px;flex:none;}
+  h1{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:clamp(34px,5vw,54px);
+    line-height:1.06;
+    margin:0 0 14px;
+    letter-spacing:-.01em;
+  }
+  h1 em{font-style:italic;color:var(--accent)}
+  .hero-sub{
+    color:var(--ink-dim);
+    max-width:640px;
+    font-size:16px;
+    margin-bottom:6px;
+  }
+  .hero-meta{
+    font-family:var(--mono);
+    font-size:12.5px;
+    color:var(--ink-faint);
+    margin-top:22px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px 22px;
+  }
+  .hero-meta a{color:var(--ink-dim);text-decoration:none;border-bottom:1px dotted var(--line)}
+  .hero-meta a:hover{color:var(--accent);border-color:var(--accent)}
+
+  /* ---------- sections ---------- */
+  section{margin-top:64px}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+  h2{
+    font-family:var(--serif);
+    font-weight:400;
+    font-size:22px;
+    margin:0;
+    letter-spacing:-.01em;
+  }
+  .section-note{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);text-align:right}
+
+  /* ---------- metrics ---------- */
+  .metric-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .metric{
+    background:var(--bg-panel);
+    padding:22px 18px;
+  }
+  .metric .n{
+    font-family:var(--mono);
+    font-size:30px;
+    font-weight:600;
+    color:var(--accent);
+    letter-spacing:-.02em;
+  }
+  .metric .n .sub{color:var(--ink-faint);font-size:18px;}
+  .metric .l{font-size:12.5px;color:var(--ink-dim);margin-top:6px}
+
+  /* ---------- cards ---------- */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px 20px 18px;
+  }
+  .card .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+  .card .name{font-family:var(--mono);font-weight:600;font-size:14px}
+  .badge{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;
+    padding:3px 9px;border-radius:100px;white-space:nowrap;
+  }
+  .badge.ok{background:var(--accent-soft);color:var(--accent)}
+  .badge.warn{background:var(--amber-soft);color:var(--amber)}
+  .badge.info{background:var(--violet-soft);color:var(--violet)}
+  .badge.off{background:rgba(140,152,168,.1);color:var(--ink-dim)}
+  .card .stat-row{display:flex;justify-content:space-between;font-size:13px;padding:5px 0;border-top:1px solid var(--line)}
+  .card .stat-row:first-of-type{border-top:none;margin-top:2px}
+  .card .stat-row .k{color:var(--ink-dim)}
+  .card .stat-row .v{font-family:var(--mono);text-align:right}
+  .card .foot{margin-top:12px;font-size:12px;color:var(--ink-dim)}
+
+  /* ---------- MDA ---------- */
+  .mda-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+  .mda-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:22px 22px 18px;
+  }
+  .mda-card h3{
+    font-family:var(--mono);
+    font-size:14px;
+    font-weight:600;
+    margin:0 0 8px;
+    color:var(--accent);
+  }
+  .mda-card .sub{font-size:12.5px;color:var(--ink-dim);margin-bottom:12px}
+  .mda-card .mda-item{margin:8px 0;padding-left:14px;border-left:2px solid var(--accent-soft)}
+  .mda-card .mda-item strong{color:var(--ink);font-weight:600}
+  .mda-card .mda-item .label{
+    font-family:var(--mono);font-size:11px;color:var(--accent);
+    text-transform:uppercase;letter-spacing:.04em;
+  }
+
+  /* ---------- modes ---------- */
+  .mode-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+  .mode-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 20px;
+  }
+  .mode-card .mode-title{
+    font-family:var(--mono);font-size:14px;font-weight:600;color:var(--accent);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .mode-card .mode-title .bartle{font-size:11px;font-weight:400;color:var(--ink-dim)}
+  .mode-card .mode-desc{font-size:12.5px;color:var(--ink-dim);margin:6px 0 10px}
+  .mode-card .mode-fit{font-size:12px;color:var(--ink);background:var(--bg-panel-2);border-radius:8px;padding:6px 10px}
+  .mode-card .mode-fit code{color:var(--accent)}
+
+  .scoring-box{
+    background:var(--bg-panel-2);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px 22px;
+    margin:16px 0;
+  }
+  .scoring-box .formula{
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--accent);
+    background:var(--bg);
+    padding:12px 16px;
+    border-radius:10px;
+    margin:8px 0;
+    white-space:pre-wrap;
+  }
+  .scoring-box .note{font-size:12.5px;color:var(--ink-dim);margin-top:6px}
+
+  .attribution-box{
+    background:var(--bg-panel-2);
+    border-left:3px solid var(--amber);
+    border-radius:10px;
+    padding:16px 20px;
+    margin:14px 0;
+  }
+  .attribution-box strong{color:var(--ink)}
+  .attribution-box .warning{color:var(--amber);font-size:12px;margin-top:6px}
+  .attribution-box .warning i{margin-right:6px}
+
+  /* ---------- onboarding ---------- */
+  .onboarding-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+  .onboarding-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:12px;
+    padding:16px 18px;
+    text-align:center;
+  }
+  .onboarding-card .tier{
+    font-family:var(--mono);font-size:11px;color:var(--accent);
+    text-transform:uppercase;letter-spacing:.06em;
+  }
+  .onboarding-card .title{font-weight:600;font-size:15px;margin:4px 0 2px}
+  .onboarding-card .desc{font-size:12.5px;color:var(--ink-dim)}
+
+  /* ---------- verticals ---------- */
+  .vert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .vert-card{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px 20px 18px;
+    border-top:3px solid var(--accent);
+  }
+  .vert-card .vert-title{
+    font-family:var(--mono);
+    font-size:14px;
+    font-weight:600;
+    color:var(--accent);
+  }
+  .vert-card .vert-sub{font-size:12px;color:var(--ink-dim);margin:4px 0 8px}
+  .vert-card .vert-desc{font-size:12.5px;color:var(--ink);margin-bottom:8px}
+  .vert-card .vert-validator{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--violet);
+    background:var(--bg-panel-2);
+    padding:4px 8px;
+    border-radius:6px;
+    display:inline-block;
+  }
+
+  /* ---------- pipeline ---------- */
+  .pipeline{
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:26px 28px;
+    font-family:var(--mono);
+    font-size:13px;
+    color:var(--ink-dim);
+  }
+  .pipeline .step{color:var(--ink);padding:3px 0}
+  .pipeline .arrow{color:var(--accent);padding-left:2px}
+  .pipeline .branch{padding-left:26px}
+  .pipeline .branch .tag{color:var(--accent)}
+  .pipeline .status-ok{color:var(--accent)}
+  .pipeline .status-warn{color:var(--amber)}
+  .pipeline .status-info{color:var(--violet)}
+
+  /* ---------- matrix ---------- */
+  .matrix-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:16px}
+  table.matrix{border-collapse:collapse;width:100%;min-width:640px;font-size:13px}
+  table.matrix th, table.matrix td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line)}
+  table.matrix thead th{
+    font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--ink-dim);background:var(--bg-panel-2);
+  }
+  table.matrix tbody th{font-weight:500;background:var(--bg-panel);white-space:nowrap}
+  table.matrix tbody tr:last-child td, table.matrix tbody tr:last-child th{border-bottom:none}
+  td.cell{text-align:center}
+  .pill{
+    display:inline-block;
+    min-width:74px;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.03em;
+    padding:4px 0;
+    border-radius:8px;
+    text-align:center;
+  }
+  .pill.success{background:var(--accent-soft);color:var(--accent)}
+  .pill.partial{background:var(--amber-soft);color:var(--amber)}
+  .pill.supported{background:var(--accent-soft);color:var(--accent)}
+  .pill.native{background:var(--violet-soft);color:var(--violet)}
+  .pill.na{background:transparent;color:var(--ink-faint)}
+
+  /* ---------- evidence ---------- */
+  .evidence{display:flex;flex-direction:column;gap:10px}
+  .ev-row{
+    display:grid;grid-template-columns:38px 1fr auto;gap:14px;align-items:start;
+    background:var(--bg-panel);border:1px solid var(--line);border-radius:12px;padding:14px 18px;
+  }
+  .ev-badge{
+    font-family:var(--mono);font-weight:700;font-size:13px;text-align:center;
+    border-radius:8px;padding:6px 0;
+  }
+  .ev-badge.E2{background:var(--accent-soft);color:var(--accent)}
+  .ev-badge.E1{background:var(--amber-soft);color:var(--amber)}
+  .ev-title{font-size:13.5px}
+  .ev-title b{font-weight:600}
+  .ev-basis{color:var(--ink-dim);font-size:12.5px;margin-top:3px}
+  .ev-ref{font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);white-space:nowrap;padding-top:3px}
+
+  /* ---------- CI ---------- */
+  .ci-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+  .ci-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .ci-card .name{font-family:var(--mono);font-size:13px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+  .ci-card .cmd{font-family:var(--mono);font-size:11.5px;color:var(--ink-dim);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-top:8px;overflow-x:auto;white-space:pre}
+
+  /* ---------- repos ---------- */
+  .repo-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+  .repo-group{background:var(--bg-panel);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .repo-group h3{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-dim);margin:0 0 10px;font-weight:500}
+  .repo-group ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+  .repo-group li{
+    font-family:var(--mono);font-size:11.5px;color:var(--ink);
+    background:var(--bg-panel-2);border:1px solid var(--line);border-radius:7px;padding:4px 9px;
+  }
+  .repo-group li.included{border-color:rgba(94,230,201,.35);color:var(--accent)}
+  .repo-group li.new{border-color:var(--amber);color:var(--amber)}
+
+  /* ---------- roadmap ---------- */
+  .roadmap{display:flex;flex-direction:column;border-left:2px solid var(--line);margin-left:6px}
+  .rm-item{
+    position:relative;
+    padding:2px 0 26px 26px;
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+  }
+  .rm-item .rm-icon{color:var(--accent);font-size:12px;margin-top:4px;flex:none}
+  .rm-item .rm-body{font-size:13.5px;color:var(--ink-dim)}
+  .rm-item .rm-body b{color:var(--ink);font-weight:600}
+  .rm-item .rm-tag{
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--accent);
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    display:block;
+    margin-bottom:2px;
+  }
+  .rm-item.blocked .rm-icon{color:var(--amber)}
+  .rm-item.done .rm-icon{color:var(--accent)}
+
+  /* ---------- proxy flow ---------- */
+  .proxy-flow{
+    background:var(--bg-panel-2);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:20px 24px;
+    margin:16px 0;
+    font-family:var(--mono);
+    font-size:12px;
+    line-height:1.7;
+    color:var(--ink-dim);
+    overflow-x:auto;
+  }
+  .proxy-flow .hl{color:var(--accent);}
+  .proxy-flow .arrow{color:var(--amber);}
+
+  footer{
+    margin-top:70px;padding-top:22px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+
+  @media (max-width:640px){
+    main{padding:40px 18px 70px}
+    .hero-meta{flex-direction:column;gap:4px}
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- HERO -->
+  <div class="eyebrow">
+    <i class="fas fa-circle"></i>
+    qFoldIT · unified dashboard v2.1 (INDUSTRIAL‑CAMEO Proxy)
+  </div>
+  <h1>One scientific problem.<br><em>Five runtimes,</em> one canonical state.</h1>
+  <p class="hero-sub">A live snapshot of the qFoldIT ecosystem: engine toolbelts, evidence levels, gameplay mechanics,
+  game modes, scoring & attribution, and <b>the INDUSTRIAL‑CAMEO proxy</b> that bridges private CAMEO targets to UEFN gameplay —
+  turning corporate R&D into verifiable crowd‑sourced science.</p>
+  <div class="hero-meta">
+    <span>Snapshot date: 2026‑08‑15 14:00 UTC</span>
+    <span>Workspace: 637+ files · ~68&nbsp;MB</span>
+    <span><a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a></span>
+    <span style="color:var(--accent)">Updated: INDUSTRIAL‑CAMEO proxy, private CAMEO integration, proxy flow schema</span>
+  </div>
+
+  <!-- ===== METRICS ===== -->
+  <section>
+    <div class="metric-grid">
+      <div class="metric"><div class="n">608+</div><div class="l">Registered tools across 5 toolbelts</div></div>
+      <div class="metric"><div class="n">103+</div><div class="l">Tool categories</div></div>
+      <div class="metric"><div class="n">5</div><div class="l">Deployment targets (UEFN, Unity, UNIGINE, Web, Standalone)</div></div>
+      <div class="metric"><div class="n">27</div><div class="l">Public repos in the org</div></div>
+      <div class="metric"><div class="n">2 <span class="sub">/ 5</span></div><div class="l">Toolbelts at 5/5 pattern compile success</div></div>
+      <div class="metric"><div class="n">4</div><div class="l">Industrial CAMEO verticals + proxy</div></div>
+    </div>
+  </section>
+
+  <!-- ===== INDUSTRIAL‑CAMEO PROXY FLOW ===== -->
+  <section>
+    <div class="section-head">
+      <h2>INDUSTRIAL‑CAMEO Proxy — Private CAMEO Integration</h2>
+      <div class="section-note">How qFoldIT acts as a private prediction server for corporations</div>
+    </div>
+    <div class="proxy-flow">
+      <div class="hl">[ CAMEO Private Mode ]</div>
+      <span class="hl">(authorized under corporate token)</span><br>
+      <span class="arrow">↓</span> weekly blind target (e.g. CIF‑file, protein sequence)<br>
+      <div class="hl">[ INDUSTRIAL‑CAMEO Proxy ]</div>
+      &nbsp;&nbsp;· authenticates as a private prediction server (OAuth2 / token handshake)<br>
+      &nbsp;&nbsp;· receives target, stores in secure queue<br>
+      &nbsp;&nbsp;· converts target to UAG → UEFN level via <span class="hl">building_grid_mapper.py</span><br>
+      <span class="arrow">↓</span><br>
+      <div class="hl">[ UEFN Island / Fortnite ]</div>
+      &nbsp;&nbsp;· players solve the spatial puzzle (fold, lattice, catalyst geometry)<br>
+      &nbsp;&nbsp;· best solutions are collected (logged as Scientific Contribution Records)<br>
+      <span class="arrow">↑</span><br>
+      <div class="hl">[ INDUSTRIAL‑CAMEO Proxy ]</div>
+      &nbsp;&nbsp;· picks the highest‑scoring solution<br>
+      &nbsp;&nbsp;· packages it in the format CAMEO expects (e.g. PDB, CIF, JSON)<br>
+      &nbsp;&nbsp;· submits as a prediction from the corporate “AI server”<br>
+      <span class="arrow">↓</span><br>
+      <div class="hl">[ CAMEO Private Mode ]</div>
+      <span class="hl">(returns official independent score – lDDT, RMSD, etc.)</span><br>
+      <span class="arrow">↓</span><br>
+      <div class="hl">[ Smart Contract ]</div>
+      &nbsp;&nbsp;· trigger automatic payout to players proportionally to their contribution (attribution_weight)<br>
+      <span style="color:var(--ink-faint);">— all without the corporation ever exposing its internal data or changing its validation workflow.</span>
+    </div>
+    <div style="margin-top:12px;font-size:13px;color:var(--ink-dim);">
+      <i class="fas fa-check-circle" style="color:var(--accent);"></i>
+      <strong>Reality:</strong> Corporations already use private CAMEO servers. INDUSTRIAL‑CAMEO proxies their requests to human solvers, then returns verified results — making qFoldIT a drop‑in R&D crowd‑sourcing layer.
+    </div>
+  </section>
+
+  <!-- ===== INDUSTRIAL VERTICALS ===== -->
+  <section>
+    <div class="section-head">
+      <h2>Industrial CAMEO Verticals</h2>
+      <div class="section-note">Custom validators · each using the proxy flow above</div>
+    </div>
+    <div class="vert-grid">
+      <div class="vert-card" style="border-top-color:var(--accent);">
+        <div class="vert-title"><i class="fas fa-microchip"></i> Huawei – AI Chip Topology</div>
+        <div class="vert-sub">Telecom &amp; NPU optimization</div>
+        <div class="vert-desc">Players route graphs and minimize signal latency on silicon (LEGO‑conveyor metaphor).</div>
+        <div class="vert-validator"><i class="fas fa-vial"></i> Hardware‑CAMEO – simulates silicon logic, measures energy/TFLOPS</div>
+      </div>
+      <div class="vert-card" style="border-top-color:var(--violet);">
+        <div class="vert-title"><i class="fas fa-car"></i> Xiaomi – Smart Mobility &amp; IoT</div>
+        <div class="vert-sub">EV aerodynamics, robot swarm, Smart Home logistics</div>
+        <div class="vert-desc">Players control physics simulations (dropper/racing) to optimize airflow or trajectories.</div>
+        <div class="vert-validator"><i class="fas fa-vial"></i> IoT‑Mesh‑CAMEO – WebGL/Rapier.js simulation of real‑world behavior</div>
+      </div>
+      <div class="vert-card" style="border-top-color:var(--amber);">
+        <div class="vert-title"><i class="fas fa-bolt"></i> Energy &amp; Oil/Gas</div>
+        <div class="vert-sub">Catalysts for CO₂ capture, reservoir hydrodynamics, wear‑resistant alloys</div>
+        <div class="vert-desc">Players design crystal lattices and catalysts using the quantum ground‑state track.</div>
+        <div class="vert-validator"><i class="fas fa-vial"></i> Energy‑CAMEO – DFT‑based blind testing of stability and catalytic activity</div>
+      </div>
+      <div class="vert-card" style="border-top-color:var(--rose);">
+        <div class="vert-title"><i class="fas fa-mountain"></i> Mining – BHP / Rio Tinto</div>
+        <div class="vert-sub">Fleet logistics, flotation reagent design</div>
+        <div class="vert-desc">Players construct molecules with specific hydrophobic properties (ADMET track).</div>
+        <div class="vert-validator"><i class="fas fa-vial"></i> MineTech‑CAMEO – models surface tension and mineral binding</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GAMEPLAY MECHANICS & MDA ===== -->
+  <section>
+    <div class="section-head">
+      <h2>Gameplay Mechanics &amp; MDA Loops</h2>
+      <div class="section-note">Mechanics → Dynamics → Aesthetics</div>
+    </div>
+    <div class="mda-grid">
+      <div class="mda-card">
+        <h3>Protein Folding / HP‑lattice Construction</h3>
+        <div class="sub">From <code>UEFN‑BUILDING‑GAMEPLAY‑ALGORITHM.md</code></div>
+        <div class="mda-item"><span class="label">Mechanics</span><br><strong>Pick next residue, choose orientation</strong> (2‑3 legal moves). Place it on the grid.</div>
+        <div class="mda-item"><span class="label">Dynamics</span><br><strong>Engine‑computed pass/fail</strong> — piece snaps into structural grid or is rejected. Bad choices fail immediately.</div>
+        <div class="mda-item"><span class="label">Aesthetics</span><br><strong>Construction &amp; discovery</strong> — real energy metric (Metropolis / VQE), not a decorative score.</div>
+      </div>
+      <div class="mda-card">
+        <h3>Parametric L‑systems Growth</h3>
+        <div class="sub">From <code>PARAMETRIC‑LSYSTEMS‑AND‑HP‑LATTICE‑MECHANICS.md</code></div>
+        <div class="mda-item"><span class="label">Mechanics</span><br><strong>Set environmental inputs</strong> — light, photoperiod, NPK levels. No manual rule authoring.</div>
+        <div class="mda-item"><span class="label">Dynamics</span><br><strong>Real growth model drives parameter transforms</strong> (internode length, branching density) via <code>qfoldit‑plant‑growth‑model</code>.</div>
+        <div class="mda-item"><span class="label">Aesthetics</span><br><strong>Watch morphology respond</strong> — compact under low light, tall under strong directional light.</div>
+      </div>
+    </div>
+    <div style="margin-top:28px;">
+      <h3 style="font-family:var(--serif);font-weight:400;font-size:18px;margin-bottom:14px;">Onboarding Funnel — one island, four tiers</h3>
+      <div class="onboarding-grid">
+        <div class="onboarding-card"><div class="tier">Tier 0 · Cold Open</div><div class="title">arena_showdown</div><div class="desc">Competitive microtasks — race to zero.</div></div>
+        <div class="onboarding-card"><div class="tier">Tier 1 · Story</div><div class="title">plant_growth_garden + safety_gauntlet</div><div class="desc">Rhythm &amp; optimization at <code>difficulty: story</code>.</div></div>
+        <div class="onboarding-card"><div class="tier">Tier 2 · Builder</div><div class="title">fold_marathon</div><div class="desc">Construction via <code>building_grid_mapper.py</code>.</div></div>
+        <div class="onboarding-card"><div class="tier">Tier 3 · Researcher</div><div class="title">quantum_boss + prospecting_survey</div><div class="desc">Hardcore — VQE as boss fight, p‑value gating.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GAME MODES, SCORING & ATTRIBUTION ===== -->
+  <section>
+    <div class="section-head">
+      <h2>Game Modes, Scoring &amp; Attribution</h2>
+      <div class="section-note">Bartle types · points · attribution_weight · legal boundary</div>
+    </div>
+    <div class="mode-grid">
+      <div class="mode-card"><div class="mode-title">Team vs Team <span class="bartle">Killer, Socializer</span></div><div class="mode-desc">Two squads race to reconstruct one pre‑authored path.</div><div class="mode-fit">Fits: <code>hp_lattice</code>, <code>protein_folding</code>, <code>l_systems</code></div></div>
+      <div class="mode-card"><div class="mode-title">Free‑for‑all <span class="bartle">Killer, Achiever</span></div><div class="mode-desc">Solo play against leaderboard or personal best.</div><div class="mode-fit">Fits: <code>hp_lattice</code>, <code>oilgas_corrosion</code>, <code>fold_marathon</code></div></div>
+      <div class="mode-card"><div class="mode-title">Co‑op <span class="bartle">Explorer, Socializer</span></div><div class="mode-desc">Non‑adversarial, shared construction, no time pressure.</div><div class="mode-fit">Fits: <code>plant_growth_garden</code>, <code>l_systems</code></div></div>
+      <div class="mode-card"><div class="mode-title">Investigation/Annotation <span class="bartle">Explorer, Achiever</span></div><div class="mode-desc">Statistically gated (<code>p &lt; 0.05</code>), points are <code>null</code>.</div><div class="mode-fit">Fits: <code>prospecting_survey</code></div></div>
+      <div class="mode-card"><div class="mode-title">Human‑in‑the‑loop search <span class="bartle">Achiever</span></div><div class="mode-desc">Discovery‑capable: explore pre‑vetted candidate space.</div><div class="mode-fit">Any domain with branching candidates</div></div>
+      <div class="mode-card"><div class="mode-title">Hardcore/Research <span class="bartle">Achiever, Killer</span></div><div class="mode-desc">Solo or small co‑op against a threshold.</div><div class="mode-fit">Fits: <code>quantum_boss</code></div></div>
+    </div>
+    <div class="scoring-box">
+      <div style="font-family:var(--mono);font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;">Points per accepted placement (base formula)</div>
+      <div class="formula">
++10   accepted placement (matches required step, or within candidate space)
++0..5 speed bonus (only in team_vs_team and free‑for‑all)
++5    placement that forms a new backend‑reported contact/bond
+-2    rejected placement attempt (does not go below 0)
+      </div>
+      <div class="note">This is a <strong>game score</strong> about engine‑checked events, not a new scientific metric.</div>
+    </div>
+    <div class="attribution-box">
+      <strong><code>attribution_weight(record)</code> = points(record) / sum(points(r) for all records sharing the same <code>reference_mcp_job_id</code> AND session)</strong>
+      <div style="font-size:13px;color:var(--ink-dim);margin-top:4px;">Sum = 1.0 across all participants. Mode‑aware — <code>mode</code> required in schema v0.2.</div>
+      <div class="warning"><i class="fas fa-exclamation-triangle"></i> <strong>attribution_weight is not a royalty.</strong> It becomes royalty‑relevant only if <code>discovery_claim.asserted</code> is <code>true</code> (only via human‑in‑the‑loop after independent review) <strong>and</strong> a legal framework exists. Otherwise: <strong>recognition/leaderboard credit</strong> only.</div>
+    </div>
+    <div style="background:var(--bg-panel-2);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-top:16px;">
+      <div style="display:flex;flex-wrap:wrap;gap:20px;">
+        <div style="flex:1;min-width:200px;"><div style="font-family:var(--mono);font-size:11px;color:var(--accent);">Verse Persistence</div><div style="font-size:12.5px;color:var(--ink-dim);">12KB per player per session – stores compact tally (<code>cumulative_points</code>, <code>contribution_count</code>). Full records off‑platform.</div><div style="font-size:11.5px;color:var(--ink-faint);margin-top:4px;"><i class="far fa-clock"></i> Open: read‑back for reconciliation.</div></div>
+        <div style="flex:1;min-width:200px;"><div style="font-family:var(--mono);font-size:11px;color:var(--accent);">UE6 &amp; UE5.8 MCP plugin</div><div style="font-size:12.5px;color:var(--ink-dim);">UE6 announced, aims to unify UE5/UEFN. <strong>UE5.8 already includes an experimental MCP plugin</strong> – validates UEFN‑TOOLBELT's external‑MCP architecture.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTROL PLANE ===== -->
+  <section>
+    <div class="section-head">
+      <h2>Control plane</h2>
+      <div class="section-note">scientific state → UAG → routing policy → engine toolbelts</div>
+    </div>
+    <div class="pipeline">
+      <div class="step">Scientific state <span class="arrow"><i class="fas fa-arrow-down"></i></span></div>
+      <div class="step">Scientific experience model <span class="arrow"><i class="fas fa-arrow-down"></i></span></div>
+      <div class="step">UAG — Universal Assembly Graph <span class="arrow"><i class="fas fa-arrow-down"></i></span></div>
+      <div class="step">Capability registry + canonical actions <span class="arrow"><i class="fas fa-arrow-down"></i></span></div>
+      <div class="step">Routing policy</div>
+      <div class="branch">├── <span class="tag">UEFN-TOOLBELT</span> — 356 tools <span class="status-warn">(0/5 compile · partial)</span></div>
+      <div class="branch">├── <span class="tag">UNITY-TOOLBELT</span> — 109 tools <span class="status-ok">(5/5 compile · supported)</span></div>
+      <div class="branch">├── <span class="tag">UNIGINE-TOOLBELT</span> — 90 tools <span class="status-ok">(5/5 compile · supported)</span></div>
+      <div class="branch">├── <span class="tag">WEB-TOOLBELT (src/)</span> — 16 tools <span class="status-warn">(0/5 compile)</span></div>
+      <div class="branch">├── <span class="tag">WEB-TOOLBELT (static/)</span> — 6 WebMCP commands <span class="status-info">(presentation layer)</span></div>
+      <div class="branch">└── <span class="tag">QFOLDIT-STANDALONE</span> — 37 tools <span class="status-warn">(0/5 compile · 2/5 blocked by sci.vis)</span></div>
+    </div>
+  </section>
+
+  <!-- ===== TOOLBELTS ===== -->
+  <section>
+    <div class="section-head">
+      <h2>Engine toolbelts</h2>
+      <div class="section-note">tool counts measured directly from source</div>
+    </div>
+    <div class="card-grid">
+      <div class="card"><div class="top"><span class="name">UEFN-TOOLBELT</span><span class="badge warn">Partial</span></div><div class="stat-row"><span class="k">Tools</span><span class="v">356</span></div><div class="stat-row"><span class="k">Categories</span><span class="v">55+</span></div><div class="stat-row"><span class="k">Language</span><span class="v">Python</span></div><div class="stat-row"><span class="k">MCP mode</span><span class="v">external process</span></div><div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0</span></div><div class="stat-row"><span class="k">Test suite</span><span class="v">117/117</span></div><div class="stat-row"><span class="k">Adapter manifest</span><span class="v">present (all partial)</span></div><div class="foot">No live‑engine verification yet; closest path: Python equivalents of Unity/UNIGINE's UAGBridgeTools.</div></div>
+      <div class="card"><div class="top"><span class="name">UNITY-TOOLBELT</span><span class="badge ok">Supported</span></div><div class="stat-row"><span class="k">Tools</span><span class="v">109</span></div><div class="stat-row"><span class="k">Categories</span><span class="v">24</span></div><div class="stat-row"><span class="k">Language</span><span class="v">C#</span></div><div class="stat-row"><span class="k">MCP mode</span><span class="v">native in-editor bridge</span></div><div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0</span></div><div class="stat-row"><span class="k">CI</span><span class="v">unverified*</span></div><div class="stat-row"><span class="k">Compile result</span><span class="v" style="color:var(--accent)">5/5 success</span></div><div class="foot">Real live callback (<code>OnMouseDown</code>) confirmed.</div></div>
+      <div class="card"><div class="top"><span class="name">UNIGINE-TOOLBELT</span><span class="badge ok">Supported</span></div><div class="stat-row"><span class="k">Tools</span><span class="v">90</span></div><div class="stat-row"><span class="k">Categories</span><span class="v">23</span></div><div class="stat-row"><span class="k">Language</span><span class="v">C#</span></div><div class="stat-row"><span class="k">MCP mode</span><span class="v">external + official MCPBridge</span></div><div class="stat-row"><span class="k">License</span><span class="v">custom</span></div><div class="stat-row"><span class="k">CI</span><span class="v">6/6 tests</span></div><div class="stat-row"><span class="k">Compile result</span><span class="v" style="color:var(--accent)">5/5 success</span></div><div class="foot">Physics-selectability + persisted registry.</div></div>
+      <div class="card"><div class="top"><span class="name">WEB-TOOLBELT (src/)</span><span class="badge warn">Partial</span></div><div class="stat-row"><span class="k">Tools</span><span class="v">16</span></div><div class="stat-row"><span class="k">Stack</span><span class="v">TypeScript + Vite</span></div><div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0</span></div><div class="stat-row"><span class="k">Build</span><span class="v">clean</span></div><div class="stat-row"><span class="k">Adapter manifest</span><span class="v">present (0/5 partial)</span></div><div class="stat-row"><span class="k">Compile result</span><span class="v" style="color:var(--amber)">0/5 success, 5/5 partial</span></div><div class="foot">Missing interaction/vis/geometry/camera/lighting.</div></div>
+      <div class="card"><div class="top"><span class="name">QFOLDIT-STANDALONE</span><span class="badge warn">Partial (close)</span></div><div class="stat-row"><span class="k">Tools</span><span class="v">37</span></div><div class="stat-row"><span class="k">Categories</span><span class="v">13</span></div><div class="stat-row"><span class="k">Language</span><span class="v">TypeScript + Electron</span></div><div class="stat-row"><span class="k">MCP mode</span><span class="v">local WebSocket</span></div><div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0-only</span></div><div class="stat-row"><span class="k">Build</span><span class="v">clean</span></div><div class="stat-row"><span class="k">Compile result</span><span class="v" style="color:var(--amber)">0/5 success, 2/5 blocked only by sci.vis</span></div><div class="foot">Closest target — implementing <code>scientific_visualization_create</code> would flip 2 patterns.</div></div>
+      <div class="card"><div class="top"><span class="name">WEB-TOOLBELT (static/)</span><span class="badge info">Live sandbox</span></div><div class="stat-row"><span class="k">Tools</span><span class="v">6 WebMCP</span></div><div class="stat-row"><span class="k">Stack</span><span class="v">Three.js + WebGPU + Rapier</span></div><div class="stat-row"><span class="k">Deploy</span><span class="v">qfoldit.github.io/web-toolbelt/</span></div><div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0 + ARR (static)</span></div><div class="stat-row"><span class="k">Build</span><span class="v">plain JS</span></div><div class="foot">Not in compiler — presentation layer with PDB fetching and multiplayer.</div></div>
+    </div>
+  </section>
+
+  <!-- ===== CAPABILITY MATRIX ===== -->
+  <section>
+    <div class="section-head"><h2>P0 / P1 / P2 capability matrix</h2><div class="section-note">status per engine, on shipped code only</div></div>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead><tr><th>Capability</th><th>Priority</th><th style="text-align:center">UEFN</th><th style="text-align:center">Unity</th><th style="text-align:center">UNIGINE</th><th style="text-align:center">WEB (src/)</th><th style="text-align:center">Standalone</th></tr></thead>
+        <tbody>
+          <tr><th>scientific.visualization</th><td>P0</td><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill supported">supported</span></td><td class="cell"><span class="pill supported">supported</span></td><td class="cell"><span class="pill na">unsupported</span></td><td class="cell"><span class="pill na">unsupported</span></td></tr>
+          <tr><th>interaction</th><td>P0</td><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill supported">supported</span></td><td class="cell"><span class="pill supported">supported</span></td><td class="cell"><span class="pill na">unsupported</span></td><td class="cell"><span class="pill partial">partial</span></td></tr>
+          <tr><th>geometry.procedural</th><td>P1</td><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill native">native</span></td><td class="cell"><span class="pill native">native</span></td><td class="cell"><span class="pill na">unsupported</span></td><td class="cell"><span class="pill partial">partial</span></td></tr>
+          <tr><th>physics.joints</th><td>P2</td><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill supported">supported</span></td><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill na">unsupported</span></td><td class="cell"><span class="pill supported">supported</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== COMPILE RESULT ===== -->
+  <section>
+    <div class="section-head"><h2>Cross-engine compile result</h2><div class="section-note">reference/compiler.py × gameplay-patterns.unlocked.json</div></div>
+    <div class="matrix-wrap">
+      <table class="matrix">
+        <thead><tr><th>Pattern</th><th style="text-align:center">UEFN</th><th style="text-align:center">Unity</th><th style="text-align:center">UNIGINE</th><th style="text-align:center">WEB (src/)</th><th style="text-align:center">Standalone</th></tr></thead>
+        <tbody>
+          <tr><th>protein_folding_construction</th><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill success">success</span></td><td class="cell"><span class="pill success">success</span></td><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill partial">partial</span></td></tr>
+          <tr><th>quantum_ground_state_portal</th><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill success">success</span></td><td class="cell"><span class="pill success">success</span></td><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill partial">partial</span></td></tr>
+          <tr><th>hp_lattice_spatial_puzzle</th><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill success">success</span></td><td class="cell"><span class="pill success">success</span></td><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill partial">partial</span></td></tr>
+          <tr><th>admet_safety_strategy</th><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill success">success</span></td><td class="cell"><span class="pill success">success</span></td><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill partial">partial</span></td></tr>
+          <tr><th>l_systems_procedural_construction</th><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill success">success</span></td><td class="cell"><span class="pill success">success</span></td><td class="cell"><span class="pill partial">partial</span></td><td class="cell"><span class="pill partial">partial</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== EVIDENCE ===== -->
+  <section>
+    <div class="section-head"><h2>Evidence level per unlocked pattern</h2><div class="section-note">E2 = cross‑validated · E1 = computational only · <span style="color:var(--accent);">discovery_claim only in human‑in‑the‑loop</span></div></div>
+    <div class="evidence">
+      <div class="ev-row"><div class="ev-badge E2">E2</div><div><div class="ev-title"><b>quantum_ground_state_portal</b></div><div class="ev-basis">VQE cross‑checked against exact diagonalization and H₂/STO‑3G benchmark.</div></div><div class="ev-ref">qfoldit_quantum_lab</div></div>
+      <div class="ev-row"><div class="ev-badge E1">E1</div><div><div class="ev-title"><b>protein_folding_construction</b></div><div class="ev-basis">Backend verified end‑to‑end; prediction not cross‑checked.</div></div><div class="ev-ref">protein_design_mcp</div></div>
+      <div class="ev-row"><div class="ev-badge E1">E1</div><div><div class="ev-title"><b>hp_lattice_spatial_puzzle</b></div><div class="ev-basis">QAOA circuit on local simulator; no cross‑model comparison.</div></div><div class="ev-ref">qfoldit_qfold_lab</div></div>
+      <div class="ev-row"><div class="ev-badge E1">E1</div><div><div class="ev-title"><b>admet_safety_strategy</b></div><div class="ev-basis">Live API connected; not benchmark‑validated.</div></div><div class="ev-ref">boltz_api</div></div>
+      <div class="ev-row"><div class="ev-badge E1">E1</div><div><div class="ev-title"><b>l_systems_procedural_construction</b></div><div class="ev-basis">Field mapping best‑effort from public docs; not independently inspected.</div></div><div class="ev-ref">qfoldit_plant_growth_lab</div></div>
+    </div>
+    <div style="margin-top:8px;font-size:12px;color:var(--ink-faint);border-top:1px solid var(--line);padding-top:8px;"><i class="fas fa-info-circle" style="color:var(--accent);"></i> <strong>Note:</strong> <code>discovery_claim.asserted: true</code> only valid for <strong>human‑in‑the‑loop search</strong> mode after independent review. All others default <code>false</code>.</div>
+  </section>
+
+  <!-- ===== CI ===== -->
+  <section>
+    <div class="section-head"><h2>CI &amp; build verification</h2><div class="section-note">actual runs, not just read</div></div>
+    <div class="ci-grid">
+      <div class="ci-card"><div class="name">UEFN-TOOLBELT <span class="badge ok">verified</span></div><div class="cmd">pytest tests/ → 117/117</div></div>
+      <div class="ci-card"><div class="name">UNIGINE-TOOLBELT <span class="badge ok">verified</span></div><div class="cmd">pytest tests/test_mcp_server.py → 6/6</div></div>
+      <div class="ci-card"><div class="name">WEB-TOOLBELT (src/) <span class="badge ok">verified</span></div><div class="cmd">npm ci && npm run build → clean</div></div>
+      <div class="ci-card"><div class="name">UNITY-TOOLBELT <span class="badge warn">unverified*</span></div><div class="cmd">game-ci/unity-test-runner * needs license</div></div>
+      <div class="ci-card"><div class="name">QFOLDIT-STANDALONE <span class="badge ok">verified</span></div><div class="cmd">npm ci && npm run build → clean</div></div>
+    </div>
+  </section>
+
+  <!-- ===== REPOS ===== -->
+  <section>
+    <div class="section-head"><h2>Org repository inventory</h2><div class="section-note">27 public repos · highlighted = in workspace</div></div>
+    <div class="repo-groups">
+      <div class="repo-group"><h3>Core stack — in this workspace</h3><ul><li class="included">UEFN-TOOLBELT</li><li class="included">UNITY-TOOLBELT</li><li class="included">UNIGINE-TOOLBELT</li><li class="included">WEB-TOOLBELT</li><li class="included">QFOLDIT-STANDALONE</li></ul></div>
+      <div class="repo-group"><h3>CAMEO &amp; Industrial</h3><ul><li class="new">CAMEO-REALTIME-VALIDATION</li><li class="new">INDUSTRIAL-CAMEO</li><li class="new">STANDALONE-APP_V.1</li><li>qfoldit.github.io</li></ul></div>
+      <div class="repo-group"><h3>MCP servers</h3><ul><li>Protein-Design-MCP</li><li>Atomic-MCP</li><li>UEFN-VERSE-MCP</li><li>Game-MCP</li><li>Protein-MCP</li><li>qFold-MCP</li><li>science-skills</li></ul></div>
+      <div class="repo-group"><h3>Specs &amp; framework</h3><ul><li>Scientific-Object-Schema</li><li>engine-adapter-spec</li><li>scientific-gameplay-framework</li></ul></div>
+    </div>
+  </section>
+
+  <!-- ===== ROADMAP ===== -->
+  <section>
+    <div class="section-head"><h2>Grounded next steps</h2><div class="section-note">ordered by impact</div></div>
+    <div class="roadmap">
+      <div class="rm-item"><i class="fas fa-circle rm-icon"></i><div><div class="rm-tag">Step 1 — Foundation</div><div class="rm-body"><b>Resolve Verse Persistence read‑back</b> – confirm external MCP can read published Persistence values. Unblocks the entire CAMEO real‑time pipeline.</div></div></div>
+      <div class="rm-item"><i class="fas fa-circle rm-icon"></i><div><div class="rm-tag">Step 2 — CAMEO reconciliation service</div><div class="rm-body"><b>Build the external reconciliation service</b> (poll → OpenStructure scoring → append to JSON log). Natural home alongside UEFN‑TOOLBELT's MCP process.</div></div></div>
+      <div class="rm-item"><i class="fas fa-circle rm-icon"></i><div><div class="rm-tag">Step 3 — Contribution records &amp; world state</div><div class="rm-body"><b>Wire <code>scientific‑contribution‑record</code> (0.2) writes</b> and a GitHub Actions publish job to regenerate <code>state.json</code> – the world state visible to all.</div></div></div>
+      <div class="rm-item"><i class="fas fa-circle rm-icon"></i><div><div class="rm-tag">Step 4 — INDUSTRIAL‑CAMEO proxy</div><div class="rm-body"><b>Implement the proxy server</b> – OAuth2 token handshake with private CAMEO, target ingestion, level generation, solution packaging, and result submission. This is the core business integration.</div></div></div>
+      <div class="rm-item"><i class="fas fa-circle rm-icon"></i><div><div class="rm-tag">Step 5 — Close UEFN capability gaps</div><div class="rm-body"><b>Implement <code>interaction</code> + <code>scientific.visualization</code> for UEFN</b> – mirror Unity/UNIGINE closure plans to unlock UEFN's 5/5 compile status.</div></div></div>
+      <div class="rm-item"><i class="fas fa-circle rm-icon"></i><div><div class="rm-tag">Step 6 — Human‑in‑the‑loop discovery mode</div><div class="rm-body"><b>Implement the candidate‑space mechanic</b> – replace the single baked path with a pre‑vetted tree, log player explorations, and create an offline re‑run pipeline. This is the only path to <code>discovery_claim.asserted: true</code>.</div></div></div>
+      <div class="rm-item"><i class="fas fa-circle rm-icon"></i><div><div class="rm-tag">Step 7 — Legal &amp; business layer</div><div class="rm-body"><b>Engage legal counsel and review Epic's monetization terms</b> – determine how <code>attribution_weight</code> could be converted into actual payments. Must be resolved before any royalty‑like claims.</div></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Sources: STATUS.md · cross-engine-compile-report.md · per‑toolbelt qfoldit.adapter.json · 03-org-docs/ARCHITECTURE.md · gameplay docs (PARAMETRIC‑LSYSTEMS, VERIFIABLE‑MULTIPLAYER‑SCIENCE, UEFN‑BUILDING‑GAMEPLAY‑ALGORITHM, UEFN‑MULTIPLAYER‑RUNTIME‑ARCHITECTURE) · GAME‑MODES‑SCORING‑AND‑ROYALTY.md · INDUSTRIAL‑CAMEO proxy spec · private CAMEO architecture analysis</span>
+    <span>Built with the "never fabricate" rule — every number and design claim here traces to a file in the workspace or to public CAMEO documentation.</span>
+  </footer>
+
+</main>
+</body>
+</html>
