@@ -1,0 +1,2127 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>qFoldIT — Client & Scientific Mission Prospect Matrix</title>
+    <style>
+        :root {
+            --bg: #0b0f14;
+            --bg-panel: #11161d;
+            --bg-panel-2: #151b23;
+            --line: #232b36;
+            --ink: #e7ecf2;
+            --ink-dim: #8c98a8;
+            --ink-faint: #5c6b7d;
+            --accent: #5ee6c9;
+            --accent-soft: rgba(94, 230, 201, .12);
+            --amber: #e8a83c;
+            --amber-soft: rgba(232, 168, 60, .12);
+            --rose: #e8637a;
+            --rose-soft: rgba(232, 99, 122, .12);
+            --violet: #9d8cf0;
+            --violet-soft: rgba(157, 140, 240, .12);
+            --green: #5ee6a0;
+            --green-soft: rgba(94, 230, 160, .12);
+            --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+            --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
+            --sans: -apple-system, "Segoe UI", Inter, system-ui, sans-serif
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html,
+        body {
+            background: var(--bg);
+            color: var(--ink);
+            font-family: var(--sans);
+            line-height: 1.55
+        }
+
+        body {
+            background: radial-gradient(1200px 600px at 15% -10%, rgba(94, 230, 201, .07), transparent 60%), radial-gradient(900px 500px at 100% 0%, rgba(157, 140, 240, .06), transparent 55%), var(--bg)
+        }
+
+        main {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 56px 28px 90px
+        }
+
+        .eyebrow {
+            font: 12px var(--mono);
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px
+        }
+
+        .eyebrow:before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent)
+        }
+
+        h1 {
+            font: 400 clamp(34px, 5vw, 58px)/1.06 var(--serif);
+            margin-bottom: 14px
+        }
+
+        h1 em {
+            font-style: italic;
+            color: var(--accent)
+        }
+
+        .hero-sub {
+            max-width: 840px;
+            color: var(--ink-dim);
+            font-size: 16px
+        }
+
+        .meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px 22px;
+            margin-top: 20px;
+            font: 12px var(--mono);
+            color: var(--ink-faint)
+        }
+
+        section {
+            margin-top: 58px
+        }
+
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 18px
+        }
+
+        h2 {
+            font: 400 24px var(--serif)
+        }
+
+        .note {
+            font: 11px var(--mono);
+            color: var(--ink-faint);
+            text-align: right
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            overflow: hidden
+        }
+
+        .metric {
+            background: var(--bg-panel);
+            padding: 22px 18px
+        }
+
+        .metric .n {
+            font: 650 30px var(--mono);
+            color: var(--accent)
+        }
+
+        .metric .l {
+            font-size: 12px;
+            color: var(--ink-dim);
+            margin-top: 6px
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 12px;
+            background: var(--bg-panel);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 16px
+        }
+
+        input,
+        select {
+            width: 100%;
+            background: var(--bg-panel-2);
+            border: 1px solid var(--line);
+            color: var(--ink);
+            border-radius: 9px;
+            padding: 11px 12px;
+            font: 13px var(--mono);
+            outline: none
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--accent)
+        }
+
+        .table-wrap {
+            overflow: auto;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            background: var(--bg-panel)
+        }
+
+        table {
+            width: 100%;
+            min-width: 1120px;
+            border-collapse: collapse;
+            font-size: 13px
+        }
+
+        thead th {
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            text-align: left;
+            background: var(--bg-panel-2);
+            padding: 12px;
+            border-bottom: 1px solid var(--line);
+            font: 600 10.5px var(--mono);
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: var(--ink-dim)
+        }
+
+        tbody tr {
+            border-bottom: 1px solid var(--line)
+        }
+
+        tbody tr:hover {
+            background: var(--bg-panel-2)
+        }
+
+        tbody td {
+            padding: 11px 12px;
+            vertical-align: top
+        }
+
+        .company {
+            font-weight: 600;
+            color: var(--ink)
+        }
+
+        .region {
+            font: 10.5px var(--mono);
+            color: var(--ink-faint);
+            margin-top: 2px
+        }
+
+        .industry-tag,
+        .mission-tag,
+        .priority {
+            display: inline-block;
+            border-radius: 12px;
+            padding: 3px 8px;
+            font: 10px var(--mono);
+            border: 1px solid var(--line);
+            white-space: nowrap
+        }
+
+        .industry-tag {
+            background: var(--violet-soft);
+            color: var(--violet);
+            border-color: rgba(157, 140, 240, .25)
+        }
+
+        .mission-tag {
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-color: rgba(94, 230, 201, .22)
+        }
+
+        .priority.a {
+            background: var(--rose-soft);
+            color: var(--rose);
+            border-color: rgba(232, 99, 122, .24)
+        }
+
+        .priority.b {
+            background: var(--amber-soft);
+            color: var(--amber);
+            border-color: rgba(232, 168, 60, .24)
+        }
+
+        .usecase {
+            color: var(--ink-dim);
+            max-width: 520px
+        }
+
+        .summary {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 16px
+        }
+
+        .card {
+            background: var(--bg-panel);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 20px
+        }
+
+        .card h3 {
+            font: 600 13px var(--mono);
+            color: var(--accent);
+            margin-bottom: 10px
+        }
+
+        .list {
+            margin-top: 10px;
+            display: grid;
+            gap: 6px
+        }
+
+        .list div {
+            font-size: 12px;
+            color: var(--ink-dim);
+            padding: 7px 9px;
+            background: var(--bg-panel-2);
+            border-radius: 8px
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 22px;
+            border-top: 1px solid var(--line);
+            font: 11px var(--mono);
+            color: var(--ink-faint)
+        }
+
+        .status {
+            color: var(--accent)
+        }
+
+        @media(max-width:850px) {
+
+            .controls,
+            .summary {
+                grid-template-columns: 1fr
+            }
+
+            main {
+                padding: 40px 18px 70px
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="eyebrow">qFoldIT · client matrix · create scientific mission</div>
+        <h1>Potential Clients.<br><em>Scientific Missions.</em></h1>
+        <p class="hero-sub">Representative B2B prospect matrix derived from the current qFoldIT architecture: scientific
+            target → UAG → runtime/toolbelt → human search → CAMEO evaluation. This is a prospect universe, not a list
+            of signed customers.</p>
+        <div class="meta"><span>Snapshot: 2026‑08‑16</span><span>A = immediate outreach · B = second wave</span><span
+                class="status">Product surface: qFoldIT Standalone / Control Center</span></div>
+        <section>
+            <div class="metric-grid">
+                <div class="metric">
+                    <div class="n" id="total">0</div>
+                    <div class="l">Prospects in this matrix</div>
+                </div>
+                <div class="metric">
+                    <div class="n" id="aCount">0</div>
+                    <div class="l">Tier A / immediate outreach</div>
+                </div>
+                <div class="metric">
+                    <div class="n" id="bCount">0</div>
+                    <div class="l">Tier B / second wave</div>
+                </div>
+                <div class="metric">
+                    <div class="n">17</div>
+                    <div class="l">Scientific / industrial domains</div>
+                </div>
+                <div class="metric">
+                    <div class="n">5</div>
+                    <div class="l">Primary runtime surfaces</div>
+                </div>
+                <div class="metric">
+                    <div class="n">1</div>
+                    <div class="l">Create Scientific Mission control plane</div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <div class="section-head">
+                <h2>Prospect Matrix</h2>
+                <div class="note">Search and filter the outreach universe</div>
+            </div>
+            <div class="controls"><input id="q" type="search"
+                    placeholder="Search company, industry, mission, country…"><select id="industry">
+                    <option value="">All industries</option>
+                </select><select id="priority">
+                    <option value="">All priorities</option>
+                    <option value="A">Tier A</option>
+                    <option value="B">Tier B</option>
+                </select><select id="region">
+                    <option value="">All regions</option>
+                </select></div>
+            <div class="table-wrap" style="margin-top:14px">
+                <table id="matrix">
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Industry</th>
+                            <th>Priority</th>
+                            <th>Suggested Mission</th>
+                            <th>qFoldIT Mission Fit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-industry="Pharma" data-priority="A" data-region="Switzerland">
+                            <td>
+                                <div class="company">Roche</div>
+                                <div class="region">Switzerland</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Ligand</span></td>
+                            <td class="usecase">Oncology targets; antibodies; molecular docking</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="A" data-region="Switzerland">
+                            <td>
+                                <div class="company">Novartis</div>
+                                <div class="region">Switzerland</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Ligand</span></td>
+                            <td class="usecase">Targeted oncology; small molecules</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Eli Lilly</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Peptide</span></td>
+                            <td class="usecase">Peptides; receptors; biologics</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Pfizer</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / RNA</span></td>
+                            <td class="usecase">Targets; vaccines; RNA delivery</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Merck &amp; Co. / MSD</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Ligand</span></td>
+                            <td class="usecase">Oncology; enzymes; antibodies</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Johnson &amp; Johnson</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Biologics</span></td>
+                            <td class="usecase">Immunology; antibodies; targets</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="A" data-region="UK / Sweden">
+                            <td>
+                                <div class="company">AstraZeneca</div>
+                                <div class="region">UK / Sweden</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Ligand</span></td>
+                            <td class="usecase">Oncology; respiratory; biologics</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Bristol Myers Squibb</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Antibody</span></td>
+                            <td class="usecase">Immuno-oncology; biologics</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">AbbVie</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Antibody</span></td>
+                            <td class="usecase">Immunology; oncology; biologics</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="A" data-region="France">
+                            <td>
+                                <div class="company">Sanofi</div>
+                                <div class="region">France</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Antibody</span></td>
+                            <td class="usecase">Therapeutic proteins; vaccines</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="A" data-region="UK">
+                            <td>
+                                <div class="company">GSK</div>
+                                <div class="region">UK</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Vaccine</span></td>
+                            <td class="usecase">Vaccines; immune targets</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="B" data-region="Japan">
+                            <td>
+                                <div class="company">Takeda</div>
+                                <div class="region">Japan</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Protein / Ligand</span></td>
+                            <td class="usecase">Rare disease; neuroscience</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Amgen</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Antibody</span></td>
+                            <td class="usecase">Targeted oncology; biologics</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Gilead Sciences</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Ligand</span></td>
+                            <td class="usecase">Antiviral; oncology</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Regeneron</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Antibody</span></td>
+                            <td class="usecase">Antibody discovery; targets</td>
+                        </tr>
+                        <tr data-industry="Pharma" data-priority="A" data-region="Denmark">
+                            <td>
+                                <div class="company">Novo Nordisk</div>
+                                <div class="region">Denmark</div>
+                            </td>
+                            <td><span class="industry-tag">Pharma</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Peptide / Protein</span></td>
+                            <td class="usecase">Peptides; receptors; metabolic disease</td>
+                        </tr>
+                        <tr data-industry="RNA / Gene Therapy" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Alnylam Pharmaceuticals</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">RNA / Gene Therapy</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">RNA / Protein</span></td>
+                            <td class="usecase">RNAi therapeutics; delivery</td>
+                        </tr>
+                        <tr data-industry="RNA / Gene Therapy" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Moderna</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">RNA / Gene Therapy</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">mRNA / LNP</span></td>
+                            <td class="usecase">mRNA stability; lipid nanoparticles</td>
+                        </tr>
+                        <tr data-industry="RNA / Gene Therapy" data-priority="A" data-region="Germany">
+                            <td>
+                                <div class="company">BioNTech</div>
+                                <div class="region">Germany</div>
+                            </td>
+                            <td><span class="industry-tag">RNA / Gene Therapy</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">mRNA / Protein</span></td>
+                            <td class="usecase">mRNA; immuno-oncology</td>
+                        </tr>
+                        <tr data-industry="RNA / Gene Therapy" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Ionis Pharmaceuticals</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">RNA / Gene Therapy</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">RNA</span></td>
+                            <td class="usecase">Antisense oligonucleotides</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery" data-priority="A" data-region="UK">
+                            <td>
+                                <div class="company">Isomorphic Labs</div>
+                                <div class="region">UK</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Ligand</span></td>
+                            <td class="usecase">AI-generated structures; binding; validation</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery" data-priority="A" data-region="Hong Kong / USA">
+                            <td>
+                                <div class="company">Insilico Medicine</div>
+                                <div class="region">Hong Kong / USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Ligand</span></td>
+                            <td class="usecase">Generative molecular design</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery / Scientific Software" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Schrödinger</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery / Scientific Software</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Molecular / Protein</span></td>
+                            <td class="usecase">Physics-based drug discovery; human-in-loop</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Recursion</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Molecular / Biological</span></td>
+                            <td class="usecase">AI + automated biology</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Generate Biomedicines</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein Design</span></td>
+                            <td class="usecase">De novo protein design</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Xaira Therapeutics</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Ligand</span></td>
+                            <td class="usecase">AI-native drug discovery</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">insitro</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Biology / Molecular</span></td>
+                            <td class="usecase">Machine learning + biology</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Genesis Therapeutics</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Ligand</span></td>
+                            <td class="usecase">Deep learning molecular design</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Relay Therapeutics</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein Dynamics</span></td>
+                            <td class="usecase">Protein motion / allostery</td>
+                        </tr>
+                        <tr data-industry="Protein Design / AI" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Absci</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Protein Design / AI</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein Design</span></td>
+                            <td class="usecase">Generative biologics</td>
+                        </tr>
+                        <tr data-industry="Protein Design / AI" data-priority="A" data-region="Netherlands / UK">
+                            <td>
+                                <div class="company">Cradle</div>
+                                <div class="region">Netherlands / UK</div>
+                            </td>
+                            <td><span class="industry-tag">Protein Design / AI</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein Design</span></td>
+                            <td class="usecase">AI-guided protein engineering</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery" data-priority="A" data-region="China / USA">
+                            <td>
+                                <div class="company">XtalPi</div>
+                                <div class="region">China / USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Molecular / Protein</span></td>
+                            <td class="usecase">AI + quantum / structural chemistry</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Atomwise</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Molecular Docking</span></td>
+                            <td class="usecase">Virtual screening</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery" data-priority="B" data-region="France">
+                            <td>
+                                <div class="company">Iktos</div>
+                                <div class="region">France</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Molecular Design</span></td>
+                            <td class="usecase">Generative chemistry</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery" data-priority="B" data-region="France / USA">
+                            <td>
+                                <div class="company">Owkin</div>
+                                <div class="region">France / USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Biology / Biomarkers</span></td>
+                            <td class="usecase">AI-driven drug discovery</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery" data-priority="B" data-region="UK">
+                            <td>
+                                <div class="company">BenevolentAI</div>
+                                <div class="region">UK</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Target Discovery</span></td>
+                            <td class="usecase">AI-enabled biology</td>
+                        </tr>
+                        <tr data-industry="AI Drug Discovery" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Terray Therapeutics</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Drug Discovery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Molecular Design</span></td>
+                            <td class="usecase">Experimental + ML chemistry</td>
+                        </tr>
+                        <tr data-industry="Protein Design / AI" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">EvolutionaryScale</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Protein Design / AI</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein Design</span></td>
+                            <td class="usecase">Foundation models for biology</td>
+                        </tr>
+                        <tr data-industry="Protein Design / AI" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Chroma</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Protein Design / AI</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Protein Design</span></td>
+                            <td class="usecase">Generative protein design</td>
+                        </tr>
+                        <tr data-industry="Protein Design / AI" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Profluent</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Protein Design / AI</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Protein Design</span></td>
+                            <td class="usecase">Generative protein engineering</td>
+                        </tr>
+                        <tr data-industry="Protein Design / AI" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Nabla Bio</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Protein Design / AI</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Protein Design</span></td>
+                            <td class="usecase">Computational protein engineering</td>
+                        </tr>
+                        <tr data-industry="Protein Design / AI" data-priority="B" data-region="Estonia">
+                            <td>
+                                <div class="company">Biomatter</div>
+                                <div class="region">Estonia</div>
+                            </td>
+                            <td><span class="industry-tag">Protein Design / AI</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Protein Design</span></td>
+                            <td class="usecase">Protein design software</td>
+                        </tr>
+                        <tr data-industry="Protein Design / AI" data-priority="B" data-region="UK">
+                            <td>
+                                <div class="company">Basecamp Research</div>
+                                <div class="region">UK</div>
+                            </td>
+                            <td><span class="industry-tag">Protein Design / AI</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Protein Discovery</span></td>
+                            <td class="usecase">Biodiversity-derived proteins</td>
+                        </tr>
+                        <tr data-industry="Synthetic Biology" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Ginkgo Bioworks</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Synthetic Biology</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Pathway</span></td>
+                            <td class="usecase">Cell programming; enzymes</td>
+                        </tr>
+                        <tr data-industry="Industrial Biotechnology" data-priority="A" data-region="Denmark">
+                            <td>
+                                <div class="company">Novonesis</div>
+                                <div class="region">Denmark</div>
+                            </td>
+                            <td><span class="industry-tag">Industrial Biotechnology</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Enzyme / Protein</span></td>
+                            <td class="usecase">Industrial enzymes and microbes</td>
+                        </tr>
+                        <tr data-industry="Industrial Biotechnology" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Codexis</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Industrial Biotechnology</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Enzyme Design</span></td>
+                            <td class="usecase">Enzyme engineering</td>
+                        </tr>
+                        <tr data-industry="Synthetic Biology" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Twist Bioscience</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Synthetic Biology</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">DNA / Protein</span></td>
+                            <td class="usecase">DNA synthesis; libraries</td>
+                        </tr>
+                        <tr data-industry="Agro-Tech" data-priority="A" data-region="Germany">
+                            <td>
+                                <div class="company">Bayer Crop Science</div>
+                                <div class="region">Germany</div>
+                            </td>
+                            <td><span class="industry-tag">Agro-Tech</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Ligand</span></td>
+                            <td class="usecase">Pesticide selectivity; crop biology</td>
+                        </tr>
+                        <tr data-industry="Agro-Tech" data-priority="A" data-region="Switzerland / China">
+                            <td>
+                                <div class="company">Syngenta</div>
+                                <div class="region">Switzerland / China</div>
+                            </td>
+                            <td><span class="industry-tag">Agro-Tech</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Ligand</span></td>
+                            <td class="usecase">Crop protection; receptor binding</td>
+                        </tr>
+                        <tr data-industry="Agro-Tech" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Corteva Agriscience</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Agro-Tech</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Gene</span></td>
+                            <td class="usecase">Crop proteins; gene editing</td>
+                        </tr>
+                        <tr data-industry="Agro-Tech" data-priority="A" data-region="Germany">
+                            <td>
+                                <div class="company">BASF Agricultural Solutions</div>
+                                <div class="region">Germany</div>
+                            </td>
+                            <td><span class="industry-tag">Agro-Tech</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Molecular / Protein</span></td>
+                            <td class="usecase">Fungicides; biostimulants</td>
+                        </tr>
+                        <tr data-industry="Agro-Tech" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">FMC Corporation</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Agro-Tech</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Molecular / Ligand</span></td>
+                            <td class="usecase">Crop protection chemistry</td>
+                        </tr>
+                        <tr data-industry="Agro-Tech" data-priority="B" data-region="India">
+                            <td>
+                                <div class="company">UPL</div>
+                                <div class="region">India</div>
+                            </td>
+                            <td><span class="industry-tag">Agro-Tech</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Molecular / Biological</span></td>
+                            <td class="usecase">Crop protection; biocontrol</td>
+                        </tr>
+                        <tr data-industry="Agro-Biotech" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Pivot Bio</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Agro-Biotech</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Microbe</span></td>
+                            <td class="usecase">Nitrogen-fixing microbes</td>
+                        </tr>
+                        <tr data-industry="Agro-Biotech" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Inari</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Agro-Biotech</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Protein / Gene</span></td>
+                            <td class="usecase">Seed design; gene editing</td>
+                        </tr>
+                        <tr data-industry="Agro-Biotech" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Pairwise</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Agro-Biotech</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Gene / Protein</span></td>
+                            <td class="usecase">Gene editing; crop traits</td>
+                        </tr>
+                        <tr data-industry="Chemicals / Materials" data-priority="A" data-region="Germany">
+                            <td>
+                                <div class="company">BASF</div>
+                                <div class="region">Germany</div>
+                            </td>
+                            <td><span class="industry-tag">Chemicals / Materials</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Crystal / Molecular</span></td>
+                            <td class="usecase">Catalysts; polymers; adsorption</td>
+                        </tr>
+                        <tr data-industry="Chemicals / Materials" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Dow</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Chemicals / Materials</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Polymer / Molecular</span></td>
+                            <td class="usecase">Polymers; materials</td>
+                        </tr>
+                        <tr data-industry="Chemicals / Materials" data-priority="A" data-region="Germany">
+                            <td>
+                                <div class="company">Evonik</div>
+                                <div class="region">Germany</div>
+                            </td>
+                            <td><span class="industry-tag">Chemicals / Materials</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Molecular / Catalyst</span></td>
+                            <td class="usecase">Specialty chemicals; biomaterials</td>
+                        </tr>
+                        <tr data-industry="Chemicals / Materials" data-priority="A" data-region="Germany">
+                            <td>
+                                <div class="company">Covestro</div>
+                                <div class="region">Germany</div>
+                            </td>
+                            <td><span class="industry-tag">Chemicals / Materials</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Polymer / Molecular</span></td>
+                            <td class="usecase">Advanced polymers</td>
+                        </tr>
+                        <tr data-industry="Chemicals / Materials" data-priority="B" data-region="France">
+                            <td>
+                                <div class="company">Arkema</div>
+                                <div class="region">France</div>
+                            </td>
+                            <td><span class="industry-tag">Chemicals / Materials</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Polymer / Molecular</span></td>
+                            <td class="usecase">Advanced materials</td>
+                        </tr>
+                        <tr data-industry="Chemicals / Catalysis" data-priority="B" data-region="Switzerland">
+                            <td>
+                                <div class="company">Clariant</div>
+                                <div class="region">Switzerland</div>
+                            </td>
+                            <td><span class="industry-tag">Chemicals / Catalysis</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Catalyst / Molecular</span></td>
+                            <td class="usecase">Catalysis; specialty chemicals</td>
+                        </tr>
+                        <tr data-industry="Chemicals / Materials" data-priority="B" data-region="UK">
+                            <td>
+                                <div class="company">INEOS</div>
+                                <div class="region">UK</div>
+                            </td>
+                            <td><span class="industry-tag">Chemicals / Materials</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Molecular / Polymer</span></td>
+                            <td class="usecase">Industrial chemicals</td>
+                        </tr>
+                        <tr data-industry="Chemicals / Materials" data-priority="A" data-region="Saudi Arabia">
+                            <td>
+                                <div class="company">SABIC</div>
+                                <div class="region">Saudi Arabia</div>
+                            </td>
+                            <td><span class="industry-tag">Chemicals / Materials</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Polymer / Crystal</span></td>
+                            <td class="usecase">Advanced materials</td>
+                        </tr>
+                        <tr data-industry="Chemicals / Materials" data-priority="B" data-region="USA / Netherlands">
+                            <td>
+                                <div class="company">LyondellBasell</div>
+                                <div class="region">USA / Netherlands</div>
+                            </td>
+                            <td><span class="industry-tag">Chemicals / Materials</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Polymer / Molecular</span></td>
+                            <td class="usecase">Polymers and circular materials</td>
+                        </tr>
+                        <tr data-industry="Chemicals / Catalysis" data-priority="A" data-region="UK">
+                            <td>
+                                <div class="company">Johnson Matthey</div>
+                                <div class="region">UK</div>
+                            </td>
+                            <td><span class="industry-tag">Chemicals / Catalysis</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Catalyst / Crystal</span></td>
+                            <td class="usecase">Catalysts; hydrogen; materials</td>
+                        </tr>
+                        <tr data-industry="Materials / Battery" data-priority="A" data-region="Belgium">
+                            <td>
+                                <div class="company">Umicore</div>
+                                <div class="region">Belgium</div>
+                            </td>
+                            <td><span class="industry-tag">Materials / Battery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Crystal / Battery</span></td>
+                            <td class="usecase">Battery materials; recycling</td>
+                        </tr>
+                        <tr data-industry="Food / Materials / Bio" data-priority="B"
+                            data-region="Netherlands / Switzerland">
+                            <td>
+                                <div class="company">DSM-Firmenich</div>
+                                <div class="region">Netherlands / Switzerland</div>
+                            </td>
+                            <td><span class="industry-tag">Food / Materials / Bio</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Enzyme / Molecular</span></td>
+                            <td class="usecase">Nutrition; ingredients; bio-based materials</td>
+                        </tr>
+                        <tr data-industry="Chemicals / Materials" data-priority="B" data-region="Japan">
+                            <td>
+                                <div class="company">Mitsubishi Chemical</div>
+                                <div class="region">Japan</div>
+                            </td>
+                            <td><span class="industry-tag">Chemicals / Materials</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Polymer / Molecular</span></td>
+                            <td class="usecase">Advanced materials</td>
+                        </tr>
+                        <tr data-industry="Chemicals / Agro" data-priority="B" data-region="Japan">
+                            <td>
+                                <div class="company">Sumitomo Chemical</div>
+                                <div class="region">Japan</div>
+                            </td>
+                            <td><span class="industry-tag">Chemicals / Agro</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Molecular / Ligand</span></td>
+                            <td class="usecase">Chemicals; agrochemicals</td>
+                        </tr>
+                        <tr data-industry="Advanced Materials" data-priority="B" data-region="Japan">
+                            <td>
+                                <div class="company">Toray</div>
+                                <div class="region">Japan</div>
+                            </td>
+                            <td><span class="industry-tag">Advanced Materials</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Polymer / Composite</span></td>
+                            <td class="usecase">Carbon fiber; advanced polymers</td>
+                        </tr>
+                        <tr data-industry="Chemicals / Battery" data-priority="A" data-region="South Korea">
+                            <td>
+                                <div class="company">LG Chem</div>
+                                <div class="region">South Korea</div>
+                            </td>
+                            <td><span class="industry-tag">Chemicals / Battery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Crystal / Polymer</span></td>
+                            <td class="usecase">Battery materials; polymers</td>
+                        </tr>
+                        <tr data-industry="Advanced Materials" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">DuPont</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Advanced Materials</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Polymer / Material</span></td>
+                            <td class="usecase">Specialty materials</td>
+                        </tr>
+                        <tr data-industry="Advanced Materials" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">3M</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Advanced Materials</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Material / Surface</span></td>
+                            <td class="usecase">Surface science; materials</td>
+                        </tr>
+                        <tr data-industry="Advanced Materials" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Corning</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Advanced Materials</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / Optical</span></td>
+                            <td class="usecase">Glass; photonics materials</td>
+                        </tr>
+                        <tr data-industry="Battery" data-priority="A" data-region="China">
+                            <td>
+                                <div class="company">CATL</div>
+                                <div class="region">China</div>
+                            </td>
+                            <td><span class="industry-tag">Battery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Crystal Lattice</span></td>
+                            <td class="usecase">Solid-state; sodium-ion; electrode materials</td>
+                        </tr>
+                        <tr data-industry="Battery / Automotive" data-priority="A" data-region="China">
+                            <td>
+                                <div class="company">BYD</div>
+                                <div class="region">China</div>
+                            </td>
+                            <td><span class="industry-tag">Battery / Automotive</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Crystal Lattice</span></td>
+                            <td class="usecase">LFP; next-generation cells</td>
+                        </tr>
+                        <tr data-industry="Battery" data-priority="A" data-region="South Korea">
+                            <td>
+                                <div class="company">LG Energy Solution</div>
+                                <div class="region">South Korea</div>
+                            </td>
+                            <td><span class="industry-tag">Battery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Crystal / Electrolyte</span></td>
+                            <td class="usecase">Cathodes; electrolytes; cells</td>
+                        </tr>
+                        <tr data-industry="Battery" data-priority="A" data-region="Japan">
+                            <td>
+                                <div class="company">Panasonic Energy</div>
+                                <div class="region">Japan</div>
+                            </td>
+                            <td><span class="industry-tag">Battery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Crystal / Materials</span></td>
+                            <td class="usecase">Cell chemistry; stability</td>
+                        </tr>
+                        <tr data-industry="Battery" data-priority="A" data-region="South Korea">
+                            <td>
+                                <div class="company">Samsung SDI</div>
+                                <div class="region">South Korea</div>
+                            </td>
+                            <td><span class="industry-tag">Battery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Crystal / Materials</span></td>
+                            <td class="usecase">Next-generation cells</td>
+                        </tr>
+                        <tr data-industry="Battery" data-priority="A" data-region="South Korea">
+                            <td>
+                                <div class="company">SK On</div>
+                                <div class="region">South Korea</div>
+                            </td>
+                            <td><span class="industry-tag">Battery</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Crystal / Electrolyte</span></td>
+                            <td class="usecase">Advanced EV batteries</td>
+                        </tr>
+                        <tr data-industry="Battery" data-priority="B" data-region="China">
+                            <td>
+                                <div class="company">CALB</div>
+                                <div class="region">China</div>
+                            </td>
+                            <td><span class="industry-tag">Battery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / Cell</span></td>
+                            <td class="usecase">EV battery materials</td>
+                        </tr>
+                        <tr data-industry="Battery" data-priority="B" data-region="China">
+                            <td>
+                                <div class="company">Gotion High-tech</div>
+                                <div class="region">China</div>
+                            </td>
+                            <td><span class="industry-tag">Battery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / Cell</span></td>
+                            <td class="usecase">LFP; battery materials</td>
+                        </tr>
+                        <tr data-industry="Battery" data-priority="B" data-region="China">
+                            <td>
+                                <div class="company">EVE Energy</div>
+                                <div class="region">China</div>
+                            </td>
+                            <td><span class="industry-tag">Battery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / Cell</span></td>
+                            <td class="usecase">Battery chemistry</td>
+                        </tr>
+                        <tr data-industry="Battery" data-priority="B" data-region="China">
+                            <td>
+                                <div class="company">Svolt Energy</div>
+                                <div class="region">China</div>
+                            </td>
+                            <td><span class="industry-tag">Battery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / Cell</span></td>
+                            <td class="usecase">EV batteries</td>
+                        </tr>
+                        <tr data-industry="Battery" data-priority="B" data-region="China">
+                            <td>
+                                <div class="company">Sunwoda</div>
+                                <div class="region">China</div>
+                            </td>
+                            <td><span class="industry-tag">Battery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / Cell</span></td>
+                            <td class="usecase">Battery systems</td>
+                        </tr>
+                        <tr data-industry="Semiconductor" data-priority="A" data-region="Taiwan">
+                            <td>
+                                <div class="company">TSMC</div>
+                                <div class="region">Taiwan</div>
+                            </td>
+                            <td><span class="industry-tag">Semiconductor</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Node / Crystal</span></td>
+                            <td class="usecase">Process geometry; advanced nodes</td>
+                        </tr>
+                        <tr data-industry="Semiconductor" data-priority="A" data-region="South Korea">
+                            <td>
+                                <div class="company">Samsung Foundry</div>
+                                <div class="region">South Korea</div>
+                            </td>
+                            <td><span class="industry-tag">Semiconductor</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Node / Crystal</span></td>
+                            <td class="usecase">GAA; advanced nodes</td>
+                        </tr>
+                        <tr data-industry="Semiconductor" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Intel</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Semiconductor</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Node / Topology</span></td>
+                            <td class="usecase">Advanced packaging; silicon</td>
+                        </tr>
+                        <tr data-industry="Semiconductor" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">GlobalFoundries</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Semiconductor</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Node / Materials</span></td>
+                            <td class="usecase">Specialty processes</td>
+                        </tr>
+                        <tr data-industry="Semiconductor" data-priority="B" data-region="Taiwan">
+                            <td>
+                                <div class="company">UMC</div>
+                                <div class="region">Taiwan</div>
+                            </td>
+                            <td><span class="industry-tag">Semiconductor</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Node / Process</span></td>
+                            <td class="usecase">Process optimisation</td>
+                        </tr>
+                        <tr data-industry="Semiconductor" data-priority="B" data-region="China">
+                            <td>
+                                <div class="company">SMIC</div>
+                                <div class="region">China</div>
+                            </td>
+                            <td><span class="industry-tag">Semiconductor</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Node / Process</span></td>
+                            <td class="usecase">Advanced process development</td>
+                        </tr>
+                        <tr data-industry="AI Hardware" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">NVIDIA</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Hardware</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Topology Graph</span></td>
+                            <td class="usecase">Interconnect; chiplet; HBM topology</td>
+                        </tr>
+                        <tr data-industry="AI Hardware" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">AMD</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Hardware</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Topology Graph</span></td>
+                            <td class="usecase">Chiplet and package optimisation</td>
+                        </tr>
+                        <tr data-industry="AI Hardware" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Qualcomm</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Hardware</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Topology Graph</span></td>
+                            <td class="usecase">SoC topology; power optimisation</td>
+                        </tr>
+                        <tr data-industry="AI Hardware" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Broadcom</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Hardware</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Topology Graph</span></td>
+                            <td class="usecase">Networking silicon; interconnect</td>
+                        </tr>
+                        <tr data-industry="AI Hardware" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Marvell</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">AI Hardware</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Topology Graph</span></td>
+                            <td class="usecase">Datacenter interconnect</td>
+                        </tr>
+                        <tr data-industry="AI Hardware" data-priority="B" data-region="Taiwan">
+                            <td>
+                                <div class="company">MediaTek</div>
+                                <div class="region">Taiwan</div>
+                            </td>
+                            <td><span class="industry-tag">AI Hardware</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Topology Graph</span></td>
+                            <td class="usecase">SoC optimisation</td>
+                        </tr>
+                        <tr data-industry="Memory" data-priority="A" data-region="South Korea">
+                            <td>
+                                <div class="company">SK hynix</div>
+                                <div class="region">South Korea</div>
+                            </td>
+                            <td><span class="industry-tag">Memory</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">3D Topology</span></td>
+                            <td class="usecase">HBM; 3D memory</td>
+                        </tr>
+                        <tr data-industry="Memory" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Micron</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Memory</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">3D Topology</span></td>
+                            <td class="usecase">DRAM; HBM; packaging</td>
+                        </tr>
+                        <tr data-industry="Memory" data-priority="B" data-region="Japan">
+                            <td>
+                                <div class="company">Kioxia</div>
+                                <div class="region">Japan</div>
+                            </td>
+                            <td><span class="industry-tag">Memory</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">3D Topology</span></td>
+                            <td class="usecase">3D NAND</td>
+                        </tr>
+                        <tr data-industry="Semiconductor Equipment" data-priority="A" data-region="Netherlands">
+                            <td>
+                                <div class="company">ASML</div>
+                                <div class="region">Netherlands</div>
+                            </td>
+                            <td><span class="industry-tag">Semiconductor Equipment</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Optical / Topology</span></td>
+                            <td class="usecase">EUV optics; photon trajectories</td>
+                        </tr>
+                        <tr data-industry="Semiconductor Equipment" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Applied Materials</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Semiconductor Equipment</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Process Geometry</span></td>
+                            <td class="usecase">Deposition; materials; process</td>
+                        </tr>
+                        <tr data-industry="Semiconductor Equipment" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Lam Research</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Semiconductor Equipment</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Process Geometry</span></td>
+                            <td class="usecase">Etch and deposition</td>
+                        </tr>
+                        <tr data-industry="Semiconductor Equipment" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">KLA</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Semiconductor Equipment</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Geometry / Detection</span></td>
+                            <td class="usecase">Metrology; inspection</td>
+                        </tr>
+                        <tr data-industry="Semiconductor Equipment" data-priority="B" data-region="Japan">
+                            <td>
+                                <div class="company">Tokyo Electron</div>
+                                <div class="region">Japan</div>
+                            </td>
+                            <td><span class="industry-tag">Semiconductor Equipment</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Process Geometry</span></td>
+                            <td class="usecase">Process equipment</td>
+                        </tr>
+                        <tr data-industry="Semiconductor Materials" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Entegris</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Semiconductor Materials</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Material / Crystal</span></td>
+                            <td class="usecase">Semiconductor materials</td>
+                        </tr>
+                        <tr data-industry="Quantum Computing" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">IBM</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Quantum Computing</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Quantum Topology</span></td>
+                            <td class="usecase">Qubit topology; materials</td>
+                        </tr>
+                        <tr data-industry="Quantum Computing" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Google Quantum AI</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Quantum Computing</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Quantum Topology</span></td>
+                            <td class="usecase">Qubit layouts; error optimisation</td>
+                        </tr>
+                        <tr data-industry="Quantum Computing" data-priority="B" data-region="UK / USA">
+                            <td>
+                                <div class="company">Quantinuum</div>
+                                <div class="region">UK / USA</div>
+                            </td>
+                            <td><span class="industry-tag">Quantum Computing</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Quantum Topology</span></td>
+                            <td class="usecase">Trapped-ion systems</td>
+                        </tr>
+                        <tr data-industry="Quantum Computing" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">IonQ</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Quantum Computing</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Quantum Topology</span></td>
+                            <td class="usecase">Ion-trap architecture</td>
+                        </tr>
+                        <tr data-industry="Quantum Computing" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Rigetti Computing</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Quantum Computing</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Quantum Topology</span></td>
+                            <td class="usecase">Superconducting circuits</td>
+                        </tr>
+                        <tr data-industry="Quantum Computing" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">PsiQuantum</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Quantum Computing</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Photonics / Quantum</span></td>
+                            <td class="usecase">Photonic architectures</td>
+                        </tr>
+                        <tr data-industry="Quantum Computing" data-priority="B" data-region="Canada">
+                            <td>
+                                <div class="company">D-Wave</div>
+                                <div class="region">Canada</div>
+                            </td>
+                            <td><span class="industry-tag">Quantum Computing</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Quantum Topology</span></td>
+                            <td class="usecase">Annealing architectures</td>
+                        </tr>
+                        <tr data-industry="Aerospace" data-priority="A" data-region="Europe">
+                            <td>
+                                <div class="company">Airbus</div>
+                                <div class="region">Europe</div>
+                            </td>
+                            <td><span class="industry-tag">Aerospace</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">CAD / Mesh</span></td>
+                            <td class="usecase">Aerodynamics; lightweight structures</td>
+                        </tr>
+                        <tr data-industry="Aerospace" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Boeing</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Aerospace</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">CAD / Mesh</span></td>
+                            <td class="usecase">Aerodynamics; structures</td>
+                        </tr>
+                        <tr data-industry="Aerospace" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">GE Aerospace</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Aerospace</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">CAD / Material</span></td>
+                            <td class="usecase">Engine geometry; materials</td>
+                        </tr>
+                        <tr data-industry="Aerospace" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">RTX</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Aerospace</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">CAD / Material</span></td>
+                            <td class="usecase">Thermal; propulsion; materials</td>
+                        </tr>
+                        <tr data-industry="Aerospace" data-priority="A" data-region="France">
+                            <td>
+                                <div class="company">Safran</div>
+                                <div class="region">France</div>
+                            </td>
+                            <td><span class="industry-tag">Aerospace</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">CAD / Material</span></td>
+                            <td class="usecase">Aero engines; composites</td>
+                        </tr>
+                        <tr data-industry="Aerospace" data-priority="A" data-region="UK">
+                            <td>
+                                <div class="company">Rolls-Royce</div>
+                                <div class="region">UK</div>
+                            </td>
+                            <td><span class="industry-tag">Aerospace</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">CAD / Material</span></td>
+                            <td class="usecase">Engine materials; thermal</td>
+                        </tr>
+                        <tr data-industry="Aerospace / Defense" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Lockheed Martin</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Aerospace / Defense</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">CAD / Topology</span></td>
+                            <td class="usecase">Aerospace structures</td>
+                        </tr>
+                        <tr data-industry="Aerospace / Defense" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Northrop Grumman</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Aerospace / Defense</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">CAD / Topology</span></td>
+                            <td class="usecase">Aerospace systems</td>
+                        </tr>
+                        <tr data-industry="Aerospace / Defense" data-priority="B" data-region="UK">
+                            <td>
+                                <div class="company">BAE Systems</div>
+                                <div class="region">UK</div>
+                            </td>
+                            <td><span class="industry-tag">Aerospace / Defense</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">CAD / Topology</span></td>
+                            <td class="usecase">Advanced systems</td>
+                        </tr>
+                        <tr data-industry="Space" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">SpaceX</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Space</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">CAD / Structural</span></td>
+                            <td class="usecase">Launch systems; structures</td>
+                        </tr>
+                        <tr data-industry="Space" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Blue Origin</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Space</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">CAD / Structural</span></td>
+                            <td class="usecase">Propulsion; structures</td>
+                        </tr>
+                        <tr data-industry="Space" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Rocket Lab</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Space</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">CAD / Structural</span></td>
+                            <td class="usecase">Launch systems</td>
+                        </tr>
+                        <tr data-industry="Automotive / Battery" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Tesla</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Automotive / Battery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">CAD / Crystal</span></td>
+                            <td class="usecase">Battery materials; vehicle aero</td>
+                        </tr>
+                        <tr data-industry="Automotive / Battery" data-priority="B" data-region="Japan">
+                            <td>
+                                <div class="company">Toyota</div>
+                                <div class="region">Japan</div>
+                            </td>
+                            <td><span class="industry-tag">Automotive / Battery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / CAD</span></td>
+                            <td class="usecase">Battery; manufacturing</td>
+                        </tr>
+                        <tr data-industry="Automotive / Battery" data-priority="B" data-region="Germany">
+                            <td>
+                                <div class="company">Volkswagen Group</div>
+                                <div class="region">Germany</div>
+                            </td>
+                            <td><span class="industry-tag">Automotive / Battery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / CAD</span></td>
+                            <td class="usecase">Battery; vehicle optimisation</td>
+                        </tr>
+                        <tr data-industry="Automotive / Battery" data-priority="B" data-region="Germany">
+                            <td>
+                                <div class="company">BMW Group</div>
+                                <div class="region">Germany</div>
+                            </td>
+                            <td><span class="industry-tag">Automotive / Battery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">CAD / Battery</span></td>
+                            <td class="usecase">Vehicle aero; batteries</td>
+                        </tr>
+                        <tr data-industry="Automotive / Battery" data-priority="B" data-region="Germany">
+                            <td>
+                                <div class="company">Mercedes-Benz</div>
+                                <div class="region">Germany</div>
+                            </td>
+                            <td><span class="industry-tag">Automotive / Battery</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">CAD / Battery</span></td>
+                            <td class="usecase">Vehicle aero; materials</td>
+                        </tr>
+                        <tr data-industry="Energy / Catalysis" data-priority="A" data-region="Saudi Arabia">
+                            <td>
+                                <div class="company">Saudi Aramco</div>
+                                <div class="region">Saudi Arabia</div>
+                            </td>
+                            <td><span class="industry-tag">Energy / Catalysis</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Catalyst / MOF</span></td>
+                            <td class="usecase">Catalysts; CO2; materials</td>
+                        </tr>
+                        <tr data-industry="Energy / Catalysis" data-priority="A" data-region="UK / Netherlands">
+                            <td>
+                                <div class="company">Shell</div>
+                                <div class="region">UK / Netherlands</div>
+                            </td>
+                            <td><span class="industry-tag">Energy / Catalysis</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Catalyst / MOF</span></td>
+                            <td class="usecase">CCS; catalysts; materials</td>
+                        </tr>
+                        <tr data-industry="Energy / Catalysis" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">ExxonMobil</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Energy / Catalysis</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Catalyst / MOF</span></td>
+                            <td class="usecase">CCS; refining catalysts</td>
+                        </tr>
+                        <tr data-industry="Energy / Catalysis" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Chevron</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Energy / Catalysis</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Catalyst / MOF</span></td>
+                            <td class="usecase">Energy materials</td>
+                        </tr>
+                        <tr data-industry="Energy / Catalysis" data-priority="B" data-region="France">
+                            <td>
+                                <div class="company">TotalEnergies</div>
+                                <div class="region">France</div>
+                            </td>
+                            <td><span class="industry-tag">Energy / Catalysis</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Catalyst / MOF</span></td>
+                            <td class="usecase">CCS; hydrogen</td>
+                        </tr>
+                        <tr data-industry="Energy / Catalysis" data-priority="B" data-region="UAE">
+                            <td>
+                                <div class="company">ADNOC</div>
+                                <div class="region">UAE</div>
+                            </td>
+                            <td><span class="industry-tag">Energy / Catalysis</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Catalyst / MOF</span></td>
+                            <td class="usecase">CCS; materials</td>
+                        </tr>
+                        <tr data-industry="Energy / Subsurface" data-priority="B" data-region="Brazil">
+                            <td>
+                                <div class="company">Petrobras</div>
+                                <div class="region">Brazil</div>
+                            </td>
+                            <td><span class="industry-tag">Energy / Subsurface</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Fluid / Material</span></td>
+                            <td class="usecase">Reservoir and process optimisation</td>
+                        </tr>
+                        <tr data-industry="Energy / CCUS" data-priority="B" data-region="Norway">
+                            <td>
+                                <div class="company">Equinor</div>
+                                <div class="region">Norway</div>
+                            </td>
+                            <td><span class="industry-tag">Energy / CCUS</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Catalyst / Subsurface</span></td>
+                            <td class="usecase">CCS; energy materials</td>
+                        </tr>
+                        <tr data-industry="Industrial Gas" data-priority="A" data-region="Germany / UK / USA">
+                            <td>
+                                <div class="company">Linde</div>
+                                <div class="region">Germany / UK / USA</div>
+                            </td>
+                            <td><span class="industry-tag">Industrial Gas</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Crystal / Adsorption</span></td>
+                            <td class="usecase">Hydrogen; gas separation</td>
+                        </tr>
+                        <tr data-industry="Industrial Gas" data-priority="A" data-region="France">
+                            <td>
+                                <div class="company">Air Liquide</div>
+                                <div class="region">France</div>
+                            </td>
+                            <td><span class="industry-tag">Industrial Gas</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Crystal / Adsorption</span></td>
+                            <td class="usecase">Hydrogen; gas separation</td>
+                        </tr>
+                        <tr data-industry="Carbon Capture" data-priority="A" data-region="Switzerland">
+                            <td>
+                                <div class="company">Climeworks</div>
+                                <div class="region">Switzerland</div>
+                            </td>
+                            <td><span class="industry-tag">Carbon Capture</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">MOF / Adsorption</span></td>
+                            <td class="usecase">Direct air capture sorbents</td>
+                        </tr>
+                        <tr data-industry="Carbon Capture" data-priority="A" data-region="Canada">
+                            <td>
+                                <div class="company">Svante</div>
+                                <div class="region">Canada</div>
+                            </td>
+                            <td><span class="industry-tag">Carbon Capture</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">MOF / Adsorption</span></td>
+                            <td class="usecase">Solid sorbent materials</td>
+                        </tr>
+                        <tr data-industry="Hydrogen" data-priority="B" data-region="Norway">
+                            <td>
+                                <div class="company">Nel</div>
+                                <div class="region">Norway</div>
+                            </td>
+                            <td><span class="industry-tag">Hydrogen</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Catalyst / Crystal</span></td>
+                            <td class="usecase">Electrolyzers</td>
+                        </tr>
+                        <tr data-industry="Hydrogen" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Plug Power</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Hydrogen</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Catalyst / Material</span></td>
+                            <td class="usecase">Fuel cells; hydrogen</td>
+                        </tr>
+                        <tr data-industry="Mining" data-priority="A" data-region="UK / Australia">
+                            <td>
+                                <div class="company">Rio Tinto</div>
+                                <div class="region">UK / Australia</div>
+                            </td>
+                            <td><span class="industry-tag">Mining</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Crystal / Ligand</span></td>
+                            <td class="usecase">Mineral separation; flotation</td>
+                        </tr>
+                        <tr data-industry="Mining" data-priority="A" data-region="Australia / UK">
+                            <td>
+                                <div class="company">BHP</div>
+                                <div class="region">Australia / UK</div>
+                            </td>
+                            <td><span class="industry-tag">Mining</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Crystal / Ligand</span></td>
+                            <td class="usecase">Ore processing; reagents</td>
+                        </tr>
+                        <tr data-industry="Mining" data-priority="B" data-region="Brazil">
+                            <td>
+                                <div class="company">Vale</div>
+                                <div class="region">Brazil</div>
+                            </td>
+                            <td><span class="industry-tag">Mining</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / Process</span></td>
+                            <td class="usecase">Ore beneficiation</td>
+                        </tr>
+                        <tr data-industry="Mining / Materials" data-priority="B" data-region="Switzerland">
+                            <td>
+                                <div class="company">Glencore</div>
+                                <div class="region">Switzerland</div>
+                            </td>
+                            <td><span class="industry-tag">Mining / Materials</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / Process</span></td>
+                            <td class="usecase">Mineral processing; materials</td>
+                        </tr>
+                        <tr data-industry="Mining" data-priority="B" data-region="UK">
+                            <td>
+                                <div class="company">Anglo American</div>
+                                <div class="region">UK</div>
+                            </td>
+                            <td><span class="industry-tag">Mining</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / Ligand</span></td>
+                            <td class="usecase">Ore separation</td>
+                        </tr>
+                        <tr data-industry="Mining" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Freeport-McMoRan</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Mining</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / Process</span></td>
+                            <td class="usecase">Copper processing</td>
+                        </tr>
+                        <tr data-industry="Mining" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Newmont</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Mining</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / Ligand</span></td>
+                            <td class="usecase">Gold processing</td>
+                        </tr>
+                        <tr data-industry="Mining" data-priority="B" data-region="Canada">
+                            <td>
+                                <div class="company">Barrick Mining</div>
+                                <div class="region">Canada</div>
+                            </td>
+                            <td><span class="industry-tag">Mining</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / Ligand</span></td>
+                            <td class="usecase">Gold/copper processing</td>
+                        </tr>
+                        <tr data-industry="Mining / Energy" data-priority="B" data-region="Australia">
+                            <td>
+                                <div class="company">Fortescue</div>
+                                <div class="region">Australia</div>
+                            </td>
+                            <td><span class="industry-tag">Mining / Energy</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / Process</span></td>
+                            <td class="usecase">Iron ore; green energy</td>
+                        </tr>
+                        <tr data-industry="Mining" data-priority="B" data-region="China">
+                            <td>
+                                <div class="company">Zijin Mining</div>
+                                <div class="region">China</div>
+                            </td>
+                            <td><span class="industry-tag">Mining</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Crystal / Process</span></td>
+                            <td class="usecase">Mineral processing</td>
+                        </tr>
+                        <tr data-industry="Scientific Software" data-priority="A" data-region="France / USA">
+                            <td>
+                                <div class="company">Dassault Systèmes / BIOVIA</div>
+                                <div class="region">France / USA</div>
+                            </td>
+                            <td><span class="industry-tag">Scientific Software</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Molecular / CAD</span></td>
+                            <td class="usecase">Materials and molecular simulation</td>
+                        </tr>
+                        <tr data-industry="Scientific Software" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Ansys</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Scientific Software</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">CAD / Physics</span></td>
+                            <td class="usecase">Engineering simulation</td>
+                        </tr>
+                        <tr data-industry="Scientific Software" data-priority="A" data-region="Germany">
+                            <td>
+                                <div class="company">Siemens Digital Industries Software</div>
+                                <div class="region">Germany</div>
+                            </td>
+                            <td><span class="industry-tag">Scientific Software</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">CAD / Topology</span></td>
+                            <td class="usecase">Digital engineering</td>
+                        </tr>
+                        <tr data-industry="Scientific Software / Hardware" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Cadence</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Scientific Software / Hardware</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Topology Graph</span></td>
+                            <td class="usecase">Electronic design</td>
+                        </tr>
+                        <tr data-industry="Scientific Software / Hardware" data-priority="A" data-region="USA">
+                            <td>
+                                <div class="company">Synopsys</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Scientific Software / Hardware</span></td>
+                            <td><span class="priority a">TIER A</span></td>
+                            <td><span class="mission-tag">Topology Graph</span></td>
+                            <td class="usecase">EDA; chip design</td>
+                        </tr>
+                        <tr data-industry="Scientific Software" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Autodesk</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Scientific Software</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">CAD / Mesh</span></td>
+                            <td class="usecase">Design and simulation</td>
+                        </tr>
+                        <tr data-industry="Scientific Software" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Altair</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Scientific Software</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">CAD / Physics</span></td>
+                            <td class="usecase">Simulation and optimisation</td>
+                        </tr>
+                        <tr data-industry="Scientific Software" data-priority="B" data-region="Sweden">
+                            <td>
+                                <div class="company">COMSOL</div>
+                                <div class="region">Sweden</div>
+                            </td>
+                            <td><span class="industry-tag">Scientific Software</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Physics / Mesh</span></td>
+                            <td class="usecase">Multiphysics simulation</td>
+                        </tr>
+                        <tr data-industry="Scientific Software" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Wolfram</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Scientific Software</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Graph / Science</span></td>
+                            <td class="usecase">Computational intelligence</td>
+                        </tr>
+                        <tr data-industry="Cloud / Scientific AI" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">AWS</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Cloud / Scientific AI</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Scientific Workflow</span></td>
+                            <td class="usecase">Cloud compute; research platform</td>
+                        </tr>
+                        <tr data-industry="Cloud / Scientific AI" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Microsoft</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Cloud / Scientific AI</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Scientific Workflow</span></td>
+                            <td class="usecase">Azure AI; research computing</td>
+                        </tr>
+                        <tr data-industry="Cloud / Scientific AI" data-priority="B" data-region="USA">
+                            <td>
+                                <div class="company">Google</div>
+                                <div class="region">USA</div>
+                            </td>
+                            <td><span class="industry-tag">Cloud / Scientific AI</span></td>
+                            <td><span class="priority b">TIER B</span></td>
+                            <td><span class="mission-tag">Scientific Workflow</span></td>
+                            <td class="usecase">AI/Science infrastructure</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section>
+            <div class="section-head">
+                <h2>Mission Taxonomy</h2>
+                <div class="note">One control plane, multiple industry evaluators</div>
+            </div>
+            <div class="summary">
+                <div class="card">
+                    <h3>MOLECULAR / BIOLOGICAL</h3>
+                    <div class="list">
+                        <div><b>PDB / FASTA</b> → protein folding, binding, antibodies</div>
+                        <div><b>SDF / MOL2</b> → ligand docking and conformational search</div>
+                        <div><b>mRNA / RNA</b> → stability, structure, delivery</div>
+                        <div><b>Protein Design</b> → de novo sequences and structures</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>MATERIALS / CRYSTAL</h3>
+                    <div class="list">
+                        <div><b>CIF / XYZ</b> → batteries, catalysts, semiconductors</div>
+                        <div><b>MOF / Adsorption</b> → CO₂ capture and gas separation</div>
+                        <div><b>Crystal Lattice</b> → ion diffusion, stability, defects</div>
+                        <div><b>Materials CAMEO</b> → deterministic evaluator pipelines</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>ENGINEERING / TOPOLOGY</h3>
+                    <div class="list">
+                        <div><b>Graph / JSON</b> → chip interconnects and DAGs</div>
+                        <div><b>CAD / Mesh</b> → aerospace and automotive geometry</div>
+                        <div><b>Physics</b> → thermal, aero and structural optimisation</div>
+                        <div><b>Topology CAMEO</b> → objective scoring against constraints</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>INDUSTRIAL / ENERGY</h3>
+                    <div class="list">
+                        <div><b>Catalyst</b> → adsorption and reaction pathways</div>
+                        <div><b>Hydrogen</b> → electrolyzers and storage materials</div>
+                        <div><b>Mining</b> → flotation and mineral separation</div>
+                        <div><b>Subsurface</b> → fluid / reservoir geometry</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="footer">qFoldIT · Client & Scientific Mission Prospect Matrix · Generated 2026‑08‑16 · Prospect list
+            = outreach hypotheses; inclusion does not imply an existing commercial relationship or endorsement.</div>
+    </main>
+    <script>
+        const rows = [...document.querySelectorAll('#matrix tbody tr')], q = document.getElementById('q'), i = document.getElementById('industry'), p = document.getElementById('priority'), r = document.getElementById('region');
+        const industries = [...new Set(rows.map(x => x.dataset.industry))].sort(), regions = [...new Set(rows.map(x => x.dataset.region))].sort();
+        industries.forEach(x => i.insertAdjacentHTML('beforeend', `<option>${x}</option>`)); regions.forEach(x => r.insertAdjacentHTML('beforeend', `<option>${x}</option>`));
+        document.getElementById('total').textContent = rows.length; document.getElementById('aCount').textContent = rows.filter(x => x.dataset.priority === 'A').length; document.getElementById('bCount').textContent = rows.filter(x => x.dataset.priority === 'B').length;
+        function apply() { const t = q.value.trim().toLowerCase(), iv = i.value.toLowerCase(), pv = p.value, rv = r.value.toLowerCase(); rows.forEach(row => { const text = row.innerText.toLowerCase(); row.style.display = (!t || text.includes(t)) && (!iv || row.dataset.industry.toLowerCase() === iv) && (!pv || row.dataset.priority === pv) && (!rv || row.dataset.region.toLowerCase() === rv) ? '' : 'none' }) } [q, i, p, r].forEach(x => x.addEventListener('input', apply));
+    </script>
+</body>
+
+</html>
