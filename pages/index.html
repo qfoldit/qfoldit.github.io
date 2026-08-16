@@ -451,10 +451,14 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 8px;
+      align-items: center;
     }
     footer a { color: var(--accent); display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
     footer a:hover { color: #4bc5ab; }
     footer a i { font-size: 18px; }
+    footer > span:first-child { flex: 0 0 auto; }
+    footer > span:last-child { flex: 0 0 auto; }
+    footer > span.centered { flex: 1; text-align: center; }
 
     @media (max-width: 640px) {
       main { padding: 40px 18px 70px; }
@@ -468,6 +472,8 @@
       .std-tag, .std-tag-sm, .std-item { font-size: 9px; padding: 1px 6px; }
       .lifecycle { gap: 4px 6px; }
       .lifecycle .step { font-size: 9px; padding: 2px 6px; }
+      footer { flex-direction: column; gap: 8px; text-align: center; }
+      footer > span.centered { flex: none; }
     }
   </style>
 </head>
@@ -1071,6 +1077,7 @@
         <i class="fab fa-github"></i> github.com/qfoldit
       </a>
     </span>
+    <span class="centered">«Powered by Anthropic»</span>
     <span><i class="fas fa-check-circle" style="color:var(--accent);"></i> Ready for integration</span>
   </footer>
 
