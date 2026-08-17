@@ -1117,11 +1117,13 @@
         <strong><code>attribution_weight(record)</code> = points(record) / sum(points(r) for all records sharing the
           same <code>reference_mcp_job_id</code> AND session)</strong>
         <div style="font-size:13px;color:var(--ink-dim);margin-top:4px;">Sum = 1.0 across all participants. Mode‑aware —
-          <code>mode</code> required in schema v0.2.</div>
+          <code>mode</code> required in schema v0.2.
+        </div>
         <div class="warning"><i class="fas fa-exclamation-triangle"></i> <strong>attribution_weight is not a
             royalty.</strong> It becomes royalty‑relevant only if <code>discovery_claim.asserted</code> is
           <code>true</code> (only via human‑in‑the‑loop after independent review) <strong>and</strong> a legal framework
-          exists. Otherwise: <strong>recognition/leaderboard credit</strong> only.</div>
+          exists. Otherwise: <strong>recognition/leaderboard credit</strong> only.
+        </div>
       </div>
       <div
         style="background:var(--bg-panel-2);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-top:16px;">
@@ -1435,7 +1437,8 @@
         style="margin-top:8px;font-size:12px;color:var(--ink-faint);border-top:1px solid var(--line);padding-top:8px;">
         <i class="fas fa-info-circle" style="color:var(--accent);"></i> <strong>Note:</strong>
         <code>discovery_claim.asserted: true</code> only valid for <strong>human‑in‑the‑loop search</strong> mode after
-        independent review. All others default <code>false</code>.</div>
+        independent review. All others default <code>false</code>.
+      </div>
     </section>
 
     <!-- ===== CI ===== -->
@@ -1565,7 +1568,8 @@
             <div class="rm-tag">Step 6 — Human‑in‑the‑loop discovery mode</div>
             <div class="rm-body"><b>Implement the candidate‑space mechanic</b> – replace the single baked path with a
               pre‑vetted tree, log player explorations, and create an offline re‑run pipeline. This is the only path to
-              <code>discovery_claim.asserted: true</code>.</div>
+              <code>discovery_claim.asserted: true</code>.
+            </div>
           </div>
         </div>
         <div class="rm-item"><i class="fas fa-circle rm-icon"></i>
@@ -1573,7 +1577,8 @@
             <div class="rm-tag">Step 7 — Legal &amp; business layer</div>
             <div class="rm-body"><b>Engage legal counsel and review Epic's monetization terms</b> – determine how
               <code>attribution_weight</code> could be converted into actual payments. Must be resolved before any
-              royalty‑like claims.</div>
+              royalty‑like claims.
+            </div>
           </div>
         </div>
       </div>
@@ -1588,10 +1593,10 @@
         or to public CAMEO documentation.</span>
     </footer>
 
-    <div class="powered">«Powered by Anthropic»</div>
-
   </main>
 
+  <!-- powered by anthropic – strictly centered at the very bottom of the page -->
+  <div class="powered">«Powered by Anthropic»</div>
 
 </body>
 
