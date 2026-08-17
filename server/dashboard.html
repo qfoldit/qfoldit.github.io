@@ -1,1086 +1,720 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>qFoldIT — B2B Orders (INDUSTRIAL‑CAMEO)</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/dashboard.css">
   <style>
-    :root {
-      --bg: #0b0f14;
-      --bg-panel: #11161d;
-      --bg-panel-2: #151b23;
-      --line: #232b36;
-      --ink: #e7ecf2;
-      --ink-dim: #8c98a8;
-      --ink-faint: #5c6b7d;
-      --accent: #5ee6c9;
-      --accent-soft: rgba(94,230,201,.12);
-      --amber: #e8a83c;
-      --amber-soft: rgba(232,168,60,.12);
-      --rose: #e8637a;
-      --rose-soft: rgba(232,99,122,.12);
-      --violet: #9d8cf0;
-      --violet-soft: rgba(157,140,240,.12);
-      --green: #5ee6a0;
-      --green-soft: rgba(94,230,160,.12);
-      --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
-      --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
-      --sans: -apple-system, "Segoe UI", Inter, system-ui, sans-serif;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { margin: 0; padding: 0; }
-    ::-webkit-scrollbar { width: 0; }
-    body {
-      background:
-        radial-gradient(1200px 600px at 15% -10%, rgba(94,230,201,.07), transparent 60%),
-        radial-gradient(900px 500px at 100% 0%, rgba(157,140,240,.06), transparent 55%),
-        var(--bg);
-      color: var(--ink);
-      font-family: var(--sans);
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
-    main { max-width: 1280px; margin: 0 auto; padding: 56px 28px 90px; }
-    a { text-decoration: none; }
 
-    /* Hero */
-    .eyebrow {
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-    .eyebrow i { color: var(--accent); font-size: 10px; flex: none; }
-    h1 {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: clamp(34px, 5vw, 54px);
-      line-height: 1.06;
-      margin: 0 0 14px;
-      letter-spacing: -.01em;
-    }
-    h1 em { font-style: italic; color: var(--accent); }
-    .hero-sub {
-      color: var(--ink-dim);
-      max-width: 640px;
-      font-size: 16px;
-      margin-bottom: 6px;
-    }
-    .hero-meta {
-      font-family: var(--mono);
-      font-size: 12.5px;
-      color: var(--ink-faint);
-      margin-top: 22px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 22px;
-    }
-    .hero-meta a { color: var(--ink-dim); border-bottom: 1px dotted var(--line); }
-    .hero-meta a:hover { color: var(--accent); border-color: var(--accent); }
-
-    /* Sections */
-    section { margin-top: 64px; }
-    .section-head {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    h2 {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: 22px;
-      margin: 0;
-      letter-spacing: -.01em;
-    }
-    .section-note {
-      font-family: var(--mono);
-      font-size: 11.5px;
-      color: var(--ink-faint);
-      text-align: right;
-    }
-
-    /* Metrics */
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1px;
-      background: var(--line);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-    .metric {
-      background: var(--bg-panel);
-      padding: 22px 18px;
-    }
-    .metric .n {
-      font-family: var(--mono);
-      font-size: 30px;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: -.02em;
-    }
-    .metric .n .sub { color: var(--ink-faint); font-size: 18px; }
-    .metric .l { font-size: 12.5px; color: var(--ink-dim); margin-top: 6px; }
-
-    /* Cards */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
-    }
-    .card {
-      background: var(--bg-panel);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 18px 20px;
-      border-top: 3px solid var(--accent);
-      transition: background 0.2s;
-    }
-    .card:hover { background: var(--bg-panel-2); }
-    .card .card-title {
-      font-family: var(--mono);
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--accent);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .card .card-title i { font-size: 16px; color: var(--accent); }
-    .card .card-body {
-      margin-top: 8px;
-      font-size: 12.5px;
-      color: var(--ink-dim);
-    }
-    .card .card-body .tag {
-      display: inline-block;
-      background: var(--bg-panel-2);
-      padding: 1px 8px;
-      border-radius: 10px;
-      font-family: var(--mono);
-      font-size: 9.5px;
-      color: var(--ink);
-      border: 1px solid var(--line);
-      margin: 2px 3px 2px 0;
-    }
-    .card .card-body .tag strong { color: var(--accent); font-weight: 600; }
-    .card .card-body .tag.blue { border-color: var(--accent-soft); }
-    .card .card-body .tag.violet { border-color: var(--violet-soft); }
-    .card .card-body .tag.amber { border-color: var(--amber-soft); }
-    .card .card-body .tag.rose { border-color: var(--rose-soft); }
-
-    /* Lifecycle */
-    .lifecycle {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 10px;
-      background: var(--bg-panel);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 18px 22px;
-      justify-content: center;
-      align-items: center;
-    }
-    .lifecycle .step {
-      font-family: var(--mono);
-      font-size: 10.5px;
-      padding: 4px 8px;
-      border-radius: 20px;
-      background: var(--bg-panel-2);
-      color: var(--ink-dim);
-      border: 1px solid var(--line);
-      white-space: nowrap;
-    }
-    .lifecycle .step.active { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
-    .lifecycle .step.done { background: var(--green-soft); color: var(--green); border-color: var(--green-soft); }
-    .lifecycle .arrow { color: var(--ink-faint); font-size: 12px; flex: none; }
-
-    /* Tables */
-    .table-wrap {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin: 0 -4px;
-      padding: 0 4px;
-    }
-    .table-wrap::-webkit-scrollbar { width: 0; height: 0; background: transparent; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-      line-height: 1.5;
-      min-width: 900px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-    thead th {
-      text-align: left;
-      font-weight: 600;
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--ink-dim);
-      padding: 10px 12px;
-      background: var(--bg-panel-2);
-      border-bottom: 1px solid var(--line);
-      white-space: nowrap;
-    }
-    tbody tr {
-      border-bottom: 1px solid var(--line);
-      transition: background 0.15s ease;
-    }
-    tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: var(--bg-panel-2); }
-    tbody td {
-      padding: 10px 12px;
-      vertical-align: middle;
-      color: var(--ink-dim);
-    }
-    .col-industry { font-weight: 600; color: var(--ink); white-space: nowrap; width: 12%; }
-    .col-industry i { margin-right: 6px; color: var(--accent); }
-    .col-orders { width: 30%; }
-    .col-orders ul { list-style: none; padding: 0; margin: 0; }
-    .col-orders li { position: relative; padding-left: 18px; margin-bottom: 2px; color: var(--ink-dim); }
-    .col-orders li::before { content: "•"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
-    .col-orders li:last-child { margin-bottom: 0; }
-    .col-standards { width: 30%; font-size: 12px; color: var(--ink-dim); }
-    .col-modes { width: 15%; text-align: center; font-size: 11px; color: var(--ink-dim); }
-    .col-complexity { text-align: right; white-space: nowrap; width: 10%; }
-
-    .std-tag, .std-tag-sm, .std-item {
-      display: inline-block;
-      background: var(--bg-panel-2);
-      padding: 2px 10px;
-      border-radius: 12px;
-      margin: 2px 4px 2px 0;
-      font-family: var(--mono);
-      font-size: 10.5px;
-      color: var(--ink);
-      border: 1px solid var(--line);
-      white-space: nowrap;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .std-tag strong, .std-tag-sm strong, .std-item strong { color: var(--accent); font-weight: 600; }
-    .std-tag:hover, .std-tag-sm:hover, .std-item:hover {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      transform: scale(1.02);
-    }
-
-    .complexity-tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 500;
-      padding: 3px 12px;
-      border-radius: 100px;
-      letter-spacing: 0.01em;
-      background: var(--bg-panel-2);
-      color: var(--ink);
-      border: 1px solid var(--line);
-    }
-    .complexity-tag.low { background: var(--accent-soft); color: var(--accent); border-color: var(--accent-soft); }
-    .complexity-tag.medium { background: var(--amber-soft); color: var(--amber); border-color: var(--amber-soft); }
-    .complexity-tag.high { background: var(--rose-soft); color: var(--rose); border-color: var(--rose-soft); }
-    .complexity-tag.very-high { background: var(--violet-soft); color: var(--violet); border-color: var(--violet-soft); }
-
-    .status-pill {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 9.5px;
-      letter-spacing: .03em;
-      padding: 2px 8px;
-      border-radius: 20px;
-      white-space: nowrap;
-      border: 1px solid var(--line);
-    }
-    .status-pill.verified { background: var(--green-soft); color: var(--green); border-color: var(--green-soft); }
-    .status-pill.connected { background: var(--accent-soft); color: var(--accent); border-color: var(--accent-soft); }
-    .status-pill.best-effort { background: var(--amber-soft); color: var(--amber); border-color: var(--amber-soft); }
-    .status-pill.unlocked { background: var(--accent-soft); color: var(--accent); border-color: var(--accent-soft); }
-    .status-pill.not-authored { background: var(--rose-soft); color: var(--rose); border-color: var(--rose-soft); }
-    .status-pill.blocked { background: var(--violet-soft); color: var(--violet); border-color: var(--violet-soft); }
-    .status-pill.specced { background: var(--amber-soft); color: var(--amber); border-color: var(--amber-soft); }
-    .status-pill.none { background: transparent; color: var(--ink-faint); border-color: var(--line); }
-    .status-pill.pending { background: var(--violet-soft); color: var(--violet); border-color: var(--violet-soft); }
-
-    /* Legend */
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 18px;
-      background: var(--bg-panel-2);
-      border-radius: 12px;
-      padding: 12px 18px;
-      margin-bottom: 16px;
-      font-size: 11px;
-      color: var(--ink-dim);
-    }
-    .legend-item { display: flex; align-items: center; gap: 6px; }
-    .legend-item .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
-    .legend-item .dot.green { background: var(--green); }
-    .legend-item .dot.teal { background: var(--accent); }
-    .legend-item .dot.amber { background: var(--amber); }
-    .legend-item .dot.rose { background: var(--rose); }
-    .legend-item .dot.violet { background: var(--violet); }
-    .legend-item .dot.gray { background: var(--ink-faint); }
-
-    /* Standards cards (new) */
-    .standards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
-    .standards-card {
-      background: var(--bg-panel);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 18px 20px;
-      border-top: 3px solid var(--violet);
-      transition: background 0.2s;
-    }
-    .standards-card:hover { background: var(--bg-panel-2); }
-    .standards-card .card-title {
-      font-family: var(--mono);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--violet);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .standards-card .card-title i { font-size: 14px; color: var(--violet); }
-    .standards-card .card-body {
-      margin-top: 6px;
-      font-size: 11.5px;
-      color: var(--ink-dim);
-    }
-    .standards-card .card-body .std-ref {
-      display: inline-block;
-      background: var(--bg-panel-2);
-      padding: 1px 8px;
-      border-radius: 10px;
-      margin: 2px 4px 2px 0;
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--ink);
-      border: 1px solid var(--line);
-      transition: all 0.2s ease;
-    }
-    .standards-card .card-body .std-ref strong { color: var(--violet); font-weight: 600; }
-    .standards-card .card-body .std-ref:hover { border-color: var(--violet); background: var(--violet-soft); }
-    .standards-card .card-body .std-desc {
-      display: block;
-      font-size: 10.5px;
-      color: var(--ink-faint);
-      margin-top: 4px;
-      padding-left: 2px;
-    }
-    .standards-card .card-body .control {
-      display: block;
-      font-size: 10.5px;
-      color: var(--accent);
-      margin-top: 6px;
-      border-top: 1px solid var(--line);
-      padding-top: 6px;
-    }
-    .standards-card .card-body .control strong { color: var(--ink); }
-
-    /* Pipeline */
-    .pipeline-block {
-      background: var(--bg-panel);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 24px 28px;
-      font-family: var(--mono);
-      font-size: 13px;
-      color: var(--ink-dim);
-    }
-    .pipeline-block .step { color: var(--ink); padding: 3px 0; }
-    .pipeline-block .arrow { color: var(--accent); padding-left: 6px; }
-    .pipeline-block .highlight { color: var(--accent); }
-
-    /* Trust zones */
-    .trust-zones {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-      background: var(--bg-panel);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 18px 20px;
-    }
-    .trust-zone {
-      background: var(--bg-panel-2);
-      border-radius: 10px;
-      padding: 12px 14px;
-      border-left: 3px solid var(--accent);
-    }
-    .trust-zone .zone-title {
-      font-family: var(--mono);
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--accent);
-    }
-    .trust-zone .zone-desc {
-      font-size: 11px;
-      color: var(--ink-dim);
-      margin-top: 4px;
-    }
-
-    /* Footer */
-    footer {
-      margin-top: 70px;
-      padding-top: 22px;
-      border-top: 1px solid var(--line);
-      font-family: var(--mono);
-      font-size: 11.5px;
-      color: var(--ink-faint);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-    }
-    footer a { color: var(--accent); display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
-    footer a:hover { color: #4bc5ab; }
-    footer a i { font-size: 18px; }
-    footer > span:first-child { flex: 0 0 auto; }
-    footer > span:last-child { flex: 0 0 auto; }
-    footer > span.centered { flex: 1; text-align: center; }
-
-    @media (max-width: 640px) {
-      main { padding: 40px 18px 70px; }
-      .hero-meta { flex-direction: column; gap: 4px; }
-      .card-grid { grid-template-columns: 1fr; }
-      .standards-grid { grid-template-columns: 1fr; }
-      .trust-zones { grid-template-columns: 1fr; }
-      table { font-size: 11px; min-width: 700px; }
-      tbody td { padding: 8px 6px; }
-      .col-modes { font-size: 9px; }
-      .std-tag, .std-tag-sm, .std-item { font-size: 9px; padding: 1px 6px; }
-      .lifecycle { gap: 4px 6px; }
-      .lifecycle .step { font-size: 9px; padding: 2px 6px; }
-      footer { flex-direction: column; gap: 8px; text-align: center; }
-      footer > span.centered { flex: none; }
-    }
   </style>
 </head>
+
 <body>
-<main>
+  <main>
 
-  <!-- ===== HERO ===== -->
-  <div class="eyebrow">
-    <i class="fas fa-circle"></i>
-    qFoldIT · B2B Orders (INDUSTRIAL‑CAMEO)
-  </div>
-  <h1>Summary Table of <em>B2B Orders</em></h1>
-  <p class="hero-sub">Each order turns into a gaming mission on Fortnite / UEFN, Unity, UNIGINE, Web or Standalone — followed by blind validation via <strong>OPENSTRUCTURE</strong>.</p>
-  <div class="hero-meta">
-    <span>Updated: 2026‑08‑16</span>
-    <span><a href="https://github.com/qfoldit/INDUSTRIAL-CAMEO" target="_blank">github.com/qfoldit/INDUSTRIAL-CAMEO</a></span>
-    <span style="color:var(--accent)">9 industries · 34+ order types</span>
-  </div>
+    <!-- ===== HERO ===== -->
+    <div class="eyebrow">
+      <i class="fas fa-circle"></i>
+      qFoldIT · B2B Orders (INDUSTRIAL‑CAMEO)
+    </div>
+    <h1>Summary Table of <em>B2B Orders</em></h1>
+    <p class="hero-sub">Each order turns into a gaming mission on Fortnite / UEFN, Unity, UNIGINE, Web or Standalone —
+      followed by blind validation via <strong>OPENSTRUCTURE</strong>.</p>
+    <div class="hero-meta">
+      <span>Updated: 2026‑08‑16</span>
+      <span><a href="https://github.com/qfoldit/INDUSTRIAL-CAMEO"
+          target="_blank">github.com/qfoldit/INDUSTRIAL-CAMEO</a></span>
+      <span style="color:var(--accent)">9 industries · 34+ order types</span>
+    </div>
 
-  <!-- ===== METRICS ===== -->
-  <section>
-    <div class="metric-grid">
-      <div class="metric"><div class="n">11</div><div class="l">Scientific domains</div></div>
-      <div class="metric"><div class="n">5</div><div class="l">Game modes</div></div>
-      <div class="metric"><div class="n">5</div><div class="l">Game patterns unlocked</div></div>
-      <div class="metric"><div class="n">6</div><div class="l">Domains with backend verified</div></div>
-      <div class="metric"><div class="n">16</div><div class="l">Supported standards</div></div>
-    </div>
-  </section>
+    <!-- ===== METRICS ===== -->
+    <section>
+      <div class="metric-grid">
+        <div class="metric">
+          <div class="n">11</div>
+          <div class="l">Scientific domains</div>
+        </div>
+        <div class="metric">
+          <div class="n">5</div>
+          <div class="l">Game modes</div>
+        </div>
+        <div class="metric">
+          <div class="n">5</div>
+          <div class="l">Game patterns unlocked</div>
+        </div>
+        <div class="metric">
+          <div class="n">6</div>
+          <div class="l">Domains with backend verified</div>
+        </div>
+        <div class="metric">
+          <div class="n">16</div>
+          <div class="l">Supported standards</div>
+        </div>
+      </div>
+    </section>
 
-  <!-- ===== READINESS MATRIX ===== -->
-  <section>
-    <div class="section-head">
-      <h2>B2B Order Readiness Matrix</h2>
-      <div class="section-note">scientific backend × game pattern × UEFN implementation</div>
-    </div>
-    <div class="legend">
-      <span class="legend-item"><span class="dot green"></span> verified / unlocked</span>
-      <span class="legend-item"><span class="dot teal"></span> connected / specced</span>
-      <span class="legend-item"><span class="dot amber"></span> best‑effort / partial</span>
-      <span class="legend-item"><span class="dot rose"></span> not authored</span>
-      <span class="legend-item"><span class="dot violet"></span> blocked / pending</span>
-      <span class="legend-item"><span class="dot gray"></span> missing</span>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th style="min-width:110px;">Domain</th>
-            <th style="min-width:160px;">Actual Algorithm</th>
-            <th style="min-width:110px;">Reference MCP</th>
-            <th style="min-width:120px;">Game Pattern</th>
-            <th style="min-width:120px;">UEFN Implementation</th>
-            <th style="min-width:100px;">Vertical</th>
-            <th style="min-width:130px;">Key Standard</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="col-domain"><i class="fas fa-dna"></i> fold_marathon</td>
-            <td style="font-size:11px;color:var(--ink-dim);">Metropolis walk, torsion angles</td>
-            <td><span class="status-pill verified">verified</span></td>
-            <td><span class="status-pill unlocked">unlocked</span></td>
-            <td><span class="status-pill specced">specced, unwired</span></td>
-            <td style="color:var(--ink);">Pharma / Chemistry</td>
-            <td><span class="std-tag-sm"><strong>OpenStructure</strong> lDDT/QS</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-atom"></i> quantum_boss</td>
-            <td style="font-size:11px;color:var(--ink-dim);">VQE, CVaR-ansatz, 2-4 qubit</td>
-            <td><span class="status-pill verified">verified</span></td>
-            <td><span class="status-pill unlocked">unlocked</span></td>
-            <td><span class="status-pill not-authored">not specced</span></td>
-            <td style="color:var(--ink);">Materials / Energy</td>
-            <td><span class="std-tag-sm">OECD‑style transparency</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-th"></i> hp_lattice_challenge</td>
-            <td style="font-size:11px;color:var(--ink-dim);">QAOA, Braket LocalSimulator</td>
-            <td><span class="status-pill verified">verified</span></td>
-            <td><span class="status-pill unlocked">unlocked</span></td>
-            <td><span class="status-pill specced">specced, unwired</span></td>
-            <td style="color:var(--ink);">Chemistry</td>
-            <td><span class="std-tag-sm"><strong>OECD (Q)SAR</strong></span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-shield-alt"></i> safety_gauntlet</td>
-            <td style="font-size:11px;color:var(--ink-dim);">ADMET / Boltz‑2 scoring</td>
-            <td><span class="status-pill connected">connected</span></td>
-            <td><span class="status-pill unlocked">unlocked</span></td>
-            <td><span class="status-pill not-authored">not specced</span></td>
-            <td style="color:var(--ink);">Pharma / Chemistry</td>
-            <td><span class="std-tag-sm"><strong>OECD (Q)SAR</strong></span> <span class="std-tag-sm">ICH</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-seedling"></i> plant_growth_garden</td>
-            <td style="font-size:11px;color:var(--ink-dim);">L‑systems + NPK/light</td>
-            <td><span class="status-pill best-effort">best‑effort</span></td>
-            <td><span class="status-pill unlocked">unlocked</span></td>
-            <td><span class="status-pill blocked">blocked</span></td>
-            <td style="color:var(--ink);">Agriculture</td>
-            <td><span class="std-tag-sm">ISO 11074</span> <span class="std-tag-sm">GLOBALG.A.P.</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-oil-can"></i> oilgas_corrosion_watch</td>
-            <td style="font-size:11px;color:var(--ink-dim);">Rate model, mm/year</td>
-            <td><span class="status-pill best-effort">best‑effort</span></td>
-            <td><span class="status-pill not-authored">not authored</span></td>
-            <td><span class="status-pill not-authored">not specced</span></td>
-            <td style="color:var(--ink);">Oil &amp; Gas</td>
-            <td><span class="std-tag-sm"><strong>NACE SP0169</strong></span> <span class="std-tag-sm">API 570</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-biohazard"></i> meor_recovery_run</td>
-            <td style="font-size:11px;color:var(--ink-dim);">Biosurfactant, IFT reduction</td>
-            <td><span class="status-pill best-effort">best‑effort</span></td>
-            <td><span class="status-pill not-authored">not authored</span></td>
-            <td><span class="status-pill not-authored">not specced</span></td>
-            <td style="color:var(--ink);">Oil &amp; Gas</td>
-            <td><span class="std-tag-sm">NACE/API</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-mountain"></i> mining_bioleach_challenge</td>
-            <td style="font-size:11px;color:var(--ink-dim);">Bio‑oxidation, cyanide degradation</td>
-            <td><span class="status-pill best-effort">best‑effort</span></td>
-            <td><span class="status-pill not-authored">not authored</span></td>
-            <td><span class="status-pill not-authored">not specced</span></td>
-            <td style="color:var(--ink);">Mining</td>
-            <td><span class="std-tag-sm"><strong>ICMC</strong></span> <span class="std-tag-sm">ISO 14001</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-chart-line"></i> prospecting_survey</td>
-            <td style="font-size:11px;color:var(--ink-dim);">Permutation p‑value &lt; 0.05</td>
-            <td><span class="status-pill best-effort">best‑effort</span></td>
-            <td><span class="status-pill not-authored">not authored</span></td>
-            <td><span class="status-pill not-authored">not specced</span></td>
-            <td style="color:var(--ink);">Mining</td>
-            <td><span class="std-tag-sm"><strong>JORC / NI 43‑101</strong></span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-trophy"></i> arena_showdown</td>
-            <td style="font-size:11px;color:var(--ink-dim);">Race to reconstruct baked run</td>
-            <td><span class="status-pill connected">connected</span></td>
-            <td><span class="status-pill not-authored">not authored</span></td>
-            <td><span class="status-pill pending">needs Verse script</span></td>
-            <td style="color:var(--ink);">Cross‑cutting</td>
-            <td><span class="std-tag-sm">N/A</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-helix"></i> dna_rna_sequence_mining</td>
-            <td style="font-size:11px;color:var(--ink-faint);">Not implemented</td>
-            <td><span class="status-pill none">none</span></td>
-            <td><span class="status-pill none">none</span></td>
-            <td><span class="status-pill none">N/A</span></td>
-            <td style="color:var(--ink-faint);">Biotech</td>
-            <td><span class="std-tag-sm">wwPDB/mmCIF</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+    <!-- ===== READINESS MATRIX ===== -->
+    <section>
+      <div class="section-head">
+        <h2>B2B Order Readiness Matrix</h2>
+        <div class="section-note">scientific backend × game pattern × UEFN implementation</div>
+      </div>
+      <div class="legend">
+        <span class="legend-item"><span class="dot green"></span> verified / unlocked</span>
+        <span class="legend-item"><span class="dot teal"></span> connected / specced</span>
+        <span class="legend-item"><span class="dot amber"></span> best‑effort / partial</span>
+        <span class="legend-item"><span class="dot rose"></span> not authored</span>
+        <span class="legend-item"><span class="dot violet"></span> blocked / pending</span>
+        <span class="legend-item"><span class="dot gray"></span> missing</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="min-width:110px;">Domain</th>
+              <th style="min-width:160px;">Actual Algorithm</th>
+              <th style="min-width:110px;">Reference MCP</th>
+              <th style="min-width:120px;">Game Pattern</th>
+              <th style="min-width:120px;">UEFN Implementation</th>
+              <th style="min-width:100px;">Vertical</th>
+              <th style="min-width:130px;">Key Standard</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-domain"><i class="fas fa-dna"></i> fold_marathon</td>
+              <td style="font-size:11px;color:var(--ink-dim);">Metropolis walk, torsion angles</td>
+              <td><span class="status-pill verified">verified</span></td>
+              <td><span class="status-pill unlocked">unlocked</span></td>
+              <td><span class="status-pill specced">specced, unwired</span></td>
+              <td style="color:var(--ink);">Pharma / Chemistry</td>
+              <td><span class="std-tag-sm"><strong>OpenStructure</strong> lDDT/QS</span></td>
+            </tr>
+            <tr>
+              <td class="col-domain"><i class="fas fa-atom"></i> quantum_boss</td>
+              <td style="font-size:11px;color:var(--ink-dim);">VQE, CVaR-ansatz, 2-4 qubit</td>
+              <td><span class="status-pill verified">verified</span></td>
+              <td><span class="status-pill unlocked">unlocked</span></td>
+              <td><span class="status-pill not-authored">not specced</span></td>
+              <td style="color:var(--ink);">Materials / Energy</td>
+              <td><span class="std-tag-sm">OECD‑style transparency</span></td>
+            </tr>
+            <tr>
+              <td class="col-domain"><i class="fas fa-th"></i> hp_lattice_challenge</td>
+              <td style="font-size:11px;color:var(--ink-dim);">QAOA, Braket LocalSimulator</td>
+              <td><span class="status-pill verified">verified</span></td>
+              <td><span class="status-pill unlocked">unlocked</span></td>
+              <td><span class="status-pill specced">specced, unwired</span></td>
+              <td style="color:var(--ink);">Chemistry</td>
+              <td><span class="std-tag-sm"><strong>OECD (Q)SAR</strong></span></td>
+            </tr>
+            <tr>
+              <td class="col-domain"><i class="fas fa-shield-alt"></i> safety_gauntlet</td>
+              <td style="font-size:11px;color:var(--ink-dim);">ADMET / Boltz‑2 scoring</td>
+              <td><span class="status-pill connected">connected</span></td>
+              <td><span class="status-pill unlocked">unlocked</span></td>
+              <td><span class="status-pill not-authored">not specced</span></td>
+              <td style="color:var(--ink);">Pharma / Chemistry</td>
+              <td><span class="std-tag-sm"><strong>OECD (Q)SAR</strong></span> <span class="std-tag-sm">ICH</span></td>
+            </tr>
+            <tr>
+              <td class="col-domain"><i class="fas fa-seedling"></i> plant_growth_garden</td>
+              <td style="font-size:11px;color:var(--ink-dim);">L‑systems + NPK/light</td>
+              <td><span class="status-pill best-effort">best‑effort</span></td>
+              <td><span class="status-pill unlocked">unlocked</span></td>
+              <td><span class="status-pill blocked">blocked</span></td>
+              <td style="color:var(--ink);">Agriculture</td>
+              <td><span class="std-tag-sm">ISO 11074</span> <span class="std-tag-sm">GLOBALG.A.P.</span></td>
+            </tr>
+            <tr>
+              <td class="col-domain"><i class="fas fa-oil-can"></i> oilgas_corrosion_watch</td>
+              <td style="font-size:11px;color:var(--ink-dim);">Rate model, mm/year</td>
+              <td><span class="status-pill best-effort">best‑effort</span></td>
+              <td><span class="status-pill not-authored">not authored</span></td>
+              <td><span class="status-pill not-authored">not specced</span></td>
+              <td style="color:var(--ink);">Oil &amp; Gas</td>
+              <td><span class="std-tag-sm"><strong>NACE SP0169</strong></span> <span class="std-tag-sm">API 570</span>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-domain"><i class="fas fa-biohazard"></i> meor_recovery_run</td>
+              <td style="font-size:11px;color:var(--ink-dim);">Biosurfactant, IFT reduction</td>
+              <td><span class="status-pill best-effort">best‑effort</span></td>
+              <td><span class="status-pill not-authored">not authored</span></td>
+              <td><span class="status-pill not-authored">not specced</span></td>
+              <td style="color:var(--ink);">Oil &amp; Gas</td>
+              <td><span class="std-tag-sm">NACE/API</span></td>
+            </tr>
+            <tr>
+              <td class="col-domain"><i class="fas fa-mountain"></i> mining_bioleach_challenge</td>
+              <td style="font-size:11px;color:var(--ink-dim);">Bio‑oxidation, cyanide degradation</td>
+              <td><span class="status-pill best-effort">best‑effort</span></td>
+              <td><span class="status-pill not-authored">not authored</span></td>
+              <td><span class="status-pill not-authored">not specced</span></td>
+              <td style="color:var(--ink);">Mining</td>
+              <td><span class="std-tag-sm"><strong>ICMC</strong></span> <span class="std-tag-sm">ISO 14001</span></td>
+            </tr>
+            <tr>
+              <td class="col-domain"><i class="fas fa-chart-line"></i> prospecting_survey</td>
+              <td style="font-size:11px;color:var(--ink-dim);">Permutation p‑value &lt; 0.05</td>
+              <td><span class="status-pill best-effort">best‑effort</span></td>
+              <td><span class="status-pill not-authored">not authored</span></td>
+              <td><span class="status-pill not-authored">not specced</span></td>
+              <td style="color:var(--ink);">Mining</td>
+              <td><span class="std-tag-sm"><strong>JORC / NI 43‑101</strong></span></td>
+            </tr>
+            <tr>
+              <td class="col-domain"><i class="fas fa-trophy"></i> arena_showdown</td>
+              <td style="font-size:11px;color:var(--ink-dim);">Race to reconstruct baked run</td>
+              <td><span class="status-pill connected">connected</span></td>
+              <td><span class="status-pill not-authored">not authored</span></td>
+              <td><span class="status-pill pending">needs Verse script</span></td>
+              <td style="color:var(--ink);">Cross‑cutting</td>
+              <td><span class="std-tag-sm">N/A</span></td>
+            </tr>
+            <tr>
+              <td class="col-domain"><i class="fas fa-helix"></i> dna_rna_sequence_mining</td>
+              <td style="font-size:11px;color:var(--ink-faint);">Not implemented</td>
+              <td><span class="status-pill none">none</span></td>
+              <td><span class="status-pill none">none</span></td>
+              <td><span class="status-pill none">N/A</span></td>
+              <td style="color:var(--ink-faint);">Biotech</td>
+              <td><span class="std-tag-sm">wwPDB/mmCIF</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-  <!-- ===== GAME MODES ===== -->
-  <section>
-    <div class="section-head">
-      <h2>qFoldIT Game Modes</h2>
-      <div class="section-note">5 modes for different scientific tasks</div>
-    </div>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-title"><i class="fas fa-flask"></i> Research Campaign</div>
-        <div class="card-body">
-          <p>Narrative, multi-stage mode for long-term research — protein design, new materials, batteries, industrial optimization.</p>
-          <div style="margin-top:8px;">
-            <span class="tag blue"><strong>MCP:</strong> OpenStructure, QSAR/ADMET, Materials, Digital Twin</span>
-            <span class="tag violet"><strong>Algorithms:</strong> lDDT, QSAR, ADMET, geometry</span>
-            <span class="tag amber"><strong>Standards:</strong> ISO/IEC 17025, OECD GLP, FAIR</span>
+    <!-- ===== GAME MODES ===== -->
+    <section>
+      <div class="section-head">
+        <h2>qFoldIT Game Modes</h2>
+        <div class="section-note">5 modes for different scientific tasks</div>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-title"><i class="fas fa-flask"></i> Research Campaign</div>
+          <div class="card-body">
+            <p>Narrative, multi-stage mode for long-term research — protein design, new materials, batteries, industrial
+              optimization.</p>
+            <div style="margin-top:8px;">
+              <span class="tag blue"><strong>MCP:</strong> OpenStructure, QSAR/ADMET, Materials, Digital Twin</span>
+              <span class="tag violet"><strong>Algorithms:</strong> lDDT, QSAR, ADMET, geometry</span>
+              <span class="tag amber"><strong>Standards:</strong> ISO/IEC 17025, OECD GLP, FAIR</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title"><i class="fas fa-trophy"></i> Arena Challenge</div>
+          <div class="card-body">
+            <p>Timed competitive mode for optimization under pressure — leaderboards, contests, records.</p>
+            <div style="margin-top:8px;">
+              <span class="tag blue"><strong>MCP:</strong> OpenStructure, Quantum Optimization, Mission Registry</span>
+              <span class="tag violet"><strong>Algorithms:</strong> QAOA, VQE, CVaR, search</span>
+              <span class="tag amber"><strong>Standards:</strong> ISO/IEC 25010, 21 CFR Part 11</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title"><i class="fas fa-users"></i> Co‑op Lab</div>
+          <div class="card-body">
+            <p>Teamwork on a scientific task — collaborative review, refinement, validation.</p>
+            <div style="margin-top:8px;">
+              <span class="tag blue"><strong>MCP:</strong> Mission Registry, RBAC, OpenStructure</span>
+              <span class="tag violet"><strong>Algorithms:</strong> consensus, conflict resolution, multi-criteria
+                optimization</span>
+              <span class="tag amber"><strong>Standards:</strong> ISO/IEC 27001, ISO 23247, ISO 19650</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title"><i class="fas fa-cubes"></i> Sandbox Lab</div>
+          <div class="card-body">
+            <p>Free exploration for prototyping, learning, and demonstrations.</p>
+            <div style="margin-top:8px;">
+              <span class="tag blue"><strong>MCP:</strong> Sandbox, OpenStructure, Domain Adapters</span>
+              <span class="tag violet"><strong>Algorithms:</strong> L‑systems, Monte‑Carlo, generative rules</span>
+              <span class="tag amber"><strong>Standards:</strong> FAIR, ISO/IEC 25010</span>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title"><i class="fas fa-swords"></i> Validation Duel</div>
+          <div class="card-body">
+            <p>Direct competition with an invisible reference — blind testing, challenges.</p>
+            <div style="margin-top:8px;">
+              <span class="tag blue"><strong>MCP:</strong> CAMEO Validation Gateway, OpenStructure, Reward Policy</span>
+              <span class="tag violet"><strong>Algorithms:</strong> blind checking, threshold values, ranking</span>
+              <span class="tag amber"><strong>Standards:</strong> 21 CFR Part 11, auditability</span>
+            </div>
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-title"><i class="fas fa-trophy"></i> Arena Challenge</div>
-        <div class="card-body">
-          <p>Timed competitive mode for optimization under pressure — leaderboards, contests, records.</p>
-          <div style="margin-top:8px;">
-            <span class="tag blue"><strong>MCP:</strong> OpenStructure, Quantum Optimization, Mission Registry</span>
-            <span class="tag violet"><strong>Algorithms:</strong> QAOA, VQE, CVaR, search</span>
-            <span class="tag amber"><strong>Standards:</strong> ISO/IEC 25010, 21 CFR Part 11</span>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title"><i class="fas fa-users"></i> Co‑op Lab</div>
-        <div class="card-body">
-          <p>Teamwork on a scientific task — collaborative review, refinement, validation.</p>
-          <div style="margin-top:8px;">
-            <span class="tag blue"><strong>MCP:</strong> Mission Registry, RBAC, OpenStructure</span>
-            <span class="tag violet"><strong>Algorithms:</strong> consensus, conflict resolution, multi-criteria optimization</span>
-            <span class="tag amber"><strong>Standards:</strong> ISO/IEC 27001, ISO 23247, ISO 19650</span>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title"><i class="fas fa-cubes"></i> Sandbox Lab</div>
-        <div class="card-body">
-          <p>Free exploration for prototyping, learning, and demonstrations.</p>
-          <div style="margin-top:8px;">
-            <span class="tag blue"><strong>MCP:</strong> Sandbox, OpenStructure, Domain Adapters</span>
-            <span class="tag violet"><strong>Algorithms:</strong> L‑systems, Monte‑Carlo, generative rules</span>
-            <span class="tag amber"><strong>Standards:</strong> FAIR, ISO/IEC 25010</span>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title"><i class="fas fa-swords"></i> Validation Duel</div>
-        <div class="card-body">
-          <p>Direct competition with an invisible reference — blind testing, challenges.</p>
-          <div style="margin-top:8px;">
-            <span class="tag blue"><strong>MCP:</strong> CAMEO Validation Gateway, OpenStructure, Reward Policy</span>
-            <span class="tag violet"><strong>Algorithms:</strong> blind checking, threshold values, ranking</span>
-            <span class="tag amber"><strong>Standards:</strong> 21 CFR Part 11, auditability</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== INDUSTRIAL VERTICALS ===== -->
-  <section>
-    <div class="section-head">
-      <h2>Industrial Verticals</h2>
-      <div class="section-note">complexity and recommended game modes</div>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th class="col-industry"><i class="fas fa-industry"></i> Industry</th>
-            <th class="col-orders">Key orders</th>
-            <th class="col-modes">Modes</th>
-            <th class="col-standards">Industry standards</th>
-            <th class="col-complexity">Complexity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="col-industry"><i class="fas fa-mountain"></i> Mining</td>
-            <td class="col-orders">
-              <ul>
-                <li>Bioleaching of metals (kinetics)</li>
-                <li>Pipeline corrosion modeling</li>
-                <li>Design of protein binders for rare earth elements (REEs)</li>
-                <li>Hydrometallurgy optimization</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Validation Duel</span></td>
-            <td class="col-standards">
-              <a href="https://www.iso.org/standard/14001" target="_blank" rel="noopener" class="std-tag"><strong>ISO 14001</strong></a>
-              <a href="https://www.cyanidecode.org" target="_blank" rel="noopener" class="std-tag"><strong>ICMC</strong></a>
-              <a href="https://www.iso.org/iso-45001-occupational-health-and-safety.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 45001</strong></a>
-              <a href="https://www.jorc.org" target="_blank" rel="noopener" class="std-tag"><strong>JORC</strong></a>
-              <a href="https://www.iso.org/standard/56112.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO/IEC 17025</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag medium">Medium</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-oil-can"></i> Oil and gas</td>
-            <td class="col-orders">
-              <ul>
-                <li>Corrosion of pipelines and drilling equipment</li>
-                <li>Design of cracking / hydrotreating catalysts</li>
-                <li>Modeling of plastic pyrolysis → syngas</li>
-                <li>Digital twins of refineries and platforms</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Co‑op Lab</span></td>
-            <td class="col-standards">
-              <a href="https://webstore.ansi.org/standards/nace/nacesp01692024" target="_blank" rel="noopener" class="std-tag"><strong>NACE SP0169</strong></a>
-              <a href="https://www.iso.org/iso15156maintenance" target="_blank" rel="noopener" class="std-tag"><strong>ISO 15156</strong></a>
-              <a href="https://www.api.org/products-and-services/individual-certification-programs" target="_blank" rel="noopener" class="std-tag"><strong>API 570/579</strong></a>
-              <a href="https://www.iso.org/standard/71721.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 13623</strong></a>
-              <a href="https://www.iso.org/standard/63507.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 14224</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag high">High</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-bolt"></i> Batteries</td>
-            <td class="col-orders">
-              <ul>
-                <li>Search for solid electrolytes (ionic conductivity)</li>
-                <li>Ion transport modeling</li>
-                <li>Design of enzymes for biofuel cells</li>
-                <li>Optimization of anode/cathode materials</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Arena Challenge</span></td>
-            <td class="col-standards">
-              <a href="https://webstore.iec.ch/publication/32796" target="_blank" rel="noopener" class="std-tag"><strong>IEC 62660</strong></a>
-              <a href="https://webstore.iec.ch/publication/32350" target="_blank" rel="noopener" class="std-tag"><strong>IEC 61960</strong></a>
-              <a href="https://www.unece.org/trans/danger/publi/manual/manual_e.html" target="_blank" rel="noopener" class="std-tag"><strong>UN 38.3</strong></a>
-              <a href="https://www.iso.org/standard/71070.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 12405</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag high">High</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-tv"></i> Displays</td>
-            <td class="col-orders">
-              <ul>
-                <li>Modeling of quantum dots for displays</li>
-                <li>Design of organic semiconductors (flexible screens)</li>
-                <li>Optimization of OLED materials</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Sandbox Lab</span><br><span class="tag">Validation Duel</span></td>
-            <td class="col-standards">
-              <a href="https://webstore.iec.ch/publication/32469" target="_blank" rel="noopener" class="std-tag"><strong>IEC 62341</strong></a>
-              <a href="https://webstore.iec.ch/publication/6168" target="_blank" rel="noopener" class="std-tag"><strong>IEC 61966</strong></a>
-              <a href="https://displayhdr.org" target="_blank" rel="noopener" class="std-tag"><strong>VESA DisplayHDR</strong></a>
-              <a href="https://www.semi.org/en/standards" target="_blank" rel="noopener" class="std-tag"><strong>SEMI D-series</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag high">High</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-microchip"></i> Chips and processors</td>
-            <td class="col-orders">
-              <ul>
-                <li>Topological optimization of chip routing</li>
-                <li>Thermal profile modeling</li>
-                <li>Design of new semiconductor materials</li>
-                <li>Optimization of photomasks for lithography</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Arena Challenge</span><br><span class="tag">Co‑op Lab</span></td>
-            <td class="col-standards">
-              <a href="https://www.semi.org/en/standards" target="_blank" rel="noopener" class="std-tag"><strong>SEMI</strong></a>
-              <a href="https://www.jedec.org" target="_blank" rel="noopener" class="std-tag"><strong>JEDEC</strong></a>
-              <a href="https://webstore.iec.ch/publication/29639" target="_blank" rel="noopener" class="std-tag"><strong>IEC 60747</strong></a>
-              <a href="https://shop.ipc.org/IPC-6012" target="_blank" rel="noopener" class="std-tag"><strong>IPC-6012</strong></a>
-              <a href="https://shop.ipc.org/IPC-A-600" target="_blank" rel="noopener" class="std-tag"><strong>IPC-A-600</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag very-high">Very high</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-flask"></i> Chemistry</td>
-            <td class="col-orders">
-              <ul>
-                <li>Design of enzymes for green synthesis</li>
-                <li>Modeling of plastic pyrolysis</li>
-                <li>QSAR prediction of properties of new compounds</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Sandbox Lab</span></td>
-            <td class="col-standards">
-              <a href="https://www.oecd.org/chemicalsafety/risk-assessment/37849783.pdf" target="_blank" rel="noopener" class="std-tag"><strong>OECD (Q)SAR</strong></a>
-              <a href="https://echa.europa.eu/regulations/reach/understanding-reach" target="_blank" rel="noopener" class="std-tag"><strong>REACH</strong></a>
-              <a href="https://unece.org/ghs" target="_blank" rel="noopener" class="std-tag"><strong>GHS</strong></a>
-              <a href="https://www.oecd.org/chemicalsafety/testing/good-laboratory-practice-glp/" target="_blank" rel="noopener" class="std-tag"><strong>OECD GLP</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag medium">Medium</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-seedling"></i> Agriculture</td>
-            <td class="col-orders">
-              <ul>
-                <li>Plant growth modeling (yield)</li>
-                <li>Design of proteins for nitrogen fixation</li>
-                <li>Optimization of NPK fertilizers</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Sandbox Lab</span><br><span class="tag">Co‑op Lab</span></td>
-            <td class="col-standards">
-              <a href="https://www.globalgap.org" target="_blank" rel="noopener" class="std-tag"><strong>GLOBALG.A.P.</strong></a>
-              <a href="https://www.iso.org/standard/69704.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 11074</strong></a>
-              <a href="https://www.iso.org/standard/40709.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 11464</strong></a>
-              <a href="https://www.fao.org/fao-who-codexalimentarius/en/" target="_blank" rel="noopener" class="std-tag"><strong>Codex Alimentarius</strong></a>
-              <a href="https://www.oecd.org/en/topics/sub-issues/pesticides.html" target="_blank" rel="noopener" class="std-tag"><strong>OECD pesticide</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag medium">Medium</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-pills"></i> Pharmaceuticals</td>
-            <td class="col-orders">
-              <ul>
-                <li>Drug discovery (molecular docking)</li>
-                <li>Design of antibodies and nanobodies</li>
-                <li>Protein structure prediction</li>
-                <li>Retrosynthetic planning</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Validation Duel</span></td>
-            <td class="col-standards">
-              <a href="https://www.ich.org/page/ich-guidelines" target="_blank" rel="noopener" class="std-tag"><strong>ICH guidelines</strong></a>
-              <a href="https://www.fda.gov" target="_blank" rel="noopener" class="std-tag"><strong>GxP</strong></a>
-              <a href="https://www.ecfr.gov/current/title-21/chapter-I/part-11" target="_blank" rel="noopener" class="std-tag"><strong>21 CFR Part 11</strong></a>
-              <a href="https://www.fda.gov/medical-devices/software-medical-device-samd/good-machine-learning-practice-medical-device-development-guiding-principles" target="_blank" rel="noopener" class="std-tag"><strong>FDA GMLP</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag very-high">Very high</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-cubes"></i> Digital twins</td>
-            <td class="col-orders">
-              <ul>
-                <li>Virtual copies of factories and plants</li>
-                <li>Training of AI control systems</li>
-                <li>Equipment design (thermal, hydrodynamics)</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Co‑op Lab</span><br><span class="tag">Sandbox Lab</span></td>
-            <td class="col-standards">
-              <a href="https://www.iso.org/standard/75066.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 23247</strong></a>
-              <a href="https://www.iso.org/standard/78957.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO/IEC 30141</strong></a>
-              <a href="https://www.isa.org/standards-and-publications/isa-standards/isa-standards-committees/isa99" target="_blank" rel="noopener" class="std-tag"><strong>IEC 62443</strong></a>
-              <a href="https://www.iso.org/standard/68078.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 19650</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag high">High</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+    <!-- ===== INDUSTRIAL VERTICALS ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Industrial Verticals</h2>
+        <div class="section-note">complexity and recommended game modes</div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="col-industry"><i class="fas fa-industry"></i> Industry</th>
+              <th class="col-orders">Key orders</th>
+              <th class="col-modes">Modes</th>
+              <th class="col-standards">Industry standards</th>
+              <th class="col-complexity">Complexity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="col-industry"><i class="fas fa-mountain"></i> Mining</td>
+              <td class="col-orders">
+                <ul>
+                  <li>Bioleaching of metals (kinetics)</li>
+                  <li>Pipeline corrosion modeling</li>
+                  <li>Design of protein binders for rare earth elements (REEs)</li>
+                  <li>Hydrometallurgy optimization</li>
+                </ul>
+              </td>
+              <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Validation
+                  Duel</span></td>
+              <td class="col-standards">
+                <a href="https://www.iso.org/standard/14001" target="_blank" rel="noopener" class="std-tag"><strong>ISO
+                    14001</strong></a>
+                <a href="https://www.cyanidecode.org" target="_blank" rel="noopener"
+                  class="std-tag"><strong>ICMC</strong></a>
+                <a href="https://www.iso.org/iso-45001-occupational-health-and-safety.html" target="_blank"
+                  rel="noopener" class="std-tag"><strong>ISO 45001</strong></a>
+                <a href="https://www.jorc.org" target="_blank" rel="noopener" class="std-tag"><strong>JORC</strong></a>
+                <a href="https://www.iso.org/standard/56112.html" target="_blank" rel="noopener"
+                  class="std-tag"><strong>ISO/IEC 17025</strong></a>
+              </td>
+              <td class="col-complexity"><span class="complexity-tag medium">Medium</span></td>
+            </tr>
+            <tr>
+              <td class="col-industry"><i class="fas fa-oil-can"></i> Oil and gas</td>
+              <td class="col-orders">
+                <ul>
+                  <li>Corrosion of pipelines and drilling equipment</li>
+                  <li>Design of cracking / hydrotreating catalysts</li>
+                  <li>Modeling of plastic pyrolysis → syngas</li>
+                  <li>Digital twins of refineries and platforms</li>
+                </ul>
+              </td>
+              <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Co‑op
+                  Lab</span></td>
+              <td class="col-standards">
+                <a href="https://webstore.ansi.org/standards/nace/nacesp01692024" target="_blank" rel="noopener"
+                  class="std-tag"><strong>NACE SP0169</strong></a>
+                <a href="https://www.iso.org/iso15156maintenance" target="_blank" rel="noopener"
+                  class="std-tag"><strong>ISO 15156</strong></a>
+                <a href="https://www.api.org/products-and-services/individual-certification-programs" target="_blank"
+                  rel="noopener" class="std-tag"><strong>API 570/579</strong></a>
+                <a href="https://www.iso.org/standard/71721.html" target="_blank" rel="noopener"
+                  class="std-tag"><strong>ISO 13623</strong></a>
+                <a href="https://www.iso.org/standard/63507.html" target="_blank" rel="noopener"
+                  class="std-tag"><strong>ISO 14224</strong></a>
+              </td>
+              <td class="col-complexity"><span class="complexity-tag high">High</span></td>
+            </tr>
+            <tr>
+              <td class="col-industry"><i class="fas fa-bolt"></i> Batteries</td>
+              <td class="col-orders">
+                <ul>
+                  <li>Search for solid electrolytes (ionic conductivity)</li>
+                  <li>Ion transport modeling</li>
+                  <li>Design of enzymes for biofuel cells</li>
+                  <li>Optimization of anode/cathode materials</li>
+                </ul>
+              </td>
+              <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Arena
+                  Challenge</span></td>
+              <td class="col-standards">
+                <a href="https://webstore.iec.ch/publication/32796" target="_blank" rel="noopener"
+                  class="std-tag"><strong>IEC 62660</strong></a>
+                <a href="https://webstore.iec.ch/publication/32350" target="_blank" rel="noopener"
+                  class="std-tag"><strong>IEC 61960</strong></a>
+                <a href="https://www.unece.org/trans/danger/publi/manual/manual_e.html" target="_blank" rel="noopener"
+                  class="std-tag"><strong>UN 38.3</strong></a>
+                <a href="https://www.iso.org/standard/71070.html" target="_blank" rel="noopener"
+                  class="std-tag"><strong>ISO 12405</strong></a>
+              </td>
+              <td class="col-complexity"><span class="complexity-tag high">High</span></td>
+            </tr>
+            <tr>
+              <td class="col-industry"><i class="fas fa-tv"></i> Displays</td>
+              <td class="col-orders">
+                <ul>
+                  <li>Modeling of quantum dots for displays</li>
+                  <li>Design of organic semiconductors (flexible screens)</li>
+                  <li>Optimization of OLED materials</li>
+                </ul>
+              </td>
+              <td class="col-modes"><span class="tag blue">Sandbox Lab</span><br><span class="tag">Validation
+                  Duel</span></td>
+              <td class="col-standards">
+                <a href="https://webstore.iec.ch/publication/32469" target="_blank" rel="noopener"
+                  class="std-tag"><strong>IEC 62341</strong></a>
+                <a href="https://webstore.iec.ch/publication/6168" target="_blank" rel="noopener"
+                  class="std-tag"><strong>IEC 61966</strong></a>
+                <a href="https://displayhdr.org" target="_blank" rel="noopener" class="std-tag"><strong>VESA
+                    DisplayHDR</strong></a>
+                <a href="https://www.semi.org/en/standards" target="_blank" rel="noopener" class="std-tag"><strong>SEMI
+                    D-series</strong></a>
+              </td>
+              <td class="col-complexity"><span class="complexity-tag high">High</span></td>
+            </tr>
+            <tr>
+              <td class="col-industry"><i class="fas fa-microchip"></i> Chips and processors</td>
+              <td class="col-orders">
+                <ul>
+                  <li>Topological optimization of chip routing</li>
+                  <li>Thermal profile modeling</li>
+                  <li>Design of new semiconductor materials</li>
+                  <li>Optimization of photomasks for lithography</li>
+                </ul>
+              </td>
+              <td class="col-modes"><span class="tag blue">Arena Challenge</span><br><span class="tag">Co‑op Lab</span>
+              </td>
+              <td class="col-standards">
+                <a href="https://www.semi.org/en/standards" target="_blank" rel="noopener"
+                  class="std-tag"><strong>SEMI</strong></a>
+                <a href="https://www.jedec.org" target="_blank" rel="noopener"
+                  class="std-tag"><strong>JEDEC</strong></a>
+                <a href="https://webstore.iec.ch/publication/29639" target="_blank" rel="noopener"
+                  class="std-tag"><strong>IEC 60747</strong></a>
+                <a href="https://shop.ipc.org/IPC-6012" target="_blank" rel="noopener"
+                  class="std-tag"><strong>IPC-6012</strong></a>
+                <a href="https://shop.ipc.org/IPC-A-600" target="_blank" rel="noopener"
+                  class="std-tag"><strong>IPC-A-600</strong></a>
+              </td>
+              <td class="col-complexity"><span class="complexity-tag very-high">Very high</span></td>
+            </tr>
+            <tr>
+              <td class="col-industry"><i class="fas fa-flask"></i> Chemistry</td>
+              <td class="col-orders">
+                <ul>
+                  <li>Design of enzymes for green synthesis</li>
+                  <li>Modeling of plastic pyrolysis</li>
+                  <li>QSAR prediction of properties of new compounds</li>
+                </ul>
+              </td>
+              <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Sandbox
+                  Lab</span></td>
+              <td class="col-standards">
+                <a href="https://www.oecd.org/chemicalsafety/risk-assessment/37849783.pdf" target="_blank"
+                  rel="noopener" class="std-tag"><strong>OECD (Q)SAR</strong></a>
+                <a href="https://echa.europa.eu/regulations/reach/understanding-reach" target="_blank" rel="noopener"
+                  class="std-tag"><strong>REACH</strong></a>
+                <a href="https://unece.org/ghs" target="_blank" rel="noopener" class="std-tag"><strong>GHS</strong></a>
+                <a href="https://www.oecd.org/chemicalsafety/testing/good-laboratory-practice-glp/" target="_blank"
+                  rel="noopener" class="std-tag"><strong>OECD GLP</strong></a>
+              </td>
+              <td class="col-complexity"><span class="complexity-tag medium">Medium</span></td>
+            </tr>
+            <tr>
+              <td class="col-industry"><i class="fas fa-seedling"></i> Agriculture</td>
+              <td class="col-orders">
+                <ul>
+                  <li>Plant growth modeling (yield)</li>
+                  <li>Design of proteins for nitrogen fixation</li>
+                  <li>Optimization of NPK fertilizers</li>
+                </ul>
+              </td>
+              <td class="col-modes"><span class="tag blue">Sandbox Lab</span><br><span class="tag">Co‑op Lab</span></td>
+              <td class="col-standards">
+                <a href="https://www.globalgap.org" target="_blank" rel="noopener"
+                  class="std-tag"><strong>GLOBALG.A.P.</strong></a>
+                <a href="https://www.iso.org/standard/69704.html" target="_blank" rel="noopener"
+                  class="std-tag"><strong>ISO 11074</strong></a>
+                <a href="https://www.iso.org/standard/40709.html" target="_blank" rel="noopener"
+                  class="std-tag"><strong>ISO 11464</strong></a>
+                <a href="https://www.fao.org/fao-who-codexalimentarius/en/" target="_blank" rel="noopener"
+                  class="std-tag"><strong>Codex Alimentarius</strong></a>
+                <a href="https://www.oecd.org/en/topics/sub-issues/pesticides.html" target="_blank" rel="noopener"
+                  class="std-tag"><strong>OECD pesticide</strong></a>
+              </td>
+              <td class="col-complexity"><span class="complexity-tag medium">Medium</span></td>
+            </tr>
+            <tr>
+              <td class="col-industry"><i class="fas fa-pills"></i> Pharmaceuticals</td>
+              <td class="col-orders">
+                <ul>
+                  <li>Drug discovery (molecular docking)</li>
+                  <li>Design of antibodies and nanobodies</li>
+                  <li>Protein structure prediction</li>
+                  <li>Retrosynthetic planning</li>
+                </ul>
+              </td>
+              <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Validation
+                  Duel</span></td>
+              <td class="col-standards">
+                <a href="https://www.ich.org/page/ich-guidelines" target="_blank" rel="noopener"
+                  class="std-tag"><strong>ICH guidelines</strong></a>
+                <a href="https://www.fda.gov" target="_blank" rel="noopener" class="std-tag"><strong>GxP</strong></a>
+                <a href="https://www.ecfr.gov/current/title-21/chapter-I/part-11" target="_blank" rel="noopener"
+                  class="std-tag"><strong>21 CFR Part 11</strong></a>
+                <a href="https://www.fda.gov/medical-devices/software-medical-device-samd/good-machine-learning-practice-medical-device-development-guiding-principles"
+                  target="_blank" rel="noopener" class="std-tag"><strong>FDA GMLP</strong></a>
+              </td>
+              <td class="col-complexity"><span class="complexity-tag very-high">Very high</span></td>
+            </tr>
+            <tr>
+              <td class="col-industry"><i class="fas fa-cubes"></i> Digital twins</td>
+              <td class="col-orders">
+                <ul>
+                  <li>Virtual copies of factories and plants</li>
+                  <li>Training of AI control systems</li>
+                  <li>Equipment design (thermal, hydrodynamics)</li>
+                </ul>
+              </td>
+              <td class="col-modes"><span class="tag blue">Co‑op Lab</span><br><span class="tag">Sandbox Lab</span></td>
+              <td class="col-standards">
+                <a href="https://www.iso.org/standard/75066.html" target="_blank" rel="noopener"
+                  class="std-tag"><strong>ISO 23247</strong></a>
+                <a href="https://www.iso.org/standard/78957.html" target="_blank" rel="noopener"
+                  class="std-tag"><strong>ISO/IEC 30141</strong></a>
+                <a href="https://www.isa.org/standards-and-publications/isa-standards/isa-standards-committees/isa99"
+                  target="_blank" rel="noopener" class="std-tag"><strong>IEC 62443</strong></a>
+                <a href="https://www.iso.org/standard/68078.html" target="_blank" rel="noopener"
+                  class="std-tag"><strong>ISO 19650</strong></a>
+              </td>
+              <td class="col-complexity"><span class="complexity-tag high">High</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-  <!-- ===== MISSION LIFECYCLE ===== -->
-  <section>
-    <div class="section-head">
-      <h2>Mission life cycle</h2>
-      <div class="section-note">10 states from draft to archive</div>
-    </div>
-    <div class="lifecycle">
-      <span class="step done">DRAFT</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step done">REVIEW</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step done">COMPILED</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step active">PUBLISHED</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step">ACTIVE</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step">VALIDATING</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step">SCORED</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step">ELIGIBLE</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step">REWARDED</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step">ARCHIVED</span>
-    </div>
-    <div style="margin-top:12px; font-size:12px; color:var(--ink-dim); background:var(--bg-panel-2); padding:12px 18px; border-radius:12px; border:1px solid var(--line);">
-      <i class="fas fa-info-circle" style="color:var(--accent); margin-right:6px;"></i>
-      <strong>Rules:</strong> drafts are editable; published missions are versioned and immutable; all active submissions refer to a specific mission version.
-    </div>
-  </section>
+    <!-- ===== MISSION LIFECYCLE ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Mission life cycle</h2>
+        <div class="section-note">10 states from draft to archive</div>
+      </div>
+      <div class="lifecycle">
+        <span class="step done">DRAFT</span>
+        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+        <span class="step done">REVIEW</span>
+        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+        <span class="step done">COMPILED</span>
+        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+        <span class="step active">PUBLISHED</span>
+        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+        <span class="step">ACTIVE</span>
+        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+        <span class="step">VALIDATING</span>
+        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+        <span class="step">SCORED</span>
+        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+        <span class="step">ELIGIBLE</span>
+        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+        <span class="step">REWARDED</span>
+        <span class="arrow"><i class="fas fa-arrow-right"></i></span>
+        <span class="step">ARCHIVED</span>
+      </div>
+      <div
+        style="margin-top:12px; font-size:12px; color:var(--ink-dim); background:var(--bg-panel-2); padding:12px 18px; border-radius:12px; border:1px solid var(--line);">
+        <i class="fas fa-info-circle" style="color:var(--accent); margin-right:6px;"></i>
+        <strong>Rules:</strong> drafts are editable; published missions are versioned and immutable; all active
+        submissions refer to a specific mission version.
+      </div>
+    </section>
 
-  <!-- ===== ARCHITECTURAL SCHEME ===== -->
-  <section>
-    <div class="section-head">
-      <h2>Security architecture — trust zones</h2>
-      <div class="section-note">separation of responsibilities</div>
-    </div>
-    <div class="trust-zones">
-      <div class="trust-zone">
-        <div class="zone-title">1. Public zone</div>
-        <div class="zone-desc">Game clients, web interfaces — contain no confidential data.</div>
+    <!-- ===== ARCHITECTURAL SCHEME ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Security architecture — trust zones</h2>
+        <div class="section-note">separation of responsibilities</div>
       </div>
-      <div class="trust-zone">
-        <div class="zone-title">2. Gateway</div>
-        <div class="zone-desc">Authenticated calls, schema validation, rate limiting, request signatures.</div>
-      </div>
-      <div class="trust-zone">
-        <div class="zone-title">3. Corporate zone</div>
-        <div class="zone-desc">Tenant management, mission orchestration, policies, audit.</div>
-      </div>
-      <div class="trust-zone">
-        <div class="zone-title">4. Scientific zone</div>
-        <div class="zone-desc">Closed OPENSTRUCTURE services, protected reference data.</div>
-      </div>
-      <div class="trust-zone">
-        <div class="zone-title">5. Commercial zone</div>
-        <div class="zone-desc">Payment and reward services — separated from science.</div>
-      </div>
-    </div>
-    <div style="margin-top:12px; font-size:12px; color:var(--ink-faint);">
-      <i class="fas fa-lock" style="color:var(--accent); margin-right:6px;"></i>
-      <strong>Principle:</strong> no game client can access the reference structure; the scientific service does not make commercial decisions; the public STATE does not contain private data.
-    </div>
-  </section>
-
-  <!-- ===== STANDARDS: cross-cutting (extended) ===== -->
-  <section>
-    <div class="section-head">
-      <h2>Common standards (all industries)</h2>
-      <div class="section-note">information security, AI, quality, laboratory practice, regulated records</div>
-    </div>
-    <div class="standards-grid">
-      <!-- Information Security & Privacy -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-shield-alt"></i> Information Security &amp; Privacy</div>
-        <div class="card-body">
-          <a href="https://www.iso.org/obp/ui/#iso:std:iso-iec:27001:ed-2:v1:en" target="_blank" rel="noopener" class="std-ref"><strong>ISO/IEC 27001:2022 + Amd 1:2024</strong></a>
-          <a href="https://www.iso.org/standard/27701" target="_blank" rel="noopener" class="std-ref"><strong>ISO/IEC 27701:2025</strong></a>
-          <span class="std-desc">Information security management, tenant isolation, RBAC, encryption, audit; PII privacy management.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> Identity, RBAC, tenant boundaries, audit trail, privacy controls, retention policies.</span>
+      <div class="trust-zones">
+        <div class="trust-zone">
+          <div class="zone-title">1. Public zone</div>
+          <div class="zone-desc">Game clients, web interfaces — contain no confidential data.</div>
+        </div>
+        <div class="trust-zone">
+          <div class="zone-title">2. Gateway</div>
+          <div class="zone-desc">Authenticated calls, schema validation, rate limiting, request signatures.</div>
+        </div>
+        <div class="trust-zone">
+          <div class="zone-title">3. Corporate zone</div>
+          <div class="zone-desc">Tenant management, mission orchestration, policies, audit.</div>
+        </div>
+        <div class="trust-zone">
+          <div class="zone-title">4. Scientific zone</div>
+          <div class="zone-desc">Closed OPENSTRUCTURE services, protected reference data.</div>
+        </div>
+        <div class="trust-zone">
+          <div class="zone-title">5. Commercial zone</div>
+          <div class="zone-desc">Payment and reward services — separated from science.</div>
         </div>
       </div>
-      <!-- AI Governance -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-robot"></i> AI Governance</div>
-        <div class="card-body">
-          <a href="https://www.iso.org/standard/81204.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO/IEC 42001:2023</strong></a>
-          <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener" class="std-ref"><strong>EU AI Act (2024/1689)</strong></a>
-          <span class="std-desc">AI system management, risk classification, transparency, human oversight, logging, technical documentation.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> AI inventory, risk classification, model provenance, human oversight, traceability, lifecycle governance.</span>
-        </div>
-      </div>
-      <!-- Software Quality -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-check-double"></i> Software Quality</div>
-        <div class="card-body">
-          <a href="https://www.iso.org/standard/83073.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO/IEC 25010:2023</strong></a>
-          <span class="std-desc">Software quality model: functional suitability, reliability, maintainability, security, compatibility.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> Reliability, security, maintainability, compatibility, usability quality gates.</span>
-        </div>
-      </div>
-      <!-- Laboratory Quality -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-flask"></i> Laboratory Quality</div>
-        <div class="card-body">
-          <a href="https://www.iso.org/standard/56112.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO/IEC 17025:2017</strong></a>
-          <a href="https://www.oecd.org/chemicalsafety/testing/good-laboratory-practice-glp/" target="_blank" rel="noopener" class="std-ref"><strong>OECD GLP</strong></a>
-          <span class="std-desc">Competence of testing laboratories, GLP for preclinical studies, data integrity.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> Validation records, method versions, reproducibility, study identity, raw-data lineage, QA evidence.</span>
-        </div>
-      </div>
-      <!-- Regulated Records -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-file-signature"></i> Regulated Records</div>
-        <div class="card-body">
-          <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11" target="_blank" rel="noopener" class="std-ref"><strong>21 CFR Part 11</strong></a>
-          <span class="std-desc">Electronic records and electronic signatures in FDA-regulated environments.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> Validated systems, secure audit trails, access controls, record retention, signature linkage.</span>
-        </div>
-      </div>
-      <!-- Medical Devices -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-heartbeat"></i> Medical Devices</div>
-        <div class="card-body">
-          <a href="https://www.iso.org/standard/59752.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO 13485:2016</strong></a>
-          <span class="std-desc">Quality management systems for medical devices.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> Design history, controlled changes, validation evidence, supplier traceability.</span>
-        </div>
-      </div>
-      <!-- Environmental & OH&S -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-leaf"></i> Environment &amp; OH&amp;S</div>
-        <div class="card-body">
-          <a href="https://www.iso.org/standard/92300.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO 14001:2026</strong></a>
-          <a href="https://www.iso.org/standard/63787.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO 45001:2018 + Amd 1:2024</strong></a>
-          <span class="std-desc">Environmental management and occupational health &amp; safety — impact and risk management.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> Environmental mission profiles, safety gates, role controls, operational checklists.</span>
-        </div>
-      </div>
-      <!-- Industrial Cybersecurity & Digital Twins -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-industry"></i> Industrial Cybersecurity &amp; DT</div>
-        <div class="card-body">
-          <a href="https://webstore.iec.ch/publication/19467" target="_blank" rel="noopener" class="std-ref"><strong>IEC 62443-3-3:2013</strong></a>
-          <a href="https://www.iso.org/standard/75066.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO 23247-1:2021</strong></a>
-          <a href="https://www.iso.org/standard/78957.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO/IEC 30141:2024</strong></a>
-          <span class="std-desc">Industrial cybersecurity (zones, conduits, security levels) and digital twins of manufacturing.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> Network zoning, identity, integrity, restricted flow, simulation state, digital thread synchronization.</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== UNIFIED PIPELINE ===== -->
-  <section>
-    <div class="section-head">
-      <h2>Unified pipeline</h2>
-      <div class="section-note">from order to validation</div>
-    </div>
-    <div class="pipeline-block">
-      <div class="step">1. The customer (B2B) defines the task and uploads the data <span class="arrow">↓</span></div>
-      <div class="step">2. INDUSTRIAL‑CAMEO compiles the task into a UAG <span class="arrow">↓</span></div>
-      <div class="step">3. Adapters generate game missions (UEFN, Unity, UNIGINE, Web, Standalone) <span class="arrow">↓</span></div>
-      <div class="step">4. Players solve the task through gameplay <span class="arrow">↓</span></div>
-      <div class="step">5. OPENSTRUCTURE (AlphaFold, VQE, ZairaChem, etc.) validates the solutions <span class="arrow">↓</span></div>
-      <div class="step highlight">6. The customer receives a scientifically validated result and pays for the valid solution.</div>
       <div style="margin-top:12px; font-size:12px; color:var(--ink-faint);">
-        <i class="fas fa-arrow-right" style="color:var(--accent); margin-right:6px;"></i>
-        <strong>Result:</strong> acceleration of R&amp;D by 3–10 times, access to thousands of player-solvers, complete transparency and reproducibility.
+        <i class="fas fa-lock" style="color:var(--accent); margin-right:6px;"></i>
+        <strong>Principle:</strong> no game client can access the reference structure; the scientific service does not
+        make commercial decisions; the public STATE does not contain private data.
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <span>
-      <a href="https://github.com/qfoldit" target="_blank">
-        <i class="fab fa-github"></i> github.com/qfoldit
-      </a>
-    </span>
-    <span class="centered">«Powered by Anthropic»</span>
-    <span><i class="fas fa-check-circle" style="color:var(--accent);"></i> Ready for integration</span>
-  </footer>
+    <!-- ===== STANDARDS: cross-cutting (extended) ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Common standards (all industries)</h2>
+        <div class="section-note">information security, AI, quality, laboratory practice, regulated records</div>
+      </div>
+      <div class="standards-grid">
+        <!-- Information Security & Privacy -->
+        <div class="standards-card">
+          <div class="card-title"><i class="fas fa-shield-alt"></i> Information Security &amp; Privacy</div>
+          <div class="card-body">
+            <a href="https://www.iso.org/obp/ui/#iso:std:iso-iec:27001:ed-2:v1:en" target="_blank" rel="noopener"
+              class="std-ref"><strong>ISO/IEC 27001:2022 + Amd 1:2024</strong></a>
+            <a href="https://www.iso.org/standard/27701" target="_blank" rel="noopener" class="std-ref"><strong>ISO/IEC
+                27701:2025</strong></a>
+            <span class="std-desc">Information security management, tenant isolation, RBAC, encryption, audit; PII
+              privacy management.</span>
+            <span class="control"><strong>QFOLDIT CONTROL:</strong> Identity, RBAC, tenant boundaries, audit trail,
+              privacy controls, retention policies.</span>
+          </div>
+        </div>
+        <!-- AI Governance -->
+        <div class="standards-card">
+          <div class="card-title"><i class="fas fa-robot"></i> AI Governance</div>
+          <div class="card-body">
+            <a href="https://www.iso.org/standard/81204.html" target="_blank" rel="noopener"
+              class="std-ref"><strong>ISO/IEC 42001:2023</strong></a>
+            <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener"
+              class="std-ref"><strong>EU AI Act (2024/1689)</strong></a>
+            <span class="std-desc">AI system management, risk classification, transparency, human oversight, logging,
+              technical documentation.</span>
+            <span class="control"><strong>QFOLDIT CONTROL:</strong> AI inventory, risk classification, model provenance,
+              human oversight, traceability, lifecycle governance.</span>
+          </div>
+        </div>
+        <!-- Software Quality -->
+        <div class="standards-card">
+          <div class="card-title"><i class="fas fa-check-double"></i> Software Quality</div>
+          <div class="card-body">
+            <a href="https://www.iso.org/standard/83073.html" target="_blank" rel="noopener"
+              class="std-ref"><strong>ISO/IEC 25010:2023</strong></a>
+            <span class="std-desc">Software quality model: functional suitability, reliability, maintainability,
+              security, compatibility.</span>
+            <span class="control"><strong>QFOLDIT CONTROL:</strong> Reliability, security, maintainability,
+              compatibility, usability quality gates.</span>
+          </div>
+        </div>
+        <!-- Laboratory Quality -->
+        <div class="standards-card">
+          <div class="card-title"><i class="fas fa-flask"></i> Laboratory Quality</div>
+          <div class="card-body">
+            <a href="https://www.iso.org/standard/56112.html" target="_blank" rel="noopener"
+              class="std-ref"><strong>ISO/IEC 17025:2017</strong></a>
+            <a href="https://www.oecd.org/chemicalsafety/testing/good-laboratory-practice-glp/" target="_blank"
+              rel="noopener" class="std-ref"><strong>OECD GLP</strong></a>
+            <span class="std-desc">Competence of testing laboratories, GLP for preclinical studies, data
+              integrity.</span>
+            <span class="control"><strong>QFOLDIT CONTROL:</strong> Validation records, method versions,
+              reproducibility, study identity, raw-data lineage, QA evidence.</span>
+          </div>
+        </div>
+        <!-- Regulated Records -->
+        <div class="standards-card">
+          <div class="card-title"><i class="fas fa-file-signature"></i> Regulated Records</div>
+          <div class="card-body">
+            <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11" target="_blank"
+              rel="noopener" class="std-ref"><strong>21 CFR Part 11</strong></a>
+            <span class="std-desc">Electronic records and electronic signatures in FDA-regulated environments.</span>
+            <span class="control"><strong>QFOLDIT CONTROL:</strong> Validated systems, secure audit trails, access
+              controls, record retention, signature linkage.</span>
+          </div>
+        </div>
+        <!-- Medical Devices -->
+        <div class="standards-card">
+          <div class="card-title"><i class="fas fa-heartbeat"></i> Medical Devices</div>
+          <div class="card-body">
+            <a href="https://www.iso.org/standard/59752.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO
+                13485:2016</strong></a>
+            <span class="std-desc">Quality management systems for medical devices.</span>
+            <span class="control"><strong>QFOLDIT CONTROL:</strong> Design history, controlled changes, validation
+              evidence, supplier traceability.</span>
+          </div>
+        </div>
+        <!-- Environmental & OH&S -->
+        <div class="standards-card">
+          <div class="card-title"><i class="fas fa-leaf"></i> Environment &amp; OH&amp;S</div>
+          <div class="card-body">
+            <a href="https://www.iso.org/standard/92300.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO
+                14001:2026</strong></a>
+            <a href="https://www.iso.org/standard/63787.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO
+                45001:2018 + Amd 1:2024</strong></a>
+            <span class="std-desc">Environmental management and occupational health &amp; safety — impact and risk
+              management.</span>
+            <span class="control"><strong>QFOLDIT CONTROL:</strong> Environmental mission profiles, safety gates, role
+              controls, operational checklists.</span>
+          </div>
+        </div>
+        <!-- Industrial Cybersecurity & Digital Twins -->
+        <div class="standards-card">
+          <div class="card-title"><i class="fas fa-industry"></i> Industrial Cybersecurity &amp; DT</div>
+          <div class="card-body">
+            <a href="https://webstore.iec.ch/publication/19467" target="_blank" rel="noopener"
+              class="std-ref"><strong>IEC 62443-3-3:2013</strong></a>
+            <a href="https://www.iso.org/standard/75066.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO
+                23247-1:2021</strong></a>
+            <a href="https://www.iso.org/standard/78957.html" target="_blank" rel="noopener"
+              class="std-ref"><strong>ISO/IEC 30141:2024</strong></a>
+            <span class="std-desc">Industrial cybersecurity (zones, conduits, security levels) and digital twins of
+              manufacturing.</span>
+            <span class="control"><strong>QFOLDIT CONTROL:</strong> Network zoning, identity, integrity, restricted
+              flow, simulation state, digital thread synchronization.</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</main>
+    <!-- ===== UNIFIED PIPELINE ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Unified pipeline</h2>
+        <div class="section-note">from order to validation</div>
+      </div>
+      <div class="pipeline-block">
+        <div class="step">1. The customer (B2B) defines the task and uploads the data <span class="arrow">↓</span></div>
+        <div class="step">2. INDUSTRIAL‑CAMEO compiles the task into a UAG <span class="arrow">↓</span></div>
+        <div class="step">3. Adapters generate game missions (UEFN, Unity, UNIGINE, Web, Standalone) <span
+            class="arrow">↓</span></div>
+        <div class="step">4. Players solve the task through gameplay <span class="arrow">↓</span></div>
+        <div class="step">5. OPENSTRUCTURE (AlphaFold, VQE, ZairaChem, etc.) validates the solutions <span
+            class="arrow">↓</span></div>
+        <div class="step highlight">6. The customer receives a scientifically validated result and pays for the valid
+          solution.</div>
+        <div style="margin-top:12px; font-size:12px; color:var(--ink-faint);">
+          <i class="fas fa-arrow-right" style="color:var(--accent); margin-right:6px;"></i>
+          <strong>Result:</strong> acceleration of R&amp;D by 3–10 times, access to thousands of player-solvers,
+          complete transparency and reproducibility.
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+      <span>
+        <a href="https://github.com/qfoldit" target="_blank">
+          <i class="fab fa-github"></i> github.com/qfoldit
+        </a>
+      </span>
+      <span class="centered">«Powered by Anthropic»</span>
+      <span><i class="fas fa-check-circle" style="color:var(--accent);"></i> Ready for integration</span>
+    </footer>
+
+  </main>
 </body>
+
 </html>
