@@ -1,10 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
+<!-- saved from url=(0041)https://qfoldit.github.io/server/CLI.html -->
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>qFoldIT — Client & Scientific Mission Prospect Matrix</title>
+    <title>qFoldIT — Client &amp; Scientific Mission Prospect Matrix</title>
     <style>
         :root {
             --bg: #0b0f14;
@@ -311,6 +313,17 @@
             color: var(--accent)
         }
 
+        .powered {
+            margin-top: 36px;
+            text-align: center;
+            font: 13px var(--mono);
+            letter-spacing: 0.08em;
+            color: var(--ink-faint);
+            opacity: 0.55;
+            border-top: none;
+            padding-top: 0
+        }
+
         @media(max-width:850px) {
 
             .controls,
@@ -340,15 +353,15 @@
         <section>
             <div class="metric-grid">
                 <div class="metric">
-                    <div class="n" id="total">0</div>
+                    <div class="n" id="total">167</div>
                     <div class="l">Prospects in this matrix</div>
                 </div>
                 <div class="metric">
-                    <div class="n" id="aCount">0</div>
+                    <div class="n" id="aCount">87</div>
                     <div class="l">Tier A / immediate outreach</div>
                 </div>
                 <div class="metric">
-                    <div class="n" id="bCount">0</div>
+                    <div class="n" id="bCount">80</div>
                     <div class="l">Tier B / second wave</div>
                 </div>
                 <div class="metric">
@@ -373,12 +386,87 @@
             <div class="controls"><input id="q" type="search"
                     placeholder="Search company, industry, mission, country…"><select id="industry">
                     <option value="">All industries</option>
+                    <option>AI Drug Discovery</option>
+                    <option>AI Drug Discovery / Scientific Software</option>
+                    <option>AI Hardware</option>
+                    <option>Advanced Materials</option>
+                    <option>Aerospace</option>
+                    <option>Aerospace / Defense</option>
+                    <option>Agro-Biotech</option>
+                    <option>Agro-Tech</option>
+                    <option>Automotive / Battery</option>
+                    <option>Battery</option>
+                    <option>Battery / Automotive</option>
+                    <option>Carbon Capture</option>
+                    <option>Chemicals / Agro</option>
+                    <option>Chemicals / Battery</option>
+                    <option>Chemicals / Catalysis</option>
+                    <option>Chemicals / Materials</option>
+                    <option>Cloud / Scientific AI</option>
+                    <option>Energy / CCUS</option>
+                    <option>Energy / Catalysis</option>
+                    <option>Energy / Subsurface</option>
+                    <option>Food / Materials / Bio</option>
+                    <option>Hydrogen</option>
+                    <option>Industrial Biotechnology</option>
+                    <option>Industrial Gas</option>
+                    <option>Materials / Battery</option>
+                    <option>Memory</option>
+                    <option>Mining</option>
+                    <option>Mining / Energy</option>
+                    <option>Mining / Materials</option>
+                    <option>Pharma</option>
+                    <option>Protein Design / AI</option>
+                    <option>Quantum Computing</option>
+                    <option>RNA / Gene Therapy</option>
+                    <option>Scientific Software</option>
+                    <option>Scientific Software / Hardware</option>
+                    <option>Semiconductor</option>
+                    <option>Semiconductor Equipment</option>
+                    <option>Semiconductor Materials</option>
+                    <option>Space</option>
+                    <option>Synthetic Biology</option>
                 </select><select id="priority">
                     <option value="">All priorities</option>
                     <option value="A">Tier A</option>
                     <option value="B">Tier B</option>
                 </select><select id="region">
                     <option value="">All regions</option>
+                    <option>Australia</option>
+                    <option>Australia / UK</option>
+                    <option>Belgium</option>
+                    <option>Brazil</option>
+                    <option>Canada</option>
+                    <option>China</option>
+                    <option>China / USA</option>
+                    <option>Denmark</option>
+                    <option>Estonia</option>
+                    <option>Europe</option>
+                    <option>France</option>
+                    <option>France / USA</option>
+                    <option>Germany</option>
+                    <option>Germany / UK / USA</option>
+                    <option>Hong Kong / USA</option>
+                    <option>India</option>
+                    <option>Japan</option>
+                    <option>Netherlands</option>
+                    <option>Netherlands / Switzerland</option>
+                    <option>Netherlands / UK</option>
+                    <option>Norway</option>
+                    <option>Saudi Arabia</option>
+                    <option>South Korea</option>
+                    <option>Sweden</option>
+                    <option>Switzerland</option>
+                    <option>Switzerland / China</option>
+                    <option>Taiwan</option>
+                    <option>UAE</option>
+                    <option>UK</option>
+                    <option>UK / Australia</option>
+                    <option>UK / Netherlands</option>
+                    <option>UK / Sweden</option>
+                    <option>UK / USA</option>
+                    <option>USA</option>
+                    <option>USA / Netherlands</option>
                 </select></div>
             <div class="table-wrap" style="margin-top:14px">
                 <table id="matrix">
@@ -2111,7 +2199,8 @@
                 </div>
             </div>
         </section>
-        <div class="footer">qFoldIT · Client & Scientific Mission Prospect Matrix · Generated 2026‑08‑16.</div>
+        <div class="footer">qFoldIT · Client &amp; Scientific Mission Prospect Matrix ·</div>
+        <div class="powered">«Powered by Anthropic»</div>
     </main>
     <script>
         const rows = [...document.querySelectorAll('#matrix tbody tr')], q = document.getElementById('q'), i = document.getElementById('industry'), p = document.getElementById('priority'), r = document.getElementById('region');
@@ -2120,6 +2209,9 @@
         document.getElementById('total').textContent = rows.length; document.getElementById('aCount').textContent = rows.filter(x => x.dataset.priority === 'A').length; document.getElementById('bCount').textContent = rows.filter(x => x.dataset.priority === 'B').length;
         function apply() { const t = q.value.trim().toLowerCase(), iv = i.value.toLowerCase(), pv = p.value, rv = r.value.toLowerCase(); rows.forEach(row => { const text = row.innerText.toLowerCase(); row.style.display = (!t || text.includes(t)) && (!iv || row.dataset.industry.toLowerCase() === iv) && (!pv || row.dataset.priority === pv) && (!rv || row.dataset.region.toLowerCase() === rv) ? '' : 'none' }) } [q, i, p, r].forEach(x => x.addEventListener('input', apply));
     </script>
+
+
+
 </body>
 
 </html>
