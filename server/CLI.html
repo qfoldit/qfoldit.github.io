@@ -2210,8 +2210,6 @@
         function apply() { const t = q.value.trim().toLowerCase(), iv = i.value.toLowerCase(), pv = p.value, rv = r.value.toLowerCase(); rows.forEach(row => { const text = row.innerText.toLowerCase(); row.style.display = (!t || text.includes(t)) && (!iv || row.dataset.industry.toLowerCase() === iv) && (!pv || row.dataset.priority === pv) && (!rv || row.dataset.region.toLowerCase() === rv) ? '' : 'none' }) } [q, i, p, r].forEach(x => x.addEventListener('input', apply));
     </script>
 
-
-
 </body>
 
 </html>
