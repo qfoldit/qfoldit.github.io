@@ -1,10 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
+<!-- saved from url=(0047)https://qfoldit.github.io/server/dashboard.html -->
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>qFoldIT — B2B Orders (INDUSTRIAL‑CAMEO)</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>qFoldIT — Unified Dashboard (v2.1) with INDUSTRIAL‑CAMEO Proxy</title>
+  <link rel="stylesheet" href="./qFoldIT — Unified Dashboard (v2.1) with INDUSTRIAL‑CAMEO Proxy_files/all.min.css">
   <style>
     :root {
       --bg: #0b0f14;
@@ -15,36 +18,50 @@
       --ink-dim: #8c98a8;
       --ink-faint: #5c6b7d;
       --accent: #5ee6c9;
-      --accent-soft: rgba(94,230,201,.12);
+      --accent-soft: rgba(94, 230, 201, .12);
       --amber: #e8a83c;
-      --amber-soft: rgba(232,168,60,.12);
+      --amber-soft: rgba(232, 168, 60, .12);
       --rose: #e8637a;
-      --rose-soft: rgba(232,99,122,.12);
+      --rose-soft: rgba(232, 99, 122, .12);
       --violet: #9d8cf0;
-      --violet-soft: rgba(157,140,240,.12);
-      --green: #5ee6a0;
-      --green-soft: rgba(94,230,160,.12);
+      --violet-soft: rgba(157, 140, 240, .12);
       --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
       --serif: Georgia, "Iowan Old Style", "Times New Roman", serif;
       --sans: -apple-system, "Segoe UI", Inter, system-ui, sans-serif;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { margin: 0; padding: 0; }
-    ::-webkit-scrollbar { width: 0; }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0
+    }
+
+    ::-webkit-scrollbar {
+      width: 0;
+    }
+
     body {
       background:
-        radial-gradient(1200px 600px at 15% -10%, rgba(94,230,201,.07), transparent 60%),
-        radial-gradient(900px 500px at 100% 0%, rgba(157,140,240,.06), transparent 55%),
+        radial-gradient(1200px 600px at 15% -10%, rgba(94, 230, 201, .07), transparent 60%),
+        radial-gradient(900px 500px at 100% 0%, rgba(157, 140, 240, .06), transparent 55%),
         var(--bg);
       color: var(--ink);
       font-family: var(--sans);
       line-height: 1.55;
       -webkit-font-smoothing: antialiased;
     }
-    main { max-width: 1280px; margin: 0 auto; padding: 56px 28px 90px; }
-    a { text-decoration: none; }
 
-    /* Hero */
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 56px 28px 90px
+    }
+
+    /* ---------- hero ---------- */
     .eyebrow {
       font-family: var(--mono);
       font-size: 12px;
@@ -56,7 +73,13 @@
       gap: 10px;
       margin-bottom: 18px;
     }
-    .eyebrow i { color: var(--accent); font-size: 10px; flex: none; }
+
+    .eyebrow i {
+      color: var(--accent);
+      font-size: 10px;
+      flex: none;
+    }
+
     h1 {
       font-family: var(--serif);
       font-weight: 400;
@@ -65,13 +88,19 @@
       margin: 0 0 14px;
       letter-spacing: -.01em;
     }
-    h1 em { font-style: italic; color: var(--accent); }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent)
+    }
+
     .hero-sub {
       color: var(--ink-dim);
       max-width: 640px;
       font-size: 16px;
       margin-bottom: 6px;
     }
+
     .hero-meta {
       font-family: var(--mono);
       font-size: 12.5px;
@@ -81,19 +110,32 @@
       flex-wrap: wrap;
       gap: 6px 22px;
     }
-    .hero-meta a { color: var(--ink-dim); border-bottom: 1px dotted var(--line); }
-    .hero-meta a:hover { color: var(--accent); border-color: var(--accent); }
 
-    /* Sections */
-    section { margin-top: 64px; }
+    .hero-meta a {
+      color: var(--ink-dim);
+      text-decoration: none;
+      border-bottom: 1px dotted var(--line)
+    }
+
+    .hero-meta a:hover {
+      color: var(--accent);
+      border-color: var(--accent)
+    }
+
+    /* ---------- sections ---------- */
+    section {
+      margin-top: 64px
+    }
+
     .section-head {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
       gap: 16px;
       margin-bottom: 20px;
-      flex-wrap: wrap;
+      flex-wrap: wrap
     }
+
     h2 {
       font-family: var(--serif);
       font-weight: 400;
@@ -101,14 +143,15 @@
       margin: 0;
       letter-spacing: -.01em;
     }
+
     .section-note {
       font-family: var(--mono);
       font-size: 11.5px;
       color: var(--ink-faint);
-      text-align: right;
+      text-align: right
     }
 
-    /* Metrics */
+    /* ---------- metrics ---------- */
     .metric-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -118,10 +161,12 @@
       border-radius: 16px;
       overflow: hidden;
     }
+
     .metric {
       background: var(--bg-panel);
       padding: 22px 18px;
     }
+
     .metric .n {
       font-family: var(--mono);
       font-size: 30px;
@@ -129,317 +174,666 @@
       color: var(--accent);
       letter-spacing: -.02em;
     }
-    .metric .n .sub { color: var(--ink-faint); font-size: 18px; }
-    .metric .l { font-size: 12.5px; color: var(--ink-dim); margin-top: 6px; }
 
-    /* Cards */
+    .metric .n .sub {
+      color: var(--ink-faint);
+      font-size: 18px;
+    }
+
+    .metric .l {
+      font-size: 12.5px;
+      color: var(--ink-dim);
+      margin-top: 6px
+    }
+
+    /* ---------- cards ---------- */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px
     }
+
     .card {
       background: var(--bg-panel);
       border: 1px solid var(--line);
       border-radius: 14px;
-      padding: 18px 20px;
-      border-top: 3px solid var(--accent);
-      transition: background 0.2s;
+      padding: 20px 20px 18px;
     }
-    .card:hover { background: var(--bg-panel-2); }
-    .card .card-title {
+
+    .card .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px
+    }
+
+    .card .name {
+      font-family: var(--mono);
+      font-weight: 600;
+      font-size: 14px
+    }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .badge.ok {
+      background: var(--accent-soft);
+      color: var(--accent)
+    }
+
+    .badge.warn {
+      background: var(--amber-soft);
+      color: var(--amber)
+    }
+
+    .badge.info {
+      background: var(--violet-soft);
+      color: var(--violet)
+    }
+
+    .badge.off {
+      background: rgba(140, 152, 168, .1);
+      color: var(--ink-dim)
+    }
+
+    .card .stat-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 5px 0;
+      border-top: 1px solid var(--line)
+    }
+
+    .card .stat-row:first-of-type {
+      border-top: none;
+      margin-top: 2px
+    }
+
+    .card .stat-row .k {
+      color: var(--ink-dim)
+    }
+
+    .card .stat-row .v {
+      font-family: var(--mono);
+      text-align: right
+    }
+
+    .card .foot {
+      margin-top: 12px;
+      font-size: 12px;
+      color: var(--ink-dim)
+    }
+
+    /* ---------- MDA ---------- */
+    .mda-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px
+    }
+
+    .mda-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 22px 22px 18px;
+    }
+
+    .mda-card h3 {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0 0 8px;
+      color: var(--accent);
+    }
+
+    .mda-card .sub {
+      font-size: 12.5px;
+      color: var(--ink-dim);
+      margin-bottom: 12px
+    }
+
+    .mda-card .mda-item {
+      margin: 8px 0;
+      padding-left: 14px;
+      border-left: 2px solid var(--accent-soft)
+    }
+
+    .mda-card .mda-item strong {
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .mda-card .mda-item .label {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    /* ---------- modes ---------- */
+    .mode-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px
+    }
+
+    .mode-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+
+    .mode-card .mode-title {
       font-family: var(--mono);
       font-size: 14px;
       font-weight: 600;
       color: var(--accent);
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 8px;
     }
-    .card .card-title i { font-size: 16px; color: var(--accent); }
-    .card .card-body {
-      margin-top: 8px;
+
+    .mode-card .mode-title .bartle {
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink-dim)
+    }
+
+    .mode-card .mode-desc {
       font-size: 12.5px;
       color: var(--ink-dim);
+      margin: 6px 0 10px
     }
-    .card .card-body .tag {
-      display: inline-block;
-      background: var(--bg-panel-2);
-      padding: 1px 8px;
-      border-radius: 10px;
-      font-family: var(--mono);
-      font-size: 9.5px;
-      color: var(--ink);
-      border: 1px solid var(--line);
-      margin: 2px 3px 2px 0;
-    }
-    .card .card-body .tag strong { color: var(--accent); font-weight: 600; }
-    .card .card-body .tag.blue { border-color: var(--accent-soft); }
-    .card .card-body .tag.violet { border-color: var(--violet-soft); }
-    .card .card-body .tag.amber { border-color: var(--amber-soft); }
-    .card .card-body .tag.rose { border-color: var(--rose-soft); }
 
-    /* Lifecycle */
-    .lifecycle {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 10px;
-      background: var(--bg-panel);
+    .mode-card .mode-fit {
+      font-size: 12px;
+      color: var(--ink);
+      background: var(--bg-panel-2);
+      border-radius: 8px;
+      padding: 6px 10px
+    }
+
+    .mode-card .mode-fit code {
+      color: var(--accent)
+    }
+
+    .scoring-box {
+      background: var(--bg-panel-2);
       border: 1px solid var(--line);
       border-radius: 14px;
-      padding: 18px 22px;
-      justify-content: center;
-      align-items: center;
-    }
-    .lifecycle .step {
-      font-family: var(--mono);
-      font-size: 10.5px;
-      padding: 4px 8px;
-      border-radius: 20px;
-      background: var(--bg-panel-2);
-      color: var(--ink-dim);
-      border: 1px solid var(--line);
-      white-space: nowrap;
-    }
-    .lifecycle .step.active { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
-    .lifecycle .step.done { background: var(--green-soft); color: var(--green); border-color: var(--green-soft); }
-    .lifecycle .arrow { color: var(--ink-faint); font-size: 12px; flex: none; }
-
-    /* Tables */
-    .table-wrap {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin: 0 -4px;
-      padding: 0 4px;
-    }
-    .table-wrap::-webkit-scrollbar { width: 0; height: 0; background: transparent; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-      line-height: 1.5;
-      min-width: 900px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-    thead th {
-      text-align: left;
-      font-weight: 600;
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--ink-dim);
-      padding: 10px 12px;
-      background: var(--bg-panel-2);
-      border-bottom: 1px solid var(--line);
-      white-space: nowrap;
-    }
-    tbody tr {
-      border-bottom: 1px solid var(--line);
-      transition: background 0.15s ease;
-    }
-    tbody tr:last-child { border-bottom: none; }
-    tbody tr:hover { background: var(--bg-panel-2); }
-    tbody td {
-      padding: 10px 12px;
-      vertical-align: middle;
-      color: var(--ink-dim);
-    }
-    .col-industry { font-weight: 600; color: var(--ink); white-space: nowrap; width: 12%; }
-    .col-industry i { margin-right: 6px; color: var(--accent); }
-    .col-orders { width: 30%; }
-    .col-orders ul { list-style: none; padding: 0; margin: 0; }
-    .col-orders li { position: relative; padding-left: 18px; margin-bottom: 2px; color: var(--ink-dim); }
-    .col-orders li::before { content: "•"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
-    .col-orders li:last-child { margin-bottom: 0; }
-    .col-standards { width: 30%; font-size: 12px; color: var(--ink-dim); }
-    .col-modes { width: 15%; text-align: center; font-size: 11px; color: var(--ink-dim); }
-    .col-complexity { text-align: right; white-space: nowrap; width: 10%; }
-
-    .std-tag, .std-tag-sm, .std-item {
-      display: inline-block;
-      background: var(--bg-panel-2);
-      padding: 2px 10px;
-      border-radius: 12px;
-      margin: 2px 4px 2px 0;
-      font-family: var(--mono);
-      font-size: 10.5px;
-      color: var(--ink);
-      border: 1px solid var(--line);
-      white-space: nowrap;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      text-decoration: none;
-    }
-    .std-tag strong, .std-tag-sm strong, .std-item strong { color: var(--accent); font-weight: 600; }
-    .std-tag:hover, .std-tag-sm:hover, .std-item:hover {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      transform: scale(1.02);
+      padding: 20px 22px;
+      margin: 16px 0;
     }
 
-    .complexity-tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 500;
-      padding: 3px 12px;
-      border-radius: 100px;
-      letter-spacing: 0.01em;
-      background: var(--bg-panel-2);
-      color: var(--ink);
-      border: 1px solid var(--line);
-    }
-    .complexity-tag.low { background: var(--accent-soft); color: var(--accent); border-color: var(--accent-soft); }
-    .complexity-tag.medium { background: var(--amber-soft); color: var(--amber); border-color: var(--amber-soft); }
-    .complexity-tag.high { background: var(--rose-soft); color: var(--rose); border-color: var(--rose-soft); }
-    .complexity-tag.very-high { background: var(--violet-soft); color: var(--violet); border-color: var(--violet-soft); }
-
-    .status-pill {
-      display: inline-block;
-      font-family: var(--mono);
-      font-size: 9.5px;
-      letter-spacing: .03em;
-      padding: 2px 8px;
-      border-radius: 20px;
-      white-space: nowrap;
-      border: 1px solid var(--line);
-    }
-    .status-pill.verified { background: var(--green-soft); color: var(--green); border-color: var(--green-soft); }
-    .status-pill.connected { background: var(--accent-soft); color: var(--accent); border-color: var(--accent-soft); }
-    .status-pill.best-effort { background: var(--amber-soft); color: var(--amber); border-color: var(--amber-soft); }
-    .status-pill.unlocked { background: var(--accent-soft); color: var(--accent); border-color: var(--accent-soft); }
-    .status-pill.not-authored { background: var(--rose-soft); color: var(--rose); border-color: var(--rose-soft); }
-    .status-pill.blocked { background: var(--violet-soft); color: var(--violet); border-color: var(--violet-soft); }
-    .status-pill.specced { background: var(--amber-soft); color: var(--amber); border-color: var(--amber-soft); }
-    .status-pill.none { background: transparent; color: var(--ink-faint); border-color: var(--line); }
-    .status-pill.pending { background: var(--violet-soft); color: var(--violet); border-color: var(--violet-soft); }
-
-    /* Legend */
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px 18px;
-      background: var(--bg-panel-2);
-      border-radius: 12px;
-      padding: 12px 18px;
-      margin-bottom: 16px;
-      font-size: 11px;
-      color: var(--ink-dim);
-    }
-    .legend-item { display: flex; align-items: center; gap: 6px; }
-    .legend-item .dot { width: 10px; height: 10px; border-radius: 50%; flex: none; }
-    .legend-item .dot.green { background: var(--green); }
-    .legend-item .dot.teal { background: var(--accent); }
-    .legend-item .dot.amber { background: var(--amber); }
-    .legend-item .dot.rose { background: var(--rose); }
-    .legend-item .dot.violet { background: var(--violet); }
-    .legend-item .dot.gray { background: var(--ink-faint); }
-
-    /* Standards cards (new) */
-    .standards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
-    }
-    .standards-card {
-      background: var(--bg-panel);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 18px 20px;
-      border-top: 3px solid var(--violet);
-      transition: background 0.2s;
-    }
-    .standards-card:hover { background: var(--bg-panel-2); }
-    .standards-card .card-title {
+    .scoring-box .formula {
       font-family: var(--mono);
       font-size: 13px;
-      font-weight: 600;
-      color: var(--violet);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .standards-card .card-title i { font-size: 14px; color: var(--violet); }
-    .standards-card .card-body {
-      margin-top: 6px;
-      font-size: 11.5px;
-      color: var(--ink-dim);
-    }
-    .standards-card .card-body .std-ref {
-      display: inline-block;
-      background: var(--bg-panel-2);
-      padding: 1px 8px;
-      border-radius: 10px;
-      margin: 2px 4px 2px 0;
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--ink);
-      border: 1px solid var(--line);
-      transition: all 0.2s ease;
-    }
-    .standards-card .card-body .std-ref strong { color: var(--violet); font-weight: 600; }
-    .standards-card .card-body .std-ref:hover { border-color: var(--violet); background: var(--violet-soft); }
-    .standards-card .card-body .std-desc {
-      display: block;
-      font-size: 10.5px;
-      color: var(--ink-faint);
-      margin-top: 4px;
-      padding-left: 2px;
-    }
-    .standards-card .card-body .control {
-      display: block;
-      font-size: 10.5px;
       color: var(--accent);
-      margin-top: 6px;
-      border-top: 1px solid var(--line);
-      padding-top: 6px;
+      background: var(--bg);
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin: 8px 0;
+      white-space: pre-wrap;
     }
-    .standards-card .card-body .control strong { color: var(--ink); }
 
-    /* Pipeline */
-    .pipeline-block {
-      background: var(--bg-panel);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 24px 28px;
-      font-family: var(--mono);
-      font-size: 13px;
+    .scoring-box .note {
+      font-size: 12.5px;
       color: var(--ink-dim);
+      margin-top: 6px
     }
-    .pipeline-block .step { color: var(--ink); padding: 3px 0; }
-    .pipeline-block .arrow { color: var(--accent); padding-left: 6px; }
-    .pipeline-block .highlight { color: var(--accent); }
 
-    /* Trust zones */
-    .trust-zones {
+    .attribution-box {
+      background: var(--bg-panel-2);
+      border-left: 3px solid var(--amber);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 14px 0;
+    }
+
+    .attribution-box strong {
+      color: var(--ink)
+    }
+
+    .attribution-box .warning {
+      color: var(--amber);
+      font-size: 12px;
+      margin-top: 6px
+    }
+
+    .attribution-box .warning i {
+      margin-right: 6px
+    }
+
+    /* ---------- onboarding ---------- */
+    .onboarding-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
+      gap: 12px
+    }
+
+    .onboarding-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px 18px;
+      text-align: center;
+    }
+
+    .onboarding-card .tier {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .onboarding-card .title {
+      font-weight: 600;
+      font-size: 15px;
+      margin: 4px 0 2px
+    }
+
+    .onboarding-card .desc {
+      font-size: 12.5px;
+      color: var(--ink-dim)
+    }
+
+    /* ---------- verticals ---------- */
+    .vert-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px
+    }
+
+    .vert-card {
       background: var(--bg-panel);
       border: 1px solid var(--line);
       border-radius: 14px;
-      padding: 18px 20px;
+      padding: 20px 20px 18px;
+      border-top: 3px solid var(--accent);
     }
-    .trust-zone {
-      background: var(--bg-panel-2);
-      border-radius: 10px;
-      padding: 12px 14px;
-      border-left: 3px solid var(--accent);
-    }
-    .trust-zone .zone-title {
+
+    .vert-card .vert-title {
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 600;
       color: var(--accent);
     }
-    .trust-zone .zone-desc {
-      font-size: 11px;
+
+    .vert-card .vert-sub {
+      font-size: 12px;
       color: var(--ink-dim);
-      margin-top: 4px;
+      margin: 4px 0 8px
     }
 
-    /* Footer */
+    .vert-card .vert-desc {
+      font-size: 12.5px;
+      color: var(--ink);
+      margin-bottom: 8px
+    }
+
+    .vert-card .vert-validator {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--violet);
+      background: var(--bg-panel-2);
+      padding: 4px 8px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    /* ---------- pipeline ---------- */
+    .pipeline {
+      background: var(--bg-panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 26px 28px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink-dim);
+    }
+
+    .pipeline .step {
+      color: var(--ink);
+      padding: 3px 0
+    }
+
+    .pipeline .arrow {
+      color: var(--accent);
+      padding-left: 2px
+    }
+
+    .pipeline .branch {
+      padding-left: 26px
+    }
+
+    .pipeline .branch .tag {
+      color: var(--accent)
+    }
+
+    .pipeline .status-ok {
+      color: var(--accent)
+    }
+
+    .pipeline .status-warn {
+      color: var(--amber)
+    }
+
+    .pipeline .status-info {
+      color: var(--violet)
+    }
+
+    /* ---------- matrix ---------- */
+    .matrix-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 16px
+    }
+
+    table.matrix {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 640px;
+      font-size: 13px
+    }
+
+    table.matrix th,
+    table.matrix td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--line)
+    }
+
+    table.matrix thead th {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--ink-dim);
+      background: var(--bg-panel-2);
+    }
+
+    table.matrix tbody th {
+      font-weight: 500;
+      background: var(--bg-panel);
+      white-space: nowrap
+    }
+
+    table.matrix tbody tr:last-child td,
+    table.matrix tbody tr:last-child th {
+      border-bottom: none
+    }
+
+    td.cell {
+      text-align: center
+    }
+
+    .pill {
+      display: inline-block;
+      min-width: 74px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .03em;
+      padding: 4px 0;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .pill.success {
+      background: var(--accent-soft);
+      color: var(--accent)
+    }
+
+    .pill.partial {
+      background: var(--amber-soft);
+      color: var(--amber)
+    }
+
+    .pill.supported {
+      background: var(--accent-soft);
+      color: var(--accent)
+    }
+
+    .pill.native {
+      background: var(--violet-soft);
+      color: var(--violet)
+    }
+
+    .pill.na {
+      background: transparent;
+      color: var(--ink-faint)
+    }
+
+    /* ---------- evidence ---------- */
+    .evidence {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .ev-row {
+      display: grid;
+      grid-template-columns: 38px 1fr auto;
+      gap: 14px;
+      align-items: start;
+      background: var(--bg-panel);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 18px;
+    }
+
+    .ev-badge {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 13px;
+      text-align: center;
+      border-radius: 8px;
+      padding: 6px 0;
+    }
+
+    .ev-badge.E2 {
+      background: var(--accent-soft);
+      color: var(--accent)
+    }
+
+    .ev-badge.E1 {
+      background: var(--amber-soft);
+      color: var(--amber)
+    }
+
+    .ev-title {
+      font-size: 13.5px
+    }
+
+    .ev-title b {
+      font-weight: 600
+    }
+
+    .ev-basis {
+      color: var(--ink-dim);
+      font-size: 12.5px;
+      margin-top: 3px
+    }
+
+    .ev-ref {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--ink-faint);
+      white-space: nowrap;
+      padding-top: 3px
+    }
+
+    /* ---------- CI ---------- */
+    .ci-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px
+    }
+
+    .ci-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 20px
+    }
+
+    .ci-card .name {
+      font-family: var(--mono);
+      font-size: 13px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .ci-card .cmd {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--ink-dim);
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+      margin-top: 8px;
+      overflow-x: auto;
+      white-space: pre
+    }
+
+    /* ---------- repos ---------- */
+    .repo-groups {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px
+    }
+
+    .repo-group {
+      background: var(--bg-panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 20px
+    }
+
+    .repo-group h3 {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--ink-dim);
+      margin: 0 0 10px;
+      font-weight: 500
+    }
+
+    .repo-group ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px
+    }
+
+    .repo-group li {
+      font-family: var(--mono);
+      font-size: 11.5px;
+      color: var(--ink);
+      background: var(--bg-panel-2);
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 4px 9px;
+    }
+
+    .repo-group li.included {
+      border-color: rgba(94, 230, 201, .35);
+      color: var(--accent)
+    }
+
+    .repo-group li.new {
+      border-color: var(--amber);
+      color: var(--amber)
+    }
+
+    /* ---------- roadmap ---------- */
+    .roadmap {
+      display: flex;
+      flex-direction: column;
+      border-left: 2px solid var(--line);
+      margin-left: 6px
+    }
+
+    .rm-item {
+      position: relative;
+      padding: 2px 0 26px 26px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .rm-item .rm-icon {
+      color: var(--accent);
+      font-size: 12px;
+      margin-top: 4px;
+      flex: none
+    }
+
+    .rm-item .rm-body {
+      font-size: 13.5px;
+      color: var(--ink-dim)
+    }
+
+    .rm-item .rm-body b {
+      color: var(--ink);
+      font-weight: 600
+    }
+
+    .rm-item .rm-tag {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .rm-item.blocked .rm-icon {
+      color: var(--amber)
+    }
+
+    .rm-item.done .rm-icon {
+      color: var(--accent)
+    }
+
+    /* ---------- proxy flow ---------- */
+    .proxy-flow {
+      background: var(--bg-panel-2);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin: 16px 0;
+      font-family: var(--mono);
+      font-size: 12px;
+      line-height: 1.7;
+      color: var(--ink-dim);
+      overflow-x: auto;
+    }
+
+    .proxy-flow .hl {
+      color: var(--accent);
+    }
+
+    .proxy-flow .arrow {
+      color: var(--amber);
+    }
+
     footer {
       margin-top: 70px;
       padding-top: 22px;
@@ -451,636 +845,754 @@
       justify-content: space-between;
       flex-wrap: wrap;
       gap: 8px;
-      align-items: center;
     }
-    footer a { color: var(--accent); display: inline-flex; align-items: center; gap: 8px; transition: color 0.2s; }
-    footer a:hover { color: #4bc5ab; }
-    footer a i { font-size: 18px; }
-    footer > span:first-child { flex: 0 0 auto; }
-    footer > span:last-child { flex: 0 0 auto; }
-    footer > span.centered { flex: 1; text-align: center; }
 
-    @media (max-width: 640px) {
-      main { padding: 40px 18px 70px; }
-      .hero-meta { flex-direction: column; gap: 4px; }
-      .card-grid { grid-template-columns: 1fr; }
-      .standards-grid { grid-template-columns: 1fr; }
-      .trust-zones { grid-template-columns: 1fr; }
-      table { font-size: 11px; min-width: 700px; }
-      tbody td { padding: 8px 6px; }
-      .col-modes { font-size: 9px; }
-      .std-tag, .std-tag-sm, .std-item { font-size: 9px; padding: 1px 6px; }
-      .lifecycle { gap: 4px 6px; }
-      .lifecycle .step { font-size: 9px; padding: 2px 6px; }
-      footer { flex-direction: column; gap: 8px; text-align: center; }
-      footer > span.centered { flex: none; }
+    .powered {
+      margin-top: 36px;
+      text-align: center;
+      font: 13px var(--mono);
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      opacity: 0.55;
+      border-top: none;
+      padding-top: 0;
+    }
+
+    @media (max-width:640px) {
+      main {
+        padding: 40px 18px 70px
+      }
+
+      .hero-meta {
+        flex-direction: column;
+        gap: 4px
+      }
     }
   </style>
 </head>
+
 <body>
-<main>
+  <main>
 
-  <!-- ===== HERO ===== -->
-  <div class="eyebrow">
-    <i class="fas fa-circle"></i>
-    qFoldIT · B2B Orders (INDUSTRIAL‑CAMEO)
-  </div>
-  <h1>Summary Table of <em>B2B Orders</em></h1>
-  <p class="hero-sub">Each order turns into a gaming mission on Fortnite / UEFN, Unity, UNIGINE, Web or Standalone — followed by blind validation via <strong>OPENSTRUCTURE</strong>.</p>
-  <div class="hero-meta">
-    <span>Updated: 2026‑08‑16</span>
-    <span><a href="https://github.com/qfoldit/INDUSTRIAL-CAMEO" target="_blank">github.com/qfoldit/INDUSTRIAL-CAMEO</a></span>
-    <span style="color:var(--accent)">9 industries · 34+ order types</span>
-  </div>
+    <!-- HERO -->
+    <div class="eyebrow">
+      <i class="fas fa-circle"></i>
+      qFoldIT · unified dashboard v2.1 (INDUSTRIAL‑CAMEO Proxy)
+    </div>
+    <h1>One scientific problem.<br><em>Five runtimes,</em> one canonical state.</h1>
+    <p class="hero-sub">A live snapshot of the qFoldIT ecosystem: engine toolbelts, evidence levels, gameplay mechanics,
+      game modes, scoring &amp; attribution, and <b>the INDUSTRIAL‑CAMEO proxy</b> that bridges private CAMEO targets to
+      UEFN gameplay —
+      turning corporate R&amp;D into verifiable crowd‑sourced science.</p>
+    <div class="hero-meta">
+      <span>Snapshot date: 2026‑08‑15 14:00 UTC</span>
+      <span>Workspace: 637+ files · ~68&nbsp;MB</span>
+      <span><a href="https://github.com/qfoldit" target="_blank" rel="noopener">github.com/qfoldit</a></span>
+      <span style="color:var(--accent)">Updated: INDUSTRIAL‑CAMEO proxy, private CAMEO integration, proxy flow
+        schema</span>
+    </div>
 
-  <!-- ===== METRICS ===== -->
-  <section>
-    <div class="metric-grid">
-      <div class="metric"><div class="n">11</div><div class="l">Scientific domains</div></div>
-      <div class="metric"><div class="n">5</div><div class="l">Game modes</div></div>
-      <div class="metric"><div class="n">5</div><div class="l">Game patterns unlocked</div></div>
-      <div class="metric"><div class="n">6</div><div class="l">Domains with backend verified</div></div>
-      <div class="metric"><div class="n">16</div><div class="l">Supported standards</div></div>
-    </div>
-  </section>
+    <!-- ===== METRICS ===== -->
+    <section>
+      <div class="metric-grid">
+        <div class="metric">
+          <div class="n">608+</div>
+          <div class="l">Registered tools across 5 toolbelts</div>
+        </div>
+        <div class="metric">
+          <div class="n">103+</div>
+          <div class="l">Tool categories</div>
+        </div>
+        <div class="metric">
+          <div class="n">5</div>
+          <div class="l">Deployment targets (UEFN, Unity, UNIGINE, Web, Standalone)</div>
+        </div>
+        <div class="metric">
+          <div class="n">27</div>
+          <div class="l">Public repos in the org</div>
+        </div>
+        <div class="metric">
+          <div class="n">2 <span class="sub">/ 5</span></div>
+          <div class="l">Toolbelts at 5/5 pattern compile success</div>
+        </div>
+        <div class="metric">
+          <div class="n">4</div>
+          <div class="l">Industrial CAMEO verticals + proxy</div>
+        </div>
+      </div>
+    </section>
 
-  <!-- ===== READINESS MATRIX ===== -->
-  <section>
-    <div class="section-head">
-      <h2>B2B Order Readiness Matrix</h2>
-      <div class="section-note">scientific backend × game pattern × UEFN implementation</div>
-    </div>
-    <div class="legend">
-      <span class="legend-item"><span class="dot green"></span> verified / unlocked</span>
-      <span class="legend-item"><span class="dot teal"></span> connected / specced</span>
-      <span class="legend-item"><span class="dot amber"></span> best‑effort / partial</span>
-      <span class="legend-item"><span class="dot rose"></span> not authored</span>
-      <span class="legend-item"><span class="dot violet"></span> blocked / pending</span>
-      <span class="legend-item"><span class="dot gray"></span> missing</span>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th style="min-width:110px;">Domain</th>
-            <th style="min-width:160px;">Actual Algorithm</th>
-            <th style="min-width:110px;">Reference MCP</th>
-            <th style="min-width:120px;">Game Pattern</th>
-            <th style="min-width:120px;">UEFN Implementation</th>
-            <th style="min-width:100px;">Vertical</th>
-            <th style="min-width:130px;">Key Standard</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="col-domain"><i class="fas fa-dna"></i> fold_marathon</td>
-            <td style="font-size:11px;color:var(--ink-dim);">Metropolis walk, torsion angles</td>
-            <td><span class="status-pill verified">verified</span></td>
-            <td><span class="status-pill unlocked">unlocked</span></td>
-            <td><span class="status-pill specced">specced, unwired</span></td>
-            <td style="color:var(--ink);">Pharma / Chemistry</td>
-            <td><span class="std-tag-sm"><strong>OpenStructure</strong> lDDT/QS</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-atom"></i> quantum_boss</td>
-            <td style="font-size:11px;color:var(--ink-dim);">VQE, CVaR-ansatz, 2-4 qubit</td>
-            <td><span class="status-pill verified">verified</span></td>
-            <td><span class="status-pill unlocked">unlocked</span></td>
-            <td><span class="status-pill not-authored">not specced</span></td>
-            <td style="color:var(--ink);">Materials / Energy</td>
-            <td><span class="std-tag-sm">OECD‑style transparency</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-th"></i> hp_lattice_challenge</td>
-            <td style="font-size:11px;color:var(--ink-dim);">QAOA, Braket LocalSimulator</td>
-            <td><span class="status-pill verified">verified</span></td>
-            <td><span class="status-pill unlocked">unlocked</span></td>
-            <td><span class="status-pill specced">specced, unwired</span></td>
-            <td style="color:var(--ink);">Chemistry</td>
-            <td><span class="std-tag-sm"><strong>OECD (Q)SAR</strong></span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-shield-alt"></i> safety_gauntlet</td>
-            <td style="font-size:11px;color:var(--ink-dim);">ADMET / Boltz‑2 scoring</td>
-            <td><span class="status-pill connected">connected</span></td>
-            <td><span class="status-pill unlocked">unlocked</span></td>
-            <td><span class="status-pill not-authored">not specced</span></td>
-            <td style="color:var(--ink);">Pharma / Chemistry</td>
-            <td><span class="std-tag-sm"><strong>OECD (Q)SAR</strong></span> <span class="std-tag-sm">ICH</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-seedling"></i> plant_growth_garden</td>
-            <td style="font-size:11px;color:var(--ink-dim);">L‑systems + NPK/light</td>
-            <td><span class="status-pill best-effort">best‑effort</span></td>
-            <td><span class="status-pill unlocked">unlocked</span></td>
-            <td><span class="status-pill blocked">blocked</span></td>
-            <td style="color:var(--ink);">Agriculture</td>
-            <td><span class="std-tag-sm">ISO 11074</span> <span class="std-tag-sm">GLOBALG.A.P.</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-oil-can"></i> oilgas_corrosion_watch</td>
-            <td style="font-size:11px;color:var(--ink-dim);">Rate model, mm/year</td>
-            <td><span class="status-pill best-effort">best‑effort</span></td>
-            <td><span class="status-pill not-authored">not authored</span></td>
-            <td><span class="status-pill not-authored">not specced</span></td>
-            <td style="color:var(--ink);">Oil &amp; Gas</td>
-            <td><span class="std-tag-sm"><strong>NACE SP0169</strong></span> <span class="std-tag-sm">API 570</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-biohazard"></i> meor_recovery_run</td>
-            <td style="font-size:11px;color:var(--ink-dim);">Biosurfactant, IFT reduction</td>
-            <td><span class="status-pill best-effort">best‑effort</span></td>
-            <td><span class="status-pill not-authored">not authored</span></td>
-            <td><span class="status-pill not-authored">not specced</span></td>
-            <td style="color:var(--ink);">Oil &amp; Gas</td>
-            <td><span class="std-tag-sm">NACE/API</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-mountain"></i> mining_bioleach_challenge</td>
-            <td style="font-size:11px;color:var(--ink-dim);">Bio‑oxidation, cyanide degradation</td>
-            <td><span class="status-pill best-effort">best‑effort</span></td>
-            <td><span class="status-pill not-authored">not authored</span></td>
-            <td><span class="status-pill not-authored">not specced</span></td>
-            <td style="color:var(--ink);">Mining</td>
-            <td><span class="std-tag-sm"><strong>ICMC</strong></span> <span class="std-tag-sm">ISO 14001</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-chart-line"></i> prospecting_survey</td>
-            <td style="font-size:11px;color:var(--ink-dim);">Permutation p‑value &lt; 0.05</td>
-            <td><span class="status-pill best-effort">best‑effort</span></td>
-            <td><span class="status-pill not-authored">not authored</span></td>
-            <td><span class="status-pill not-authored">not specced</span></td>
-            <td style="color:var(--ink);">Mining</td>
-            <td><span class="std-tag-sm"><strong>JORC / NI 43‑101</strong></span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-trophy"></i> arena_showdown</td>
-            <td style="font-size:11px;color:var(--ink-dim);">Race to reconstruct baked run</td>
-            <td><span class="status-pill connected">connected</span></td>
-            <td><span class="status-pill not-authored">not authored</span></td>
-            <td><span class="status-pill pending">needs Verse script</span></td>
-            <td style="color:var(--ink);">Cross‑cutting</td>
-            <td><span class="std-tag-sm">N/A</span></td>
-          </tr>
-          <tr>
-            <td class="col-domain"><i class="fas fa-helix"></i> dna_rna_sequence_mining</td>
-            <td style="font-size:11px;color:var(--ink-faint);">Not implemented</td>
-            <td><span class="status-pill none">none</span></td>
-            <td><span class="status-pill none">none</span></td>
-            <td><span class="status-pill none">N/A</span></td>
-            <td style="color:var(--ink-faint);">Biotech</td>
-            <td><span class="std-tag-sm">wwPDB/mmCIF</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+    <!-- ===== INDUSTRIAL‑CAMEO PROXY FLOW ===== -->
+    <section>
+      <div class="section-head">
+        <h2>INDUSTRIAL‑CAMEO Proxy — Private CAMEO Integration</h2>
+        <div class="section-note">How qFoldIT acts as a private prediction server for corporations</div>
+      </div>
+      <div class="proxy-flow">
+        <div class="hl">[ CAMEO Private Mode ]</div>
+        <span class="hl">(authorized under corporate token)</span><br>
+        <span class="arrow">↓</span> weekly blind target (e.g. CIF‑file, protein sequence)<br>
+        <div class="hl">[ INDUSTRIAL‑CAMEO Proxy ]</div>
+        &nbsp;&nbsp;· authenticates as a private prediction server (OAuth2 / token handshake)<br>
+        &nbsp;&nbsp;· receives target, stores in secure queue<br>
+        &nbsp;&nbsp;· converts target to UAG → UEFN level via <span class="hl">building_grid_mapper.py</span><br>
+        <span class="arrow">↓</span><br>
+        <div class="hl">[ UEFN Island / Fortnite ]</div>
+        &nbsp;&nbsp;· players solve the spatial puzzle (fold, lattice, catalyst geometry)<br>
+        &nbsp;&nbsp;· best solutions are collected (logged as Scientific Contribution Records)<br>
+        <span class="arrow">↑</span><br>
+        <div class="hl">[ INDUSTRIAL‑CAMEO Proxy ]</div>
+        &nbsp;&nbsp;· picks the highest‑scoring solution<br>
+        &nbsp;&nbsp;· packages it in the format CAMEO expects (e.g. PDB, CIF, JSON)<br>
+        &nbsp;&nbsp;· submits as a prediction from the corporate “AI server”<br>
+        <span class="arrow">↓</span><br>
+        <div class="hl">[ CAMEO Private Mode ]</div>
+        <span class="hl">(returns official independent score – lDDT, RMSD, etc.)</span><br>
+        <span class="arrow">↓</span><br>
+        <div class="hl">[ Smart Contract ]</div>
+        &nbsp;&nbsp;· trigger automatic payout to players proportionally to their contribution (attribution_weight)<br>
+        <span style="color:var(--ink-faint);">— all without the corporation ever exposing its internal data or changing
+          its validation workflow.</span>
+      </div>
+      <div style="margin-top:12px;font-size:13px;color:var(--ink-dim);">
+        <i class="fas fa-check-circle" style="color:var(--accent);"></i>
+        <strong>Reality:</strong> Corporations already use private CAMEO servers. INDUSTRIAL‑CAMEO proxies their
+        requests to human solvers, then returns verified results — making qFoldIT a drop‑in R&amp;D crowd‑sourcing
+        layer.
+      </div>
+    </section>
 
-  <!-- ===== GAME MODES ===== -->
-  <section>
-    <div class="section-head">
-      <h2>qFoldIT Game Modes</h2>
-      <div class="section-note">5 modes for different scientific tasks</div>
-    </div>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-title"><i class="fas fa-flask"></i> Research Campaign</div>
-        <div class="card-body">
-          <p>Narrative, multi-stage mode for long-term research — protein design, new materials, batteries, industrial optimization.</p>
-          <div style="margin-top:8px;">
-            <span class="tag blue"><strong>MCP:</strong> OpenStructure, QSAR/ADMET, Materials, Digital Twin</span>
-            <span class="tag violet"><strong>Algorithms:</strong> lDDT, QSAR, ADMET, geometry</span>
-            <span class="tag amber"><strong>Standards:</strong> ISO/IEC 17025, OECD GLP, FAIR</span>
+    <!-- ===== INDUSTRIAL VERTICALS ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Industrial CAMEO Verticals</h2>
+        <div class="section-note">Custom validators · each using the proxy flow above</div>
+      </div>
+      <div class="vert-grid">
+        <div class="vert-card" style="border-top-color:var(--accent);">
+          <div class="vert-title"><i class="fas fa-microchip"></i> Huawei – AI Chip Topology</div>
+          <div class="vert-sub">Telecom &amp; NPU optimization</div>
+          <div class="vert-desc">Players route graphs and minimize signal latency on silicon (LEGO‑conveyor metaphor).
+          </div>
+          <div class="vert-validator"><i class="fas fa-vial"></i> Hardware‑CAMEO – simulates silicon logic, measures
+            energy/TFLOPS</div>
+        </div>
+        <div class="vert-card" style="border-top-color:var(--violet);">
+          <div class="vert-title"><i class="fas fa-car"></i> Xiaomi – Smart Mobility &amp; IoT</div>
+          <div class="vert-sub">EV aerodynamics, robot swarm, Smart Home logistics</div>
+          <div class="vert-desc">Players control physics simulations (dropper/racing) to optimize airflow or
+            trajectories.</div>
+          <div class="vert-validator"><i class="fas fa-vial"></i> IoT‑Mesh‑CAMEO – WebGL/Rapier.js simulation of
+            real‑world behavior</div>
+        </div>
+        <div class="vert-card" style="border-top-color:var(--amber);">
+          <div class="vert-title"><i class="fas fa-bolt"></i> Energy &amp; Oil/Gas</div>
+          <div class="vert-sub">Catalysts for CO₂ capture, reservoir hydrodynamics, wear‑resistant alloys</div>
+          <div class="vert-desc">Players design crystal lattices and catalysts using the quantum ground‑state track.
+          </div>
+          <div class="vert-validator"><i class="fas fa-vial"></i> Energy‑CAMEO – DFT‑based blind testing of stability
+            and catalytic activity</div>
+        </div>
+        <div class="vert-card" style="border-top-color:var(--rose);">
+          <div class="vert-title"><i class="fas fa-mountain"></i> Mining – BHP / Rio Tinto</div>
+          <div class="vert-sub">Fleet logistics, flotation reagent design</div>
+          <div class="vert-desc">Players construct molecules with specific hydrophobic properties (ADMET track).</div>
+          <div class="vert-validator"><i class="fas fa-vial"></i> MineTech‑CAMEO – models surface tension and mineral
+            binding</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GAMEPLAY MECHANICS & MDA ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Gameplay Mechanics &amp; MDA Loops</h2>
+        <div class="section-note">Mechanics → Dynamics → Aesthetics</div>
+      </div>
+      <div class="mda-grid">
+        <div class="mda-card">
+          <h3>Protein Folding / HP‑lattice Construction</h3>
+          <div class="sub">From <code>UEFN‑BUILDING‑GAMEPLAY‑ALGORITHM.md</code></div>
+          <div class="mda-item"><span class="label">Mechanics</span><br><strong>Pick next residue, choose
+              orientation</strong> (2‑3 legal moves). Place it on the grid.</div>
+          <div class="mda-item"><span class="label">Dynamics</span><br><strong>Engine‑computed pass/fail</strong> —
+            piece snaps into structural grid or is rejected. Bad choices fail immediately.</div>
+          <div class="mda-item"><span class="label">Aesthetics</span><br><strong>Construction &amp; discovery</strong> —
+            real energy metric (Metropolis / VQE), not a decorative score.</div>
+        </div>
+        <div class="mda-card">
+          <h3>Parametric L‑systems Growth</h3>
+          <div class="sub">From <code>PARAMETRIC‑LSYSTEMS‑AND‑HP‑LATTICE‑MECHANICS.md</code></div>
+          <div class="mda-item"><span class="label">Mechanics</span><br><strong>Set environmental inputs</strong> —
+            light, photoperiod, NPK levels. No manual rule authoring.</div>
+          <div class="mda-item"><span class="label">Dynamics</span><br><strong>Real growth model drives parameter
+              transforms</strong> (internode length, branching density) via <code>qfoldit‑plant‑growth‑model</code>.
+          </div>
+          <div class="mda-item"><span class="label">Aesthetics</span><br><strong>Watch morphology respond</strong> —
+            compact under low light, tall under strong directional light.</div>
+        </div>
+      </div>
+      <div style="margin-top:28px;">
+        <h3 style="font-family:var(--serif);font-weight:400;font-size:18px;margin-bottom:14px;">Onboarding Funnel — one
+          island, four tiers</h3>
+        <div class="onboarding-grid">
+          <div class="onboarding-card">
+            <div class="tier">Tier 0 · Cold Open</div>
+            <div class="title">arena_showdown</div>
+            <div class="desc">Competitive microtasks — race to zero.</div>
+          </div>
+          <div class="onboarding-card">
+            <div class="tier">Tier 1 · Story</div>
+            <div class="title">plant_growth_garden + safety_gauntlet</div>
+            <div class="desc">Rhythm &amp; optimization at <code>difficulty: story</code>.</div>
+          </div>
+          <div class="onboarding-card">
+            <div class="tier">Tier 2 · Builder</div>
+            <div class="title">fold_marathon</div>
+            <div class="desc">Construction via <code>building_grid_mapper.py</code>.</div>
+          </div>
+          <div class="onboarding-card">
+            <div class="tier">Tier 3 · Researcher</div>
+            <div class="title">quantum_boss + prospecting_survey</div>
+            <div class="desc">Hardcore — VQE as boss fight, p‑value gating.</div>
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-title"><i class="fas fa-trophy"></i> Arena Challenge</div>
-        <div class="card-body">
-          <p>Timed competitive mode for optimization under pressure — leaderboards, contests, records.</p>
-          <div style="margin-top:8px;">
-            <span class="tag blue"><strong>MCP:</strong> OpenStructure, Quantum Optimization, Mission Registry</span>
-            <span class="tag violet"><strong>Algorithms:</strong> QAOA, VQE, CVaR, search</span>
-            <span class="tag amber"><strong>Standards:</strong> ISO/IEC 25010, 21 CFR Part 11</span>
+    </section>
+
+    <!-- ===== GAME MODES, SCORING & ATTRIBUTION ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Game Modes, Scoring &amp; Attribution</h2>
+        <div class="section-note">Bartle types · points · attribution_weight · legal boundary</div>
+      </div>
+      <div class="mode-grid">
+        <div class="mode-card">
+          <div class="mode-title">Team vs Team <span class="bartle">Killer, Socializer</span></div>
+          <div class="mode-desc">Two squads race to reconstruct one pre‑authored path.</div>
+          <div class="mode-fit">Fits: <code>hp_lattice</code>, <code>protein_folding</code>, <code>l_systems</code>
+          </div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-title">Free‑for‑all <span class="bartle">Killer, Achiever</span></div>
+          <div class="mode-desc">Solo play against leaderboard or personal best.</div>
+          <div class="mode-fit">Fits: <code>hp_lattice</code>, <code>oilgas_corrosion</code>, <code>fold_marathon</code>
+          </div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-title">Co‑op <span class="bartle">Explorer, Socializer</span></div>
+          <div class="mode-desc">Non‑adversarial, shared construction, no time pressure.</div>
+          <div class="mode-fit">Fits: <code>plant_growth_garden</code>, <code>l_systems</code></div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-title">Investigation/Annotation <span class="bartle">Explorer, Achiever</span></div>
+          <div class="mode-desc">Statistically gated (<code>p &lt; 0.05</code>), points are <code>null</code>.</div>
+          <div class="mode-fit">Fits: <code>prospecting_survey</code></div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-title">Human‑in‑the‑loop search <span class="bartle">Achiever</span></div>
+          <div class="mode-desc">Discovery‑capable: explore pre‑vetted candidate space.</div>
+          <div class="mode-fit">Any domain with branching candidates</div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-title">Hardcore/Research <span class="bartle">Achiever, Killer</span></div>
+          <div class="mode-desc">Solo or small co‑op against a threshold.</div>
+          <div class="mode-fit">Fits: <code>quantum_boss</code></div>
+        </div>
+      </div>
+      <div class="scoring-box">
+        <div
+          style="font-family:var(--mono);font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:.06em;">
+          Points per accepted placement (base formula)</div>
+        <div class="formula">
+          +10 accepted placement (matches required step, or within candidate space)
+          +0..5 speed bonus (only in team_vs_team and free‑for‑all)
+          +5 placement that forms a new backend‑reported contact/bond
+          -2 rejected placement attempt (does not go below 0)
+        </div>
+        <div class="note">This is a <strong>game score</strong> about engine‑checked events, not a new scientific
+          metric.</div>
+      </div>
+      <div class="attribution-box">
+        <strong><code>attribution_weight(record)</code> = points(record) / sum(points(r) for all records sharing the
+          same <code>reference_mcp_job_id</code> AND session)</strong>
+        <div style="font-size:13px;color:var(--ink-dim);margin-top:4px;">Sum = 1.0 across all participants. Mode‑aware —
+          <code>mode</code> required in schema v0.2.</div>
+        <div class="warning"><i class="fas fa-exclamation-triangle"></i> <strong>attribution_weight is not a
+            royalty.</strong> It becomes royalty‑relevant only if <code>discovery_claim.asserted</code> is
+          <code>true</code> (only via human‑in‑the‑loop after independent review) <strong>and</strong> a legal framework
+          exists. Otherwise: <strong>recognition/leaderboard credit</strong> only.</div>
+      </div>
+      <div
+        style="background:var(--bg-panel-2);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-top:16px;">
+        <div style="display:flex;flex-wrap:wrap;gap:20px;">
+          <div style="flex:1;min-width:200px;">
+            <div style="font-family:var(--mono);font-size:11px;color:var(--accent);">Verse Persistence</div>
+            <div style="font-size:12.5px;color:var(--ink-dim);">12KB per player per session – stores compact tally
+              (<code>cumulative_points</code>, <code>contribution_count</code>). Full records off‑platform.</div>
+            <div style="font-size:11.5px;color:var(--ink-faint);margin-top:4px;"><i class="far fa-clock"></i> Open:
+              read‑back for reconciliation.</div>
+          </div>
+          <div style="flex:1;min-width:200px;">
+            <div style="font-family:var(--mono);font-size:11px;color:var(--accent);">UE6 &amp; UE5.8 MCP plugin</div>
+            <div style="font-size:12.5px;color:var(--ink-dim);">UE6 announced, aims to unify UE5/UEFN. <strong>UE5.8
+                already includes an experimental MCP plugin</strong> – validates UEFN‑TOOLBELT's external‑MCP
+              architecture.</div>
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-title"><i class="fas fa-users"></i> Co‑op Lab</div>
-        <div class="card-body">
-          <p>Teamwork on a scientific task — collaborative review, refinement, validation.</p>
-          <div style="margin-top:8px;">
-            <span class="tag blue"><strong>MCP:</strong> Mission Registry, RBAC, OpenStructure</span>
-            <span class="tag violet"><strong>Algorithms:</strong> consensus, conflict resolution, multi-criteria optimization</span>
-            <span class="tag amber"><strong>Standards:</strong> ISO/IEC 27001, ISO 23247, ISO 19650</span>
+    </section>
+
+    <!-- ===== CONTROL PLANE ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Control plane</h2>
+        <div class="section-note">scientific state → UAG → routing policy → engine toolbelts</div>
+      </div>
+      <div class="pipeline">
+        <div class="step">Scientific state <span class="arrow"><i class="fas fa-arrow-down"></i></span></div>
+        <div class="step">Scientific experience model <span class="arrow"><i class="fas fa-arrow-down"></i></span></div>
+        <div class="step">UAG — Universal Assembly Graph <span class="arrow"><i class="fas fa-arrow-down"></i></span>
+        </div>
+        <div class="step">Capability registry + canonical actions <span class="arrow"><i
+              class="fas fa-arrow-down"></i></span></div>
+        <div class="step">Routing policy</div>
+        <div class="branch">├── <span class="tag">UEFN-TOOLBELT</span> — 356 tools <span class="status-warn">(0/5
+            compile · partial)</span></div>
+        <div class="branch">├── <span class="tag">UNITY-TOOLBELT</span> — 109 tools <span class="status-ok">(5/5 compile
+            · supported)</span></div>
+        <div class="branch">├── <span class="tag">UNIGINE-TOOLBELT</span> — 90 tools <span class="status-ok">(5/5
+            compile · supported)</span></div>
+        <div class="branch">├── <span class="tag">WEB-TOOLBELT (src/)</span> — 16 tools <span class="status-warn">(0/5
+            compile)</span></div>
+        <div class="branch">├── <span class="tag">WEB-TOOLBELT (static/)</span> — 6 WebMCP commands <span
+            class="status-info">(presentation layer)</span></div>
+        <div class="branch">└── <span class="tag">QFOLDIT-STANDALONE</span> — 37 tools <span class="status-warn">(0/5
+            compile · 2/5 blocked by sci.vis)</span></div>
+      </div>
+    </section>
+
+    <!-- ===== TOOLBELTS ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Engine toolbelts</h2>
+        <div class="section-note">tool counts measured directly from source</div>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="top"><span class="name">UEFN-TOOLBELT</span><span class="badge warn">Partial</span></div>
+          <div class="stat-row"><span class="k">Tools</span><span class="v">356</span></div>
+          <div class="stat-row"><span class="k">Categories</span><span class="v">55+</span></div>
+          <div class="stat-row"><span class="k">Language</span><span class="v">Python</span></div>
+          <div class="stat-row"><span class="k">MCP mode</span><span class="v">external process</span></div>
+          <div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0</span></div>
+          <div class="stat-row"><span class="k">Test suite</span><span class="v">117/117</span></div>
+          <div class="stat-row"><span class="k">Adapter manifest</span><span class="v">present (all partial)</span>
+          </div>
+          <div class="foot">No live‑engine verification yet; closest path: Python equivalents of Unity/UNIGINE's
+            UAGBridgeTools.</div>
+        </div>
+        <div class="card">
+          <div class="top"><span class="name">UNITY-TOOLBELT</span><span class="badge ok">Supported</span></div>
+          <div class="stat-row"><span class="k">Tools</span><span class="v">109</span></div>
+          <div class="stat-row"><span class="k">Categories</span><span class="v">24</span></div>
+          <div class="stat-row"><span class="k">Language</span><span class="v">C#</span></div>
+          <div class="stat-row"><span class="k">MCP mode</span><span class="v">native in-editor bridge</span></div>
+          <div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0</span></div>
+          <div class="stat-row"><span class="k">CI</span><span class="v">unverified*</span></div>
+          <div class="stat-row"><span class="k">Compile result</span><span class="v" style="color:var(--accent)">5/5
+              success</span></div>
+          <div class="foot">Real live callback (<code>OnMouseDown</code>) confirmed.</div>
+        </div>
+        <div class="card">
+          <div class="top"><span class="name">UNIGINE-TOOLBELT</span><span class="badge ok">Supported</span></div>
+          <div class="stat-row"><span class="k">Tools</span><span class="v">90</span></div>
+          <div class="stat-row"><span class="k">Categories</span><span class="v">23</span></div>
+          <div class="stat-row"><span class="k">Language</span><span class="v">C#</span></div>
+          <div class="stat-row"><span class="k">MCP mode</span><span class="v">external + official MCPBridge</span>
+          </div>
+          <div class="stat-row"><span class="k">License</span><span class="v">custom</span></div>
+          <div class="stat-row"><span class="k">CI</span><span class="v">6/6 tests</span></div>
+          <div class="stat-row"><span class="k">Compile result</span><span class="v" style="color:var(--accent)">5/5
+              success</span></div>
+          <div class="foot">Physics-selectability + persisted registry.</div>
+        </div>
+        <div class="card">
+          <div class="top"><span class="name">WEB-TOOLBELT (src/)</span><span class="badge warn">Partial</span></div>
+          <div class="stat-row"><span class="k">Tools</span><span class="v">16</span></div>
+          <div class="stat-row"><span class="k">Stack</span><span class="v">TypeScript + Vite</span></div>
+          <div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0</span></div>
+          <div class="stat-row"><span class="k">Build</span><span class="v">clean</span></div>
+          <div class="stat-row"><span class="k">Adapter manifest</span><span class="v">present (0/5 partial)</span>
+          </div>
+          <div class="stat-row"><span class="k">Compile result</span><span class="v" style="color:var(--amber)">0/5
+              success, 5/5 partial</span></div>
+          <div class="foot">Missing interaction/vis/geometry/camera/lighting.</div>
+        </div>
+        <div class="card">
+          <div class="top"><span class="name">QFOLDIT-STANDALONE</span><span class="badge warn">Partial (close)</span>
+          </div>
+          <div class="stat-row"><span class="k">Tools</span><span class="v">37</span></div>
+          <div class="stat-row"><span class="k">Categories</span><span class="v">13</span></div>
+          <div class="stat-row"><span class="k">Language</span><span class="v">TypeScript + Electron</span></div>
+          <div class="stat-row"><span class="k">MCP mode</span><span class="v">local WebSocket</span></div>
+          <div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0-only</span></div>
+          <div class="stat-row"><span class="k">Build</span><span class="v">clean</span></div>
+          <div class="stat-row"><span class="k">Compile result</span><span class="v" style="color:var(--amber)">0/5
+              success, 2/5 blocked only by sci.vis</span></div>
+          <div class="foot">Closest target — implementing <code>scientific_visualization_create</code> would flip 2
+            patterns.</div>
+        </div>
+        <div class="card">
+          <div class="top"><span class="name">WEB-TOOLBELT (static/)</span><span class="badge info">Live sandbox</span>
+          </div>
+          <div class="stat-row"><span class="k">Tools</span><span class="v">6 WebMCP</span></div>
+          <div class="stat-row"><span class="k">Stack</span><span class="v">Three.js + WebGPU + Rapier</span></div>
+          <div class="stat-row"><span class="k">Deploy</span><span class="v">qfoldit.github.io/web-toolbelt/</span>
+          </div>
+          <div class="stat-row"><span class="k">License</span><span class="v">AGPL-3.0 + ARR (static)</span></div>
+          <div class="stat-row"><span class="k">Build</span><span class="v">plain JS</span></div>
+          <div class="foot">Not in compiler — presentation layer with PDB fetching and multiplayer.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CAPABILITY MATRIX ===== -->
+    <section>
+      <div class="section-head">
+        <h2>P0 / P1 / P2 capability matrix</h2>
+        <div class="section-note">status per engine, on shipped code only</div>
+      </div>
+      <div class="matrix-wrap">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>Priority</th>
+              <th style="text-align:center">UEFN</th>
+              <th style="text-align:center">Unity</th>
+              <th style="text-align:center">UNIGINE</th>
+              <th style="text-align:center">WEB (src/)</th>
+              <th style="text-align:center">Standalone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>scientific.visualization</th>
+              <td>P0</td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill supported">supported</span></td>
+              <td class="cell"><span class="pill supported">supported</span></td>
+              <td class="cell"><span class="pill na">unsupported</span></td>
+              <td class="cell"><span class="pill na">unsupported</span></td>
+            </tr>
+            <tr>
+              <th>interaction</th>
+              <td>P0</td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill supported">supported</span></td>
+              <td class="cell"><span class="pill supported">supported</span></td>
+              <td class="cell"><span class="pill na">unsupported</span></td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+            </tr>
+            <tr>
+              <th>geometry.procedural</th>
+              <td>P1</td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill native">native</span></td>
+              <td class="cell"><span class="pill native">native</span></td>
+              <td class="cell"><span class="pill na">unsupported</span></td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+            </tr>
+            <tr>
+              <th>physics.joints</th>
+              <td>P2</td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill supported">supported</span></td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill na">unsupported</span></td>
+              <td class="cell"><span class="pill supported">supported</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== COMPILE RESULT ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Cross-engine compile result</h2>
+        <div class="section-note">reference/compiler.py × gameplay-patterns.unlocked.json</div>
+      </div>
+      <div class="matrix-wrap">
+        <table class="matrix">
+          <thead>
+            <tr>
+              <th>Pattern</th>
+              <th style="text-align:center">UEFN</th>
+              <th style="text-align:center">Unity</th>
+              <th style="text-align:center">UNIGINE</th>
+              <th style="text-align:center">WEB (src/)</th>
+              <th style="text-align:center">Standalone</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>protein_folding_construction</th>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill success">success</span></td>
+              <td class="cell"><span class="pill success">success</span></td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+            </tr>
+            <tr>
+              <th>quantum_ground_state_portal</th>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill success">success</span></td>
+              <td class="cell"><span class="pill success">success</span></td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+            </tr>
+            <tr>
+              <th>hp_lattice_spatial_puzzle</th>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill success">success</span></td>
+              <td class="cell"><span class="pill success">success</span></td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+            </tr>
+            <tr>
+              <th>admet_safety_strategy</th>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill success">success</span></td>
+              <td class="cell"><span class="pill success">success</span></td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+            </tr>
+            <tr>
+              <th>l_systems_procedural_construction</th>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill success">success</span></td>
+              <td class="cell"><span class="pill success">success</span></td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+              <td class="cell"><span class="pill partial">partial</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== EVIDENCE ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Evidence level per unlocked pattern</h2>
+        <div class="section-note">E2 = cross‑validated · E1 = computational only · <span
+            style="color:var(--accent);">discovery_claim only in human‑in‑the‑loop</span></div>
+      </div>
+      <div class="evidence">
+        <div class="ev-row">
+          <div class="ev-badge E2">E2</div>
+          <div>
+            <div class="ev-title"><b>quantum_ground_state_portal</b></div>
+            <div class="ev-basis">VQE cross‑checked against exact diagonalization and H₂/STO‑3G benchmark.</div>
+          </div>
+          <div class="ev-ref">qfoldit_quantum_lab</div>
+        </div>
+        <div class="ev-row">
+          <div class="ev-badge E1">E1</div>
+          <div>
+            <div class="ev-title"><b>protein_folding_construction</b></div>
+            <div class="ev-basis">Backend verified end‑to‑end; prediction not cross‑checked.</div>
+          </div>
+          <div class="ev-ref">protein_design_mcp</div>
+        </div>
+        <div class="ev-row">
+          <div class="ev-badge E1">E1</div>
+          <div>
+            <div class="ev-title"><b>hp_lattice_spatial_puzzle</b></div>
+            <div class="ev-basis">QAOA circuit on local simulator; no cross‑model comparison.</div>
+          </div>
+          <div class="ev-ref">qfoldit_qfold_lab</div>
+        </div>
+        <div class="ev-row">
+          <div class="ev-badge E1">E1</div>
+          <div>
+            <div class="ev-title"><b>admet_safety_strategy</b></div>
+            <div class="ev-basis">Live API connected; not benchmark‑validated.</div>
+          </div>
+          <div class="ev-ref">boltz_api</div>
+        </div>
+        <div class="ev-row">
+          <div class="ev-badge E1">E1</div>
+          <div>
+            <div class="ev-title"><b>l_systems_procedural_construction</b></div>
+            <div class="ev-basis">Field mapping best‑effort from public docs; not independently inspected.</div>
+          </div>
+          <div class="ev-ref">qfoldit_plant_growth_lab</div>
+        </div>
+      </div>
+      <div
+        style="margin-top:8px;font-size:12px;color:var(--ink-faint);border-top:1px solid var(--line);padding-top:8px;">
+        <i class="fas fa-info-circle" style="color:var(--accent);"></i> <strong>Note:</strong>
+        <code>discovery_claim.asserted: true</code> only valid for <strong>human‑in‑the‑loop search</strong> mode after
+        independent review. All others default <code>false</code>.</div>
+    </section>
+
+    <!-- ===== CI ===== -->
+    <section>
+      <div class="section-head">
+        <h2>CI &amp; build verification</h2>
+        <div class="section-note">actual runs, not just read</div>
+      </div>
+      <div class="ci-grid">
+        <div class="ci-card">
+          <div class="name">UEFN-TOOLBELT <span class="badge ok">verified</span></div>
+          <div class="cmd">pytest tests/ → 117/117</div>
+        </div>
+        <div class="ci-card">
+          <div class="name">UNIGINE-TOOLBELT <span class="badge ok">verified</span></div>
+          <div class="cmd">pytest tests/test_mcp_server.py → 6/6</div>
+        </div>
+        <div class="ci-card">
+          <div class="name">WEB-TOOLBELT (src/) <span class="badge ok">verified</span></div>
+          <div class="cmd">npm ci &amp;&amp; npm run build → clean</div>
+        </div>
+        <div class="ci-card">
+          <div class="name">UNITY-TOOLBELT <span class="badge warn">unverified*</span></div>
+          <div class="cmd">game-ci/unity-test-runner * needs license</div>
+        </div>
+        <div class="ci-card">
+          <div class="name">QFOLDIT-STANDALONE <span class="badge ok">verified</span></div>
+          <div class="cmd">npm ci &amp;&amp; npm run build → clean</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== REPOS ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Org repository inventory</h2>
+        <div class="section-note">27 public repos · highlighted = in workspace</div>
+      </div>
+      <div class="repo-groups">
+        <div class="repo-group">
+          <h3>Core stack — in this workspace</h3>
+          <ul>
+            <li class="included">UEFN-TOOLBELT</li>
+            <li class="included">UNITY-TOOLBELT</li>
+            <li class="included">UNIGINE-TOOLBELT</li>
+            <li class="included">WEB-TOOLBELT</li>
+            <li class="included">QFOLDIT-STANDALONE</li>
+          </ul>
+        </div>
+        <div class="repo-group">
+          <h3>CAMEO &amp; Industrial</h3>
+          <ul>
+            <li class="new">CAMEO-REALTIME-VALIDATION</li>
+            <li class="new">INDUSTRIAL-CAMEO</li>
+            <li class="new">STANDALONE-APP_V.1</li>
+            <li>qfoldit.github.io</li>
+          </ul>
+        </div>
+        <div class="repo-group">
+          <h3>MCP servers</h3>
+          <ul>
+            <li>Protein-Design-MCP</li>
+            <li>Atomic-MCP</li>
+            <li>UEFN-VERSE-MCP</li>
+            <li>Game-MCP</li>
+            <li>Protein-MCP</li>
+            <li>qFold-MCP</li>
+            <li>science-skills</li>
+          </ul>
+        </div>
+        <div class="repo-group">
+          <h3>Specs &amp; framework</h3>
+          <ul>
+            <li>Scientific-Object-Schema</li>
+            <li>engine-adapter-spec</li>
+            <li>scientific-gameplay-framework</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ROADMAP ===== -->
+    <section>
+      <div class="section-head">
+        <h2>Grounded next steps</h2>
+        <div class="section-note">ordered by impact</div>
+      </div>
+      <div class="roadmap">
+        <div class="rm-item"><i class="fas fa-circle rm-icon"></i>
+          <div>
+            <div class="rm-tag">Step 1 — Foundation</div>
+            <div class="rm-body"><b>Resolve Verse Persistence read‑back</b> – confirm external MCP can read published
+              Persistence values. Unblocks the entire CAMEO real‑time pipeline.</div>
+          </div>
+        </div>
+        <div class="rm-item"><i class="fas fa-circle rm-icon"></i>
+          <div>
+            <div class="rm-tag">Step 2 — CAMEO reconciliation service</div>
+            <div class="rm-body"><b>Build the external reconciliation service</b> (poll → OpenStructure scoring → append
+              to JSON log). Natural home alongside UEFN‑TOOLBELT's MCP process.</div>
+          </div>
+        </div>
+        <div class="rm-item"><i class="fas fa-circle rm-icon"></i>
+          <div>
+            <div class="rm-tag">Step 3 — Contribution records &amp; world state</div>
+            <div class="rm-body"><b>Wire <code>scientific‑contribution‑record</code> (0.2) writes</b> and a GitHub
+              Actions publish job to regenerate <code>state.json</code> – the world state visible to all.</div>
+          </div>
+        </div>
+        <div class="rm-item"><i class="fas fa-circle rm-icon"></i>
+          <div>
+            <div class="rm-tag">Step 4 — INDUSTRIAL‑CAMEO proxy</div>
+            <div class="rm-body"><b>Implement the proxy server</b> – OAuth2 token handshake with private CAMEO, target
+              ingestion, level generation, solution packaging, and result submission. This is the core business
+              integration.</div>
+          </div>
+        </div>
+        <div class="rm-item"><i class="fas fa-circle rm-icon"></i>
+          <div>
+            <div class="rm-tag">Step 5 — Close UEFN capability gaps</div>
+            <div class="rm-body"><b>Implement <code>interaction</code> + <code>scientific.visualization</code> for
+                UEFN</b> – mirror Unity/UNIGINE closure plans to unlock UEFN's 5/5 compile status.</div>
+          </div>
+        </div>
+        <div class="rm-item"><i class="fas fa-circle rm-icon"></i>
+          <div>
+            <div class="rm-tag">Step 6 — Human‑in‑the‑loop discovery mode</div>
+            <div class="rm-body"><b>Implement the candidate‑space mechanic</b> – replace the single baked path with a
+              pre‑vetted tree, log player explorations, and create an offline re‑run pipeline. This is the only path to
+              <code>discovery_claim.asserted: true</code>.</div>
+          </div>
+        </div>
+        <div class="rm-item"><i class="fas fa-circle rm-icon"></i>
+          <div>
+            <div class="rm-tag">Step 7 — Legal &amp; business layer</div>
+            <div class="rm-body"><b>Engage legal counsel and review Epic's monetization terms</b> – determine how
+              <code>attribution_weight</code> could be converted into actual payments. Must be resolved before any
+              royalty‑like claims.</div>
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-title"><i class="fas fa-cubes"></i> Sandbox Lab</div>
-        <div class="card-body">
-          <p>Free exploration for prototyping, learning, and demonstrations.</p>
-          <div style="margin-top:8px;">
-            <span class="tag blue"><strong>MCP:</strong> Sandbox, OpenStructure, Domain Adapters</span>
-            <span class="tag violet"><strong>Algorithms:</strong> L‑systems, Monte‑Carlo, generative rules</span>
-            <span class="tag amber"><strong>Standards:</strong> FAIR, ISO/IEC 25010</span>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title"><i class="fas fa-swords"></i> Validation Duel</div>
-        <div class="card-body">
-          <p>Direct competition with an invisible reference — blind testing, challenges.</p>
-          <div style="margin-top:8px;">
-            <span class="tag blue"><strong>MCP:</strong> CAMEO Validation Gateway, OpenStructure, Reward Policy</span>
-            <span class="tag violet"><strong>Algorithms:</strong> blind checking, threshold values, ranking</span>
-            <span class="tag amber"><strong>Standards:</strong> 21 CFR Part 11, auditability</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== INDUSTRIAL VERTICALS ===== -->
-  <section>
-    <div class="section-head">
-      <h2>Industrial Verticals</h2>
-      <div class="section-note">complexity and recommended game modes</div>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th class="col-industry"><i class="fas fa-industry"></i> Industry</th>
-            <th class="col-orders">Key orders</th>
-            <th class="col-modes">Modes</th>
-            <th class="col-standards">Industry standards</th>
-            <th class="col-complexity">Complexity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="col-industry"><i class="fas fa-mountain"></i> Mining</td>
-            <td class="col-orders">
-              <ul>
-                <li>Bioleaching of metals (kinetics)</li>
-                <li>Pipeline corrosion modeling</li>
-                <li>Design of protein binders for rare earth elements (REEs)</li>
-                <li>Hydrometallurgy optimization</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Validation Duel</span></td>
-            <td class="col-standards">
-              <a href="https://www.iso.org/standard/14001" target="_blank" rel="noopener" class="std-tag"><strong>ISO 14001</strong></a>
-              <a href="https://www.cyanidecode.org" target="_blank" rel="noopener" class="std-tag"><strong>ICMC</strong></a>
-              <a href="https://www.iso.org/iso-45001-occupational-health-and-safety.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 45001</strong></a>
-              <a href="https://www.jorc.org" target="_blank" rel="noopener" class="std-tag"><strong>JORC</strong></a>
-              <a href="https://www.iso.org/standard/56112.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO/IEC 17025</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag medium">Medium</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-oil-can"></i> Oil and gas</td>
-            <td class="col-orders">
-              <ul>
-                <li>Corrosion of pipelines and drilling equipment</li>
-                <li>Design of cracking / hydrotreating catalysts</li>
-                <li>Modeling of plastic pyrolysis → syngas</li>
-                <li>Digital twins of refineries and platforms</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Co‑op Lab</span></td>
-            <td class="col-standards">
-              <a href="https://webstore.ansi.org/standards/nace/nacesp01692024" target="_blank" rel="noopener" class="std-tag"><strong>NACE SP0169</strong></a>
-              <a href="https://www.iso.org/iso15156maintenance" target="_blank" rel="noopener" class="std-tag"><strong>ISO 15156</strong></a>
-              <a href="https://www.api.org/products-and-services/individual-certification-programs" target="_blank" rel="noopener" class="std-tag"><strong>API 570/579</strong></a>
-              <a href="https://www.iso.org/standard/71721.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 13623</strong></a>
-              <a href="https://www.iso.org/standard/63507.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 14224</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag high">High</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-bolt"></i> Batteries</td>
-            <td class="col-orders">
-              <ul>
-                <li>Search for solid electrolytes (ionic conductivity)</li>
-                <li>Ion transport modeling</li>
-                <li>Design of enzymes for biofuel cells</li>
-                <li>Optimization of anode/cathode materials</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Arena Challenge</span></td>
-            <td class="col-standards">
-              <a href="https://webstore.iec.ch/publication/32796" target="_blank" rel="noopener" class="std-tag"><strong>IEC 62660</strong></a>
-              <a href="https://webstore.iec.ch/publication/32350" target="_blank" rel="noopener" class="std-tag"><strong>IEC 61960</strong></a>
-              <a href="https://www.unece.org/trans/danger/publi/manual/manual_e.html" target="_blank" rel="noopener" class="std-tag"><strong>UN 38.3</strong></a>
-              <a href="https://www.iso.org/standard/71070.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 12405</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag high">High</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-tv"></i> Displays</td>
-            <td class="col-orders">
-              <ul>
-                <li>Modeling of quantum dots for displays</li>
-                <li>Design of organic semiconductors (flexible screens)</li>
-                <li>Optimization of OLED materials</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Sandbox Lab</span><br><span class="tag">Validation Duel</span></td>
-            <td class="col-standards">
-              <a href="https://webstore.iec.ch/publication/32469" target="_blank" rel="noopener" class="std-tag"><strong>IEC 62341</strong></a>
-              <a href="https://webstore.iec.ch/publication/6168" target="_blank" rel="noopener" class="std-tag"><strong>IEC 61966</strong></a>
-              <a href="https://displayhdr.org" target="_blank" rel="noopener" class="std-tag"><strong>VESA DisplayHDR</strong></a>
-              <a href="https://www.semi.org/en/standards" target="_blank" rel="noopener" class="std-tag"><strong>SEMI D-series</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag high">High</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-microchip"></i> Chips and processors</td>
-            <td class="col-orders">
-              <ul>
-                <li>Topological optimization of chip routing</li>
-                <li>Thermal profile modeling</li>
-                <li>Design of new semiconductor materials</li>
-                <li>Optimization of photomasks for lithography</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Arena Challenge</span><br><span class="tag">Co‑op Lab</span></td>
-            <td class="col-standards">
-              <a href="https://www.semi.org/en/standards" target="_blank" rel="noopener" class="std-tag"><strong>SEMI</strong></a>
-              <a href="https://www.jedec.org" target="_blank" rel="noopener" class="std-tag"><strong>JEDEC</strong></a>
-              <a href="https://webstore.iec.ch/publication/29639" target="_blank" rel="noopener" class="std-tag"><strong>IEC 60747</strong></a>
-              <a href="https://shop.ipc.org/IPC-6012" target="_blank" rel="noopener" class="std-tag"><strong>IPC-6012</strong></a>
-              <a href="https://shop.ipc.org/IPC-A-600" target="_blank" rel="noopener" class="std-tag"><strong>IPC-A-600</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag very-high">Very high</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-flask"></i> Chemistry</td>
-            <td class="col-orders">
-              <ul>
-                <li>Design of enzymes for green synthesis</li>
-                <li>Modeling of plastic pyrolysis</li>
-                <li>QSAR prediction of properties of new compounds</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Sandbox Lab</span></td>
-            <td class="col-standards">
-              <a href="https://www.oecd.org/chemicalsafety/risk-assessment/37849783.pdf" target="_blank" rel="noopener" class="std-tag"><strong>OECD (Q)SAR</strong></a>
-              <a href="https://echa.europa.eu/regulations/reach/understanding-reach" target="_blank" rel="noopener" class="std-tag"><strong>REACH</strong></a>
-              <a href="https://unece.org/ghs" target="_blank" rel="noopener" class="std-tag"><strong>GHS</strong></a>
-              <a href="https://www.oecd.org/chemicalsafety/testing/good-laboratory-practice-glp/" target="_blank" rel="noopener" class="std-tag"><strong>OECD GLP</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag medium">Medium</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-seedling"></i> Agriculture</td>
-            <td class="col-orders">
-              <ul>
-                <li>Plant growth modeling (yield)</li>
-                <li>Design of proteins for nitrogen fixation</li>
-                <li>Optimization of NPK fertilizers</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Sandbox Lab</span><br><span class="tag">Co‑op Lab</span></td>
-            <td class="col-standards">
-              <a href="https://www.globalgap.org" target="_blank" rel="noopener" class="std-tag"><strong>GLOBALG.A.P.</strong></a>
-              <a href="https://www.iso.org/standard/69704.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 11074</strong></a>
-              <a href="https://www.iso.org/standard/40709.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 11464</strong></a>
-              <a href="https://www.fao.org/fao-who-codexalimentarius/en/" target="_blank" rel="noopener" class="std-tag"><strong>Codex Alimentarius</strong></a>
-              <a href="https://www.oecd.org/en/topics/sub-issues/pesticides.html" target="_blank" rel="noopener" class="std-tag"><strong>OECD pesticide</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag medium">Medium</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-pills"></i> Pharmaceuticals</td>
-            <td class="col-orders">
-              <ul>
-                <li>Drug discovery (molecular docking)</li>
-                <li>Design of antibodies and nanobodies</li>
-                <li>Protein structure prediction</li>
-                <li>Retrosynthetic planning</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Research Campaign</span><br><span class="tag">Validation Duel</span></td>
-            <td class="col-standards">
-              <a href="https://www.ich.org/page/ich-guidelines" target="_blank" rel="noopener" class="std-tag"><strong>ICH guidelines</strong></a>
-              <a href="https://www.fda.gov" target="_blank" rel="noopener" class="std-tag"><strong>GxP</strong></a>
-              <a href="https://www.ecfr.gov/current/title-21/chapter-I/part-11" target="_blank" rel="noopener" class="std-tag"><strong>21 CFR Part 11</strong></a>
-              <a href="https://www.fda.gov/medical-devices/software-medical-device-samd/good-machine-learning-practice-medical-device-development-guiding-principles" target="_blank" rel="noopener" class="std-tag"><strong>FDA GMLP</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag very-high">Very high</span></td>
-          </tr>
-          <tr>
-            <td class="col-industry"><i class="fas fa-cubes"></i> Digital twins</td>
-            <td class="col-orders">
-              <ul>
-                <li>Virtual copies of factories and plants</li>
-                <li>Training of AI control systems</li>
-                <li>Equipment design (thermal, hydrodynamics)</li>
-              </ul>
-            </td>
-            <td class="col-modes"><span class="tag blue">Co‑op Lab</span><br><span class="tag">Sandbox Lab</span></td>
-            <td class="col-standards">
-              <a href="https://www.iso.org/standard/75066.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 23247</strong></a>
-              <a href="https://www.iso.org/standard/78957.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO/IEC 30141</strong></a>
-              <a href="https://www.isa.org/standards-and-publications/isa-standards/isa-standards-committees/isa99" target="_blank" rel="noopener" class="std-tag"><strong>IEC 62443</strong></a>
-              <a href="https://www.iso.org/standard/68078.html" target="_blank" rel="noopener" class="std-tag"><strong>ISO 19650</strong></a>
-            </td>
-            <td class="col-complexity"><span class="complexity-tag high">High</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+    <footer>
+      <span>Sources: STATUS.md · cross-engine-compile-report.md · per‑toolbelt qfoldit.adapter.json ·
+        03-org-docs/ARCHITECTURE.md · gameplay docs (PARAMETRIC‑LSYSTEMS, VERIFIABLE‑MULTIPLAYER‑SCIENCE,
+        UEFN‑BUILDING‑GAMEPLAY‑ALGORITHM, UEFN‑MULTIPLAYER‑RUNTIME‑ARCHITECTURE) · GAME‑MODES‑SCORING‑AND‑ROYALTY.md ·
+        INDUSTRIAL‑CAMEO proxy spec · private CAMEO architecture analysis</span>
+      <span>Built with the "never fabricate" rule — every number and design claim here traces to a file in the workspace
+        or to public CAMEO documentation.</span>
+    </footer>
 
-  <!-- ===== MISSION LIFECYCLE ===== -->
-  <section>
-    <div class="section-head">
-      <h2>Mission life cycle</h2>
-      <div class="section-note">10 states from draft to archive</div>
-    </div>
-    <div class="lifecycle">
-      <span class="step done">DRAFT</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step done">REVIEW</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step done">COMPILED</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step active">PUBLISHED</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step">ACTIVE</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step">VALIDATING</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step">SCORED</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step">ELIGIBLE</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step">REWARDED</span>
-      <span class="arrow"><i class="fas fa-arrow-right"></i></span>
-      <span class="step">ARCHIVED</span>
-    </div>
-    <div style="margin-top:12px; font-size:12px; color:var(--ink-dim); background:var(--bg-panel-2); padding:12px 18px; border-radius:12px; border:1px solid var(--line);">
-      <i class="fas fa-info-circle" style="color:var(--accent); margin-right:6px;"></i>
-      <strong>Rules:</strong> drafts are editable; published missions are versioned and immutable; all active submissions refer to a specific mission version.
-    </div>
-  </section>
+    <div class="powered">«Powered by Anthropic»</div>
 
-  <!-- ===== ARCHITECTURAL SCHEME ===== -->
-  <section>
-    <div class="section-head">
-      <h2>Security architecture — trust zones</h2>
-      <div class="section-note">separation of responsibilities</div>
-    </div>
-    <div class="trust-zones">
-      <div class="trust-zone">
-        <div class="zone-title">1. Public zone</div>
-        <div class="zone-desc">Game clients, web interfaces — contain no confidential data.</div>
-      </div>
-      <div class="trust-zone">
-        <div class="zone-title">2. Gateway</div>
-        <div class="zone-desc">Authenticated calls, schema validation, rate limiting, request signatures.</div>
-      </div>
-      <div class="trust-zone">
-        <div class="zone-title">3. Corporate zone</div>
-        <div class="zone-desc">Tenant management, mission orchestration, policies, audit.</div>
-      </div>
-      <div class="trust-zone">
-        <div class="zone-title">4. Scientific zone</div>
-        <div class="zone-desc">Closed OPENSTRUCTURE services, protected reference data.</div>
-      </div>
-      <div class="trust-zone">
-        <div class="zone-title">5. Commercial zone</div>
-        <div class="zone-desc">Payment and reward services — separated from science.</div>
-      </div>
-    </div>
-    <div style="margin-top:12px; font-size:12px; color:var(--ink-faint);">
-      <i class="fas fa-lock" style="color:var(--accent); margin-right:6px;"></i>
-      <strong>Principle:</strong> no game client can access the reference structure; the scientific service does not make commercial decisions; the public STATE does not contain private data.
-    </div>
-  </section>
+  </main>
 
-  <!-- ===== STANDARDS: cross-cutting (extended) ===== -->
-  <section>
-    <div class="section-head">
-      <h2>Common standards (all industries)</h2>
-      <div class="section-note">information security, AI, quality, laboratory practice, regulated records</div>
-    </div>
-    <div class="standards-grid">
-      <!-- Information Security & Privacy -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-shield-alt"></i> Information Security &amp; Privacy</div>
-        <div class="card-body">
-          <a href="https://www.iso.org/obp/ui/#iso:std:iso-iec:27001:ed-2:v1:en" target="_blank" rel="noopener" class="std-ref"><strong>ISO/IEC 27001:2022 + Amd 1:2024</strong></a>
-          <a href="https://www.iso.org/standard/27701" target="_blank" rel="noopener" class="std-ref"><strong>ISO/IEC 27701:2025</strong></a>
-          <span class="std-desc">Information security management, tenant isolation, RBAC, encryption, audit; PII privacy management.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> Identity, RBAC, tenant boundaries, audit trail, privacy controls, retention policies.</span>
-        </div>
-      </div>
-      <!-- AI Governance -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-robot"></i> AI Governance</div>
-        <div class="card-body">
-          <a href="https://www.iso.org/standard/81204.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO/IEC 42001:2023</strong></a>
-          <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener" class="std-ref"><strong>EU AI Act (2024/1689)</strong></a>
-          <span class="std-desc">AI system management, risk classification, transparency, human oversight, logging, technical documentation.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> AI inventory, risk classification, model provenance, human oversight, traceability, lifecycle governance.</span>
-        </div>
-      </div>
-      <!-- Software Quality -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-check-double"></i> Software Quality</div>
-        <div class="card-body">
-          <a href="https://www.iso.org/standard/83073.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO/IEC 25010:2023</strong></a>
-          <span class="std-desc">Software quality model: functional suitability, reliability, maintainability, security, compatibility.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> Reliability, security, maintainability, compatibility, usability quality gates.</span>
-        </div>
-      </div>
-      <!-- Laboratory Quality -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-flask"></i> Laboratory Quality</div>
-        <div class="card-body">
-          <a href="https://www.iso.org/standard/56112.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO/IEC 17025:2017</strong></a>
-          <a href="https://www.oecd.org/chemicalsafety/testing/good-laboratory-practice-glp/" target="_blank" rel="noopener" class="std-ref"><strong>OECD GLP</strong></a>
-          <span class="std-desc">Competence of testing laboratories, GLP for preclinical studies, data integrity.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> Validation records, method versions, reproducibility, study identity, raw-data lineage, QA evidence.</span>
-        </div>
-      </div>
-      <!-- Regulated Records -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-file-signature"></i> Regulated Records</div>
-        <div class="card-body">
-          <a href="https://www.ecfr.gov/current/title-21/chapter-I/subchapter-A/part-11" target="_blank" rel="noopener" class="std-ref"><strong>21 CFR Part 11</strong></a>
-          <span class="std-desc">Electronic records and electronic signatures in FDA-regulated environments.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> Validated systems, secure audit trails, access controls, record retention, signature linkage.</span>
-        </div>
-      </div>
-      <!-- Medical Devices -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-heartbeat"></i> Medical Devices</div>
-        <div class="card-body">
-          <a href="https://www.iso.org/standard/59752.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO 13485:2016</strong></a>
-          <span class="std-desc">Quality management systems for medical devices.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> Design history, controlled changes, validation evidence, supplier traceability.</span>
-        </div>
-      </div>
-      <!-- Environmental & OH&S -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-leaf"></i> Environment &amp; OH&amp;S</div>
-        <div class="card-body">
-          <a href="https://www.iso.org/standard/92300.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO 14001:2026</strong></a>
-          <a href="https://www.iso.org/standard/63787.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO 45001:2018 + Amd 1:2024</strong></a>
-          <span class="std-desc">Environmental management and occupational health &amp; safety — impact and risk management.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> Environmental mission profiles, safety gates, role controls, operational checklists.</span>
-        </div>
-      </div>
-      <!-- Industrial Cybersecurity & Digital Twins -->
-      <div class="standards-card">
-        <div class="card-title"><i class="fas fa-industry"></i> Industrial Cybersecurity &amp; DT</div>
-        <div class="card-body">
-          <a href="https://webstore.iec.ch/publication/19467" target="_blank" rel="noopener" class="std-ref"><strong>IEC 62443-3-3:2013</strong></a>
-          <a href="https://www.iso.org/standard/75066.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO 23247-1:2021</strong></a>
-          <a href="https://www.iso.org/standard/78957.html" target="_blank" rel="noopener" class="std-ref"><strong>ISO/IEC 30141:2024</strong></a>
-          <span class="std-desc">Industrial cybersecurity (zones, conduits, security levels) and digital twins of manufacturing.</span>
-          <span class="control"><strong>QFOLDIT CONTROL:</strong> Network zoning, identity, integrity, restricted flow, simulation state, digital thread synchronization.</span>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ===== UNIFIED PIPELINE ===== -->
-  <section>
-    <div class="section-head">
-      <h2>Unified pipeline</h2>
-      <div class="section-note">from order to validation</div>
-    </div>
-    <div class="pipeline-block">
-      <div class="step">1. The customer (B2B) defines the task and uploads the data <span class="arrow">↓</span></div>
-      <div class="step">2. INDUSTRIAL‑CAMEO compiles the task into a UAG <span class="arrow">↓</span></div>
-      <div class="step">3. Adapters generate game missions (UEFN, Unity, UNIGINE, Web, Standalone) <span class="arrow">↓</span></div>
-      <div class="step">4. Players solve the task through gameplay <span class="arrow">↓</span></div>
-      <div class="step">5. OPENSTRUCTURE (AlphaFold, VQE, ZairaChem, etc.) validates the solutions <span class="arrow">↓</span></div>
-      <div class="step highlight">6. The customer receives a scientifically validated result and pays for the valid solution.</div>
-      <div style="margin-top:12px; font-size:12px; color:var(--ink-faint);">
-        <i class="fas fa-arrow-right" style="color:var(--accent); margin-right:6px;"></i>
-        <strong>Result:</strong> acceleration of R&amp;D by 3–10 times, access to thousands of player-solvers, complete transparency and reproducibility.
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== FOOTER ===== -->
-  <footer>
-    <span>
-      <a href="https://github.com/qfoldit" target="_blank">
-        <i class="fab fa-github"></i> github.com/qfoldit
-      </a>
-    </span>
-    <span class="centered">«Powered by Anthropic»</span>
-    <span><i class="fas fa-check-circle" style="color:var(--accent);"></i> Ready for integration</span>
-  </footer>
-
-</main>
 </body>
+
 </html>
