@@ -1868,8 +1868,14 @@
                 </div>
             </div>
         </section>
-        <div class="footer">qFoldIT · Client &amp; Scientific Mission Prospect Matrix ·</div>
-        <div class="powered">«Powered by Anthropic»</div>
+
+        <!-- ——— bottom badges ——— -->
+        <div class="bottom-badges">
+            <div class="badge-mcp">«built on the open <em>Model Context Protocol (MCP)</em> standard»</div>
+            <div class="badge-anthropic">«<span>Powered by Anthropic</span>»</div>
+        </div>
+
+        <div class="footer">qFoldIT · Client &amp; Scientific Mission Prospect Matrix · Generated 2026‑08‑16.</div>
     </main>
     <script>
         const rows = [...document.querySelectorAll('#matrix tbody tr')], q = document.getElementById('q'), i = document.getElementById('industry'), p = document.getElementById('priority'), r = document.getElementById('region');
@@ -1878,6 +1884,8 @@
         document.getElementById('total').textContent = rows.length; document.getElementById('aCount').textContent = rows.filter(x => x.dataset.priority === 'A').length; document.getElementById('bCount').textContent = rows.filter(x => x.dataset.priority === 'B').length;
         function apply() { const t = q.value.trim().toLowerCase(), iv = i.value.toLowerCase(), pv = p.value, rv = r.value.toLowerCase(); rows.forEach(row => { const text = row.innerText.toLowerCase(); row.style.display = (!t || text.includes(t)) && (!iv || row.dataset.industry.toLowerCase() === iv) && (!pv || row.dataset.priority === pv) && (!rv || row.dataset.region.toLowerCase() === rv) ? '' : 'none' }) } [q, i, p, r].forEach(x => x.addEventListener('input', apply));
     </script>
+
+
 
 </body>
 
