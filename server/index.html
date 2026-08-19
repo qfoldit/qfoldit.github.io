@@ -332,8 +332,9 @@
           <div class="stat-row"><span class="k">Test suite</span><span class="v">117/117</span></div>
           <div class="stat-row"><span class="k">Adapter manifest</span><span class="v">present (all partial)</span>
           </div>
-          <div class="foot">No live‑engine verification yet; closest path: Python equivalents of Unity/UNIGINE's
-            UAGBridgeTools.</div>
+          <div class="stat-row"><span class="k">Compile result</span><span class="v" style="color:var(--amber)">0/5
+              success, 5/5 partial</span></div>
+          <div class="foot">interaction + sci.viz now code-complete; partial pending live-Editor check.</div>
         </div>
         <div class="card">
           <div class="top"><span class="name">UNITY-TOOLBELT</span><span class="badge ok">Supported</span></div>
@@ -609,6 +610,10 @@
           <div class="name">QFOLDIT-STANDALONE <span class="badge ok">verified</span></div>
           <div class="cmd">npm ci &amp;&amp; npm run build → clean</div>
         </div>
+        <div class="ci-card">
+          <div class="name">STANDALONE-APP_V.1 (Tauri) <span class="badge warn">Linux verified*</span></div>
+          <div class="cmd">tauri build → .deb/.rpm/.AppImage launched, missions confirmed</div>
+        </div>
       </div>
     </section>
 
@@ -634,7 +639,7 @@
           <ul>
             <li class="new">CAMEO-REALTIME-VALIDATION</li>
             <li class="new">INDUSTRIAL-CAMEO</li>
-            <li class="new">STANDALONE-APP_V.1</li>
+            <li class="new">STANDALONE-APP_V.1 <span class="badge warn" style="font-size:10px">Tauri, Linux-verified</span></li>
             <li>qfoldit.github.io</li>
           </ul>
         </div>
@@ -726,21 +731,16 @@
     </section>
 
     <footer>
-      <span>Sources: STATUS.md · cross-engine-compile-report.md · per‑toolbelt qfoldit.adapter.json ·
-        03-org-docs/ARCHITECTURE.md · gameplay docs (PARAMETRIC‑LSYSTEMS, VERIFIABLE‑MULTIPLAYER‑SCIENCE,
-        UEFN‑BUILDING‑GAMEPLAY‑ALGORITHM, UEFN‑MULTIPLAYER‑RUNTIME‑ARCHITECTURE) · GAME‑MODES‑SCORING‑AND‑ROYALTY.md ·
-        INDUSTRIAL‑CAMEO proxy spec · private CAMEO architecture analysis</span>
       <span>Built with the "never fabricate" rule — every number and design claim here traces to a file in the workspace
         or to public CAMEO documentation.</span>
     </footer>
 
-    <div class="powered-footer">
-      <span>«built on the open Model Context Protocol (MCP) standard»</span>
-      <span>«Powered by Anthropic»</span>
-    </div>
-
   </main>
 
+  <div class="powered-footer">
+    <div>«built on the open Model Context Protocol (MCP) standard»</div>
+    <div>«Powered by Anthropic»</div>
+  </div>
 
 </body>
 
