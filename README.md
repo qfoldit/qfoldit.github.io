@@ -1,296 +1,233 @@
-# **Gamified Quantum Molecular Drug Design for Global Science**
+# qFoldIT — Scientific Missions, Human Discovery & Interactive Science
 
-David Baker - [Protein Folding Code: Won a Nobel Prize](https://youtu.be/cx7l9ZGFZkw)
+<p align="center">
+  <a href="https://www.bakerlab.org/"><img alt="qFoldIT / Baker Lab visualisation" src="https://qfoldit.github.io/img/posters/David_Baker_AT_FoldIT_LAB_OFFICE.png"/></a>
+</p>
 
-Kelly Chibale - [Beyond the Code: AI 2050](https://youtu.be/7KmUzG1hltI)
+<h1 align="center">qFoldIT</h1>
 
-Dr. Neil Voss - [CryoEM & Protein Geometry](https://youtube.com/playlist?list=PL5LJPD9b2pRY3HCA-zq60vjCmwoWU6Zxv&si=O8er-pfzGQgxyU_m)
+<p align="center"><strong>Turn scientific and industrial objectives into validated, interactive missions — through MCP, UAG, simulation and human-in-the-loop search.</strong></p>
 
-Silvia Holler - [Future of folding: Cotraslational folding simulation](https://youtu.be/C_QIO--OUf4)
-
-Alexei Lapkin - [iDMT: Innovation Centre in Digital Molecular Technologies](https://youtu.be/Dd7ZwpgT4nw)
-
-Scientific Publications - [Playing Dice with the Universe: Programming Quantum Computers to Play Traditional Games](https://arxiv.org/abs/2604.23819)
-
-Realtime Statistics - [CAMEO: automated benchmarking of structure prediction servers, complementing CASP](https://robetta.bakerlab.org/)
-
-<a href="https://www.bakerlab.org/">
- <img src="https://qfoldit.github.io/img/posters/David_Baker_AT_FoldIT_LAB_OFFICE.png"/>
-</a>
-
-<!--
-
-![](https://qfoldit.github.io/video/CGS_LOGO.png)
-![](https://qfoldit.github.io/video/CGS_CENTER_WHITE.png)
-![](https://qfoldit.github.io/video/GSRC.png)
-![](https://qfoldit.github.io/video/RF3_hero_image.png)
-![](https://qfoldit.github.io/video/Nvidia_evo2.jpg)
-![](https://qfoldit.github.io/assets/evo2.jpg)
-![](https://qfoldit.github.io/img/1/logo/Dell_Nvidia_Factory.png)
-![](https://qfoldit.github.io/video/NVidia_ISING.png)
-![](https://qfoldit.github.io/video/ISS_CAL_MR.png)
-![](https://qfoldit.github.io/video/Artemis_VR.png)
-![](https://qfoldit.github.io/video/space_qfold.png)
-![](https://qfoldit.github.io/video/qfolditdna.png)
-![](https://qfoldit.github.io/video/Drew_Berry.png)
-![](https://qfoldit.github.io/img/posters/iDMT_Molecular.png)
-![](https://qfoldit.github.io/img/Westminster_Labster.png)
-![](https://joyenergy.github.io/img/Professor_Chibale.png)
-![](https://qfoldit.github.io/img/1/logo/syntech.png)
-![](https://qfoldit.github.io/img/1/logo/idmt.png)
-![](https://qfoldit.github.io/img/1/logo/idmt_partners.png)
-
--->
-
-*An open‑science partner of the [Ersilia Open Source Initiative](https://github.com/ersilia-os/) and [Visualizing biological data](https://vizbi.org/)*
-
-[![License](https://img.shields.io/badge/License-Proprietary%20with%20Open%20Components-blue)](#) [![Python](https://img.shields.io/badge/Python-3.10%2B-blue)](https://www.python.org/) [![Kubernetes](https://img.shields.io/badge/Kubernetes-1.28%2B-blue)](https://kubernetes.io/) [![Ersilia](https://img.shields.io/badge/Ersilia-Integrated-purple)](https://ersilia.io)
+<p align="center">
+  <a href="https://github.com/qfoldit">GitHub</a> ·
+  <a href="https://qfoldit.github.io/state.html">STATE</a> ·
+  <a href="https://qfoldit.github.io/server/dashboard.html">Dashboard</a> ·
+  <a href="https://github.com/qfoldit/IP-valuation-registry">IP / Evidence Registry</a>
+</p>
 
 ---
 
-## 🧬 Mission
+## Mission
+
+qFoldIT is not only a game. It is a **contract-first scientific mission platform** connecting scientific computation, MCP-compatible AI agents, canonical spatial representations, multiple runtimes, validation and auditable contribution records.
+
+```text
+Scientific / Industrial Objective
+        ↓
+Mission Contract
+        ↓
+Mission Router
+        ↓
+Mission Compiler
+        ↓
+UAG / Scientific Object Model
+        ↓
+UEFN / Unity / UNIGINE / Web / Standalone
+        ↓
+Human + AI Search
+        ↓
+CAMEO Reconciliation
+        ↓
+Scientific Validation
+        ↓
+Evidence / Contribution
+        ↓
+STATE / Enterprise Deliverable
+```
+
+## For Claude Science and MCP workflows
+
+qFoldIT exposes scientific capabilities through MCP-oriented services and canonical mission contracts. Claude and other compatible agents can orchestrate tools and compose missions, while authoritative scientific status remains with the configured scientific validators and protected reference boundaries.
+
+```text
+Claude / Scientific Agent
+        ↓
+Scientific MCP Mesh
+        ↓
+qFoldIT Mission Contract
+        ↓
+UAG / Scientific Object Model
+        ↓
+Mission Compiler
+        ↓
+Runtime
+        ↓
+Scientific Validator
+```
+
+This separation prevents an LLM response, a game score or a visual representation from being mistaken for scientific evidence.
+
+## What the platform does
+
+**Scientific description → mission.** Molecular, biological, materials, engineering and other structured targets can be expressed as governed missions.
+
+**Mission → UAG.** The compiler produces a canonical spatial/interaction representation that is independent of a specific game engine.
+
+**UAG → runtime.** qFoldIT adapters target UEFN/Fortnite, Unity, UNIGINE, Web, Standalone and virtual-laboratory surfaces.
+
+**Runtime → evidence.** Player/agent/simulator submissions return through CAMEO-style reconciliation and authoritative scientific validation.
+
+## Scientific domains
+
+- Protein and peptide design
+- Structural biology and molecular modeling
+- Drug discovery and ADMET
+- Synthetic biology and L-systems
+- Materials and crystal discovery
+- Batteries and advanced energy systems
+- Semiconductors and AI hardware
+- Quantum optimization
+- Aerospace and space science
+- Energy, hydrogen and carbon capture
+- Mining and resource processing
+- Industrial engineering and digital twins
+
+## Scientific validation
+
+qFoldIT's current OpenStructure integration provides a trusted server-side boundary for structure validation:
+
+```text
+CORPORATE_APP
+      ↓
+qFoldIT OPENSTRUCTURE service
+      ↓
+OpenStructure / `ost`
+      ↓
+LDDT / local-LDDT / QS-score
+      ↓
+ValidationResult
+```
 
-**qFoldIT** is a distributed, immersive platform that turns molecular design into a collaborative game. By combining quantum computing, AI‑driven screening, and citizen science, we empower researchers and players worldwide to discover new drug candidates against infectious diseases—starting with malaria, tuberculosis, and antimicrobial resistance (AMR). But our mission goes beyond pharma: the same quantum‑biological engine drives **green mining** (gold, lithium, bauxite) and **space bio‑mining** (asteroids, Moon, Mars), making resource extraction sustainable, sovereign, and accessible for the Global South.
+Protected references stay on the trusted side. Scientific failures are fail-closed and are not turned into synthetic scores.
 
-We are proud to align with the **Ersilia Open Source Initiative**: we share the commitment to open, accessible AI tools for the Global South. qFoldIT extends Ersilia’s model hub with an interactive, gamified layer that scales scientific contribution to thousands of participants while maintaining rigorous open‑science principles.
+## Three clocks
 
----
+For interactive scientific runtimes, qFoldIT separates:
 
+1. **Authoring** — scientific target preparation and mission compilation.
+2. **Runtime** — player/agent interaction and event capture.
+3. **Reconciliation** — scientific validation, evidence creation and STATE projection.
+
+This is particularly important for UEFN: the public architecture does not claim that Verse itself performs arbitrary live network calls to external scientific validators during a match.
 
-<!--
+## Human + AI discovery
 
-## 🌟 Team
+qFoldIT optimizes for **validated scientific contribution density**, not simply for playtime.
 
-qFoldIT brings together a world‑class, multidisciplinary team spanning drug discovery, quantum computing, game design, structural biology, and cultural visualisation.
+```text
+Mission State + Player/Agent State + Historical Outcomes
+                         ↓
+                 Learning Policy
+                         ↓
+               Search / Coaching
+                         ↓
+                    Outcome
+                         ↓
+                  Validation
+                         ↓
+                    Evidence
+                         ↓
+                 Strategy Update
+```
 
-| Name | Role | Key Expertise |
-|------|------|---------------|
-| **Prof. Kelly Chibale** | Scientific Director | Founder of H3D (UCT); Cambridge graduate, Oxford partner; pioneer of African drug discovery; creator of the ZairaChem AI pipeline. Defines disease targets (malaria, TB, AMR) and validates methodology. |
-| **Dr. Godwin Akpeko Dziwornu** | Scientific Advisor | Senior Investigator at H3D; expert in African natural products; first MMV grant as PI (bispyrroloiminoquinone). Designs molecule generation rules based on natural scaffolds. |
-| **Robertson Nortey** | Lead Gameplay & Systems Designer | Veteran from Rocksteady Studios (Batman: Arkham Knight, Arkham VR, Suicide Squad); currently Lead Game Developer at Leti Arts. Architects the core gameplay loop, translating complex molecular dynamics into AAA‑quality interactions. |
-| **Dr. George Ahiakwa** | Founder, CEO, Gamification Architect | Game designer (Atomic Heart), descendant of the Ashanti Ahiakwa royal lineage. Designs game mechanics, platform architecture, quantum API integration, and AAA‑grade visualisation. Coordinates all scientific collaborations. |
-| **Jianmin Wang (AspirinCode)** | Lead Engineer | Core developer implementing quantum folding, microservices orchestration, and integration of AI/ML models. Brings deep expertise in cheminformatics and distributed systems. |
-| **Mao Jiashun (shunsunsun)** | AI/ML Researcher | PhD‑level researcher focusing on deep learning for bioinformatics, protein language models, and optimisation of the `autoresearch` pipeline. |
-| **Dr. Silvia Holler** | Consultant for Synthetic Biology | Expert in bioengineering, artificial biology, and nanotechnology; EU grant coordinator. Advises on experimental validation and lab‑scale implementation of designed molecules. |
-| **Dr. Neil Voss** | Scientific & Technical Consultant (Structural Biology) | Creator of Appion and Leginon (cryo‑EM pipelines); Associate Professor. Integrates cryo‑EM data into qFoldIT’s visualisation and validation modules, ensuring structural accuracy. |
-| **Karen Happuch** | Cultural Visualisation Director & Lead Animator | Founder of KHPH Studios (Ghana); first woman in Ghana to direct a full‑length animated feature. Designs visual identity – from pixel‑art Adinkra patterns to cinematic ray‑traced animations. |
-| **Prof. Alexei Lapkin** | Director of Digital Molecular Engineering | Professor at University of Cambridge, Director of iDMT. Bridges in‑game molecular designs with industrial viability, validating synthetic accessibility, scalability, and sustainability. |
-| **Dr. Beata Mierzwa** | Director of Science Art & Gamified Education | Molecular biologist (UCSD, Ludwig Institute) and science artist; creator of the game *Microscopya*; AAAS IF/THEN Ambassador. Translates quantum‑chemical data into intuitive visual puzzles. |
-| **Prof. Ron Eglash** | Advisor on Algorithmic Culture & Generative Design | Author of *African Fractals*; creator of Culturally Situated Design Tools (CSDT). Guides integration of fractal logic and culturally situated pattern languages into puzzle mechanics. |
-| **Dr. Hanae Henke** | Architect of Laboratory Precision | Global Marketing Manager at Eppendorf AG; expert in automated liquid handling and GLP standards. Advises on VR/AR lab training simulations and ensures alignment with real‑world protocols. |
+## Interactive runtime ecosystem
 
----
+External engines and ecosystems are integration and distribution surfaces, not qFoldIT-owned infrastructure or IP.
 
--->
+| Surface | Role |
+|---|---|
+| Fortnite / UEFN | Multiplayer interactive runtime |
+| Unity | General-purpose engine runtime |
+| UNIGINE | High-fidelity simulation/runtime |
+| Web | Browser-native 3D/physics runtime |
+| Standalone | Desktop scientific interaction |
+| Virtual Lab | Research, training and simulation |
 
-## 🌍 Why qFoldIT ?
+The same scientific mission should be able to reach different audiences without rewriting the underlying scientific semantics.
 
-- **Accelerate drug discovery** – Players generate molecular structures; our AI/quantum backend evaluates them in real time.
-- **Democratise science** – Free, unlimited access to the core scientific modules (folding, design) removes barriers for researchers and students.
-- **Reward contribution** – Smart contracts ensure creators receive royalties (up to 30%) when their molecules are licensed by industry partners.
-- **Bridge cultures** – Rooted in the Ashanti heritage (Sankofa, Gye Nyame) and designed with a flexible CBDC‑based economy, qFoldIT embodies a new model of scientific diplomacy.
-- **Industrial sovereignty** – Our `mining-bioox`, `mining-biosorption`, and `mining-cyanide` modules enable green extraction of gold (95‑98% recovery), lithium (from brine and spodumene), and bauxite (bio‑desilication) without toxic chemicals or high‑temperature roasting.
-- **Space bio‑mining** – We design extremophile microbes for asteroid mining, lunar regolith processing, and Martian soil detoxification, turning ISRU (In‑Situ Resource Utilisation) into a reality.
+## Real science. Real play.
 
----
+qFoldIT retains its original interactive vision: scientific problems can become spatial, cooperative and competitive experiences.
 
-## 🤝 Partnerships
+<a href="https://create.fortnite.com/join/2f8d8693-4fbf-4a21-ac3d-9a97efd6ed97/2b51a870-d7ef-40f8-8e57-73273fa578b3"><img alt="LEGO Fortnite Science" src="https://qfoldit.github.io/assets/LEGO_HERO_POST.png"/></a>
 
-We are proud to collaborate with leading institutions and companies that share our vision of open, sustainable, and inclusive science.
+<a href="https://create.fortnite.com/join/2f8d8693-4fbf-4a21-ac3d-9a97efd6ed97/2b51a870-d7ef-40f8-8e57-73273fa578b3"><img alt="LEGO Fortnite biotech laboratory" src="https://qfoldit.github.io/assets/lego_qfoldit_hero.png"/></a>
 
-| Partner | Role | Collaboration |
-|---------|------|---------------|
-| **Ersilia Open Source Initiative** | Technology partner | Integration of Ersilia’s AI models (ZairaChem, Isaura) into our `autoresearch` and `bio‑ml` services. Joint workshops and training for capacity building in the Global South. |
-| **H3D (University of Cape Town)** | Scientific core | Disease targets (malaria, TB, AMR); validation of molecular structures; access to H3D’s compound libraries and screening data. |
-| **Center for Game Science (CGS), University of Washington** | Gamification & citizen science legacy | CGS, led by Professor Zoran Popović, pioneered **Foldit** — the original protein‑folding game that proved crowdsourced gameplay can solve real scientific problems. qFoldIT builds on this legacy, extending the citizen‑science model with quantum acceleration, AI‑driven screening, and a full commercialisation pipeline. CGS’s expertise in scientific discovery games, educational tools for STEM, and cognitive skill development directly informs our game design and player engagement strategies. |
-| **Game Science Research Center (GSRC)** | Academic network & game‑based learning | GSRC is an **inter‑university research centre** with administrative headquarters at the **IMT School for Advanced Studies Lucca**, Italy. Founded in 2019 by IMT Lucca and Lucca Crea, it is the first research centre in Italy dedicated to game science in all its forms. GSRC promotes research on game effectiveness, training courses, and workshops on game production and design. Through its network of member universities (including OGS since 2022), GSRC provides qFoldIT with access to European academic expertise in game‑based learning, serious games for education, and technology transfer in the gaming sector. |
-| **Leti Arts** | Game development | Lead game design and asset production by Robertson Nortey; cultural integration of African storytelling and art. |
-| **KHPH Studios** | Visualisation & animation | Creation of the game’s visual identity, Adinkra‑inspired UI, and cinematic animations. |
-| **Institute for Digital Molecular Technologies (iDMT), Cambridge** | Synthetic chemistry & scale‑up | Validation of synthetic accessibility, scalability, and sustainability for in‑game designed molecules. |
-| **Centre for Quantum Technologies (CQT) & National Supercomputing Centre (NSCC) Singapore** | Quantum & HPC resources | Access to ion‑trap and superconducting quantum processors; GPU‑accelerated HPC clusters for AI and simulations. |
-| **Dell & NVIDIA** | AI infrastructure | Dell AI Factory with NVIDIA GPUs powers our `bio‑ml`, `animation`, and `quantum-adapter` services; NVIDIA BioNeMo framework used for generative molecular design. |
-| **Bank of Ghana (e‑CEDI)** | Financial infrastructure | CBDC integration for royalty payments and in‑game economy, ensuring transparency and financial inclusion<!-- for African participants -->. |
+<a href="https://github.com/qfoldit/UEFN-TOOLBELT"><img alt="qFoldIT UEFN Toolbelt" src="https://qfoldit.github.io/assets/lego-standarts_toolbeth.png"/></a>
 
----
+<a href="https://www.cell.com/trends/biotechnology/abstract/S0167-7799(22)00034-8"><img alt="LEGO road to open science" src="https://qfoldit.github.io/assets/lego_biotech.png"/></a>
 
-## 🏗️ Technical Architecture
+## Existing scientific and educational references
 
-![](https://qfoldit.github.io/img/posters/medChem.png)
-![](https://qfoldit.github.io/img/jpmorgan.png)
+David Baker — [Protein Folding Code](https://youtu.be/cx7l9ZGFZkw)  
+Kelly Chibale — [Beyond the Code: AI 2050](https://youtu.be/7KmUzG1hltI)  
+Dr. Neil Voss — [CryoEM & Protein Geometry](https://youtube.com/playlist?list=PL5LJPD9b2pRY3HCA-zq60vjCmwoWU6Zxv&si=O8er-pfzGQgxyU_m)  
+Silvia Holler — [Future of folding](https://youtu.be/C_QIO--OUf4)  
+Alexei Lapkin — [iDMT](https://youtu.be/Dd7ZwpgT4nw)  
+Scientific publication — [Playing Dice with the Universe](https://arxiv.org/abs/2604.23819)  
+CAMEO — [automated benchmarking](https://robetta.bakerlab.org/)
 
-qFoldIT follows a **microservices architecture** with containerisation (Docker) and orchestration (Kubernetes). Each service is designed to be stateless, horizontally scalable, and optimised for hybrid cloud infrastructure leveraging Singapore’s advanced computing resources.
+## Open science
 
-### Core Microservices (Production-Ready Spec)
+qFoldIT is designed to interoperate with open scientific ecosystems while preserving explicit provenance and licensing boundaries.
 
-| Service Container | Primary Domain & Sub‑systems |
-|-------------------|------------------------------|
-| `bio‑ml` | AI/ML for Bio‑ and Chemoinformatics, Synthetic Biology Genomics |
-| `deepplant‑core` | Predictive Regulatory Genomics & Digital Phenotyping (Micro‑level) |
-| `openalea‑lpy` | Functional‑Structural Plant Modelling & 3D Topology (Macro‑level) |
-| `rosetta` | Classical & Quantum‑Accelerated Structural Biology & Protein Folding |
-| `animation` | Real‑Time Molecular Rendering & Neural Volumetric Visualization |
-| `autoresearch` | Autonomous AI Scientist & Multi‑Agent Lab Orchestrator (ZairaChem Pipeline) |
-| `quantum‑adapter` | Unified Hardware‑Agnostic Interface to Quantum Simulation Backends |
-| `mining‑bioox` | Bio‑Oxidation & Heap Leaching Optimization of Refractory Gold Ores |
-| `mining‑biosorption` | Biosorption Kinetics of Critical Metals (Lithium, Cobalt, Nickel) |
-| `mining‑cyanide` | Enzymatic & Microbial Biodegradation of Hazardous Cyanide Wastes |
-| `oilgas‑meor` | Microbial Enhanced Oil Recovery (MEOR) Multi‑Species Fluid Dynamics |
-| `nanover‑server` | Real‑Time Interactive Molecular Dynamics (iMD) & Multiplayer VR Streams |
+The current architecture acknowledges, among other upstream/reference systems, the Ersilia Open Source Initiative, FoldIT, OpenStructure, Virtual-Lab-Simulation and DropleX. Integration does not imply ownership of external source code, models, data, publications or trademarks.
 
----
+## Enterprise and public-sector use
 
-## 🎮 Gamification Meets Science
+The same mission architecture can support:
 
-qFoldIT inherits the proven citizen‑science mechanics of FoldIT but adds three transformative layers:
+- corporate R&D campaigns;
+- research institutions and universities;
+- scientific software and simulation workflows;
+- industrial optimization;
+- government and public-sector science programs;
+- citizen-science and educational deployments.
 
-1. **Quantum acceleration** – players interact with models that use real quantum processors for energy calculations.
-2. **Direct commercialisation** – validated molecules are registered on a private blockchain (Proof of Authority) with authorship linked to the player’s Steam ID. Smart contracts distribute royalties automatically.
-3. **Psychological engagement** – the patented “Stop in Time” mechanic (RU2051730C1) lets players decide when to stop an experiment, balancing risk and reward—activating dopamine circuits and teaching decision‑making under uncertainty.
+Private customer targets and protected ground truth remain inside authorized boundaries; the public site exposes only permitted STATE projections.
 
-<!--
+## Evidence discipline
 
-### In‑Game Economy: Photons & Energy
+qFoldIT distinguishes implementation from possibility:
 
-- **Photons** – premium currency pegged to a generic **Central Bank Digital Currency (CBDC)** framework. This provides a stable, transparent value store and can later be adapted to specific national digital currencies (e.g., eCedi, digital dollar, etc.). Photons are earned through gameplay or purchased; they are used for cosmetics, battle passes, and optional risk‑management items.
-- **Energy** – limits non‑scientific activities (races, exploration). **Scientific modules (folding, design) consume no energy**, preserving the spirit of citizen science.
+- **E1** — verified implementation evidence;
+- **E2** — strong architecture/product evidence;
+- **E3** — design/roadmap/option evidence;
+- **EX** — external/upstream evidence.
 
-### Reward Distribution Model
+No third-party platform valuation, external benchmark, prospect list, playtime metric or roadmap claim is presented as qFoldIT revenue or owned IP.
 
-| Track | Source of Revenue | Recipient | Percentage | Frequency |
-|-------|-------------------|-----------|------------|-----------|
-| **B2C (Player royalties)** | Commercial use of a player’s structure by a corporation | Player (creator) | 5% of economic benefit (or fixed license fee) | Monthly / per use |
-| **B2C (Platform fee)** | Royalty transaction | qFoldIT platform | 10% of royalty amount | Per transaction |
-| **B2B (Corporate subscriptions)** | Annual subscription / pay‑per‑use | Platform (for operations) | 70% of subscription revenue | Monthly |
-| **B2B (Creator pool)** | 30% of subscription revenue allocated to creators | Players whose structures are used | 20% distributed proportionally to structural score; 10% retained as platform fee | Monthly |
-| **B2G (Government / Space contracts)** | Fixed‑fee contracts (e.g., NASA, Saudi Aramco) | Platform (and players if their structures are used) | As per contract; player royalties follow B2B rules if applicable | Per contract schedule |
-| **Open Science** | Free access for non‑commercial research | – | – | – |
+## Continue here
 
-All transactions are recorded on a private blockchain, ensuring transparency and auditability.
+- [qFoldIT GitHub organization](https://github.com/qfoldit)
+- [Public STATE](https://qfoldit.github.io/state.html)
+- [Project dashboard](https://qfoldit.github.io/server/dashboard.html)
+- [CLI / mission prospects](https://qfoldit.github.io/server/CLI.html)
+- [Canonical architecture](https://github.com/qfoldit/IP-valuation-registry/blob/main/QFOLDIT-INTEGRATED-PLATFORM-ARCHITECTURE-2026-08-21.md)
+- [IP / evidence registry](https://github.com/qfoldit/IP-valuation-registry)
+- [FoldIT](https://play.fold.it/)
+- [MCP](https://modelcontextprotocol.io/)
 
----
+## Contact
 
--->
+**qFoldIT**  
+qFoldIT@gmail.com  
+https://github.com/qfoldit
 
-## 🔓 Open Science & Reproducibility
+> Sankofa: retrieve useful knowledge from the past and build forward.
+> 
+> Gye Nyame: except God, there are no limits.
 
-While the core game engine and certain proprietary components remain closed, all scientific pipelines are designed with openness in mind:
+## Historical README archive
 
-- **Models**: We use and contribute to open‑source libraries (Rosetta, OpenMM, Qiskit, Ersilia Model Hub). Any new models developed specifically for qFoldIT may be released under open licenses.
-- **Data**: Anonymised molecular structures generated by players are made available for research (CC BY‑NC 4.0), with authorship preserved via blockchain.
-- **Workflows**: Our `autoresearch` service is based on the open‑source ZairaChem pipeline, and we document all configurations for reproducibility.
-
-We believe that **AI for global health must be transparent**. By partnering with Ersilia, we ensure that our tools remain accessible to researchers in low‑resource settings.
-
----
-
-## 🌍 Industrial & Space Applications – Beyond Earth
-
-qFoldIT’s quantum‑biological engine is not limited to drug discovery. We apply the same principles to **sustainable resource extraction** and **space bio‑mining**.
-
-### Industrial Sovereignty (Earth)
-
-| Resource | Region | Challenge | qFoldIT Solution |
-|----------|--------|-----------|------------------|
-| **Gold (refractory ores)** | Ghana, Nigeria, Mali | 40% gold lost in tailings; cyanide pollution | `mining‑bioox`: bio‑oxidation increases recovery to 95‑98%; `mining‑cyanide` eliminates toxic waste |
-| **Lithium (spodumene, brines)** | Nigeria, Saudi Arabia, UAE | Export of raw concentrate at $600/ton; high‑energy roasting (1050°C) | `mining‑biosorption`: bio‑leaching at ambient temperature; produces battery‑grade carbonate ($14,000/ton) |
-| **Bauxite** | Guinea, Cameroon | High silica content; expensive Bayer process | Bio‑desilication removes silica without heat, increasing alumina yield and reducing caustic consumption |
-
-### Space Bio‑Mining (Beyond Earth)
-
-| Frontier | Resource | qFoldIT Application |
-|----------|----------|----------------------|
-| **Asteroids (e.g., 16 Psyche)** | Platinum, gold, cobalt, nickel‑iron | Design synthetic microbiota that selectively extract precious metals from meteoritic iron under microgravity and radiation |
-| **Moon (regolith)** | Titanium, aluminium, oxygen | Engineered bacteria break down silicates at 20°C, releasing O₂ for life support and leaving TiO₂/Al₂O₃ for 3D‑printing habitats |
-| **Mars (soil)** | Perchlorates, iron, silicon | `mining‑cyanide`‑derived enzymes decompose toxic perchlorates into chlorides and O₂, creating fertile soil and breathable air |
-
-This long‑term vision (100‑300 years) positions qFoldIT as the **operating system for humanity’s resource future** – from African mines to the asteroid belt.
-
----
-
-## 📊 Impact Metrics (Roadmap)
-
-| Phase | Milestone | Target |
-|-------|-----------|--------|
-| MVP (0‑6 mo) | Closed beta, basic folding | 500 MAU, 50 structures/day |
-| Publication (6‑12 mo) | Article in Oxford/Cambridge press | IF >5, citations >10 in first year |
-| Release (12‑18 mo) | Full Unigine client, quantum integration | 10k MAU, 10 licensed structures |
-| Scale (18‑36 mo) | Corporate training, CBDC integration | 100k MAU, 50 B2B clients, $17M revenue/year |
-| Space & Industrial (36‑60 mo) | Pilot contracts with mining companies and space agencies | 5‑10 industrial pilot projects; first asteroid bio‑mining experiment |
-
----
-
-## 👥 Contributing & Getting Involved
-
-We welcome collaboration in the spirit of Ersilia’s community. You can contribute in several ways:
-
-- **Code**: Help improve our open‑source components (model wrappers, quantum adapter, documentation). See our [GitHub](https://github.com/qfoldit).
-- **Science**: Validate molecular structures, propose new disease targets, or use qFoldIT in your research.
-- **Training**: Partner with us to run workshops that combine Ersilia’s AI models with qFoldIT’s gamified interface.
-- **Funding**: Support our mission through grants, corporate sponsorship, or licensing partnerships.
-
-For inquiries: **qFoldIT@gmail.com** or reach out via our [website](https://fold.it).
-
----
-
-<!--
-
-## 📄 License & Legal
-
-- **Proprietary components**: Game client, certain visual assets, and the “Stop in Time” mechanic are protected by commercial licenses.
-- **Open‑source components**: All scientific libraries and adapters are licensed under GPL‑3.0 or MIT, in line with Ersilia’s policy.
-- **Trademarks**: Sankofa and Gye Nyame are registered trademarks of qFoldIT Pte. Ltd. in Singapore (IPOS).
-- **Data**: User‑generated structures are shared under CC BY‑NC 4.0 with authorship attribution preserved.
-
----
-
-## 🙏 Acknowledgements
-
-- **Prof. Kelly Chibale** and **Dr. Godwin Dziwornu** for scientific leadership and the foundational work at H3D.
-- **Ersilia Open Source Initiative** for the model hub and shared vision of open science.
-- **Center for Game Science (CGS), University of Washington** – for pioneering citizen‑science gaming and providing a direct lineage to Foldit.
-- **Game Science Research Center (GSRC), Italy** – for advancing game‑based learning and providing academic networks across Europe.
-- **Centre for Quantum Technologies (CQT)** and the **National Supercomputing Centre (NSCC) Singapore** for providing quantum and HPC resources.
-- **National Quantum Strategy (Singapore)** for supporting the development of accessible quantum computing infrastructure.
-- **Leti Arts** (Robertson Nortey) and **KHPH Studios** (Karen Happuch) for exceptional game design and visual storytelling.
-- **Prof. Alexei Lapkin** (iDMT, Cambridge) for bridging molecular design with industrial chemistry.
-- **Dr. Neil Voss** for cryo‑EM expertise and structural validation.
-- **Dr. Beata Mierzwa** and **Prof. Ron Eglash** for their contributions to science art and algorithmic culture.
-- **Dr. Hanae Henke** for laboratory automation and training design.
-- **Steam** for distribution and community building.
-- The **Ashanti royal lineage** for the symbols Sankofa and Gye Nyame, inspiring our mission to bridge past wisdom with future innovation.
-
----
-
--->
-
-**qFoldIT – where every player becomes a co‑inventor.**  
-*Sankofa: we retrieve wisdom from the past to build the future.*  
-*Gye Nyame: except God, there are no limits.*
-
-[](https://qfoldit.github.io/qFold.html)
-![](https://qfoldit.github.io/img/1/qFold.png)
-
-<!-- https://investor.nvidia.com/news/press-release-details/2025/NVIDIA-Partners-With-Industry-Leaders-to-Advance-Genomics-Drug-Discovery-and-Healthcare/default.aspx -->
-
-<!-- Nobel Prize lecture: [David Baker About Folding](https://www.youtube.com/watch?v=KbDvQgsOI-E) -->
-
-<!-- MMOS: [Borderlands Science](https://www.youtube.com/watch?v=L_mH6Ak_Ny0) -->
-
-<!-- ![](https://qfoldit.github.io/img/posters/letti_letters.png) -->
-
-<!-- 
-
-ISS: [Mixed Reality Meets Quantum Science on the Space Station](https://youtu.be/5Br-y6S4pMc)
-
-NASA: [Virtual Reality in the 80's](https://youtu.be/gvkA3qG0zuI) <br>
-NASA: [Virtual Environment Workstation Project (VIEWLab) VR demo 1989](https://youtu.be/3L0N7CKvOBA)
-
-
-Dell & NVidia: [AI Factory Powering Drug Discovery](https://youtu.be/pl-W5yN8nDQ?si=LQELlfIrC4sS8OZK) <br>
-NVidia: [AI for Quantum. NVIDIA Ising Accelerates Useful Quantum Computing](https://youtu.be/z978rGwiW6E?si=xbShhPBZyvi62L9_)
-
-qFold: [Quantum Walks and Deep Learning to Solve Protein Folding](https://arxiv.org/abs/2101.10279) <br>
-qFold: [A modeling paradigm for the RNA](https://dl.acm.org/doi/10.1007/s10732-021-09471-3) -->
-
-<!-- ![](https://issnationallab.org/wp-content/uploads/2025/05/ISSNL-CASIS_Logo_Inline_Black.svg) -->
-<!-- ![](https://africaquantum.org/img/logo_svg.svg) -->
+The complete previous public README is preserved verbatim in [`README-LEGACY-2026-08-21.md`](./README-LEGACY-2026-08-21.md), including the full historical image set, links, acknowledgements, partnership material, visual references and legacy roadmap language.
