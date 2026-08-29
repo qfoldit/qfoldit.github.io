@@ -19,13 +19,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Checkout UEFN-QFOLDIT frontend
-        uses: actions/checkout@v4
-        with:
-          repository: qfoldit/UEFN-QFOLDIT
-          ref: main
-          path: .build/UEFN-QFOLDIT
-          fetch-depth: 1
+      - name: Clone public UEFN-QFOLDIT frontend
+        run: git clone --depth 1 --branch main https://github.com/qfoldit/UEFN-QFOLDIT.git .build/UEFN-QFOLDIT
 
       - name: Setup Node
         uses: actions/setup-node@v4
