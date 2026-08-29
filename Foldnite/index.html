@@ -15,7 +15,8 @@
       "@tauri-apps/api/core": "data:text/javascript,export const invoke=async(cmd,args={})=>{const s=window.__qfoldit_static_state||(window.__qfoldit_static_state={actions:[],proposals:[]});if(cmd==='list_actions')return s.actions;if(cmd==='configure_tool')return {status:'configured',permission:args.permission};if(cmd==='create_action'){const a={action_id:'action-'+Date.now(),action_type:args.actionType||'unknown',actor_type:args.actorType||'HUMAN',actor_id:args.actorId||'local-user',mission_id:args.missionId||'demo-mission',scientific_object_id:args.scientificObjectId||'protein.example',state_id:args.stateId||'state-0001',runtime_id:args.runtimeId||'WEB',created_at:new Date().toISOString()};s.actions.push(a);return a;}if(cmd==='submit_proposal'){const p={proposal_id:args.proposalId||'proposal-'+Date.now(),action_type:args.actionType||'propose_move',approval:'PENDING',mission_id:args.missionId||'demo-mission'};s.proposals.push(p);return p;}if(cmd==='decide_proposal'){const p=s.proposals.find(x=>x.proposal_id===args.proposalId);if(p)p.approval=args.approved?'APPROVED':'REJECTED';return p||{proposal_id:args.proposalId,approval:args.approved?'APPROVED':'REJECTED'};}return null;}",
       "https://raw.githubusercontent.com/qfoldit/UEFN-QFOLDIT/main/frontend/src/styles.css": "data:text/javascript,export default null",
       "https://raw.githubusercontent.com/qfoldit/UEFN-QFOLDIT/main/frontend/src/branding.css": "data:text/javascript,export default null",
-      "https://raw.githubusercontent.com/qfoldit/UEFN-QFOLDIT/main/frontend/src/world-studio.css": "data:text/javascript,export default null"
+      "https://raw.githubusercontent.com/qfoldit/UEFN-QFOLDIT/main/frontend/src/world-studio.css": "data:text/javascript,export default null",
+      "https://raw.githubusercontent.com/qfoldit/UEFN-QFOLDIT/main/frontend/src/narrative-control.css": "data:text/javascript,export default null"
     }
   }
   </script>
