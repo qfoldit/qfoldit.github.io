@@ -19,8 +19,15 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Clone public UEFN-QFOLDIT frontend
-        run: git clone --depth 1 --branch main https://github.com/qfoldit/UEFN-QFOLDIT.git .build/UEFN-QFOLDIT
+      - name: Download public UEFN-QFOLDIT source archive
+        run: |
+          mkdir -p .build
+          curl -fL --retry 3 --retry-delay 2 \
+            https://github.com/qfoldit/UEFN-QFOLDIT/archive/refs/heads/main.zip \
+            -o .build/uefn-qfoldit.zip
+          unzip -q .build/uefn-qfoldit.zip -d .build
+          mv .build/UEFN-QFOLDIT-main .build/UEFN-QFOLDIT
+          rm .build/uefn-qfoldit.zip
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -129,6 +136,15 @@ jobs:
         working-directory: .build/UEFN-QFOLDIT/frontend
         run: npx vite build --config vite.pages.config.mjs
 
+      - name: Validate generated bundle
+        working-directory: .build/UEFN-QFOLDIT/frontend
+        run: |
+          test -s pages-dist/index.html
+          test -d pages-dist/assets
+          test "$(find pages-dist/assets -type f | wc -l)" -ge 1
+          grep -q 'Narrative' pages-dist/assets/*.js
+          grep -q 'Foldnite' pages-dist/index.html
+
       - name: Publish Foldnite bundle
         run: |
           rm -rf Foldnite
@@ -140,7 +156,7 @@ jobs:
 
           GitHub Pages deployment of the qFoldIT UEFN/Foldnite frontend.
 
-          The bundle is built from `qfoldit/UEFN-QFOLDIT/frontend` with a GitHub Pages browser runtime shim for Tauri commands.
+          The bundle is built from the public `qfoldit/UEFN-QFOLDIT` frontend with a GitHub Pages browser runtime shim for Tauri commands.
 
           Included workspaces include Mission Cockpit, Narrative & Culture, FASTA, LEGO Toolbelt, Verse IDE, Verse Generator, Fortnite Island Studio, and Play Session.
           EOF
