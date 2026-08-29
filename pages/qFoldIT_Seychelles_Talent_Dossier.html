@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang='en'>
+    <head>
+        <meta charset='utf-8'>
+        <meta name='viewport' content='width=device-width,initial-scale=1'>
+        <title>qFoldIT Seychelles Talent Dossier</title>
+<style>
+:root{
+  --bg:#05080d;
+  --panel:rgba(10,16,24,.78);
+  --panel-strong:rgba(10,16,24,.94);
+  --line:rgba(139,182,203,.18);
+  --text:#edf7fb;
+  --muted:#94aeb8;
+  --lime:#b8ff3d;
+  --cyan:#65e8ff;
+  --violet:#a78bfa;
+  --orange:#ff9f43;
+  --pink:#ff5c8a;
+  --shadow:0 24px 80px rgba(0,0,0,.42);
+  --mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+  --sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:"Impact","Arial Black","Segoe UI Black",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:
+    radial-gradient(circle at 12% 6%,rgba(101,232,255,.12),transparent 24%),
+    radial-gradient(circle at 88% 8%,rgba(167,139,250,.12),transparent 26%),
+    radial-gradient(circle at 52% 52%,rgba(184,255,61,.055),transparent 30%),
+    linear-gradient(180deg,#030507 0%,#071019 42%,#04070b 100%);
+  color:var(--text);font-family:var(--sans);overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.12;
+  background-image:
+    linear-gradient(rgba(101,232,255,.11) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(101,232,255,.11) 1px,transparent 1px);
+  background-size:40px 40px;
+  mask-image:linear-gradient(to bottom,black 0%,transparent 90%);
+}
+body:after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:30;
+  background:linear-gradient(rgba(255,255,255,.015) 50%,transparent 50%);
+  background-size:100% 4px;mix-blend-mode:soft-light;opacity:.14;
+}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--lime);color:#06100b}
+::-webkit-scrollbar{width:0}
+
+.shell{position:relative;z-index:1;max-width:1560px;margin:auto;padding:22px}
+.topbar{
+  position:sticky;top:14px;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:12px 16px;border:1px solid var(--line);
+  background:rgba(6,11,16,.72);backdrop-filter:blur(16px);
+  border-radius:16px;box-shadow:var(--shadow)
+}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{
+  width:38px;height:38px;display:grid;place-items:center;border-radius:10px;
+  border:1px solid var(--lime);color:var(--lime);font:900 15px var(--mono);
+  box-shadow:0 0 26px rgba(184,255,61,.18), inset 0 0 18px rgba(184,255,61,.05)
+}
+.brand h1{font:800 15px var(--mono);letter-spacing:.08em;margin:0}
+.brand small{display:block;color:var(--muted);font:10px var(--mono);margin-top:3px}
+.nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.nav a{
+  padding:7px 9px;border:1px solid transparent;border-radius:8px;
+  color:#9cb2bd;font:10px var(--mono);letter-spacing:.04em
+}
+.nav a:hover{border-color:var(--line);background:#0b161e;color:#fff}
+
+.hero{
+  min-height:calc(100vh - 100px);display:grid;grid-template-columns:1.17fr .83fr;
+  gap:18px;align-items:stretch;padding:24px 0 10px;
+}
+.hero-main,.hero-side,.panel{
+  border:1px solid var(--line);background:linear-gradient(180deg,rgba(12,19,28,.92),rgba(6,11,17,.9));
+  border-radius:20px;box-shadow:var(--shadow);position:relative;overflow:hidden
+}
+.hero-main{padding:42px 40px;display:flex;flex-direction:column;justify-content:center}
+.hero-main:before{
+  content:"SCIENTIFIC GAME // UEFN // AI // R&D";
+  position:absolute;top:20px;right:24px;color:#33515f;font:9px var(--mono);letter-spacing:.18em
+}
+.kicker{color:var(--cyan);font:11px var(--mono);letter-spacing:.16em;text-transform:uppercase}
+.hero h2{
+  margin:16px 0 14px;max-width:980px;
+  font:900 clamp(56px,8vw,118px)/.88 var(--display);letter-spacing:-.025em;
+  text-transform:uppercase;text-wrap:balance
+}
+.hero h2 span{color:var(--lime);text-shadow:0 0 28px rgba(184,255,61,.14)}
+.hero-sub{
+  max-width:900px;color:#bdd0d8;font-size:19px;line-height:1.55;margin:0;
+}
+.punch{
+  margin-top:28px;display:flex;gap:10px;flex-wrap:wrap
+}
+.pill{
+  border:1px solid var(--line);padding:8px 11px;border-radius:999px;
+  background:#071018;color:#c4d6de;font:10px var(--mono);letter-spacing:.05em
+}
+.pill.lime{border-color:rgba(184,255,61,.35);color:var(--lime)}
+.pill.cyan{border-color:rgba(101,232,255,.35);color:var(--cyan)}
+.pill.violet{border-color:rgba(167,139,250,.35);color:var(--violet)}
+.hero-actions{margin-top:34px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 16px;
+  border-radius:11px;border:1px solid var(--line);font:11px var(--mono);letter-spacing:.06em;
+  background:#0a151d;transition:.2s transform,.2s border-color,.2s background
+}
+.btn:hover{transform:translateY(-2px);border-color:#486878}
+.btn.primary{background:var(--lime);color:#071008;border-color:var(--lime);font-weight:900}
+.btn.primary:hover{background:#cbff67}
+.micro{margin-top:18px;color:#607d88;font:9px var(--mono);line-height:1.5}
+
+.hero-side{padding:18px;display:grid;grid-template-rows:auto 1fr auto;gap:14px}
+.side-head{display:flex;justify-content:space-between;align-items:center}
+.side-head h3{margin:0;font:700 12px var(--mono);letter-spacing:.1em}
+.status{color:var(--lime);font:9px var(--mono)}
+.orbit{
+  min-height:420px;border:1px solid var(--line);border-radius:16px;position:relative;
+  background:
+    radial-gradient(circle at 50% 50%,rgba(184,255,61,.12),transparent 17%),
+    radial-gradient(circle at 50% 50%,rgba(101,232,255,.12),transparent 42%),
+    linear-gradient(145deg,#071019,#0a141d 50%,#061018);
+  display:grid;place-items:center;overflow:hidden
+}
+.orbit:before,.orbit:after{
+  content:"";position:absolute;border-radius:50%;border:1px dashed rgba(101,232,255,.25)
+}
+.orbit:before{width:74%;height:46%;transform:rotate(24deg)}
+.orbit:after{width:54%;height:74%;transform:rotate(-33deg)}
+.core{
+  width:180px;height:180px;border-radius:50%;display:grid;place-items:center;text-align:center;
+  background:
+    radial-gradient(circle at 35% 28%,#f3fff4 0,#d2ff97 4%,#9fe42b 14%,#244c13 48%,#0b160a 74%);
+  border:1px solid rgba(184,255,61,.72);
+  box-shadow:0 0 70px rgba(184,255,61,.18),0 0 160px rgba(101,232,255,.12);
+  font:900 20px var(--mono);letter-spacing:.05em;color:#071006
+}
+.node{
+  position:absolute;padding:7px 9px;border:1px solid var(--line);border-radius:9px;
+  background:rgba(7,13,19,.84);backdrop-filter:blur(8px);font:9px var(--mono);color:#c8d7dd
+}
+.node b{display:block;color:var(--cyan);font-size:8px;margin-bottom:2px}
+.n1{top:15%;left:10%}.n2{top:17%;right:9%}.n3{bottom:18%;left:8%}.n4{bottom:15%;right:8%}
+.side-foot{
+  border-left:3px solid var(--lime);padding:10px 12px;color:#a9bcc4;
+  background:rgba(184,255,61,.035);font-size:11px;line-height:1.5
+}
+
+main{display:grid;gap:18px;margin-top:18px}
+.panel{padding:22px}
+.section-title{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:16px}
+.section-title h3{margin:0;font:800 13px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.section-title span{color:#55727f;font:9px var(--mono)}
+
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+
+.card{
+  padding:16px;border:1px solid var(--line);border-radius:14px;background:rgba(9,15,22,.74);
+  transition:.2s transform,.2s border-color
+}
+.card:hover{transform:translateY(-3px);border-color:#3c5a6b}
+.card .tag{color:var(--cyan);font:9px var(--mono);letter-spacing:.11em}
+.card h4{margin:8px 0 7px;font:800 16px var(--mono)}
+.card p{margin:0;color:#8da6b0;font-size:12px;line-height:1.55}
+.card strong{color:#eaf6fb}
+
+.loop{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:10px;align-items:stretch
+}
+.step{
+  min-height:128px;padding:14px;border:1px solid var(--line);border-radius:13px;background:#09121a;position:relative
+}
+.step:before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:#294352}
+.step.lime:before{background:var(--lime)} .step.cyan:before{background:var(--cyan)}
+.step.violet:before{background:var(--violet)} .step.orange:before{background:var(--orange)}
+.step .num{font:900 26px var(--mono);color:#1a2d38}
+.step h4{margin:8px 0 6px;font:800 13px var(--mono)}
+.step p{margin:0;color:#718c97;font-size:10px;line-height:1.45}
+
+.arch{display:grid;grid-template-columns:1.25fr .75fr;gap:14px}
+.diagram{
+  padding:18px;border:1px solid var(--line);border-radius:14px;background:#071017
+}
+.stack{display:grid;gap:8px}
+.layer{
+  display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center;
+  padding:11px 12px;border:1px dashed #29404e;border-radius:10px;background:#09141c
+}
+.layer b{font:800 10px var(--mono);color:var(--cyan)}
+.layer span{font-size:11px;color:#a4b8c0}
+.layer i{font:9px var(--mono);color:#5f7a86;font-style:normal}
+.diagram-note{
+  margin-top:12px;color:#67828e;font:10px var(--mono);line-height:1.5
+}
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.metric{
+  padding:14px;border:1px solid var(--line);border-radius:12px;background:#08121a
+}
+.metric label{display:block;color:#6f8b96;font:8px var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.metric strong{display:block;margin-top:5px;font:900 23px var(--mono)}
+.metric small{display:block;margin-top:4px;color:#607984;font:9px var(--mono)}
+
+.money{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px
+}
+.money-card{
+  padding:18px;border:1px solid var(--line);border-radius:14px;background:#08121a
+}
+.money-card .tag{color:var(--lime);font:9px var(--mono);letter-spacing:.11em}
+.money-card h4{margin:8px 0 8px;font:900 19px var(--mono)}
+.money-card p{margin:0;color:#8da6b0;font-size:12px;line-height:1.55}
+.money-card .line{margin-top:14px;padding-top:11px;border-top:1px dashed #29404e;color:#b8cbd2;font:9px var(--mono)}
+.money-card .line b{color:#fff}
+
+.island{
+  min-height:320px;border-radius:16px;overflow:hidden;border:1px solid var(--line);position:relative;
+  background:
+    linear-gradient(180deg,rgba(5,10,15,.12),rgba(5,10,15,.92)),
+    radial-gradient(circle at 73% 19%,rgba(184,255,61,.18),transparent 16%),
+    linear-gradient(145deg,#0b202a 0%,#0a2e37 44%,#0a1116 100%);
+}
+.island:before{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(120deg,transparent 40%,rgba(101,232,255,.14) 41%,transparent 42%),
+    linear-gradient(70deg,transparent 47%,rgba(255,255,255,.05) 48%,transparent 49%);
+  opacity:.5
+}
+.palm{position:absolute;left:9%;bottom:18%;width:78px;height:190px;border-left:8px solid #0c1718;border-radius:50% 50% 0 0;transform:rotate(-8deg)}
+.palm:before,.palm:after{content:"";position:absolute;top:-7px;width:110px;height:34px;border-top:7px solid #10211f;border-radius:50%}
+.palm:before{left:-79px;transform:rotate(-28deg)}.palm:after{left:-10px;transform:rotate(23deg)}
+.hud{
+  position:absolute;left:20px;top:18px;padding:10px 12px;border:1px solid rgba(101,232,255,.25);
+  border-radius:10px;background:rgba(5,12,18,.72);backdrop-filter:blur(8px);font:9px var(--mono);color:#b4cbd3
+}
+.hud strong{display:block;color:var(--lime);font-size:12px;margin-top:3px}
+.island-copy{position:absolute;right:20px;left:36%;bottom:22px}
+.island-copy .eyebrow{color:var(--cyan);font:9px var(--mono);letter-spacing:.15em}
+.island-copy h4{font:900 clamp(34px,5vw,58px)/.9 var(--display);margin:8px 0;text-transform:uppercase}
+.island-copy p{max-width:650px;color:#bfd0d5;font-size:13px;line-height:1.55;margin:0}
+
+.cta{
+  display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;
+  padding:24px;border:1px solid rgba(184,255,61,.22);border-radius:16px;
+  background:linear-gradient(90deg,rgba(184,255,61,.06),rgba(101,232,255,.035),rgba(167,139,250,.04))
+}
+.cta h3{margin:0 0 8px;font:900 clamp(24px,4vw,48px)/.95 var(--display);text-transform:uppercase}
+.cta p{margin:0;color:#92a9b2;font-size:12px;max-width:860px;line-height:1.55}
+
+.footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:12px 4px 34px;color:#506a76;font:9px var(--mono)}
+
+
+.control-hero{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}
+.control-copy,.control-terminal{padding:20px;border:1px solid var(--line);border-radius:14px;background:#071018}
+.control-copy .eyebrow{color:var(--cyan);font:9px var(--mono);letter-spacing:.14em}
+.control-copy h3{margin:8px 0 10px;font:900 clamp(28px,4vw,54px)/.92 var(--display);text-transform:uppercase}
+.control-copy h3 span{color:var(--lime)}
+.control-copy p{margin:0;color:#95acb5;font-size:12px;line-height:1.62}
+.control-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.control-tags span{padding:6px 8px;border:1px solid rgba(101,232,255,.22);border-radius:999px;color:#a9d2dc;font:8px var(--mono);background:#08141c}
+.control-terminal{background:linear-gradient(180deg,#07131b,#050b10);box-shadow:inset 0 0 40px rgba(101,232,255,.025)}
+.terminal-head{display:flex;justify-content:space-between;gap:10px;padding-bottom:11px;margin-bottom:7px;border-bottom:1px solid #203540;color:#6d8792;font:8px var(--mono);letter-spacing:.08em}
+.terminal-head b{color:var(--lime);font-weight:700}
+.terminal-row{display:grid;grid-template-columns:28px 1fr 18px;gap:8px;align-items:center;padding:8px 0;border-bottom:1px dashed #20333e;font:9px var(--mono)}
+.terminal-row span{color:#476270}.terminal-row em{color:#b8cbd2;font-style:normal}.terminal-row strong{color:var(--cyan);text-align:right}
+.binary{margin-top:13px;color:#35505c;font:8px var(--mono);letter-spacing:.13em;word-break:break-all}
+.control-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+.metric-card{padding:14px;border:1px solid var(--line);border-radius:12px;background:#08121a}
+.metric-card label{display:block;color:#66818d;font:8px var(--mono);text-transform:uppercase;letter-spacing:.08em}
+.metric-card strong{display:block;color:#fff;font:900 20px var(--mono);margin-top:5px}.metric-card small{display:block;color:#607984;font:9px var(--mono);margin-top:4px;line-height:1.35}
+.control-note{margin-top:12px;padding:12px 14px;border-left:3px solid var(--cyan);border-radius:0 10px 10px 0;background:rgba(101,232,255,.035);color:#8fa8b2;font-size:10px;line-height:1.55}.control-note b{color:var(--cyan)}
+@media(max-width:1120px){
+  .hero{grid-template-columns:1fr}
+  .grid4{grid-template-columns:repeat(2,1fr)}
+  .loop{grid-template-columns:repeat(3,1fr)}
+  .arch,.money,.control-hero{grid-template-columns:1fr}
+  .control-metrics{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:720px){
+  .shell{padding:10px}
+  .topbar{align-items:flex-start}
+  .nav{display:none}
+  .hero-main{padding:30px 22px}
+  .hero h2{font-size:52px}
+  .hero-sub{font-size:16px}
+  .grid4,.grid3,.grid2,.loop{grid-template-columns:1fr}
+  .hero-side{padding:12px}
+  .control-metrics{grid-template-columns:1fr}
+  .orbit{min-height:320px}
+  .layer{grid-template-columns:82px 1fr}
+  .layer i{display:none}
+  .cta{grid-template-columns:1fr}
+  .island-copy{left:20px;right:20px}
+}
+</style>
+        <body>
+            <div class='wrap'>
+        <section class='hero'>
+            <div>
+                <div class='kicker'>SCIENTIFIC GAMES • ENTERPRISE • DIGITAL TWINS • LOCAL TALENT</div><h1>qFoldIT Seychelles<br>Talent Dossier</h1><p>Public-source recruitment map for the first qFoldIT Seychelles technical, data, scientific-game and operations nucleus.</p></div><div class='metrics'><div><b>18</b><span>profiles / candidates</span></div><div><b>5</b><span>core first-hire roles</span></div><div><b>A+</b><span>priority group</span></div><div><b>2026</b><span>research date</span></div></div></section><section class='panel'><h2>Recommended first nucleus</h2><div class='nucleus'><div><b>1</b><span>Enterprise Software / AI / Security Lead</span><strong>Fazila Sabir Adam Moosa</strong></div><div><b>2</b><span>Local Technical Generalist / Product Prototyper</span><strong>Gabriel Suzette (Infinit001)</strong></div><div><b>3</b><span>Systems / Infrastructure / IT Operations</span><strong>Neranjan Dickson</strong></div>
+                    <div><b>4</b><span>GIS / Data / Digital Twin Lead</span>
+                        <strong>Lyroy Camille</strong></div>
+                        <div><b>5</b>
+                         <span>Geospatial / GIS / Digital Twin Specialist</span><strong>Tim Geda</strong>
+                        </div>
+                       </div>
+                        <p class='note'>Shortlist only. Verify availability, work authorization, conflicts, compensation expectations, technical depth and interest before making offers.</p>
+                    </section>
+                        
+                        <section class='panel'>
+                            
+                            <h2>Role architecture</h2>
+
+                            <table><tr><th>Role</th><th>Purpose</th>
+                            <th>Recommended candidates</th></tr>
+                            <tr><td>Enterprise Software / AI / Security</td>
+                            <td>Corporate control plane, security, governance, integrations.</td>
+                            <td>Fazila Sabir Adam Moosa; Evans Delcy</td></tr>
+                            <tr><td>Systems / Infrastructure</td>
+                                <td>Local office IT, networking, endpoints, backups, deployment.</td><td>Neranjan Dickson; Venillson Payet; Aubrey Marie</td></tr><tr><td>GIS / Digital Twin</td><td>Seychelles geospatial data, UAG worlds, digital twins.</td><td>Lyroy Camille; Tim Geda</td></tr><tr><td>Scientific Games / UEFN / 3D</td><td>Island production, creative technology, 3D, academy pipeline.</td><td>Dante Dominic Lespoir; Abdullah Rashid; Gabriel Suzette</td></tr><tr><td>Research / Governance</td><td>University, government, data, AI governance and partnerships.</td><td>Thierry Allio; Evans Delcy</td></tr></table></section><section class='panel'><h2>Candidate profiles</h2><article class='card'><div class='tier'>A — Contact first</div><div class='name'>Fazila Sabir Adam Moosa</div><div class='role'>Enterprise Software / AI / Security Lead<span class='fit'>9.8/10</span></div><div class='meta'><div><b>Locality</b><p>Victoria, Seychelles</p></div><div><b>Public evidence</b><p>11 years GovTech; DICT Seychelles; software, AI, secure SDLC, cloud; national digital identity/public-sector work.</p></div></div><div class='links'><a href='https://sc.linkedin.com/in/fazila-sabir-adam-moosa-a719b2257' target='_blank' rel='noopener'>LinkedIn ↗</a></div><div class='status'>Priority outreach.</div></article><article class='card'><div class='tier'>A — Contact first</div><div class='name'>Gabriel Suzette (Infinit001)</div><div class='role'>Local Technical Generalist / Product Prototyper<span class='fit'>9.5/10</span></div><div class='meta'><div><b>Locality</b><p>Mahé, Seychelles</p></div><div><b>Public evidence</b><p>Next.js, TypeScript, Tailwind, Django, PostgreSQL, Vercel/Railway; local commercial projects.</p></div></div><div class='links'><a href='https://gabriel.software/' target='_blank' rel='noopener'>Personal site ↗</a><a href='https://github.com/Infinit001' target='_blank' rel='noopener'>GitHub ↗</a></div><div class='status'>Priority outreach.</div></article><article class='card'><div class='tier'>A — Contact first</div><div class='name'>Neranjan Dickson</div><div class='role'>Systems / Infrastructure / IT Operations<span class='fit'>9.4/10</span></div><div class='meta'><div><b>Locality</b><p>Seychelles</p></div><div><b>Public evidence</b><p>10+ years IT; MCSA/MCTS/MCP; Windows server, AD, Exchange, IIS, WSUS, DHCP, security, Linux.</p></div></div><div class='links'><a href='https://sc.linkedin.com/in/neranjan-dickson-061ba825' target='_blank' rel='noopener'>LinkedIn ↗</a></div><div class='status'>Priority outreach.</div></article><article class='card'><div class='tier'>A — Contact first</div><div class='name'>Lyroy Camille</div><div class='role'>GIS / Data / Digital Twin Lead<span class='fit'>9.4/10</span></div><div class='meta'><div><b>Locality</b><p>Victoria, Seychelles</p></div><div><b>Public evidence</b><p>7+ years GIS/data; spatial data, QGIS/PostGIS, remote sensing; official records identify Seychelles.</p></div></div><div class='links'><a href='https://sc.linkedin.com/in/lyroy-camille-1041aa142' target='_blank' rel='noopener'>LinkedIn ↗</a><a href='https://services.incois.gov.in/documents/ITCOocean/Listofparticipants_gisapplicationscourse.pdf' target='_blank' rel='noopener'>Official GIS record ↗</a><a href='https://www.unccd.int/sites/default/files/prais-legacy/Seychelles/2018/annexes/Land%20Degradation%20Neutrality%20%20Target%20Report%20Seychelles%20Final%20July%202018.pdf' target='_blank' rel='noopener'>UNCCD source ↗</a></div><div class='status'>Priority outreach.</div></article><article class='card'><div class='tier'>A — Contact first</div><div class='name'>Tim Geda</div><div class='role'>Geospatial / GIS / Digital Twin Specialist<span class='fit'>9.2/10</span></div><div class='meta'><div><b>Locality</b><p>Seychelles</p></div><div><b>Public evidence</b><p>GIS Technician, Ministry of Lands and Housing Seychelles; geodesy and mapping.</p></div></div><div class='links'><a href='https://sc.linkedin.com/in/tim-geda-72678252' target='_blank' rel='noopener'>LinkedIn ↗</a></div><div class='status'>Priority outreach.</div></article><article class='card'><div class='tier'>A — Contact first</div><div class='name'>Evans Delcy, MSc</div><div class='role'>Cybersecurity / Database / IT Infrastructure / Research<span class='fit'>9.1/10</span></div><div class='meta'><div><b>Locality</b><p>Seychelles</p></div><div><b>Public evidence</b><p>Cybersecurity, web development, databases, information security; PhD work in cyberbullying detection.</p></div></div><div class='links'><a href='https://sc.linkedin.com/in/evans-delcy-msc-57ba52139' target='_blank' rel='noopener'>LinkedIn ↗</a></div><div class='status'>Priority outreach.</div></article><article class='card'><div class='tier'>A — Contact first</div><div class='name'>Dante Dominic Lespoir</div><div class='role'>Scientific Game / Creative Technology Junior<span class='fit'>9.0/10</span></div><div class='meta'><div><b>Locality</b><p>Mahé, Seychelles</p></div><div><b>Public evidence</b><p>Gaming, art, animation, computing; electrical/electronics qualification; information systems studies.</p></div></div><div class='links'><a href='https://dantelespoir.github.io/Webpage/' target='_blank' rel='noopener'>Personal site ↗</a><a href='https://www.youtube.com/@Danlespoir' target='_blank' rel='noopener'>YouTube ↗</a><a href='https://github.com/dantelespoir' target='_blank' rel='noopener'>GitHub ↗</a></div><div class='status'>Priority outreach.</div></article><article class='card'><div class='tier'>B — Technical interview</div><div class='name'>Abdullah Rashid (AbdullahRashid133)</div><div class='role'>Unity 2D/3D / Metaverse Junior<span class='fit'>8.9/10</span></div><div class='meta'><div><b>Locality</b><p>Seychelles indicated; verify</p></div><div><b>Public evidence</b><p>Public profile indexed as Seychelles; Unity 2D/3D and metaverse developer.</p></div></div><div class='links'><a href='https://github.com/AbdullahRashid133' target='_blank' rel='noopener'>GitHub ↗</a></div><div class='status'>Interview after portfolio/availability check.</div></article><article class='card'><div class='tier'>B — Technical interview</div><div class='name'>Mervin Albert</div><div class='role'>Software Developer / Enterprise Web Integration<span class='fit'>8.7/10</span></div><div class='meta'><div><b>Locality</b><p>Victoria, Seychelles</p></div><div><b>Public evidence</b><p>Seychelles Revenue Commission; public recommendation describes skilled software delivery.</p></div></div><div class='links'><a href='https://sc.linkedin.com/in/mervin-albert-3223555a' target='_blank' rel='noopener'>LinkedIn ↗</a></div><div class='status'>Interview after portfolio/availability check.</div></article><article class='card'><div class='tier'>B — Technical interview</div><div class='name'>Venillson Payet</div><div class='role'>Network / Security / DevOps Assistant<span class='fit'>8.5/10</span></div><div class='meta'><div><b>Locality</b><p>Victoria, Seychelles</p></div><div><b>Public evidence</b><p>CCNA prep, CompTIA Security+ prep, DevOps training, computer/device support.</p></div></div><div class='links'><a href='https://sc.linkedin.com/in/venillson-payet-97b1a71b5' target='_blank' rel='noopener'>LinkedIn ↗</a></div><div class='status'>Interview after portfolio/availability check.</div></article><article class='card'><div class='tier'>B — Technical interview</div><div class='name'>Thierry Allio</div><div class='role'>AI Governance / Cybersecurity / GRC<span class='fit'>8.4/10</span></div><div class='meta'><div><b>Locality</b><p>Seychelles</p></div><div><b>Public evidence</b><p>AI/cybersecurity awareness, governance, risk, compliance, secure adoption.</p></div></div><div class='links'><a href='https://sc.linkedin.com/in/thierryallio97' target='_blank' rel='noopener'>LinkedIn ↗</a><a href='https://www.linkedin.com/posts/thierryallio97_a-new-professional-chapter-after-completing-activity-7418725922427600897-3S0Y' target='_blank' rel='noopener'>LinkedIn ↗</a></div><div class='status'>Interview after portfolio/availability check.</div></article><article class='card'><div class='tier'>B — Technical interview</div><div class='name'>Adrien Hoareau</div><div class='role'>Junior Developer / Rapid Prototyper<span class='fit'>8.5/10</span></div><div class='meta'><div><b>Locality</b><p>Seychelles; hackathon evidence</p></div><div><b>Public evidence</b><p>Member of Linux Goats, winner of Seychelles Hackathon 2026; technical contribution to verify.</p></div></div><div class='links'><a href='https://www.google.com/search?q=%22Adrien+Hoareau%22+Seychelles+Hackathon+2026' target='_blank' rel='noopener'>Search / verification ↗</a></div><div class='status'>Interview after portfolio/availability check.</div></article><article class='card'><div class='tier'>B — Technical interview</div><div class='name'>Denis Hoareau</div><div class='role'>Junior Developer / Rapid Prototyper<span class='fit'>8.3/10</span></div><div class='meta'><div><b>Locality</b><p>Seychelles; hackathon evidence</p></div><div><b>Public evidence</b><p>Member of Linux Goats, winner of Seychelles Hackathon 2026; technical contribution to verify.</p></div></div><div class='links'><a href='https://www.google.com/search?q=%22Denis+Hoareau%22+Seychelles+Hackathon+2026' target='_blank' rel='noopener'>Search / verification ↗</a></div><div class='status'>Interview after portfolio/availability check.</div></article><article class='card'><div class='tier'>C — Reserve / verify</div><div class='name'>Stephen Jean-Baptiste-Faure</div><div class='role'>Local IT / Technology Operations / Vendor Relations<span class='fit'>7.9/10</span></div><div class='meta'><div><b>Locality</b><p>Seychelles</p></div><div><b>Public evidence</b><p>Victoria Computer Services; Xerox representation; long local commercial IT experience.</p></div></div><div class='links'><a href='https://sc.linkedin.com/in/stephen-jean-baptiste-faure-029a0148' target='_blank' rel='noopener'>LinkedIn ↗</a></div><div class='status'>Reserve candidate; verify current location/availability/status.</div></article><article class='card'><div class='tier'>C — Reserve / verify</div><div class='name'>Frank Okoth</div><div class='role'>IT Engineer / Systems Support / Full-stack Junior<span class='fit'>7.5/10</span></div><div class='meta'><div><b>Locality</b><p>Based in Seychelles; nationality publicly listed as Kenyan</p></div><div><b>Public evidence</b><p>Systems support, networking, web/full-stack; current Seychelles hospitality IT role; not a local citizen on one public profile.</p></div></div><div class='links'><a href='https://frankokoth.github.io/about.html' target='_blank' rel='noopener'>Profile ↗</a><a href='https://sc.linkedin.com/in/frank-okoth' target='_blank' rel='noopener'>LinkedIn ↗</a><a href='https://sc.bold.pro/my/frank-okothogweno' target='_blank' rel='noopener'>Profile ↗</a><a href='https://www.gulftalent.com/people/frank-okoth-5651981' target='_blank' rel='noopener'>Profile ↗</a></div><div class='status'>Reserve candidate; verify current location/availability/status.</div></article><article class='card'><div class='tier'>C — Reserve / verify</div><div class='name'>Aubrey Marie</div><div class='role'>Senior IT Infrastructure / Systems Administration<span class='fit'>8.2/10</span></div><div class='meta'><div><b>Locality</b><p>Seychelles indicated; current role/location verify</p></div><div><b>Public evidence</b><p>IT Manager; infrastructure and systems administration.</p></div></div><div class='links'><a href='https://sc.linkedin.com/in/aubrey-marie-99868385' target='_blank' rel='noopener'>LinkedIn ↗</a></div><div class='status'>Reserve candidate; verify current location/availability/status.</div></article><article class='card'><div class='tier'>C — Reserve / verify</div><div class='name'>Suraj Vazhakalayil</div><div class='role'>IT Manager / Infrastructure<span class='fit'>7.8/10</span></div><div class='meta'><div><b>Locality</b><p>Works in Seychelles; profile location UK</p></div><div><b>Public evidence</b><p>IT Manager at AVANI Seychelles Barbarons Resort & Spa; senior hospitality IT.</p></div></div><div class='links'><a href='https://uk.linkedin.com/in/suraj-vazhakalayil-159a0bbb' target='_blank' rel='noopener'>LinkedIn ↗</a></div><div class='status'>Reserve candidate; verify current location/availability/status.</div></article><article class='card'><div class='tier'>B — Technical interview</div><div class='name'>Sviatoslav Bachynskyi</div><div class='role'>Full-stack / Backend / Database / Networking<span class='fit'>8.8/10</span></div><div class='meta'><div><b>Locality</b><p>Victoria, Seychelles indicated; status verify</p></div><div><b>Public evidence</b><p>C#, ASP.NET Core, TypeScript, SQL, networking, databases; Seychelles tech-market footprint.</p></div></div><div class='links'><a href='https://www.linkedin.com/search/results/people/?keywords=Sviatoslav%20Bachynskyi%20Seychelles' target='_blank' rel='noopener'>LinkedIn ↗</a></div><div class='status'>Interview after portfolio/availability check.</div></article></section><section class='panel'><h2>Verification rules</h2><p class='note'>Location is not citizenship. Public profiles can establish current work/location signals, but generally do not prove citizenship or work eligibility. One stronger locality signal is the official 2017 INCOIS list which explicitly records Lyroy Camille with country Seychelles and an organisation in Victoria.</p><p class='note'>Some candidates are clearly working in Seychelles but may be foreign nationals. They are kept in the dossier because they may still be excellent hires or contractors, but they should not be presented as Seychellois without verification.</p></section><div class='footer'><span>qFoldIT // SEYCHELLES TALENT DOSSIER // 2026-08-20</span>
+                                <span>
+                                    Public-source research; candidate availability and eligibility require direct verification.
+                            </span>
+                        </div>
+                    </div>
+                        </body>
+                        </html>
