@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Foldnite — Collaborative Scientific Mission Room</title>
+  <meta name="description" content="Foldnite collaborative mode prototype: scientists, game designers, players and AI co-create playable Scientific Missions.">
+  <style>
+    :root{--bg:#071018;--panel:#0b151e;--panel2:#0f1c27;--line:#23404f;--text:#eaf7fb;--muted:#819aa7;--cyan:#65e8ff;--green:#b8ff3d;--amber:#ffbf5b;--violet:#a98bff;--red:#ff6f7d}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:radial-gradient(circle at top,#10202b 0,#071018 45%,#03070b 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+    body{overflow-x:hidden}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    .shell{max-width:1500px;margin:0 auto;padding:18px}
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 14px;border:1px solid var(--line);background:rgba(7,16,24,.9);border-radius:14px;position:sticky;top:10px;z-index:20;backdrop-filter:blur(10px)}
+    .brand{display:flex;align-items:center;gap:10px}.logo{width:34px;height:34px;border:1px solid #6acfe0;border-radius:10px;display:grid;place-items:center;font-weight:900;color:var(--cyan);box-shadow:0 0 18px rgba(101,232,255,.14)}
+    .brand strong{display:block;font-size:14px}.brand span{font-size:10px;color:var(--muted)}
+    .status{display:flex;align-items:center;gap:7px;color:#92f8ae;font-size:11px}.dot{width:8px;height:8px;border-radius:50%;background:#65ff93;box-shadow:0 0 12px #65ff93}
+    .toolbar{display:flex;flex-wrap:wrap;gap:7px}.toolbar button,.btn{border:1px solid var(--line);background:#0c1720;color:#cbe0e7;border-radius:8px;padding:8px 10px;font-size:11px}.toolbar button:hover,.btn:hover{border-color:var(--cyan);color:#fff}.btn.primary{background:#11303a;border-color:#2b7888;color:#dffaff}.btn.success{background:#17290a;border-color:#496d19;color:#dfffaa}.btn.warn{background:#2a1c0b;border-color:#6f4e20;color:#ffd594}
+    .grid{display:grid;grid-template-columns:280px 1fr 320px;gap:12px;margin-top:12px}.col{display:grid;gap:12px;align-content:start}
+    .panel{border:1px solid var(--line);background:rgba(11,21,30,.94);border-radius:14px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.18)}
+    .head{padding:12px 14px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.head h3{margin:0;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.head span{font-size:10px;color:var(--muted)}.body{padding:12px 14px}
+    .mission-card{border:1px solid #284654;border-radius:10px;padding:11px;background:linear-gradient(145deg,#0c1822,#09131b)}.mission-card h2{font-size:18px;margin:0 0 6px}.mission-card p{font-size:11px;color:var(--muted);line-height:1.45;margin:0}.kv{display:grid;gap:7px;margin-top:10px}.kv div{display:flex;justify-content:space-between;gap:10px;padding-bottom:7px;border-bottom:1px dashed #203743;font-size:10px}.kv b{color:#95aeb9}.kv span{text-align:right}
+    .roles{display:grid;gap:8px}.role{display:grid;grid-template-columns:32px 1fr auto;align-items:center;gap:8px;padding:9px;border:1px solid #203743;border-radius:10px;background:#09131a}.role .avatar{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;font-size:13px}.role strong{display:block;font-size:11px}.role small{color:var(--muted);font-size:9px}.role .tag{font-size:8px;color:#0a1117;background:#b8ff3d;padding:3px 5px;border-radius:5px;font-weight:800}
+    .canvas{position:relative;min-height:500px;background:linear-gradient(180deg,#102537 0,#07121b 58%,#050a10 100%)}.canvas .sky{position:absolute;inset:0;background:radial-gradient(circle at 15% 20%,rgba(101,232,255,.12),transparent 20%),radial-gradient(circle at 75% 10%,rgba(169,139,255,.13),transparent 26%)}
+    .world{position:absolute;inset:48px 32px 28px;border:1px solid #2a4552;border-radius:16px;overflow:hidden;background:linear-gradient(180deg,rgba(28,56,72,.26),rgba(2,7,11,.7));box-shadow:inset 0 0 60px rgba(0,0,0,.35)}
+    .mountain{position:absolute;bottom:34%;width:0;height:0;border-left:100px solid transparent;border-right:100px solid transparent;border-bottom:180px solid #172b36;filter:drop-shadow(0 14px 0 rgba(0,0,0,.2))}.m1{left:8%}.m2{left:38%;transform:scale(1.2)}.m3{right:8%;transform:scale(.85)}
+    .ground{position:absolute;left:0;right:0;bottom:0;height:36%;background:repeating-linear-gradient(0deg,rgba(184,255,61,.06) 0 18px,rgba(101,232,255,.03) 18px 36px),linear-gradient(180deg,#102119,#0b1610)}
+    .beacon{position:absolute;width:90px;height:90px;border-radius:50%;border:1px solid rgba(101,232,255,.5);box-shadow:0 0 0 12px rgba(101,232,255,.04),0 0 50px rgba(101,232,255,.22);display:grid;place-items:center;color:var(--cyan);font-size:30px}.b1{left:18%;bottom:23%}.b2{left:50%;bottom:31%;border-color:rgba(184,255,61,.5);color:var(--green);box-shadow:0 0 0 12px rgba(184,255,61,.04),0 0 50px rgba(184,255,61,.16)}.b3{right:18%;bottom:20%;border-color:rgba(169,139,255,.5);color:var(--violet)}
+    .player{position:absolute;width:72px;height:104px;display:grid;place-items:end center}.player::before{content:"";width:32px;height:32px;border-radius:50%;background:#d7c2a7;border:2px solid #091016}.player::after{content:"";width:44px;height:60px;border-radius:12px 12px 8px 8px;background:linear-gradient(180deg,#244f61,#101a21);border:1px solid #43687a;box-shadow:0 10px 16px rgba(0,0,0,.3)}.p1{left:31%;bottom:20%}.p2{left:56%;bottom:29%;transform:scale(.88)}.p3{right:26%;bottom:18%;transform:scale(.82)}
+    .label{position:absolute;transform:translate(-50%,-6px);font-size:9px;padding:4px 7px;border:1px solid #2d4c5a;background:#09141c;border-radius:7px;white-space:nowrap}.l1{left:36%;bottom:37%}.l2{left:59%;bottom:49%}.l3{right:22%;bottom:35%}
+    .hud{position:absolute;left:14px;right:14px;top:14px;display:flex;justify-content:space-between;gap:10px;pointer-events:none}.hud-chip{padding:8px 9px;border:1px solid #294655;background:rgba(5,13,19,.86);border-radius:8px;font-size:9px}.hud-chip strong{display:block;color:var(--cyan);font-size:12px}.hud-bottom{position:absolute;left:14px;right:14px;bottom:14px;display:flex;justify-content:space-between;gap:10px;pointer-events:none}.metric{padding:7px 9px;background:rgba(5,13,19,.88);border:1px solid #294655;border-radius:8px;font-size:9px;color:var(--muted)}.metric b{color:#f4fbff}
+    .steps{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}.step{border:1px solid #223a47;border-radius:8px;padding:8px;background:#09131b;font-size:9px;text-align:center;color:var(--muted)}.step.active{border-color:var(--cyan);color:#e6fbff;box-shadow:0 0 16px rgba(101,232,255,.08)}.step.done{border-color:#526d23;color:#c9ef84;background:#111d0b}
+    .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:7px}.ip{padding:9px;border:1px solid #223a47;border-radius:8px;background:#09131b}.ip strong{font-size:10px;display:block}.ip small{display:block;color:var(--muted);font-size:8px;margin-top:3px}.ip.selected{border-color:#7da4b2;box-shadow:inset 0 0 0 1px rgba(125,164,178,.2)}.ip .mode{margin-top:6px;color:var(--green);font-size:8px;font-weight:800}
+    .log{height:190px;overflow:auto;display:grid;gap:6px;font:9px ui-monospace,SFMono-Regular,Consolas,monospace}.event{padding:7px;border-left:2px solid #294654;background:#09131b;color:#97aeb8}.event .who{color:var(--cyan)}.event .time{float:right;color:#58727e}
+    .compose{display:grid;gap:7px}.compose textarea{min-height:72px;resize:vertical;background:#071018;border:1px solid #23404f;border-radius:8px;color:#eaf7fb;padding:9px;font-size:10px}.row{display:flex;gap:7px;flex-wrap:wrap}.row>*{flex:1;min-width:100px}
+    .gate{display:grid;gap:6px}.gate-row{display:flex;justify-content:space-between;gap:8px;font-size:10px;padding:7px 0;border-bottom:1px dashed #203743}.ok{color:var(--green)}.review{color:var(--amber)}.blocked{color:var(--red)}
+    .progress{height:8px;background:#0b151c;border:1px solid #1e3540;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--green));width:64%}
+    .footer{margin-top:12px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;color:var(--muted);font-size:10px;text-align:center}.footer b{color:#dcecf1}
+    @media(max-width:1180px){.grid{grid-template-columns:250px 1fr}.grid>.col:last-child{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr));align-items:start}.log{height:150px}}
+    @media(max-width:820px){.grid{grid-template-columns:1fr}.grid>.col:last-child{grid-template-columns:1fr}.canvas{min-height:460px}.steps{grid-template-columns:repeat(3,1fr)}.topbar{position:static}.toolbar{display:none}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <header class="topbar">
+    <div class="brand"><div class="logo">Q</div><div><strong>Foldnite · Node + Forge</strong><span>Collaborative Scientific Mission Room · browser prototype</span></div></div>
+    <div class="status"><span class="dot"></span> ROOM LIVE · DEMO STATE</div>
+    <div class="toolbar"><button onclick="newRoom()">New room</button><button onclick="addEvent('Producer','Snapshot created')">Snapshot</button><button onclick="exportState()">Export</button></div>
+  </header>
+
+  <main class="grid">
+    <aside class="col">
+      <section class="panel">
+        <div class="head"><div><h3>Mission Node</h3><span>Corporate request → Foldnite</span></div></div>
+        <div class="body">
+          <div class="mission-card"><h2 id="mission-title">Antibiotic 2.0</h2><p>Turn a qualified antimicrobial-resistance research objective into a cooperative UEFN mission.</p>
+            <div class="kv"><div><b>Source</b><span>CORPORATE_APP</span></div><div><b>Runtime</b><span>UEFN + Verse</span></div><div><b>Authority</b><span>OpenStructure</span></div><div><b>State</b><span class="review">PARTNER REVIEW</span></div></div>
+          </div>
+          <div style="height:10px"></div>
+          <button class="btn primary" style="width:100%" onclick="cycleMission()">Rotate mission sample</button>
+        </div>
+      </section>
+      <section class="panel">
+        <div class="head"><div><h3>Team Node</h3><span>Collaborative roles</span></div></div>
+        <div class="body roles" id="roles"></div>
+      </section>
+      <section class="panel">
+        <div class="head"><div><h3>Mission Progress</h3><span id="progress-label">64% compiled</span></div></div>
+        <div class="body"><div class="progress"><i id="progress-bar"></i></div><div style="height:8px"></div><div class="steps" id="steps"></div></div>
+      </section>
+    </aside>
+
+    <section class="panel">
+      <div class="head"><div><h3>Collaborative UEFN World</h3><span>shared spatial search · narrative · scientific mission</span></div><div class="row"><button class="btn success" onclick="simulateAction('Player','Placed candidate')">Build</button><button class="btn primary" onclick="simulateAction('AI Agent','Suggested mutation')">Ask AI</button><button class="btn warn" onclick="simulateAction('Scientist','Requested validation')">Validate</button></div></div>
+      <div class="canvas">
+        <div class="sky"></div><div class="world">
+          <div class="mountain m1"></div><div class="mountain m2"></div><div class="mountain m3"></div><div class="ground"></div>
+          <div class="beacon b1">⌬</div><div class="beacon b2">⌁</div><div class="beacon b3">✦</div>
+          <div class="player p1"></div><div class="player p2"></div><div class="player p3"></div>
+          <div class="label l1">Scientist · target zone</div><div class="label l2">MCP candidate forge</div><div class="label l3">Playtest / feedback</div>
+          <div class="hud"><div class="hud-chip"><strong>AMR-001</strong>Mission objective</div><div class="hud-chip"><strong>SYNCED</strong>Yjs room</div><div class="hud-chip"><strong id="hud-players">4</strong>participants</div></div>
+          <div class="hud-bottom"><div class="metric">Energy <b>-42.7 kcal/mol</b></div><div class="metric">RMSD <b>2.31 Å</b></div><div class="metric">Validation <b class="ok">READY</b></div><div class="metric">Evidence <b id="hud-evidence">DRAFT</b></div></div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="col">
+      <section class="panel">
+        <div class="head"><div><h3>Narrative Control</h3><span>Creative surface · governance downstream</span></div><button class="btn" onclick="addEvent('Narrative','Draft updated')">Edit</button></div>
+        <div class="body"><div class="kv"><div><b>World</b><span>Humanity × Science × Discovery</span></div><div><b>Mode</b><span>Cooperative research</span></div><div><b>Audience</b><span>Players · creators · students</span></div><div><b>Disclosure</b><span class="ok">Scientific interactive</span></div></div></div>
+      </section>
+      <section class="panel">
+        <div class="head"><div><h3>IP / World Selection</h3><span>Design availability ≠ authorization</span></div></div>
+        <div class="body"><div class="cards" id="ips"></div><div style="height:7px"></div><button class="btn" style="width:100%" onclick="addEvent('Rights','Selected world sent to rights review')">Send rights review</button></div>
+      </section>
+      <section class="panel">
+        <div class="head"><div><h3>Scientific MCP</h3><span>provider-neutral tool layer</span></div></div>
+        <div class="body"><div class="kv"><div><b>Input</b><span>PDB / CIF</span></div><div><b>Tooling</b><span>Scientific MCP Mesh</span></div><div><b>Method</b><span id="method">OpenStructure-ready workflow</span></div><div><b>Authority</b><span class="ok">Validator</span></div></div><div style="height:8px"></div><button class="btn primary" style="width:100%" onclick="rotateMethod()">Swap scientific method</button></div>
+      </section>
+      <section class="panel">
+        <div class="head"><div><h3>Release Gates</h3><span>everything stays runnable until release</span></div></div>
+        <div class="body gate" id="gates"></div>
+      </section>
+      <section class="panel">
+        <div class="head"><div><h3>Mission Chat / Event Log</h3><span>shared intent + provenance preview</span></div></div>
+        <div class="body"><div class="log" id="log"></div><div style="height:8px"></div><div class="compose"><textarea id="msg" placeholder="Send a team note…"></textarea><div class="row"><button class="btn primary" onclick="sendNote()">Post note</button><button class="btn" onclick="clearLog()">Clear</button></div></div></div>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="footer"><b>Foldnite prototype</b> · Collaborative mode testing surface. This page uses simulated local room state; it does not grant third-party IP rights, perform scientific validation, or settle payments. Authoritative systems remain external.</footer>
+</div>
+
+<script>
+  const state={missionIndex:0,progress:64,ip:'Original Universe',method:'OpenStructure-ready workflow',evidence:'DRAFT'};
+  const missions=[
+    {id:'AMR-001',title:'Antibiotic 2.0',objective:'Explore and prioritize novel small-molecule candidates for an antimicrobial-resistance program.',source:'CORPORATE_APP'},
+    {id:'PROT-007',title:'Protein Design Discovery',objective:'Co-design and validate a protein candidate under mission-specific structural constraints.',source:'CORPORATE_APP'},
+    {id:'MAT-014',title:'Materials Search',objective:'Explore a crystal/material candidate space with player-guided structural optimization.',source:'CORPORATE_APP'}
+  ];
+  const roles=[['👩‍🔬','Scientist','Scientific objective','SCIENCE'],['🎮','Game Designer','Gameplay + pacing','DESIGN'],['🧑','Player','Spatial search + playtest','PLAYER'],['🤖','AI Agent','MCP assistance + suggestions','AI']];
+  const ips=[['Original Universe','OWNED'],['LEGO','DESIGN AVAILABLE'],['Walt Disney','DESIGN AVAILABLE'],['Pixar','DESIGN AVAILABLE'],['WBD','DESIGN AVAILABLE'],['Fortnite / UEFN','PLATFORM'],['Other IP','REVIEW TARGET']];
+  const methods=['OpenStructure-ready workflow','Scientific MCP + domain validator','Structure-guided candidate search','Custom partner methodology'];
+  const stepNames=['Brief','Design','Narrative','Forge','Playtest','Validate'];
+
+  function render(){
+    const m=missions[state.missionIndex];
+    document.getElementById('mission-title').textContent=m.title;
+    document.querySelector('.mission-card p').textContent=m.objective;
+    document.getElementById('progress-label').textContent=state.progress+'% compiled';
+    document.getElementById('progress-bar').style.width=state.progress+'%';
+    document.getElementById('hud-evidence').textContent=state.evidence;
+    document.getElementById('method').textContent=state.method;
+    document.getElementById('roles').innerHTML=roles.map((r,i)=>`<div class="role"><div class="avatar">${r[0]}</div><div><strong>${r[1]}</strong><small>${r[2]}</small></div><span class="tag">${i===2?'YOU':r[3]}</span></div>`).join('');
+    document.getElementById('ips').innerHTML=ips.map(([name,mode])=>`<button class="ip ${state.ip===name?'selected':''}" onclick="selectIp('${name.replaceAll("'","\\'")}')"><strong>${name}</strong><small>${mode}</small><div class="mode">USE IN DESIGN</div></button>`).join('');
+    document.getElementById('steps').innerHTML=stepNames.map((s,i)=>`<div class="step ${i<Math.floor(state.progress/17)?'done':''} ${i===Math.floor(state.progress/17)&&i<6?'active':''}">${s}</div>`).join('');
+    const gateItems=[['Gameplay target',state.progress>=75?'OK':'IN PROGRESS'],['Narrative package','DRAFT'],['IP clearance',state.ip==='Original Universe'?'OK':'REVIEW REQUIRED'],['Scientific evidence',state.evidence==='ACCEPTED'?'OK':'PENDING'],['Attribution','READY WHEN EVIDENCE ACCEPTED']];
+    document.getElementById('gates').innerHTML=gateItems.map(([a,b])=>`<div class="gate-row"><b>${a}</b><span class="${b==='OK'?'ok':b.includes('REVIEW')?'review':'review'}">${b}</span></div>`).join('');
+  }
+  function addEvent(who,text){
+    const el=document.getElementById('log');const row=document.createElement('div');row.className='event';row.innerHTML=`<span class="who">${who}</span> — ${text}<span class="time">${new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</span>`;el.prepend(row);while(el.children.length>40)el.lastChild.remove();
+  }
+  function simulateAction(who,text){state.progress=Math.min(100,state.progress+3);if(who==='Scientist'){state.evidence='PENDING'}addEvent(who,text);render();}
+  function selectIp(name){state.ip=name;addEvent('Team','Selected '+name+' for prototype design; rights remain separate from creative availability.');render();}
+  function rotateMethod(){state.method=methods[(methods.indexOf(state.method)+1)%methods.length];addEvent('Scientific MCP','Method changed to '+state.method);render();}
+  function cycleMission(){state.missionIndex=(state.missionIndex+1)%missions.length;state.progress=54;state.evidence='DRAFT';addEvent('Producer','Switched mission sample to '+missions[state.missionIndex].id);render();}
+  function newRoom(){state.progress=22;state.evidence='DRAFT';addEvent('System','Created new local Foldnite collaboration room');render();}
+  function sendNote(){const t=document.getElementById('msg').value.trim();if(!t)return;addEvent('You',t);document.getElementById('msg').value='';state.progress=Math.min(100,state.progress+1);render();}
+  function clearLog(){document.getElementById('log').innerHTML='';}
+  function exportState(){const data={product:'Foldnite',mode:'collaborative-scientific-mission',mission:missions[state.missionIndex],state,events:[...document.querySelectorAll('#log .event')].map(x=>x.textContent.trim())};const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='foldnite-collab-state.json';a.click();URL.revokeObjectURL(a.href);addEvent('System','Exported local room state');}
+  render();
+  addEvent('System','Foldnite collaboration room initialized');
+  addEvent('Scientist','Scientific objective attached to mission contract');
+  addEvent('Game Designer','Opened level design surface');
+  addEvent('Player','Joined playtest room');
+  addEvent('AI Agent','Scientific MCP tools available');
+</script>
+</body>
+</html>
