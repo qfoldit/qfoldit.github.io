@@ -1,971 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fortnite · qFoldIT · UEFN</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-    <style>
-        @font-face {
-            font-family: 'Burbank Big Condensed';
-            src: url('https://foldnite.github.io/assets/font/burbankbigcondensed_bold.otf') format('opentype');
-            font-weight: 700;
-            font-style: normal;
-            font-display: swap;
-        }
-        @font-face {
-            font-family: 'Burbank Big Condensed';
-            src: url('https://foldnite.github.io/assets/font/burbankbigcondensed_black.otf') format('opentype');
-            font-weight: 900;
-            font-style: normal;
-            font-display: swap;
-        }
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background: #0a0a0f;
-            font-family: 'Burbank Big Condensed', sans-serif;
-        }
-        ::-webkit-scrollbar {
-            display: none;
-            width: 0;
-            height: 0;
-        }
-        * {
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-        .hero {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
-            background: #0a0a0f;
-            overflow-y: auto;
-            user-select: none;
-            display: block;
-        }
-        .hero::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(0, 255, 255, 0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.04) 1px, transparent 1px);
-            background-size: 50px 50px;
-            background-position: 0 0;
-            pointer-events: none;
-            z-index: 0;
-            animation: gridScroll 30s linear infinite;
-        }
-        @keyframes gridScroll {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 50px 50px;
-            }
-        }
-        .hero .grid-overlay {
-            position: fixed;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(0, 255, 255, 0.015) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.015) 1px, transparent 1px);
-            background-size: 20px 20px;
-            background-position: 0 0;
-            pointer-events: none;
-            z-index: 0;
-            animation: gridScrollSmall 20s linear infinite reverse;
-        }
-        @keyframes gridScrollSmall {
-            0% {
-                background-position: 0 0;
-            }
-            100% {
-                background-position: 20px 20px;
-            }
-        }
-        .hero .scanline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.15), rgba(0, 255, 255, 0.4), rgba(0, 255, 255, 0.15), transparent);
-            z-index: 1;
-            animation: scanMove 4s ease-in-out infinite;
-            filter: blur(0.5px);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
-        }
-        @keyframes scanMove {
-            0% {
-                top: 0;
-                opacity: 0.3;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                top: 100%;
-                opacity: 0.3;
-            }
-        }
-        .hud-corner {
-            position: fixed;
-            z-index: 1;
-            pointer-events: none;
-            opacity: 0.25;
-        }
-        .hud-corner svg {
-            width: 60px;
-            height: 60px;
-        }
-        .hud-corner.tl {
-            top: 20px;
-            left: 20px;
-        }
-        .hud-corner.tr {
-            top: 20px;
-            right: 20px;
-            transform: scaleX(-1);
-        }
-        .hud-corner.bl {
-            bottom: 20px;
-            left: 20px;
-            transform: scaleY(-1);
-        }
-        .hud-corner.br {
-            bottom: 20px;
-            right: 20px;
-            transform: scale(-1, -1);
-        }
-        .hud-side {
-            position: fixed;
-            z-index: 1;
-            pointer-events: none;
-            opacity: 0.12;
-        }
-        .hud-side.left {
-            top: 80px;
-            left: 10px;
-            height: calc(100% - 160px);
-            width: 1px;
-            background: linear-gradient(to bottom, transparent, rgba(0, 255, 255, 0.3), transparent);
-        }
-        .hud-side.right {
-            top: 80px;
-            right: 10px;
-            height: calc(100% - 160px);
-            width: 1px;
-            background: linear-gradient(to bottom, transparent, rgba(0, 255, 255, 0.3), transparent);
-        }
-        .hud-particles {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 1;
-            overflow: hidden;
-        }
-        .hud-particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: rgba(0, 255, 255, 0.15);
-            border-radius: 50%;
-            animation: floatParticle 12s infinite linear;
-        }
-        .hud-particle:nth-child(1) {
-            left: 5%;
-            top: 15%;
-            animation-duration: 14s;
-        }
-        .hud-particle:nth-child(2) {
-            left: 15%;
-            top: 75%;
-            animation-duration: 18s;
-            animation-delay: 2s;
-            background: rgba(255, 0, 255, 0.1);
-        }
-        .hud-particle:nth-child(3) {
-            left: 30%;
-            top: 5%;
-            animation-duration: 16s;
-            animation-delay: 4s;
-            width: 3px;
-            height: 3px;
-        }
-        .hud-particle:nth-child(4) {
-            left: 50%;
-            top: 90%;
-            animation-duration: 20s;
-            animation-delay: 1s;
-        }
-        .hud-particle:nth-child(5) {
-            left: 70%;
-            top: 20%;
-            animation-duration: 15s;
-            animation-delay: 3s;
-            background: rgba(0, 255, 255, 0.08);
-        }
-        .hud-particle:nth-child(6) {
-            left: 85%;
-            top: 70%;
-            animation-duration: 22s;
-            animation-delay: 5s;
-            width: 3px;
-            height: 3px;
-        }
-        .hud-particle:nth-child(7) {
-            left: 92%;
-            top: 10%;
-            animation-duration: 17s;
-            animation-delay: 2.5s;
-            background: rgba(255, 0, 255, 0.08);
-        }
-        .hud-particle:nth-child(8) {
-            left: 45%;
-            top: 45%;
-            animation-duration: 19s;
-            animation-delay: 0.5s;
-        }
-        @keyframes floatParticle {
-            0% {
-                transform: translate(0, 0) scale(1);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translate(var(--tx, 40px), var(--ty, -80px)) scale(0.2);
-                opacity: 0;
-            }
-        }
-        .hud-particle:nth-child(1) {
-            --tx: 60px;
-            --ty: -120px;
-        }
-        .hud-particle:nth-child(2) {
-            --tx: -40px;
-            --ty: -80px;
-        }
-        .hud-particle:nth-child(3) {
-            --tx: 30px;
-            --ty: -140px;
-        }
-        .hud-particle:nth-child(4) {
-            --tx: -60px;
-            --ty: -100px;
-        }
-        .hud-particle:nth-child(5) {
-            --tx: 50px;
-            --ty: -130px;
-        }
-        .hud-particle:nth-child(6) {
-            --tx: -30px;
-            --ty: -110px;
-        }
-        .hud-particle:nth-child(7) {
-            --tx: 80px;
-            --ty: -90px;
-        }
-        .hud-particle:nth-child(8) {
-            --tx: -50px;
-            --ty: -150px;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foldnite —ID Card</title>
+  <meta name="description" content="Foldnite Organization ID Card — Scientific Mission Infrastructure and Interactive Scientific Runtime Network." />
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://ahiakwa.github.io/assets/adinkra-icons/css/icons.css" />
+  <style>
+    @font-face {
+      font-family: 'Burbank Big Condensed';
+      src: url('https://foldnite.github.io/assets/font/burbankbigcondensed_bold.otf') format('opentype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Burbank Big Condensed';
+      src: url('https://foldnite.github.io/assets/font/burbankbigcondensed_black.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
 
-        .hud-cross {
-            position: fixed;
-            z-index: 1;
-            pointer-events: none;
-            opacity: 0.06;
-            transform: translateY(-2vh);
-        }
-        .hud-cross::before,
-        .hud-cross::after {
-            content: '';
-            position: absolute;
-            background: rgba(0, 255, 255, 0.3);
-        }
-        .hud-cross::before {
-            width: 1px;
-            height: 120px;
-            top: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        .hud-cross::after {
-            width: 120px;
-            height: 1px;
-            top: 50%;
-            left: -60px;
-            transform: translateY(-50%);
-        }
-        .hud-cross .dot {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: rgba(0, 255, 255, 0.2);
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-        }
+    :root {
+      --bg: #151b23;
+      --panel: #1d2530;
+      --panel-2: #232d39;
+      --text: #f4f7fb;
+      --muted: #9eabb9;
+      --line: rgba(255,255,255,.10);
+      --accent: #7dd3fc;
+      --accent-2: #a78bfa;
+      --success: #86efac;
+      --font-display: 'Burbank Big Condensed', 'Impact', 'Arial Black', sans-serif;
+    }
 
-        .hud-label {
-            position: fixed;
-            z-index: 1;
-            font-family: 'Burbank Big Condensed', sans-serif;
-            font-weight: 700;
-            font-size: clamp(0.5rem, 0.6vw, 0.8rem);
-            letter-spacing: 0.3em;
-            color: rgba(0, 255, 255, 0.08);
-            text-transform: uppercase;
-            pointer-events: none;
-            transform: translateY(-2vh);
-        }
-        .hud-label.tl {
-            top: 85px;
-            left: 30px;
-        }
-        .hud-label.tr {
-            top: 85px;
-            right: 30px;
-        }
-        .hud-label.bl {
-            bottom: 85px;
-            left: 30px;
-        }
-        .hud-label.br {
-            bottom: 85px;
-            right: 30px;
-        }
-        .hud-label.mid-left {
-            left: 30px;
-            top: 50%;
-            transform: translateY(-50%) translateY(-2vh);
-            writing-mode: vertical-rl;
-            letter-spacing: 0.4em;
-            font-size: clamp(0.6rem, 0.8vw, 1rem);
-            opacity: 0.6;
-        }
-        .hud-label.mid-right {
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%) translateY(-2vh);
-            writing-mode: vertical-rl;
-            letter-spacing: 0.4em;
-            font-size: clamp(0.6rem, 0.8vw, 1rem);
-            opacity: 0.6;
-        }
-        .hero .glow-overlay {
-            position: fixed;
-            inset: 0;
-            background:
-                radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.03) 0%, transparent 60%),
-                radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.02) 0%, transparent 60%);
-            pointer-events: none;
-            z-index: 0;
-        }
+    ::-webkit-scrollbar{width:0px;}
 
-        .hero-logos {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-            background: transparent;
-            pointer-events: none;
-        }
-        .hero-logos .logo {
-            flex: 1 1 0;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 3rem;
-        }
-        .hero-logos .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.05));
-            transition: filter 0.3s ease;
-        }
-        .hero-logos .logo-wbg {
-            background: transparent;
-            border: none;
-        }
-        .hero-logos .logo-disney {
-            background: transparent;
-            border: none;
-        }
-
-        .top-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 20;
-            padding: 1.2rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            pointer-events: none;
-            background: transparent;
-            border-bottom: none;
-            box-shadow: none;
-        }
-        .top-bar>* {
-            pointer-events: auto;
-        }
-
-        .glass-left {
-            background: rgba(10, 10, 15, 0.35);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-            padding: 8px 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            pointer-events: auto;
-            height: clamp(64px, 8vw, 112px);
-        }
-        .glass-left .lego-logo {
-            height: 100%;
-            width: auto;
-            background: transparent;
-            backdrop-filter: none;
-            border: none;
-            box-shadow: none;
-            padding: 0;
-        }
-        .glass-left .lego-logo img {
-            height: 100%;
-            width: auto;
-            display: block;
-        }
-
-        .glass-right {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            pointer-events: auto;
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            padding: 0;
-        }
-
-        .epic-block {
-            background: rgba(10, 10, 15, 0.35);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-            padding: 0.4rem 0.6rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            height: clamp(64px, 8vw, 112px);
-        }
-        .epic-block .epic-logo-small {
-            height: 100%;
-            width: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .epic-block .epic-logo-small img {
-            height: 100%;
-            width: auto;
-            display: block;
-            filter: brightness(0) invert(1);
-            opacity: 0.95;
-            transition: opacity 0.3s ease;
-        }
-        .epic-block .epic-logo-small img:hover {
-            opacity: 1;
-        }
-
-        .title-block {
-            background: rgba(10, 10, 15, 0.35);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 6px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-            padding: 0 1.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: clamp(64px, 8vw, 112px);
-        }
-        .title-block .main-title {
-            background: transparent;
-            backdrop-filter: none;
-            border: none;
-            box-shadow: none;
-            padding: 0;
-            font-family: 'Burbank Big Condensed', sans-serif;
-            font-weight: 700;
-            font-size: clamp(1.8rem, 5vw, 4.5rem);
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            color: #fff;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.15), 0 0 60px rgba(0, 255, 255, 0.05);
-            background: linear-gradient(135deg, #ffffff 40%, #88ffff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: titleGlow 4s ease-in-out infinite alternate;
-            text-align: right;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-        .title-block .main-title .title-x {
-            position: relative;
-            display: inline-block;
-            flex: 0 0 auto;
-            width: 0.175em;
-            height: 0.175em;
-            margin: 0 0.15em;
-            transform: translateY(-0.02em);
-            background: transparent;
-            -webkit-text-fill-color: initial;
-        }
-        .title-block .main-title .title-x::before,
-        .title-block .main-title .title-x::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0.07em;
-            height: 0.425em;
-            border-radius: 0;
-            background: #ff1515;
-            box-shadow: none;
-            transform-origin: center;
-        }
-        .title-block .main-title .title-x::before {
-            transform: translate(-50%, -50%) rotate(45deg);
-        }
-        .title-block .main-title .title-x::after {
-            transform: translate(-50%, -50%) rotate(-45deg);
-        }
-        @keyframes titleGlow {
-            0% {
-                filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.1));
-            }
-            100% {
-                filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.25));
-            }
-        }
-
-        .footer-wrapper {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            z-index: 20;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            background: rgba(10, 10, 15, 0.98);
-            backdrop-filter: blur(8px);
-            border-top: 1px solid rgba(0, 255, 255, 0.06);
-            box-shadow: 0 -4px 30px rgba(0, 0, 0, 0.6);
-            animation: bottomFade 2.5s ease 1.8s both;
-            pointer-events: none;
-            padding: 0;
-        }
-        .footer-wrapper>* {
-            pointer-events: auto;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .footer-wrapper .platform-icons {
-            padding: 0.6rem 1rem 0.3rem;
-            gap: clamp(0.8rem, 1.5vw, 1.8rem);
-            background: transparent;
-            border: none;
-            box-shadow: none;
-            backdrop-filter: none;
-            animation: none;
-            position: static;
-            bottom: auto;
-            left: auto;
-            width: 100%;
-        }
-        .footer-wrapper .platform-icons a {
-            height: clamp(28px, 3vw, 40px);
-            color: rgba(255, 255, 255, 0.7);
-            opacity: 0.9;
-            transition: filter 0.3s ease, transform 0.2s ease;
-        }
-        .footer-wrapper .platform-icons a:hover {
-            color: #ffffff;
-            opacity: 1;
-            transform: scale(1.1);
-        }
-        .footer-wrapper .platform-icons svg {
-            fill: currentColor;
-            width: 100%;
-            height: 100%;
-        }
-        .footer-wrapper .platform-icons img {
-            height: 100%;
-            width: auto;
-            display: block;
-            filter: brightness(0) invert(1);
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-        .footer-wrapper .platform-icons a:hover img {
-            opacity: 1;
-            filter: brightness(0) invert(1) drop-shadow(0 0 6px rgba(255, 255, 255, 0.2));
-        }
-        .footer-wrapper .github-link {
-            position: static;
-            bottom: auto;
-            left: auto;
-            width: 100%;
-            padding: 0.2rem 0 0.2rem;
-            background: transparent;
-            backdrop-filter: none;
-            border: none;
-            box-shadow: none;
-            animation: none;
-            font-size: clamp(0.9rem, 1.1vw, 1.3rem);
-            letter-spacing: 0.15em;
-            color: rgba(255, 255, 255, 0.4);
-            text-transform: uppercase;
-            gap: 0.6rem;
-            transition: color 0.3s ease;
-            text-decoration: none;
-        }
-        .footer-wrapper .github-link:hover {
-            color: #ffffff;
-            text-decoration: none;
-        }
-        .footer-wrapper .github-link i {
-            font-size: 1.4em;
-        }
-        .footer-wrapper .github-link span {
-            color: inherit;
-        }
-
-        @keyframes bottomFade {
-            0% {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 720px) {
-            .top-bar {
-                padding: 0.8rem 1rem;
-            }
-            .glass-left {
-                height: clamp(112px, 14vw, 160px);
-                padding: 12px 24px;
-            }
-            .glass-right {
-                gap: 0.5rem;
-            }
-            .epic-block {
-                height: clamp(112px, 14vw, 160px);
-                padding: 12px 16px;
-            }
-            .epic-block .epic-logo-small {
-                height: 100%;
-            }
-            .title-block {
-                display: none !important;
-            }
-            .footer-wrapper .platform-icons {
-                padding: 0.8rem 1.6rem 0.4rem;
-                gap: clamp(1.6rem, 3vw, 3.6rem);
-            }
-            .footer-wrapper .platform-icons a {
-                height: clamp(48px, 5vw, 64px);
-            }
-            .footer-wrapper .github-link {
-                font-size: clamp(0.7rem, 0.9vw, 1rem);
-                padding: 0.1rem 0;
-                text-decoration: none;
-            }
-            .hud-corner svg {
-                width: 36px;
-                height: 36px;
-            }
-            .hud-corner.tl {
-                top: 12px;
-                left: 12px;
-            }
-            .hud-corner.tr {
-                top: 12px;
-                right: 12px;
-            }
-            .hud-corner.bl {
-                bottom: 12px;
-                left: 12px;
-            }
-            .hud-corner.br {
-                bottom: 12px;
-                right: 12px;
-            }
-            .hud-label {
-                font-size: clamp(0.4rem, 0.5vw, 0.6rem);
-            }
-            .hud-label.mid-left,
-            .hud-label.mid-right {
-                font-size: clamp(0.4rem, 0.6vw, 0.7rem);
-                letter-spacing: 0.2em;
-            }
-            .hud-side.left,
-            .hud-side.right {
-                display: none;
-            }
-            .hud-cross {
-                display: none;
-            }
-            .hero-logos {
-                transform: translateY(-5%);
-            }
-            .hero-logos .logo {
-                padding: 1.5rem;
-            }
-        }
-
-        @media (max-width: 420px) {
-            .top-bar {
-                padding: 0.5rem 0.8rem;
-            }
-            .glass-left {
-                height: 88px;
-                padding: 8px 16px;
-            }
-            .glass-right {
-                gap: 0.3rem;
-            }
-            .epic-block {
-                height: 88px;
-                padding: 8px 12px;
-            }
-            .epic-block .epic-logo-small {
-                height: 100%;
-            }
-            .title-block {
-                display: none !important;
-            }
-            .footer-wrapper .platform-icons {
-                padding: 0.6rem 1rem 0.2rem;
-                gap: 0.8rem;
-            }
-            .footer-wrapper .platform-icons a {
-                height: 40px;
-            }
-            .footer-wrapper .github-link {
-                font-size: 0.6rem;
-                padding: 0.1rem 0;
-                gap: 0.3rem;
-                text-decoration: none;
-            }
-            .hero-logos {
-                transform: translateY(-8%);
-            }
-            .hero-logos .logo {
-                padding: 1rem;
-            }
-            .hud-label.mid-left,
-            .hud-label.mid-right {
-                font-size: 0.4rem;
-                letter-spacing: 0.1em;
-                opacity: 0.4;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-    </style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 32px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 20% 15%, rgba(125,211,252,.10), transparent 30%),
+        radial-gradient(circle at 80% 85%, rgba(167,139,250,.10), transparent 30%),
+        var(--bg);
+      color: var(--text);
+    } 
+    .card {
+      width: min(1040px, 100%);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      overflow: hidden;
+      background: linear-gradient(145deg, rgba(35,45,57,.98), rgba(29,37,48,.98));
+      box-shadow: 0 28px 80px rgba(0,0,0,.38);
+    }
+    .top {
+      padding: 28px 30px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .mark {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(125,211,252,.16), rgba(167,139,250,.18));
+      border: 1px solid rgba(255,255,255,.12);
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 28px;
+      letter-spacing: -.02em;
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,.25);
+    }
+    .brand h1 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 34px;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,.2);
+    }
+    .brand p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .id-label {
+      color: var(--muted);
+      text-align: right;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+    }
+    .id-value {
+      margin-top: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 12px;
+      color: var(--text);
+    }
+    .body {
+      padding: 28px 30px 30px;
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.5fr .9fr;
+      gap: 20px;
+    }
+    .headline {
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      background: rgba(255,255,255,.025);
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-weight: 700;
+    }
+    .headline h2 {
+      margin: 10px 0 12px;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(32px, 4.6vw, 52px);
+      letter-spacing: -.01em;
+      line-height: 1.02;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: 0 2px 16px rgba(0,0,0,.2);
+    }
+    .headline p {
+      margin: 0;
+      color: #c5ced8;
+      line-height: 1.6;
+      max-width: 760px;
+    }
+    .valuation {
+      padding: 22px;
+      border-radius: 20px;
+      border: 1px solid rgba(134,239,172,.22);
+      background: linear-gradient(145deg, rgba(134,239,172,.07), rgba(125,211,252,.04));
+    }
+    .valuation .label {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 11px;
+    }
+    .valuation .value {
+      margin-top: 12px;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(36px, 4.8vw, 58px);
+      line-height: 1;
+      letter-spacing: -.02em;
+      color: #fff;
+      text-shadow: 0 2px 12px rgba(0,0,0,.2);
+    }
+    .valuation .note {
+      margin-top: 12px;
+      color: #c7d4cb;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .field {
+      padding: 17px 18px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.022);
+    }
+    .field .k {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: 10px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .field .k i {
+      font-size: 12px;
+      width: 1.1em;
+      text-align: center;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+    .field .v {
+      font-size: 15px;
+      line-height: 1.45;
+    }
+    .field .v a {
+      color: inherit;
+      text-decoration: none;
+      font-weight: inherit;
+    }
+    .field .v a:hover {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .wide { grid-column: 1 / -1; }
+    .systems {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+    }
+    .systems h3 {
+      margin: 0 0 14px;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 20px;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .systems h3 i {
+      color: var(--accent);
+      font-size: 18px;
+      opacity: 0.8;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+    .chip {
+      padding: 9px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: #dbe5ef;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .footer {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.5;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .footer a {
+      color: var(--muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.2s;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .footer a:hover {
+      color: var(--text);
+    }
+    .footer a .adk {
+      font-size: 2.2rem;
+      line-height: 1;
+      color: var(--accent);
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .footer .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer .meta-item i {
+      color: var(--accent);
+      opacity: 0.6;
+      font-size: 12px;
+      width: 1.2em;
+    }
+    .status {
+      color: var(--success);
+      font-weight: 700;
+    }
+    @media (max-width: 760px) {
+      body { padding: 14px; }
+      .top { align-items: flex-start; flex-direction: column; }
+      .id-label { text-align: left; }
+      .hero, .grid { grid-template-columns: 1fr; }
+      .wide { grid-column: auto; }
+      .footer { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
 <body>
-    <section class="hero">
-        <div class="grid-overlay"></div>
-        <div class="scanline"></div>
-        <div class="hud-corner tl">
-            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 60V54C0 24.177 24.177 0 54 0H60" stroke="rgba(0,255,255,0.3)" stroke-width="1.5"/>
-                <path d="M0 50V54C0 30.177 20.177 10 44 10H50" stroke="rgba(0,255,255,0.1)" stroke-width="1"/>
-                <rect x="4" y="4" width="6" height="1" fill="rgba(0,255,255,0.2)" />
-                <rect x="4" y="4" width="1" height="6" fill="rgba(0,255,255,0.2)" />
-            </svg>
+  <main class="card" role="article" aria-label="Foldnite Organization ID Card">
+    <header class="top">
+      <div class="brand">
+        <div class="mark">F</div>
+        <div>
+          <h1>FOLDNITE</h1>
+          <p>Organization ID Card · qFoldIT Scientific Technology</p>
         </div>
-        <div class="hud-corner tr">
-            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 60V54C0 24.177 24.177 0 54 0H60" stroke="rgba(0,255,255,0.3)" stroke-width="1.5"/>
-                <path d="M0 50V54C0 30.177 20.177 10 44 10H50" stroke="rgba(0,255,255,0.1)" stroke-width="1"/>
-                <rect x="4" y="4" width="6" height="1" fill="rgba(0,255,255,0.2)" />
-                <rect x="4" y="4" width="1" height="6" fill="rgba(0,255,255,0.2)" />
-            </svg>
-        </div>
-        <div class="hud-corner bl">
-            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 60V54C0 24.177 24.177 0 54 0H60" stroke="rgba(0,255,255,0.3)" stroke-width="1.5"/>
-                <path d="M0 50V54C0 30.177 20.177 10 44 10H50" stroke="rgba(0,255,255,0.1)" stroke-width="1"/>
-                <rect x="4" y="4" width="6" height="1" fill="rgba(0,255,255,0.2)" />
-                <rect x="4" y="4" width="1" height="6" fill="rgba(0,255,255,0.2)" />
-            </svg>
-        </div>
-        <div class="hud-corner br">
-            <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 60V54C0 24.177 24.177 0 54 0H60" stroke="rgba(0,255,255,0.3)" stroke-width="1.5"/>
-                <path d="M0 50V54C0 30.177 20.177 10 44 10H50" stroke="rgba(0,255,255,0.1)" stroke-width="1"/>
-                <rect x="4" y="4" width="6" height="1" fill="rgba(0,255,255,0.2)" />
-                <rect x="4" y="4" width="1" height="6" fill="rgba(0,255,255,0.2)" />
-            </svg>
-        </div>
-        <div class="hud-side left"></div>
-        <div class="hud-side right"></div>
-        <div class="hud-particles">
-            <div class="hud-particle"></div>
-            <div class="hud-particle"></div>
-            <div class="hud-particle"></div>
-            <div class="hud-particle"></div>
-            <div class="hud-particle"></div>
-            <div class="hud-particle"></div>
-            <div class="hud-particle"></div>
-            <div class="hud-particle"></div>
-        </div>
+      </div>
+      <div>
+        <div class="id-label">Organization Identifier</div>
+        <div class="id-value">FOLDNITE-QFOLDIT-2026-09</div>
+      </div>
+    </header>
 
-        <div class="hud-cross"><div class="dot"></div></div>
-        <div class="hud-label tl">SYS::ONLINE</div>
-        <div class="hud-label tr">UEFN::v1.0</div>
-        <div class="hud-label bl">FORTITE::ACTIVE</div>
-        <div class="hud-label br">MCP::LINK</div>
-        <div class="hud-label mid-left">WARNER BROS. GAMING</div>
-        <div class="hud-label mid-right">WALT DISNEY</div>
+    <section class="body">
+      <div class="hero">
+        <section class="headline">
+          <div class="eyebrow">Current organizational identity</div>
+          <h2>Scientific Mission Infrastructure + Enterprise Application Factory</h2>
+          <p>
+            Foldnite is the public/product ecosystem built on qFoldIT scientific technology:
+            governed scientific missions, collaborative human + AI search, validated evidence,
+            enterprise delivery and portable interactive runtimes.
+          </p>
+        </section>
 
-        <div class="glow-overlay"></div>
+        <aside class="valuation">
+          <div class="label">Current strategic valuation</div>
+          <div class="value">$900M</div>
+          <div class="note">
+            Internal evidence-weighted strategic platform valuation. Not an audited fairness opinion,
+            financing price, securities valuation, or completed market transaction.
+          </div>
+        </aside>
+      </div>
 
-        <div class="top-bar">
-            <div class="glass-left">
-                <div class="lego-logo">
-                    <img src="https://qfoldit.github.io/assets/lego_brand.svg" alt="LEGO" />
-                </div>
-            </div>
-            <div class="glass-right">
-                <div class="epic-block">
-                    <div class="epic-logo-small">
-                        <img src="https://qfoldit.github.io/assets/EPIC_LOGO.SVG" alt="Epic Games" />
-                    </div>
-                </div>
-                <div class="title-block">
-                    <div class="main-title">
-                        FORTNITE <span class="title-x" aria-hidden="true"></span> SCIENCE
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="hero-logos">
-            <div class="logo logo-wbg">
-                <img src="https://qfoldit.github.io/assets/wb-games-logo-white.svg" alt="Warner Bros. Gaming" />
-            </div>
-            <div class="logo logo-disney">
-                <img src="https://qfoldit.github.io/assets/Disney_Logo_White.svg" alt="Disney" />
-            </div>
-        </div>
-
-        <div class="footer-wrapper">
-            <div class="platform-icons">
-                <a href="https://www.unrealengine.com/ru/" target="_blank" aria-label="Unreal Engine" title="Unreal Engine">
-                    <img src="https://qfoldit.github.io/assets/Unreal_Engine_Logo.SVG" alt="Unreal Engine" />
-                </a>
-                <a href="https://www.fortnite.com/download?lang=ru" target="_blank" aria-label="PC" title="PC">
-                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/KA6d6NZXSlaxhPy5eAYf" alt="PC" />
-                </a>
-                <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation" title="PlayStation">
-                    <img src="https://qfoldit.github.io/assets/PlayStation_Logo.SVG" alt="PlayStation" />
-                </a>
-                <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation 5" title="PlayStation 5">
-                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/WhxwsUG5QUhr9xYWZ6FA" alt="PS5" />
-                </a>
-                <a href="https://www.playstation.com/games/fortnite/" target="_blank" aria-label="PlayStation 4" title="PlayStation 4">
-                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/T5zoHcW8SpqCQ5gjQ5S1" alt="PS4" />
-                </a>
-                <a href="https://www.xbox.com/games/store/fortnite/bt5p2x999vh2" target="_blank" aria-label="Xbox" title="Xbox">
-                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/CHAtzJR0GI4pD4PiKQxQ" alt="Xbox" />
-                </a>
-                <a href="https://www.xbox.com/games/store/fortnite/bt5p2x999vh2" target="_blank" aria-label="Xbox Series X|S" title="Xbox Series X|S">
-                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/P6XlS1FQ56Y8NXslBgUK" alt="Xbox Series" />
-                </a>
-                <a href="https://www.nintendo.com/games/detail/fortnite-switch" target="_blank" aria-label="Nintendo Switch" title="Nintendo Switch">
-                    <img src="https://qfoldit.github.io/assets/NINTENDO_SWITCH_LOGO.SVG" alt="Nintendo Switch" />
-                </a>
-                <a href="https://www.nintendo.com/games/detail/fortnite-switch-2" target="_blank" aria-label="Nintendo Switch 2" title="Nintendo Switch 2">
-                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cm8zzae4r1g7z06oj8hbgpfaz" alt="Switch 2" />
-                </a>
-                <a href="https://store.epicgames.com/download/android?p=fortnite&amp;lang=ru" target="_blank" aria-label="Android" title="Android">
-                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/3CWE1VlwQmSRnNkAdxd8" alt="Android" />
-                </a>
-                <a href="https://m.onestore.co.kr/ko-kr/apps/appsDetail.omp?prodId=0000779798" target="_blank" aria-label="OneStore" title="OneStore">
-                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmbp7vi6m0c3q07mvb2vxvu7s" alt="OneStore" />
-                </a>
-                <a href="https://luna.amazon.com/game/fortnite?g=web&amp;ref=tmp_ext_epic" target="_blank" aria-label="Amazon Luna" title="Amazon Luna">
-                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmhwnqdpu379j07ogp3mewuu7" alt="Luna" />
-                </a>
-                <a href="https://www.nvidia.com/en-us/geforce-now/" target="_blank" aria-label="GeForce Now" title="GeForce Now">
-                    <img src="https://cms-assets.unrealengine.com/AVzjeqAbLRKi3W5jq0CAvz/cmhwn7osa33zd07ogkrhs0w0v" alt="GeForce Now" />
-                </a>
-            </div>
-
-            <a href="https://github.com/qfoldit" target="_blank" class="github-link">
-                <i class="fab fa-github"></i>
-                <span>GITHUB</span>
+      <div class="grid">
+        <div class="field">
+          <div class="k"><i class="fas fa-location-dot"></i> Headquarters</div>
+          <div class="v">
+            <a href="https://maps.app.goo.gl/nfxbRBk9yDa3XhjF9" target="_blank" rel="noopener noreferrer">
+              <strong>Elkridge, Maryland, USA</strong>
             </a>
+          </div>
         </div>
+        <div class="field">
+          <div class="k"><i class="fas fa-circle-check"></i> Strategic status</div>
+          <div class="v"><span class="status">Active · Global HQ</span></div>
+        </div>
+        <div class="field">
+          <div class="k"><i class="fas fa-microchip"></i> Core technology</div>
+          <div class="v">qFoldIT Scientific Technology</div>
+        </div>
+        <div class="field">
+          <div class="k"><i class="fas fa-diagram-project"></i> Primary architecture</div>
+          <div class="v">Mission Contract → Compiler → Runtime → Validation → Evidence → Deliverable</div>
+        </div>
+        <div class="field wide">
+          <div class="k"><i class="fas fa-bullseye"></i> Organization mission</div>
+          <div class="v">
+            Convert scientific and industrial objectives into governed, reproducible and interactive
+            missions that connect scientific computation, AI/MCP orchestration, collaborative search,
+            independent validation, provenance and enterprise outcomes.
+          </div>
+        </div>
+      </div>
+
+      <section class="systems">
+        <h3><i class="fas fa-network-wired"></i> Runtime & capability network</h3>
+        <div class="chips">
+          <span class="chip">UEFN / Fortnite</span>
+          <span class="chip">Unity</span>
+          <span class="chip">UNIGINE</span>
+          <span class="chip">Web</span>
+          <span class="chip">Standalone</span>
+          <span class="chip">Virtual Lab</span>
+          <span class="chip">Scientific MCP</span>
+          <span class="chip">UAG / Scientific Object Model</span>
+          <span class="chip">Mission Compiler / Router</span>
+          <span class="chip">CAMEO / Reconciliation</span>
+          <span class="chip">OpenStructure</span>
+          <span class="chip">Evidence &amp; Provenance</span>
+          <span class="chip">Human + AI Discovery</span>
+        </div>
+      </section>
+
+      <div class="footer">
+        <div>
+          <div class="meta-item"><i class="fas fa-tag"></i> <strong>Classification:</strong> Organizational / Strategic</div>
+          <div class="meta-item"><i class="fas fa-cube"></i> <strong>Brand:</strong> Foldnite</div>
+        </div>
+        <div>
+          <div class="meta-item"><i class="fas fa-calendar-day"></i> <strong>Reference date:</strong> 2026-09-03</div>
+          <div class="meta-item"><i class="fas fa-shield-halved"></i> <strong>Scientific authority:</strong> Approved validators + evidence records</div>
+        </div>
+        <div>
+          <a href="https://agousa.org/" target="_blank" rel="noopener noreferrer" title="AGOUSA — связь и цепь">
+            <i class="adk adk-nkonsonkonson"></i> AGOUSA
+          </a>
+        </div>
+      </div>
     </section>
+      
+  </main>
 </body>
 </html>
