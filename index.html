@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Foldnite —ID Card</title>
+  <title>Foldnite — Organization ID Card</title>
   <meta name="description" content="Foldnite Organization ID Card — Scientific Mission Infrastructure and Interactive Scientific Runtime Network." />
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://ahiakwa.github.io/assets/adinkra-icons/css/icons.css" />
+
   <style>
     @font-face {
       font-family: 'Burbank Big Condensed';
@@ -220,10 +221,16 @@
       color: inherit;
       text-decoration: none;
       font-weight: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
     .field .v a:hover {
       color: var(--accent);
-      text-decoration: none;
+    }
+    .field .v a i {
+      font-size: 13px;
+      opacity: 0.7;
     }
     .wide { grid-column: 1 / -1; }
     .systems {
@@ -261,6 +268,19 @@
       color: #dbe5ef;
       border: 1px solid var(--line);
       background: rgba(255,255,255,.03);
+    }
+    /* Карта без рамки, на всю ширину */
+    .map-wrapper {
+      margin-top: 20px;
+      border-radius: 16px;
+      overflow: hidden;
+      width: 100%;
+    }
+    .map-wrapper iframe {
+      width: 100%;
+      height: 220px;
+      border: 0;
+      display: block;
     }
     .footer {
       margin-top: 20px;
@@ -317,6 +337,7 @@
       .hero, .grid { grid-template-columns: 1fr; }
       .wide { grid-column: auto; }
       .footer { flex-direction: column; align-items: flex-start; }
+      .map-wrapper iframe { height: 160px; }
     }
   </style>
 </head>
@@ -364,6 +385,7 @@
           <div class="v">
             <a href="https://maps.app.goo.gl/nfxbRBk9yDa3XhjF9" target="_blank" rel="noopener noreferrer">
               <strong>Elkridge, Maryland, USA</strong>
+              <i class="fas fa-arrow-up-right-from-square"></i>
             </a>
           </div>
         </div>
@@ -408,6 +430,15 @@
         </div>
       </section>
 
+      <div class="map-wrapper">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3092.003111318413!2d-76.74377918042602!3d39.19737805191573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7e18dc00c06eb%3A0x536f3e75cb32c74!2s7136%20Ducketts%20Ln%2C%20Elkridge%2C%20MD%2021075!5e0!3m2!1sen!2sus!4v1788447696921!5m2!1sen!2sus" 
+          loading="lazy" 
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+
       <div class="footer">
         <div>
           <div class="meta-item"><i class="fas fa-tag"></i> <strong>Classification:</strong> Organizational / Strategic</div>
@@ -417,6 +448,7 @@
           <div class="meta-item"><i class="fas fa-calendar-day"></i> <strong>Reference date:</strong> 2026-09-03</div>
           <div class="meta-item"><i class="fas fa-shield-halved"></i> <strong>Scientific authority:</strong> Approved validators + evidence records</div>
         </div>
+
         <div>
           <a href="https://agousa.org/" target="_blank" rel="noopener noreferrer" title="AGOUSA — связь и цепь">
             <i class="adk adk-nkonsonkonson"></i> AGOUSA
@@ -424,7 +456,6 @@
         </div>
       </div>
     </section>
-      
   </main>
 </body>
 </html>
