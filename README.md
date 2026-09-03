@@ -1,5 +1,7 @@
 # qFoldIT — Scientific Missions, Human Discovery & Interactive Science
 
+**Principal Global Headquarters:** **Elkridge, Maryland, USA.**
+
 <p align="center">
   <a href="https://www.bakerlab.org/"><img alt="qFoldIT / Baker Lab visualisation" src="https://qfoldit.github.io/img/posters/David_Baker_AT_FoldIT_LAB_OFFICE.png"/></a>
 </p>
