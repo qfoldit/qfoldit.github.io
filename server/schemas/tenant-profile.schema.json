@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qfoldit.github.io/server/schemas/tenant-profile.schema.json",
+  "title": "qFoldIT Tenant Profile",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["client_id", "tenant_id", "sector", "classification", "capabilities"],
+  "properties": {
+    "client_id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{1,63}$"},
+    "tenant_id": {"type": "string", "pattern": "^tenant-[a-z0-9][a-z0-9-]{1,63}$"},
+    "sector": {"type": "string", "minLength": 2},
+    "lifecycle": {"type": "string", "enum": ["scaffold", "provisioning", "release-candidate", "released", "suspended"]},
+    "classification": {"type": "string", "enum": ["public", "internal", "confidential", "restricted", "highly-restricted"]},
+    "domains": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "mission_domains": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "scientific_domains": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "capabilities": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "runtime": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "governance_parent": {"const": "qfoldit/CORPORATE_APP"},
+    "authority": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "enterprise": {"const": "CORPORATE_APP"},
+        "enterprise_policy": {"const": "CORPORATE_APP"},
+        "science": {"const": "approved-validator-boundary"},
+        "evidence": {"const": "Evidence-1.1"},
+        "structure": {"const": "OPENSTRUCTURE"},
+        "validation": {"const": "CAMEO"}
+      }
+    },
+    "cross_tenant_access": {"const": false},
+    "cross_tenant": {"const": false},
+    "security": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["cross_tenant"],
+      "properties": {"cross_tenant": {"const": false}}
+    }
+  },
+  "allOf": [
+    {"anyOf": [{"required": ["mission_domains"]}, {"required": ["scientific_domains"]}, {"required": ["domains"]}]},
+    {"anyOf": [{"required": ["cross_tenant_access"]}, {"required": ["cross_tenant"]}, {"required": ["security"]}]},
+    {"anyOf": [{"required": ["authority"]}, {"required": ["governance_parent"]}]}
+  ]
+}
