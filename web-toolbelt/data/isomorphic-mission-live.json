@@ -1,0 +1,29 @@
+{
+  "schema": "qfoldit.public-mission-event.v0.1",
+  "mission_id": "MIS-ISO-0001",
+  "tenant": "tenant-isomorphic-labs",
+  "visibility": "public-spectator",
+  "mode": "READY-TO-RUN",
+  "updated_at": "2026-09-08T12:00:00Z",
+  "objective": "molecular-design-search",
+  "stages": [
+    {"id":"mission-contract","label":"Mission Contract 1.0","state":"pass"},
+    {"id":"execution-lineage","label":"Execution Lineage","state":"pass"},
+    {"id":"openstructure","label":"OpenStructure validation","state":"configure"},
+    {"id":"cameo","label":"CAMEO boundary","state":"configure"},
+    {"id":"evidence","label":"Evidence 1.1","state":"waiting"},
+    {"id":"game","label":"Game + public board","state":"ready"}
+  ],
+  "scientific_result": null,
+  "evidence": null,
+  "integrity": {
+    "scientific_scores_synthesized": false,
+    "public_claims_limited_to_verified_events": true
+  },
+  "event_log": [
+    {"time":"2026-09-08T12:00:00Z","stage":"mission-contract","message":"Canonical Mission Contract 1.0 fixture ready."},
+    {"time":"2026-09-08T12:00:00Z","stage":"execution-lineage","message":"UUID and canonical action envelope hash fixture ready."},
+    {"time":"2026-09-08T12:00:00Z","stage":"openstructure","message":"Waiting for real OpenStructure adapter configuration."},
+    {"time":"2026-09-08T12:00:00Z","stage":"evidence","message":"Evidence remains blocked until completed scientific validation."}
+  ]
+}
