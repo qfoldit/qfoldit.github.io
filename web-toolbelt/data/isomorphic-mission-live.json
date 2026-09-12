@@ -1,29 +1,40 @@
 {
-  "schema": "qfoldit.public-mission-event.v0.1",
+  "schema": "qfoldit.public-mission-state/1.0",
   "mission_id": "MIS-ISO-0001",
-  "tenant": "tenant-isomorphic-labs",
+  "mission_version": "1.0",
+  "title": "Isomorphic Labs Scientific Mission",
+  "tenant": "public-spectator",
   "visibility": "public-spectator",
   "mode": "READY-TO-RUN",
-  "updated_at": "2026-09-08T12:00:00Z",
+  "updated_at": "2026-09-12T12:00:00Z",
   "objective": "molecular-design-search",
   "stages": [
-    {"id":"mission-contract","label":"Mission Contract 1.0","state":"pass"},
-    {"id":"execution-lineage","label":"Execution Lineage","state":"pass"},
-    {"id":"openstructure","label":"OpenStructure validation","state":"configure"},
-    {"id":"cameo","label":"CAMEO boundary","state":"configure"},
-    {"id":"evidence","label":"Evidence 1.1","state":"waiting"},
-    {"id":"game","label":"Game + public board","state":"ready"}
+    {"id":"mission-contract","label":"Mission Contract 1.0","state":"pass","detail":"Canonical mission identity is registered."},
+    {"id":"execution-lineage","label":"Execution Lineage","state":"ready","detail":"Awaiting first runtime submission."},
+    {"id":"openstructure","label":"OpenStructure validation","state":"configured","adapter_id":"openstructure","detail":"Adapter registered; authoritative validator evidence is emitted only after an authenticated OpenStructure run."},
+    {"id":"cameo","label":"CAMEO boundary","state":"configured","adapter_id":"cameo","detail":"CAMEO reconciliation boundary is registered; benchmark evidence remains validator-gated."},
+    {"id":"evidence","label":"Evidence 1.1","state":"blocked","detail":"No validator-backed submission exists yet."},
+    {"id":"game","label":"Game + public board","state":"ready","detail":"Selected runtime adapters are registered."}
+  ],
+  "adapters": [
+    {"id":"qfoldit-uefn-toolbelt","kind":"runtime","version":"0.2.0","state":"configured","authority":"runtime","capabilities":["scene.graph","uag.validate","uag.apply"]},
+    {"id":"qfoldit-unity-toolbelt","kind":"runtime","version":"0.3.0","state":"configured","authority":"runtime","capabilities":["scene.graph","uag.validate","uag.apply"]},
+    {"id":"qfoldit-web-toolbelt","kind":"runtime","version":"1.1.0","state":"configured","authority":"runtime","capabilities":["scene.graph","uag.validate","uag.apply"]},
+    {"id":"openstructure","kind":"validator","version":"qfoldit.openstructure/1.2","state":"configured","authority":"scientific-validation-boundary","capabilities":["protein.validate.structure","lddt","local-lddt","qs-score"]},
+    {"id":"cameo","kind":"validator","version":"qfoldit.cameo.boundary/1.0","state":"configured","authority":"scientific-validation-boundary","capabilities":["boundary-reconciliation","mission-profile","provenance-reconciliation"]}
   ],
   "scientific_result": null,
   "evidence": null,
   "integrity": {
     "scientific_scores_synthesized": false,
-    "public_claims_limited_to_verified_events": true
+    "public_claims_limited_to_verified_events": true,
+    "confidential_data_exposed": false
   },
   "event_log": [
-    {"time":"2026-09-08T12:00:00Z","stage":"mission-contract","message":"Canonical Mission Contract 1.0 fixture ready."},
-    {"time":"2026-09-08T12:00:00Z","stage":"execution-lineage","message":"UUID and canonical action envelope hash fixture ready."},
-    {"time":"2026-09-08T12:00:00Z","stage":"openstructure","message":"Waiting for real OpenStructure adapter configuration."},
-    {"time":"2026-09-08T12:00:00Z","stage":"evidence","message":"Evidence remains blocked until completed scientific validation."}
+    {"time":"2026-09-12T12:00:00Z","stage":"mission-contract","message":"Canonical Mission Contract 1.0 projection ready."},
+    {"time":"2026-09-12T12:00:00Z","stage":"runtime-adapters","message":"Configured runtime adapters projected from the qFoldIT capability registry."},
+    {"time":"2026-09-12T12:00:00Z","stage":"openstructure","message":"OpenStructure adapter boundary registered; validation remains evidence-gated."},
+    {"time":"2026-09-12T12:00:00Z","stage":"cameo","message":"CAMEO reconciliation boundary registered; benchmark evidence remains validator-gated."},
+    {"time":"2026-09-12T12:00:00Z","stage":"evidence","message":"Evidence 1.1 remains blocked until an authoritative validator event is received."}
   ]
 }
