@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="qFoldIT client intake form for drafting contract-first Scientific Missions and exporting JSON.">
+<title>qFoldIT — Create Scientific Mission</title>
+<style>
+:root{color-scheme:dark;--bg:#080c12;--panel:#101722;--panel2:#141e2b;--line:#2b394b;--text:#edf3fa;--muted:#9aa9bb;--blue:#7eafff;--cyan:#75e3e0;--green:#7de0b5;--amber:#f0c477;--red:#ff8b91;--radius:13px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#182841 0,transparent 38%),var(--bg);color:var(--text);font-size:14px;line-height:1.5}a{color:var(--blue)}button,input,select,textarea{font:inherit}button{cursor:pointer}.shell{max-width:1540px;margin:auto;padding:26px}.topbar{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:22px}.eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);font-weight:800}.title{font-size:clamp(28px,4vw,42px);line-height:1.08;letter-spacing:-.035em;margin:8px 0}.sub{color:var(--muted);max-width:850px;font-size:13px}.toplinks{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:9px;padding:10px 13px;font-weight:700;font-size:12px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn:hover{border-color:#59769a}.btn.primary{background:#20416b;border-color:#4778b4}.btn.good{background:#123629;border-color:#2d795b;color:#d4ffec}.btn.small{padding:7px 9px}.btn:disabled{opacity:.45;cursor:not-allowed}.alert{border:1px solid #6a552b;background:#18150d;color:#f0d49a;border-radius:10px;padding:12px 14px;font-size:12px;margin:16px 0 20px}.alert strong{color:#ffe5a7}.layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(340px,.75fr);gap:16px;align-items:start}.main{min-width:0}.panel{background:rgba(16,23,34,.94);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:13px;overflow:hidden}.panel-head{padding:15px 17px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.panel-head h2{margin:0;font-size:15px}.panel-head p{margin:3px 0 0;color:var(--muted);font-size:11px}.stepno{font:700 10px ui-monospace,monospace;color:var(--cyan);border:1px solid #34525d;border-radius:7px;padding:5px 7px}.panel-body{padding:16px 17px}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{min-width:0}.field.full{grid-column:1/-1}label,.field-label{display:block;color:#d4deea;font-size:11px;font-weight:750;margin:0 0 6px}label .optional{font-weight:400;color:var(--muted)}input,select,textarea{width:100%;min-width:0;color:var(--text);background:#090f17;border:1px solid #354457;border-radius:8px;padding:10px 11px;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 2px #7eafff20}input::placeholder,textarea::placeholder{color:#627186}textarea{min-height:82px;resize:vertical}textarea.tall{min-height:118px}.hint{font-size:10px;color:var(--muted);margin-top:5px;line-height:1.45}.checkgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.check{display:flex;align-items:flex-start;gap:8px;background:#0b121b;border:1px solid #293749;border-radius:8px;padding:9px;font-size:11px;color:#ced9e7}.check input{width:14px;height:14px;min-width:14px;margin:2px 0 0;accent-color:#7eafff}.tag{display:inline-block;border:1px solid #32475f;border-radius:20px;padding:3px 7px;font-size:9px;color:#b8d1f6;text-transform:uppercase;letter-spacing:.08em}.side{position:sticky;top:12px;min-width:0}.summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:13px}.stat{background:#0b121b;border:1px solid #263649;border-radius:9px;padding:10px}.stat .k{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}.stat .v{font-size:17px;font-weight:800;margin-top:4px;overflow-wrap:anywhere}.statusline{padding:0 13px 12px;font-size:11px;color:var(--muted)}.statusline strong{color:var(--green)}.errorlist{color:var(--red);font-size:11px;margin:0;padding:0 15px 13px 30px}.json-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.preview{margin:0;background:#070b11;padding:14px;color:#bde3da;white-space:pre;overflow:auto;max-height:530px;font:10px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:2}.export-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px;border-top:1px solid var(--line)}.export-actions .wide{grid-column:1/-1}.footnote{font-size:10px;color:var(--muted);margin:10px 0 0}.section-footer{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 17px}.warning{color:var(--amber)}.fine{font-size:10px;color:var(--muted)}.inline-row{display:flex;gap:8px}.inline-row>*{flex:1;min-width:0}details.panel>summary{cursor:pointer;list-style:none;padding:15px 17px;font-weight:800;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}details.panel>summary::-webkit-details-marker{display:none}details.panel>summary:after{content:"＋";color:var(--cyan);font-size:16px}details.panel[open]>summary:after{content:"−"}details.panel .panel-body{padding-top:15px}.footer{padding:20px 0 6px;color:#728297;font-size:10px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.toast{display:none;position:fixed;right:20px;bottom:20px;background:#14372b;border:1px solid #2b7556;color:#d4ffec;padding:11px 14px;border-radius:9px;box-shadow:0 10px 40px #0008;font-size:12px;z-index:10}.toast.show{display:block}.pillrow{display:flex;gap:6px;flex-wrap:wrap}.divider{height:1px;background:var(--line);margin:15px 0}.smalltitle{font-size:11px;color:var(--cyan);font-weight:800;text-transform:uppercase;letter-spacing:.1em;margin:0 0 10px}@media(max-width:1050px){.layout{grid-template-columns:1fr}.side{position:static;display:grid;grid-template-columns:1fr 1fr;gap:13px}.side .panel{margin-bottom:0}.side .summary-panel{grid-column:1/-1}.preview{max-height:420px}}@media(max-width:650px){.shell{padding:15px}.topbar{flex-direction:column}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.side{display:block}.side .panel{margin-bottom:13px}.checkgrid{grid-template-columns:1fr}.export-actions{grid-template-columns:1fr}.export-actions .wide{grid-column:auto}.preview{max-height:360px}.title{font-size:30px}.panel-head,.panel-body{padding-left:13px;padding-right:13px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="topbar">
+  <div>
+    <div class="eyebrow">qFoldIT · Enterprise Mission Intake · Contract-first</div>
+    <h1 class="title">Create a Scientific Mission.</h1>
+    <p class="sub">One intake for enterprise R&amp;D, industrial partners, research laboratories, public programmes and open research. Describe the objective once; generate a structured mission contract and a CORPORATE_APP API request.</p>
+    <div class="pillrow" style="margin-top:12px"><span class="tag">Mission 1.0</span><span class="tag">JSON export</span><span class="tag">Client-type aware</span><span class="tag">Local-only draft</span></div>
+  </div>
+  <nav class="toplinks">
+    <a class="btn" href="CLI.html">← Prospect Matrix</a>
+    <a class="btn" href="dashboard.html">Platform Dashboard</a>
+    <a class="btn" href="../web-toolbelt/mission-board.html">Mission Board ↗</a>
+  </nav>
+</header>
+
+<div class="alert"><strong>Security &amp; status:</strong> This page creates and validates a local draft, then exports JSON. It does not submit to the production backend. Do not enter credentials, API tokens, patient data, trade secrets or restricted scientific payloads. Choose a confidentiality level and use approved secure channels for sensitive source files. A configured validator is still required before any mission can produce verified scientific Evidence.</div>
+
+<div class="layout">
+<main class="main">
+<form id="missionForm" autocomplete="on" novalidate>
+<details class="panel" open>
+  <summary><span>01 · Client &amp; engagement</span><span class="stepno">REQUIRED CORE</span></summary>
+  <div class="panel-body">
+    <div class="fields">
+      <div class="field"><label for="clientMode">Client / acquisition type *</label>
+        <select id="clientMode" required>
+          <option value="DIRECT_ENTERPRISE">Direct enterprise customer</option>
+          <option value="INDUSTRIAL_PARTNER">Industrial / engineering partner</option>
+          <option value="RESEARCH_PARTNER" selected>Research organisation / laboratory</option>
+          <option value="PUBLIC_PROGRAM">Public programme / government / NGO / grant</option>
+          <option value="PLATFORM_DISCOVERY">Open research / platform-discovered mission</option>
+        </select>
+        <div class="hint">Uses the canonical CORPORATE_APP MissionAcquisitionMode values.</div>
+      </div>
+      <div class="field"><label for="orgName">Organisation / client name *</label><input id="orgName" required placeholder="e.g. Research Institute or Company"></div>
+      <div class="field"><label for="tenantId">Tenant ID *</label><input id="tenantId" required placeholder="tenant-example"><div class="hint">Proposed identifier for the receiving enterprise tenant; confirm it with the platform administrator.</div></div>
+      <div class="field"><label for="partnerId">Partner ID *</label><input id="partnerId" required placeholder="partner-example"><div class="hint">Use an existing registry ID where one has been provisioned. Do not imply a prospect is an existing partner.</div></div>
+      <div class="field"><label for="tier">Engagement tier</label><select id="tier"><option value="A">A · priority / strategic</option><option value="B" selected>B · standard / qualified</option><option value="C">C · exploratory / platform</option></select></div>
+      <div class="field"><label for="lifecycle">Intake status</label><select id="lifecycle"><option value="DISCOVERED">Discovered</option><option value="QUALIFIED">Qualified</option><option value="PROPOSED" selected>Proposed</option><option value="ACCEPTED">Accepted (authorised only)</option><option value="ACTIVE">Active (authorised only)</option></select><div class="hint">Exported status is a request/claim, not proof of approval. Leave Proposed until the authorised enterprise system accepts it.</div></div>
+      <div class="field"><label for="contactName">Primary contact <span class="optional">(optional)</span></label><input id="contactName" autocomplete="name" placeholder="Full name"></div>
+      <div class="field"><label for="contactRole">Role / department <span class="optional">(optional)</span></label><input id="contactRole" placeholder="R&amp;D director, principal investigator…"></div>
+      <div class="field"><label for="contactEmail">Business email <span class="optional">(optional)</span></label><input id="contactEmail" type="email" autocomplete="email" placeholder="name@organisation.org"></div>
+      <div class="field"><label for="region">Country / region</label><input id="region" placeholder="Country, region or data-residency area"></div>
+      <div class="field full"><label for="sourceUri">Lead / request source URI <span class="optional">(optional)</span></label><input id="sourceUri" type="url" placeholder="https://…"><div class="hint">A prospect source is provenance only; it does not establish an active commercial relationship.</div></div>
+    </div>
+  </div>
+</details>
+
+<details class="panel" open>
+  <summary><span>02 · Scientific mission definition</span><span class="stepno">REQUIRED CORE</span></summary>
+  <div class="panel-body">
+    <div class="fields">
+      <div class="field full"><label for="title">Mission title *</label><input id="title" required placeholder="Short, specific, outcome-oriented title"></div>
+      <div class="field"><label for="domain">Scientific / industrial domain *</label><select id="domain" required>
+        <option>AI Drug Discovery</option><option>Protein Design / AI</option><option>RNA / Gene Therapy</option><option>Advanced Materials</option><option>Materials / Battery</option><option>Battery / Automotive</option><option>Chemicals / Catalysis</option><option>Energy / Catalysis</option><option>Energy / CCUS</option><option>Mining</option><option>Mining / Energy</option><option>Energy / Subsurface</option><option>Industrial Biotechnology</option><option>Synthetic Biology</option><option>Carbon Capture</option><option>Hydrogen</option><option>Semiconductor / Scientific Hardware</option><option>Quantum Computing</option><option>Aerospace / Space</option><option>Pharma / Biotech</option><option>Genomics / Bioinformatics</option><option>Agriculture / Food Systems</option><option>Environmental Science</option><option>Industrial Engineering / Digital Twin</option><option>Scientific Education / Research Training</option><option>General / Custom Domain</option>
+      </select></div>
+      <div class="field"><label for="customDomain">Custom domain label <span class="optional">(when applicable)</span></label><input id="customDomain" placeholder="Used only for General / Custom Domain"></div>
+      <div class="field"><label for="template">Mission template *</label><input id="template" required list="templateOptions" placeholder="Select a domain or enter custom template"><datalist id="templateOptions"></datalist><div class="hint">Suggestions follow the qFoldIT mission acquisition catalogue. A template name does not imply an adapter is deployed.</div></div>
+      <div class="field"><label for="objectiveName">Objective / task type *</label><input id="objectiveName" required placeholder="e.g. Structure refinement / reserve estimation"></div>
+      <div class="field full"><label for="objective">Scientific objective and context *</label><textarea id="objective" required class="tall" placeholder="State the problem, baseline, scientific question, boundaries, assumptions and what must be learned or optimised."></textarea></div>
+      <div class="field"><label for="scoringProfile">Scoring / evaluation profile *</label><input id="scoringProfile" required list="scoringOptions" value="general-v1" placeholder="e.g. protein-lddt-v1"><datalist id="scoringOptions"><option value="protein-lddt-v1"><option value="atomic-property-v1"><option value="industrial-process-v1"><option value="domain-defined-v1"><option value="human-reviewed-v1"><option value="general-v1"></datalist></div>
+      <div class="field"><label for="threshold">Acceptance threshold (0–1) *</label><input id="threshold" type="number" min="0" max="1" step="0.01" value="0.8" required><div class="hint">Normalised threshold only. For non-normalised scoring, describe the metric and units in acceptance criteria instead of treating this value as a scientific score.</div></div>
+      <div class="field full"><label for="acceptance">Success criteria / acceptance tests *</label><textarea id="acceptance" required placeholder="Describe measurable outcomes, baselines, tolerances, negative controls and how each criterion will be tested."></textarea></div>
+      <div class="field full"><label for="capabilities">Required qFoldIT capabilities *</label><textarea id="capabilities" required placeholder="One capability per line or comma-separated. e.g. scientific.object.read, structure.refine, candidate.submit"></textarea><div class="hint">Use capability IDs understood by the target runtime and compiler; custom requirements are retained in the exported draft for review.</div></div>
+    </div>
+  </div>
+</details>
+
+<details class="panel">
+  <summary><span>03 · Scientific objects, inputs &amp; data</span><span class="stepno">SCIENTIFIC CONTEXT</span></summary>
+  <div class="panel-body">
+    <div class="fields">
+      <div class="field full"><label for="objects">Scientific object register <span class="optional">(optional)</span></label><textarea id="objects" class="tall" placeholder="One object per line: object_id | schema_id | public/reference URI | description&#10;Example: 1UBQ | sos/protein | https://www.rcsb.org/structure/1UBQ | Public benchmark reference"></textarea><div class="hint">Use only references/identifiers safe to include in exported JSON. Actual protected model/reference bytes must be staged through the approved backend.</div></div>
+      <div class="field full"><label for="inputs">Input datasets / model / instrument / site references</label><textarea id="inputs" placeholder="Dataset IDs, DOI/PDB IDs, model/version IDs, sample catalogue references, sensor/instrument identifiers or secure-store references."></textarea></div>
+      <div class="field"><label for="dataClass">Data classification *</label><select id="dataClass" required><option value="PUBLIC">Public</option><option value="INTERNAL" selected>Internal</option><option value="PARTNER_RESTRICTED">Partner restricted</option><option value="CONFIDENTIAL">Confidential</option><option value="NDA_REQUIRED">NDA required</option><option value="HIGHLY_RESTRICTED">Highly restricted / regulated</option></select></div>
+      <div class="field"><label for="dataResidency">Data residency / region requirements</label><input id="dataResidency" placeholder="e.g. US only, EU/EEA, on-premises, no transfer"></div>
+      <div class="field"><label for="dataOwner">Data owner / controller</label><input id="dataOwner" placeholder="Organisation / responsible department"></div>
+      <div class="field"><label for="retention">Retention / deletion policy</label><input id="retention" placeholder="e.g. 90 days after delivery; contractual override"></div>
+      <div class="field full"><label for="dataHandling">Input access, data-quality and handling constraints</label><textarea id="dataHandling" placeholder="Access mechanism, versioning, permitted sources, reproducibility, data-quality gates, export restrictions and secure-storage references."></textarea></div>
+    </div>
+  </div>
+</details>
+
+<details class="panel" open>
+  <summary><span>04 · Validation, runtimes &amp; execution</span><span class="stepno">EXECUTION POLICY</span></summary>
+  <div class="panel-body">
+    <div class="fields">
+      <div class="field full"><div class="field-label">Requested runtime targets * <span class="optional">— domain-based suggestions, editable</span></div><div class="checkgrid" id="runtimeChecks">
+        <label class="check"><input type="checkbox" name="runtime" value="web" checked>Web</label><label class="check"><input type="checkbox" name="runtime" value="standalone">Standalone</label><label class="check"><input type="checkbox" name="runtime" value="uefn">UEFN / Fortnite</label><label class="check"><input type="checkbox" name="runtime" value="unity">Unity</label><label class="check"><input type="checkbox" name="runtime" value="unigine">UNIGINE</label>
+      </div><div class="hint">Requested targets are intent, not proof that each adapter is configured or operational.</div></div>
+      <div class="field full"><div class="field-label">Required scientific / operational validators *</div><div class="checkgrid" id="validatorChecks">
+        <label class="check"><input type="checkbox" name="validator" value="openstructure" checked>OpenStructure · protein structure</label><label class="check"><input type="checkbox" name="validator" value="atomic-validation">Atomic validation · materials / atoms</label><label class="check"><input type="checkbox" name="validator" value="industrial-cameo">Industrial CAMEO · process / industrial reconciliation</label><label class="check"><input type="checkbox" name="validator" value="domain-validator">Domain-specific scientific validator</label><label class="check"><input type="checkbox" name="validator" value="lab-validator">Laboratory / instrument validator</label><label class="check"><input type="checkbox" name="validator" value="quantum-validator">Quantum validator</label>
+      </div><div class="hint warning">Selecting a validator records a requirement; it does not configure credentials, deploy the service or constitute validation.</div></div>
+      <div class="field"><label for="customValidators">Additional validator IDs <span class="optional">(optional)</span></label><input id="customValidators" placeholder="One or more IDs, comma-separated"></div>
+      <div class="field"><label for="adapterPolicy">Adapter / engine version constraints</label><input id="adapterPolicy" placeholder="Required adapter versions, ABI, engine builds"></div>
+      <div class="field full"><label for="actions">Allowed scientific actions / operation boundaries</label><textarea id="actions" placeholder="One action ID per line; for example structure.refine, checkpoint.submit, candidate.submit. State prohibited actions too."></textarea></div>
+      <div class="field"><label for="deadline">Requested completion date</label><input id="deadline" type="date"></div>
+      <div class="field"><label for="executionMode">Execution environment</label><select id="executionMode"><option value="HYBRID">Hybrid / human + AI + runtime</option><option value="HUMAN_IN_LOOP">Human-in-the-loop</option><option value="SIMULATION">Simulation only</option><option value="BATCH">Batch computation</option><option value="LAB_INTEGRATED">Laboratory / instrument integrated</option><option value="FIELD">Field / industrial site</option><option value="CUSTOM">Custom / to be agreed</option></select></div>
+      <div class="field full"><label for="executionConstraints">Execution and reproducibility constraints</label><textarea id="executionConstraints" placeholder="Compute/time limits, deterministic seeds, repeatability, hardware constraints, playtest conditions, offline/on-prem requirements, human approvals and rollback criteria."></textarea></div>
+    </div>
+  </div>
+</details>
+
+<details class="panel">
+  <summary><span>05 · Governance, rights &amp; regulatory context</span><span class="stepno">ENTERPRISE CONTROLS</span></summary>
+  <div class="panel-body">
+    <div class="fields">
+      <div class="field"><label for="commercial">Commercial posture *</label><select id="commercial" required><option value="INTERNAL">Internal / no external commercial commitment</option><option value="PILOT" selected>Pilot</option><option value="PAID">Paid engagement</option><option value="CO_DEVELOPMENT">Co-development</option><option value="GRANT">Grant-funded</option><option value="OPEN_RESEARCH">Open research</option></select></div>
+      <div class="field"><label for="confidentiality">Confidentiality contract *</label><select id="confidentiality" required><option value="PUBLIC">Public</option><option value="PARTNER_RESTRICTED">Partner restricted</option><option value="CONFIDENTIAL">Confidential</option><option value="NDA_REQUIRED" selected>NDA required</option></select></div>
+      <div class="field"><label for="budget">Indicative budget / currency</label><input id="budget" placeholder="Optional; e.g. 25,000 USD or to be scoped"></div>
+      <div class="field"><label for="funding">Funding source / grant reference</label><input id="funding" placeholder="Internal cost centre, grant ID, purchase-order ref"></div>
+      <div class="field full"><label for="rights">Rights, IP, licensing and permitted use *</label><textarea id="rights" required placeholder="Who owns background IP and mission outputs, dataset licences, permitted model use, attribution, publication, derivative works, retention and export restrictions."></textarea></div>
+      <div class="field full"><label for="regulatory">Applicable frameworks / regulatory review</label><textarea id="regulatory" placeholder="Select what actually applies and why: ISO 27001, ISO 42001, GDPR, 21 CFR Part 11, GLP, ISO 17025, IEC 62443, sector and local rules. This field records applicability to review, not compliance certification."></textarea></div>
+      <div class="field full"><label for="risk">Safety, dual-use, ethical, privacy and human-oversight considerations</label><textarea id="risk" placeholder="Risk classification, prohibited use, human approval points, privacy assessment, biosafety/security boundaries, field safety and escalation contact."></textarea></div>
+      <div class="field full"><div class="field-label">Required safeguards</div><div class="checkgrid">
+        <label class="check"><input id="failClosed" type="checkbox" checked>Fail closed when validator, provenance or evidence is missing</label>
+        <label class="check"><input id="humanReview" type="checkbox" checked>Human review for consequential scientific or policy decisions</label>
+        <label class="check"><input id="noClinical" type="checkbox" checked>Do not infer clinical/therapeutic authority from mission outputs</label>
+        <label class="check"><input id="noSynthetic" type="checkbox" checked>Never fabricate scores or validator evidence</label>
+      </div><div class="hint">Scientific validation and provenance remain mandatory boundaries; safeguards can be strengthened by the enterprise policy.</div></div>
+    </div>
+  </div>
+</details>
+
+<details class="panel">
+  <summary><span>06 · Deliverables &amp; evidence requirements</span><span class="stepno">ACCEPTANCE PACKAGE</span></summary>
+  <div class="panel-body">
+    <div class="fields">
+      <div class="field full"><label for="deliverables">Expected deliverables *</label><textarea id="deliverables" required placeholder="One deliverable per line: compiled runtime, data package, validated candidate, report, simulation result, reproducible workflow, training module, etc."></textarea></div>
+      <div class="field full"><label for="evidence">Required evidence / provenance fields</label><textarea id="evidence" class="tall">qfoldit.evidence/1.1
+qfoldit.validation.completed/1.1
+mission-id-and-version
+submission-id
+action-envelope-hash
+candidate-artifact-sha256
+reference-sha256
+model-sha256
+validator-id-and-version
+runtime-and-adapter-version
+completed-at
+human-review-record-when-required</textarea><div class="hint">These are requested deliverable requirements, not records generated by this form.</div></div>
+      <div class="field full"><label for="acceptanceDelivery">Review / delivery requirements</label><textarea id="acceptanceDelivery" placeholder="Reviewer roles, evidence review, report format, customer sign-off, release gate, delivery channel and dispute/rework process."></textarea></div>
+      <div class="field full"><label for="notes">Additional notes for mission designers</label><textarea id="notes" placeholder="Context not covered above."></textarea></div>
+    </div>
+  </div>
+</details>
+
+<details class="panel">
+  <summary><span>07 · Advanced extension metadata</span><span class="stepno">EXTENSIBLE</span></summary>
+  <div class="panel-body">
+    <div class="fields">
+      <div class="field full"><label for="customMetadata">Custom metadata JSON object <span class="optional">(optional)</span></label><textarea id="customMetadata" class="tall" spellcheck="false" placeholder='{"department":"R&D","work_package":"WP-01","customer_fields":{"cost_center":"..."} }'></textarea><div class="hint">Allows domain/client-specific fields without adding a new form version. Must be a valid JSON object. Do not use this field for secrets or restricted payloads.</div></div>
+      <div class="field"><label for="validationPolicy">Validation policy reference</label><input id="validationPolicy" required value="qfoldit.validation-policy/1.0"></div>
+      <div class="field"><label for="rewardPolicy">Reward / contribution policy reference</label><input id="rewardPolicy" value="qfoldit.reward-policy/1.0"></div>
+    </div>
+  </div>
+</details>
+
+<div class="panel">
+  <div class="section-footer">
+    <div><strong>Before export</strong><div class="fine">Review errors and confirm mission scope, rights and validator requirements.</div></div>
+    <div class="inline-row" style="max-width:350px"><button type="button" class="btn" id="resetForm">Reset draft</button><button type="button" class="btn primary" id="validateBtn">Validate draft</button></div>
+  </div>
+</div>
+</form>
+</main>
+
+<aside class="side">
+<section class="panel summary-panel">
+  <div class="panel-head"><div><h2>Mission readiness</h2><p>Draft completeness · not operational readiness</p></div><span class="stepno" id="readyBadge">DRAFT</span></div>
+  <div class="summary-grid">
+    <div class="stat"><div class="k">Mission ID</div><div class="v" id="summaryId">Draft</div></div>
+    <div class="stat"><div class="k">Fields complete</div><div class="v" id="completeCount">0 / 0</div></div>
+    <div class="stat"><div class="k">Runtimes requested</div><div class="v" id="runtimeCount">1</div></div>
+    <div class="stat"><div class="k">Validators requested</div><div class="v" id="validatorCount">1</div></div>
+  </div>
+  <div class="statusline" id="statusline"><strong>Local draft only.</strong> Nothing has been submitted to a server.</div>
+  <ul class="errorlist" id="errorList" hidden></ul>
+  <div class="export-actions">
+    <button type="button" class="btn good wide" id="downloadPackage">Download mission package JSON</button>
+    <button type="button" class="btn primary" id="downloadApi">Download API request JSON</button>
+    <button type="button" class="btn" id="copyJson">Copy package JSON</button>
+    <button type="button" class="btn" id="copyApi">Copy API request</button>
+    <button type="button" class="btn wide" id="downloadContract">Download Mission Contract JSON</button>
+  </div>
+  <div class="panel-body" style="padding-top:0"><p class="footnote">Package = canonical mission + client intake + API request. API request = body for <code>POST /api/v1/missions</code>. The current API creates its own authoritative mission ID/version; map the returned ID to this draft during integration.</p></div>
+</section>
+
+<section class="panel">
+  <div class="panel-head json-head"><div><h2>JSON package preview</h2><p>Updated locally as you fill in the form</p></div><span class="tag" id="jsonState">LIVE</span></div>
+  <pre class="preview" id="jsonPreview" aria-label="Generated JSON preview">{}</pre>
+</section>
+
+<section class="panel">
+  <div class="panel-head"><div><h2>Contract &amp; trust boundary</h2><p>What this export does and does not assert</p></div></div>
+  <div class="panel-body">
+    <div class="list">
+      <div class="fine">✓ Canonical <code>qfoldit.mission/1.0</code> envelope</div>
+      <div class="fine">✓ CORPORATE_APP intake values and API request shape</div>
+      <div class="fine">✓ Domain-driven template, validator and runtime suggestions</div>
+      <div class="fine">✓ Exported rights, constraints and acceptance criteria</div>
+      <div class="fine warning">! No automatic production submission or credential handling</div>
+      <div class="fine warning">! No scientific score, runtime success or Evidence 1.1 is generated here</div>
+    </div>
+  </div>
+</section>
+</aside>
+</div>
+<footer class="footer"><span>qFoldIT · Client Scientific Mission Intake · Export format v1.0</span><span><a href="https://github.com/qfoldit/CORPORATE_APP">CORPORATE_APP</a> · <a href="https://github.com/qfoldit/UEFN-QFOLDIT">Mission compiler / runtime</a></span></footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+'use strict';
+const $ = id => document.getElementById(id);
+const catalog = {
+"AI Drug Discovery":{templates:["protein-ligand-docking","target-structure-refinement","virtual-screening-evaluation"],validators:["openstructure"],runtimes:["web","standalone","uefn"],capabilities:["structure.refine","candidate.submit","scientific.object.read"],scoring:"protein-lddt-v1"},
+"Protein Design / AI":{templates:["protein-design","binder-optimization","sequence-to-structure-search"],validators:["openstructure"],runtimes:["standalone","uefn"],capabilities:["protein.design","candidate.submit","scientific.object.read"],scoring:"protein-lddt-v1"},
+"RNA / Gene Therapy":{templates:["RNA-structure","delivery-target-optimization","sequence-design"],validators:["openstructure"],runtimes:["standalone","web"],capabilities:["structure.refine","candidate.submit","scientific.object.read"],scoring:"protein-lddt-v1"},
+"Advanced Materials":{templates:["materials-structure-search","property-optimization","microstructure-design"],validators:["atomic-validation"],runtimes:["web","unigine","standalone"],capabilities:["materials.search","property.evaluate","candidate.submit"],scoring:"atomic-property-v1"},
+"Materials / Battery":{templates:["electrode-material-search","ionic-pathway-optimization","degradation-model-validation"],validators:["atomic-validation"],runtimes:["web","unigine"],capabilities:["materials.search","property.evaluate","candidate.submit"],scoring:"atomic-property-v1"},
+"Battery / Automotive":{templates:["battery-material-ranking","cell-architecture-search","thermal-material-evaluation"],validators:["atomic-validation"],runtimes:["unity","unigine","web"],capabilities:["materials.search","simulation.run","candidate.submit"],scoring:"atomic-property-v1"},
+"Chemicals / Catalysis":{templates:["catalyst-structure-search","reaction-pathway-screening","surface-chemistry-evaluation"],validators:["atomic-validation"],runtimes:["web","unigine"],capabilities:["materials.search","simulation.run","candidate.submit"],scoring:"atomic-property-v1"},
+"Energy / Catalysis":{templates:["electrocatalyst-search","reaction-mechanism-evaluation","surface-optimization"],validators:["atomic-validation"],runtimes:["web","unigine"],capabilities:["materials.search","simulation.run","candidate.submit"],scoring:"atomic-property-v1"},
+"Energy / CCUS":{templates:["CO2-capture-material-search","sorbent-optimization","process-digital-twin"],validators:["atomic-validation","industrial-cameo"],runtimes:["unigine","web","standalone"],capabilities:["process.model","simulation.run","candidate.submit"],scoring:"industrial-process-v1"},
+"Mining":{templates:["microbial-ore-prospecting","mineral-processing-optimization","bioleaching-mission"],validators:["domain-validator","industrial-cameo"],runtimes:["unigine","web","uefn"],capabilities:["field.data.ingest","process.model","candidate.submit"],scoring:"industrial-process-v1"},
+"Mining / Energy":{templates:["subsurface-prospecting","reservoir-microbiology","production-optimization"],validators:["industrial-cameo","domain-validator"],runtimes:["unigine","web"],capabilities:["field.data.ingest","simulation.run","candidate.submit"],scoring:"industrial-process-v1"},
+"Energy / Subsurface":{templates:["reservoir-model-validation","pipeline-corrosion","CO2-storage-monitoring"],validators:["industrial-cameo"],runtimes:["unigine","web"],capabilities:["process.model","simulation.run","candidate.submit"],scoring:"industrial-process-v1"},
+"Industrial Biotechnology":{templates:["enzyme-design","bioprocess-optimization","metabolic-pathway-search"],validators:["openstructure","industrial-cameo"],runtimes:["standalone","web"],capabilities:["scientific.object.read","simulation.run","candidate.submit"],scoring:"domain-defined-v1"},
+"Synthetic Biology":{templates:["design-build-test-search","protein-pathway-optimization","biomanufacturing"],validators:["openstructure","industrial-cameo"],runtimes:["standalone","web"],capabilities:["scientific.object.read","simulation.run","candidate.submit"],scoring:"domain-defined-v1"},
+"Carbon Capture":{templates:["capture-material-search","process-optimization","carbon-mineralization"],validators:["atomic-validation","industrial-cameo"],runtimes:["unigine","web"],capabilities:["process.model","simulation.run","candidate.submit"],scoring:"industrial-process-v1"},
+"Hydrogen":{templates:["hydrogen-material-search","electrolyzer-catalyst","storage-material-evaluation"],validators:["atomic-validation"],runtimes:["web","unigine"],capabilities:["materials.search","property.evaluate","candidate.submit"],scoring:"atomic-property-v1"},
+"Semiconductor / Scientific Hardware":{templates:["materials-process-optimization","device-material-search","lab-control-mission"],validators:["atomic-validation","lab-validator"],runtimes:["web","standalone"],capabilities:["materials.search","lab.measurement.read","candidate.submit"],scoring:"domain-defined-v1"},
+"Quantum Computing":{templates:["quantum-optimization","VQE-material-search","quantum-opportunity-scheduling"],validators:["quantum-validator"],runtimes:["standalone","web"],capabilities:["quantum.compute","simulation.run","candidate.submit"],scoring:"domain-defined-v1"},
+"Aerospace / Space":{templates:["materials-for-space","life-support-optimization","scientific-digital-twin"],validators:["domain-validator"],runtimes:["unigine","uefn","web"],capabilities:["simulation.run","digital-twin.read","candidate.submit"],scoring:"domain-defined-v1"},
+"Pharma / Biotech":{templates:["target-structure-refinement","protein-design","bioprocess-optimization"],validators:["openstructure","domain-validator"],runtimes:["web","standalone"],capabilities:["scientific.object.read","candidate.submit"],scoring:"domain-defined-v1"},
+"Genomics / Bioinformatics":{templates:["variant-provenance-analysis","genomic-data-quality-review","sequence-annotation"],validators:["domain-validator"],runtimes:["web","standalone"],capabilities:["dataset.read","provenance.verify","candidate.submit"],scoring:"domain-defined-v1"},
+"Agriculture / Food Systems":{templates:["crop-trait-analysis","soil-sample-characterisation","food-process-optimization"],validators:["domain-validator"],runtimes:["web","unigine"],capabilities:["dataset.read","simulation.run","candidate.submit"],scoring:"domain-defined-v1"},
+"Environmental Science":{templates:["environmental-sample-analysis","ecosystem-model-validation","contamination-pathway-mapping"],validators:["domain-validator","lab-validator"],runtimes:["web","unigine"],capabilities:["dataset.read","simulation.run","candidate.submit"],scoring:"domain-defined-v1"},
+"Industrial Engineering / Digital Twin":{templates:["process-digital-twin","equipment-maintenance-planning","process-optimization"],validators:["industrial-cameo","domain-validator"],runtimes:["unigine","web","standalone"],capabilities:["digital-twin.read","simulation.run","candidate.submit"],scoring:"industrial-process-v1"},
+"Scientific Education / Research Training":{templates:["scientific-method-training","collaborative-lab-simulation","scientific-mission-learning"],validators:["domain-validator"],runtimes:["uefn","web","standalone"],capabilities:["learning.objective.track","scientific.object.read","candidate.submit"],scoring:"human-reviewed-v1"},
+"General / Custom Domain":{templates:["custom-scientific-mission","research-workflow-validation"],validators:["domain-validator"],runtimes:["web","standalone"],capabilities:["scientific.object.read","candidate.submit"],scoring:"general-v1"}
+};
+const runtimeIds=["web","standalone","uefn","unity","unigine"];
+const validatorIds=["openstructure","atomic-validation","industrial-cameo","domain-validator","lab-validator","quantum-validator"];
+const multiline = value => value.split(/\r?\n|,/).map(v=>v.trim()).filter(Boolean);
+const checked = name => Array.from(document.querySelectorAll('input[name="'+name+'"]:checked')).map(el=>el.value);
+const slug = value => (value||"client").toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,52) || "client";
+const uuid = () => (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now().toString(16)+"-"+Math.random().toString(16).slice(2)+"-"+Math.random().toString(16).slice(2));
+let missionId = "draft-"+uuid();
+function fillDomainSuggestions(reset){
+ const selected=$("domain").value, spec=catalog[selected]||catalog["General / Custom Domain"];
+ const list=$("templateOptions");list.innerHTML="";
+ spec.templates.forEach(t=>{const op=document.createElement("option");op.value=t;list.appendChild(op)});
+ if(reset){$("template").value=spec.templates[0];$("scoringProfile").value=spec.scoring;$("capabilities").value=spec.capabilities.join("\n");
+ document.querySelectorAll('input[name="runtime"]').forEach(el=>el.checked=spec.runtimes.includes(el.value));
+ document.querySelectorAll('input[name="validator"]').forEach(el=>el.checked=spec.validators.includes(el.value));}
+ updatePreview();
+}
+function parseObjects(){
+ return $("objects").value.split(/\r?\n/).map(v=>v.trim()).filter(Boolean).map((line,i)=>{
+  const parts=line.split("|").map(v=>v.trim());
+  return {object_id:parts[0]||("object-"+(i+1)),schema_id:parts[1]||"sos/custom",reference_uri:parts[2]||"",description:parts.slice(3).join(" | ")||""};
+ });
+}
+function parseCustomMetadata(){
+ const raw=$("customMetadata").value.trim();if(!raw)return {};
+ const parsed=JSON.parse(raw);if(!parsed||Array.isArray(parsed)||typeof parsed!=="object")throw new Error("Custom metadata must be a JSON object.");return parsed;
+}
+function values(){
+ const org=$("orgName").value.trim(), domain=$("domain").value==="General / Custom Domain"&&$("customDomain").value.trim() ? $("customDomain").value.trim() : $("domain").value;
+ const runtimes=checked("runtime"), validators=Array.from(new Set(checked("validator").concat(multiline($("customValidators").value))));
+ const title=$("title").value.trim(), objective=$("objective").value.trim(), objectiveName=$("objectiveName").value.trim();
+ const intakeId="intake-"+missionId.replace(/[^a-zA-Z0-9-]/g,"").slice(-30);
+ const partnerId=$("partnerId").value.trim()||("partner-"+slug(org));
+ const tenantId=$("tenantId").value.trim()||("tenant-"+slug(org));
+ const caps=Array.from(new Set(multiline($("capabilities").value)));
+ const custom=parseCustomMetadata();
+ const tier=$("tier").value, mode=$("clientMode").value, commercial=$("commercial").value, confidentiality=$("confidentiality").value;
+ const threshold=Number($("threshold").value);
+ const rights=multiline($("rights").value);
+ const evidence=multiline($("evidence").value);
+ const actions=multiline($("actions").value);
+ const runtimeConstraints={
+   targets:runtimes, execution_mode:$("executionMode").value, adapter_constraints:$("adapterPolicy").value.trim(),
+   allowed_actions:actions, deadline:$("deadline").value||null, execution_notes:$("executionConstraints").value.trim(),
+   data_residency:$("dataResidency").value.trim()||null, requested_threshold:Number.isFinite(threshold)?threshold:null,
+   fail_closed:$("failClosed").checked, human_review_required:$("humanReview").checked
+ };
+ const intake={
+  intakeId:intakeId,
+  partner:{partnerId:partnerId,organizationName:org,tier:tier,sourceRef:$("sourceUri").value.trim()||"qfoldit://client-intake"},
+  mode:mode,commercialPosture:commercial,confidentiality:confidentiality,scientificDomain:domain,
+  missionTemplateId:$("template").value.trim(),objective:objective,
+  requiredValidators:validators,runtimeTargets:runtimes,evidenceRequirements:evidence,rightsRequirements:rights,
+  status:$("lifecycle").value,sourceUri:$("sourceUri").value.trim()||"qfoldit://client-intake"
+ };
+ const mission={
+  schema:"qfoldit.mission/1.0", mission_id:missionId, version:"1.0", title:title,
+  scientific_domain:domain, objective:objective, required_capabilities:caps,
+  validation_policy_ref:$("validationPolicy").value.trim(), reward_policy_ref:$("rewardPolicy").value.trim(),
+  runtime_constraints:runtimeConstraints,
+  metadata:{
+   intake_id:intakeId, tenant_id:tenantId, partner_id:partnerId, client_organisation:org,
+   client_tier:tier, client_mode:mode, partner_contact:{name:$("contactName").value.trim()||null,role:$("contactRole").value.trim()||null,email:$("contactEmail").value.trim()||null,region:$("region").value.trim()||null},
+   client_region:$("region").value.trim()||null, mission_template_id:$("template").value.trim(),
+   objective_name:objectiveName, scoring_profile:$("scoringProfile").value.trim(), acceptance_threshold:Number.isFinite(threshold)?threshold:null,
+   acceptance_criteria:$("acceptance").value.trim(), requested_validators:validators, evidence_requirements:evidence,
+   commercial_posture:commercial, confidentiality:confidentiality, data_classification:$("dataClass").value,
+   data_governance:{owner:$("dataOwner").value.trim()||null,residency:$("dataResidency").value.trim()||null,retention:$("retention").value.trim()||null,handling:$("dataHandling").value.trim()||null},
+   scientific_objects:parseObjects(), input_references:multiline($("inputs").value), rights_and_licensing:$("rights").value.trim(),
+   regulatory_context:$("regulatory").value.trim(), risk_and_oversight:$("risk").value.trim(),
+   safeguards:{fail_closed:$("failClosed").checked,human_review_required:$("humanReview").checked,no_clinical_authority_claims:$("noClinical").checked,no_synthetic_scores_or_evidence:$("noSynthetic").checked},
+   deliverables:multiline($("deliverables").value), budget:$("budget").value.trim()||null,funding_reference:$("funding").value.trim()||null,
+   delivery_review:$("acceptanceDelivery").value.trim()||null, additional_notes:$("notes").value.trim()||null,
+   extension_metadata:custom, draft_created_at:new Date().toISOString()
+  }
+ };
+ const apiRequest={tenantId:tenantId,title:title,scientificDomain:domain,objectiveName:objectiveName,objectiveDescription:objective,scoringProfile:$("scoringProfile").value.trim(),threshold:threshold,engines:runtimes,acquisition:intake};
+ return {mission:mission,intake:intake,apiRequest:apiRequest};
+}
+function validateDraft(v){
+ const errors=[];
+ const required=[["Organisation","orgName"],["Tenant ID","tenantId"],["Partner ID","partnerId"],["Mission title","title"],["Scientific domain","domain"],["Mission template","template"],["Objective type","objectiveName"],["Objective description","objective"],["Scoring profile","scoringProfile"],["Acceptance criteria","acceptance"],["Required capabilities","capabilities"],["Rights and permitted use","rights"],["Expected deliverables","deliverables"],["Validation policy reference","validationPolicy"]];
+ required.forEach(([label,id])=>{if(!$(id).value.trim())errors.push(label+" is required.")});
+ if(!Number.isFinite(Number($("threshold").value))||Number($("threshold").value)<0||Number($("threshold").value)>1)errors.push("Acceptance threshold must be a number from 0 to 1.");
+ if(!$("contactEmail").validity.valid)errors.push("Business email format is invalid.");
+ if(!v.intake.runtimeTargets.length)errors.push("Select at least one runtime target.");
+ if(!v.intake.requiredValidators.length)errors.push("Select at least one required validator.");
+ if(!v.mission.required_capabilities.length)errors.push("Provide at least one required capability.");
+ if(!$("failClosed").checked)errors.push("Fail-closed validation must remain enabled for this scientific mission intake.");
+ if(!$("noSynthetic").checked)errors.push("The no-fabricated-scores/evidence safeguard must remain enabled.");
+ try{parseCustomMetadata()}catch(e){errors.push(e.message)}
+ return errors;
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function updatePreview(){
+ try{
+  const v=values();const pkg={schema:"qfoldit.scientific-mission-package/1.0",generated_at:new Date().toISOString(),draft_only:true,mission:v.mission,intake_record:v.intake,corporate_app_request:v.apiRequest,submission:{method:"POST",path:"/api/v1/missions",content_type:"application/json",body_key:"corporate_app_request",note:"Export only. Do not send this wrapper object directly to the API."}};
+  $("jsonPreview").textContent=JSON.stringify(pkg,null,2);
+  $("summaryId").textContent=missionId.length>20?missionId.slice(0,20)+"…":missionId;
+  $("runtimeCount").textContent=v.intake.runtimeTargets.length;
+  $("validatorCount").textContent=v.intake.requiredValidators.length;
+  const requiredIds=["orgName","tenantId","partnerId","title","objectiveName","objective","acceptance","capabilities","rights","deliverables","validationPolicy"];
+  const complete=requiredIds.filter(id=>$(id).value.trim()).length;
+  $("completeCount").textContent=complete+" / "+requiredIds.length;
+  $("jsonState").textContent="LIVE";
+  $("readyBadge").textContent="DRAFT";
+  $("statusline").innerHTML="<strong>Local draft only.</strong> This page has not contacted the enterprise API.";
+  $("errorList").hidden=true;$("errorList").innerHTML="";
+ }catch(e){
+  $("jsonPreview").textContent=JSON.stringify({error:e.message,reminder:"Fix custom metadata JSON before export."},null,2);
+  $("jsonState").textContent="JSON ERROR";$("readyBadge").textContent="ERROR";
+  $("statusline").textContent="The draft cannot be exported until the JSON error is fixed.";
+ }
+}
+function currentPackage(){
+ const v=values(),errors=validateDraft(v);
+ $("errorList").hidden=errors.length===0;
+ $("errorList").innerHTML=errors.map(e=>"<li>"+escapeHtml(e)+"</li>").join("");
+ $("readyBadge").textContent=errors.length?"NEEDS INPUT":"VALID DRAFT";
+ $("statusline").innerHTML=errors.length?"<strong class='warning'>Resolve "+errors.length+" validation issue(s) before export.</strong>":"<strong>Draft checks passed.</strong> This is still not a backend submission or scientific validation.";
+ if(errors.length) { $("errorList").scrollIntoView({behavior:"smooth",block:"nearest"}); return null; }
+ return {v:v,pkg:JSON.parse($("jsonPreview").textContent)};
+}
+function download(name,object){
+ const blob=new Blob([JSON.stringify(object,null,2)+"\n"],{type:"application/json;charset=utf-8"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);toast("Downloaded "+name);
+}
+function toast(msg){const el=$("toast");el.textContent=msg;el.classList.add("show");setTimeout(()=>el.classList.remove("show"),2600);}
+async function copy(text){
+ try{await navigator.clipboard.writeText(text);toast("JSON copied to clipboard.");}
+ catch(e){const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();const ok=document.execCommand("copy");ta.remove();toast(ok?"JSON copied to clipboard.":"Clipboard blocked by browser; use Download JSON.");}
+}
+$("domain").addEventListener("change",()=>fillDomainSuggestions(true));
+$("orgName").addEventListener("input",()=>{
+ if(!$("tenantId").dataset.edited)$("tenantId").value="tenant-"+slug($("orgName").value);
+ if(!$("partnerId").dataset.edited)$("partnerId").value="partner-"+slug($("orgName").value);
+ updatePreview();
+});
+["tenantId","partnerId"].forEach(id=>$(id).addEventListener("input",()=>{$(id).dataset.edited="1";updatePreview()}));
+$("missionForm").addEventListener("input",updatePreview);
+$("missionForm").addEventListener("change",updatePreview);
+$("validateBtn").addEventListener("click",()=>{const current=currentPackage();if(current)toast("Draft fields validated. No server request was made.");});
+$("downloadPackage").addEventListener("click",()=>{const current=currentPackage();if(current)download("qfoldit-scientific-mission-"+slug(current.v.mission.title)+".json",current.pkg)});
+$("downloadApi").addEventListener("click",()=>{const current=currentPackage();if(current)download("corporate-app-mission-request-"+slug(current.v.mission.title)+".json",current.v.apiRequest)});
+$("downloadContract").addEventListener("click",()=>{const current=currentPackage();if(current)download("qfoldit-mission-contract-"+slug(current.v.mission.title)+".json",current.v.mission)});
+$("copyJson").addEventListener("click",()=>{const current=currentPackage();if(current)copy(JSON.stringify(current.pkg,null,2))});
+$("copyApi").addEventListener("click",()=>{const current=currentPackage();if(current)copy(JSON.stringify(current.v.apiRequest,null,2))});
+$("resetForm").addEventListener("click",()=>{
+ if(!confirm("Reset this draft? Current form values will be cleared."))return;
+ $("missionForm").reset();missionId="draft-"+uuid();
+ ["tenantId","partnerId"].forEach(id=>delete $(id).dataset.edited);
+ $("tenantId").value="";$("partnerId").value="";
+ fillDomainSuggestions(true);updatePreview();toast("Draft reset.");
+});
+fillDomainSuggestions(true);
+})();
+</script>
+</body>
+</html>
