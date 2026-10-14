@@ -369,7 +369,17 @@ function updatePreview(){
  }
 }
 function currentPackage(){
- const v=values(),errors=validateDraft(v);
+ let v;
+ try { v=values(); }
+ catch(e) {
+  $("errorList").hidden=false;
+  $("errorList").innerHTML="<li>"+escapeHtml(e.message)+"</li>";
+  $("readyBadge").textContent="JSON ERROR";
+  $("statusline").innerHTML="<strong class='warning'>Fix the advanced metadata JSON before export.</strong>";
+  $("errorList").scrollIntoView({behavior:"smooth",block:"nearest"});
+  return null;
+ }
+ const errors=validateDraft(v);
  $("errorList").hidden=errors.length===0;
  $("errorList").innerHTML=errors.map(e=>"<li>"+escapeHtml(e)+"</li>").join("");
  $("readyBadge").textContent=errors.length?"NEEDS INPUT":"VALID DRAFT";
