@@ -161,13 +161,7 @@ The same scientific mission should be able to reach different audiences without 
 
 qFoldIT retains its original interactive vision: scientific problems can become spatial, cooperative and competitive experiences.
 
-<a href="https://create.fortnite.com/join/2f8d8693-4fbf-4a21-ac3d-9a97efd6ed97/2b51a870-d7ef-40f8-8e57-73273fa578b3"><img alt="LEGO Fortnite Science" src="https://qfoldit.github.io/assets/LEGO_HERO_POST.png"/></a>
-
-<a href="https://create.fortnite.com/join/2f8d8693-4fbf-4a21-ac3d-9a97efd6ed97/2b51a870-d7ef-40f8-8e57-73273fa578b3"><img alt="LEGO Fortnite biotech laboratory" src="https://qfoldit.github.io/assets/lego_qfoldit_hero.png"/></a>
-
-<a href="https://github.com/qfoldit/UEFN-TOOLBELT"><img alt="qFoldIT UEFN Toolbelt" src="https://qfoldit.github.io/assets/lego-standarts_toolbeth.png"/></a>
-
-<a href="https://www.cell.com/trends/biotechnology/abstract/S0167-7799(22)00034-8"><img alt="LEGO road to open science" src="https://qfoldit.github.io/assets/lego_biotech.png"/></a>
+**Original-world and asset policy:** public-facing visual concepts must have an asset-level provenance and licence record. Branded LEGO/Fortnite-style promotional artwork has been removed from this README pending rights review; this is not a statement that the assets are owned, licensed, or endorsed by any third party. See [Rights, Licensing and Asset Boundaries](RIGHTS-AND-ASSET-BOUNDARIES.md).
 
 ## Existing scientific and educational references
 
