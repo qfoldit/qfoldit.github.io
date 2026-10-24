@@ -110,10 +110,10 @@ function draw(){
  shown=data.filter(d=>d.date>=cutoff);
  if(shown.length===1)shown=[data[Math.max(0,data.indexOf(shown[0])-1)],...shown];
  const minDate=Date.parse(shown[0].date+"T00:00:00Z"),maxDate=Date.parse(shown[shown.length-1].date+"T00:00:00Z")||minDate+86400000;
- const minV=0,maxV=1000;
- coords=shown.map(d=>({...d,x:left+(Date.parse(d.date+"T00:00:00Z")-minDate)/(maxDate-minDate||1)*plotW,y:top+(maxV-d.value)/(maxV-minV)*plotH}));
+ const minV=1,maxV=1000;
+ coords=shown.map(d=>({...d,x:left+(Date.parse(d.date+"T00:00:00Z")-minDate)/(maxDate-minDate||1)*plotW,y:top+(Math.log(maxV)-Math.log(Math.max(minV,d.value)))/(Math.log(maxV)-Math.log(minV))*plotH}));
  grid.innerHTML="";labels.innerHTML="";
- [0,250,500,750,1000].forEach(v=>{const y=top+(maxV-v)/(maxV-minV)*plotH;grid.insertAdjacentHTML("beforeend",'<line class="gridline" x1="'+left+'" x2="'+(W-right+8)+'" y1="'+y+'" y2="'+y+'"/>');labels.insertAdjacentHTML("beforeend",'<text class="axis" x="'+(W-right+14)+'" y="'+(y+4)+'">'+(v===1000?"$1B":"$"+v+"M")+'</text>')});
+ [1,10,100,1000].forEach(v=>{const y=top+(Math.log(maxV)-Math.log(v))/(Math.log(maxV)-Math.log(minV))*plotH;grid.insertAdjacentHTML("beforeend",'<line class="gridline" x1="'+left+'" x2="'+(W-right+8)+'" y1="'+y+'" y2="'+y+'"/>');labels.insertAdjacentHTML("beforeend",'<text class="axis" x="'+(W-right+14)+'" y="'+(y+4)+'">'+(v===1000?"$1B":"$"+v+"M")+'</text>')});
  const pts=coords.map(p=>p.x+","+p.y).join(" ");
  linePath.setAttribute("d","M"+pts.replaceAll(" "," L"));
  areaPath.setAttribute("d","M"+coords[0].x+","+baseY+" L"+pts.replaceAll(" "," L")+" L"+coords[coords.length-1].x+","+baseY+" Z");
