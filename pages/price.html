@@ -86,7 +86,7 @@ const W=1000,H=340,left=8,right=82,top=14,bottom=54,plotW=W-left-right,plotH=bot
 const fmt=v=>"$"+(v>=1000?(v/1000).toFixed(v%1000?1:0)+"B":v+"M");
 const dateFmt=s=>new Date(s+"T12:00:00Z").toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric",timeZone:"UTC"});
 function draw(){
- shown=active==="1M"?data.filter(d=>d.date>="2026-09-24"):active==="3M"?data.filter(d=>d.date>="2026-07-24"):data.slice();
+ shown=active==="1M"?data.filter(d=>d.date>="2026-09-20"):active==="3M"?data.filter(d=>d.date>="2026-07-24"):data.slice();
  if(shown.length===1)shown=[data[0],...shown];
  const minDate=Date.parse(shown[0].date+"T00:00:00Z"),maxDate=Date.parse(shown[shown.length-1].date+"T00:00:00Z")||minDate+86400000;
  const minV=750,maxV=1000;
