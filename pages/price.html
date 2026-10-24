@@ -6,6 +6,20 @@
 <meta name="theme-color" content="#090a0c">
 <title>Foldnite — Valuation</title>
 <style>
+@font-face {
+  font-family: 'Burbank Big Condensed';
+  src: url('https://foldnite.github.io/assets/font/burbankbigcondensed_bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Burbank Big Condensed';
+  src: url('https://foldnite.github.io/assets/font/burbankbigcondensed_black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 :root{color-scheme:dark;--bg:#090a0c;--fg:#f5f6f7;--muted:#858991;--line:#25282e;--accent:#d9ff64}
 *{box-sizing:border-box}
 html,body{margin:0;width:100%;min-height:100%;background:var(--bg);color:var(--fg);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;scrollbar-width:none;-ms-overflow-style:none}
@@ -13,7 +27,7 @@ html,body{margin:0;width:100%;min-height:100%;background:var(--bg);color:var(--f
 body{min-height:100svh;overflow-x:hidden}
 main{min-height:100svh;width:min(100%,1440px);margin:0 auto;padding:clamp(22px,4vw,60px) clamp(20px,5vw,72px) 28px;display:flex;flex-direction:column}
 header{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{font-size:12px;letter-spacing:.2em;font-weight:650;text-transform:uppercase;color:#c7c9ce}
+.brand{font-family:'Burbank Big Condensed',sans-serif;font-weight:900;font-size:18px;letter-spacing:.08em;text-transform:uppercase;color:#c7c9ce;line-height:1}
 .currency{font-size:11px;letter-spacing:.14em;color:var(--muted)}
 .price-wrap{margin-top:clamp(36px,7vh,78px)}
 .price{font-size:clamp(48px,10vw,100px);line-height:.98;font-weight:520;letter-spacing:-.075em;font-variant-numeric:tabular-nums}
