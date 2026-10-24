@@ -52,7 +52,7 @@ footer{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;paddin
   <header><div class="brand">FOLDNITE</div><div class="currency">USD · VALUATION</div></header>
   <section class="price-wrap" aria-label="Current valuation">
     <div class="price" id="currentPrice">$950<span>M</span></div>
-    <div class="change"><span class="change-dot"></span><span id="totalChange">+94,900% since 2019</span></div>
+    <div class="change"><span class="change-dot"></span><span id="totalChange">+2,065,000% since 2019</span></div>
   </section>
   <section class="chart-section" aria-label="Historical valuation chart">
     <div class="chart-top">
@@ -61,7 +61,7 @@ footer{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;paddin
         <button class="period" data-period="3Y" aria-pressed="false">3Y</button>
         <button class="period" data-period="ALL" aria-pressed="true">ALL</button>
       </div>
-      <div class="chart-value" id="periodValue">$1M — $950M</div>
+      <div class="chart-value" id="periodValue">$46K — $950M</div>
     </div>
     <div class="chart" id="chart">
       <svg id="plot" role="img" aria-label="Foldnite estimated valuation history in US dollars" viewBox="0 0 1000 340" preserveAspectRatio="none">
@@ -89,7 +89,7 @@ const BASELINE_VALUE=950;
 const BASELINE_DATE="2026-09-05";
 const tickers=["RBLX","U","TTWO","NVDA","SDGR","RXRX"];
 const data=[
- {date:"2019-12-31",value:1},
+ {date:"2019-12-31",value:0.0464},
  {date:"2020-12-31",value:3},
  {date:"2021-12-31",value:8},
  {date:"2022-12-31",value:15},
@@ -136,17 +136,17 @@ const linePath=document.getElementById("linePath"),areaPath=document.getElementB
 const cross=document.getElementById("crosshair"),focus=document.getElementById("focusPoint"),tip=document.getElementById("tip"),chart=document.getElementById("chart");
 const periodValue=document.getElementById("periodValue");let shown=data,coords=[],active="ALL";
 const W=1000,H=340,left=8,right=82,top=14,plotW=W-left-right,plotH=270,baseY=top+plotH;
-const fmt=v=>"$"+(v>=1000?(v/1000).toFixed(v%1000?1:0)+"B":(v<10?v.toFixed(v%1?1:0):Math.round(v))+"M");
+const fmt=v=>"$"+(v>=1000?(v/1000).toFixed(v%1000?1:0)+"B":v<1?Math.round(v*1000)+"K":(v<10?v.toFixed(v%1?1:0):Math.round(v))+"M");
 const dateFmt=s=>new Date(s+"T12:00:00Z").toLocaleDateString("en-US",{month:"short",year:"numeric",timeZone:"UTC"});
 function draw(){
  const cutoff=active==="1Y"?"2025-10-24":active==="3Y"?"2023-10-24":"0000-01-01";
  shown=data.filter(d=>d.date>=cutoff);
  if(shown.length===1)shown=[data[Math.max(0,data.indexOf(shown[0])-1)],...shown];
  const minDate=Date.parse(shown[0].date+"T00:00:00Z"),maxDate=Date.parse(shown[shown.length-1].date+"T00:00:00Z")||minDate+86400000;
- const minV=1,maxV=1000;
+ const minV=0.01,maxV=1000;
  coords=shown.map(d=>({...d,x:left+(Date.parse(d.date+"T00:00:00Z")-minDate)/(maxDate-minDate||1)*plotW,y:top+(Math.log(maxV)-Math.log(Math.max(minV,d.value)))/(Math.log(maxV)-Math.log(minV))*plotH}));
  grid.innerHTML="";labels.innerHTML="";
- [1,10,100,1000].forEach(v=>{const y=top+(Math.log(maxV)-Math.log(v))/(Math.log(maxV)-Math.log(minV))*plotH;grid.insertAdjacentHTML("beforeend",'<line class="gridline" x1="'+left+'" x2="'+(W-right+8)+'" y1="'+y+'" y2="'+y+'"/>');labels.insertAdjacentHTML("beforeend",'<text class="axis" x="'+(W-right+14)+'" y="'+(y+4)+'">'+(v===1000?"$1B":"$"+v+"M")+'</text>')});
+ [0.01,0.1,1,10,100,1000].forEach(v=>{const y=top+(Math.log(maxV)-Math.log(v))/(Math.log(maxV)-Math.log(minV))*plotH;const label=v<1?"$"+Math.round(v*1000)+"K":v===1000?"$1B":"$"+v+"M";grid.insertAdjacentHTML("beforeend",'<line class="gridline" x1="'+left+'" x2="'+(W-right+8)+'" y1="'+y+'" y2="'+y+'"/>');labels.insertAdjacentHTML("beforeend",'<text class="axis" x="'+(W-right+14)+'" y="'+(y+4)+'">'+label+'</text>')});
  const pts=coords.map(p=>p.x+","+p.y).join(" ");
  linePath.setAttribute("d","M"+pts.replaceAll(" "," L"));
  areaPath.setAttribute("d","M"+coords[0].x+","+baseY+" L"+pts.replaceAll(" "," L")+" L"+coords[coords.length-1].x+","+baseY+" Z");
