@@ -1,1 +1,124 @@
-
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090a0c">
+<title>Foldnite — Price</title>
+<style>
+:root{color-scheme:dark;--bg:#090a0c;--fg:#f5f6f7;--muted:#858991;--line:#25282e;--accent:#d9ff64}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;background:var(--bg);color:var(--fg);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;scrollbar-width:none;-ms-overflow-style:none}
+::-webkit-scrollbar{display:none}
+body{min-height:100svh;overflow-x:hidden}
+main{min-height:100svh;width:min(100%,1440px);margin:0 auto;padding:clamp(22px,5vw,72px);display:flex;flex-direction:column}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-size:12px;letter-spacing:.2em;font-weight:650;text-transform:uppercase;color:#c7c9ce}
+.currency{font-size:11px;letter-spacing:.14em;color:var(--muted)}
+.price-wrap{margin-top:clamp(54px,10vh,112px)}
+.price{font-size:clamp(48px,10vw,100px);line-height:.98;font-weight:520;letter-spacing:-.075em;font-variant-numeric:tabular-nums}
+.price span{font-size:.42em;letter-spacing:-.04em;color:#c6c9cf;vertical-align:top;margin-left:8px}
+.change{display:inline-flex;align-items:center;gap:7px;margin-top:20px;color:var(--accent);font-size:13px;font-variant-numeric:tabular-nums}
+.change-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.chart-section{margin-top:auto;padding-top:clamp(56px,10vh,112px)}
+.chart-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.periods{display:flex;gap:4px;padding:4px;background:#111317;border:1px solid #1e2127;border-radius:999px}
+.period{border:0;background:transparent;color:var(--muted);font:inherit;font-size:11px;padding:8px 12px;border-radius:999px;cursor:pointer;transition:background .18s,color .18s}
+.period[aria-pressed=true]{background:#e9ebee;color:#111317}
+.chart-value{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.chart{position:relative;width:100%;height:clamp(220px,38vh,410px);min-height:200px}
+svg{display:block;width:100%;height:100%;overflow:visible;touch-action:pan-y}
+.gridline{stroke:var(--line);stroke-width:1;vector-effect:non-scaling-stroke}
+.axis{fill:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
+.area{fill:url(#area)}
+.line{fill:none;stroke:var(--accent);stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.point{fill:var(--accent);stroke:var(--bg);stroke-width:2;vector-effect:non-scaling-stroke}
+.crosshair{stroke:#666b74;stroke-width:1;stroke-dasharray:3 4;opacity:0;vector-effect:non-scaling-stroke}
+.hit{fill:transparent;cursor:crosshair}
+.tip{position:absolute;pointer-events:none;opacity:0;transform:translate(-50%,-115%);background:#f0f1f2;color:#111317;border-radius:9px;padding:9px 11px;font-size:12px;white-space:nowrap;box-shadow:0 8px 28px #0005;transition:opacity .12s}
+.tip strong{display:block;font-size:15px;font-weight:650;font-variant-numeric:tabular-nums}
+.tip small{display:block;margin-top:3px;color:#5c6068;font-size:10px}
+@media(max-width:560px){main{padding:22px 20px calc(24px + env(safe-area-inset-bottom))}.price-wrap{margin-top:64px}.chart-section{padding-top:76px}.chart{height:34svh;min-height:205px}.period{padding:8px 10px}.chart-value{font-size:11px}}
+@media(min-width:1000px){.price-wrap{margin-top:clamp(70px,12vh,140px)}.chart-section{padding-top:clamp(60px,8vh,110px)}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <header><div class="brand">FOLDNITE</div><div class="currency">USD · VALUATION</div></header>
+  <section class="price-wrap" aria-label="Current valuation">
+    <div class="price" id="currentPrice">$950<span>M</span></div>
+    <div class="change"><span class="change-dot"></span><span>+18.75%</span></div>
+  </section>
+  <section class="chart-section" aria-label="Historical valuation chart">
+    <div class="chart-top">
+      <div class="periods" role="group" aria-label="Chart period">
+        <button class="period" data-period="1M" aria-pressed="false">1M</button>
+        <button class="period" data-period="3M" aria-pressed="false">3M</button>
+        <button class="period" data-period="ALL" aria-pressed="true">ALL</button>
+      </div>
+      <div class="chart-value" id="periodValue">$800M — $950M</div>
+    </div>
+    <div class="chart" id="chart">
+      <svg id="plot" role="img" aria-label="Foldnite valuation history in US dollars" viewBox="0 0 1000 340" preserveAspectRatio="none">
+        <defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d9ff64" stop-opacity=".18"/><stop offset="100%" stop-color="#d9ff64" stop-opacity="0"/></linearGradient></defs>
+        <g id="grid"></g><path id="areaPath" class="area"></path><path id="linePath" class="line"></path>
+        <line id="crosshair" class="crosshair" y1="12" y2="284"></line><circle id="focusPoint" class="point" r="4" cx="-20" cy="-20"></circle>
+        <g id="labels"></g><rect id="hit" class="hit" x="0" y="0" width="1000" height="340"></rect>
+      </svg>
+      <div class="tip" id="tip"><strong></strong><small></small></div>
+    </div>
+  </section>
+</main>
+<script>
+(()=>{
+const data=[
+ {date:"2026-09-02",value:800},
+ {date:"2026-09-05",value:950},
+ {date:"2026-09-20",value:950},
+ {date:"2026-10-24",value:950}
+];
+const svg=document.getElementById("plot"),grid=document.getElementById("grid"),labels=document.getElementById("labels");
+const linePath=document.getElementById("linePath"),areaPath=document.getElementById("areaPath"),hit=document.getElementById("hit");
+const cross=document.getElementById("crosshair"),focus=document.getElementById("focusPoint"),tip=document.getElementById("tip"),chart=document.getElementById("chart");
+const periodValue=document.getElementById("periodValue");let shown=data,coords=[],active="ALL";
+const W=1000,H=340,left=8,right=82,top=14,bottom=54,plotW=W-left-right,plotH=bottom*0+270;
+const fmt=v=>"$"+(v>=1000?(v/1000).toFixed(v%1000?1:0)+"B":v+"M");
+const dateFmt=s=>new Date(s+"T12:00:00Z").toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric",timeZone:"UTC"});
+function draw(){
+ shown=active==="1M"?data.filter(d=>d.date>="2026-09-20"):active==="3M"?data.filter(d=>d.date>="2026-07-24"):data.slice();
+ if(shown.length===1)shown=[data[0],...shown];
+ const minDate=Date.parse(shown[0].date+"T00:00:00Z"),maxDate=Date.parse(shown[shown.length-1].date+"T00:00:00Z")||minDate+86400000;
+ const minV=750,maxV=1000;
+ coords=shown.map(d=>({ ...d,x:left+(Date.parse(d.date+"T00:00:00Z")-minDate)/(maxDate-minDate||1)*plotW,y:top+(maxV-d.value)/(maxV-minV)*plotH}));
+ grid.innerHTML="";labels.innerHTML="";
+ [800,850,900,950,1000].forEach(v=>{const y=top+(maxV-v)/(maxV-minV)*plotH;grid.insertAdjacentHTML("beforeend",'<line class="gridline" x1="'+left+'" x2="'+(W-right+8)+'" y1="'+y+'" y2="'+y+'"/>');labels.insertAdjacentHTML("beforeend",'<text class="axis" x="'+(W-right+14)+'" y="'+(y+4)+'">'+(v===1000?"$1B":"$"+v+"M")+'</text>')});
+ const pts=coords.map(p=>p.x+","+p.y).join(" ");
+ linePath.setAttribute("d","M"+pts.replaceAll(" ", " L"));
+ areaPath.setAttribute("d","M"+coords[0].x+","+bottom+" L"+pts.replaceAll(" ", " L")+" L"+coords[coords.length-1].x+","+bottom+" Z");
+ const first=coords[0],last=coords[coords.length-1];
+ labels.insertAdjacentHTML("beforeend",'<text class="axis" x="'+left+'" y="326">'+dateFmt(shown[0].date)+'</text><text class="axis" text-anchor="end" x="'+(W-right+8)+'" y="326">'+dateFmt(shown[shown.length-1].date)+'</text>');
+ periodValue.textContent=fmt(Math.min(...shown.map(d=>d.value)))+" — "+fmt(Math.max(...shown.map(d=>d.value)));
+ cross.setAttribute("x1",last.x);cross.setAttribute("x2",last.x);cross.style.opacity=".65";
+ focus.setAttribute("cx",last.x);focus.setAttribute("cy",last.y);focus.style.opacity="1";
+ hit.setAttribute("width",W);hit.setAttribute("height",H);
+}
+function showAt(event){
+ const rect=svg.getBoundingClientRect(),x=(event.clientX-rect.left)/rect.width*W;
+ let p=coords.reduce((best,item)=>Math.abs(item.x-x)<Math.abs(best.x-x)?item:best,coords[0]);
+ cross.setAttribute("x1",p.x);cross.setAttribute("x2",p.x);cross.style.opacity=".8";
+ focus.setAttribute("cx",p.x);focus.setAttribute("cy",p.y);
+ tip.innerHTML="<strong>"+fmt(p.value)+"</strong><small>"+dateFmt(p.date)+"</small>";
+ const cx=p.x/W*chart.clientWidth,cy=p.y/H*chart.clientHeight;
+ tip.style.left=Math.max(46,Math.min(chart.clientWidth-46,cx))+"px";tip.style.top=Math.max(40,cy)+"px";tip.style.opacity="1";
+}
+hit.addEventListener("pointermove",showAt);
+hit.addEventListener("pointerdown",showAt);
+hit.addEventListener("pointerleave",()=>{tip.style.opacity="0";const p=coords[coords.length-1];cross.setAttribute("x1",p.x);cross.setAttribute("x2",p.x);focus.setAttribute("cx",p.x);focus.setAttribute("cy",p.y)});
+document.querySelectorAll("[data-period]").forEach(b=>b.addEventListener("click",()=>{active=b.dataset.period;document.querySelectorAll("[data-period]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));draw()}));
+if("ResizeObserver" in window)new ResizeObserver(()=>draw()).observe(chart);else window.addEventListener("resize",draw);
+draw();
+})();
+</script>
+</body>
+</html>
