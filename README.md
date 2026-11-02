@@ -26,6 +26,16 @@ qFoldIT is not only a game. It is a **contract-first scientific mission platform
 ```text
 Scientific / Industrial Objective
         ↓
+Mission Inception / immutable intake
+        ↓
+Scientific Triage
+        ↓
+Rights + Evaluation Protocol + Validator Lock
+        ↓
+Approved Mission Inception
+        ↓
+Qualified Mission Compiler
+        ↓
 Mission Contract
         ↓
 Mission Router
@@ -67,11 +77,11 @@ Runtime
 Scientific Validator
 ```
 
-This separation prevents an LLM response, a game score or a visual representation from being mistaken for scientific evidence.
+This separation prevents an LLM response, a game score or a visual representation from being mistaken for scientific evidence. MCP tools operate inside the already-approved mission scope; they do not create data rights, change a locked protocol or self-approve an intake.
 
 ## What the platform does
 
-**Scientific description → mission.** Molecular, biological, materials, engineering and other structured targets can be expressed as governed missions.
+**Scientific objective → qualified mission.** A raw brief is captured as an immutable Mission Inception, scientifically triaged, scoped to an intended use and claim boundary, checked for data/use rights, and paired with a versioned evaluation protocol and validator plan. Only an approved inception can be passed to the Qualified Mission Compiler and translated into a playable mission contract. See [Foldnite Scientific Mission Genesis](https://github.com/qfoldit/UEFN-QFOLDIT/blob/main/docs/FOLDNITE-SCIENTIFIC-MISSION-GENESIS.md) and the [normative Mission Inception lifecycle](https://github.com/qfoldit/UEFN-QFOLDIT/blob/main/docs/SCIENTIFIC-MISSION-INCEPTION-AND-END-TO-END-LIFECYCLE.md).
 
 **Mission → UAG.** The compiler produces a canonical spatial/interaction representation that is independent of a specific game engine.
 
@@ -111,6 +121,8 @@ ValidationResult
 ```
 
 Protected references stay on the trusted side. Scientific failures are fail-closed and are not turned into synthetic scores.
+
+Mission-scoped consequential actions are bound to the exact approved Mission Inception SHA-256 through `qfoldit.scientific-action-envelope/1.1`. A prior-revision action cannot be replayed against a revised mission just because the `missionId` remains the same. Legacy 1.0 action envelopes remain distinguishable as historical/unqualified records and are not accepted as the basis for a qualified scientific submission. See the [authorization v1.1 contract](https://github.com/qfoldit/UEFN-QFOLDIT/blob/main/crates/scientific-mcp/docs/SCIENTIFIC-ACTION-AUTHORIZATION-v1.1.md).
 
 ## Three clocks
 
@@ -194,6 +206,8 @@ Private customer targets and protected ground truth remain inside authorized bou
 
 ## Evidence discipline
 
+A structurally valid intake is not an approved mission; an approved mission is not a published runtime; a published island is not a validated scientific result. The public archived README is retained as a record of prior positioning, not as proof that every historical partnership, capability or scientific outcome was already implemented. Current implementation and qualification boundaries are recorded in the [canonical Mission Genesis](https://github.com/qfoldit/UEFN-QFOLDIT/blob/main/docs/FOLDNITE-SCIENTIFIC-MISSION-GENESIS.md).
+
 qFoldIT distinguishes implementation from possibility:
 
 - **E1** — verified implementation evidence;
@@ -210,6 +224,8 @@ No third-party platform valuation, external benchmark, prospect list, playtime m
 - [Project dashboard](https://qfoldit.github.io/server/dashboard.html)
 - [CLI / mission prospects](https://qfoldit.github.io/server/CLI.html)
 - [Canonical architecture](https://github.com/qfoldit/IP-valuation-registry/blob/main/QFOLDIT-INTEGRATED-PLATFORM-ARCHITECTURE-2026-08-21.md)
+- [Foldnite Scientific Mission Genesis](https://github.com/qfoldit/UEFN-QFOLDIT/blob/main/docs/FOLDNITE-SCIENTIFIC-MISSION-GENESIS.md)
+- [Mission Inception lifecycle and approval gates](https://github.com/qfoldit/UEFN-QFOLDIT/blob/main/docs/SCIENTIFIC-MISSION-INCEPTION-AND-END-TO-END-LIFECYCLE.md)
 - [IP / evidence registry](https://github.com/qfoldit/IP-valuation-registry)
 - [FoldIT](https://play.fold.it/)
 - [MCP](https://modelcontextprotocol.io/)
