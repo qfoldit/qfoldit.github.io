@@ -26,7 +26,7 @@ Companion repo: `github.com/qfoldit/WEB-TOOLBELT`
 
 **End-to-end lifecycle simulator** — `e2e.html` runs on GitHub Pages without a backend. It covers order intake, commercial allocation, simulated escrow, SOS/UAG mission compilation, runtime adapter mapping, player matchmaking, gameplay actions, OpenStructure/CAMEO validation boundaries, Evidence 1.1 packaging, synthetic client acceptance and balanced player reward settlement. The page starts a reference run automatically, shows stage progress, and exports a production-shaped JSON run record. The default target runtime is UEFN/FORTNITE; the browser toolbelt is the simulation harness. A same-origin optional smoke probe can call the existing game page's WebMCP registry and cleans up its temporary marker.
 
-The committed reference output is `data/e2e-reference-run.json`; the contract is defined by `schemas/e2e-run.schema.json`. Every run is explicitly marked as a deterministic fixture: client/player identities are synthetic, OpenStructure and CAMEO are boundary checks rather than authoritative validator calls, scientific scores remain null, client signatures are absent, and the sandbox ledger never moves real money. `completed_simulation` does not mean production verified.
+The committed reference output is `data/e2e-reference-run.json`; the contract is defined by `schemas/e2e-run.schema.json`. Every run is explicitly marked as a browser fixture: client/player identities are synthetic, OpenStructure and CAMEO are boundary checks rather than authoritative validator calls, scientific scores remain null, client signatures are absent, and the sandbox ledger never moves real money. `completed_simulation` does not mean production verified.
 
 ## Credits / sources
 
