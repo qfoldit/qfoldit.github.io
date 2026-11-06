@@ -513,31 +513,31 @@
       {
         "player_id": "PLY-001",
         "handle": "player_001",
-        "role": "scientific-exploration",
+        "role": "Structure Scout",
         "identity_type": "synthetic_test_identity"
       },
       {
         "player_id": "PLY-002",
         "handle": "player_002",
-        "role": "object-annotation",
+        "role": "Residue Mapper",
         "identity_type": "synthetic_test_identity"
       },
       {
         "player_id": "PLY-003",
         "handle": "player_003",
-        "role": "uag-graph-assembly",
+        "role": "Graph Weaver",
         "identity_type": "synthetic_test_identity"
       },
       {
         "player_id": "PLY-004",
         "handle": "player_004",
-        "role": "provenance-and-evidence",
+        "role": "Evidence Curator",
         "identity_type": "synthetic_test_identity"
       },
       {
         "player_id": "PLY-005",
         "handle": "player_005",
-        "role": "reproducibility-qa",
+        "role": "Protocol Tester",
         "identity_type": "synthetic_test_identity"
       }
     ],
@@ -553,7 +553,7 @@
       "handle": "player_001",
       "display_name": "Player 001",
       "identity_type": "synthetic_test_identity",
-      "role": "scientific-exploration",
+      "role": "Structure Scout",
       "contribution_function": "scientific-exploration",
       "reward_weight_bps": 2600,
       "wallet_id": "sandbox-wallet-001",
@@ -566,7 +566,7 @@
       "handle": "player_002",
       "display_name": "Player 002",
       "identity_type": "synthetic_test_identity",
-      "role": "object-annotation",
+      "role": "Residue Mapper",
       "contribution_function": "object-annotation",
       "reward_weight_bps": 2200,
       "wallet_id": "sandbox-wallet-002",
@@ -579,7 +579,7 @@
       "handle": "player_003",
       "display_name": "Player 003",
       "identity_type": "synthetic_test_identity",
-      "role": "uag-graph-assembly",
+      "role": "Graph Weaver",
       "contribution_function": "uag-graph-assembly",
       "reward_weight_bps": 2000,
       "wallet_id": "sandbox-wallet-003",
@@ -592,7 +592,7 @@
       "handle": "player_004",
       "display_name": "Player 004",
       "identity_type": "synthetic_test_identity",
-      "role": "provenance-and-evidence",
+      "role": "Evidence Curator",
       "contribution_function": "provenance-and-evidence",
       "reward_weight_bps": 1800,
       "wallet_id": "sandbox-wallet-004",
@@ -605,7 +605,7 @@
       "handle": "player_005",
       "display_name": "Player 005",
       "identity_type": "synthetic_test_identity",
-      "role": "reproducibility-qa",
+      "role": "Protocol Tester",
       "contribution_function": "reproducibility-qa",
       "reward_weight_bps": 1400,
       "wallet_id": "sandbox-wallet-005",
