@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090a0c">
+<title>Foldnite — Valuation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+<style>
+@font-face {
+  font-family: 'Burbank Big Condensed';
+  src: url('https://cdn.jsdelivr.net/gh/foldnite/foldnite.github.io@main/assets/font/burbankbigcondensed_bold.otf') format('opentype'),
+       url('https://cdn.jsdelivr.net/gh/foldnite/foldnite.github.io@master/assets/font/burbankbigcondensed_bold.otf') format('opentype'),
+       url('https://foldnite.github.io/assets/font/burbankbigcondensed_bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Burbank Big Condensed';
+  src: url('https://cdn.jsdelivr.net/gh/foldnite/foldnite.github.io@main/assets/font/burbankbigcondensed_black.otf') format('opentype'),
+       url('https://cdn.jsdelivr.net/gh/foldnite/foldnite.github.io@master/assets/font/burbankbigcondensed_black.otf') format('opentype'),
+       url('https://foldnite.github.io/assets/font/burbankbigcondensed_black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+:root{color-scheme:dark;--bg:#090a0c;--fg:#f5f6f7;--muted:#858991;--line:#25282e;--accent:#d9ff64}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;min-height:100%;background:var(--bg);color:var(--fg);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;scrollbar-width:none;-ms-overflow-style:none}
+::-webkit-scrollbar{display:none}
+body{min-height:100svh;overflow-x:hidden}
+main{min-height:100svh;width:min(100%,1440px);margin:0 auto;padding:clamp(22px,4vw,60px) clamp(20px,5vw,72px) 28px;display:flex;flex-direction:column}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-family:'Burbank Big Condensed','Oswald',Impact,'Haettenschweiler','Arial Narrow Bold','Roboto Condensed',sans-serif-condensed,sans-serif;font-weight:900;font-size:20px;letter-spacing:.08em;text-transform:uppercase;color:#c7c9ce;line-height:1}
+.currency{font-size:11px;letter-spacing:.14em;color:var(--muted)}
+.price-wrap{margin-top:clamp(36px,7vh,78px)}
+.price{font-size:clamp(48px,10vw,100px);line-height:.98;font-weight:520;letter-spacing:-.075em;font-variant-numeric:tabular-nums}
+.price span{font-size:.42em;letter-spacing:-.04em;color:#c6c9cf;vertical-align:top;margin-left:8px}
+.change{display:inline-flex;align-items:center;gap:7px;margin-top:18px;color:var(--accent);font-size:13px;font-variant-numeric:tabular-nums}
+.change-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.chart-section{margin-top:auto;padding-top:clamp(38px,7vh,76px)}
+.chart-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:12px}
+.periods{display:flex;gap:4px;padding:4px;background:#111317;border:1px solid #1e2127;border-radius:999px}
+.period{border:0;background:transparent;color:var(--muted);font:inherit;font-size:11px;padding:8px 12px;border-radius:999px;cursor:pointer}
+.period[aria-pressed=true]{background:#e9ebee;color:#111317}
+.chart-value{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.chart{position:relative;width:100%;height:clamp(220px,34vh,370px);min-height:200px}
+svg{display:block;width:100%;height:100%;overflow:visible;touch-action:pan-y}
+.gridline{stroke:var(--line);stroke-width:1;vector-effect:non-scaling-stroke}
+.axis{fill:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}
+.area{fill:url(#area)}
+.line{fill:none;stroke:var(--accent);stroke-width:2.25;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.point{fill:var(--accent);stroke:var(--bg);stroke-width:2;vector-effect:non-scaling-stroke}
+.crosshair{stroke:#666b74;stroke-width:1;stroke-dasharray:3 4;opacity:0;vector-effect:non-scaling-stroke}
+.hit{fill:transparent;cursor:crosshair}
+.tip{position:absolute;pointer-events:none;opacity:0;transform:translate(-50%,-115%);background:#f0f1f2;color:#111317;border-radius:9px;padding:9px 11px;font-size:12px;white-space:nowrap;box-shadow:0 8px 28px #0005;transition:opacity .12s}
+.tip strong{display:block;font-size:15px;font-weight:650;font-variant-numeric:tabular-nums}
+.tip small{display:block;margin-top:3px;color:#5c6068;font-size:10px}
+footer{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;padding-top:22px}
+.quote{display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px 8px;border:1px solid #202329;border-radius:10px;color:#c8cbd0;text-decoration:none;font-size:11px;font-weight:650;letter-spacing:.035em;transition:border-color .18s,color .18s}
+.quote:hover,.quote:focus-visible{border-color:#747b83;color:var(--accent);outline:none}
+@media(max-width:760px){footer{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.quote{min-height:44px}}
+@media(max-width:560px){main{padding:22px 20px calc(20px + env(safe-area-inset-bottom))}.price-wrap{margin-top:56px}.chart-section{padding-top:60px}.chart{height:31svh;min-height:205px}.period{padding:8px 10px}.chart-value{font-size:11px}footer{padding-top:18px;grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(min-width:1200px){.chart{height:clamp(280px,38vh,410px)}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+  <header><div class="brand">FOLDNITE</div><div class="currency">USD · VALUATION</div></header>
+  <section class="price-wrap" aria-label="Current valuation">
+    <div class="price" id="currentPrice">$950<span>M</span></div>
+    <div class="change"><span class="change-dot"></span><span id="totalChange">+2,065,000% since 2019</span></div>
+  </section>
+  <section class="chart-section" aria-label="Historical valuation chart">
+    <div class="chart-top">
+      <div class="periods" role="group" aria-label="Chart period">
+        <button class="period" data-period="1Y" aria-pressed="false">1Y</button>
+        <button class="period" data-period="3Y" aria-pressed="false">3Y</button>
+        <button class="period" data-period="ALL" aria-pressed="true">ALL</button>
+      </div>
+      <div class="chart-value" id="periodValue">$46K — $950M</div>
+    </div>
+    <div class="chart" id="chart">
+      <svg id="plot" role="img" aria-label="Foldnite estimated valuation history in US dollars" viewBox="0 0 1000 340" preserveAspectRatio="none">
+        <defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#d9ff64" stop-opacity=".18"/><stop offset="100%" stop-color="#d9ff64" stop-opacity="0"/></linearGradient></defs>
+        <g id="grid"></g><path id="areaPath" class="area"></path><path id="linePath" class="line"></path>
+        <line id="crosshair" class="crosshair" y1="12" y2="284"></line><circle id="focusPoint" class="point" r="4" cx="-20" cy="-20"></circle>
+        <g id="labels"></g><rect id="hit" class="hit" x="0" y="0" width="1000" height="340"></rect>
+      </svg>
+      <div class="tip" id="tip"><strong></strong><small></small></div>
+    </div>
+  </section>
+  <footer aria-label="Market quote references">
+    <a class="quote" href="https://investors.generatebiomedicines.com/" target="_blank" rel="noopener noreferrer" aria-label="Generate:Biomedicines investor relations">GENB</a>
+    <a class="quote" href="https://ir.roblox.com/stock-information/" target="_blank" rel="noopener noreferrer" aria-label="Roblox stock information">RBLX</a>
+    <a class="quote" href="https://investors.unity.com/" target="_blank" rel="noopener noreferrer" aria-label="Unity investor relations">U</a>
+    <a class="quote" href="https://www.take2games.com/ir/stock" target="_blank" rel="noopener noreferrer" aria-label="Take-Two stock information">TTWO</a>
+    <a class="quote" href="https://investor.nvidia.com/" target="_blank" rel="noopener noreferrer" aria-label="NVIDIA investor relations">NVDA</a>
+    <a class="quote" href="https://ir.schrodinger.com/" target="_blank" rel="noopener noreferrer" aria-label="Schrödinger investor relations">SDGR</a>
+    <a class="quote" href="https://ir.recursion.com/" target="_blank" rel="noopener noreferrer" aria-label="Recursion investor relations">RXRX</a>
+  </footer>
+</main>
+<script>
+(()=> {
+console.log("[Foldnite] build 3.0 — multi-source + parallel proxies + cache");
+
+const BASELINE_VALUE = 950;
+const BASELINE_DATE = "2026-09-05";
+const tickers = ["RBLX","U","TTWO","NVDA","SDGR","RXRX"];
+const data = [
+ {date:"2019-12-31",value:0.0464},
+ {date:"2020-12-31",value:3},
+ {date:"2021-12-31",value:8},
+ {date:"2022-12-31",value:15},
+ {date:"2023-12-31",value:35},
+ {date:"2024-12-31",value:100},
+ {date:"2025-12-31",value:350},
+ {date:"2026-09-02",value:800},
+ {date:"2026-09-05",value:BASELINE_VALUE}
+];
+
+const PROXIES = [
+  u => `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(u)}`,
+  u => `https://cors.eu.org/${u}`,
+  u => `https://cors.x2u.in/${u}`,
+  u => `https://corsfix.com/${u}`,
+  u => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
+  u => `https://corsproxy.io/?${encodeURIComponent(u)}`,
+  u => `https://api.cors.lol/?url=${encodeURIComponent(u)}`,
+  u => `https://cors-proxy.htmldriven.com/?url=${encodeURIComponent(u)}`,
+  u => `https://yacdn.org/proxy/${u}`,
+  u => `https://thingproxy.freeboard.io/fetch/${u}`
+];
+
+function fetchWithTimeout(url, ms){
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), ms);
+  return fetch(url, { cache: "no-store", signal: ctrl.signal }).finally(() => clearTimeout(t));
+}
+
+function parseYahoo(payload, ticker){
+  const result = payload?.chart?.result?.[0];
+  if(!result) throw new Error("no yahoo result");
+  const timestamps = result.timestamp || [];
+  const closes = result.indicators?.quote?.[0]?.close || [];
+  const points = timestamps.map((ts,i) => ({
+    date: new Date(ts*1000).toISOString().slice(0,10),
+    close: closes[i]
+  })).filter(p => Number.isFinite(p.close) && p.close > 0);
+  const base = points.find(p => p.date >= BASELINE_DATE);
+  const latest = points[points.length-1];
+  if(!base || !latest || base.close <= 0) throw new Error("insufficient yahoo data");
+  return { ticker, change: latest.close/base.close - 1, date: latest.date };
+}
+
+function parseStooq(text, ticker){
+  const lines = (text || "").trim().split(/\r?\n/);
+  if(lines.length < 2) throw new Error("empty stooq csv");
+  const header = lines[0].toLowerCase();
+  if(!header.includes("close")) throw new Error("no close column");
+  const points = [];
+  for(let i = 1; i < lines.length; i++){
+    const parts = lines[i].split(",");
+    if(parts.length < 5) continue;
+    const date = parts[0].trim();
+    const close = parseFloat(parts[4]);
+    if(date && Number.isFinite(close) && close > 0) points.push({ date, close });
+  }
+  const base = points.find(p => p.date >= BASELINE_DATE);
+  const latest = points[points.length-1];
+  if(!base || !latest || base.close <= 0) throw new Error("insufficient stooq data");
+  return { ticker, change: latest.close/base.close - 1, date: latest.date };
+}
+
+async function raceYahoo(ticker){
+  const period1 = Math.floor(Date.parse(BASELINE_DATE + "T00:00:00Z") / 1000);
+  const period2 = Math.floor(Date.now() / 1000);
+  const raw = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?period1=${period1}&period2=${period2}&interval=1d&events=div%2Csplits`;
+  const attempts = PROXIES.map(make => fetchWithTimeout(make(raw), 4000)
+    .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(j => parseYahoo(j, ticker)));
+  return await Promise.any(attempts);
+}
+
+async function raceStooq(ticker){
+  const sym = ticker.toLowerCase() + ".us";
+  const d1 = BASELINE_DATE.replace(/-/g, "");
+  const d2 = new Date().toISOString().slice(0,10).replace(/-/g, "");
+  const raw = `https://stooq.com/q/d/l/?s=${sym}&d1=${d1}&d2=${d2}&i=d`;
+  const attempts = PROXIES.map(make => fetchWithTimeout(make(raw), 4000)
+    .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.text(); })
+    .then(t => parseStooq(t, ticker)));
+  return await Promise.any(attempts);
+}
+
+async function fetchTickerReturn(ticker){
+  try { return await raceYahoo(ticker); }
+  catch(_) { console.warn(`[Foldnite] Yahoo failed for ${ticker}, trying Stooq`); }
+  try { return await raceStooq(ticker); }
+  catch(_) { console.warn(`[Foldnite] Stooq failed for ${ticker}`); }
+  throw new Error("all sources failed for " + ticker);
+}
+
+const CACHE_KEY = "foldnite:lastval:v1";
+function saveCache(value, date){
+  try { localStorage.setItem(CACHE_KEY, JSON.stringify({ value, date, ts: Date.now() })); } catch(_) {}
+}
+function loadCache(){
+  try {
+    const c = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+    if(c && Number.isFinite(c.value) && Date.now() - c.ts < 30 * 86400000) return c;
+  } catch(_) {}
+  return null;
+}
+
+function applyValue(currentValue, latestDate, isCached){
+  data.push({ date: latestDate, value: currentValue, marketAdjusted: true });
+  const el = document.getElementById("currentPrice");
+  el.innerHTML = "$" + (currentValue >= 1000
+    ? (currentValue / 1000).toFixed(2) + "<span>B</span>"
+    : currentValue + "<span>M</span>");
+  const start = data[0].value;
+  document.getElementById("totalChange").textContent =
+    (currentValue >= start ? "+" : "") +
+    Math.round((currentValue / start - 1) * 100).toLocaleString("en-US") +
+    "% since 2019" + (isCached ? " · cached" : "");
+  draw();
+}
+
+async function updateMarketValuation(){
+  const settled = await Promise.allSettled(tickers.map(fetchTickerReturn));
+  const returns = settled.filter(x => x.status === "fulfilled").map(x => x.value);
+  console.log(`[Foldnite] ${returns.length}/${tickers.length} tickers loaded`);
+  if(returns.length < 3){
+    const cached = loadCache();
+    if(cached){
+      console.warn("[Foldnite] using cached value from", new Date(cached.ts).toISOString());
+      applyValue(cached.value, cached.date, true);
+      return;
+    }
+    console.warn("[Foldnite] no live data and no cache — staying at $950M");
+    return;
+  }
+  const basket = returns.reduce((s,p) => s + p.change, 0) / returns.length;
+  const factor = Math.max(0.75, Math.min(1.25, 1 + basket));
+  const currentValue = Math.round(BASELINE_VALUE * factor);
+  const latestDate = returns.map(p => p.date).sort().pop() || new Date().toISOString().slice(0,10);
+  console.log(`[Foldnite] basket return ${(basket*100).toFixed(2)}% → value $${currentValue}M`);
+  saveCache(currentValue, latestDate);
+  applyValue(currentValue, latestDate, false);
+}
+
+const svg=document.getElementById("plot"),grid=document.getElementById("grid"),labels=document.getElementById("labels");
+const linePath=document.getElementById("linePath"),areaPath=document.getElementById("areaPath"),hit=document.getElementById("hit");
+const cross=document.getElementById("crosshair"),focus=document.getElementById("focusPoint"),tip=document.getElementById("tip"),chart=document.getElementById("chart");
+const periodValue=document.getElementById("periodValue");let shown=data,coords=[],active="ALL";
+const W=1000,H=340,left=8,right=82,top=14,plotW=W-left-right,plotH=270,baseY=top+plotH;
+const fmt=v=>"$"+(v>=1000?(v/1000).toFixed(v%1000?1:0)+"B":v<1?Math.round(v*1000)+"K":(v<10?v.toFixed(v%1?1:0):Math.round(v))+"M");
+const dateFmt=s=>new Date(s+"T12:00:00Z").toLocaleDateString("en-US",{month:"short",year:"numeric",timeZone:"UTC"});
+
+function draw(){
+ const cutoff=active==="1Y"?"2025-10-24":active==="3Y"?"2023-10-24":"0000-01-01";
+ shown=data.filter(d=>d.date>=cutoff);
+ if(shown.length===1)shown=[data[Math.max(0,data.indexOf(shown[0])-1)],...shown];
+ const minDate=Date.parse(shown[0].date+"T00:00:00Z"),maxDate=Date.parse(shown[shown.length-1].date+"T00:00:00Z")||minDate+86400000;
+ const minV=0.01,maxV=1000;
+ coords=shown.map(d=>({...d,x:left+(Date.parse(d.date+"T00:00:00Z")-minDate)/(maxDate-minDate||1)*plotW,y:top+(Math.log(maxV)-Math.log(Math.max(minV,d.value)))/(Math.log(maxV)-Math.log(minV))*plotH}));
+ grid.innerHTML="";labels.innerHTML="";
+ [0.01,0.1,1,10,100,1000].forEach(v=>{const y=top+(Math.log(maxV)-Math.log(v))/(Math.log(maxV)-Math.log(minV))*plotH;const label=v<1?"$"+Math.round(v*1000)+"K":v===1000?"$1B":"$"+v+"M";grid.insertAdjacentHTML("beforeend",'<line class="gridline" x1="'+left+'" x2="'+(W-right+8)+'" y1="'+y+'" y2="'+y+'"/>');labels.insertAdjacentHTML("beforeend",'<text class="axis" x="'+(W-right+14)+'" y="'+(y+4)+'">'+label+'</text>')});
+ const pts=coords.map(p=>p.x+","+p.y).join(" ");
+ linePath.setAttribute("d","M"+pts.replaceAll(" "," L"));
+ areaPath.setAttribute("d","M"+coords[0].x+","+baseY+" L"+pts.replaceAll(" "," L")+" L"+coords[coords.length-1].x+","+baseY+" Z");
+ labels.insertAdjacentHTML("beforeend",'<text class="axis" x="'+left+'" y="326">'+dateFmt(shown[0].date)+'</text><text class="axis" text-anchor="end" x="'+(W-right+8)+'" y="326">'+dateFmt(shown[shown.length-1].date)+'</text>');
+ periodValue.textContent=fmt(Math.min(...shown.map(d=>d.value)))+" — "+fmt(Math.max(...shown.map(d=>d.value)));
+ const last=coords[coords.length-1];cross.setAttribute("x1",last.x);cross.setAttribute("x2",last.x);cross.style.opacity=".65";
+ focus.setAttribute("cx",last.x);focus.setAttribute("cy",last.y);focus.style.opacity="1";hit.setAttribute("width",W);hit.setAttribute("height",H);
+}
+
+function showAt(event){
+ const rect=svg.getBoundingClientRect(),x=(event.clientX-rect.left)/rect.width*W;
+ const p=coords.reduce((best,item)=>Math.abs(item.x-x)<Math.abs(best.x-x)?item:best,coords[0]);
+ cross.setAttribute("x1",p.x);cross.setAttribute("x2",p.x);cross.style.opacity=".8";focus.setAttribute("cx",p.x);focus.setAttribute("cy",p.y);
+ tip.innerHTML="<strong>"+fmt(p.value)+"</strong><small>"+dateFmt(p.date)+"</small>";
+ const cx=p.x/W*chart.clientWidth,cy=p.y/H*chart.clientHeight;
+ tip.style.left=Math.max(46,Math.min(chart.clientWidth-46,cx))+"px";tip.style.top=Math.max(40,cy)+"px";tip.style.opacity="1";
+}
+
+hit.addEventListener("pointermove",showAt);hit.addEventListener("pointerdown",showAt);
+hit.addEventListener("pointerleave",()=>{tip.style.opacity="0";const p=coords[coords.length-1];cross.setAttribute("x1",p.x);cross.setAttribute("x2",p.x);focus.setAttribute("cx",p.x);focus.setAttribute("cy",p.y)});
+document.querySelectorAll("[data-period]").forEach(b=>b.addEventListener("click",()=>{active=b.dataset.period;document.querySelectorAll("[data-period]").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));draw()}));
+if("ResizeObserver" in window)new ResizeObserver(draw).observe(chart);else window.addEventListener("resize",draw);
+draw();
+updateMarketValuation().catch(e=>console.error("[Foldnite] fatal:", e));
+})();
+</script>
+</body>
+</html>
