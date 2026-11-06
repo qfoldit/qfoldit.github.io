@@ -4,95 +4,804 @@
   "title": "qFoldIT End-to-End Mission Run",
   "description": "Portable E2E lifecycle record. Simulation outputs are expressly non-authoritative and never represent actual payments or scientific validation.",
   "type": "object",
-  "required": ["schema", "schema_version", "run_id", "status", "created_at", "completed_at", "execution", "stages", "event_log", "integrity", "production_readiness", "contract_validation", "disclaimer"],
+  "required": [
+    "schema",
+    "schema_version",
+    "run_id",
+    "status",
+    "created_at",
+    "completed_at",
+    "execution",
+    "stages",
+    "event_log",
+    "integrity",
+    "production_readiness",
+    "contract_validation",
+    "disclaimer"
+  ],
   "properties": {
-    "$schema": {"const": "https://qfoldit.github.io/web-toolbelt/schemas/e2e-run.schema.json"},
-    "schema": {"const": "qfoldit.e2e-run/1.0.0"},
-    "schema_version": {"const": "1.0.0"},
-    "run_id": {"type": "string", "minLength": 8},
-    "status": {"enum": ["completed_simulation", "failed_simulation"]},
-    "result": {"type": "string"},
-    "created_at": {"type": "string", "format": "date-time"},
-    "completed_at": {"type": "string", "format": "date-time"},
+    "$schema": {
+      "const": "https://qfoldit.github.io/web-toolbelt/schemas/e2e-run.schema.json"
+    },
+    "schema": {
+      "const": "qfoldit.e2e-run/1.0.0"
+    },
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 8
+    },
+    "status": {
+      "enum": [
+        "completed_simulation",
+        "failed_simulation"
+      ]
+    },
+    "result": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
     "execution": {
       "type": "object",
-      "required": ["environment", "mode", "target_runtime", "simulation_runtime", "runtime_adapters", "webmcp_contract", "external_service_calls"],
+      "required": [
+        "environment",
+        "mode",
+        "target_runtime",
+        "simulation_runtime",
+        "runtime_adapters",
+        "webmcp_contract",
+        "external_service_calls"
+      ],
       "properties": {
-        "environment": {"type": "string"},
-        "orchestrator": {"type": "string"},
-        "mode": {"const": "deterministic_fixture_simulation"},
-        "target_runtime": {"type": "string"},
-        "simulation_runtime": {"type": "string"},
-        "runtime_adapters": {"type": "array", "items": {"$ref": "#/$defs/adapter"}},
-        "webmcp_contract": {"type": "object"},
-        "live_game_bridge": {"type": "object"},
-        "external_service_calls": {"$ref": "#/$defs/externalCalls"}
+        "environment": {
+          "type": "string"
+        },
+        "orchestrator": {
+          "type": "string"
+        },
+        "mode": {
+          "const": "browser_fixture_simulation"
+        },
+        "target_runtime": {
+          "type": "string"
+        },
+        "simulation_runtime": {
+          "type": "string"
+        },
+        "runtime_adapters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/adapter"
+          }
+        },
+        "webmcp_contract": {
+          "type": "object"
+        },
+        "live_game_bridge": {
+          "type": "object"
+        },
+        "external_service_calls": {
+          "$ref": "#/$defs/externalCalls"
+        }
       },
       "additionalProperties": true
     },
-    "stages": {"type": "array", "minItems": 10, "items": {"$ref": "#/$defs/stage"}},
-    "order": {"$ref": "#/$defs/order"},
-    "commercial_contract": {"type": "object"},
-    "mission": {"type": "object"},
-    "provenance": {"type": "object"},
-    "player_session": {"type": "object"},
-    "players": {"type": "array", "items": {"$ref": "#/$defs/player"}},
-    "runtime_submission": {"type": "object"},
-    "validation": {"type": "object"},
-    "evidence": {"type": "object"},
-    "evidence_event_snapshot": {"type": "array", "items": {"$ref": "#/$defs/event"}},
-    "client_acceptance": {"type": "object"},
-    "settlement": {"$ref": "#/$defs/settlement"},
-    "player_payouts": {"type": "array", "items": {"$ref": "#/$defs/payout"}},
-    "event_log": {"type": "array", "items": {"$ref": "#/$defs/event"}},
-    "metrics": {"type": "object"},
-    "integrity": {"$ref": "#/$defs/integrity"},
-    "production_readiness": {"$ref": "#/$defs/productionReadiness"},
-    "contract_validation": {"$ref": "#/$defs/contractValidation"},
-    "error": {"type": "object"},
-    "disclaimer": {"type": "string", "minLength": 20}
+    "stages": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "$ref": "#/$defs/stage"
+      }
+    },
+    "order": {
+      "$ref": "#/$defs/order"
+    },
+    "commercial_contract": {
+      "type": "object"
+    },
+    "mission": {
+      "type": "object"
+    },
+    "provenance": {
+      "type": "object"
+    },
+    "player_session": {
+      "type": "object"
+    },
+    "players": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/player"
+      }
+    },
+    "runtime_submission": {
+      "type": "object"
+    },
+    "validation": {
+      "type": "object"
+    },
+    "evidence": {
+      "type": "object"
+    },
+    "evidence_event_snapshot": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    },
+    "client_acceptance": {
+      "type": "object"
+    },
+    "settlement": {
+      "$ref": "#/$defs/settlement"
+    },
+    "player_payouts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/payout"
+      }
+    },
+    "event_log": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/event"
+      }
+    },
+    "metrics": {
+      "type": "object"
+    },
+    "integrity": {
+      "$ref": "#/$defs/integrity"
+    },
+    "production_readiness": {
+      "$ref": "#/$defs/productionReadiness"
+    },
+    "contract_validation": {
+      "$ref": "#/$defs/contractValidation"
+    },
+    "error": {
+      "type": "object"
+    },
+    "disclaimer": {
+      "type": "string",
+      "minLength": 20
+    }
   },
-  "allOf": [{
-    "if": {"properties": {"status": {"const": "completed_simulation"}}, "required": ["status"]},
-    "then": {
-      "required": ["order", "commercial_contract", "mission", "provenance", "player_session", "players", "runtime_submission", "stages", "validation", "evidence", "client_acceptance", "settlement", "player_payouts", "metrics"],
-      "properties": {
-        "integrity": {"properties": {"simulation_only": {"const": true}, "real_money_moved": {"const": false}, "external_payment_provider_calls": {"const": 0}, "authoritative_validator_evidence": {"const": false}}, "required": ["simulation_only", "real_money_moved", "external_payment_provider_calls", "authoritative_validator_evidence"]},
-        "production_readiness": {"properties": {"production_eligible": {"const": false}, "status": {"const": "NOT_PRODUCTION_VERIFIED"}}, "required": ["production_eligible", "status"]},
-        "client_acceptance": {"properties": {"production_acceptance": {"const": false}, "client_signature": {"type": "null"}}, "required": ["production_acceptance", "client_signature"]},
-        "runtime_submission": {"properties": {"scientific_score": {"type": "null"}, "authoritative_result": {"const": false}}, "required": ["scientific_score", "authoritative_result"]},
-        "settlement": {"properties": {"all_journals_balanced": {"const": true}, "real_money_moved": {"const": false}, "external_payment_provider_calls": {"const": 0}}, "required": ["all_journals_balanced", "real_money_moved", "external_payment_provider_calls"]},
-        "contract_validation": {"properties": {"status": {"const": "passed"}}, "required": ["status"]}
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "completed_simulation"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "required": [
+          "order",
+          "commercial_contract",
+          "mission",
+          "provenance",
+          "player_session",
+          "players",
+          "runtime_submission",
+          "stages",
+          "validation",
+          "evidence",
+          "client_acceptance",
+          "settlement",
+          "player_payouts",
+          "metrics"
+        ],
+        "properties": {
+          "integrity": {
+            "properties": {
+              "simulation_only": {
+                "const": true
+              },
+              "real_money_moved": {
+                "const": false
+              },
+              "external_payment_provider_calls": {
+                "const": 0
+              },
+              "authoritative_validator_evidence": {
+                "const": false
+              }
+            },
+            "required": [
+              "simulation_only",
+              "real_money_moved",
+              "external_payment_provider_calls",
+              "authoritative_validator_evidence"
+            ]
+          },
+          "production_readiness": {
+            "properties": {
+              "production_eligible": {
+                "const": false
+              },
+              "status": {
+                "const": "NOT_PRODUCTION_VERIFIED"
+              }
+            },
+            "required": [
+              "production_eligible",
+              "status"
+            ]
+          },
+          "client_acceptance": {
+            "properties": {
+              "production_acceptance": {
+                "const": false
+              },
+              "client_signature": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "production_acceptance",
+              "client_signature"
+            ]
+          },
+          "runtime_submission": {
+            "properties": {
+              "scientific_score": {
+                "type": "null"
+              },
+              "authoritative_result": {
+                "const": false
+              }
+            },
+            "required": [
+              "scientific_score",
+              "authoritative_result"
+            ]
+          },
+          "settlement": {
+            "properties": {
+              "all_journals_balanced": {
+                "const": true
+              },
+              "real_money_moved": {
+                "const": false
+              },
+              "external_payment_provider_calls": {
+                "const": 0
+              }
+            },
+            "required": [
+              "all_journals_balanced",
+              "real_money_moved",
+              "external_payment_provider_calls"
+            ]
+          },
+          "contract_validation": {
+            "properties": {
+              "status": {
+                "const": "passed"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          }
+        }
       }
     }
-  }],
+  ],
   "$defs": {
-    "minor": {"type": "integer", "minimum": 0},
-    "stage": {"type": "object", "required": ["stage_id", "label", "status", "progress_percent", "authority", "output_ref"], "properties": {"stage_id": {"type": "string"}, "label": {"type": "string"}, "status": {"const": "completed_simulated"}, "progress_percent": {"const": 100}, "authority": {"const": "simulated-fixture"}, "output_ref": {"type": "string"}}, "additionalProperties": true},
-    "adapter": {"type": "object", "required": ["id", "kind", "version", "status"], "properties": {"id": {"type": "string"}, "kind": {"enum": ["runtime", "validator"]}, "version": {"type": "string"}, "status": {"type": "string"}, "selected": {"type": "boolean"}}, "additionalProperties": true},
-    "externalCalls": {"type": "object", "properties": {"client_order_api": {"const": 0}, "openstructure_validator": {"const": 0}, "cameo_api": {"const": 0}, "payment_provider": {"const": 0}, "identity_provider": {"const": 0}}, "additionalProperties": {"type": "integer", "minimum": 0}},
-    "order": {"type": "object", "required": ["order_id", "tenant_id", "client", "currency", "total_amount_minor", "received_at"], "properties": {"order_id": {"type": "string"}, "tenant_id": {"type": "string"}, "client": {"type": "object"}, "currency": {"type": "string", "pattern": "^[A-Z]{3}$"}, "total_amount_minor": {"$ref": "#/$defs/minor"}, "received_at": {"type": "string", "format": "date-time"}}, "additionalProperties": true},
-    "player": {"type": "object", "required": ["player_id", "identity_type", "role", "reward_weight_bps", "wallet_id", "payout_minor", "payout_status"], "properties": {"player_id": {"type": "string"}, "identity_type": {"const": "synthetic_test_identity"}, "role": {"type": "string"}, "reward_weight_bps": {"type": "integer", "minimum": 0, "maximum": 10000}, "wallet_id": {"type": "string"}, "payout_minor": {"$ref": "#/$defs/minor"}, "payout_status": {"const": "simulated_credited"}, "external_payout_id": {"type": "null"}}, "additionalProperties": true},
-    "payout": {"type": "object", "required": ["payout_id", "player_id", "currency", "amount_minor", "status", "real_money_moved"], "properties": {"payout_id": {"type": "string"}, "player_id": {"type": "string"}, "currency": {"type": "string"}, "amount_minor": {"$ref": "#/$defs/minor"}, "status": {"const": "simulated_credited"}, "provider_transaction_id": {"type": "null"}, "real_money_moved": {"const": false}}, "additionalProperties": true},
-    "event": {"type": "object", "required": ["event_id", "sequence", "recorded_at", "stage", "actor", "event_type", "message", "authority"], "properties": {"event_id": {"type": "string"}, "sequence": {"type": "integer", "minimum": 1}, "recorded_at": {"type": "string", "format": "date-time"}, "stage": {"type": "string"}, "actor": {"type": "string"}, "event_type": {"type": "string"}, "message": {"type": "string"}, "authority": {"const": "simulated-fixture"}}, "additionalProperties": true},
-    "journalEntry": {"type": "object", "required": ["account", "debit_minor", "credit_minor"], "properties": {"account": {"type": "string"}, "debit_minor": {"$ref": "#/$defs/minor"}, "credit_minor": {"$ref": "#/$defs/minor"}}, "additionalProperties": true},
-    "settlement": {
+    "minor": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "stage": {
       "type": "object",
-      "required": ["currency", "transactions", "balance_checks", "all_journals_balanced", "summary", "external_payment_provider_calls", "real_money_moved"],
+      "required": [
+        "stage_id",
+        "label",
+        "status",
+        "progress_percent",
+        "authority",
+        "output_ref"
+      ],
       "properties": {
-        "currency": {"type": "string"},
-        "transactions": {"type": "array", "items": {"type": "object", "required": ["transaction_id", "type", "status", "entries"], "properties": {"transaction_id": {"type": "string"}, "type": {"type": "string"}, "status": {"const": "simulated_posted"}, "entries": {"type": "array", "minItems": 2, "items": {"$ref": "#/$defs/journalEntry"}}, "player_id": {"type": "string"}}, "additionalProperties": true}},
-        "balance_checks": {"type": "array", "items": {"type": "object", "required": ["transaction_id", "debits_minor", "credits_minor", "balanced"], "properties": {"transaction_id": {"type": "string"}, "debits_minor": {"$ref": "#/$defs/minor"}, "credits_minor": {"$ref": "#/$defs/minor"}, "balanced": {"const": true}}, "additionalProperties": true}},
-        "all_journals_balanced": {"const": true},
-        "summary": {"type": "object", "required": ["gross_order_minor", "platform_fee_minor", "validation_operations_minor", "player_reward_pool_minor", "unallocated_minor"], "properties": {"gross_order_minor": {"$ref": "#/$defs/minor"}, "platform_fee_minor": {"$ref": "#/$defs/minor"}, "validation_operations_minor": {"$ref": "#/$defs/minor"}, "player_reward_pool_minor": {"$ref": "#/$defs/minor"}, "unallocated_minor": {"const": 0}}, "additionalProperties": true},
-        "external_payment_provider_calls": {"const": 0},
-        "real_money_moved": {"const": false}
+        "stage_id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "status": {
+          "const": "completed_simulated"
+        },
+        "progress_percent": {
+          "const": 100
+        },
+        "authority": {
+          "const": "simulated-fixture"
+        },
+        "output_ref": {
+          "type": "string"
+        }
       },
       "additionalProperties": true
     },
-    "integrity": {"type": "object", "required": ["simulation_only", "real_money_moved", "external_payment_provider_calls", "ledger_balanced"], "properties": {"simulation_only": {"const": true}, "real_money_moved": {"const": false}, "external_payment_provider_calls": {"const": 0}, "ledger_balanced": {"type": "boolean"}, "unallocated_minor": {"const": 0}}, "additionalProperties": true},
-    "productionReadiness": {"type": "object", "required": ["status", "production_eligible", "blocked_gates"], "properties": {"status": {"const": "NOT_PRODUCTION_VERIFIED"}, "production_eligible": {"const": false}, "blocked_gates": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["gate", "status"], "properties": {"gate": {"type": "string"}, "status": {"type": "string"}}, "additionalProperties": true}}}, "additionalProperties": true},
-    "contractValidation": {"type": "object", "required": ["validator", "status", "authority", "checks", "errors"], "properties": {"validator": {"const": "qfoldit.e2e-contract-checker/1.0"}, "status": {"enum": ["passed", "failed"]}, "authority": {"const": "local-structural-contract-check-only"}, "checks": {"type": "array", "items": {"type": "object", "required": ["id", "status", "detail"], "properties": {"id": {"type": "string"}, "status": {"enum": ["passed", "failed"]}, "detail": {"type": "string"}}, "additionalProperties": true}}, "errors": {"type": "array"}}, "additionalProperties": true}
+    "adapter": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "version",
+        "status"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "runtime",
+            "validator"
+          ]
+        },
+        "version": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "selected": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    },
+    "externalCalls": {
+      "type": "object",
+      "properties": {
+        "client_order_api": {
+          "const": 0
+        },
+        "openstructure_validator": {
+          "const": 0
+        },
+        "cameo_api": {
+          "const": 0
+        },
+        "payment_provider": {
+          "const": 0
+        },
+        "identity_provider": {
+          "const": 0
+        }
+      },
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "order": {
+      "type": "object",
+      "required": [
+        "order_id",
+        "tenant_id",
+        "client",
+        "currency",
+        "total_amount_minor",
+        "received_at"
+      ],
+      "properties": {
+        "order_id": {
+          "type": "string"
+        },
+        "tenant_id": {
+          "type": "string"
+        },
+        "client": {
+          "type": "object"
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "total_amount_minor": {
+          "$ref": "#/$defs/minor"
+        },
+        "received_at": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "additionalProperties": true
+    },
+    "player": {
+      "type": "object",
+      "required": [
+        "player_id",
+        "identity_type",
+        "role",
+        "reward_weight_bps",
+        "wallet_id",
+        "payout_minor",
+        "payout_status"
+      ],
+      "properties": {
+        "player_id": {
+          "type": "string"
+        },
+        "identity_type": {
+          "const": "synthetic_test_identity"
+        },
+        "role": {
+          "type": "string"
+        },
+        "reward_weight_bps": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        },
+        "wallet_id": {
+          "type": "string"
+        },
+        "payout_minor": {
+          "$ref": "#/$defs/minor"
+        },
+        "payout_status": {
+          "const": "simulated_credited"
+        },
+        "external_payout_id": {
+          "type": "null"
+        }
+      },
+      "additionalProperties": true
+    },
+    "payout": {
+      "type": "object",
+      "required": [
+        "payout_id",
+        "player_id",
+        "currency",
+        "amount_minor",
+        "status",
+        "real_money_moved"
+      ],
+      "properties": {
+        "payout_id": {
+          "type": "string"
+        },
+        "player_id": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "amount_minor": {
+          "$ref": "#/$defs/minor"
+        },
+        "status": {
+          "const": "simulated_credited"
+        },
+        "provider_transaction_id": {
+          "type": "null"
+        },
+        "real_money_moved": {
+          "const": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "event": {
+      "type": "object",
+      "required": [
+        "event_id",
+        "sequence",
+        "recorded_at",
+        "stage",
+        "actor",
+        "event_type",
+        "message",
+        "authority"
+      ],
+      "properties": {
+        "event_id": {
+          "type": "string"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "recorded_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "stage": {
+          "type": "string"
+        },
+        "actor": {
+          "type": "string"
+        },
+        "event_type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "authority": {
+          "const": "simulated-fixture"
+        }
+      },
+      "additionalProperties": true
+    },
+    "journalEntry": {
+      "type": "object",
+      "required": [
+        "account",
+        "debit_minor",
+        "credit_minor"
+      ],
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "debit_minor": {
+          "$ref": "#/$defs/minor"
+        },
+        "credit_minor": {
+          "$ref": "#/$defs/minor"
+        }
+      },
+      "additionalProperties": true
+    },
+    "settlement": {
+      "type": "object",
+      "required": [
+        "currency",
+        "transactions",
+        "balance_checks",
+        "all_journals_balanced",
+        "summary",
+        "external_payment_provider_calls",
+        "real_money_moved"
+      ],
+      "properties": {
+        "currency": {
+          "type": "string"
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "transaction_id",
+              "type",
+              "status",
+              "entries"
+            ],
+            "properties": {
+              "transaction_id": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "status": {
+                "const": "simulated_posted"
+              },
+              "entries": {
+                "type": "array",
+                "minItems": 2,
+                "items": {
+                  "$ref": "#/$defs/journalEntry"
+                }
+              },
+              "player_id": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "balance_checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "transaction_id",
+              "debits_minor",
+              "credits_minor",
+              "balanced"
+            ],
+            "properties": {
+              "transaction_id": {
+                "type": "string"
+              },
+              "debits_minor": {
+                "$ref": "#/$defs/minor"
+              },
+              "credits_minor": {
+                "$ref": "#/$defs/minor"
+              },
+              "balanced": {
+                "const": true
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "all_journals_balanced": {
+          "const": true
+        },
+        "summary": {
+          "type": "object",
+          "required": [
+            "gross_order_minor",
+            "platform_fee_minor",
+            "validation_operations_minor",
+            "player_reward_pool_minor",
+            "unallocated_minor"
+          ],
+          "properties": {
+            "gross_order_minor": {
+              "$ref": "#/$defs/minor"
+            },
+            "platform_fee_minor": {
+              "$ref": "#/$defs/minor"
+            },
+            "validation_operations_minor": {
+              "$ref": "#/$defs/minor"
+            },
+            "player_reward_pool_minor": {
+              "$ref": "#/$defs/minor"
+            },
+            "unallocated_minor": {
+              "const": 0
+            }
+          },
+          "additionalProperties": true
+        },
+        "external_payment_provider_calls": {
+          "const": 0
+        },
+        "real_money_moved": {
+          "const": false
+        }
+      },
+      "additionalProperties": true
+    },
+    "integrity": {
+      "type": "object",
+      "required": [
+        "simulation_only",
+        "real_money_moved",
+        "external_payment_provider_calls",
+        "ledger_balanced"
+      ],
+      "properties": {
+        "simulation_only": {
+          "const": true
+        },
+        "real_money_moved": {
+          "const": false
+        },
+        "external_payment_provider_calls": {
+          "const": 0
+        },
+        "ledger_balanced": {
+          "type": "boolean"
+        },
+        "unallocated_minor": {
+          "const": 0
+        }
+      },
+      "additionalProperties": true
+    },
+    "productionReadiness": {
+      "type": "object",
+      "required": [
+        "status",
+        "production_eligible",
+        "blocked_gates"
+      ],
+      "properties": {
+        "status": {
+          "const": "NOT_PRODUCTION_VERIFIED"
+        },
+        "production_eligible": {
+          "const": false
+        },
+        "blocked_gates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "gate",
+              "status"
+            ],
+            "properties": {
+              "gate": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "contractValidation": {
+      "type": "object",
+      "required": [
+        "validator",
+        "status",
+        "authority",
+        "checks",
+        "errors"
+      ],
+      "properties": {
+        "validator": {
+          "const": "qfoldit.e2e-contract-checker/1.0"
+        },
+        "status": {
+          "enum": [
+            "passed",
+            "failed"
+          ]
+        },
+        "authority": {
+          "const": "local-structural-contract-check-only"
+        },
+        "checks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "status",
+              "detail"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "status": {
+                "enum": [
+                  "passed",
+                  "failed"
+                ]
+              },
+              "detail": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          }
+        },
+        "errors": {
+          "type": "array"
+        }
+      },
+      "additionalProperties": true
+    },
+    "executionMode": {
+      "const": "browser_fixture_simulation"
+    }
   },
   "additionalProperties": true
 }
