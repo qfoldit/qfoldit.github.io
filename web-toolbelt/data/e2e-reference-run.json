@@ -233,7 +233,7 @@
   "integrity": {
     "simulation_only":true,"synthetic_client_and_player_identities":true,"scientific_scores_synthesized":false,"authoritative_validator_evidence":false,"client_signature_present":false,"confidential_data_exposed":false,
     "external_payment_provider_calls":0,"real_money_moved":false,"ledger_balanced":true,"unallocated_minor":0,
-    "event_log_sha256":"b031d02639a1dc4e6335609f2a1ea4f5d9f4b10dffc64f3ae52ffc6bd07c1680","content_hashes_are_not_validator_attestations":true
+    "event_log_sha256":"d550a21684c76a4c256a3f921c0c17264f39e309bda2f2a64968c08422ba8a3e","content_hashes_are_not_validator_attestations":true
   },
   "production_readiness": {
     "status":"NOT_PRODUCTION_VERIFIED","production_eligible":false,
