@@ -10,263 +10,1450 @@
   "execution": {
     "environment": "github-pages-static-site",
     "orchestrator": "browser-local-e2e-runner",
-    "mode": "deterministic_fixture_simulation",
+    "mode": "browser_fixture_simulation",
     "target_runtime": "UEFN/FORTNITE",
     "simulation_runtime": "web-toolbelt-browser-harness",
     "runtime_adapters": [
-      {"id":"qfoldit-web-toolbelt","kind":"runtime","version":"1.1.0","authority":"runtime","status":"fixture_registered","selected":false,"capabilities":["scene.graph","uag.validate","uag.apply","webmcp.tools"]},
-      {"id":"qfoldit-uefn-toolbelt","kind":"runtime","version":"0.2.0","authority":"runtime","status":"fixture_registered","selected":true,"capabilities":["scene.graph","uag.validate","uag.apply"]},
-      {"id":"qfoldit-unity-toolbelt","kind":"runtime","version":"0.3.0","authority":"runtime","status":"fixture_registered","selected":false,"capabilities":["scene.graph","uag.validate","uag.apply"]},
-      {"id":"qfoldit-unigine-toolbelt","kind":"runtime","version":"0.1.0","authority":"runtime","status":"fixture_registered","selected":false,"capabilities":["scene.graph","uag.validate","uag.apply"]},
-      {"id":"openstructure","kind":"validator","version":"qfoldit.openstructure/1.2","authority":"scientific-validation-boundary","status":"boundary_fixture_only","capabilities":["protein.validate.structure","lddt","local-lddt","qs-score"]},
-      {"id":"cameo","kind":"validator","version":"qfoldit.cameo.boundary/1.0","authority":"scientific-validation-boundary","status":"boundary_fixture_only","capabilities":["boundary-reconciliation","mission-profile","provenance-reconciliation"]}
+      {
+        "id": "qfoldit-web-toolbelt",
+        "kind": "runtime",
+        "version": "1.1.0",
+        "authority": "runtime",
+        "status": "fixture_registered",
+        "selected": false,
+        "capabilities": [
+          "scene.graph",
+          "uag.validate",
+          "uag.apply",
+          "webmcp.tools"
+        ]
+      },
+      {
+        "id": "qfoldit-uefn-toolbelt",
+        "kind": "runtime",
+        "version": "0.2.0",
+        "authority": "runtime",
+        "status": "fixture_registered",
+        "selected": true,
+        "capabilities": [
+          "scene.graph",
+          "uag.validate",
+          "uag.apply"
+        ]
+      },
+      {
+        "id": "qfoldit-unity-toolbelt",
+        "kind": "runtime",
+        "version": "0.3.0",
+        "authority": "runtime",
+        "status": "fixture_registered",
+        "selected": false,
+        "capabilities": [
+          "scene.graph",
+          "uag.validate",
+          "uag.apply"
+        ]
+      },
+      {
+        "id": "qfoldit-unigine-toolbelt",
+        "kind": "runtime",
+        "version": "0.1.0",
+        "authority": "runtime",
+        "status": "fixture_registered",
+        "selected": false,
+        "capabilities": [
+          "scene.graph",
+          "uag.validate",
+          "uag.apply"
+        ]
+      },
+      {
+        "id": "openstructure",
+        "kind": "validator",
+        "version": "qfoldit.openstructure/1.2",
+        "authority": "scientific-validation-boundary",
+        "status": "boundary_fixture_only",
+        "capabilities": [
+          "protein.validate.structure",
+          "lddt",
+          "local-lddt",
+          "qs-score"
+        ]
+      },
+      {
+        "id": "cameo",
+        "kind": "validator",
+        "version": "qfoldit.cameo.boundary/1.0",
+        "authority": "scientific-validation-boundary",
+        "status": "boundary_fixture_only",
+        "capabilities": [
+          "boundary-reconciliation",
+          "mission-profile",
+          "provenance-reconciliation"
+        ]
+      }
     ],
     "webmcp_contract": {
       "transport": "qfoldit-webmcp-window-bridge",
       "runtime_surface": "web-toolbelt/js/game.js",
       "tools": [
-        {"name":"init_scene","contract_state":"registered_in_game_source","execution":"local_fixture_emulation"},
-        {"name":"spawn_object","contract_state":"registered_in_game_source","execution":"local_fixture_emulation"},
-        {"name":"remove_object","contract_state":"registered_in_game_source","execution":"local_fixture_emulation"},
-        {"name":"apply_impulse","contract_state":"registered_in_game_source","execution":"local_fixture_emulation"},
-        {"name":"run_simulation_steps","contract_state":"registered_in_game_source","execution":"local_fixture_emulation"},
-        {"name":"get_telemetry","contract_state":"registered_in_game_source","execution":"local_fixture_emulation"},
-        {"name":"load_scientific_data","contract_state":"registered_in_game_source","execution":"local_fixture_emulation"},
-        {"name":"get_scientific_state","contract_state":"registered_in_game_source","execution":"local_fixture_emulation"},
-        {"name":"clear_scientific_state","contract_state":"registered_in_game_source","execution":"local_fixture_emulation"},
-        {"name":"capture_viewport","contract_state":"registered_in_game_source","execution":"local_fixture_emulation"},
-        {"name":"get_protocol_feedback","contract_state":"registered_in_game_source","execution":"local_fixture_emulation"}
+        {
+          "name": "init_scene",
+          "contract_state": "registered_in_game_source",
+          "execution": "local_fixture_emulation"
+        },
+        {
+          "name": "spawn_object",
+          "contract_state": "registered_in_game_source",
+          "execution": "local_fixture_emulation"
+        },
+        {
+          "name": "remove_object",
+          "contract_state": "registered_in_game_source",
+          "execution": "local_fixture_emulation"
+        },
+        {
+          "name": "apply_impulse",
+          "contract_state": "registered_in_game_source",
+          "execution": "local_fixture_emulation"
+        },
+        {
+          "name": "run_simulation_steps",
+          "contract_state": "registered_in_game_source",
+          "execution": "local_fixture_emulation"
+        },
+        {
+          "name": "get_telemetry",
+          "contract_state": "registered_in_game_source",
+          "execution": "local_fixture_emulation"
+        },
+        {
+          "name": "load_scientific_data",
+          "contract_state": "registered_in_game_source",
+          "execution": "local_fixture_emulation"
+        },
+        {
+          "name": "get_scientific_state",
+          "contract_state": "registered_in_game_source",
+          "execution": "local_fixture_emulation"
+        },
+        {
+          "name": "clear_scientific_state",
+          "contract_state": "registered_in_game_source",
+          "execution": "local_fixture_emulation"
+        },
+        {
+          "name": "capture_viewport",
+          "contract_state": "registered_in_game_source",
+          "execution": "local_fixture_emulation"
+        },
+        {
+          "name": "get_protocol_feedback",
+          "contract_state": "registered_in_game_source",
+          "execution": "local_fixture_emulation"
+        }
       ],
-      "protocol_feedback": {"tool":"get_protocol_feedback","status":"known_stub","scientific_metrics_authoritative":false}
+      "protocol_feedback": {
+        "tool": "get_protocol_feedback",
+        "status": "known_stub",
+        "scientific_metrics_authoritative": false
+      }
     },
-    "live_game_bridge": {"status":"not_requested","authoritative":false,"calls":[]},
-    "external_service_calls": {"client_order_api":0,"openstructure_validator":0,"cameo_api":0,"payment_provider":0,"identity_provider":0}
+    "live_game_bridge": {
+      "status": "not_requested",
+      "authoritative": false,
+      "calls": []
+    },
+    "external_service_calls": {
+      "client_order_api": 0,
+      "openstructure_validator": 0,
+      "cameo_api": 0,
+      "payment_provider": 0,
+      "identity_provider": 0
+    }
   },
   "stages": [
-    {"stage_id":"order_intake","label":"01 · Client order received","status":"completed_simulated","progress_percent":100,"authority":"simulated-fixture","output_ref":"/order"},
-    {"stage_id":"commercial_controls","label":"02 · Contract & escrow controls","status":"completed_simulated","progress_percent":100,"authority":"simulated-fixture","output_ref":"/commercial_contract"},
-    {"stage_id":"mission_compilation","label":"03 · Scientific Mission compiled","status":"completed_simulated","progress_percent":100,"authority":"simulated-fixture","output_ref":"/mission"},
-    {"stage_id":"runtime_provisioning","label":"04 · Runtime & WebMCP provisioned","status":"completed_simulated","progress_percent":100,"authority":"simulated-fixture","output_ref":"/execution/runtime_adapters"},
-    {"stage_id":"player_matchmaking","label":"05 · Players onboarded","status":"completed_simulated","progress_percent":100,"authority":"simulated-fixture","output_ref":"/player_session"},
-    {"stage_id":"gameplay_execution","label":"06 · Gameplay & submissions","status":"completed_simulated","progress_percent":100,"authority":"simulated-fixture","output_ref":"/runtime_submission"},
-    {"stage_id":"scientific_validation","label":"07 · Scientific validation boundaries","status":"completed_simulated","progress_percent":100,"authority":"simulated-fixture","output_ref":"/validation"},
-    {"stage_id":"evidence_packaging","label":"08 · Evidence 1.1 packaged","status":"completed_simulated","progress_percent":100,"authority":"simulated-fixture","output_ref":"/evidence"},
-    {"stage_id":"client_acceptance","label":"09 · Client acceptance gate","status":"completed_simulated","progress_percent":100,"authority":"simulated-fixture","output_ref":"/client_acceptance"},
-    {"stage_id":"player_settlement","label":"10 · Settlement & player rewards","status":"completed_simulated","progress_percent":100,"authority":"simulated-fixture","output_ref":"/settlement"}
+    {
+      "stage_id": "order_intake",
+      "label": "01 · Client order received",
+      "status": "completed_simulated",
+      "progress_percent": 100,
+      "authority": "simulated-fixture",
+      "output_ref": "/order"
+    },
+    {
+      "stage_id": "commercial_controls",
+      "label": "02 · Contract & escrow controls",
+      "status": "completed_simulated",
+      "progress_percent": 100,
+      "authority": "simulated-fixture",
+      "output_ref": "/commercial_contract"
+    },
+    {
+      "stage_id": "mission_compilation",
+      "label": "03 · Scientific Mission compiled",
+      "status": "completed_simulated",
+      "progress_percent": 100,
+      "authority": "simulated-fixture",
+      "output_ref": "/mission"
+    },
+    {
+      "stage_id": "runtime_provisioning",
+      "label": "04 · Runtime & WebMCP provisioned",
+      "status": "completed_simulated",
+      "progress_percent": 100,
+      "authority": "simulated-fixture",
+      "output_ref": "/execution/runtime_adapters"
+    },
+    {
+      "stage_id": "player_matchmaking",
+      "label": "05 · Players onboarded",
+      "status": "completed_simulated",
+      "progress_percent": 100,
+      "authority": "simulated-fixture",
+      "output_ref": "/player_session"
+    },
+    {
+      "stage_id": "gameplay_execution",
+      "label": "06 · Gameplay & submissions",
+      "status": "completed_simulated",
+      "progress_percent": 100,
+      "authority": "simulated-fixture",
+      "output_ref": "/runtime_submission"
+    },
+    {
+      "stage_id": "scientific_validation",
+      "label": "07 · Scientific validation boundaries",
+      "status": "completed_simulated",
+      "progress_percent": 100,
+      "authority": "simulated-fixture",
+      "output_ref": "/validation"
+    },
+    {
+      "stage_id": "evidence_packaging",
+      "label": "08 · Evidence 1.1 packaged",
+      "status": "completed_simulated",
+      "progress_percent": 100,
+      "authority": "simulated-fixture",
+      "output_ref": "/evidence"
+    },
+    {
+      "stage_id": "client_acceptance",
+      "label": "09 · Client acceptance gate",
+      "status": "completed_simulated",
+      "progress_percent": 100,
+      "authority": "simulated-fixture",
+      "output_ref": "/client_acceptance"
+    },
+    {
+      "stage_id": "player_settlement",
+      "label": "10 · Settlement & player rewards",
+      "status": "completed_simulated",
+      "progress_percent": 100,
+      "authority": "simulated-fixture",
+      "output_ref": "/settlement"
+    }
   ],
   "order": {
-    "order_id":"ORD-DEMO-2026-1106-001",
-    "tenant_id":"TENANT-SYNTHETIC-001",
-    "client":{"display_name":"Asterion BioSystems (synthetic tenant)","identity_type":"synthetic_test_tenant","verification_status":"fixture_pass_not_kyc"},
-    "service":{"product_code":"SCIENTIFIC_MISSION","mission_title":"Structure-guided molecular annotation and evidence assembly","deliverable":"Playable Scientific Mission, execution trace and evidence package"},
-    "currency":"USD","total_amount_minor":1000000,"received_at":"2026-11-06T09:52:00Z","source":"github-pages-e2e-form","acceptance_policy":"mission-and-evidence-contract-v1"
+    "order_id": "ORD-DEMO-2026-1106-001",
+    "tenant_id": "TENANT-SYNTHETIC-001",
+    "client": {
+      "display_name": "Asterion BioSystems (synthetic tenant)",
+      "identity_type": "synthetic_test_tenant",
+      "verification_status": "fixture_pass_not_kyc"
+    },
+    "service": {
+      "product_code": "SCIENTIFIC_MISSION",
+      "mission_title": "Structure-guided molecular annotation and evidence assembly",
+      "deliverable": "Playable Scientific Mission, execution trace and evidence package"
+    },
+    "currency": "USD",
+    "total_amount_minor": 1000000,
+    "received_at": "2026-11-06T09:52:00Z",
+    "source": "github-pages-e2e-form",
+    "acceptance_policy": "mission-and-evidence-contract-v1"
   },
   "commercial_contract": {
-    "contract_id":"CTR-REF-20261106-01","schema":"qfoldit.service-contract/1.0","order_id":"ORD-DEMO-2026-1106-001","tenant_id":"TENANT-SYNTHETIC-001","currency":"USD","gross_amount_minor":1000000,
-    "allocation_policy":{"policy_id":"DEMO-ALLOCATION-75-12-13","basis_points":{"players":7500,"platform":1200,"validation_operations":1300},"amounts_minor":{"players":750000,"platform":120000,"validation_operations":130000},"reconciles_to_gross":true},
-    "escrow":{"reservation_id":"ESC-REF-20261106-01","status":"simulated_reserved","provider":"local-sandbox-ledger","external_reference":null},
-    "scope_hash_sha256":"377a6b3e4f2bfb8169ce801eb61885942e11d71028d61df20edee4eaa94a8138","scope_hash_pending":false,"mission_id":"MIS-REF-20261106-01",
-    "signature":{"status":"not_collected_in_simulation","client_signature":null},"fixture_only":true
+    "contract_id": "CTR-REF-20261106-01",
+    "schema": "qfoldit.service-contract/1.0",
+    "order_id": "ORD-DEMO-2026-1106-001",
+    "tenant_id": "TENANT-SYNTHETIC-001",
+    "currency": "USD",
+    "gross_amount_minor": 1000000,
+    "allocation_policy": {
+      "policy_id": "DEMO-ALLOCATION-75-12-13",
+      "basis_points": {
+        "players": 7500,
+        "platform": 1200,
+        "validation_operations": 1300
+      },
+      "amounts_minor": {
+        "players": 750000,
+        "platform": 120000,
+        "validation_operations": 130000
+      },
+      "reconciles_to_gross": true
+    },
+    "escrow": {
+      "reservation_id": "ESC-REF-20261106-01",
+      "status": "simulated_reserved",
+      "provider": "local-sandbox-ledger",
+      "external_reference": null
+    },
+    "scope_hash_sha256": "377a6b3e4f2bfb8169ce801eb61885942e11d71028d61df20edee4eaa94a8138",
+    "scope_hash_pending": false,
+    "mission_id": "MIS-REF-20261106-01",
+    "signature": {
+      "status": "not_collected_in_simulation",
+      "client_signature": null
+    },
+    "fixture_only": true
   },
   "mission": {
-    "schema":"qfoldit.scientific-mission/1.0.0","mission_id":"MIS-REF-20261106-01","mission_version":"1.0.0","tenant_id":"TENANT-SYNTHETIC-001",
-    "title":"Structure-guided molecular annotation and evidence assembly","objective":"structure-guided-molecular-annotation-and-evidence-assembly","visibility":"private-client-workspace","requested_runtime":"UEFN/FORTNITE","scientific_object_schema":"qfoldit.scientific-state/v1",
-    "scientific_state":{
-      "schema":"qfoldit.scientific-state/v1","stateId":"STATE-MIS-REF-20261106-01","domain":"scientific-mission",
-      "metadata":{"title":"Scientific Mission visualization fixture","source_archive":"RCSB Protein Data Bank","pdb_id":"6VXX","source_uri":"https://www.rcsb.org/structure/6VXX","source_mode":"reference-only; coordinates are not fetched by this simulator","fixture_only":true},
-      "objects":[
-        {"id":"reference-structure","kind":"molecule","position":{"x":0,"y":1.2,"z":0},"properties":{"label":"PDB 6VXX reference structure","source_reference":"RCSB PDB:6VXX","fixture_only":true}},
-        {"id":"residue-cluster-a","kind":"atom","position":{"x":-1.1,"y":0.5,"z":0.3},"properties":{"label":"Residue annotation cluster A","fixture_only":true}},
-        {"id":"uag-interaction-map","kind":"marker","position":{"x":1,"y":0.7,"z":-0.2},"properties":{"label":"UAG interaction-map anchor","fixture_only":true}}
+    "schema": "qfoldit.scientific-mission/1.0.0",
+    "mission_id": "MIS-REF-20261106-01",
+    "mission_version": "1.0.0",
+    "tenant_id": "TENANT-SYNTHETIC-001",
+    "title": "Structure-guided molecular annotation and evidence assembly",
+    "objective": "structure-guided-molecular-annotation-and-evidence-assembly",
+    "visibility": "private-client-workspace",
+    "requested_runtime": "UEFN/FORTNITE",
+    "scientific_object_schema": "qfoldit.scientific-state/v1",
+    "scientific_state": {
+      "schema": "qfoldit.scientific-state/v1",
+      "stateId": "STATE-MIS-REF-20261106-01",
+      "domain": "scientific-mission",
+      "metadata": {
+        "title": "Scientific Mission visualization fixture",
+        "source_archive": "RCSB Protein Data Bank",
+        "pdb_id": "6VXX",
+        "source_uri": "https://www.rcsb.org/structure/6VXX",
+        "source_mode": "reference-only; coordinates are not fetched by this simulator",
+        "fixture_only": true
+      },
+      "objects": [
+        {
+          "id": "reference-structure",
+          "kind": "molecule",
+          "position": {
+            "x": 0,
+            "y": 1.2,
+            "z": 0
+          },
+          "properties": {
+            "label": "PDB 6VXX reference structure",
+            "source_reference": "RCSB PDB:6VXX",
+            "fixture_only": true
+          }
+        },
+        {
+          "id": "residue-cluster-a",
+          "kind": "atom",
+          "position": {
+            "x": -1.1,
+            "y": 0.5,
+            "z": 0.3
+          },
+          "properties": {
+            "label": "Residue annotation cluster A",
+            "fixture_only": true
+          }
+        },
+        {
+          "id": "uag-interaction-map",
+          "kind": "marker",
+          "position": {
+            "x": 1,
+            "y": 0.7,
+            "z": -0.2
+          },
+          "properties": {
+            "label": "UAG interaction-map anchor",
+            "fixture_only": true
+          }
+        }
       ]
     },
-    "scientific_objects":[
-      {"object_id":"reference-structure","object_type":"molecule","properties":{"label":"PDB 6VXX reference structure","source_reference":"RCSB PDB:6VXX","fixture_only":true},"source_state_id":"STATE-MIS-REF-20261106-01"},
-      {"object_id":"residue-cluster-a","object_type":"atom","properties":{"label":"Residue annotation cluster A","fixture_only":true},"source_state_id":"STATE-MIS-REF-20261106-01"},
-      {"object_id":"uag-interaction-map","object_type":"marker","properties":{"label":"UAG interaction-map anchor","fixture_only":true},"source_state_id":"STATE-MIS-REF-20261106-01"}
+    "scientific_objects": [
+      {
+        "object_id": "reference-structure",
+        "object_type": "molecule",
+        "properties": {
+          "label": "PDB 6VXX reference structure",
+          "source_reference": "RCSB PDB:6VXX",
+          "fixture_only": true
+        },
+        "source_state_id": "STATE-MIS-REF-20261106-01"
+      },
+      {
+        "object_id": "residue-cluster-a",
+        "object_type": "atom",
+        "properties": {
+          "label": "Residue annotation cluster A",
+          "fixture_only": true
+        },
+        "source_state_id": "STATE-MIS-REF-20261106-01"
+      },
+      {
+        "object_id": "uag-interaction-map",
+        "object_type": "marker",
+        "properties": {
+          "label": "UAG interaction-map anchor",
+          "fixture_only": true
+        },
+        "source_state_id": "STATE-MIS-REF-20261106-01"
+      }
     ],
-    "uag_graph":{
-      "schema":"qfoldit.uag/1.0",
-      "nodes":[
-        {"id":"object:reference-structure","type":"ScientificObject","ref":"reference-structure"},
-        {"id":"object:residue-cluster-a","type":"ScientificObject","ref":"residue-cluster-a"},
-        {"id":"object:uag-interaction-map","type":"ScientificObject","ref":"uag-interaction-map"},
-        {"id":"source:rcsb-6vxx","type":"DataSource","uri":"https://www.rcsb.org/structure/6VXX"}
+    "uag_graph": {
+      "schema": "qfoldit.uag/1.0",
+      "nodes": [
+        {
+          "id": "object:reference-structure",
+          "type": "ScientificObject",
+          "ref": "reference-structure"
+        },
+        {
+          "id": "object:residue-cluster-a",
+          "type": "ScientificObject",
+          "ref": "residue-cluster-a"
+        },
+        {
+          "id": "object:uag-interaction-map",
+          "type": "ScientificObject",
+          "ref": "uag-interaction-map"
+        },
+        {
+          "id": "source:rcsb-6vxx",
+          "type": "DataSource",
+          "uri": "https://www.rcsb.org/structure/6VXX"
+        }
       ],
-      "edges":[
-        {"id":"edge-001","from":"object:residue-cluster-a","to":"object:reference-structure","type":"annotates"},
-        {"id":"edge-002","from":"object:uag-interaction-map","to":"object:residue-cluster-a","type":"links"},
-        {"id":"edge-003","from":"object:reference-structure","to":"source:rcsb-6vxx","type":"derived_from"}
+      "edges": [
+        {
+          "id": "edge-001",
+          "from": "object:residue-cluster-a",
+          "to": "object:reference-structure",
+          "type": "annotates"
+        },
+        {
+          "id": "edge-002",
+          "from": "object:uag-interaction-map",
+          "to": "object:residue-cluster-a",
+          "type": "links"
+        },
+        {
+          "id": "edge-003",
+          "from": "object:reference-structure",
+          "to": "source:rcsb-6vxx",
+          "type": "derived_from"
+        }
       ]
     },
-    "acceptance_criteria":[
-      {"id":"AC-01","criterion":"All mission objects satisfy the declared SOS payload shape.","verification":"schema-contract"},
-      {"id":"AC-02","criterion":"Every UAG edge resolves to an existing node.","verification":"graph-integrity"},
-      {"id":"AC-03","criterion":"Runtime actions retain player, mission and submission lineage.","verification":"execution-lineage"},
-      {"id":"AC-04","criterion":"Evidence manifest contains content hashes and provenance metadata.","verification":"evidence-contract"}
+    "acceptance_criteria": [
+      {
+        "id": "AC-01",
+        "criterion": "All mission objects satisfy the declared SOS payload shape.",
+        "verification": "schema-contract"
+      },
+      {
+        "id": "AC-02",
+        "criterion": "Every UAG edge resolves to an existing node.",
+        "verification": "graph-integrity"
+      },
+      {
+        "id": "AC-03",
+        "criterion": "Runtime actions retain player, mission and submission lineage.",
+        "verification": "execution-lineage"
+      },
+      {
+        "id": "AC-04",
+        "criterion": "Evidence manifest contains content hashes and provenance metadata.",
+        "verification": "evidence-contract"
+      }
     ],
-    "data_governance":{"patient_data_present":false,"personal_data_present":false,"source_license_review":"required_before_production","scientific_claims":"no authoritative score produced by this simulation"},
-    "created_by":"qfoldit-e2e-simulator","fixture_only":true
+    "data_governance": {
+      "patient_data_present": false,
+      "personal_data_present": false,
+      "source_license_review": "required_before_production",
+      "scientific_claims": "no authoritative score produced by this simulation"
+    },
+    "created_by": "qfoldit-e2e-simulator",
+    "fixture_only": true
   },
   "provenance": {
-    "manifest_schema":"qfoldit.provenance/1.0","mission_id":"MIS-REF-20261106-01",
-    "sources":[{"source_id":"RCSB-PDB-6VXX","type":"public-structure-reference","uri":"https://www.rcsb.org/structure/6VXX","retrieved":false,"used_as":"reference identifier only","attribution":"RCSB Protein Data Bank"}],
-    "transformations":[{"step":"mission-object-instantiation","mode":"synthetic-fixture","description":"Creates three visualization placeholders; does not retrieve or transform atomic coordinates."}],
-    "data_classification":"public-reference-plus-synthetic-session-fixture","patient_data_present":false,"fixture_only":true
+    "manifest_schema": "qfoldit.provenance/1.0",
+    "mission_id": "MIS-REF-20261106-01",
+    "sources": [
+      {
+        "source_id": "RCSB-PDB-6VXX",
+        "type": "public-structure-reference",
+        "uri": "https://www.rcsb.org/structure/6VXX",
+        "retrieved": false,
+        "used_as": "reference identifier only",
+        "attribution": "RCSB Protein Data Bank"
+      }
+    ],
+    "transformations": [
+      {
+        "step": "mission-object-instantiation",
+        "mode": "synthetic-fixture",
+        "description": "Creates three visualization placeholders; does not retrieve or transform atomic coordinates."
+      }
+    ],
+    "data_classification": "public-reference-plus-synthetic-session-fixture",
+    "patient_data_present": false,
+    "fixture_only": true
   },
   "player_session": {
-    "session_id":"SES-REF-20261106-01","mission_id":"MIS-REF-20261106-01","status":"simulated_open_then_closed","player_count":5,
-    "players":[
-      {"player_id":"PLY-001","handle":"player_001","role":"scientific-exploration","identity_type":"synthetic_test_identity"},
-      {"player_id":"PLY-002","handle":"player_002","role":"object-annotation","identity_type":"synthetic_test_identity"},
-      {"player_id":"PLY-003","handle":"player_003","role":"uag-graph-assembly","identity_type":"synthetic_test_identity"},
-      {"player_id":"PLY-004","handle":"player_004","role":"provenance-and-evidence","identity_type":"synthetic_test_identity"},
-      {"player_id":"PLY-005","handle":"player_005","role":"reproducibility-qa","identity_type":"synthetic_test_identity"}
+    "session_id": "SES-REF-20261106-01",
+    "mission_id": "MIS-REF-20261106-01",
+    "status": "simulated_open_then_closed",
+    "player_count": 5,
+    "players": [
+      {
+        "player_id": "PLY-001",
+        "handle": "player_001",
+        "role": "scientific-exploration",
+        "identity_type": "synthetic_test_identity"
+      },
+      {
+        "player_id": "PLY-002",
+        "handle": "player_002",
+        "role": "object-annotation",
+        "identity_type": "synthetic_test_identity"
+      },
+      {
+        "player_id": "PLY-003",
+        "handle": "player_003",
+        "role": "uag-graph-assembly",
+        "identity_type": "synthetic_test_identity"
+      },
+      {
+        "player_id": "PLY-004",
+        "handle": "player_004",
+        "role": "provenance-and-evidence",
+        "identity_type": "synthetic_test_identity"
+      },
+      {
+        "player_id": "PLY-005",
+        "handle": "player_005",
+        "role": "reproducibility-qa",
+        "identity_type": "synthetic_test_identity"
+      }
     ],
-    "matchmaking":{"policy":"role-weighted-fixture","result":"simulated_match","external_identity_provider":false}
+    "matchmaking": {
+      "policy": "role-weighted-fixture",
+      "result": "simulated_match",
+      "external_identity_provider": false
+    }
   },
   "players": [
-    {"player_id":"PLY-001","handle":"player_001","display_name":"Player 001","identity_type":"synthetic_test_identity","role":"scientific-exploration","contribution_function":"scientific-exploration","reward_weight_bps":2600,"wallet_id":"sandbox-wallet-001","payout_minor":195000,"payout_status":"simulated_credited","external_payout_id":null},
-    {"player_id":"PLY-002","handle":"player_002","display_name":"Player 002","identity_type":"synthetic_test_identity","role":"object-annotation","contribution_function":"object-annotation","reward_weight_bps":2200,"wallet_id":"sandbox-wallet-002","payout_minor":165000,"payout_status":"simulated_credited","external_payout_id":null},
-    {"player_id":"PLY-003","handle":"player_003","display_name":"Player 003","identity_type":"synthetic_test_identity","role":"uag-graph-assembly","contribution_function":"uag-graph-assembly","reward_weight_bps":2000,"wallet_id":"sandbox-wallet-003","payout_minor":150000,"payout_status":"simulated_credited","external_payout_id":null},
-    {"player_id":"PLY-004","handle":"player_004","display_name":"Player 004","identity_type":"synthetic_test_identity","role":"provenance-and-evidence","contribution_function":"provenance-and-evidence","reward_weight_bps":1800,"wallet_id":"sandbox-wallet-004","payout_minor":135000,"payout_status":"simulated_credited","external_payout_id":null},
-    {"player_id":"PLY-005","handle":"player_005","display_name":"Player 005","identity_type":"synthetic_test_identity","role":"reproducibility-qa","contribution_function":"reproducibility-qa","reward_weight_bps":1400,"wallet_id":"sandbox-wallet-005","payout_minor":105000,"payout_status":"simulated_credited","external_payout_id":null}
+    {
+      "player_id": "PLY-001",
+      "handle": "player_001",
+      "display_name": "Player 001",
+      "identity_type": "synthetic_test_identity",
+      "role": "scientific-exploration",
+      "contribution_function": "scientific-exploration",
+      "reward_weight_bps": 2600,
+      "wallet_id": "sandbox-wallet-001",
+      "payout_minor": 195000,
+      "payout_status": "simulated_credited",
+      "external_payout_id": null
+    },
+    {
+      "player_id": "PLY-002",
+      "handle": "player_002",
+      "display_name": "Player 002",
+      "identity_type": "synthetic_test_identity",
+      "role": "object-annotation",
+      "contribution_function": "object-annotation",
+      "reward_weight_bps": 2200,
+      "wallet_id": "sandbox-wallet-002",
+      "payout_minor": 165000,
+      "payout_status": "simulated_credited",
+      "external_payout_id": null
+    },
+    {
+      "player_id": "PLY-003",
+      "handle": "player_003",
+      "display_name": "Player 003",
+      "identity_type": "synthetic_test_identity",
+      "role": "uag-graph-assembly",
+      "contribution_function": "uag-graph-assembly",
+      "reward_weight_bps": 2000,
+      "wallet_id": "sandbox-wallet-003",
+      "payout_minor": 150000,
+      "payout_status": "simulated_credited",
+      "external_payout_id": null
+    },
+    {
+      "player_id": "PLY-004",
+      "handle": "player_004",
+      "display_name": "Player 004",
+      "identity_type": "synthetic_test_identity",
+      "role": "provenance-and-evidence",
+      "contribution_function": "provenance-and-evidence",
+      "reward_weight_bps": 1800,
+      "wallet_id": "sandbox-wallet-004",
+      "payout_minor": 135000,
+      "payout_status": "simulated_credited",
+      "external_payout_id": null
+    },
+    {
+      "player_id": "PLY-005",
+      "handle": "player_005",
+      "display_name": "Player 005",
+      "identity_type": "synthetic_test_identity",
+      "role": "reproducibility-qa",
+      "contribution_function": "reproducibility-qa",
+      "reward_weight_bps": 1400,
+      "wallet_id": "sandbox-wallet-005",
+      "payout_minor": 105000,
+      "payout_status": "simulated_credited",
+      "external_payout_id": null
+    }
   ],
   "runtime_submission": {
-    "submission_id":"SUB-REF-20261106-01","mission_id":"MIS-REF-20261106-01","session_id":"SES-REF-20261106-01","submitted_at":"2026-11-06T09:52:00Z","runtime":"UEFN/FORTNITE","source_runtime":"github-pages-browser-fixture","player_action_count":5,
-    "actions":[
-      {"action_id":"ACT-001","player_id":"PLY-001","tool":"load_scientific_data","object_ref":"STATE-MIS-REF-20261106-01","action":"load mission scientific-state fixture"},
-      {"action_id":"ACT-002","player_id":"PLY-002","tool":"spawn_object","object_ref":"residue-cluster-a","action":"annotate residue cluster"},
-      {"action_id":"ACT-003","player_id":"PLY-003","tool":"apply_impulse","object_ref":"uag-interaction-map","action":"adjust graph anchor preview"},
-      {"action_id":"ACT-004","player_id":"PLY-004","tool":"run_simulation_steps","object_ref":"STATE-MIS-REF-20261106-01","action":"advance 20 local visualization steps"},
-      {"action_id":"ACT-005","player_id":"PLY-005","tool":"capture_viewport","object_ref":"mission-viewport","action":"capture evidence preview"}
+    "submission_id": "SUB-REF-20261106-01",
+    "mission_id": "MIS-REF-20261106-01",
+    "session_id": "SES-REF-20261106-01",
+    "submitted_at": "2026-11-06T09:52:00Z",
+    "runtime": "UEFN/FORTNITE",
+    "source_runtime": "github-pages-browser-fixture",
+    "player_action_count": 5,
+    "actions": [
+      {
+        "action_id": "ACT-001",
+        "player_id": "PLY-001",
+        "tool": "load_scientific_data",
+        "object_ref": "STATE-MIS-REF-20261106-01",
+        "action": "load mission scientific-state fixture"
+      },
+      {
+        "action_id": "ACT-002",
+        "player_id": "PLY-002",
+        "tool": "spawn_object",
+        "object_ref": "residue-cluster-a",
+        "action": "annotate residue cluster"
+      },
+      {
+        "action_id": "ACT-003",
+        "player_id": "PLY-003",
+        "tool": "apply_impulse",
+        "object_ref": "uag-interaction-map",
+        "action": "adjust graph anchor preview"
+      },
+      {
+        "action_id": "ACT-004",
+        "player_id": "PLY-004",
+        "tool": "run_simulation_steps",
+        "object_ref": "STATE-MIS-REF-20261106-01",
+        "action": "advance 20 local visualization steps"
+      },
+      {
+        "action_id": "ACT-005",
+        "player_id": "PLY-005",
+        "tool": "capture_viewport",
+        "object_ref": "mission-viewport",
+        "action": "capture evidence preview"
+      }
     ],
-    "tool_calls":[
-      {"call_id":"CALL-001","tool":"load_scientific_data","transport":"local-contract-fixture","status":"simulated_success","authoritative":false,"action_id":"ACT-001"},
-      {"call_id":"CALL-002","tool":"spawn_object","transport":"local-contract-fixture","status":"simulated_success","authoritative":false,"action_id":"ACT-002"},
-      {"call_id":"CALL-003","tool":"apply_impulse","transport":"local-contract-fixture","status":"simulated_success","authoritative":false,"action_id":"ACT-003"},
-      {"call_id":"CALL-004","tool":"run_simulation_steps","transport":"local-contract-fixture","status":"simulated_success","authoritative":false,"action_id":"ACT-004"},
-      {"call_id":"CALL-005","tool":"capture_viewport","transport":"local-contract-fixture","status":"simulated_success","authoritative":false,"action_id":"ACT-005"}
+    "tool_calls": [
+      {
+        "call_id": "CALL-001",
+        "tool": "load_scientific_data",
+        "transport": "local-contract-fixture",
+        "status": "simulated_success",
+        "authoritative": false,
+        "action_id": "ACT-001"
+      },
+      {
+        "call_id": "CALL-002",
+        "tool": "spawn_object",
+        "transport": "local-contract-fixture",
+        "status": "simulated_success",
+        "authoritative": false,
+        "action_id": "ACT-002"
+      },
+      {
+        "call_id": "CALL-003",
+        "tool": "apply_impulse",
+        "transport": "local-contract-fixture",
+        "status": "simulated_success",
+        "authoritative": false,
+        "action_id": "ACT-003"
+      },
+      {
+        "call_id": "CALL-004",
+        "tool": "run_simulation_steps",
+        "transport": "local-contract-fixture",
+        "status": "simulated_success",
+        "authoritative": false,
+        "action_id": "ACT-004"
+      },
+      {
+        "call_id": "CALL-005",
+        "tool": "capture_viewport",
+        "transport": "local-contract-fixture",
+        "status": "simulated_success",
+        "authoritative": false,
+        "action_id": "ACT-005"
+      }
     ],
-    "live_game_bridge":{"status":"not_requested","authoritative":false,"calls":[]},
-    "telemetry":{"object_count":3,"simulation_steps":20,"simulated_runtime_seconds":0.3333333333333333,"active_players":5},
-    "scientific_score":null,"authoritative_result":false,"fixture_only":true
+    "live_game_bridge": {
+      "status": "not_requested",
+      "authoritative": false,
+      "calls": []
+    },
+    "telemetry": {
+      "object_count": 3,
+      "simulation_steps": 20,
+      "simulated_runtime_seconds": 0.3333333333333333,
+      "active_players": 5
+    },
+    "scientific_score": null,
+    "authoritative_result": false,
+    "fixture_only": true
   },
   "validation": {
-    "openstructure":{"adapter_id":"openstructure","adapter_version":"qfoldit.openstructure/1.2","status":"simulated_pass","execution_performed":false,"authority":"fixture-only","checks":[{"id":"schema-shape","status":"simulated_pass"},{"id":"mission-lineage","status":"simulated_pass"},{"id":"object-reference-integrity","status":"simulated_pass"},{"id":"provenance-fields-present","status":"simulated_pass"}],"scientific_metrics":{"lddt":null,"local_lddt":null,"qs_score":null},"scientific_assessment":"not_performed","limitations":["No authenticated OpenStructure validator was called.","No protein-structure quality score is produced by this simulation."]},
-    "cameo":{"adapter_id":"cameo","adapter_version":"qfoldit.cameo.boundary/1.0","status":"boundary_contract_simulated","execution_performed":false,"authority":"fixture-only","benchmark_status":"not_evaluated","reconciliation_checks":[{"id":"mission-profile-shape","status":"simulated_pass"},{"id":"provenance-linkage","status":"simulated_pass"}],"limitations":["CAMEO public benchmark data/API was not queried.","No benchmark rank, score or pass claim is made."]},
-    "authoritative_scientific_result":null
+    "openstructure": {
+      "adapter_id": "openstructure",
+      "adapter_version": "qfoldit.openstructure/1.2",
+      "status": "simulated_pass",
+      "execution_performed": false,
+      "authority": "fixture-only",
+      "checks": [
+        {
+          "id": "schema-shape",
+          "status": "simulated_pass"
+        },
+        {
+          "id": "mission-lineage",
+          "status": "simulated_pass"
+        },
+        {
+          "id": "object-reference-integrity",
+          "status": "simulated_pass"
+        },
+        {
+          "id": "provenance-fields-present",
+          "status": "simulated_pass"
+        }
+      ],
+      "scientific_metrics": {
+        "lddt": null,
+        "local_lddt": null,
+        "qs_score": null
+      },
+      "scientific_assessment": "not_performed",
+      "limitations": [
+        "No authenticated OpenStructure validator was called.",
+        "No protein-structure quality score is produced by this simulation."
+      ]
+    },
+    "cameo": {
+      "adapter_id": "cameo",
+      "adapter_version": "qfoldit.cameo.boundary/1.0",
+      "status": "boundary_contract_simulated",
+      "execution_performed": false,
+      "authority": "fixture-only",
+      "benchmark_status": "not_evaluated",
+      "reconciliation_checks": [
+        {
+          "id": "mission-profile-shape",
+          "status": "simulated_pass"
+        },
+        {
+          "id": "provenance-linkage",
+          "status": "simulated_pass"
+        }
+      ],
+      "limitations": [
+        "CAMEO public benchmark data/API was not queried.",
+        "No benchmark rank, score or pass claim is made."
+      ]
+    },
+    "authoritative_scientific_result": null
   },
   "evidence": {
-    "schema":"qfoldit.evidence/1.1","evidence_id":"EVD-REF-20261106-01","mission_id":"MIS-REF-20261106-01","submission_id":"SUB-REF-20261106-01","status":"simulated_packaged","authority":"local-content-hashes-only","snapshot_event_count":7,
-    "artifacts":[
-      {"artifact_id":"ART-MISSION","path":"mission/mission.json","media_type":"application/json","hash_algorithm":"SHA-256","sha256":"377a6b3e4f2bfb8169ce801eb61885942e11d71028d61df20edee4eaa94a8138"},
-      {"artifact_id":"ART-SUBMISSION","path":"execution/submission.json","media_type":"application/json","hash_algorithm":"SHA-256","sha256":"ac17608bf449f15cd477cf6899e0d7165e55f0eb6febc60e9e8047425c1548af"},
-      {"artifact_id":"ART-PROVENANCE","path":"provenance/manifest.json","media_type":"application/json","hash_algorithm":"SHA-256","sha256":"db850d0cf4ff54be697922d8ef9e4e56b311056daeb52b21e297a4f4cdbabd33"},
-      {"artifact_id":"ART-EVENTS","path":"events/event-log.json","media_type":"application/json","hash_algorithm":"SHA-256","sha256":"a70d917448197f88911dffe2aedff72f465f261222b81661f234191bc5c8957f"}
+    "schema": "qfoldit.evidence/1.1",
+    "evidence_id": "EVD-REF-20261106-01",
+    "mission_id": "MIS-REF-20261106-01",
+    "submission_id": "SUB-REF-20261106-01",
+    "status": "simulated_packaged",
+    "authority": "local-content-hashes-only",
+    "snapshot_event_count": 7,
+    "artifacts": [
+      {
+        "artifact_id": "ART-MISSION",
+        "path": "mission/mission.json",
+        "media_type": "application/json",
+        "hash_algorithm": "SHA-256",
+        "sha256": "377a6b3e4f2bfb8169ce801eb61885942e11d71028d61df20edee4eaa94a8138"
+      },
+      {
+        "artifact_id": "ART-SUBMISSION",
+        "path": "execution/submission.json",
+        "media_type": "application/json",
+        "hash_algorithm": "SHA-256",
+        "sha256": "ac17608bf449f15cd477cf6899e0d7165e55f0eb6febc60e9e8047425c1548af"
+      },
+      {
+        "artifact_id": "ART-PROVENANCE",
+        "path": "provenance/manifest.json",
+        "media_type": "application/json",
+        "hash_algorithm": "SHA-256",
+        "sha256": "db850d0cf4ff54be697922d8ef9e4e56b311056daeb52b21e297a4f4cdbabd33"
+      },
+      {
+        "artifact_id": "ART-EVENTS",
+        "path": "events/event-log.json",
+        "media_type": "application/json",
+        "hash_algorithm": "SHA-256",
+        "sha256": "a70d917448197f88911dffe2aedff72f465f261222b81661f234191bc5c8957f"
+      }
     ],
-    "attestations":[],"validator_signatures":[],
-    "verification":{"method":"browser-local SHA-256","cryptographic_hashes_computed":true,"validator_attestation_verified":false,"server_timestamp_verified":false},
-    "fixture_only":true
+    "attestations": [],
+    "validator_signatures": [],
+    "verification": {
+      "method": "browser-local SHA-256",
+      "cryptographic_hashes_computed": true,
+      "validator_attestation_verified": false,
+      "server_timestamp_verified": false
+    },
+    "fixture_only": true
   },
   "evidence_event_snapshot": [
-    {"event_id":"EVT-001","sequence":1,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":0,"stage":"order_intake","actor":"Order Gateway","event_type":"order_received","message":"Synthetic order ORD-DEMO-2026-1106-001 received for USD 10,000.00.","authority":"simulated-fixture"},
-    {"event_id":"EVT-002","sequence":2,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":12500,"stage":"commercial_controls","actor":"Contract Service","event_type":"contract_created","message":"Contract and simulated escrow reservation recorded; no payment rail was invoked.","authority":"simulated-fixture"},
-    {"event_id":"EVT-003","sequence":3,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":25000,"stage":"mission_compilation","actor":"Mission Compiler","event_type":"mission_compiled","message":"Mission MIS-REF-20261106-01 compiled: 3 scientific-object fixtures, 4 graph nodes and 3 graph edges.","authority":"simulated-fixture"},
-    {"event_id":"EVT-004","sequence":4,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":37500,"stage":"runtime_provisioning","actor":"Runtime Registry","event_type":"runtime_bound","message":"Target UEFN/FORTNITE mapped to the browser simulation harness; adapter registration is a fixture, not a deployed engine session.","authority":"simulated-fixture"},
-    {"event_id":"EVT-005","sequence":5,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":50000,"stage":"player_matchmaking","actor":"Matchmaking Service","event_type":"players_joined","message":"5 synthetic player identities joined session SES-REF-20261106-01.","authority":"simulated-fixture"},
-    {"event_id":"EVT-006","sequence":6,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":62500,"stage":"gameplay_execution","actor":"Runtime Session","event_type":"submission_created","message":"Submission SUB-REF-20261106-01 recorded with 5 linked player actions and 20 simulated local steps.","authority":"simulated-fixture"},
-    {"event_id":"EVT-007","sequence":7,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":75000,"stage":"scientific_validation","actor":"Validation Orchestrator","event_type":"validator_boundary_exercised","message":"OpenStructure and CAMEO boundary payloads passed local shape checks only; validator execution and scientific metrics remain absent.","authority":"simulated-fixture"}
+    {
+      "event_id": "EVT-001",
+      "sequence": 1,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 0,
+      "stage": "order_intake",
+      "actor": "Order Gateway",
+      "event_type": "order_received",
+      "message": "Synthetic order ORD-DEMO-2026-1106-001 received for USD 10,000.00.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-002",
+      "sequence": 2,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 12500,
+      "stage": "commercial_controls",
+      "actor": "Contract Service",
+      "event_type": "contract_created",
+      "message": "Contract and simulated escrow reservation recorded; no payment rail was invoked.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-003",
+      "sequence": 3,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 25000,
+      "stage": "mission_compilation",
+      "actor": "Mission Compiler",
+      "event_type": "mission_compiled",
+      "message": "Mission MIS-REF-20261106-01 compiled: 3 scientific-object fixtures, 4 graph nodes and 3 graph edges.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-004",
+      "sequence": 4,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 37500,
+      "stage": "runtime_provisioning",
+      "actor": "Runtime Registry",
+      "event_type": "runtime_bound",
+      "message": "Target UEFN/FORTNITE mapped to the browser simulation harness; adapter registration is a fixture, not a deployed engine session.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-005",
+      "sequence": 5,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 50000,
+      "stage": "player_matchmaking",
+      "actor": "Matchmaking Service",
+      "event_type": "players_joined",
+      "message": "5 synthetic player identities joined session SES-REF-20261106-01.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-006",
+      "sequence": 6,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 62500,
+      "stage": "gameplay_execution",
+      "actor": "Runtime Session",
+      "event_type": "submission_created",
+      "message": "Submission SUB-REF-20261106-01 recorded with 5 linked player actions and 20 simulated local steps.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-007",
+      "sequence": 7,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 75000,
+      "stage": "scientific_validation",
+      "actor": "Validation Orchestrator",
+      "event_type": "validator_boundary_exercised",
+      "message": "OpenStructure and CAMEO boundary payloads passed local shape checks only; validator execution and scientific metrics remain absent.",
+      "authority": "simulated-fixture"
+    }
   ],
   "client_acceptance": {
-    "acceptance_id":"ACC-REF-20261106-01","order_id":"ORD-DEMO-2026-1106-001","mission_id":"MIS-REF-20261106-01","submission_id":"SUB-REF-20261106-01","status":"simulated_accepted","decision":"accept",
-    "accepted_criteria":["AC-01","AC-02","AC-03","AC-04"],"rejected_criteria":[],
-    "reviewer":{"id":"CLIENT-REVIEWER-SYNTHETIC","identity_type":"synthetic_fixture"},
-    "client_signature":null,"signed_at":null,"production_acceptance":false,"fixture_only":true
+    "acceptance_id": "ACC-REF-20261106-01",
+    "order_id": "ORD-DEMO-2026-1106-001",
+    "mission_id": "MIS-REF-20261106-01",
+    "submission_id": "SUB-REF-20261106-01",
+    "status": "simulated_accepted",
+    "decision": "accept",
+    "accepted_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04"
+    ],
+    "rejected_criteria": [],
+    "reviewer": {
+      "id": "CLIENT-REVIEWER-SYNTHETIC",
+      "identity_type": "synthetic_fixture"
+    },
+    "client_signature": null,
+    "signed_at": null,
+    "production_acceptance": false,
+    "fixture_only": true
   },
   "settlement": {
-    "currency":"USD","accounting_basis":"integer_minor_units",
-    "transactions":[
-      {"transaction_id":"JRN-ESCROW-001","type":"escrow_reservation","status":"simulated_posted","entries":[{"account":"ESCROW_CASH","debit_minor":1000000,"credit_minor":0},{"account":"CLIENT_ESCROW_LIABILITY","debit_minor":0,"credit_minor":1000000}]},
-      {"transaction_id":"JRN-ALLOC-001","type":"escrow_allocation","status":"simulated_posted","entries":[{"account":"CLIENT_ESCROW_LIABILITY","debit_minor":1000000,"credit_minor":0},{"account":"PLATFORM_FEE_PAYABLE","debit_minor":0,"credit_minor":120000},{"account":"VALIDATION_OPERATIONS_RESERVE","debit_minor":0,"credit_minor":130000},{"account":"PLAYER_REWARD_PAYABLE","debit_minor":0,"credit_minor":750000}]},
-      {"transaction_id":"JRN-PAYOUT-001","type":"player_wallet_credit","status":"simulated_posted","player_id":"PLY-001","entries":[{"account":"PLAYER_REWARD_PAYABLE","debit_minor":195000,"credit_minor":0},{"account":"PLAYER_WALLET_AVAILABLE:sandbox-wallet-001","debit_minor":0,"credit_minor":195000}]},
-      {"transaction_id":"JRN-PAYOUT-002","type":"player_wallet_credit","status":"simulated_posted","player_id":"PLY-002","entries":[{"account":"PLAYER_REWARD_PAYABLE","debit_minor":165000,"credit_minor":0},{"account":"PLAYER_WALLET_AVAILABLE:sandbox-wallet-002","debit_minor":0,"credit_minor":165000}]},
-      {"transaction_id":"JRN-PAYOUT-003","type":"player_wallet_credit","status":"simulated_posted","player_id":"PLY-003","entries":[{"account":"PLAYER_REWARD_PAYABLE","debit_minor":150000,"credit_minor":0},{"account":"PLAYER_WALLET_AVAILABLE:sandbox-wallet-003","debit_minor":0,"credit_minor":150000}]},
-      {"transaction_id":"JRN-PAYOUT-004","type":"player_wallet_credit","status":"simulated_posted","player_id":"PLY-004","entries":[{"account":"PLAYER_REWARD_PAYABLE","debit_minor":135000,"credit_minor":0},{"account":"PLAYER_WALLET_AVAILABLE:sandbox-wallet-004","debit_minor":0,"credit_minor":135000}]},
-      {"transaction_id":"JRN-PAYOUT-005","type":"player_wallet_credit","status":"simulated_posted","player_id":"PLY-005","entries":[{"account":"PLAYER_REWARD_PAYABLE","debit_minor":105000,"credit_minor":0},{"account":"PLAYER_WALLET_AVAILABLE:sandbox-wallet-005","debit_minor":0,"credit_minor":105000}]}
+    "currency": "USD",
+    "accounting_basis": "integer_minor_units",
+    "transactions": [
+      {
+        "transaction_id": "JRN-ESCROW-001",
+        "type": "escrow_reservation",
+        "status": "simulated_posted",
+        "entries": [
+          {
+            "account": "ESCROW_CASH",
+            "debit_minor": 1000000,
+            "credit_minor": 0
+          },
+          {
+            "account": "CLIENT_ESCROW_LIABILITY",
+            "debit_minor": 0,
+            "credit_minor": 1000000
+          }
+        ]
+      },
+      {
+        "transaction_id": "JRN-ALLOC-001",
+        "type": "escrow_allocation",
+        "status": "simulated_posted",
+        "entries": [
+          {
+            "account": "CLIENT_ESCROW_LIABILITY",
+            "debit_minor": 1000000,
+            "credit_minor": 0
+          },
+          {
+            "account": "PLATFORM_FEE_PAYABLE",
+            "debit_minor": 0,
+            "credit_minor": 120000
+          },
+          {
+            "account": "VALIDATION_OPERATIONS_RESERVE",
+            "debit_minor": 0,
+            "credit_minor": 130000
+          },
+          {
+            "account": "PLAYER_REWARD_PAYABLE",
+            "debit_minor": 0,
+            "credit_minor": 750000
+          }
+        ]
+      },
+      {
+        "transaction_id": "JRN-PAYOUT-001",
+        "type": "player_wallet_credit",
+        "status": "simulated_posted",
+        "player_id": "PLY-001",
+        "entries": [
+          {
+            "account": "PLAYER_REWARD_PAYABLE",
+            "debit_minor": 195000,
+            "credit_minor": 0
+          },
+          {
+            "account": "PLAYER_WALLET_AVAILABLE:sandbox-wallet-001",
+            "debit_minor": 0,
+            "credit_minor": 195000
+          }
+        ]
+      },
+      {
+        "transaction_id": "JRN-PAYOUT-002",
+        "type": "player_wallet_credit",
+        "status": "simulated_posted",
+        "player_id": "PLY-002",
+        "entries": [
+          {
+            "account": "PLAYER_REWARD_PAYABLE",
+            "debit_minor": 165000,
+            "credit_minor": 0
+          },
+          {
+            "account": "PLAYER_WALLET_AVAILABLE:sandbox-wallet-002",
+            "debit_minor": 0,
+            "credit_minor": 165000
+          }
+        ]
+      },
+      {
+        "transaction_id": "JRN-PAYOUT-003",
+        "type": "player_wallet_credit",
+        "status": "simulated_posted",
+        "player_id": "PLY-003",
+        "entries": [
+          {
+            "account": "PLAYER_REWARD_PAYABLE",
+            "debit_minor": 150000,
+            "credit_minor": 0
+          },
+          {
+            "account": "PLAYER_WALLET_AVAILABLE:sandbox-wallet-003",
+            "debit_minor": 0,
+            "credit_minor": 150000
+          }
+        ]
+      },
+      {
+        "transaction_id": "JRN-PAYOUT-004",
+        "type": "player_wallet_credit",
+        "status": "simulated_posted",
+        "player_id": "PLY-004",
+        "entries": [
+          {
+            "account": "PLAYER_REWARD_PAYABLE",
+            "debit_minor": 135000,
+            "credit_minor": 0
+          },
+          {
+            "account": "PLAYER_WALLET_AVAILABLE:sandbox-wallet-004",
+            "debit_minor": 0,
+            "credit_minor": 135000
+          }
+        ]
+      },
+      {
+        "transaction_id": "JRN-PAYOUT-005",
+        "type": "player_wallet_credit",
+        "status": "simulated_posted",
+        "player_id": "PLY-005",
+        "entries": [
+          {
+            "account": "PLAYER_REWARD_PAYABLE",
+            "debit_minor": 105000,
+            "credit_minor": 0
+          },
+          {
+            "account": "PLAYER_WALLET_AVAILABLE:sandbox-wallet-005",
+            "debit_minor": 0,
+            "credit_minor": 105000
+          }
+        ]
+      }
     ],
-    "balance_checks":[
-      {"transaction_id":"JRN-ESCROW-001","debits_minor":1000000,"credits_minor":1000000,"balanced":true},
-      {"transaction_id":"JRN-ALLOC-001","debits_minor":1000000,"credits_minor":1000000,"balanced":true},
-      {"transaction_id":"JRN-PAYOUT-001","debits_minor":195000,"credits_minor":195000,"balanced":true},
-      {"transaction_id":"JRN-PAYOUT-002","debits_minor":165000,"credits_minor":165000,"balanced":true},
-      {"transaction_id":"JRN-PAYOUT-003","debits_minor":150000,"credits_minor":150000,"balanced":true},
-      {"transaction_id":"JRN-PAYOUT-004","debits_minor":135000,"credits_minor":135000,"balanced":true},
-      {"transaction_id":"JRN-PAYOUT-005","debits_minor":105000,"credits_minor":105000,"balanced":true}
+    "balance_checks": [
+      {
+        "transaction_id": "JRN-ESCROW-001",
+        "debits_minor": 1000000,
+        "credits_minor": 1000000,
+        "balanced": true
+      },
+      {
+        "transaction_id": "JRN-ALLOC-001",
+        "debits_minor": 1000000,
+        "credits_minor": 1000000,
+        "balanced": true
+      },
+      {
+        "transaction_id": "JRN-PAYOUT-001",
+        "debits_minor": 195000,
+        "credits_minor": 195000,
+        "balanced": true
+      },
+      {
+        "transaction_id": "JRN-PAYOUT-002",
+        "debits_minor": 165000,
+        "credits_minor": 165000,
+        "balanced": true
+      },
+      {
+        "transaction_id": "JRN-PAYOUT-003",
+        "debits_minor": 150000,
+        "credits_minor": 150000,
+        "balanced": true
+      },
+      {
+        "transaction_id": "JRN-PAYOUT-004",
+        "debits_minor": 135000,
+        "credits_minor": 135000,
+        "balanced": true
+      },
+      {
+        "transaction_id": "JRN-PAYOUT-005",
+        "debits_minor": 105000,
+        "credits_minor": 105000,
+        "balanced": true
+      }
     ],
-    "all_journals_balanced":true,
-    "summary":{"gross_order_minor":1000000,"platform_fee_minor":120000,"validation_operations_minor":130000,"player_reward_pool_minor":750000,"unallocated_minor":0},
-    "taxes":{"status":"not_calculated","reason":"Outside this illustrative scenario and jurisdiction-specific."},
-    "external_payment_provider_calls":0,"real_money_moved":false
+    "all_journals_balanced": true,
+    "summary": {
+      "gross_order_minor": 1000000,
+      "platform_fee_minor": 120000,
+      "validation_operations_minor": 130000,
+      "player_reward_pool_minor": 750000,
+      "unallocated_minor": 0
+    },
+    "taxes": {
+      "status": "not_calculated",
+      "reason": "Outside this illustrative scenario and jurisdiction-specific."
+    },
+    "external_payment_provider_calls": 0,
+    "real_money_moved": false
   },
   "player_payouts": [
-    {"payout_id":"PAY-PLY-001","player_id":"PLY-001","player_handle":"player_001","wallet_id":"sandbox-wallet-001","currency":"USD","amount_minor":195000,"status":"simulated_credited","rail":"internal-sandbox-wallet","provider_transaction_id":null,"paid_at_simulated":"2026-11-06T09:52:00Z","real_money_moved":false},
-    {"payout_id":"PAY-PLY-002","player_id":"PLY-002","player_handle":"player_002","wallet_id":"sandbox-wallet-002","currency":"USD","amount_minor":165000,"status":"simulated_credited","rail":"internal-sandbox-wallet","provider_transaction_id":null,"paid_at_simulated":"2026-11-06T09:52:00Z","real_money_moved":false},
-    {"payout_id":"PAY-PLY-003","player_id":"PLY-003","player_handle":"player_003","wallet_id":"sandbox-wallet-003","currency":"USD","amount_minor":150000,"status":"simulated_credited","rail":"internal-sandbox-wallet","provider_transaction_id":null,"paid_at_simulated":"2026-11-06T09:52:00Z","real_money_moved":false},
-    {"payout_id":"PAY-PLY-004","player_id":"PLY-004","player_handle":"player_004","wallet_id":"sandbox-wallet-004","currency":"USD","amount_minor":135000,"status":"simulated_credited","rail":"internal-sandbox-wallet","provider_transaction_id":null,"paid_at_simulated":"2026-11-06T09:52:00Z","real_money_moved":false},
-    {"payout_id":"PAY-PLY-005","player_id":"PLY-005","player_handle":"player_005","wallet_id":"sandbox-wallet-005","currency":"USD","amount_minor":105000,"status":"simulated_credited","rail":"internal-sandbox-wallet","provider_transaction_id":null,"paid_at_simulated":"2026-11-06T09:52:00Z","real_money_moved":false}
+    {
+      "payout_id": "PAY-PLY-001",
+      "player_id": "PLY-001",
+      "player_handle": "player_001",
+      "wallet_id": "sandbox-wallet-001",
+      "currency": "USD",
+      "amount_minor": 195000,
+      "status": "simulated_credited",
+      "rail": "internal-sandbox-wallet",
+      "provider_transaction_id": null,
+      "paid_at_simulated": "2026-11-06T09:52:00Z",
+      "real_money_moved": false
+    },
+    {
+      "payout_id": "PAY-PLY-002",
+      "player_id": "PLY-002",
+      "player_handle": "player_002",
+      "wallet_id": "sandbox-wallet-002",
+      "currency": "USD",
+      "amount_minor": 165000,
+      "status": "simulated_credited",
+      "rail": "internal-sandbox-wallet",
+      "provider_transaction_id": null,
+      "paid_at_simulated": "2026-11-06T09:52:00Z",
+      "real_money_moved": false
+    },
+    {
+      "payout_id": "PAY-PLY-003",
+      "player_id": "PLY-003",
+      "player_handle": "player_003",
+      "wallet_id": "sandbox-wallet-003",
+      "currency": "USD",
+      "amount_minor": 150000,
+      "status": "simulated_credited",
+      "rail": "internal-sandbox-wallet",
+      "provider_transaction_id": null,
+      "paid_at_simulated": "2026-11-06T09:52:00Z",
+      "real_money_moved": false
+    },
+    {
+      "payout_id": "PAY-PLY-004",
+      "player_id": "PLY-004",
+      "player_handle": "player_004",
+      "wallet_id": "sandbox-wallet-004",
+      "currency": "USD",
+      "amount_minor": 135000,
+      "status": "simulated_credited",
+      "rail": "internal-sandbox-wallet",
+      "provider_transaction_id": null,
+      "paid_at_simulated": "2026-11-06T09:52:00Z",
+      "real_money_moved": false
+    },
+    {
+      "payout_id": "PAY-PLY-005",
+      "player_id": "PLY-005",
+      "player_handle": "player_005",
+      "wallet_id": "sandbox-wallet-005",
+      "currency": "USD",
+      "amount_minor": 105000,
+      "status": "simulated_credited",
+      "rail": "internal-sandbox-wallet",
+      "provider_transaction_id": null,
+      "paid_at_simulated": "2026-11-06T09:52:00Z",
+      "real_money_moved": false
+    }
   ],
   "event_log": [
-    {"event_id":"EVT-001","sequence":1,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":0,"stage":"order_intake","actor":"Order Gateway","event_type":"order_received","message":"Synthetic order ORD-DEMO-2026-1106-001 received for USD 10,000.00.","authority":"simulated-fixture"},
-    {"event_id":"EVT-002","sequence":2,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":12500,"stage":"commercial_controls","actor":"Contract Service","event_type":"contract_created","message":"Contract and simulated escrow reservation recorded; no payment rail was invoked.","authority":"simulated-fixture"},
-    {"event_id":"EVT-003","sequence":3,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":25000,"stage":"mission_compilation","actor":"Mission Compiler","event_type":"mission_compiled","message":"Mission MIS-REF-20261106-01 compiled: 3 scientific-object fixtures, 4 graph nodes and 3 graph edges.","authority":"simulated-fixture"},
-    {"event_id":"EVT-004","sequence":4,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":37500,"stage":"runtime_provisioning","actor":"Runtime Registry","event_type":"runtime_bound","message":"Target UEFN/FORTNITE mapped to the browser simulation harness; adapter registration is a fixture, not a deployed engine session.","authority":"simulated-fixture"},
-    {"event_id":"EVT-005","sequence":5,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":50000,"stage":"player_matchmaking","actor":"Matchmaking Service","event_type":"players_joined","message":"5 synthetic player identities joined session SES-REF-20261106-01.","authority":"simulated-fixture"},
-    {"event_id":"EVT-006","sequence":6,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":62500,"stage":"gameplay_execution","actor":"Runtime Session","event_type":"submission_created","message":"Submission SUB-REF-20261106-01 recorded with 5 linked player actions and 20 simulated local steps.","authority":"simulated-fixture"},
-    {"event_id":"EVT-007","sequence":7,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":75000,"stage":"scientific_validation","actor":"Validation Orchestrator","event_type":"validator_boundary_exercised","message":"OpenStructure and CAMEO boundary payloads passed local shape checks only; validator execution and scientific metrics remain absent.","authority":"simulated-fixture"},
-    {"event_id":"EVT-008","sequence":8,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":87500,"stage":"evidence_packaging","actor":"Evidence Service","event_type":"evidence_packaged","message":"Evidence 1.1 package EVD-REF-20261106-01 contains four hashed artifacts; no validator signature is attached.","authority":"simulated-fixture"},
-    {"event_id":"EVT-009","sequence":9,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":100000,"stage":"client_acceptance","actor":"Client Acceptance Gate","event_type":"acceptance_recorded","message":"Synthetic client fixture accepted the contract-shape and evidence-delivery criteria; no real customer approval was collected.","authority":"simulated-fixture"},
-    {"event_id":"EVT-010","sequence":10,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":112500,"stage":"player_settlement","actor":"Sandbox Settlement","event_type":"payout_batch_created","message":"Reward batch settled to 5 sandbox wallets for USD 7,500.00; no external payout call occurred.","authority":"simulated-fixture"},
-    {"event_id":"EVT-011","sequence":11,"recorded_at":"2026-11-06T09:52:00Z","simulated_elapsed_ms":125000,"stage":"player_settlement","actor":"E2E Orchestrator","event_type":"run_completed","message":"All 10 lifecycle stages completed. Production gates remain explicitly unverified.","authority":"simulated-fixture"}
+    {
+      "event_id": "EVT-001",
+      "sequence": 1,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 0,
+      "stage": "order_intake",
+      "actor": "Order Gateway",
+      "event_type": "order_received",
+      "message": "Synthetic order ORD-DEMO-2026-1106-001 received for USD 10,000.00.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-002",
+      "sequence": 2,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 12500,
+      "stage": "commercial_controls",
+      "actor": "Contract Service",
+      "event_type": "contract_created",
+      "message": "Contract and simulated escrow reservation recorded; no payment rail was invoked.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-003",
+      "sequence": 3,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 25000,
+      "stage": "mission_compilation",
+      "actor": "Mission Compiler",
+      "event_type": "mission_compiled",
+      "message": "Mission MIS-REF-20261106-01 compiled: 3 scientific-object fixtures, 4 graph nodes and 3 graph edges.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-004",
+      "sequence": 4,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 37500,
+      "stage": "runtime_provisioning",
+      "actor": "Runtime Registry",
+      "event_type": "runtime_bound",
+      "message": "Target UEFN/FORTNITE mapped to the browser simulation harness; adapter registration is a fixture, not a deployed engine session.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-005",
+      "sequence": 5,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 50000,
+      "stage": "player_matchmaking",
+      "actor": "Matchmaking Service",
+      "event_type": "players_joined",
+      "message": "5 synthetic player identities joined session SES-REF-20261106-01.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-006",
+      "sequence": 6,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 62500,
+      "stage": "gameplay_execution",
+      "actor": "Runtime Session",
+      "event_type": "submission_created",
+      "message": "Submission SUB-REF-20261106-01 recorded with 5 linked player actions and 20 simulated local steps.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-007",
+      "sequence": 7,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 75000,
+      "stage": "scientific_validation",
+      "actor": "Validation Orchestrator",
+      "event_type": "validator_boundary_exercised",
+      "message": "OpenStructure and CAMEO boundary payloads passed local shape checks only; validator execution and scientific metrics remain absent.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-008",
+      "sequence": 8,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 87500,
+      "stage": "evidence_packaging",
+      "actor": "Evidence Service",
+      "event_type": "evidence_packaged",
+      "message": "Evidence 1.1 package EVD-REF-20261106-01 contains four hashed artifacts; no validator signature is attached.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-009",
+      "sequence": 9,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 100000,
+      "stage": "client_acceptance",
+      "actor": "Client Acceptance Gate",
+      "event_type": "acceptance_recorded",
+      "message": "Synthetic client fixture accepted the contract-shape and evidence-delivery criteria; no real customer approval was collected.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-010",
+      "sequence": 10,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 112500,
+      "stage": "player_settlement",
+      "actor": "Sandbox Settlement",
+      "event_type": "payout_batch_created",
+      "message": "Reward batch settled to 5 sandbox wallets for USD 7,500.00; no external payout call occurred.",
+      "authority": "simulated-fixture"
+    },
+    {
+      "event_id": "EVT-011",
+      "sequence": 11,
+      "recorded_at": "2026-11-06T09:52:00Z",
+      "simulated_elapsed_ms": 125000,
+      "stage": "player_settlement",
+      "actor": "E2E Orchestrator",
+      "event_type": "run_completed",
+      "message": "All 10 lifecycle stages completed. Production gates remain explicitly unverified.",
+      "authority": "simulated-fixture"
+    }
   ],
-  "metrics": {"lifecycle_stages_total":10,"lifecycle_stages_completed":10,"event_count":11,"synthetic_player_count":5,"player_action_count":5,"simulation_steps":20,"scientific_objects":3,"authoritative_scientific_scores":0,"external_payment_transactions":0},
+  "metrics": {
+    "lifecycle_stages_total": 10,
+    "lifecycle_stages_completed": 10,
+    "event_count": 11,
+    "synthetic_player_count": 5,
+    "player_action_count": 5,
+    "simulation_steps": 20,
+    "scientific_objects": 3,
+    "authoritative_scientific_scores": 0,
+    "external_payment_transactions": 0
+  },
   "integrity": {
-    "simulation_only":true,"synthetic_client_and_player_identities":true,"scientific_scores_synthesized":false,"authoritative_validator_evidence":false,"client_signature_present":false,"confidential_data_exposed":false,
-    "external_payment_provider_calls":0,"real_money_moved":false,"ledger_balanced":true,"unallocated_minor":0,
-    "event_log_sha256":"d550a21684c76a4c256a3f921c0c17264f39e309bda2f2a64968c08422ba8a3e","content_hashes_are_not_validator_attestations":true
+    "simulation_only": true,
+    "synthetic_client_and_player_identities": true,
+    "scientific_scores_synthesized": false,
+    "authoritative_validator_evidence": false,
+    "client_signature_present": false,
+    "confidential_data_exposed": false,
+    "external_payment_provider_calls": 0,
+    "real_money_moved": false,
+    "ledger_balanced": true,
+    "unallocated_minor": 0,
+    "event_log_sha256": "d550a21684c76a4c256a3f921c0c17264f39e309bda2f2a64968c08422ba8a3e",
+    "content_hashes_are_not_validator_attestations": true
   },
   "production_readiness": {
-    "status":"NOT_PRODUCTION_VERIFIED","production_eligible":false,
-    "blocked_gates":[
-      {"gate":"authenticated_client_order_api","status":"not_connected"},
-      {"gate":"contract_signature_and_tenant_authorization","status":"not_connected"},
-      {"gate":"runtime_server_authority","status":"fixture_only"},
-      {"gate":"authenticated_openstructure_execution","status":"not_connected"},
-      {"gate":"cameo_benchmark_reconciliation","status":"not_evaluated"},
-      {"gate":"evidence_1_1_validator_attestation","status":"not_available"},
-      {"gate":"client_acceptance_signature","status":"not_collected"},
-      {"gate":"payment_provider_kyc_aml_and_settlement","status":"not_connected"},
-      {"gate":"tax_and_jurisdiction_rules","status":"not_configured"}
+    "status": "NOT_PRODUCTION_VERIFIED",
+    "production_eligible": false,
+    "blocked_gates": [
+      {
+        "gate": "authenticated_client_order_api",
+        "status": "not_connected"
+      },
+      {
+        "gate": "contract_signature_and_tenant_authorization",
+        "status": "not_connected"
+      },
+      {
+        "gate": "runtime_server_authority",
+        "status": "fixture_only"
+      },
+      {
+        "gate": "authenticated_openstructure_execution",
+        "status": "not_connected"
+      },
+      {
+        "gate": "cameo_benchmark_reconciliation",
+        "status": "not_evaluated"
+      },
+      {
+        "gate": "evidence_1_1_validator_attestation",
+        "status": "not_available"
+      },
+      {
+        "gate": "client_acceptance_signature",
+        "status": "not_collected"
+      },
+      {
+        "gate": "payment_provider_kyc_aml_and_settlement",
+        "status": "not_connected"
+      },
+      {
+        "gate": "tax_and_jurisdiction_rules",
+        "status": "not_configured"
+      }
     ]
   },
   "contract_validation": {
-    "validator":"qfoldit.e2e-contract-checker/1.0","status":"passed","authority":"local-structural-contract-check-only","checked_at":"2026-11-06T09:52:00Z",
-    "checks":[
-      {"id":"root-schema","status":"passed","detail":"Run schema identifier matches the E2E contract."},
-      {"id":"order-amount","status":"passed","detail":"Order total is a positive integer in minor units."},
-      {"id":"allocation-reconciliation","status":"passed","detail":"Player, platform and operations allocations equal order total."},
-      {"id":"uag-edge-integrity","status":"passed","detail":"All graph edge endpoints resolve."},
-      {"id":"mission-submission-lineage","status":"passed","detail":"Submission references the compiled mission."},
-      {"id":"evidence-lineage","status":"passed","detail":"Evidence retains mission/submission lineage and SHA-256 artifact hashes."},
-      {"id":"journal-balance","status":"passed","detail":"Every journal transaction balances."},
-      {"id":"payout-reconciliation","status":"passed","detail":"Player credits reconcile to the reward pool."},
-      {"id":"stage-coverage","status":"passed","detail":"All ten lifecycle stages have completed simulation records."},
-      {"id":"event-sequence","status":"passed","detail":"Event sequence is contiguous."},
-      {"id":"no-synthetic-science-score","status":"passed","detail":"No authoritative scientific score is synthesized."},
-      {"id":"no-real-money-movement","status":"passed","detail":"No real money or external payout calls."},
-      {"id":"production-gate-closed","status":"passed","detail":"Fixture run remains not production verified."}
+    "validator": "qfoldit.e2e-contract-checker/1.0",
+    "status": "passed",
+    "authority": "local-structural-contract-check-only",
+    "checked_at": "2026-11-06T09:52:00Z",
+    "checks": [
+      {
+        "id": "root-schema",
+        "status": "passed",
+        "detail": "Run schema identifier matches the E2E contract."
+      },
+      {
+        "id": "order-amount",
+        "status": "passed",
+        "detail": "Order total is a positive integer in minor units."
+      },
+      {
+        "id": "allocation-reconciliation",
+        "status": "passed",
+        "detail": "Player, platform and operations allocations equal order total."
+      },
+      {
+        "id": "uag-edge-integrity",
+        "status": "passed",
+        "detail": "All graph edge endpoints resolve."
+      },
+      {
+        "id": "mission-submission-lineage",
+        "status": "passed",
+        "detail": "Submission references the compiled mission."
+      },
+      {
+        "id": "evidence-lineage",
+        "status": "passed",
+        "detail": "Evidence retains mission/submission lineage and SHA-256 artifact hashes."
+      },
+      {
+        "id": "journal-balance",
+        "status": "passed",
+        "detail": "Every journal transaction balances."
+      },
+      {
+        "id": "payout-reconciliation",
+        "status": "passed",
+        "detail": "Player credits reconcile to the reward pool."
+      },
+      {
+        "id": "stage-coverage",
+        "status": "passed",
+        "detail": "All ten lifecycle stages have completed simulation records."
+      },
+      {
+        "id": "event-sequence",
+        "status": "passed",
+        "detail": "Event sequence is contiguous."
+      },
+      {
+        "id": "no-synthetic-science-score",
+        "status": "passed",
+        "detail": "No authoritative scientific score is synthesized."
+      },
+      {
+        "id": "no-real-money-movement",
+        "status": "passed",
+        "detail": "No real money or external payout calls."
+      },
+      {
+        "id": "production-gate-closed",
+        "status": "passed",
+        "detail": "Fixture run remains not production verified."
+      }
     ],
-    "errors":[]
+    "errors": []
   },
-  "disclaimer":"This is a local deterministic simulation. Simulated passes, acceptance, escrow and player credits are not real external events, scientific validation, legal acceptance or payments."
+  "disclaimer": "This is a local browser fixture simulation. Simulated passes, acceptance, escrow and player credits are not real external events, scientific validation, legal acceptance or payments."
 }
