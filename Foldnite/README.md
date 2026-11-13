@@ -12,6 +12,7 @@ The **/Foldnite/** section is the institutional and product presentation layer f
 | **snezhinka/index.html** | Flagship world: seven station zones, Arctic fleet, digital-twin environment, example mission and development story. |
 | **missions.html** | Mission loop, collaborative roles, example Arctic challenge and Education / Scientific / Engineering R&D mission types. |
 | **technology.html** | qFoldIT architecture: scientific objects and UAG, mission engine, Scientific MCP Mesh, runtime, AI and validation / Evidence. |
+| **partnership.html** | Bilingual pilot concept for the World of Knowledge of Sirius and Lesta Games. |
 | **studio/index.html** | Preserved Narrative & Cultural Control Plane that previously occupied the /Foldnite/ entry point. |
 
 ## Shared frontend
@@ -40,6 +41,7 @@ The Snezhinka pages reuse image endpoints already referenced by the existing Fol
 - MAS Snezhinka: https://qfoldit.github.io/Foldnite/snezhinka/
 - Missions: https://qfoldit.github.io/Foldnite/missions.html
 - Technology: https://qfoldit.github.io/Foldnite/technology.html
+- Sirius pilot concept: https://qfoldit.github.io/Foldnite/partnership.html
 - Studio: https://qfoldit.github.io/Foldnite/studio/
 
 The existing Narrative & Cultural Control Plane was moved without redesign to **studio/index.html**; the root **index.html** now serves as the new public Foldnite presentation.
