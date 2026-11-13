@@ -1,34 +1,45 @@
-# qFoldIT — Foldnite Scientific Mission Studio
+# Foldnite — Scientific Game Worlds
 
-`Foldnite/` is the dedicated GitHub Pages deployment surface for the qFoldIT UEFN/Foldnite experience.
+**Purpose:** public-facing bilingual presentation of qFoldIT / Foldnite and its flagship scientific world, MAS “Snezhinka”.
 
-## Runtime
+The **/Foldnite/** section is the institutional and product presentation layer for Foldnite. It introduces scientific game worlds, the MAS Snezhinka Arctic environment, collaborative Scientific Missions and the qFoldIT technology foundation.
 
-- Fully client-side and self-contained.
-- No backend, Tauri runtime, filesystem access, or external CSS/JS dependency is required for the published page.
-- All interactive UI state is held in browser memory.
-- The deployment is path-safe for `/Foldnite/` on GitHub Pages.
+## Public pages
 
-## Narrative & Cultural Control
+| Page | Purpose |
+|---|---|
+| **index.html** | Main bilingual Foldnite presentation: product idea, flagship world, AI-assisted laboratory story, nine Sirius learning principles and project timeline. |
+| **snezhinka/index.html** | Flagship world: seven station zones, Arctic fleet, digital-twin environment, example mission and development story. |
+| **missions.html** | Mission loop, collaborative roles, example Arctic challenge and Education / Scientific / Engineering R&D mission types. |
+| **technology.html** | qFoldIT architecture: scientific objects and UAG, mission engine, Scientific MCP Mesh, runtime, AI and validation / Evidence. |
+| **studio/index.html** | Preserved Narrative & Cultural Control Plane that previously occupied the /Foldnite/ entry point. |
 
-The published Foldnite surface includes the qFoldIT Narrative & Cultural Control Plane shown in the product design reference.
+## Shared frontend
 
-The control plane covers:
+- **assets/site.css** — responsive dark scientific-grid presentation system.
+- **assets/site.js** — RU / EN language switcher with remembered selection.
 
-- IP and brand selection with rights state.
-- Narrative configuration and scientific-fidelity boundary.
-- Story Graph connecting mission, discovery, collaboration, validation and asset readiness.
-- Character Studio with agency and disclosure states.
-- Culture Graph and controlled symbol language.
-- Audience segmentation and distribution targets.
-- Attention / scientific-action impact metrics.
-- Release Gate with a machine-readable narrative manifest.
-- Provenance, governance and fail-closed publication indicators.
+All pages are static HTML, CSS and JavaScript and are designed for GitHub Pages. No application backend is required for the presentation layer.
 
-## Entry point
+## Product and technical narrative
 
-`index.html`
+- **qFoldIT** is the scientific and computational mission layer.
+- **Foldnite** is the immersive collaborative experience layer.
+- **MAS “Snezhinka”** is the flagship Arctic scientific world used to demonstrate the combination.
+- **Scientific Missions** connect research or engineering challenges to the world, participant roles, actions, feedback and debrief.
+- **Human + AI** is presented as an in-world working model. The May 2023 Snezhinka virtual-laboratory milestone records the use of OpenAI Chat Completions (GPT-3.5/GPT-4) inside the virtual environment.
+- The nine principles of the World of Knowledge of Sirius are mapped to possible Foldnite learning mechanics as a product design direction.
 
-## Source alignment
+## Visual assets
 
-The implementation follows the NarrativeControl model defined in `qfoldit/UEFN-QFOLDIT/frontend/src/narrative-control.js`, including the mission-scoped narrative contract, IP rights states, character disclosure, audience, distribution and governance concepts.
+The Snezhinka pages reuse image endpoints already referenced by the existing Foldnite Arctic presentation, including comiccon2025.github.io and mas-snezhinka.github.io. Shared site CSS and JavaScript are stored locally in this directory. The source Arctic presentation at https://foldnite.github.io/arctic/ remains unchanged.
+
+## Navigation
+
+- Main site: https://qfoldit.github.io/Foldnite/
+- MAS Snezhinka: https://qfoldit.github.io/Foldnite/snezhinka/
+- Missions: https://qfoldit.github.io/Foldnite/missions.html
+- Technology: https://qfoldit.github.io/Foldnite/technology.html
+- Studio: https://qfoldit.github.io/Foldnite/studio/
+
+The existing Narrative & Cultural Control Plane was moved without redesign to **studio/index.html**; the root **index.html** now serves as the new public Foldnite presentation.
